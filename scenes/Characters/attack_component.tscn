@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://jhm5n51ryubd"]
+
+[ext_resource type="Script" path="res://scripts/Characters/AttackComponent.gd" id="1_gxfi5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ny187"]
+
+[node name="AttackComponent" type="Node2D"]
+script = ExtResource("1_gxfi5")
+startup_time = 0.0
+attack_duration_time = 0.1
+cooldown_time = 0.1
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ny187")
+debug_color = Color(0.960784, 0, 0, 0.419608)
+
+[node name="StartupTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AttackDurationTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="StartupTimer" to="." method="_on_startup_timer_timeout"]
+[connection signal="timeout" from="AttackDurationTimer" to="." method="_on_attack_duration_timer_timeout"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

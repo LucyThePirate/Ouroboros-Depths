@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://cn1vwhwg8kdvm"]
+
+[ext_resource type="Script" path="res://scripts/Characters/creature_component.gd" id="1_bfqah"]
+[ext_resource type="Texture2D" uid="uid://e7q1s4xepclp" path="res://textures/traditional 19x19 prezzy.png" id="1_ovekq"]
+[ext_resource type="PackedScene" uid="uid://jhm5n51ryubd" path="res://scenes/Characters/attack_component.tscn" id="3_ljqlt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ll7q3"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36ssx"]
+atlas = ExtResource("1_ovekq")
+region = Rect2(0, 0, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ord2y"]
+atlas = ExtResource("1_ovekq")
+region = Rect2(0, 0, 17, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbtm4"]
+atlas = ExtResource("1_ovekq")
+region = Rect2(17, 0, 17, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ndvff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36ssx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ord2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbtm4")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[node name="CreatureComponent" type="CharacterBody2D"]
+script = ExtResource("1_bfqah")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ll7q3")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ndvff")
+animation = &"walking"
+
+[node name="AttackOffset" type="Marker2D" parent="."]
+
+[node name="AttackComponent" parent="AttackOffset" instance=ExtResource("3_ljqlt")]
+unique_name_in_owner = true
+position = Vector2(20, 0)
