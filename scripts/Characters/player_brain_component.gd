@@ -16,7 +16,6 @@ func _process(delta):
 		if direction.length() > 1:
 			direction = direction.normalized()
 		%CreatureComponent.move_in_direction(direction)
-		global_position = %CreatureComponent.global_position
 	
 	# Handle rotation
 	var mouse_distance = get_global_mouse_position() - %CreatureComponent.global_position
@@ -24,6 +23,13 @@ func _process(delta):
 	%CameraRotation.look_at(get_global_mouse_position())
 	
 	# Handle attacking
-	if Input.is_action_just_pressed("MainHand"):
+	if Input.is_action_pressed("MainHand"):
 		%CreatureComponent.attack()
+		
+	#handle_slowdown()
 	
+func handle_slowdown():
+	if not %CreatureComponent/%AttackComponent.is_on_standby():
+		Engine.time_scale = 1.0
+		return
+	Engine.time_scale = 0.1

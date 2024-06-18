@@ -1,10 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://dn5dwn4cxcre8"]
+[gd_scene load_steps=4 format=3 uid="uid://dn5dwn4cxcre8"]
 
 [ext_resource type="Script" path="res://scripts/Characters/creature_brain_component.gd" id="1_8t8xw"]
 [ext_resource type="PackedScene" uid="uid://cn1vwhwg8kdvm" path="res://scenes/Characters/creature_component.tscn" id="2_m6rlo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nfqeo"]
+radius = 158.05
 
 [node name="creature_brain_component" type="Node2D"]
 script = ExtResource("1_8t8xw")
 
 [node name="CreatureComponent" parent="." instance=ExtResource("2_m6rlo")]
 unique_name_in_owner = true
+
+[node name="DebugLabel" type="Label" parent="CreatureComponent"]
+offset_left = -17.0
+offset_top = -21.0
+offset_right = 23.0
+offset_bottom = 2.0
+scale = Vector2(0.904567, 0.362678)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sight" type="Area2D" parent="CreatureComponent"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CreatureComponent/Sight"]
+shape = SubResource("CircleShape2D_nfqeo")
+debug_color = Color(0.619608, 0.517647, 0.352941, 0.109804)
+
+[connection signal="creature_entered_attack_range" from="CreatureComponent" to="." method="_on_creature_component_creature_entered_attack_range"]
+[connection signal="creature_exited_attack_range" from="CreatureComponent" to="." method="_on_creature_component_creature_exited_attack_range"]
+[connection signal="died" from="CreatureComponent" to="." method="_on_creature_component_died"]
+[connection signal="body_entered" from="CreatureComponent/Sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="CreatureComponent/Sight" to="." method="_on_sight_body_exited"]
+
+[editable path="CreatureComponent"]

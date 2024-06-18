@@ -338,7 +338,7 @@ position = Vector2(-54, 246)
 position = Vector2(-318, 220)
 
 [node name="PlayerBrainComponent" parent="." instance=ExtResource("3_e5jyo")]
-position = Vector2(-149, -10)
+position = Vector2(-524, -223)
 
 [node name="creature_brain_component" parent="." instance=ExtResource("4_8oh63")]
-position = Vector2(-270, -155)
+position = Vector2(-329, -245)

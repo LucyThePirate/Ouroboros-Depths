@@ -1,5 +1,11 @@
+class_name Creature
 extends CharacterBody2D
 
+enum States {ALIVE, DEAD}
+
+signal creature_entered_attack_range(body)
+signal creature_exited_attack_range(body)
+signal died()
 
 const SPEED = 150.0
 const FRICTION_MULTIPLIER = 0.9
@@ -10,6 +16,7 @@ const FRICTION_MULTIPLIER = 0.9
 var is_moving = false
 @onready var current_attack = %AttackComponent
 @onready var health = max_health
+var state = States.ALIVE
 
 func _physics_process(delta):
 	if not is_moving:
@@ -20,9 +27,9 @@ func _physics_process(delta):
 
 ## Assumption: direction is a normalized (or less than normalized) vector
 func move_in_direction(direction : Vector2):
-	#if direction.x:
-		#$Sprite.flip_h = direction.x > 0
 	velocity = direction * SPEED
+	if not %AttackComponent.is_on_standby():
+		velocity *= 0.5
 	is_moving = true
 	
 	
@@ -40,5 +47,32 @@ func attack():
 		current_attack.attack()
 
 
-func hit():
-	print("Ive been hit")
+func hit(damage_amount, damage_type, damage_parent):
+	match damage_type:
+		Damage_Types.DamageTypes.TRUE:
+			health -= max(damage_amount, 0)
+		_:
+			print("Unknown damage type:", damage_type)
+			health -= max(damage_amount, 0)
+	var health_percent = health / max_health
+	%Sprite.self_modulate = Color(1, health_percent, health_percent)
+	if health <= 0:
+		perish()
+
+
+func perish():
+	if state == States.ALIVE:
+		state = States.DEAD
+		died.emit()
+		%CreatureCollider.disabled = true
+		
+		%AnimationPlayer.play("Die")
+		
+
+
+func _on_attack_component_creature_entered_range(body):
+	creature_entered_attack_range.emit(body)
+
+
+func _on_attack_component_creature_exited_range(body):
+	creature_exited_attack_range.emit(body)

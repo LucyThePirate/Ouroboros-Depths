@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scripts/Characters/player_brain_component.gd" id="1_jpu7d"]
 [ext_resource type="PackedScene" uid="uid://cn1vwhwg8kdvm" path="res://scenes/Characters/creature_component.tscn" id="2_u5n5x"]
 
-[node name="PlayerBrainComponent" type="Node2D" groups=["creature", "player"]]
+[node name="PlayerBrainComponent" type="Node2D"]
 script = ExtResource("1_jpu7d")
 
-[node name="CreatureComponent" parent="." instance=ExtResource("2_u5n5x")]
+[node name="CreatureComponent" parent="." groups=["player"] instance=ExtResource("2_u5n5x")]
 unique_name_in_owner = true
 
 [node name="CameraRotation" type="Marker2D" parent="CreatureComponent"]
@@ -19,3 +19,5 @@ offset = Vector2(50, 0)
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 metadata/_edit_lock_ = true
+
+[editable path="CreatureComponent"]
