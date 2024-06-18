@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfv6tbuwti31"]
+[gd_scene load_steps=7 format=3 uid="uid://cfv6tbuwti31"]
 
 [ext_resource type="Texture2D" uid="uid://b60fxmc7hxg5s" path="res://textures/PumpkinBlock2.png" id="1_25xoa"]
 [ext_resource type="PackedScene" uid="uid://dd3yj1e7alom2" path="res://scenes/cretin.tscn" id="2_m7kxd"]
 [ext_resource type="PackedScene" uid="uid://dsh3fosuphuuo" path="res://scenes/Characters/player_brain_component.tscn" id="3_e5jyo"]
+[ext_resource type="PackedScene" uid="uid://dn5dwn4cxcre8" path="res://scenes/Characters/creature_brain_component.tscn" id="4_8oh63"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_22dw5"]
 texture = ExtResource("1_25xoa")
@@ -338,3 +339,6 @@ position = Vector2(-318, 220)
 
 [node name="PlayerBrainComponent" parent="." instance=ExtResource("3_e5jyo")]
 position = Vector2(-149, -10)
+
+[node name="creature_brain_component" parent="." instance=ExtResource("4_8oh63")]
+position = Vector2(-270, -155)

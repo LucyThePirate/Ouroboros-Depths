@@ -4,8 +4,12 @@ extends CharacterBody2D
 const SPEED = 150.0
 const FRICTION_MULTIPLIER = 0.9
 
+@export_category("Creature Stats")
+@export var max_health : float = 20
+
 var is_moving = false
 @onready var current_attack = %AttackComponent
+@onready var health = max_health
 
 func _physics_process(delta):
 	if not is_moving:
@@ -34,3 +38,7 @@ func point_towards(look_position : Vector2):
 func attack():
 	if current_attack:
 		current_attack.attack()
+
+
+func hit():
+	print("Ive been hit")

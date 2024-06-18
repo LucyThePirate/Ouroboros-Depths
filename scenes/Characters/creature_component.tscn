@@ -41,7 +41,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CreatureComponent" type="CharacterBody2D"]
+[node name="CreatureComponent" type="CharacterBody2D" groups=["creature"]]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_bfqah")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

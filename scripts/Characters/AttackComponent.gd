@@ -10,7 +10,7 @@ enum States {STANDBY, STARTING_UP, ATTACK_DURATION, ATTACK_COOLDOWN}
 var _state = States.STANDBY
 
 func _process(delta):
-	print(_state)
+	pass
 
 
 func attack():
@@ -57,3 +57,9 @@ func _check_for_hits():
 func _set_hitbox_enabled(hitbox_enable : bool):
 	$Area2D.visible = hitbox_enable
 	$Area2D.monitoring = hitbox_enable
+
+
+func _on_area_2d_body_entered(body):
+	if _state == States.ATTACK_DURATION:
+		if body.has_method("hit"):
+			body.hit()

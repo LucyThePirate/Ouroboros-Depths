@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Characters/player_brain_component.gd" id="1_jpu7d"]
 [ext_resource type="PackedScene" uid="uid://cn1vwhwg8kdvm" path="res://scenes/Characters/creature_component.tscn" id="2_u5n5x"]
 
-[node name="PlayerBrainComponent" type="Node2D"]
+[node name="PlayerBrainComponent" type="Node2D" groups=["creature", "player"]]
 script = ExtResource("1_jpu7d")
 
 [node name="CreatureComponent" parent="." instance=ExtResource("2_u5n5x")]

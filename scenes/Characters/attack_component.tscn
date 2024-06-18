@@ -12,6 +12,8 @@ cooldown_time = 0.1
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
+collision_layer = 4
+collision_mask = 3
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -27,6 +29,7 @@ one_shot = true
 [node name="CooldownTimer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="StartupTimer" to="." method="_on_startup_timer_timeout"]
 [connection signal="timeout" from="AttackDurationTimer" to="." method="_on_attack_duration_timer_timeout"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

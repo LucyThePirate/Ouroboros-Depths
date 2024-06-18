@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn5dwn4cxcre8"]
+
+[ext_resource type="Script" path="res://scripts/Characters/creature_brain_component.gd" id="1_8t8xw"]
+[ext_resource type="PackedScene" uid="uid://cn1vwhwg8kdvm" path="res://scenes/Characters/creature_component.tscn" id="2_m6rlo"]
+
+[node name="creature_brain_component" type="Node2D"]
+script = ExtResource("1_8t8xw")
+
+[node name="CreatureComponent" parent="." instance=ExtResource("2_m6rlo")]
+unique_name_in_owner = true

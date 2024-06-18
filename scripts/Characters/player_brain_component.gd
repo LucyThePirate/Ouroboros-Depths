@@ -16,6 +16,7 @@ func _process(delta):
 		if direction.length() > 1:
 			direction = direction.normalized()
 		%CreatureComponent.move_in_direction(direction)
+		global_position = %CreatureComponent.global_position
 	
 	# Handle rotation
 	var mouse_distance = get_global_mouse_position() - %CreatureComponent.global_position
