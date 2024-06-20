@@ -2,6 +2,9 @@ extends Node2D
 
 signal creature_entered_range(body)
 signal creature_exited_range(body)
+signal finished_startup
+signal finished_attack_duration
+signal finished_cooldown
 
 enum States {STANDBY, STARTING_UP, ATTACK_DURATION, ATTACK_COOLDOWN}
 
@@ -17,6 +20,7 @@ enum States {STANDBY, STARTING_UP, ATTACK_DURATION, ATTACK_COOLDOWN}
 @export var damage_parent : Creature
 
 var _state = States.STANDBY
+
 
 func _process(delta):
 	pass
@@ -37,6 +41,7 @@ func is_on_standby() -> bool:
 
 func _on_startup_timer_timeout():
 	if _state == States.STARTING_UP:
+		finished_startup.emit()
 		_state = States.ATTACK_DURATION
 		_set_hitbox_enabled(true)
 		if attack_duration_time > 0:
@@ -48,6 +53,7 @@ func _on_startup_timer_timeout():
 
 func _on_attack_duration_timer_timeout():
 	if _state == States.ATTACK_DURATION:
+		finished_attack_duration.emit()
 		_state = States.ATTACK_COOLDOWN
 		_set_hitbox_enabled(false)
 		if cooldown_time > 0:
@@ -58,6 +64,7 @@ func _on_attack_duration_timer_timeout():
 
 func _on_cooldown_timer_timeout():
 	if _state == States.ATTACK_COOLDOWN:
+		finished_cooldown.emit()
 		_state = States.STANDBY
 
 

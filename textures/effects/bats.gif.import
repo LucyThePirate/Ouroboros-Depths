@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://ci43ag8mcwh3"
+path="res://.godot/imported/bats.gif-1c8a46fc38bf9b8a47d5766c80321df7.tres"
+
+[deps]
+
+source_file="res://textures/effects/bats.gif"
+dest_files=["res://.godot/imported/bats.gif-1c8a46fc38bf9b8a47d5766c80321df7.tres"]
+
+[params]
+
+frames_per_second=30
