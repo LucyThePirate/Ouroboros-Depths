@@ -34,7 +34,6 @@ func _process(delta):
 			# Handle attacking
 			if target_in_melee_range:
 				%CreatureComponent.attack()
-	
 
 
 func _on_sight_body_entered(body):
@@ -62,3 +61,9 @@ func _on_creature_component_creature_exited_attack_range(body):
 
 func _on_creature_component_died():
 	state = States.DEAD
+
+
+func _on_creature_component_hit_by(creature):
+	if state == States.WANDER and creature != $CreatureComponent:
+		current_target = creature
+		state = States.PURSUIT

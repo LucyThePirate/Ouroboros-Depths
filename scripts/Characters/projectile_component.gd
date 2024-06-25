@@ -1,21 +1,19 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@export var damage_parent : Creature
+const SPEED = 250.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	#rotation = randf_range(-360, 360)
-	pass
+	%AttackComponent.damage_parent = damage_parent
 	%AttackComponent.attack()
+
 
 func _physics_process(delta):
 	var direction = Vector2(1, 0).rotated(rotation)
-	velocity = direction * SPEED * delta
-
+	velocity = direction * SPEED
 	move_and_slide()
 
 

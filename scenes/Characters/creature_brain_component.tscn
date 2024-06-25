@@ -32,6 +32,7 @@ debug_color = Color(0.619608, 0.517647, 0.352941, 0.109804)
 [connection signal="creature_entered_attack_range" from="CreatureComponent" to="." method="_on_creature_component_creature_entered_attack_range"]
 [connection signal="creature_exited_attack_range" from="CreatureComponent" to="." method="_on_creature_component_creature_exited_attack_range"]
 [connection signal="died" from="CreatureComponent" to="." method="_on_creature_component_died"]
+[connection signal="hit_by" from="CreatureComponent" to="." method="_on_creature_component_hit_by"]
 [connection signal="body_entered" from="CreatureComponent/Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="CreatureComponent/Sight" to="." method="_on_sight_body_exited"]
 

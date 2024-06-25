@@ -18,6 +18,7 @@ enum States {STANDBY, STARTING_UP, ATTACK_DURATION, ATTACK_COOLDOWN}
 @export var damage_amount : float = 1
 @export var damage_type : Damage_Types.DamageTypes = Damage_Types.DamageTypes.TRUE
 @export var damage_parent : Creature
+@export var hurts_parent : bool = false
 
 var _state = States.STANDBY
 
@@ -82,7 +83,8 @@ func _set_hitbox_enabled(hitbox_enable : bool):
 func _on_area_2d_body_entered(body):
 	if _state == States.ATTACK_DURATION:
 		if body.has_method("hit"):
-			body.hit(damage_amount, damage_type, damage_parent)
+			if (damage_parent != body) or (damage_parent == body and hurts_parent):
+				body.hit(damage_amount, damage_type, damage_parent)
 
 
 func _on_in_range_body_entered(body):
