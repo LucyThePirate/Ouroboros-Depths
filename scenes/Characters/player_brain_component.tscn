@@ -16,7 +16,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 position = Vector2(73, 0)
 offset = Vector2(50, 0)
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 metadata/_edit_lock_ = true
 

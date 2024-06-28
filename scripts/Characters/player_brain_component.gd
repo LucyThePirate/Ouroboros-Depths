@@ -3,7 +3,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,10 +29,13 @@ func _process(delta):
 	if Input.is_action_just_pressed("OffHand"):
 		%CreatureComponent.projectile_attack()
 		
-	#handle_slowdown()
+	handle_slowdown()
 	
 func handle_slowdown():
-	if not %CreatureComponent/%AttackComponent.is_on_standby():
+	if %CreatureComponent.is_doing_something():
 		Engine.time_scale = 1.0
 		return
-	Engine.time_scale = 0.1
+	if not Debug.slowdown_enabled:
+		return
+	Engine.time_scale = 0
+	

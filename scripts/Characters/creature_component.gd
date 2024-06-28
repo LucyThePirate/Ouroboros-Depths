@@ -32,13 +32,14 @@ func _physics_process(delta):
 ## Assumption: direction is a normalized (or less than normalized) vector
 func move_in_direction(direction : Vector2):
 	velocity = direction * SPEED
-	if not %AttackComponent.is_on_standby():
+	if not current_attack.is_on_standby():
 		velocity *= 0.5
 	is_moving = true
 	
 	
 func point_towards(look_position : Vector2):
-	
+	if not current_attack.is_on_standby():
+		return
 	var point_direction = (look_position - global_position)
 	if point_direction.x:
 		$Sprite.flip_h = point_direction.x > 0
@@ -83,6 +84,11 @@ func perish():
 		
 		%AnimationPlayer.play("Die")
 		
+
+func is_doing_something() -> bool:
+	if is_moving:
+		return true
+	return false
 
 
 func _on_attack_component_creature_entered_range(body):
