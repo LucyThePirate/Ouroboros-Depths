@@ -13,13 +13,17 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	$CreatureComponent/DebugLabel.text = States.keys()[state]
 	match state:
 		States.WANDER:
 			pass
 		States.PURSUIT:
-			# Get the input direction and handle the movement/deceleration.
+			_handle_pursuit()
+
+
+func _handle_pursuit():
+	# Get the input direction and handle the movement/deceleration.
 			var _distance_to_target = Vector2()
 			var _direction = Vector2()
 			_distance_to_target = current_target.global_position - %CreatureComponent.global_position
@@ -34,28 +38,27 @@ func _process(delta):
 			# Handle attacking
 			if target_in_melee_range:
 				%CreatureComponent.attack()
+			else:
+				%CreatureComponent.projectile_attack()
 
 
-func _on_sight_body_entered(body):
-	if state == States.WANDER and body != $CreatureComponent:
-		current_target = body
-		state = States.PURSUIT
-		print("Found target:", current_target.name)
+func _on_sight_body_entered(creature):
+	_try_aggroing_at(creature)
 
 
-func _on_sight_body_exited(body):
-	if state == States.PURSUIT and body == current_target:
+func _on_sight_body_exited(creature):
+	if state == States.PURSUIT and creature == current_target:
 		current_target = null
 		state = States.WANDER
 
 
-func _on_creature_component_creature_entered_attack_range(body):
-	if body == current_target:
+func _on_creature_component_creature_entered_attack_range(creature):
+	if creature == current_target:
 		target_in_melee_range = true
 
 
-func _on_creature_component_creature_exited_attack_range(body):
-	if body == current_target:
+func _on_creature_component_creature_exited_attack_range(creature):
+	if creature == current_target:
 		target_in_melee_range = false
 
 
@@ -64,6 +67,11 @@ func _on_creature_component_died():
 
 
 func _on_creature_component_hit_by(creature):
+	_try_aggroing_at(creature)
+
+
+func _try_aggroing_at(creature):
 	if state == States.WANDER and creature != $CreatureComponent:
 		current_target = creature
 		state = States.PURSUIT
+		print("Found target:", current_target.name)

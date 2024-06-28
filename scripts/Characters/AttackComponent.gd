@@ -23,7 +23,7 @@ enum States {STANDBY, STARTING_UP, ATTACK_DURATION, ATTACK_COOLDOWN}
 var _state = States.STANDBY
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 

@@ -7,7 +7,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Vector2()
 	direction.x = Input.get_axis("Left", "Right")
@@ -18,7 +18,6 @@ func _process(delta):
 		%CreatureComponent.move_in_direction(direction)
 	
 	# Handle rotation
-	var mouse_distance = get_global_mouse_position() - %CreatureComponent.global_position
 	%CreatureComponent.point_towards(get_global_mouse_position())
 	%CameraRotation.look_at(get_global_mouse_position())
 	

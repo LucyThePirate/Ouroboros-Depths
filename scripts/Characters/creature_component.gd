@@ -22,7 +22,7 @@ var is_moving = false
 @onready var health = max_health
 var state = States.ALIVE
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not is_moving:
 		velocity = Vector2.ZERO
 	move_and_slide()
@@ -80,10 +80,12 @@ func perish():
 	if state == States.ALIVE:
 		state = States.DEAD
 		died.emit()
-		%CreatureCollider.disabled = true
-		
+		call_deferred("_disable_collision")
 		%AnimationPlayer.play("Die")
 		
+		
+func _disable_collision():
+	%CreatureCollider.disabled = true
 
 func is_doing_something() -> bool:
 	if is_moving:
@@ -97,3 +99,5 @@ func _on_attack_component_creature_entered_range(body):
 
 func _on_attack_component_creature_exited_range(body):
 	creature_exited_attack_range.emit(body)
+
+

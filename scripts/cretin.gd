@@ -29,7 +29,7 @@ var _current_target := Vector2.ZERO
 func _ready():
 	%Home.global_position = global_position
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	match _state:
 		States.PATROLLING:
 			var _distance_from_home = (global_position - %Home.global_position).length()
