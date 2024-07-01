@@ -64,14 +64,15 @@ func _on_creature_component_creature_exited_attack_range(creature):
 
 func _on_creature_component_died():
 	state = States.DEAD
+	queue_free()
 
 
-func _on_creature_component_hit_by(creature):
+func _on_creature_component_hit_by(creature : Creature):
 	_try_aggroing_at(creature)
 
 
-func _try_aggroing_at(creature):
-	if state == States.WANDER and creature != $CreatureComponent:
+func _try_aggroing_at(creature : Creature):
+	if state == States.WANDER and creature != $CreatureComponent and is_instance_valid(creature) and creature.is_alive():
 		current_target = creature
 		state = States.PURSUIT
 		print("Found target:", current_target.name)

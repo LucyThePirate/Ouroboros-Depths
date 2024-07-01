@@ -36,5 +36,10 @@ func handle_slowdown():
 		return
 	if not Debug.slowdown_enabled:
 		return
-	Engine.time_scale = 0
+	Engine.time_scale = 0.05
 	
+
+
+func _on_creature_component_died():
+	pass
+	#queue_free()

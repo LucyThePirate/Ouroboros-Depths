@@ -58,7 +58,7 @@ func projectile_attack():
 		new_projectile.position = $AttackOffset.global_position
 		new_projectile.rotation = $AttackOffset.rotation
 		new_projectile.damage_parent = self
-		add_child(new_projectile)
+		get_tree().root.add_child(new_projectile)
 
 
 func hit(damage_amount, damage_type, damage_parent):
@@ -83,14 +83,19 @@ func perish():
 		call_deferred("_disable_collision")
 		%AnimationPlayer.play("Die")
 		
-		
-func _disable_collision():
-	%CreatureCollider.disabled = true
+
+func is_alive():
+	return state == States.ALIVE
+
 
 func is_doing_something() -> bool:
 	if is_moving:
 		return true
 	return false
+
+
+func _disable_collision():
+	%CreatureCollider.disabled = true
 
 
 func _on_attack_component_creature_entered_range(body):
