@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://btj0bsyho4a3q"]
+
+[ext_resource type="Script" path="res://scripts/MonsterMaker/monster_maker.gd" id="1_fgvld"]
+[ext_resource type="Shader" path="res://textures/Shaders/pixel_upscaler.gdshader" id="1_gsisr"]
+[ext_resource type="Texture2D" uid="uid://cs15uwjngcgt0" path="res://textures/MonsterMaker/canvasTexture.png" id="3_nnwaj"]
+[ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="4_fu8p0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ao2i3"]
+shader = ExtResource("1_gsisr")
+shader_parameter/FILTER_GAMMA = 1.0
+shader_parameter/COLOR_GAMMA = 1.0
+
+[node name="MonsterMaker" type="Node2D"]
+script = ExtResource("1_fgvld")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(258, 252)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Canvas" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+material = SubResource("ShaderMaterial_ao2i3")
+scale = Vector2(5, 5)
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Canvas"]
+visible = false
+z_index = -1
+texture = ExtResource("3_nnwaj")
+centered = false
+
+[node name="Cursor" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_fu8p0")
