@@ -1,17 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://btj0bsyho4a3q"]
+[gd_scene load_steps=12 format=3 uid="uid://btj0bsyho4a3q"]
 
 [ext_resource type="Script" path="res://scripts/MonsterMaker/monster_maker.gd" id="1_fgvld"]
 [ext_resource type="Shader" path="res://textures/Shaders/pixel_upscaler.gdshader" id="1_gsisr"]
 [ext_resource type="Texture2D" uid="uid://cs15uwjngcgt0" path="res://textures/MonsterMaker/canvasTexture.png" id="3_nnwaj"]
-[ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="4_fu8p0"]
+[ext_resource type="Texture2D" uid="uid://lc7bs0lk37uh" path="res://textures/MonsterMaker/DrawModeSymbols.png" id="4_sit38"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ao2i3"]
 shader = ExtResource("1_gsisr")
 shader_parameter/FILTER_GAMMA = 1.0
 shader_parameter/COLOR_GAMMA = 1.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84uca"]
+size = Vector2(109.2, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcxc2"]
+atlas = ExtResource("4_sit38")
+region = Rect2(751.594, 16.5457, 164.272, 201.314)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42vwb"]
+atlas = ExtResource("4_sit38")
+region = Rect2(147.301, 96.913, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhp8p"]
+atlas = ExtResource("4_sit38")
+region = Rect2(266.766, 93.798, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdwxm"]
+atlas = ExtResource("4_sit38")
+region = Rect2(371.86, 78.6395, 102.969, 101.195)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5skh"]
+atlas = ExtResource("4_sit38")
+region = Rect2(-1.0002, 350, 154, 163)
+
 [node name="MonsterMaker" type="Node2D"]
 script = ExtResource("1_fgvld")
+brush_size = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(258, 252)
@@ -26,11 +50,62 @@ scale = Vector2(5, 5)
 centered = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Canvas"]
-visible = false
 z_index = -1
 texture = ExtResource("3_nnwaj")
 centered = false
 
+[node name="CanvasHitbox" type="Area2D" parent="Canvas"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Canvas/CanvasHitbox"]
+position = Vector2(50.2, 49.6)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_84uca")
+
 [node name="Cursor" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("4_fu8p0")
+position = Vector2(-1, 0)
+rotation = 1.89775
+scale = Vector2(0.2, 0.162)
+texture = SubResource("AtlasTexture_jcxc2")
+offset = Vector2(-41.6508, 80.4)
+
+[node name="PaintUI" type="Panel" parent="."]
+offset_left = 527.0
+offset_top = -3.0
+offset_right = 689.98
+offset_bottom = 37.0
+scale = Vector2(0.785855, 0.785855)
+
+[node name="GridContainer" type="GridContainer" parent="PaintUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 3
+
+[node name="Brush Size Small" type="Button" parent="PaintUI/GridContainer"]
+layout_mode = 2
+icon = SubResource("AtlasTexture_42vwb")
+
+[node name="Brush Size Medium" type="Button" parent="PaintUI/GridContainer"]
+layout_mode = 2
+icon = SubResource("AtlasTexture_jhp8p")
+
+[node name="Brush Size Large" type="Button" parent="PaintUI/GridContainer"]
+layout_mode = 2
+icon = SubResource("AtlasTexture_rdwxm")
+
+[node name="Save Button" type="Button" parent="PaintUI/GridContainer"]
+layout_mode = 2
+icon = SubResource("AtlasTexture_b5skh")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+position = Vector2i(0, 36)
+size = Vector2i(392, 159)
+visible = true
+access = 1
+
+[connection signal="mouse_entered" from="Canvas/CanvasHitbox" to="." method="_on_canvas_hitbox_mouse_entered"]
+[connection signal="mouse_exited" from="Canvas/CanvasHitbox" to="." method="_on_canvas_hitbox_mouse_exited"]
+[connection signal="pressed" from="PaintUI/GridContainer/Brush Size Small" to="." method="_on_brush_size_small_pressed"]
+[connection signal="pressed" from="PaintUI/GridContainer/Brush Size Medium" to="." method="_on_brush_size_medium_pressed"]
+[connection signal="pressed" from="PaintUI/GridContainer/Brush Size Large" to="." method="_on_brush_size_large_pressed"]
+[connection signal="pressed" from="PaintUI/GridContainer/Save Button" to="." method="_on_save_button_pressed"]
