@@ -58,7 +58,6 @@ centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Canvas/CanvasHitbox"]
 position = Vector2(50.2, 49.6)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_84uca")
 
 [node name="Cursor" type="Sprite2D" parent="."]
@@ -100,7 +99,6 @@ icon = SubResource("AtlasTexture_b5skh")
 [node name="FileDialog" type="FileDialog" parent="."]
 position = Vector2i(0, 36)
 size = Vector2i(392, 159)
-visible = true
 access = 1
 
 [connection signal="mouse_entered" from="Canvas/CanvasHitbox" to="." method="_on_canvas_hitbox_mouse_entered"]

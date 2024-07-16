@@ -72,7 +72,10 @@ func _on_creature_component_hit_by(creature : Creature):
 
 
 func _try_aggroing_at(creature : Creature):
+	# Check if creature is valid target
 	if state == States.WANDER and creature != $CreatureComponent and is_instance_valid(creature) and creature.is_alive():
-		current_target = creature
-		state = States.PURSUIT
-		print("Found target:", current_target.name)
+		# Check if creature can be sensed
+		if %CreatureComponent.can_sense(creature):
+			current_target = creature
+			state = States.PURSUIT
+			print("Found target:", current_target.name)

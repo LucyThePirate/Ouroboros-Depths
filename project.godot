@@ -86,6 +86,7 @@ draw_right={
 2d_physics/layer_1="Walls"
 2d_physics/layer_2="Creatures"
 2d_physics/layer_3="Attacks"
+2d_physics/layer_8="Sight"
 
 [rendering]
 

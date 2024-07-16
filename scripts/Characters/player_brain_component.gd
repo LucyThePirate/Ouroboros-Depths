@@ -1,9 +1,11 @@
 extends Node2D
 
+signal uncovered_fog(location)
+signal tiles_lit(light_body)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	uncover_fog(%CreatureComponent.global_position)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,6 +18,7 @@ func _process(_delta):
 		if direction.length() > 1:
 			direction = direction.normalized()
 		%CreatureComponent.move_in_direction(direction)
+		uncover_fog(%CreatureComponent.global_position)
 	
 	# Handle rotation
 	%CreatureComponent.point_towards(get_global_mouse_position())
@@ -30,6 +33,7 @@ func _process(_delta):
 		
 	handle_slowdown()
 	
+	
 func handle_slowdown():
 	if %CreatureComponent.is_doing_something():
 		Engine.time_scale = 1.0
@@ -43,3 +47,10 @@ func handle_slowdown():
 func _on_creature_component_died():
 	pass
 	#queue_free()
+	
+func uncover_fog(location : Vector2):
+	uncovered_fog.emit(location)
+
+
+func _on_light_radius_body_entered(body):
+	tiles_lit.emit($LightRadius.get_rid())

@@ -13,6 +13,7 @@ const FRICTION_MULTIPLIER = 0.9
 
 @export_category("Creature Stats")
 @export var max_health : float = 20
+@export_flags_2d_physics var senses
 
 @export_category("Attacks")
 @export var fire_bat : PackedScene
@@ -27,6 +28,18 @@ func _physics_process(_delta):
 		velocity = Vector2.ZERO
 	move_and_slide()
 	is_moving = false
+
+
+func can_sense(creature : Creature) -> bool:
+	# Check sight
+	var space_state = get_world_2d().direct_space_state
+	# use global coordinates, not local to node
+	var query = PhysicsRayQueryParameters2D.create(Vector2(global_position), Vector2(creature.global_position), senses, [self])
+	var result = space_state.intersect_ray(query)
+	if result and result.collider == creature:
+		print(result.collider.name)
+		return true
+	return false
 
 
 ## Assumption: direction is a normalized (or less than normalized) vector

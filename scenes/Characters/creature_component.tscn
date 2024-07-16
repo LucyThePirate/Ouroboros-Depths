@@ -103,9 +103,10 @@ _data = {
 }
 
 [node name="CreatureComponent" type="CharacterBody2D" groups=["creature"]]
-collision_layer = 2
+collision_layer = 130
 collision_mask = 3
 script = ExtResource("1_bfqah")
+senses = 128
 fire_bat = ExtResource("2_3f7ar")
 
 [node name="CreatureCollider" type="CollisionShape2D" parent="."]
