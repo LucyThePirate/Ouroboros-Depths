@@ -37,7 +37,7 @@ func can_sense(creature : Creature) -> bool:
 	var query = PhysicsRayQueryParameters2D.create(Vector2(global_position), Vector2(creature.global_position), senses, [self])
 	var result = space_state.intersect_ray(query)
 	if result and result.collider == creature:
-		print(result.collider.name)
+		#print(result.collider.name)
 		return true
 	return false
 

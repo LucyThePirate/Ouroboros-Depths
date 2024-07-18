@@ -78,4 +78,4 @@ func _try_aggroing_at(creature : Creature):
 		if %CreatureComponent.can_sense(creature):
 			current_target = creature
 			state = States.PURSUIT
-			print("Found target:", current_target.name)
+			#print("Found target:", current_target.name)
