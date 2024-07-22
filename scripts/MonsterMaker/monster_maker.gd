@@ -2,22 +2,26 @@ extends Node2D
 
 @export var canvas_dimensions : Vector2 = Vector2(100, 100)
 @export var brush_size : int = 3
-
+@export_category("Camera Settings")
+@export var zoom_speed : float = 10
+@export var min_zoom : float = 0.2
+@export var max_zoom : float = 2
 
 
 var Canvas : Image = Image.create(canvas_dimensions.x, canvas_dimensions.y, true, Image.FORMAT_RGBA8)
 var _texture_changed : bool = false
 var _using_mouse : bool = true
 var _cursor_on_canvas : bool = false
-
 var drawing_line_queue = []
+@onready var zoom = %Camera2D.zoom
 
 @onready var cursor_base_scale = $Cursor.scale
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	if _using_mouse:
 		$Cursor.global_position = get_global_mouse_position()
+	_handle_camera_controls(delta)
 	#_slop()
 	_update_texture()
 	
@@ -31,11 +35,26 @@ func _input(event):
 	if not _cursor_on_canvas:
 		return
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
-		if Input.is_action_pressed("draw_left"):
+		if Input.is_action_pressed("DrawLeft"):
 			_paint_pixel($Cursor.global_position, Color(0, randf_range(0.5, 1), 0), brush_size)
 			#drawing_line_queue.append([$Cursor.global_position, $Cursor.global_position - event.relative, Color.DARK_RED])
-		if Input.is_action_pressed("draw_right"):
+		if Input.is_action_pressed("DrawRight"):
 			_paint_pixel($Cursor.global_position, Color(0, 0, 0, 0), brush_size)
+
+func _handle_camera_controls(delta):
+	# Handle zooming in/out
+	if Input.is_action_pressed("DrawZoomIn"):
+		_zoom_tween(zoom + (Vector2(zoom_speed,zoom_speed) * delta))
+	if Input.is_action_pressed("DrawZoomOut"):
+		_zoom_tween(zoom - (Vector2(zoom_speed,zoom_speed) * delta))
+
+		
+func _zoom_tween(zoom_amount):
+	var tween = get_tree().create_tween()
+	zoom_amount = zoom_amount.clamp(Vector2(min_zoom,min_zoom), Vector2(max_zoom, max_zoom))
+	tween.tween_property(self, "zoom", zoom_amount, 0.75)
+	%Camera2D.zoom = zoom
+	print("Zoom: ", zoom)
 
 func _paint_pixel(coordinates : Vector2, color : Color, size : int = 1):
 	var scaled_coordinates = coordinates / %Canvas.scale

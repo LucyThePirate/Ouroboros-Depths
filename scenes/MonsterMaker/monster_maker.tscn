@@ -38,7 +38,9 @@ script = ExtResource("1_fgvld")
 brush_size = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(258, 252)
+position_smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

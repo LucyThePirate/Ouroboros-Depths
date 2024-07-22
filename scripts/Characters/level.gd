@@ -18,7 +18,7 @@ func _process(delta):
 func _on_player_brain_component_uncovered_fog(creature, radius : int = 3):
 	if not map:
 		return
-	var location = creature.global_position
+	var location = creature.global_position * (100 / 19)
 	var map_coordinates = map.local_to_map(location)
 	if map_coordinates == last_player_map_position:
 		return

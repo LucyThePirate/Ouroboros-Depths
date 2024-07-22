@@ -30,6 +30,7 @@ energy = 1.21
 shadow_enabled = true
 texture = ExtResource("3_clogi")
 texture_scale = 2.28
+height = 15.0
 
 [node name="LightRadius" type="Area2D" parent="."]
 
