@@ -8,7 +8,7 @@ signal exited_range(creature)
 @export var is_projectile : bool = true
 @export var mana_cost : float = 1.0
 @export_range(0, 10, 0.1, "or_greater") var cooldown : float = 1.0
-@export_range(0, 100, 1) var ammo : int = 1
+@export_range(0, 100, 1) var max_concurrency : int = 1
 
 
 func cast(casters_mana : float = 0) -> float :

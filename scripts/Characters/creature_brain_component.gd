@@ -68,7 +68,7 @@ func _on_creature_component_died():
 
 
 func _on_creature_component_hit_by(creature : Creature):
-	_try_aggroing_at(creature)
+	_force_aggro_at(creature)
 
 
 func _try_aggroing_at(creature : Creature):
@@ -79,3 +79,9 @@ func _try_aggroing_at(creature : Creature):
 			current_target = creature
 			state = States.PURSUIT
 			#print("Found target:", current_target.name)
+			
+func _force_aggro_at(creature):
+	if state == States.DEAD:
+		return
+	current_target = creature
+	state = States.PURSUIT

@@ -1,9 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://di8ug5gcdh6h0"]
+[gd_scene load_steps=34 format=3 uid="uid://di8ug5gcdh6h0"]
 
 [ext_resource type="Script" path="res://scripts/Characters/level.gd" id="1_ixvmf"]
 [ext_resource type="Texture2D" uid="uid://b60fxmc7hxg5s" path="res://textures/PumpkinBlock2.png" id="1_k55iv"]
 [ext_resource type="Texture2D" uid="uid://bgw2wj7opj2ih" path="res://textures/Testing/bullet shadow.png" id="2_fjlir"]
-[ext_resource type="Texture2D" uid="uid://k2fyngc72oja" path="res://textures/Testing/B E A N.jpg" id="3_n4cgj"]
 [ext_resource type="Texture2D" uid="uid://dhuxxosgrbwyl" path="res://textures/tiles/ChimeraTiles.png" id="4_msucw"]
 [ext_resource type="PackedScene" uid="uid://dd3yj1e7alom2" path="res://scenes/cretin.tscn" id="5_vrn55"]
 [ext_resource type="PackedScene" uid="uid://dsh3fosuphuuo" path="res://scenes/Characters/player_brain_component.tscn" id="6_f0dxm"]
@@ -500,7 +499,6 @@ texture_region_size = Vector2i(19, 19)
 2:2/0/physics_layer_2/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v3ip0"]
-texture = ExtResource("3_n4cgj")
 texture_region_size = Vector2i(19, 19)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -7967,7 +7965,7 @@ position = Vector2(-54, 246)
 position = Vector2(-318, 220)
 
 [node name="PlayerBrainComponent" parent="." instance=ExtResource("6_f0dxm")]
-position = Vector2(-46, -30)
+position = Vector2(-18, -227)
 
 [node name="creature_brain_component" parent="." instance=ExtResource("7_p5nlw")]
 position = Vector2(-243, -254)
@@ -7976,7 +7974,7 @@ position = Vector2(-243, -254)
 max_health = 200.0
 
 [node name="creature_brain_component" parent="creature_brain_component" instance=ExtResource("7_p5nlw")]
-position = Vector2(-192, 1)
+position = Vector2(-150, -1)
 
 [node name="CreatureComponent" parent="creature_brain_component/creature_brain_component" index="0"]
 max_health = 200.0
