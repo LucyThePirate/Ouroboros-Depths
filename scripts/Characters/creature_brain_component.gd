@@ -3,7 +3,8 @@ extends Node2D
 
 enum States {WANDER, PURSUIT, DEAD}
 
-var current_target
+var current_target : Creature
+var last_hurt_by : Creature
 var target_in_melee_range : bool = false
 @onready var state = States.WANDER
 
@@ -36,10 +37,10 @@ func _handle_pursuit():
 			%CreatureComponent.point_towards(%CreatureComponent.global_position + _direction)
 			
 			# Handle attacking
-			if target_in_melee_range:
+			if _distance_to_target.length() < 50:
 				%CreatureComponent.attack()
 			else:
-				%CreatureComponent.projectile_attack()
+				%CreatureComponent.cast_spell(%CreatureComponent.pick_spell_at_random())
 
 
 func _on_sight_body_entered(creature):
@@ -47,7 +48,8 @@ func _on_sight_body_entered(creature):
 
 
 func _on_sight_body_exited(creature):
-	if state == States.PURSUIT and creature == current_target:
+	if state == States.PURSUIT and creature == current_target and not last_hurt_by == creature:
+		# Deaggro against creatures that got away... unless they hurt me most recently!
 		current_target = null
 		state = States.WANDER
 
@@ -68,6 +70,7 @@ func _on_creature_component_died():
 
 
 func _on_creature_component_hit_by(creature : Creature):
+	last_hurt_by = creature
 	_force_aggro_at(creature)
 
 

@@ -1,9 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://di8ug5gcdh6h0"]
+[gd_scene load_steps=38 format=3 uid="uid://di8ug5gcdh6h0"]
 
 [ext_resource type="Script" path="res://scripts/Characters/level.gd" id="1_ixvmf"]
 [ext_resource type="Texture2D" uid="uid://b60fxmc7hxg5s" path="res://textures/PumpkinBlock2.png" id="1_k55iv"]
 [ext_resource type="Texture2D" uid="uid://bgw2wj7opj2ih" path="res://textures/Testing/bullet shadow.png" id="2_fjlir"]
+[ext_resource type="Shader" path="res://textures/Shaders/scrolling_water.gdshader" id="4_gxhv8"]
 [ext_resource type="Texture2D" uid="uid://dhuxxosgrbwyl" path="res://textures/tiles/ChimeraTiles.png" id="4_msucw"]
+[ext_resource type="Shader" path="res://textures/Shaders/tilemap_wind.gdshader" id="5_u5mpt"]
 [ext_resource type="PackedScene" uid="uid://dd3yj1e7alom2" path="res://scenes/cretin.tscn" id="5_vrn55"]
 [ext_resource type="PackedScene" uid="uid://dsh3fosuphuuo" path="res://scenes/Characters/player_brain_component.tscn" id="6_f0dxm"]
 [ext_resource type="PackedScene" uid="uid://dn5dwn4cxcre8" path="res://scenes/Characters/creature_brain_component.tscn" id="7_p5nlw"]
@@ -7851,6 +7853,19 @@ texture_region_size = Vector2i(19, 19)
 49:20/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 49:20/0/physics_layer_2/angular_velocity = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_raku1"]
+render_priority = 0
+shader = ExtResource("4_gxhv8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hmhbi"]
+shader = ExtResource("5_u5mpt")
+shader_parameter/render_noise = false
+shader_parameter/move_top = true
+shader_parameter/distortion_force = Vector2(10, 0)
+shader_parameter/time_scale = 1.0
+shader_parameter/noise_scale = 0.002
+shader_parameter/global_transform = null
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_w2vps"]
 polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
 
@@ -7858,6 +7873,7 @@ polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
 texture = ExtResource("4_msucw")
 texture_region_size = Vector2i(100, 100)
 0:0/0 = 0
+0:0/0/material = SubResource("ShaderMaterial_raku1")
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
@@ -7865,6 +7881,7 @@ texture_region_size = Vector2i(100, 100)
 0:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_2/angular_velocity = 0.0
 1:0/0 = 0
+1:0/0/material = SubResource("ShaderMaterial_hmhbi")
 1:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_w2vps")
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0

@@ -27,8 +27,8 @@ func _process(_delta):
 	if Input.is_action_pressed("MainHand"):
 		%CreatureComponent.attack()
 		
-	if Input.is_action_just_pressed("OffHand"):
-		%CreatureComponent.projectile_attack()
+	if Input.is_action_pressed("OffHand"):
+		%CreatureComponent.cast_spell(%CreatureComponent.pick_spell_at_random())
 		
 	handle_slowdown()
 	

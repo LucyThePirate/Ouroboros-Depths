@@ -4,15 +4,18 @@ extends CharacterBody2D
 @export var damage_parent : Creature
 @export var bounciness : float = 1
 @export var slipperiness : float = 1
-const SPEED = 250.0
+var speed = 250.0
 
+
+func _init():
+	speed += randf_range(-50, 50)
 
 func _ready():
 	#rotation = randf_range(-360, 360)
 	%AttackComponent.damage_parent = damage_parent
 	%AttackComponent.attack()
 	var direction = Vector2(1, 0).rotated(rotation)
-	velocity = direction * SPEED
+	velocity = direction * speed
 
 
 func _physics_process(delta):

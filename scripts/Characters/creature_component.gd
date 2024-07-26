@@ -65,13 +65,18 @@ func attack():
 		current_attack.attack()
 
 
-func projectile_attack():
-	if fire_bat:
-		var new_projectile = fire_bat.instantiate()
-		new_projectile.position = $AttackOffset.global_position
-		new_projectile.rotation = $AttackOffset.rotation
-		new_projectile.damage_parent = self
-		get_tree().root.add_child(new_projectile)
+func get_attack_offset() -> Node2D:
+	return $AttackOffset
+
+
+func cast_spell(selected_spell : SpellComponent):
+	if not selected_spell:
+		return
+	selected_spell.cast(self)
+
+
+func pick_spell_at_random() -> SpellComponent:
+	return $AttackOffset/SpellComponent
 
 
 func hit(damage_amount, damage_type, damage_parent):
