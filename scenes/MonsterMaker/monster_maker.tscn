@@ -35,7 +35,7 @@ region = Rect2(-1.0002, 350, 154, 163)
 
 [node name="MonsterMaker" type="Node2D"]
 script = ExtResource("1_fgvld")
-brush_size = 1
+brush_size = 7
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
@@ -69,43 +69,83 @@ scale = Vector2(0.2, 0.162)
 texture = SubResource("AtlasTexture_jcxc2")
 offset = Vector2(-41.6508, 80.4)
 
-[node name="PaintUI" type="Panel" parent="."]
-offset_left = 527.0
-offset_top = -3.0
-offset_right = 689.98
-offset_bottom = 37.0
+[node name="PaintUI" type="PanelContainer" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 538.0
+offset_top = -61.0
+offset_right = 903.0
+offset_bottom = 713.0
+grow_horizontal = 0
+grow_vertical = 2
 scale = Vector2(0.785855, 0.785855)
+size_flags_vertical = 0
 
-[node name="GridContainer" type="GridContainer" parent="PaintUI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="PaintUI"]
+layout_mode = 2
+size_flags_stretch_ratio = 1.22
+
+[node name="GridContainer" type="GridContainer" parent="PaintUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 columns = 3
 
-[node name="Brush Size Small" type="Button" parent="PaintUI/GridContainer"]
+[node name="Brush Size Small" type="Button" parent="PaintUI/VBoxContainer/GridContainer"]
 layout_mode = 2
 icon = SubResource("AtlasTexture_42vwb")
 
-[node name="Brush Size Medium" type="Button" parent="PaintUI/GridContainer"]
+[node name="Brush Size Medium" type="Button" parent="PaintUI/VBoxContainer/GridContainer"]
 layout_mode = 2
 icon = SubResource("AtlasTexture_jhp8p")
 
-[node name="Brush Size Large" type="Button" parent="PaintUI/GridContainer"]
+[node name="Brush Size Large" type="Button" parent="PaintUI/VBoxContainer/GridContainer"]
 layout_mode = 2
 icon = SubResource("AtlasTexture_rdwxm")
 
-[node name="Save Button" type="Button" parent="PaintUI/GridContainer"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="PaintUI/VBoxContainer/GridContainer"]
+layout_mode = 2
+color = Color(1, 1, 1, 1)
+
+[node name="RecentColors" type="GridContainer" parent="PaintUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 4
+
+[node name="Button" type="TextureButton" parent="PaintUI/VBoxContainer/RecentColors"]
+layout_mode = 2
+
+[node name="Button2" type="ColorPickerButton" parent="PaintUI/VBoxContainer/RecentColors"]
+layout_mode = 2
+color = Color(1, 1, 1, 1)
+
+[node name="Button3" type="ColorPickerButton" parent="PaintUI/VBoxContainer/RecentColors"]
+layout_mode = 2
+color = Color(1, 1, 1, 1)
+
+[node name="Button4" type="ColorPickerButton" parent="PaintUI/VBoxContainer/RecentColors"]
+layout_mode = 2
+color = Color(1, 1, 1, 1)
+
+[node name="HSlider" type="HSlider" parent="PaintUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Save Button" type="Button" parent="PaintUI/VBoxContainer"]
 layout_mode = 2
 icon = SubResource("AtlasTexture_b5skh")
 
-[node name="FileDialog" type="FileDialog" parent="."]
-position = Vector2i(0, 36)
-size = Vector2i(392, 159)
+[node name="SaveDialog" type="FileDialog" parent="."]
+size = Vector2i(800, 300)
+min_size = Vector2i(800, 300)
 access = 1
+filters = PackedStringArray("*.png", "*.jpg", "*.jpeg")
+show_hidden_files = true
 
 [connection signal="mouse_entered" from="Canvas/CanvasHitbox" to="." method="_on_canvas_hitbox_mouse_entered"]
 [connection signal="mouse_exited" from="Canvas/CanvasHitbox" to="." method="_on_canvas_hitbox_mouse_exited"]
-[connection signal="pressed" from="PaintUI/GridContainer/Brush Size Small" to="." method="_on_brush_size_small_pressed"]
-[connection signal="pressed" from="PaintUI/GridContainer/Brush Size Medium" to="." method="_on_brush_size_medium_pressed"]
-[connection signal="pressed" from="PaintUI/GridContainer/Brush Size Large" to="." method="_on_brush_size_large_pressed"]
-[connection signal="pressed" from="PaintUI/GridContainer/Save Button" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="PaintUI/VBoxContainer/GridContainer/Brush Size Small" to="." method="_on_brush_size_small_pressed"]
+[connection signal="pressed" from="PaintUI/VBoxContainer/GridContainer/Brush Size Medium" to="." method="_on_brush_size_medium_pressed"]
+[connection signal="pressed" from="PaintUI/VBoxContainer/GridContainer/Brush Size Large" to="." method="_on_brush_size_large_pressed"]
+[connection signal="color_changed" from="PaintUI/VBoxContainer/GridContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="pressed" from="PaintUI/VBoxContainer/Save Button" to="." method="_on_save_button_pressed"]

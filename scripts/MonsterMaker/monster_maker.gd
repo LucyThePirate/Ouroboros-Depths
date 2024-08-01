@@ -1,7 +1,8 @@
 extends Node2D
 
 @export var canvas_dimensions : Vector2 = Vector2(100, 100)
-@export var brush_size : int = 3
+@export var brush_size : int = 3 #setget change_brush_size
+var _current_color : Color
 @export_category("Camera Settings")
 @export var zoom_speed : float = 10
 @export var min_zoom : float = 0.2
@@ -14,8 +15,12 @@ var _using_mouse : bool = true
 var _cursor_on_canvas : bool = false
 var drawing_line_queue = []
 @onready var zoom = %Camera2D.zoom
-
 @onready var cursor_base_scale = $Cursor.scale
+
+@onready var save_dialog = $SaveDialog
+
+func _ready():
+	save_dialog.file_selected.connect(save_file_selected)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -36,7 +41,7 @@ func _input(event):
 		return
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
 		if Input.is_action_pressed("DrawLeft"):
-			_paint_pixel($Cursor.global_position, Color(0, randf_range(0.5, 1), 0), brush_size)
+			_paint_pixel($Cursor.global_position, _current_color, brush_size)
 			#drawing_line_queue.append([$Cursor.global_position, $Cursor.global_position - event.relative, Color.DARK_RED])
 		if Input.is_action_pressed("DrawRight"):
 			_paint_pixel($Cursor.global_position, Color(0, 0, 0, 0), brush_size)
@@ -58,13 +63,10 @@ func _zoom_tween(zoom_amount):
 
 func _paint_pixel(coordinates : Vector2, color : Color, size : int = 1):
 	var scaled_coordinates = coordinates / %Canvas.scale
-	scaled_coordinates = Vector2(clampi(scaled_coordinates.x, 0, canvas_dimensions.x - 1), clampi(scaled_coordinates.y, 0, canvas_dimensions.y - 1))
-	Canvas.set_pixelv(scaled_coordinates, color)
-	for i in range(1, size):
-		Canvas.set_pixelv(scaled_coordinates + Vector2(i, 0), color)
-		Canvas.set_pixelv(scaled_coordinates + Vector2(0, i), color)
-		Canvas.set_pixelv(scaled_coordinates + Vector2(-i, 0), color)
-		Canvas.set_pixelv(scaled_coordinates + Vector2(0, -i), color)
+	scaled_coordinates = Vector2i(clampi(scaled_coordinates.x, 0, canvas_dimensions.x - 1), clampi(scaled_coordinates.y, 0, canvas_dimensions.y - 1))
+	for x in range(0, size):
+		for y in range(0, size):
+			Canvas.set_pixelv(scaled_coordinates + Vector2i(x - (size / 2), y - (size / 2)), color)
 	_texture_changed = true
 
 func _update_texture():
@@ -79,18 +81,20 @@ func _slop():
 
 
 func _on_brush_size_small_pressed():
-	brush_size = 1
-	$Cursor.scale = cursor_base_scale
+	set_brush_size(1)
+
 
 func _on_brush_size_medium_pressed():
-	brush_size = 2
-	$Cursor.scale = cursor_base_scale * 1.5
+	set_brush_size(2)
+
 
 func _on_brush_size_large_pressed():
-	brush_size = 3
-	$Cursor.scale = cursor_base_scale * 2
+	set_brush_size(brush_size + 1)
 
 
+func set_brush_size(new_size : int):
+	brush_size = new_size
+	$Cursor.scale = cursor_base_scale + cursor_base_scale * (.5 * (new_size - 1))
 
 func _on_canvas_hitbox_mouse_entered():
 	_cursor_on_canvas = true
@@ -101,5 +105,18 @@ func _on_canvas_hitbox_mouse_exited():
 
 
 func _on_save_button_pressed():
-	pass
-	#Canvas.save_png()
+	save_dialog.popup_centered()
+
+func save_file_selected(path):
+	# Wait until the frame has finished before getting the texture.
+	await RenderingServer.frame_post_draw
+
+	# Crop the image so we only have canvas area.
+	var cropped_image = Canvas.get_region(Rect2($Canvas.position, canvas_dimensions))
+
+	# Save the image with the passed in path we got from the save dialog.
+	cropped_image.save_png(path)
+
+
+func _on_color_picker_button_color_changed(color):
+	_current_color = color

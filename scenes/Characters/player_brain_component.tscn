@@ -12,7 +12,6 @@ script = ExtResource("1_jpu7d")
 
 [node name="CreatureComponent" parent="." groups=["player"] instance=ExtResource("2_u5n5x")]
 unique_name_in_owner = true
-max_health = 20.0
 
 [node name="CameraRotation" type="Marker2D" parent="CreatureComponent"]
 unique_name_in_owner = true
