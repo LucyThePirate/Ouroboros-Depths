@@ -122,5 +122,3 @@ func _on_attack_component_creature_entered_range(body):
 
 func _on_attack_component_creature_exited_range(body):
 	creature_exited_attack_range.emit(body)
-
-

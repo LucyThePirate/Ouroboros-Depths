@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://81i40ycuccbt"]
+
+[ext_resource type="Shader" path="res://textures/Shaders/pixel_upscaler.gdshader" id="1_8rtoc"]
+[ext_resource type="Script" path="res://scripts/Mechanics/item_component.gd" id="1_wdji7"]
+[ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="2_1ra0x"]
+[ext_resource type="Script" path="res://scripts/Mechanics/item_data.gd" id="2_vb6r4"]
+
+[sub_resource type="Resource" id="Resource_gsafu"]
+script = ExtResource("2_vb6r4")
+name = "Default Item"
+quantity = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kubxl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n046v"]
+shader = ExtResource("1_8rtoc")
+shader_parameter/FILTER_GAMMA = 1.0
+shader_parameter/COLOR_GAMMA = 1.0
+
+[sub_resource type="Theme" id="Theme_3axhp"]
+
+[node name="item_component" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 19
+input_pickable = true
+gravity_scale = 0.0
+linear_damp = 2.805
+script = ExtResource("1_wdji7")
+item_data = SubResource("Resource_gsafu")
+
+[node name="CharacterBody2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.651157, 0.651157)
+shape = SubResource("CircleShape2D_kubxl")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+material = SubResource("ShaderMaterial_n046v")
+scale = Vector2(0.752297, 0.742081)
+texture = ExtResource("2_1ra0x")
+
+[node name="HauntedTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -41.0
+offset_top = -27.0
+offset_right = 38.0
+offset_bottom = -4.0
+theme = SubResource("Theme_3axhp")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="HauntedTimer" to="." method="_on_haunted_timer_timeout"]

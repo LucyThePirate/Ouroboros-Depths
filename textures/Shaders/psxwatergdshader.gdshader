@@ -16,7 +16,7 @@ uniform float wave_scale = 0.02;
 uniform int pixelation_level = 64;
 
 void vertex() {
-    vec2 global_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xz; 
+    vec2 global_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xz;
     float noise_value = texture(noise_texture, global_position * wave_scale).r;
     float wave = sin(global_position.x * 0.2 + global_position.y * 0.2 + TIME + noise_value * 10.0) * wave_strength;
     VERTEX.y += wave;

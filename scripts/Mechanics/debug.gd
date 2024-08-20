@@ -5,7 +5,7 @@ var reload_count : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	toggle_slowdown()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,8 +18,11 @@ func _process(_delta):
 		reload_count += 1
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("DebugToggleSlowdown"):
-		slowdown_enabled = not slowdown_enabled
-		if slowdown_enabled:
-			print_rich("DEBUG: Slowdown turned on.")
-		else:
-			print_rich("[shake]DEBUG: Slowdown turned off![/shake]")
+		toggle_slowdown()
+		
+func toggle_slowdown():
+	slowdown_enabled = not slowdown_enabled
+	if slowdown_enabled:
+		print_rich("DEBUG: Slowdown turned on.")
+	else:
+		print_rich("[shake]DEBUG: Slowdown turned off![/shake]")
