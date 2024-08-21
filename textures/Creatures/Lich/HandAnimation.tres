@@ -1,0 +1,76 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://l8ucgemh6v2f"]
+
+[ext_resource type="Texture2D" uid="uid://bbu12jm0wnrab" path="res://textures/Creatures/Lich/HandUnclenched.png" id="1_3uart"]
+[ext_resource type="Texture2D" uid="uid://d1g0sv2ciuofi" path="res://textures/Creatures/Lich/HandClenched.png" id="2_y0kx6"]
+[ext_resource type="Texture2D" uid="uid://cs425qeot5emt" path="res://textures/Creatures/Lich/HandPoint.png" id="3_uc4bd"]
+[ext_resource type="Texture2D" uid="uid://bmv7ej7607tvx" path="res://textures/Creatures/Lich/HandRudeGesture.png" id="4_780q7"]
+[ext_resource type="Texture2D" uid="uid://cl1t74or1hgyd" path="res://textures/Creatures/Lich/HandPinkie.png" id="5_6emcc"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("1_3uart")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2_y0kx6")
+}],
+"loop": true,
+"name": &"ClenchUnclench",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y0kx6")
+}],
+"loop": true,
+"name": &"Clenched",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": ExtResource("1_3uart")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uc4bd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_780q7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6emcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_780q7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uc4bd")
+}],
+"loop": true,
+"name": &"Curl",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uc4bd")
+}],
+"loop": true,
+"name": &"Point",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_780q7")
+}],
+"loop": true,
+"name": &"Rude",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3uart")
+}],
+"loop": true,
+"name": &"Unclenched",
+"speed": 5.0
+}]

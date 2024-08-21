@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://djbnu6ytor4b8"]
+
+[ext_resource type="Texture2D" uid="uid://do8mfbe1gk4yt" path="res://textures/Creatures/Lich.png" id="1_huocf"]
+
+[resource]
+atlas = ExtResource("1_huocf")
+region = Rect2(475.758, 350.828, 339.94, 503.843)

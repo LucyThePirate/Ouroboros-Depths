@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://ctne3p3qhou3i"]
+
+[ext_resource type="Texture2D" uid="uid://cty7aimlxruk4" path="res://textures/Creatures/Lich/Eye1.tres" id="1_myhb8"]
+
+[resource]
+atlas = ExtResource("1_myhb8")
+region = Rect2(87.5221, 649.668, 198.319, 197.786)

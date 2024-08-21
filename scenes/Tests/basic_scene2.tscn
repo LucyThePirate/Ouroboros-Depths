@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://di8ug5gcdh6h0"]
+[gd_scene load_steps=40 format=3 uid="uid://di8ug5gcdh6h0"]
 
 [ext_resource type="Script" path="res://scripts/Characters/level.gd" id="1_ixvmf"]
 [ext_resource type="Texture2D" uid="uid://b60fxmc7hxg5s" path="res://textures/PumpkinBlock2.png" id="1_k55iv"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dsh3fosuphuuo" path="res://scenes/Characters/player_brain_component.tscn" id="6_f0dxm"]
 [ext_resource type="PackedScene" uid="uid://dn5dwn4cxcre8" path="res://scenes/Characters/creature_brain_component.tscn" id="7_p5nlw"]
 [ext_resource type="PackedScene" uid="uid://81i40ycuccbt" path="res://scenes/Items/item_component.tscn" id="10_6xswq"]
+[ext_resource type="PackedScene" uid="uid://bwkb3crnbdvht" path="res://scenes/Tests/lich_test.tscn" id="11_c7crf"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j1wxp"]
 
@@ -1508,6 +1509,8 @@ position = Vector2(54, -17)
 [node name="item_component5" parent="." instance=ExtResource("10_6xswq")]
 
 [node name="item_component6" parent="." instance=ExtResource("10_6xswq")]
+
+[node name="LichTest" parent="." instance=ExtResource("11_c7crf")]
 
 [connection signal="uncovered_fog" from="PlayerBrainComponent" to="." method="_on_player_brain_component_uncovered_fog"]
 
