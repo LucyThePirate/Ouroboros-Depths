@@ -23,6 +23,10 @@ Debug="*res://scripts/Mechanics/debug.gd"
 
 project/assembly_name="Ouroboros Depths"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 Left={

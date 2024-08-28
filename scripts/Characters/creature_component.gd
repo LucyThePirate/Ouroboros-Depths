@@ -13,10 +13,14 @@ const FRICTION_MULTIPLIER = 0.9
 
 @export_category("Creature Stats")
 @export var max_health : float = 20
+@export var max_mana : float = 20
 @export_flags_2d_physics var senses
 
 @export_category("Attacks")
 @export var fire_bat : PackedScene
+
+var move_list : Dictionary
+var inventory : Array
 
 var is_moving = false
 @onready var current_attack = %AttackComponent

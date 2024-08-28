@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+## Whether or not this item will jump around on its own.
 @export var is_haunted : bool = true
 @export var item_data : item_data
 
