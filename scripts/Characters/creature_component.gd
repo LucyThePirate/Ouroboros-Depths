@@ -34,6 +34,14 @@ func _physics_process(_delta):
 	is_moving = false
 
 
+func add_move():
+	pass
+
+
+func remove_move():
+	pass
+
+
 func can_sense(creature : Creature) -> bool:
 	# Check sight
 	var space_state = get_world_2d().direct_space_state

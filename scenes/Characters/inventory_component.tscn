@@ -1,0 +1,229 @@
+[gd_scene load_steps=11 format=3 uid="uid://c8tfdx6kga8x7"]
+
+[ext_resource type="Script" path="res://scripts/Characters/inventory_component.gd" id="1_t4nnw"]
+[ext_resource type="Script" path="res://scripts/Mechanics/item_data.gd" id="2_5r733"]
+[ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="2_ju3tg"]
+[ext_resource type="PackedScene" uid="uid://du2tritl8qv7n" path="res://scenes/Characters/inventory_slot.tscn" id="2_krcm5"]
+[ext_resource type="Texture2D" uid="uid://bu0loei7qohle" path="res://textures/Creatures/Lich/Eye1.png" id="3_sorvp"]
+[ext_resource type="FontFile" uid="uid://vnwga06nhjde" path="res://textures/fonts/Pixelade/PIXELADE.TTF" id="3_yajgr"]
+[ext_resource type="Texture2D" uid="uid://cl1t74or1hgyd" path="res://textures/Creatures/Lich/HandPinkie.png" id="5_i8ai8"]
+
+[sub_resource type="Resource" id="Resource_loj6s"]
+script = ExtResource("2_5r733")
+name = "Default Item1"
+description = "A run-of-the-mill item.
+Whatcha lookin' at?"
+quantity = 1
+item_id = -1
+max_stack_size = 99
+icon = ExtResource("3_sorvp")
+
+[sub_resource type="Resource" id="Resource_iquvi"]
+script = ExtResource("2_5r733")
+name = "Default Item"
+description = "A run-of-the-mill item.
+Whatcha lookin' at?"
+quantity = 12
+item_id = -1
+max_stack_size = 99
+icon = ExtResource("2_ju3tg")
+
+[sub_resource type="Resource" id="Resource_0vxpc"]
+script = ExtResource("2_5r733")
+name = "Default Item"
+description = "A run-of-the-mill item.
+Whatcha lookin' at?"
+quantity = 1
+item_id = -1
+max_stack_size = 99
+icon = ExtResource("5_i8ai8")
+
+[node name="InventoryComponent" type="Node"]
+script = ExtResource("1_t4nnw")
+starter_items = Array[ExtResource("2_5r733")]([SubResource("Resource_loj6s"), SubResource("Resource_iquvi"), SubResource("Resource_0vxpc")])
+
+[node name="InventoryWindow" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -145.5
+offset_right = 231.0
+offset_bottom = 145.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="SlotContainter" type="GridContainer" parent="InventoryWindow"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.5
+offset_top = -133.5
+offset_right = 218.5
+offset_bottom = 133.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 9
+
+[node name="InventorySlot" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot9" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot10" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot11" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot12" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot13" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot14" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot15" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot16" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot17" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot18" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot19" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot20" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot21" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot22" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot23" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot24" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot25" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot26" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot27" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot28" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot29" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot30" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot31" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot32" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot33" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot34" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot35" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot36" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot37" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot38" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot39" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot40" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot41" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot42" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot43" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot44" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InventorySlot45" parent="InventoryWindow/SlotContainter" instance=ExtResource("2_krcm5")]
+layout_mode = 2
+
+[node name="InfoText" type="Label" parent="InventoryWindow"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.799258, 0.904871, 0.998682, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("3_yajgr")
+theme_override_font_sizes/font_size = 23
+text = "asdfasdfadsf"
+horizontal_alignment = 1

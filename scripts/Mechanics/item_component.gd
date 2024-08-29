@@ -9,7 +9,6 @@ func _ready() -> void:
 	fling()
 	if is_haunted:
 		$HauntedTimer.start()
-	print("this is:", item_data.name)
 	$Label.text = item_data.name
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

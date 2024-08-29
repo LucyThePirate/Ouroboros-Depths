@@ -8,7 +8,11 @@
 [sub_resource type="Resource" id="Resource_gsafu"]
 script = ExtResource("2_vb6r4")
 name = "Default Item"
+description = "A run-of-the-mill item.
+Whatcha lookin' at?"
 quantity = 1
+item_id = -1
+max_stack_size = 99
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kubxl"]
 
