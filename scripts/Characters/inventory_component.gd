@@ -1,12 +1,11 @@
 class_name Inventory extends Node
 
-@export var max_size : int = 88
-
 var slots : Array[InventorySlot]
 var inventory_count = 0
 @onready var window : Panel = get_node("InventoryWindow")
 @onready var info_text : Label = get_node("InventoryWindow/InfoText")
 @export var starter_items : Array[item_data]
+var inventory_owner : Creature
 
 func _ready ():
 	toggle_window(false)
@@ -25,8 +24,10 @@ func _ready ():
 
 
 func _process (delta):
-	if Input.is_action_just_pressed("Inventory"):
+	if Input.is_action_just_pressed("Inventory") and inventory_owner.is_in_group("player"):
 		toggle_window(!window.visible)
+		if window.visible:
+			_debug_output_inventory()
 
 
 func toggle_window (open : bool):
@@ -42,10 +43,10 @@ func add_item (item : item_data):
 	
 	if slot == null: # Inventory full
 		return
-		
-	if slot.item == null:
+
+	if slot.item == null: # Can't stack with anything
 		slot.set_item(item)
-	elif slot.item == item:
+	elif slot.item == item: # Found a slot to stack with
 		slot.add_item()
 
 
@@ -96,3 +97,9 @@ func _on_slot_mouse_entered(item_name : String):
 	
 func _on_slot_mouse_exited():
 	info_text.text = ""
+
+
+func _debug_output_inventory():
+	for slot in slots:
+		if slot.item != null:
+			print("item:", slot.item.name)

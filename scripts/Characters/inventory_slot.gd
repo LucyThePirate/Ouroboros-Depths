@@ -20,7 +20,7 @@ func set_item (new_item : item_data):
 		icon.visible = true
 		icon.texture = item.icon
 		quantity = new_item.quantity
-		
+	
 	update_quantity_text()
 
 

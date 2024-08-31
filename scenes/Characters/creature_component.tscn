@@ -123,10 +123,11 @@ animation = &"walking"
 
 [node name="AttackOffset" type="Marker2D" parent="."]
 
-[node name="AttackComponent" parent="AttackOffset" instance=ExtResource("3_ljqlt")]
+[node name="AttackComponent" parent="AttackOffset" node_paths=PackedStringArray("damage_parent") instance=ExtResource("3_ljqlt")]
 unique_name_in_owner = true
 position = Vector2(20, 0)
 cooldown_time = 0.25
+damage_parent = NodePath("../..")
 
 [node name="SpellComponent" parent="AttackOffset" instance=ExtResource("5_8cxl2")]
 
@@ -140,6 +141,7 @@ autoplay = "RESET"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryComponent" parent="CanvasLayer" instance=ExtResource("6_hww2n")]
+unique_name_in_owner = true
 
 [connection signal="creature_entered_range" from="AttackOffset/AttackComponent" to="." method="_on_attack_component_creature_entered_range"]
 [connection signal="creature_exited_range" from="AttackOffset/AttackComponent" to="." method="_on_attack_component_creature_exited_range"]

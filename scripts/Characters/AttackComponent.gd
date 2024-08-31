@@ -8,7 +8,6 @@ signal finished_cooldown
 
 enum States {STANDBY, STARTING_UP, ATTACK_DURATION, ATTACK_COOLDOWN}
 
-
 @export_category("Timers")
 @export var startup_time : float = 0.25
 @export var attack_duration_time : float = 0.5
@@ -85,6 +84,8 @@ func _on_area_2d_body_entered(body):
 		if body.has_method("hit"):
 			if (damage_parent != body) or (damage_parent == body and hurts_parent):
 				body.hit(damage_amount, damage_type, damage_parent)
+		elif body.has_method("collect"):
+			body.collect(damage_parent)
 
 
 func _on_in_range_body_entered(body):

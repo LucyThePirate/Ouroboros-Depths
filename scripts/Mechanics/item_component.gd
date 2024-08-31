@@ -16,6 +16,11 @@ func _process(delta: float) -> void:
 	pass
 
 
+func collect(collector : Creature):
+	if collector.has_method("add_item"):
+		collector.add_item(item_data)
+		queue_free()
+
 func fling(fling_direction : Vector2 = Vector2(), fling_strength : float = 30) -> void:
 	if fling_direction == Vector2.ZERO:
 		# Pick a random direction to fling

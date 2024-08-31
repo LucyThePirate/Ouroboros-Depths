@@ -13,6 +13,7 @@ Whatcha lookin' at?"
 quantity = 1
 item_id = -1
 max_stack_size = 99
+icon = ExtResource("2_1ra0x")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kubxl"]
 

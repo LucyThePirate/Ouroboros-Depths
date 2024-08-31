@@ -19,13 +19,15 @@ const FRICTION_MULTIPLIER = 0.9
 @export_category("Attacks")
 @export var fire_bat : PackedScene
 
-var move_list : Dictionary
-var inventory : Array
-
 var is_moving = false
 @onready var current_attack = %AttackComponent
 @onready var health = max_health
 var state = States.ALIVE
+
+@onready var inventory = %InventoryComponent
+
+func _ready():
+	inventory.inventory_owner = self
 
 func _physics_process(_delta):
 	if not is_moving:
@@ -40,6 +42,10 @@ func add_move():
 
 func remove_move():
 	pass
+	
+	
+func add_item(item : item_data):
+	inventory.add_item(item)
 
 
 func can_sense(creature : Creature) -> bool:

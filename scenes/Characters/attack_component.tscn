@@ -13,7 +13,7 @@ cooldown_time = 0.1
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
 collision_layer = 4
-collision_mask = 3
+collision_mask = 19
 monitoring = false
 monitorable = false
 
@@ -23,7 +23,7 @@ debug_color = Color(0.960784, 0, 0, 0.419608)
 
 [node name="InRange" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 19
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InRange"]
