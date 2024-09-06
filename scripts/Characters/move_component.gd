@@ -1,4 +1,4 @@
-class_name MoveComponent extends Resource
+class_name MoveComponent extends Node
 
 enum Activation {
 	ACTIVE = 0,
@@ -15,7 +15,7 @@ enum CostTypes {
 }
 
 @export_category("Flavor")
-@export var name : String = "Default Move"
+@export var move_name : String = "Default Move"
 @export_multiline var description : String = "Standard stuff.\nWhaddya know?"
 @export var move_id : int = -1
 
@@ -29,5 +29,5 @@ enum CostTypes {
 @export var activation_type : Activation = Activation.ACTIVE
 @export var cast_cost_quantity : int = 0
 @export var cast_cost_type : CostTypes = CostTypes.MANA
-@export var spell_component : PackedScene
+@export var spell_component : SpellComponent
 @export var cooldown_time : float = 0.5

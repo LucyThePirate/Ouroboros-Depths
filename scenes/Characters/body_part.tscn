@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://wkmlq32y273m"]
+
+[ext_resource type="Script" path="res://scripts/Characters/body_part.gd" id="1_yxmgd"]
+[ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="2_x564c"]
+[ext_resource type="FontFile" uid="uid://vnwga06nhjde" path="res://textures/fonts/Pixelade/PIXELADE.TTF" id="3_ewdon"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hc1ck"]
+font = ExtResource("3_ewdon")
+font_size = 22
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.733333)
+
+[node name="body_part_slot" type="Button"]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 50.0
+offset_bottom = 50.0
+script = ExtResource("1_yxmgd")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 70.12
+offset_bottom = 70.12
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.42, 0.42)
+mouse_filter = 2
+texture = ExtResource("2_x564c")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QuantityText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -52.5
+offset_top = -22.5
+offset_right = -1.5
+offset_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 0
+text = "52"
+label_settings = SubResource("LabelSettings_hc1ck")
+horizontal_alignment = 2
+vertical_alignment = 2

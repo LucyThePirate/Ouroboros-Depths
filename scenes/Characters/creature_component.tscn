@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cn1vwhwg8kdvm"]
+[gd_scene load_steps=16 format=3 uid="uid://cn1vwhwg8kdvm"]
 
 [ext_resource type="Script" path="res://scripts/Characters/creature_component.gd" id="1_bfqah"]
 [ext_resource type="Texture2D" uid="uid://e7q1s4xepclp" path="res://textures/traditional 19x19 prezzy.png" id="1_ovekq"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://jhm5n51ryubd" path="res://scenes/Characters/attack_component.tscn" id="3_ljqlt"]
 [ext_resource type="PackedScene" uid="uid://yfnrl16fupxk" path="res://scenes/Characters/spell_component.tscn" id="5_8cxl2"]
 [ext_resource type="PackedScene" uid="uid://c8tfdx6kga8x7" path="res://scenes/Characters/inventory_component.tscn" id="6_hww2n"]
+[ext_resource type="PackedScene" uid="uid://bdcs71qvy54of" path="res://scenes/Characters/body_component.tscn" id="7_dkvhm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ll7q3"]
 radius = 8.0
@@ -141,6 +142,9 @@ autoplay = "RESET"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryComponent" parent="CanvasLayer" instance=ExtResource("6_hww2n")]
+unique_name_in_owner = true
+
+[node name="BodyComponent" parent="CanvasLayer" instance=ExtResource("7_dkvhm")]
 unique_name_in_owner = true
 
 [connection signal="creature_entered_range" from="AttackOffset/AttackComponent" to="." method="_on_attack_component_creature_entered_range"]

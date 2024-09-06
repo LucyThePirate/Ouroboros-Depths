@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdcs71qvy54of"]
+
+[ext_resource type="Script" path="res://scripts/Characters/body_component.gd" id="1_7iyik"]
+[ext_resource type="PackedScene" uid="uid://wkmlq32y273m" path="res://scenes/Characters/body_part.tscn" id="3_kge1b"]
+
+[node name="BodyComponent" type="Node" node_paths=PackedStringArray("base_moves", "starting_parts")]
+script = ExtResource("1_7iyik")
+base_moves = [null]
+starting_parts = [null]
+
+[node name="BodyWindow" type="Panel" parent="."]
+clip_contents = true
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 202.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BodyWindow"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 197.0
+offset_bottom = 638.0
+
+[node name="body_part" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+layout_mode = 2
+
+[node name="body_part2" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+layout_mode = 2
+
+[node name="body_part3" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+layout_mode = 2
+
+[node name="body_part4" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+layout_mode = 2
+
+[node name="body_part5" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+layout_mode = 2
+
+[node name="body_part6" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+layout_mode = 2
+
+[node name="body_part7" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+layout_mode = 2
+
+[node name="body_part8" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+layout_mode = 2

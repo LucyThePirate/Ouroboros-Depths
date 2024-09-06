@@ -1,7 +1,6 @@
 class_name Inventory extends Node
 
 var slots : Array[InventorySlot]
-var inventory_count = 0
 @onready var window : Panel = get_node("InventoryWindow")
 @onready var info_text : Label = get_node("InventoryWindow/InfoText")
 @export var starter_items : Array[item_data]
