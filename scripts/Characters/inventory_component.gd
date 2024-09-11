@@ -13,8 +13,8 @@ func _ready ():
 		slots.append(child)
 		child.set_item(null)
 		child.inventory = self
-		child.mouse_entered.connect(_on_slot_mouse_entered)
-		child.mouse_exited.connect(_on_slot_mouse_exited)
+		child.hovered_over.connect(_on_slot_mouse_entered)
+		child.hovered_off.connect(_on_slot_mouse_exited)
 	
 	for item in starter_items:
 		add_item(item)
@@ -22,7 +22,7 @@ func _ready ():
 	info_text.text = ""
 
 
-func _process (delta):
+func _process (_delta):
 	if Input.is_action_just_pressed("Inventory") and inventory_owner.is_in_group("player"):
 		toggle_window(!window.visible)
 		if window.visible:
@@ -31,10 +31,6 @@ func _process (delta):
 
 func toggle_window (open : bool):
 	window.visible = open
-
-
-func on_give_player_item (item : item_data, amount : int):
-	pass
 
 
 func add_item (item : item_data):

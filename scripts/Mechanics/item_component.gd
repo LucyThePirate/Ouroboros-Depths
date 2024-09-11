@@ -2,23 +2,23 @@ extends RigidBody2D
 
 ## Whether or not this item will jump around on its own.
 @export var is_haunted : bool = true
-@export var item_data : item_data
+@export var item : item_data
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fling()
 	if is_haunted:
 		$HauntedTimer.start()
-	$Label.text = item_data.name
+	$Label.text = item.name
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
 func collect(collector : Creature):
 	if collector.has_method("add_item"):
-		collector.add_item(item_data)
+		collector.add_item(item)
 		queue_free()
 
 func fling(fling_direction : Vector2 = Vector2(), fling_strength : float = 30) -> void:

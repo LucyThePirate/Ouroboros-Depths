@@ -1,7 +1,7 @@
 class_name InventorySlot extends Node
 
-signal mouse_entered(item_name)
-signal mouse_exited(item_name)
+signal hovered_over(item_name)
+signal hovered_off(item_name)
 
 var item : item_data
 var quantity : int
@@ -54,10 +54,10 @@ func _on_pressed() -> void:
 func _on_mouse_entered() -> void:
 	if item == null:
 		return
-	mouse_entered.emit(item.name)
+	hovered_over.emit(item.name)
 
 
 func _on_mouse_exited() -> void:
 	if item == null:
 		return
-	mouse_exited.emit(item.name)
+	hovered_off.emit(item.name)

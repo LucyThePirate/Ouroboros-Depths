@@ -25,11 +25,11 @@ var is_moving = false
 var state = States.ALIVE
 
 @onready var inventory = %InventoryComponent
-@onready var body = %BodyComponent
+@onready var bodyComponent = %BodyComponent
 
 func _ready():
 	inventory.inventory_owner = self
-	body.body_owner = self
+	bodyComponent.body_owner = self
 
 func _physics_process(_delta):
 	if not is_moving:

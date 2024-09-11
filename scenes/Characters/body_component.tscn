@@ -1,14 +1,71 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdcs71qvy54of"]
+[gd_scene load_steps=9 format=3 uid="uid://bdcs71qvy54of"]
 
 [ext_resource type="Script" path="res://scripts/Characters/body_component.gd" id="1_7iyik"]
-[ext_resource type="PackedScene" uid="uid://wkmlq32y273m" path="res://scenes/Characters/body_part.tscn" id="3_kge1b"]
+[ext_resource type="Script" path="res://scripts/Characters/base_part_strategy.gd" id="2_vg4pe"]
+[ext_resource type="Script" path="res://scripts/Characters/move_component.gd" id="2_wv0m6"]
+[ext_resource type="PackedScene" uid="uid://c8yid1ew0egkx" path="res://scenes/Characters/body_slot.tscn" id="3_gr46i"]
 
-[node name="BodyComponent" type="Node" node_paths=PackedStringArray("base_moves", "starting_parts")]
+[sub_resource type="Resource" id="Resource_vlyn0"]
+script = ExtResource("2_wv0m6")
+move_name = "Default Move"
+description = "Standard stuff.
+Whaddya know?"
+move_id = -1
+move_quantity = 0
+opportunity_cost_quantity = 0
+opportunity_cost_type = 5
+activation_type = 0
+cast_cost_quantity = 0
+cast_cost_type = 0
+cooldown_time = 0.5
+
+[sub_resource type="Resource" id="Resource_xxitj"]
+script = ExtResource("2_wv0m6")
+move_name = "Default Move"
+description = "Standard stuff.
+Whaddya know?"
+move_id = -1
+move_quantity = 0
+opportunity_cost_quantity = 0
+opportunity_cost_type = 5
+activation_type = 0
+cast_cost_quantity = 0
+cast_cost_type = 0
+cooldown_time = 0.5
+
+[sub_resource type="Resource" id="Resource_f2514"]
+script = ExtResource("2_vg4pe")
+part_name = "Default Part"
+description = "Meeeat."
+part_type = 0
+base_hp = 10.0
+base_mp = 1.0
+base_hp_regen = 0.1
+base_mp_regen = 0.1
+base_speed = 150
+base_appetite = 0.1
+base_moves = Array[PackedScene]([])
+
+[sub_resource type="Resource" id="Resource_imfcb"]
+script = ExtResource("2_vg4pe")
+part_name = "Default Part"
+description = "Meeeat."
+part_type = 0
+base_hp = 1000.0
+base_mp = 1.0
+base_hp_regen = 0.1
+base_mp_regen = 0.1
+base_speed = 150
+base_appetite = 0.1
+base_moves = Array[PackedScene]([])
+
+[node name="BodyComponent" type="Node"]
 script = ExtResource("1_7iyik")
-base_moves = [null]
-starting_parts = [null]
+base_moves = Array[ExtResource("2_wv0m6")]([SubResource("Resource_vlyn0"), SubResource("Resource_xxitj")])
+starting_parts = Array[ExtResource("2_vg4pe")]([SubResource("Resource_f2514"), SubResource("Resource_imfcb")])
 
 [node name="BodyWindow" type="Panel" parent="."]
+visible = false
 clip_contents = true
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -22,26 +79,28 @@ offset_top = 6.0
 offset_right = 197.0
 offset_bottom = 638.0
 
-[node name="body_part" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+[node name="body_slot" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_gr46i")]
 layout_mode = 2
 
-[node name="body_part2" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+[node name="body_slot2" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_gr46i")]
 layout_mode = 2
 
-[node name="body_part3" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+[node name="body_slot3" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_gr46i")]
 layout_mode = 2
 
-[node name="body_part4" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+[node name="body_slot4" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_gr46i")]
 layout_mode = 2
 
-[node name="body_part5" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+[node name="body_slot5" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_gr46i")]
 layout_mode = 2
 
-[node name="body_part6" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+[node name="body_slot6" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_gr46i")]
 layout_mode = 2
 
-[node name="body_part7" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+[node name="body_slot7" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_gr46i")]
 layout_mode = 2
 
-[node name="body_part8" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_kge1b")]
+[node name="body_slot8" parent="BodyWindow/VBoxContainer" instance=ExtResource("3_gr46i")]
 layout_mode = 2
+
+[node name="MoveList" type="Node" parent="."]

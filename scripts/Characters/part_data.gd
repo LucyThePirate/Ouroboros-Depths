@@ -1,4 +1,4 @@
-class_name part_data extends Resource
+class_name base_part_strategy extends Node
 
 enum PartTypes {HEAD, TORSO, TORSO_LARGE, LIMBS_ARMS, LIMBS_LEGS_FRONT, LIMBS_LEGS_BACK, TAIL, WINGS}
 
@@ -15,4 +15,7 @@ enum PartTypes {HEAD, TORSO, TORSO_LARGE, LIMBS_ARMS, LIMBS_LEGS_FRONT, LIMBS_LE
 @export_range(0, 5, 0.1, "or_greater") var base_mp_regen : float = 0.1
 @export_range(0, 300, 1, "or_greater") var base_speed : int = 150
 @export_range(0, 1, 0.1, "or_greater") var base_appetite : float = 0.1
-#@export var base_moves : Array[MoveComponent]
+@export var base_moves : Array[MoveComponent]
+
+func apply_upgrade(body : Body):
+	pass

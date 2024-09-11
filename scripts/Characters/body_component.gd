@@ -10,7 +10,7 @@ var parts : Dictionary
 @export_range(0, 300, 1, "or_greater") var base_speed : int = 150
 @export_range(0, 1, 0.1, "or_greater") var base_appetite : float = 0.1
 @export var base_moves : Array[MoveComponent]
-@export var starting_parts : Array[part_data]
+@export var starting_parts : Array[base_part_strategy]
 
 @export_category("Stat Multipliers")
 @export_range(0.01, 2, 0.01, "or_greater") var base_hp_mult : float = 1
@@ -21,57 +21,45 @@ var parts : Dictionary
 var body_owner : Creature
 
 # Actual stats
-var max_hp
-var current_hp
-var max_mp
-var current_mp
-var hp_regen
-var mp_regen
+@onready var max_hp = base_hp
+@onready var current_hp = max_hp
+@onready var max_mp = base_mp
+@onready var current_mp = max_mp
+@onready var hp_regen = base_hp_regen
+@onready var mp_regen = base_mp_regen
 var move_list : Dictionary
 
 
 func _ready():
 	for part in starting_parts:
 		add_part(part)
-	recalculate_stats()
 	# Initialize starting moves
 	for move in base_moves:
 		add_move(move)
 		
-	
 
-func add_part(new_part : part_data):
-	if parts[new_part.part_type]:
+func add_part(new_part : base_part_strategy):
+	if new_part.part_type in parts:
 		# Existing part type, replace it
+		parts[new_part.part_type].revert_upgrade(self)
 		parts[new_part.part_type] = new_part
+		apply_upgrade(new_part)
 	else:
 		parts[new_part.part_type] = new_part
+		apply_upgrade(new_part)
 
 		
-func recalculate_stats() -> void:
-	var hp_percentage = current_hp / max_hp
-	var mp_percentage = current_mp / max_mp
-	max_hp = base_hp
-	max_mp = base_mp
-	hp_regen = base_hp_regen
-	mp_regen = base_mp_regen
-	# Tally up stats from children
-	for part in get_node("BodyWindow/VBoxContainer").get_children():
-		max_hp += part.base_hp
-		max_mp += part.base_mp
-		hp_regen += part.base_hp_regen
-		mp_regen += part.base_mp_regen
-	# Apply multipliers
-	max_hp *= base_hp_mult
-	max_mp *= base_mp_mult
-	hp_regen *= base_hp_regen_mult
-	mp_regen *= base_mp_regen_mult
+func apply_upgrade(part : base_part_strategy) -> void:
+	var hp_percentage = min(current_hp / max_hp, 1)
+	var mp_percentage = min(current_mp / max_mp, 1)
+	part.apply_upgrade(self)
 	# Recalculate new current hp/mp now that max mp/hp has changed
 	current_hp = max(max_hp * hp_percentage, 1)
 	current_mp = max_mp * mp_percentage
+	
 
 func add_move(move : MoveComponent):
-	if move.move_name not in move_list:
-		move_list[move.move_name] = move
+	if move.move_id not in move_list:
+		move_list[move.move_id] = move
 	else:
-		move_list[move.move_name].increment()
+		move_list[move.move_id].move_quantity += 1

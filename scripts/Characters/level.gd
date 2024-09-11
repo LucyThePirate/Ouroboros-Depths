@@ -11,14 +11,14 @@ func _ready():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
 func _on_player_brain_component_uncovered_fog(creature, radius : int = 3):
 	if not map:
 		return
-	var location = creature.global_position * (100 / 19)
+	var location = creature.global_position * (100.0 / 19.0)
 	var map_coordinates = map.local_to_map(location)
 	if map_coordinates == last_player_map_position:
 		return

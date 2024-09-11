@@ -1,4 +1,4 @@
-class_name MoveComponent extends Node
+class_name MoveComponent extends Resource
 
 enum Activation {
 	ACTIVE = 0,
@@ -29,5 +29,9 @@ enum CostTypes {
 @export var activation_type : Activation = Activation.ACTIVE
 @export var cast_cost_quantity : int = 0
 @export var cast_cost_type : CostTypes = CostTypes.MANA
-@export var spell_component : SpellComponent
+@export var spell_component : PackedScene
 @export var cooldown_time : float = 0.5
+
+func cast():
+	
+	pass
