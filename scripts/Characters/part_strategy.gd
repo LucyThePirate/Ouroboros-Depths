@@ -1,4 +1,4 @@
-class_name part_strategy extends Resource
+class_name PartStrategy extends Resource
 
 enum PartTypes {HEAD, TORSO, TORSO_LARGE, LIMBS_ARMS, LIMBS_LEGS_FRONT, LIMBS_LEGS_BACK, TAIL, WINGS}
 
@@ -16,15 +16,18 @@ enum PartTypes {HEAD, TORSO, TORSO_LARGE, LIMBS_ARMS, LIMBS_LEGS_FRONT, LIMBS_LE
 @export_range(0, 300, 1, "or_greater") var base_speed : int = 150
 @export_range(0, 1, 0.1, "or_greater") var base_appetite : float = 0.1
 @export var base_moves : Array[PackedScene]
+@export var skill_points : int = 1
 
 func apply_upgrade(body : Body):
 	body.max_hp += base_hp
 	body.max_mp += base_mp
 	body.hp_regen += base_hp_regen
 	body.mp_regen += base_mp_regen
+	body.max_skill_points += skill_points
 	
 func revert_upgrade(body : Body):
 	body.max_hp -= base_hp
 	body.max_mp -= base_mp
 	body.hp_regen -= base_hp_regen
 	body.mp_regen -= base_mp_regen
+	body.max_skill_points -= skill_points

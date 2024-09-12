@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Characters/creature_brain_component.gd" id="1_8t8xw"]
 [ext_resource type="PackedScene" uid="uid://cn1vwhwg8kdvm" path="res://scenes/Characters/creature_component.tscn" id="2_m6rlo"]
-[ext_resource type="Script" path="res://scripts/Characters/move_component.gd" id="3_pom1g"]
+[ext_resource type="Script" path="res://scripts/Characters/move_strategy.gd" id="3_s7jsf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nfqeo"]
 radius = 158.05
@@ -14,8 +14,7 @@ script = ExtResource("1_8t8xw")
 unique_name_in_owner = true
 
 [node name="BodyComponent" parent="CreatureComponent/CanvasLayer" index="1"]
-base_moves = Array[ExtResource("3_pom1g")]([])
-starting_parts = Array[ExtResource("3_pom1g")]([])
+base_moves = Array[ExtResource("3_s7jsf")]([])
 
 [node name="DebugLabel" type="Label" parent="CreatureComponent"]
 offset_left = -17.0

@@ -1,4 +1,4 @@
-class_name MoveComponent extends Node
+class_name MoveStrategy extends Resource
 
 enum Activation {
 	ACTIVE = 0,
@@ -24,14 +24,10 @@ enum CostTypes {
 @export var move_quantity : int = 0
 @export var opportunity_cost_quantity : int = 0
 @export var opportunity_cost_type : CostTypes = CostTypes.INNATE
+@export var move_component : PackedScene
 
-@export_category("Move Stats")
-@export var activation_type : Activation = Activation.ACTIVE
-@export var cast_cost_quantity : int = 0
-@export var cast_cost_type : CostTypes = CostTypes.MANA
-@export var spell_component : PackedScene
-@export var cooldown_time : float = 0.5
-
-func cast():
-	
-	pass
+func apply_upgrade(body : Body):
+	if not move_component:
+		return
+	var new_move = move_component.instantiate()
+	body.moveList.add_child(new_move)
