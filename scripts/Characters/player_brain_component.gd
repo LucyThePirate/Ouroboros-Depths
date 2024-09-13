@@ -29,7 +29,7 @@ func _process(_delta):
 		
 	if Input.is_action_pressed("OffHand"):
 		%CreatureComponent.cast_spell(%CreatureComponent.pick_spell_at_random())
-		
+		$CreatureComponent/CanvasLayer/BodyComponent._use_random_move()
 	handle_slowdown()
 	
 	

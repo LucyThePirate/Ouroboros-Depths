@@ -8,24 +8,31 @@
 
 [sub_resource type="Resource" id="Resource_vlyn0"]
 script = ExtResource("2_owhvh")
-move_name = "Default Move"
+move_name = "Default Move1"
 description = "Standard stuff.
 Whaddya know?"
-move_id = -1
 move_quantity = 0
 opportunity_cost_quantity = 0
 opportunity_cost_type = 5
 move_component = ExtResource("3_8ijr3")
+activation_type = 0
+cast_cost_quantity = 1.0
+cast_cost_type = 0
+cooldown_time = 0.5
 
 [sub_resource type="Resource" id="Resource_xxitj"]
 script = ExtResource("2_owhvh")
-move_name = "Default Move"
+move_name = "Default Move2"
 description = "Standard stuff.
 Whaddya know?"
-move_id = -1
-move_quantity = 0
+move_quantity = 1
 opportunity_cost_quantity = 0
 opportunity_cost_type = 5
+move_component = ExtResource("3_8ijr3")
+activation_type = 0
+cast_cost_quantity = 1.0
+cast_cost_type = 0
+cooldown_time = 0.5
 
 [sub_resource type="Resource" id="Resource_d3xbb"]
 script = ExtResource("3_p2fe6")
@@ -86,6 +93,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="StatBar" type="Panel" parent="."]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -123,3 +131,9 @@ text = "MP: "
 horizontal_alignment = 1
 
 [node name="MoveList" type="Node" parent="."]
+
+[node name="RegenTimer" type="Timer" parent="."]
+process_callback = 0
+autostart = true
+
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

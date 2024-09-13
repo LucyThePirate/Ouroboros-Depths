@@ -27,14 +27,13 @@ var body_owner : Creature
 
 # Actual stats
 @onready var max_hp = base_hp
-@onready var current_hp = max_hp
+@onready var current_hp = max_hp / 2
 @onready var max_mp = base_mp
-@onready var current_mp = max_mp
+@onready var current_mp = max_mp / 2
 @onready var hp_regen = base_hp_regen
 @onready var mp_regen = base_mp_regen
 var move_list : Dictionary
 @onready var skill_points = max_skill_points
-
 
 func _ready():
 	for part in starting_parts:
@@ -42,8 +41,8 @@ func _ready():
 	# Initialize starting moves
 	for move in base_moves:
 		add_move(move)
-		
 	update_stat_text()
+
 
 func add_part(new_part : PartStrategy):
 	if new_part.part_type in parts:
@@ -67,12 +66,37 @@ func apply_upgrade(part : PartStrategy) -> void:
 
 func add_move(move : MoveStrategy):
 	move.apply_upgrade(self)
-	#if move.move_id not in move_list:
-		#move_list[move.move_id] = move
-	#else:
-		#move_list[move.move_id].move_quantity += 1
+
+
+func incur_move_cost(move) -> bool:
+	if current_mp <= 0:
+		return false
+	current_mp -= move.cast_cost_quantity
+	update_stat_text()
+	return true
+
+
+func toggle_stats_visible(is_visible : bool):
+	$StatBar.visible = is_visible
 
 
 func update_stat_text() -> void:
 	HPText.text = "HP: " + str(current_hp) + "/" + str(max_hp)
 	MPText.text = "MP: " + str(current_mp) + "/" + str(max_mp)
+
+
+func _on_regen_timer_timeout() -> void:
+	if current_hp < max_hp:
+		current_hp = min(current_hp + hp_regen, max_hp)
+	if current_mp < max_mp:
+		current_mp = min(current_mp + mp_regen, max_mp)
+	update_stat_text()
+
+
+func _use_random_move():
+	var moves = moveList.get_children()
+	if moves.size() < 1:
+		return
+	var random_move = moves.pick_random()
+	random_move.cast()
+	print("Casted:", random_move.move_name)

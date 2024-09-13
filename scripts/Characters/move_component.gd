@@ -17,7 +17,6 @@ enum CostTypes {
 @export_category("Flavor")
 @export var move_name : String = "Default Move"
 @export_multiline var description : String = "Standard stuff.\nWhaddya know?"
-@export var move_id : int = -1
 
 @export_category("Learning Stats")
 ## How many different sources this creature has learned this move from
@@ -27,11 +26,14 @@ enum CostTypes {
 
 @export_category("Move Stats")
 @export var activation_type : Activation = Activation.ACTIVE
-@export var cast_cost_quantity : int = 0
+@export var cast_cost_quantity : float = 1
 @export var cast_cost_type : CostTypes = CostTypes.MANA
 @export var spell_component : PackedScene
 @export var cooldown_time : float = 0.5
 
+var move_owner : Body
+
 func cast():
-	
-	pass
+	var successfully_cast = move_owner.incur_move_cost(self)
+	if not successfully_cast:
+		return

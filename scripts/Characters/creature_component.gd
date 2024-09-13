@@ -30,6 +30,7 @@ var state = States.ALIVE
 func _ready():
 	inventory.inventory_owner = self
 	bodyComponent.body_owner = self
+	bodyComponent.toggle_stats_visible(is_in_group("player"))
 
 func _physics_process(_delta):
 	if not is_moving:
