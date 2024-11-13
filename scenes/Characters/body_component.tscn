@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdcs71qvy54of"]
+[gd_scene load_steps=10 format=3 uid="uid://bdcs71qvy54of"]
 
 [ext_resource type="Script" path="res://scripts/Characters/body_component.gd" id="1_7iyik"]
 [ext_resource type="Script" path="res://scripts/Characters/move_strategy.gd" id="2_owhvh"]
 [ext_resource type="PackedScene" uid="uid://dwmuwtn2ieohc" path="res://scenes/Characters/move_component.tscn" id="3_8ijr3"]
 [ext_resource type="PackedScene" uid="uid://c8yid1ew0egkx" path="res://scenes/Characters/body_slot.tscn" id="3_gr46i"]
 [ext_resource type="Script" path="res://scripts/Characters/part_strategy.gd" id="3_p2fe6"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://demo/assets/fonts/Permanentmarker-Regular.ttf" id="6_6a5ya"]
 
 [sub_resource type="Resource" id="Resource_vlyn0"]
 script = ExtResource("2_owhvh")
@@ -93,7 +94,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="StatBar" type="Panel" parent="."]
-visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -122,11 +122,13 @@ columns = 2
 
 [node name="HealthText" type="Label" parent="StatBar/GridContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("6_6a5ya")
 text = "HP: "
 horizontal_alignment = 1
 
 [node name="ManaText" type="Label" parent="StatBar/GridContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("6_6a5ya")
 text = "MP: "
 horizontal_alignment = 1
 

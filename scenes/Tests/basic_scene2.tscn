@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://di8ug5gcdh6h0"]
+[gd_scene load_steps=45 format=3 uid="uid://di8ug5gcdh6h0"]
 
 [ext_resource type="Script" path="res://scripts/Characters/level.gd" id="1_ixvmf"]
 [ext_resource type="Texture2D" uid="uid://b60fxmc7hxg5s" path="res://textures/PumpkinBlock2.png" id="1_k55iv"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dn5dwn4cxcre8" path="res://scenes/Characters/creature_brain_component.tscn" id="7_p5nlw"]
 [ext_resource type="PackedScene" uid="uid://81i40ycuccbt" path="res://scenes/Items/item_component.tscn" id="10_6xswq"]
 [ext_resource type="Script" path="res://scripts/Mechanics/item_data.gd" id="11_l05s3"]
+[ext_resource type="PackedScene" uid="uid://emth7syu8aev" path="res://scenes/Mechanics/attack.tscn" id="12_5rjfb"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j1wxp"]
 
@@ -493,6 +494,9 @@ item = SubResource("Resource_2y48q")
 [node name="item_component5" parent="." instance=ExtResource("10_6xswq")]
 
 [node name="item_component6" parent="." instance=ExtResource("10_6xswq")]
+
+[node name="Attack" parent="." node_paths=PackedStringArray("targetNode") instance=ExtResource("12_5rjfb")]
+targetNode = NodePath("../PlayerBrainComponent")
 
 [connection signal="uncovered_fog" from="PlayerBrainComponent" to="." method="_on_player_brain_component_uncovered_fog"]
 

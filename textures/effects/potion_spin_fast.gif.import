@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://clgsmejmokek7"
+path="res://.godot/imported/potion_spin_fast.gif-e0837525a4027ab5466db802a6a990ee.tres"
+
+[deps]
+
+source_file="res://textures/effects/potion_spin_fast.gif"
+dest_files=["res://.godot/imported/potion_spin_fast.gif-e0837525a4027ab5466db802a6a990ee.tres"]
+
+[params]
+
+frames_per_second=30

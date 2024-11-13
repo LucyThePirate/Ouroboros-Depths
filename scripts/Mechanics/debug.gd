@@ -19,6 +19,7 @@ func _process(_delta):
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("DebugToggleSlowdown"):
 		toggle_slowdown()
+
 		
 func toggle_slowdown():
 	slowdown_enabled = not slowdown_enabled
@@ -26,3 +27,8 @@ func toggle_slowdown():
 		print_rich("DEBUG: Slowdown turned on.")
 	else:
 		print_rich("[shake]DEBUG: Slowdown turned off![/shake]")
+
+
+func align_to_grid(position : Vector2) -> Vector2:
+	var newPosition = Vector2(round(position.x), round(position.y))
+	return newPosition

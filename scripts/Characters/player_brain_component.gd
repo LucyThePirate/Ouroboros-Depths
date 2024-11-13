@@ -32,6 +32,9 @@ func _process(_delta):
 		$CreatureComponent/CanvasLayer/BodyComponent._use_random_move()
 	handle_slowdown()
 	
+	if Input.is_action_just_pressed("DebugAttackTest"):
+		pass
+	
 	
 func handle_slowdown():
 	if %CreatureComponent.is_doing_something():

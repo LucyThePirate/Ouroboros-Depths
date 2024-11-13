@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://emth7syu8aev"]
+
+[ext_resource type="Script" path="res://scripts/Mechanics/attack.gd" id="1_qs1np"]
+[ext_resource type="Texture2D" uid="uid://bwvtwmdsyty2g" path="res://textures/Testing/dottedLine.png" id="2_oioyy"]
+[ext_resource type="SpriteFrames" uid="uid://clgsmejmokek7" path="res://textures/effects/potion_spin_fast.gif" id="3_82rsa"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_m6q55"]
+diffuse_texture = ExtResource("2_oioyy")
+texture_repeat = 2
+
+[node name="Attack" type="Node2D"]
+script = ExtResource("1_qs1np")
+attack_height = 70.0
+preview_line_cuts = 10
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(0, 0, 73.5, -69.5, 147, 1)
+width = 20.215
+default_color = Color(1, 1, 1, 0.407843)
+texture_mode = 1
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Target" type="Marker2D" parent="."]
+top_level = true
+position = Vector2(147, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PreviewLine" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 14.7, -12.5, 29.4, -22.2, 44.1, -29.1, 58.8, -33.2, 73.5, -34.5, 88.2, -33, 102.9, -28.7, 117.6, -21.6, 132.3, -11.7)
+texture = SubResource("CanvasTexture_m6q55")
+texture_mode = 1
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("3_82rsa")
+animation = &"gif"
+frame_progress = 0.366737
+speed_scale = 1.5

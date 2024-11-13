@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://jhm5n51ryubd"]
 
-[ext_resource type="Script" path="res://scripts/Characters/AttackComponent.gd" id="1_gxfi5"]
+[ext_resource type="Script" path="res://scripts/Characters/hitbox_component.gd" id="1_33tak"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ny187"]
 
-[node name="AttackComponent" type="Node2D"]
-script = ExtResource("1_gxfi5")
+[node name="HitboxComponent" type="Node2D"]
+script = ExtResource("1_33tak")
 startup_time = 0.0
 attack_duration_time = 0.1
 cooldown_time = 0.1

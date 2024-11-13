@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1d46im6nh4bs"]
+
+[ext_resource type="Script" path="res://scripts/Characters/hitbox_component.gd" id="1_m5cyt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ny187"]
+
+[node name="HitboxComponent" type="Node2D"]
+script = ExtResource("1_m5cyt")
+startup_time = 0.0
+attack_duration_time = 0.1
+cooldown_time = 0.1
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 19
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ny187")
+debug_color = Color(0.960784, 0, 0, 0.419608)
+
+[node name="InRange" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 19
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InRange"]
+shape = SubResource("CircleShape2D_ny187")
+debug_color = Color(0.752941, 0.388235, 0.380392, 0.141176)
+
+[node name="StartupTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="AttackDurationTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="InRange" to="." method="_on_in_range_body_entered"]
+[connection signal="body_exited" from="InRange" to="." method="_on_in_range_body_exited"]
+[connection signal="timeout" from="StartupTimer" to="." method="_on_startup_timer_timeout"]
+[connection signal="timeout" from="AttackDurationTimer" to="." method="_on_attack_duration_timer_timeout"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

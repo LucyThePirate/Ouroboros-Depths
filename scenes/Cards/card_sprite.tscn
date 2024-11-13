@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7unkkc7r1cyn"]
+
+[ext_resource type="Texture2D" uid="uid://c3f0vx7a4ymw7" path="res://textures/Cards/CardBlank.png" id="1_0rcmh"]
+[ext_resource type="Script" path="res://scripts/Cards/card_sprite.gd" id="1_5bgyq"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://demo/assets/fonts/Permanentmarker-Regular.ttf" id="2_4vtyd"]
+[ext_resource type="Texture2D" uid="uid://bwnrh7ssyb41j" path="res://textures/Cards/CardIconMask.png" id="3_bar5b"]
+[ext_resource type="Texture2D" uid="uid://b4vn8wmj0rcwt" path="res://textures/Testing/zen-garden.jpg" id="4_akbg1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sg4eb"]
+font_size = 17
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.662745)
+
+[node name="CardSprite" type="Node2D"]
+script = ExtResource("1_5bgyq")
+
+[node name="CardBlank" type="Sprite2D" parent="."]
+position = Vector2(99, 126)
+texture = ExtResource("1_0rcmh")
+
+[node name="Name" type="Label" parent="CardBlank"]
+offset_left = -63.0
+offset_top = -124.0
+offset_right = 76.0
+offset_bottom = -106.0
+theme_override_fonts/font = ExtResource("2_4vtyd")
+theme_override_font_sizes/font_size = 40
+text = "WHAAAAAAAAA"
+label_settings = SubResource("LabelSettings_sg4eb")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CardIconMask" type="Sprite2D" parent="CardBlank"]
+clip_children = 1
+position = Vector2(1, -62)
+texture = ExtResource("3_bar5b")
+
+[node name="Zen-garden" type="Sprite2D" parent="CardBlank/CardIconMask"]
+position = Vector2(26, 12)
+scale = Vector2(0.222335, 0.222335)
+texture = ExtResource("4_akbg1")
+
+[node name="Description" type="RichTextLabel" parent="CardBlank"]
+anchors_preset = -1
+anchor_right = 0.576355
+anchor_bottom = 0.143911
+offset_left = -76.0
+offset_top = 43.0
+offset_right = -36.0
+offset_bottom = 83.0
+mouse_default_cursor_shape = 16
+theme_override_fonts/normal_font = ExtResource("2_4vtyd")
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "asdfasf
+[hint={tooltip text displayed on hover}]{text}[/hint]
+
+[url=AAAH]test[/url]
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="meta_hover_started" from="CardBlank/Description" to="." method="_on_description_meta_hover_started"]
