@@ -100,15 +100,10 @@ func pick_spell_at_random() -> SpellComponent:
 	return $AttackOffset/SpellComponent
 
 
-func hit(damage_amount, damage_type, damage_parent):
+func hit(damage_amount, damage_parent):
 	if damage_parent:
 		hit_by.emit(damage_parent)
-	match damage_type:
-		Damage_Types.DamageTypes.TRUE:
-			health -= max(damage_amount, 0)
-		_:
-			#print("Unknown damage type:", damage_type)
-			health -= max(damage_amount, 0)
+	health -= max(damage_amount, 0)
 	var health_percent = health / max_health
 	%Sprite.self_modulate = Color(1, health_percent, health_percent)
 	if health <= 0:

@@ -32,14 +32,14 @@ vec2 get_uv(vec2 uv, float scale, float time) {
 
 void vertex(){
     world_position = (global_transform * vec4(VERTEX, 0.0, 1.0)).xy;
-	vec2 world_uv = get_uv(world_position, noise_scale, TIME * time_scale); 
+	vec2 world_uv = get_uv(world_position, noise_scale, TIME * time_scale);
 	vec2 noise = texture(noise_texture, world_uv).rg;
 	noise *= 2.0;
 	noise -= 1.0;
 	noise *= distortion_force;
-	
+
 	float a = fract(VERTEX.y / tile_size);
-	
+
 	if (a == 0.0 && move_top) {
 		VERTEX.x += noise.x;
 		VERTEX.y += noise.y;
@@ -48,16 +48,16 @@ void vertex(){
 		VERTEX.x += noise.x;
 		VERTEX.y += noise.y;
 	}
-	
+
 }
 
 void fragment() {
 	vec4 sample = texture(TEXTURE, UV);
 	COLOR = sample;
-	
+
 	if (render_noise) {
 		vec3 color = sample.rgb;
-		vec2 world_uv = get_uv(world_position, noise_scale, TIME * time_scale); 
+		vec2 world_uv = get_uv(world_position, noise_scale, TIME * time_scale);
 		color = texture(noise_texture, world_uv).rgb;
 		COLOR = vec4(color, 1.0);
 	}

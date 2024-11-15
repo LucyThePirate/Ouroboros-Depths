@@ -1403,13 +1403,11 @@ autoplay = "Idle"
 [node name="Targets" type="Node2D" parent="."]
 
 [node name="HeadTarget" type="Marker2D" parent="Targets"]
-top_level = true
-position = Vector2(390, -160)
+position = Vector2(184, 67)
 gizmo_extents = 18.5
 
 [node name="EyeTarget" type="Marker2D" parent="Targets"]
-top_level = true
-position = Vector2(309, -311)
+position = Vector2(533, -436)
 gizmo_extents = 18.5
 
 [node name="HandLTarget" type="Marker2D" parent="Targets"]
@@ -1607,7 +1605,7 @@ position = Vector2(155, -143)
 rotation = 0.806708
 scale = Vector2(1.12327, 1.12327)
 sprite_frames = ExtResource("8_ixd6g")
-animation = &"Curl"
+animation = &"Point"
 autoplay = "Curl"
 
 [node name="End" type="Marker2D" parent="Body/HandL"]

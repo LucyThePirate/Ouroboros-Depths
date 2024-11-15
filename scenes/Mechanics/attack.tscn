@@ -42,5 +42,5 @@ metadata/_edit_lock_ = true
 scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("3_82rsa")
 animation = &"gif"
-frame_progress = 0.366737
+frame_progress = 0.169913
 speed_scale = 1.5

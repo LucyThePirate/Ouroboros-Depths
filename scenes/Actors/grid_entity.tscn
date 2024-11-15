@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://yqxyjxhsvfqi"]
+
+[ext_resource type="Script" path="res://scripts/Actors/grid_entity.gd" id="1_u0fqg"]
+
+[node name="GridEntity" type="Node2D" groups=["GridEntity"]]
+top_level = true
+script = ExtResource("1_u0fqg")

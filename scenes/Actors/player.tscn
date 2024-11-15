@@ -1,16 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn0ekp8511qye"]
+[gd_scene load_steps=5 format=3 uid="uid://d2wq4gejffyd"]
 
-[ext_resource type="Script" path="res://scripts/Actors/player.gd" id="1_sdf0t"]
-[ext_resource type="PackedScene" uid="uid://bwkb3crnbdvht" path="res://scenes/Tests/lich_test.tscn" id="2_qp86w"]
+[ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="1_exgt7"]
+[ext_resource type="Script" path="res://scripts/Actors/player.gd" id="1_ochwc"]
+[ext_resource type="PackedScene" uid="uid://bwkb3crnbdvht" path="res://scenes/Tests/lich_test.tscn" id="2_00j3e"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1g34h"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vi7n"]
+size = Vector2(100, 100)
 
-[node name="Player" type="CharacterBody2D"]
-motion_mode = 1
-script = ExtResource("1_sdf0t")
+[node name="Player" type="Node2D"]
+script = ExtResource("1_ochwc")
 
-[node name="Hurtbox" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_1g34h")
+[node name="GridEntity" parent="." instance=ExtResource("1_exgt7")]
 
-[node name="LichTest" parent="." instance=ExtResource("2_qp86w")]
-scale = Vector2(0.247653, 0.235897)
+[node name="LichTest" parent="." instance=ExtResource("2_00j3e")]
+position = Vector2(3, -22)
+scale = Vector2(0.3, 0.3)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_0vi7n")
+
+[connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
+
+[editable path="GridEntity"]

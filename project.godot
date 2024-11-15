@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Ouroboros Depths"
-run/main_scene="res://scenes/Tests/basic_scene2.tscn"
+run/main_scene="res://scenes/Levels/basic_level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Debug="*res://scripts/Mechanics/debug.gd"
+Debug="*res://scripts/Mechanics/helper.gd"
 
 [display]
 
