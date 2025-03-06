@@ -1,27 +1,255 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2wq4gejffyd"]
+[gd_scene load_steps=29 format=3 uid="uid://d2wq4gejffyd"]
 
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="1_exgt7"]
 [ext_resource type="Script" path="res://scripts/Actors/player.gd" id="1_ochwc"]
 [ext_resource type="PackedScene" uid="uid://bwkb3crnbdvht" path="res://scenes/Tests/lich_test.tscn" id="2_00j3e"]
+[ext_resource type="Texture2D" uid="uid://boyi3dh24ewlf" path="res://textures/UI/black-star.png" id="4_82rk3"]
+[ext_resource type="Texture2D" uid="uid://djbnu6ytor4b8" path="res://textures/Creatures/Lich/Robe1.tres" id="5_avsoj"]
+[ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="6_7unxw"]
+[ext_resource type="Texture2D" uid="uid://clqvltq2ok2uf" path="res://textures/Creatures/Lich/EyeMask.png" id="7_aew8x"]
+[ext_resource type="Texture2D" uid="uid://bu0loei7qohle" path="res://textures/Creatures/Lich/Eye1.png" id="8_sucmd"]
+[ext_resource type="Texture2D" uid="uid://jvgj72ry5bcy" path="res://textures/Creatures/Lich/Eye2.png" id="9_c3tgl"]
+[ext_resource type="Texture2D" uid="uid://do8mfbe1gk4yt" path="res://textures/Creatures/Lich.png" id="10_g6wfy"]
+[ext_resource type="SpriteFrames" uid="uid://l8ucgemh6v2f" path="res://textures/Creatures/Lich/HandAnimation.tres" id="11_6p8t3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vi7n"]
 size = Vector2(100, 100)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqqwm"]
+atlas = ExtResource("4_82rk3")
+region = Rect2(0, 0, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcv26"]
+atlas = ExtResource("4_82rk3")
+region = Rect2(0, 166, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nphn2"]
+atlas = ExtResource("4_82rk3")
+region = Rect2(0, 332, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh175"]
+atlas = ExtResource("4_82rk3")
+region = Rect2(149, 0, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b62dl"]
+atlas = ExtResource("4_82rk3")
+region = Rect2(149, 166, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7u6y"]
+atlas = ExtResource("4_82rk3")
+region = Rect2(149, 332, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3heb"]
+atlas = ExtResource("4_82rk3")
+region = Rect2(298, 0, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki7vg"]
+atlas = ExtResource("4_82rk3")
+region = Rect2(298, 166, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yekc8"]
+atlas = ExtResource("4_82rk3")
+region = Rect2(298, 332, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dhts"]
+atlas = ExtResource("4_82rk3")
+region = Rect2(447, 0, 149, 166)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vj7ml"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqqwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcv26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nphn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh175")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b62dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7u6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3heb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki7vg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yekc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dhts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yekc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki7vg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3heb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7u6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b62dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh175")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4vsqb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_avsoj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_avsoj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glkql"]
+atlas = ExtResource("6_7unxw")
+region = Rect2(0, 0, 125.788, 116.493)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou37l"]
+atlas = ExtResource("6_7unxw")
+region = Rect2(67.0487, 124.006, 62.1543, 42.3469)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ysvr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_sucmd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_c3tgl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u01kw"]
+atlas = ExtResource("10_g6wfy")
+region = Rect2(603.554, 22.5921, 81.2787, 92.8899)
+
 [node name="Player" type="Node2D"]
+z_as_relative = false
 script = ExtResource("1_ochwc")
 
 [node name="GridEntity" parent="." instance=ExtResource("1_exgt7")]
-
-[node name="LichTest" parent="." instance=ExtResource("2_00j3e")]
-position = Vector2(3, -22)
-scale = Vector2(0.3, 0.3)
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_0vi7n")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="Display" type="Node2D" parent="."]
+top_level = true
+z_as_relative = false
+
+[node name="LichTest" parent="Display" instance=ExtResource("2_00j3e")]
+z_as_relative = false
+position = Vector2(4, -63)
+scale = Vector2(0.3, 0.3)
+
+[node name="Star" type="AnimatedSprite2D" parent="."]
+visible = false
+z_as_relative = false
+position = Vector2(1, -7)
+scale = Vector2(2.0927, 1.64678)
+sprite_frames = SubResource("SpriteFrames_vj7ml")
+autoplay = "default"
+speed_scale = 2.5
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-6, -13)
+scale = Vector2(0.16077, 0.0805265)
+sprite_frames = SubResource("SpriteFrames_4vsqb")
+autoplay = "default"
+
+[node name="Head" type="Sprite2D" parent="Body"]
+position = Vector2(1.9993, -211.005)
+rotation = 0.0699151
+scale = Vector2(0.999923, 0.999923)
+texture = SubResource("AtlasTexture_glkql")
+offset = Vector2(11, -46)
+
+[node name="Jaw" type="Sprite2D" parent="Body/Head"]
+position = Vector2(30.0004, 40.0008)
+rotation = 0.927295
+scale = Vector2(1.00001, 1.00001)
+texture = SubResource("AtlasTexture_ou37l")
+offset = Vector2(25, 2)
+
+[node name="EyeClippingMask" type="Sprite2D" parent="Body/Head"]
+clip_children = 2
+position = Vector2(-0.630106, -40.7137)
+texture = ExtResource("7_aew8x")
+
+[node name="Eye" type="AnimatedSprite2D" parent="Body/Head/EyeClippingMask"]
+position = Vector2(-5.58246, -3.32828)
+rotation = -0.372258
+scale = Vector2(0.437844, 0.371011)
+sprite_frames = SubResource("SpriteFrames_3ysvr")
+autoplay = "default"
+offset = Vector2(39.2419, 9.18604)
+
+[node name="HornR" type="Sprite2D" parent="Body/Head"]
+position = Vector2(-53.6199, -28.6688)
+rotation = 0.29641
+texture = SubResource("AtlasTexture_u01kw")
+
+[node name="HornL" type="Sprite2D" parent="Body/Head"]
+show_behind_parent = true
+position = Vector2(-18.4784, -68.7572)
+rotation = 2.06499
+texture = SubResource("AtlasTexture_u01kw")
+
+[node name="HandL" type="AnimatedSprite2D" parent="Body"]
+position = Vector2(159, -118)
+rotation = 0.839453
+scale = Vector2(1, 1)
+sprite_frames = ExtResource("11_6p8t3")
+animation = &"Curl"
+autoplay = "Curl"
+
+[node name="End" type="Marker2D" parent="Body/HandL"]
+position = Vector2(-0.83165, -39.0206)
+
+[node name="HandR" type="AnimatedSprite2D" parent="Body"]
+position = Vector2(-79, -131)
+rotation = -0.53704
+sprite_frames = ExtResource("11_6p8t3")
+animation = &"Curl"
+autoplay = "Curl"
+flip_h = true
+
+[node name="End" type="Marker2D" parent="Body/HandR"]
+position = Vector2(-11.0626, -41.8287)
+
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
+[connection signal="hit" from="GridEntity" to="." method="_on_grid_entity_hit"]
 
 [editable path="GridEntity"]

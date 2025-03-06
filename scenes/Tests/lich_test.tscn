@@ -1561,7 +1561,6 @@ autoplay = "default"
 frame_progress = 0.509889
 
 [node name="Head" type="Sprite2D" parent="Body"]
-z_index = 6
 position = Vector2(-16, -230)
 rotation = 0.446168
 scale = Vector2(1.12327, 1.12327)
@@ -1569,7 +1568,6 @@ texture = SubResource("AtlasTexture_xs8py")
 offset = Vector2(11, -46)
 
 [node name="Jaw" type="Sprite2D" parent="Body/Head"]
-z_index = -1
 position = Vector2(25, 15)
 texture = SubResource("AtlasTexture_vxm3n")
 offset = Vector2(25, 2)
@@ -1594,25 +1592,23 @@ rotation = 0.29641
 texture = SubResource("AtlasTexture_oe7eu")
 
 [node name="HornL" type="Sprite2D" parent="Body/Head"]
-z_index = -1
+show_behind_parent = true
 position = Vector2(-18.4784, -68.7572)
 rotation = 2.06499
 texture = SubResource("AtlasTexture_oe7eu")
 
 [node name="HandL" type="AnimatedSprite2D" parent="Body"]
-z_index = 6
 position = Vector2(155, -143)
 rotation = 0.806708
 scale = Vector2(1.12327, 1.12327)
 sprite_frames = ExtResource("8_ixd6g")
-animation = &"Point"
+animation = &"Curl"
 autoplay = "Curl"
 
 [node name="End" type="Marker2D" parent="Body/HandL"]
 position = Vector2(-0.83165, -39.0206)
 
 [node name="HandR" type="AnimatedSprite2D" parent="Body"]
-z_index = 6
 position = Vector2(-90, -149)
 rotation = -0.672856
 scale = Vector2(1.12327, 1.12327)
