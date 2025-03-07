@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://yqxyjxhsvfqi"]
 
-[ext_resource type="Script" path="res://scripts/Actors/grid_entity.gd" id="1_u0fqg"]
+[ext_resource type="Script" uid="uid://l0k61db14icb" path="res://scripts/Actors/grid_entity.gd" id="1_u0fqg"]
 [ext_resource type="AudioStream" uid="uid://cxmd2cbaxkq6d" path="res://audio/SFX/Thump/125429__jspath1__three-bass-thumps-1.ogg" id="2_6nj4f"]
 [ext_resource type="AudioStream" uid="uid://3xcvb1swv7pb" path="res://audio/SFX/Thump/125429__jspath1__three-bass-thumps-2.ogg" id="3_l01od"]
 [ext_resource type="AudioStream" uid="uid://i667cwtbq4eh" path="res://audio/SFX/Thump/125429__jspath1__three-bass-thumps-3.ogg" id="4_rglgn"]

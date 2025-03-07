@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://emth7syu8aev"]
 
-[ext_resource type="Script" path="res://scripts/Mechanics/attack.gd" id="1_qs1np"]
+[ext_resource type="Script" uid="uid://cssi3odsicwht" path="res://scripts/Mechanics/attack.gd" id="1_qs1np"]
 [ext_resource type="Texture2D" uid="uid://bwvtwmdsyty2g" path="res://textures/Testing/dottedLine.png" id="2_oioyy"]
 [ext_resource type="SpriteFrames" uid="uid://clgsmejmokek7" path="res://textures/effects/potion_spin_fast.gif" id="3_82rsa"]
 

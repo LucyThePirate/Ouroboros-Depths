@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://yfnrl16fupxk"]
 
 [ext_resource type="PackedScene" uid="uid://d08cf88484t5" path="res://scenes/Characters/projectile_component.tscn" id="1_4fecp"]
-[ext_resource type="Script" path="res://scripts/Characters/spell_component.gd" id="1_waidq"]
+[ext_resource type="Script" uid="uid://bvpsa6mwlltn0" path="res://scripts/Characters/spell_component.gd" id="1_waidq"]
 
 [node name="SpellComponent" type="Node2D"]
 script = ExtResource("1_waidq")

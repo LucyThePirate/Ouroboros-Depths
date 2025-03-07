@@ -1,0 +1,96 @@
+[gd_scene load_steps=16 format=3 uid="uid://dm6okwh3ft3uu"]
+
+[ext_resource type="Script" uid="uid://pl5bhwgtsu5" path="res://scripts/Effects/boulder_splash.gd" id="1_did2a"]
+[ext_resource type="AudioStream" uid="uid://ceb4oncxkjmo1" path="res://audio/SFX/Misc/737644__kraftaggregat__rocks-thrown-in-water1.ogg" id="2_hulhe"]
+[ext_resource type="AudioStream" uid="uid://c1a6jnh4oxlin" path="res://audio/SFX/Misc/737644__kraftaggregat__rocks-thrown-in-water2.ogg" id="3_4l4b5"]
+[ext_resource type="AudioStream" uid="uid://qj7qe63whl6n" path="res://audio/SFX/Misc/737644__kraftaggregat__rocks-thrown-in-water3.ogg" id="4_yef8n"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ifah5"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("2_hulhe")
+stream_1/stream = ExtResource("3_4l4b5")
+stream_2/stream = ExtResource("4_yef8n")
+
+[sub_resource type="Gradient" id="Gradient_ixfd3"]
+offsets = PackedFloat32Array(0.00666667, 1)
+colors = PackedColorArray(1, 1, 1, 0.109804, 1, 1, 1, 0.552941)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tsn2a"]
+gradient = SubResource("Gradient_ixfd3")
+
+[sub_resource type="Curve" id="Curve_ixfd3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.134731, 0.937743), 0.99018, 0.99018, 0, 0, Vector2(0.673653, 1), -1.08301, -1.08301, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_tsn2a"]
+curve = SubResource("Curve_ixfd3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k0eg1"]
+lifetime_randomness = 0.22
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector3(0, -1, 0)
+spread = 2.0
+initial_velocity_min = 1500.0
+initial_velocity_max = 1500.0
+gravity = Vector3(0, 3000, 0)
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_tsn2a")
+color_initial_ramp = SubResource("GradientTexture1D_tsn2a")
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 1
+
+[sub_resource type="Gradient" id="Gradient_y4rxe"]
+colors = PackedColorArray(1, 1, 1, 0.0313726, 1, 1, 1, 0.776471)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_did2a"]
+gradient = SubResource("Gradient_y4rxe")
+
+[sub_resource type="Curve" id="Curve_hulhe"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.158683, 1), 0.0, 0.0, 0, 0, Vector2(0.739521, 1), 0.0, 0.0, 0, 0, Vector2(0.967066, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_4l4b5"]
+curve = SubResource("Curve_hulhe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yef8n"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_4l4b5")
+color_initial_ramp = SubResource("GradientTexture1D_did2a")
+
+[node name="boulder_splash" type="Node2D"]
+script = ExtResource("1_did2a")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ifah5")
+autoplay = true
+
+[node name="Splash" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 35
+sub_emitter = NodePath("../Droplets")
+lifetime = 1.15
+one_shot = true
+explosiveness = 0.9
+trail_enabled = true
+trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_k0eg1")
+
+[node name="Droplets" type="GPUParticles2D" parent="."]
+amount = 65
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_yef8n")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

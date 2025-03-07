@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dd3yj1e7alom2"]
 
-[ext_resource type="Script" path="res://scripts/cretin.gd" id="1_rdl43"]
+[ext_resource type="Script" uid="uid://banhmgwn5ceyy" path="res://scripts/cretin.gd" id="1_rdl43"]
 [ext_resource type="Texture2D" uid="uid://e7q1s4xepclp" path="res://textures/traditional 19x19 prezzy.png" id="1_vwour"]
 [ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="2_yxr03"]
 

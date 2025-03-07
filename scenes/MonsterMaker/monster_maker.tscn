@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://btj0bsyho4a3q"]
 
-[ext_resource type="Script" path="res://scripts/MonsterMaker/monster_maker.gd" id="1_fgvld"]
-[ext_resource type="Shader" path="res://textures/Shaders/pixel_upscaler.gdshader" id="1_gsisr"]
+[ext_resource type="Script" uid="uid://ctfdykc3hywse" path="res://scripts/MonsterMaker/monster_maker.gd" id="1_fgvld"]
+[ext_resource type="Shader" uid="uid://cngmsurq6077i" path="res://textures/Shaders/pixel_upscaler.gdshader" id="1_gsisr"]
 [ext_resource type="Texture2D" uid="uid://cs15uwjngcgt0" path="res://textures/MonsterMaker/canvasTexture.png" id="3_nnwaj"]
 [ext_resource type="Texture2D" uid="uid://lc7bs0lk37uh" path="res://textures/MonsterMaker/DrawModeSymbols.png" id="4_sit38"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c7unkkc7r1cyn"]
 
 [ext_resource type="Texture2D" uid="uid://c3f0vx7a4ymw7" path="res://textures/Cards/CardBlank.png" id="1_0rcmh"]
-[ext_resource type="Script" path="res://scripts/Cards/card_sprite.gd" id="1_5bgyq"]
+[ext_resource type="Script" uid="uid://xpxqlyhlnbq8" path="res://scripts/Cards/card_sprite.gd" id="1_5bgyq"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://demo/assets/fonts/Permanentmarker-Regular.ttf" id="2_4vtyd"]
 [ext_resource type="Texture2D" uid="uid://bwnrh7ssyb41j" path="res://textures/Cards/CardIconMask.png" id="3_bar5b"]
 [ext_resource type="Texture2D" uid="uid://b4vn8wmj0rcwt" path="res://textures/Testing/zen-garden.jpg" id="4_akbg1"]

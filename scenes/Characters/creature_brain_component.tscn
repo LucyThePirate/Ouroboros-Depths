@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dn5dwn4cxcre8"]
 
-[ext_resource type="Script" path="res://scripts/Characters/creature_brain_component.gd" id="1_8t8xw"]
+[ext_resource type="Script" uid="uid://cmesf72ve1f2d" path="res://scripts/Characters/creature_brain_component.gd" id="1_8t8xw"]
 [ext_resource type="PackedScene" uid="uid://cn1vwhwg8kdvm" path="res://scenes/Characters/creature_component.tscn" id="2_m6rlo"]
-[ext_resource type="Script" path="res://scripts/Characters/move_strategy.gd" id="3_s7jsf"]
+[ext_resource type="Script" uid="uid://bp12ky7a0g8g" path="res://scripts/Characters/move_strategy.gd" id="3_s7jsf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nfqeo"]
 radius = 158.05

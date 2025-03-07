@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2xm6ut6p2ftp"]
 
-[ext_resource type="Script" path="res://scripts/Actors/grid_attack.gd" id="1_4cwbd"]
+[ext_resource type="Script" uid="uid://cdju67ua8i0qn" path="res://scripts/Actors/grid_attack.gd" id="1_4cwbd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e65tt"]
 

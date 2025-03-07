@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://cn1vwhwg8kdvm"]
 
-[ext_resource type="Script" path="res://scripts/Characters/creature_component.gd" id="1_bfqah"]
+[ext_resource type="Script" uid="uid://br2i0h4fma07s" path="res://scripts/Characters/creature_component.gd" id="1_bfqah"]
 [ext_resource type="Texture2D" uid="uid://e7q1s4xepclp" path="res://textures/traditional 19x19 prezzy.png" id="1_ovekq"]
 [ext_resource type="PackedScene" uid="uid://d08cf88484t5" path="res://scenes/Characters/projectile_component.tscn" id="2_3f7ar"]
 [ext_resource type="PackedScene" uid="uid://jhm5n51ryubd" path="res://scenes/Characters/attack_component.tscn" id="3_ljqlt"]
@@ -101,8 +101,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lofa2"]
 _data = {
-"Die": SubResource("Animation_p0ox1"),
-"RESET": SubResource("Animation_gius0")
+&"Die": SubResource("Animation_p0ox1"),
+&"RESET": SubResource("Animation_gius0")
 }
 
 [node name="CreatureComponent" type="CharacterBody2D" groups=["creature"]]

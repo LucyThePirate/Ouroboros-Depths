@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://du2tritl8qv7n"]
 
-[ext_resource type="Script" path="res://scripts/Characters/inventory_slot.gd" id="1_81ljf"]
+[ext_resource type="Script" uid="uid://d4htaqfok51h4" path="res://scripts/Characters/inventory_slot.gd" id="1_81ljf"]
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="2_pnnjr"]
 [ext_resource type="FontFile" uid="uid://vnwga06nhjde" path="res://textures/fonts/Pixelade/PIXELADE.TTF" id="3_oor3x"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://demo/assets/fonts/Permanentmarker-Regular.ttf" id="3_ujur3"]

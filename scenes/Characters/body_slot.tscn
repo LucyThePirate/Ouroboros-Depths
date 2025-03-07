@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c8yid1ew0egkx"]
 
-[ext_resource type="Script" path="res://scripts/Characters/body_slot.gd" id="1_0mk73"]
+[ext_resource type="Script" uid="uid://cgcn2iqwxchtv" path="res://scripts/Characters/body_slot.gd" id="1_0mk73"]
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="2_iho0u"]
 [ext_resource type="FontFile" uid="uid://vnwga06nhjde" path="res://textures/fonts/Pixelade/PIXELADE.TTF" id="3_ya354"]
 

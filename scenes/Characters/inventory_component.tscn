@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c8tfdx6kga8x7"]
 
-[ext_resource type="Script" path="res://scripts/Characters/inventory_component.gd" id="1_t4nnw"]
-[ext_resource type="Script" path="res://scripts/Mechanics/item_data.gd" id="2_5r733"]
+[ext_resource type="Script" uid="uid://dxupgvpba0c5e" path="res://scripts/Characters/inventory_component.gd" id="1_t4nnw"]
+[ext_resource type="Script" uid="uid://b78rymiv63m28" path="res://scripts/Mechanics/item_data.gd" id="2_5r733"]
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="2_ju3tg"]
 [ext_resource type="PackedScene" uid="uid://du2tritl8qv7n" path="res://scenes/Characters/inventory_slot.tscn" id="2_krcm5"]
 [ext_resource type="Texture2D" uid="uid://bu0loei7qohle" path="res://textures/Creatures/Lich/Eye1.png" id="3_sorvp"]

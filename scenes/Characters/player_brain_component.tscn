@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dsh3fosuphuuo"]
 
-[ext_resource type="Script" path="res://scripts/Characters/player_brain_component.gd" id="1_jpu7d"]
+[ext_resource type="Script" uid="uid://dh6r4sqp6tnit" path="res://scripts/Characters/player_brain_component.gd" id="1_jpu7d"]
 [ext_resource type="PackedScene" uid="uid://cn1vwhwg8kdvm" path="res://scenes/Characters/creature_component.tscn" id="2_u5n5x"]
 [ext_resource type="Texture2D" uid="uid://kiicrhe5264c" path="res://textures/effects/lights/Circular Light.png" id="3_clogi"]
 [ext_resource type="PackedScene" uid="uid://bwkb3crnbdvht" path="res://scenes/Tests/lich_test.tscn" id="4_jwlkg"]

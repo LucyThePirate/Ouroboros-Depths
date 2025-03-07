@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://81i40ycuccbt"]
 
-[ext_resource type="Shader" path="res://textures/Shaders/pixel_upscaler.gdshader" id="1_8rtoc"]
-[ext_resource type="Script" path="res://scripts/Mechanics/item_component.gd" id="1_wdji7"]
+[ext_resource type="Shader" uid="uid://cngmsurq6077i" path="res://textures/Shaders/pixel_upscaler.gdshader" id="1_8rtoc"]
+[ext_resource type="Script" uid="uid://b0l0vo37duen2" path="res://scripts/Mechanics/item_component.gd" id="1_wdji7"]
 [ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="2_1ra0x"]
-[ext_resource type="Script" path="res://scripts/Mechanics/item_data.gd" id="2_vb6r4"]
+[ext_resource type="Script" uid="uid://b78rymiv63m28" path="res://scripts/Mechanics/item_data.gd" id="2_vb6r4"]
 
 [sub_resource type="Resource" id="Resource_gsafu"]
 script = ExtResource("2_vb6r4")

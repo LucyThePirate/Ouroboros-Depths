@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var grid = $TileMap as TileMap
+@export var boulder_splash : PackedScene
 
 @onready var floors = $Floors as TileMapLayer
 @onready var walls = $Walls as TileMapLayer
@@ -30,8 +30,14 @@ func _push_tile(tile_coords, direction):
 		
 	if _is_obstructed(tile_coords + direction):
 		return
-		
-	objects.set_cell(tile_coords + direction, objects.get_cell_source_id(tile_coords), objects.get_cell_atlas_coords(tile_coords) )
+	
+	if floors.get_cell_tile_data(tile_coords + direction).get_custom_data("is_liquid"):
+		floors.set_cell(tile_coords + direction, 2, Vector2i(0, 1) )
+		var splashVFX = boulder_splash.instantiate()
+		walls.add_child(splashVFX)
+		splashVFX.global_position = floors.map_to_local(tile_coords + direction)
+	else:
+		objects.set_cell(tile_coords + direction, objects.get_cell_source_id(tile_coords), objects.get_cell_atlas_coords(tile_coords) )
 	objects.set_cell(tile_coords, -1)
 		
 
