@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dctxwjwjiof17"]
+
+[ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_sxdqt"]
+[ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="2_sxdqt"]
+[ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="3_sxdqt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bls1m"]
+radius = 44.1022
+
+[node name="creatureAI" type="Node2D" groups=["AI"]]
+script = ExtResource("1_sxdqt")
+
+[node name="GridEntity" parent="." instance=ExtResource("2_sxdqt")]
+
+[node name="Display" type="Node2D" parent="."]
+top_level = true
+
+[node name="Area2D" type="Area2D" parent="Display"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Display/Area2D"]
+shape = SubResource("CircleShape2D_bls1m")
+debug_color = Color(0.627606, 0.530906, 0, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5.08267, 5.08267)
+texture = ExtResource("3_sxdqt")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="GridEntity"]

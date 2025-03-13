@@ -54,3 +54,10 @@ func _is_obstructed(tile_coords) -> bool:
 	if object_tile and object_tile.get_custom_data("is_solid"):
 		return true
 	return false
+
+
+func _on_player_turn_ended() -> void:
+	for entity in get_tree().get_nodes_in_group("AI"):
+		if entity.has_method("take_turn"):
+			entity.take_turn()
+			await entity.turn_ended
