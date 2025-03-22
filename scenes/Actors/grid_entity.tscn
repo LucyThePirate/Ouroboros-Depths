@@ -88,3 +88,6 @@ pitch_scale = 1.61
 stream = SubResource("AudioStreamRandomizer_adfhp")
 volume_db = -3.0
 pitch_scale = 0.94
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true

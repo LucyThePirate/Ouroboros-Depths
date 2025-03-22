@@ -1332,6 +1332,14 @@ _data = {
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_8h4wm"]
 target_nodepath = NodePath("Hip/Body/Head")
+jiggle_data_chain_length = 2
+use_gravity = true
+joint_data/0/bone_index = -1
+joint_data/0/bone2d_node = NodePath("")
+joint_data/0/override_defaults = false
+joint_data/1/bone_index = -1
+joint_data/1/bone2d_node = NodePath("")
+joint_data/1/override_defaults = false
 
 [sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_iokgd"]
 bone_index = 4
@@ -1339,6 +1347,7 @@ bone2d_node = NodePath("Hip/Body/Head/Eye")
 target_nodepath = NodePath("../Targets/EyeTarget")
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_17jbv"]
+enabled = true
 modification_count = 2
 modifications/0 = SubResource("SkeletonModification2DJiggle_8h4wm")
 modifications/1 = SubResource("SkeletonModification2DLookAt_iokgd")
@@ -1433,6 +1442,7 @@ remote_path = NodePath("../../../../../../Body/Head/Jaw")
 [node name="Eye" type="Bone2D" parent="Skeleton2D/Hip/Body/Head"]
 position = Vector2(1, -46)
 rest = Transform2D(1, 0, 0, 1, 1, -46)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="EyeTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/Head/Eye"]
 position = Vector2(-7.43107, -0.798448)

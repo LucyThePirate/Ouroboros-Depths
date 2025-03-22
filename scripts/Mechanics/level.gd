@@ -5,18 +5,37 @@ extends Node2D
 @onready var floors = $Floors as TileMapLayer
 @onready var walls = $Walls as TileMapLayer
 @onready var objects = $Objects as TileMapLayer
+@onready var turn_queue: Array[GridEntity]
+var ready_for_next_turn = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_tree().call_group("GridEntity", "initialize", floors, walls, objects)
 	for entity in get_tree().get_nodes_in_group("GridEntity"):
+		turn_queue.push_front(entity)
 		entity.opened_door.connect(_open_door)
 		entity.pushed_object.connect(_push_tile)
+		entity.turn_ended.connect(_entity_finished_turn)
+	process_turn()
+
+#func _process(delta: float) -> void:
+	#if ready_for_next_turn:
+		#ready_for_next_turn = false
+		#process_turn()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func process_turn():
+	if turn_queue.size() <= 0:
+		for entity in get_tree().get_nodes_in_group("GridEntity"):
+			turn_queue.push_front(entity)
+	var current_entity = turn_queue.pop_front()
+	current_entity.take_turn()
+	#await current_entity.turn_ended
+
+
+func _entity_finished_turn():
+	#ready_for_next_turn = true
+	process_turn()
 
 
 func _open_door(door_coords):

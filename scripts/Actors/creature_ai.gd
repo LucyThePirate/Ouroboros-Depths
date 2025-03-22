@@ -1,7 +1,5 @@
 extends Node2D
 
-signal turn_ended
-
 @onready var grid_entity = $GridEntity
 @onready var display = $Display
 @onready var visual = $Sprite2D
@@ -43,7 +41,7 @@ func move_randomly():
 		displayLerpTime = 0.0
 		#$Camera2D.make_current()
 		#$Timer.start()
-		turn_ended.emit()
+	grid_entity.end_turn()
 
 
 func _on_grid_entity_grid_entity_initialized() -> void:
@@ -56,5 +54,5 @@ func _on_grid_entity_hit() -> void:
 	queue_free()
 
 
-func _on_timer_timeout() -> void:
-	turn_ended.emit()
+func _on_grid_entity_turn_started() -> void:
+	take_turn()

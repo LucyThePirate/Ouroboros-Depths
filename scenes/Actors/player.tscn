@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_gokip"]
 radius = 44.1022
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" groups=["Player"]]
 script = ExtResource("1_ochwc")
 
 [node name="LichTest" parent="." instance=ExtResource("2_00j3e")]
@@ -17,7 +17,7 @@ scale = Vector2(0.3, 0.3)
 
 [node name="GridEntity" parent="." instance=ExtResource("1_exgt7")]
 
-[node name="Camera2D" type="Camera2D" parent="GridEntity"]
+[node name="Camera2D2" type="Camera2D" parent="GridEntity"]
 position_smoothing_enabled = true
 
 [node name="Display" type="Node2D" parent="."]
@@ -31,5 +31,6 @@ debug_color = Color(0.627606, 0.530906, 0, 0.42)
 
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
 [connection signal="hit" from="GridEntity" to="." method="_on_grid_entity_hit"]
+[connection signal="turn_started" from="GridEntity" to="." method="_on_grid_entity_turn_started"]
 
 [editable path="GridEntity"]

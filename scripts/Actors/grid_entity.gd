@@ -1,9 +1,13 @@
 extends Node2D
 
+class_name GridEntity
+
 signal grid_entity_initialized()
 signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
 signal hit()
+signal turn_ended()
+signal turn_started()
 
 @onready var thump_sound = $Thump
 @onready var glass_thump_sound = $GlassThump
@@ -15,6 +19,7 @@ signal hit()
 
 const CELL_SIZE = 100
 var initialized = false
+var my_turn = false
 var grid : TileMap
 
 var floors : TileMapLayer
@@ -24,6 +29,7 @@ var objects : TileMapLayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
+
 
 func initialize(newFloors : TileMapLayer, newWalls : TileMapLayer, newObjects : TileMapLayer):
 	if initialized:
@@ -129,3 +135,16 @@ func play_thump_sound(material):
 			plant_thump_sound.play()
 		_:
 			thump_sound.play()
+
+
+func take_turn():
+	my_turn = true
+	turn_started.emit()
+
+
+func end_turn():
+	my_turn = false
+	#$Camera2D.make_current()
+	#await get_tree().create_timer(.25).timeout
+	turn_ended.emit()
+	
