@@ -52,9 +52,10 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 	global_position = grid_entity.position
 
 
-func _on_grid_entity_hit() -> void:
-	queue_free()
-
 
 func end_turn():
 	grid_entity.end_turn()
+
+
+func _on_grid_entity_died() -> void:
+	queue_free()

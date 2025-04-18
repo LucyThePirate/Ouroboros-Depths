@@ -65,6 +65,7 @@ scale_curve = SubResource("CurveTexture_4l4b5")
 color_initial_ramp = SubResource("GradientTexture1D_did2a")
 
 [node name="boulder_splash" type="Node2D"]
+z_index = -1
 script = ExtResource("1_did2a")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

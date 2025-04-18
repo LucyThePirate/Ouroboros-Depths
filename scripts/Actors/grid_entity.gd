@@ -6,6 +6,7 @@ signal grid_entity_initialized()
 signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
 signal hit()
+signal died()
 signal turn_ended()
 signal turn_started()
 
@@ -25,18 +26,20 @@ var grid : TileMap
 var floors : TileMapLayer
 var walls : TileMapLayer
 var objects : TileMapLayer
+var entity_positions : Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
 
 
-func initialize(newFloors : TileMapLayer, newWalls : TileMapLayer, newObjects : TileMapLayer):
+func initialize(newFloors : TileMapLayer, newWalls : TileMapLayer, newObjects : TileMapLayer, newPositions : Dictionary):
 	if initialized:
 		return
 	floors = newFloors
 	walls = newWalls
 	objects = newObjects
+	entity_positions = newPositions
 		# Snap to grid
 	global_position = floors.map_to_local(floors.local_to_map(global_position))
 	initialized = true
@@ -54,11 +57,9 @@ func move(direction : Vector2i) -> bool:
 		return false
 		
 	# Test for other bodies
-	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(direction) * CELL_SIZE)
-	query.exclude = [self]
-	var result = space_state.intersect_ray(query)
-	if result and result.collider.is_in_group("GridEntity"):
+	if entity_positions.has(grid_coords):
+		if (entity_positions[grid_coords].has_method("_on_hit")):
+			entity_positions[grid_coords]._on_hit(self)
 		return false
 	
 	var wall_data = walls.get_cell_tile_data(grid_coords)
@@ -78,6 +79,8 @@ func move(direction : Vector2i) -> bool:
 			return false
 	
 	# Movement
+	entity_positions[grid_coords] = self
+	entity_positions.erase(floors.local_to_map(global_position))
 	global_position += Vector2(direction) * CELL_SIZE
 	play_walk_sound(floor_data.get_custom_data("material"))
 	return true
@@ -95,24 +98,32 @@ func get_valid_moves() -> Array:
 		if not floor_data:
 			continue
 		
-		# Test for other bodies
-		var space_state = get_world_2d().direct_space_state
-		var query = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(direction) * CELL_SIZE)
-		query.exclude = [self]
-		var result = space_state.intersect_ray(query)
-		if result and result.collider.is_in_group("GridEntity"):
-			continue
-		
 		var wall_data = walls.get_cell_tile_data(grid_coords)
 		if wall_data and wall_data.get_custom_data("is_solid"):
 			continue
 		
+		# Test for other bodies
+		if entity_positions.has(grid_coords):
+			continue
+		#var space_state = get_world_2d().direct_space_state
+		#var query = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(direction) * CELL_SIZE)
+		#query.exclude = [self]
+		#
+		#var result = space_state.intersect_ray(query)
+		#if result and result.collider.is_in_group("GridEntity"):
+			#continue
+		
+		# Nothing blocking movement in this direction.
 		move_options.append(direction)
 	return move_options
 
 
-func _on_hit():
-	hit.emit()
+func _on_hit(attacker):
+	print(self.name, "was hit by:", attacker.name)
+	if (self == attacker):
+		$Error.play()
+	else:
+		do_death()
 	
 
 func play_walk_sound(material):
@@ -145,6 +156,11 @@ func take_turn():
 func end_turn():
 	my_turn = false
 	#$Camera2D.make_current()
-	#await get_tree().create_timer(.25).timeout
+	if Debug.slowdown_enabled:
+		await get_tree().create_timer(.25).timeout
 	turn_ended.emit()
 	
+
+func do_death() -> void:
+	entity_positions.erase(floors.local_to_map(global_position))
+	died.emit()

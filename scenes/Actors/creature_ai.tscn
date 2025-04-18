@@ -28,6 +28,7 @@ texture = ExtResource("3_sxdqt")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
 [connection signal="turn_started" from="GridEntity" to="." method="_on_grid_entity_turn_started"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -6,11 +6,12 @@ extends Node2D
 @onready var walls = $Walls as TileMapLayer
 @onready var objects = $Objects as TileMapLayer
 @onready var turn_queue: Array[GridEntity]
+@onready var entity_positions = {}
 var ready_for_next_turn = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_tree().call_group("GridEntity", "initialize", floors, walls, objects)
+	get_tree().call_group("GridEntity", "initialize", floors, walls, objects, entity_positions)
 	for entity in get_tree().get_nodes_in_group("GridEntity"):
 		turn_queue.push_front(entity)
 		entity.opened_door.connect(_open_door)
@@ -71,6 +72,9 @@ func _is_obstructed(tile_coords) -> bool:
 	
 	var object_tile = objects.get_cell_tile_data( tile_coords)
 	if object_tile and object_tile.get_custom_data("is_solid"):
+		return true
+		
+	if entity_positions.has(tile_coords):
 		return true
 	return false
 

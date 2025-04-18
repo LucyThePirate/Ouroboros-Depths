@@ -17,7 +17,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if not initialized:
+	if not initialized or not grid_entity:
 		return
 	global_position = grid_entity.position
 	displayLerpTime += delta * 1.8
@@ -50,9 +50,9 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 	initialized = true
 
 
-func _on_grid_entity_hit() -> void:
-	queue_free()
-
-
 func _on_grid_entity_turn_started() -> void:
 	take_turn()
+
+
+func _on_grid_entity_died() -> void:
+	queue_free()

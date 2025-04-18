@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://yqxyjxhsvfqi"]
+[gd_scene load_steps=25 format=3 uid="uid://yqxyjxhsvfqi"]
 
 [ext_resource type="Script" uid="uid://l0k61db14icb" path="res://scripts/Actors/grid_entity.gd" id="1_u0fqg"]
 [ext_resource type="AudioStream" uid="uid://cxmd2cbaxkq6d" path="res://audio/SFX/Thump/125429__jspath1__three-bass-thumps-1.ogg" id="2_6nj4f"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bjiod0hvbitsv" path="res://audio/SFX/Thump/Glass Thump3.ogg" id="11_4rpkr"]
 [ext_resource type="AudioStream" uid="uid://db02fqotm3u5j" path="res://audio/SFX/Step/531566__patchytherat__puddle-footsteps3.ogg" id="11_pgdaa"]
 [ext_resource type="AudioStream" uid="uid://dgdufp7c7rv1k" path="res://audio/SFX/Thump/540278__zepurple__tree-shake.ogg" id="12_0w38o"]
+[ext_resource type="AudioStream" uid="uid://d3dload3sw6cq" path="res://audio/SFX/Misc/erro.mp3" id="15_kfa6g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo564"]
 
@@ -56,7 +57,12 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("12_0w38o")
 
-[node name="GridEntity" type="CharacterBody2D" groups=["GridEntity"]]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fbare"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("15_kfa6g")
+
+[node name="GridEntity" type="Area2D" groups=["GridEntity"]]
 top_level = true
 collision_layer = 2
 collision_mask = 3
@@ -88,6 +94,11 @@ pitch_scale = 1.61
 stream = SubResource("AudioStreamRandomizer_adfhp")
 volume_db = -3.0
 pitch_scale = 0.94
+
+[node name="Error" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_fbare")
+volume_db = -7.037
+pitch_scale = 1.02
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
