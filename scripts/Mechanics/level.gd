@@ -42,6 +42,7 @@ func _entity_finished_turn():
 func _open_door(door_coords):
 	objects.set_cell(door_coords, -1)
 	
+	
 
 func _push_tile(tile_coords, direction):
 	var tile = objects.get_cell_tile_data(tile_coords) as TileData

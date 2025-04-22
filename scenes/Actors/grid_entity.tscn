@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://yqxyjxhsvfqi"]
+[gd_scene load_steps=27 format=3 uid="uid://yqxyjxhsvfqi"]
 
 [ext_resource type="Script" uid="uid://l0k61db14icb" path="res://scripts/Actors/grid_entity.gd" id="1_u0fqg"]
 [ext_resource type="AudioStream" uid="uid://cxmd2cbaxkq6d" path="res://audio/SFX/Thump/125429__jspath1__three-bass-thumps-1.ogg" id="2_6nj4f"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://db02fqotm3u5j" path="res://audio/SFX/Step/531566__patchytherat__puddle-footsteps3.ogg" id="11_pgdaa"]
 [ext_resource type="AudioStream" uid="uid://dgdufp7c7rv1k" path="res://audio/SFX/Thump/540278__zepurple__tree-shake.ogg" id="12_0w38o"]
 [ext_resource type="AudioStream" uid="uid://d3dload3sw6cq" path="res://audio/SFX/Misc/erro.mp3" id="15_kfa6g"]
+[ext_resource type="AudioStream" uid="uid://csxh0hijpki70" path="res://audio/SFX/Misc/584860__sfxafrik__doors-wooden-door-long-creak-open-close-office-wooden-door-office-door-knock.ogg" id="17_ous7d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo564"]
 
@@ -62,6 +63,11 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("15_kfa6g")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vnsn2"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("17_ous7d")
+
 [node name="GridEntity" type="Area2D" groups=["GridEntity"]]
 top_level = true
 collision_layer = 2
@@ -102,3 +108,7 @@ pitch_scale = 1.02
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="DoorOpen" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_vnsn2")
+volume_db = 8.254
