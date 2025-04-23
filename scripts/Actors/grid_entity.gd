@@ -5,7 +5,7 @@ class_name GridEntity
 signal grid_entity_initialized
 signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
-signal hit
+signal hurt
 signal died
 signal turn_ended
 signal turn_started
@@ -19,6 +19,8 @@ signal turn_started
 @onready var water_step_sound = $WaterStep
 
 @onready var door_open = $DoorOpen
+
+@onready var health_component = $HealthComponent
 
 const CELL_SIZE = 100
 var initialized = false
@@ -132,7 +134,9 @@ func _on_hit(attacker):
 	if self == attacker:
 		$Error.play()
 	else:
-		do_death()
+		health_component.deal_damage()
+		hurt.emit(attacker)
+		end_turn()
 
 
 func play_walk_sound(material):
@@ -170,6 +174,6 @@ func end_turn():
 	turn_ended.emit()
 
 
-func do_death() -> void:
+func on_death() -> void:
 	entity_positions.erase(floors.local_to_map(global_position))
 	died.emit()

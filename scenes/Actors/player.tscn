@@ -31,7 +31,6 @@ debug_color = Color(0.627606, 0.530906, 0, 0.42)
 
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
-[connection signal="hit" from="GridEntity" to="." method="_on_grid_entity_hit"]
 [connection signal="turn_started" from="GridEntity" to="." method="_on_grid_entity_turn_started"]
 
 [editable path="GridEntity"]
