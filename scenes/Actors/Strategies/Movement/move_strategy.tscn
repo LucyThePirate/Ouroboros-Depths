@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://baf4g0n8o77bv"]
+
+[ext_resource type="Script" uid="uid://dbw40pvoinivv" path="res://scenes/Actors/Strategies/Movement/move_strategy.gd" id="1_2vgpj"]
+
+[node name="moveStrategy" type="Node2D"]
+script = ExtResource("1_2vgpj")

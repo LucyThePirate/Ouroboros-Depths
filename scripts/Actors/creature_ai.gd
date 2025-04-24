@@ -32,33 +32,64 @@ func _process(delta: float) -> void:
 
 
 func take_turn():
+	if not grid_entity.is_alive():
+		grid_entity.end_turn()
+		return
 	if not angry_at:
 		move_randomly()
 	else:
 		pursue_entity(angry_at)
+	grid_entity.end_turn()
 
 
 func move_randomly():
 	var moveDirection = grid_entity.get_valid_moves().pick_random()
 	if moveDirection:
-		visual.global_position = grid_entity.global_position
-		display.global_position = grid_entity.global_position
-		var move_successful = grid_entity.move(moveDirection)
-		if not move_successful:
-			display.global_position += Vector2(moveDirection) * 25
-		displayLerpTime = 0.0
+		move_in_direction(moveDirection)
 		#$Camera2D.make_current()
 		#$Timer.start()
-	grid_entity.end_turn()
+
+
+func move_in_direction(moveDirection):
+	visual.global_position = grid_entity.global_position
+	display.global_position = grid_entity.global_position
+	var move_successful = grid_entity.move(moveDirection)
+	if not move_successful:
+		display.global_position += Vector2(moveDirection) * 25
+	displayLerpTime = 0.0
+
+
+func move_towards_entity(entity: GridEntity):
+	var validMoves = grid_entity.get_valid_moves()
+	if validMoves:
+		# Pick a move pointing towards target, otherwise pick a random move.
+		var directionToEntity = (entity.global_position - grid_entity.global_position).normalized()
+		directionToEntity = Vector2i(round(directionToEntity.x), round(directionToEntity.y))
+
+		var movesTowardsEntity = []
+		if directionToEntity in validMoves:
+			movesTowardsEntity.append(directionToEntity)
+		if Vector2i(directionToEntity.x, 0) in validMoves:
+			movesTowardsEntity.append(Vector2i(directionToEntity.x, 0))
+		if Vector2i(0, directionToEntity.y) in validMoves:
+			movesTowardsEntity.append(Vector2i(0, directionToEntity.y))
+
+		if movesTowardsEntity:
+			move_in_direction(movesTowardsEntity.pick_random())
+		else:
+			move_in_direction(validMoves.pick_random())
 
 
 func pursue_entity(entity: GridEntity):
-	grid_entity.end_turn()
+	var attack_successful = grid_entity.try_attacking(entity)
+	if not attack_successful:
+		move_towards_entity(entity)
 
 
 func _on_grid_entity_grid_entity_initialized() -> void:
 	if initialized:
 		return
+	grid_entity.name = name
 	initialized = true
 
 

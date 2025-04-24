@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3tgwsh0wfc7t"]
+
+[ext_resource type="Script" uid="uid://dcb5rgdht0r0" path="res://scripts/Actors/Strategies/Movement/orthogonal_move_strategy.gd" id="1_p1ys0"]
+
+[node name="orthogonalMoveStrategy" type="Node2D"]
+script = ExtResource("1_p1ys0")

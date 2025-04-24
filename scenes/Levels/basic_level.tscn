@@ -708,7 +708,7 @@ frame_progress = 0.412868
 speed_scale = 2.5
 
 [node name="Player" parent="." instance=ExtResource("6_7x2nf")]
-position = Vector2(-3350, -350)
+position = Vector2(-1250, 250)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Player"]
 material = SubResource("CanvasItemMaterial_4lc27")
@@ -722,10 +722,10 @@ process_material = SubResource("ParticleProcessMaterial_pmikm")
 position = Vector2(-2140, -773)
 
 [node name="creatureAI2" parent="." instance=ExtResource("12_x4eo6")]
-position = Vector2(-2454, -94)
+position = Vector2(-1350, 250)
 
 [node name="creatureAI3" parent="." instance=ExtResource("12_x4eo6")]
-position = Vector2(-2259, -94)
+position = Vector2(-1150, 250)
 
 [node name="creatureAI4" parent="." instance=ExtResource("12_x4eo6")]
 position = Vector2(-3250, -50)
@@ -733,4 +733,10 @@ position = Vector2(-3250, -50)
 [node name="creatureAI5" parent="." instance=ExtResource("12_x4eo6")]
 position = Vector2(-3550, -450)
 
+[node name="HealthComponent" parent="creatureAI5/GridEntity" index="10"]
+max_health = 5
+
 [connection signal="turn_ended" from="Player" to="." method="_on_player_turn_ended"]
+
+[editable path="creatureAI5"]
+[editable path="creatureAI5/GridEntity"]

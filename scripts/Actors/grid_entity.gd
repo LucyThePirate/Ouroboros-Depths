@@ -68,9 +68,8 @@ func move(direction: Vector2i) -> bool:
 
 	# Test for other bodies
 	if entity_positions.has(grid_coords):
-		if entity_positions[grid_coords].has_method("_on_hit"):
-			entity_positions[grid_coords]._on_hit(self)
-		return false
+		hit(entity_positions[grid_coords])
+		return true
 
 	# Object interaction
 	var object_data = objects.get_cell_tile_data(grid_coords)
@@ -116,17 +115,26 @@ func get_valid_moves() -> Array:
 		# Test for other bodies
 		if entity_positions.has(grid_coords):
 			continue
-		#var space_state = get_world_2d().direct_space_state
-		#var query = PhysicsRayQueryParameters2D.create(global_position, global_position + Vector2(direction) * CELL_SIZE)
-		#query.exclude = [self]
-		#
-		#var result = space_state.intersect_ray(query)
-		#if result and result.collider.is_in_group("GridEntity"):
-		#continue
 
 		# Nothing blocking movement in this direction.
 		move_options.append(direction)
 	return move_options
+
+
+func try_attacking(entity):
+	for direction in [Vector2i(-1, 0), Vector2i(1, 0), Vector2i(0, -1), Vector2i(0, 1)]:
+		var grid_coords = floors.local_to_map(global_position) + direction
+
+		# Test for other bodies
+		if entity_positions.has(grid_coords) and entity_positions[grid_coords] == entity:
+			hit(entity)
+			return true
+	return false
+
+
+func hit(entity):
+	if entity.has_method("_on_hit"):
+		entity._on_hit(self)
 
 
 func _on_hit(attacker):
@@ -136,7 +144,6 @@ func _on_hit(attacker):
 	else:
 		health_component.deal_damage()
 		hurt.emit(attacker)
-		end_turn()
 
 
 func play_walk_sound(material):
@@ -177,3 +184,10 @@ func end_turn():
 func on_death() -> void:
 	entity_positions.erase(floors.local_to_map(global_position))
 	died.emit()
+
+
+func is_alive() -> bool:
+	if health_component.health > 0:
+		return true
+	else:
+		return false

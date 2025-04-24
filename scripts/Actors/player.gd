@@ -63,6 +63,7 @@ func _process(delta: float) -> void:
 func _on_grid_entity_grid_entity_initialized() -> void:
 	if initialized:
 		return
+	grid_entity.name = name
 	initialized = true
 	global_position = grid_entity.position
 
