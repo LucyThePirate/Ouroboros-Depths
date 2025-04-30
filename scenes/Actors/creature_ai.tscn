@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dctxwjwjiof17"]
+[gd_scene load_steps=6 format=3 uid="uid://dctxwjwjiof17"]
 
 [ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_sxdqt"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="2_sxdqt"]
 [ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="3_sxdqt"]
+[ext_resource type="PackedScene" uid="uid://canci4neobys2" path="res://scenes/Actors/turn_component.tscn" id="4_bls1m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bls1m"]
 radius = 44.1022
@@ -28,10 +29,12 @@ texture = ExtResource("3_sxdqt")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="TurnComponent" parent="." instance=ExtResource("4_bls1m")]
+
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
 [connection signal="hurt" from="GridEntity" to="." method="_on_grid_entity_hurt"]
-[connection signal="turn_started" from="GridEntity" to="." method="_on_grid_entity_turn_started"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="turn_started" from="TurnComponent" to="." method="_on_turn_component_turn_started"]
 
 [editable path="GridEntity"]

@@ -7,8 +7,7 @@ signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
 signal hurt
 signal died
-signal turn_ended
-signal turn_started
+signal performed_action
 
 @onready var thump_sound = $Thump
 @onready var glass_thump_sound = $GlassThump
@@ -56,6 +55,10 @@ func initialize(
 	grid_entity_initialized.emit()
 
 
+func get_skills() -> Array[Node]:
+	return Debug.find_children_in_group(self, "Skill", true)
+
+
 func move(direction: Vector2i) -> bool:
 	if not initialized:
 		return false
@@ -69,7 +72,8 @@ func move(direction: Vector2i) -> bool:
 	# Test for other bodies
 	if entity_positions.has(grid_coords):
 		hit(entity_positions[grid_coords])
-		return true
+		performed_action.emit()
+		return false
 
 	# Object interaction
 	var object_data = objects.get_cell_tile_data(grid_coords)
@@ -78,9 +82,11 @@ func move(direction: Vector2i) -> bool:
 		if object_data.get_custom_data("is_door"):
 			opened_door.emit(grid_coords)
 			door_open.play()
+			performed_action.emit()
 			return false
 		if object_data.get_custom_data("is_pushable"):
 			pushed_object.emit(grid_coords, direction)
+			performed_action.emit()
 			return false
 
 	# Check for walls
@@ -94,6 +100,7 @@ func move(direction: Vector2i) -> bool:
 	entity_positions.erase(floors.local_to_map(global_position))
 	global_position += Vector2(direction) * CELL_SIZE
 	play_walk_sound(floor_data.get_custom_data("material"))
+	performed_action.emit()
 	return true
 
 
@@ -168,17 +175,17 @@ func play_thump_sound(material):
 			thump_sound.play()
 
 
-func take_turn():
-	my_turn = true
-	turn_started.emit()
-
-
-func end_turn():
-	my_turn = false
-	#$Camera2D.make_current()
-	if Debug.slowdown_enabled:
-		await get_tree().create_timer(.25).timeout
-	turn_ended.emit()
+#func take_turn():
+#my_turn = true
+#turn_started.emit()
+#
+#
+#func end_turn():
+#my_turn = false
+#if Debug.slowdown_enabled:
+#$Camera2D.make_current()
+#await get_tree().create_timer(.25).timeout
+#turn_ended.emit()
 
 
 func on_death() -> void:

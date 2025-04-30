@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcpo4dfcq62k2"]
+
+[ext_resource type="Script" uid="uid://c0f56xso1fu7o" path="res://scripts/Actors/Strategies/Skill/skill_strategy.gd" id="1_tahbo"]
+
+[node name="SkillStrategy" type="Node2D" groups=["Skill"]]
+script = ExtResource("1_tahbo")

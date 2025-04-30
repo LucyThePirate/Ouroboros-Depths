@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1tq0r2hua7v8"]
+
+[ext_resource type="Script" uid="uid://3u0aqmvw83u5" path="res://scripts/Actors/Strategies/Skill/dash_skill_strategy.gd" id="1_ss86u"]
+
+[node name="DashSkillStrategy" type="Node2D" groups=["Skill"]]
+script = ExtResource("1_ss86u")

@@ -4,6 +4,7 @@ extends Node2D
 @onready var display = $Display
 @onready var visual = $Sprite2D
 @onready var displayLerpTime = 0.0
+@onready var turn_component = $TurnComponent
 
 var initialized = false
 var level: Node2D
@@ -33,13 +34,13 @@ func _process(delta: float) -> void:
 
 func take_turn():
 	if not grid_entity.is_alive():
-		grid_entity.end_turn()
+		turn_component.end_turn()
 		return
 	if not angry_at:
 		move_randomly()
 	else:
 		pursue_entity(angry_at)
-	grid_entity.end_turn()
+	turn_component.end_turn()
 
 
 func move_randomly():
@@ -93,13 +94,13 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 	initialized = true
 
 
-func _on_grid_entity_turn_started() -> void:
-	take_turn()
-
-
 func _on_grid_entity_died() -> void:
 	queue_free()
 
 
 func _on_grid_entity_hurt(attacker) -> void:
 	angry_at = attacker
+
+
+func _on_turn_component_turn_started() -> void:
+	take_turn()

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://canci4neobys2"]
+
+[ext_resource type="Script" uid="uid://dsicbeqnmrm3v" path="res://scripts/Actors/turn_component.gd" id="1_yhamr"]
+
+[node name="TurnComponent" type="Node2D" groups=["TurnComponent"]]
+script = ExtResource("1_yhamr")
