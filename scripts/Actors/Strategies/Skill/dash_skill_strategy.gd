@@ -3,13 +3,17 @@ extends SkillStrategy
 var max_distance = 5
 
 
-func use_skill(direction: Vector2i, grid_entity: GridEntity) -> bool:
+func ready_skill(grid_entity: GridEntity) -> bool:
+	request_direction()
+	return false
+
+
+func use_skill(grid_entity: GridEntity) -> bool:
 	print("Used skill ", name, " towards ", direction)
+	moved_self.emit()
 	for i in range(max_distance):
 		if not grid_entity.move(direction):
 			break
-		else:
-			moved_self.emit()
 	return false
 
 

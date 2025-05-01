@@ -289,6 +289,18 @@ tracks/22/keys = {
 "update": 1,
 "values": [&"Curl"]
 }
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Skeleton2D/Hip/Body/Head/Jaw:bone_angle")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0, 1, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 174.546, 0.16364]
+}
 
 [sub_resource type="Animation" id="Animation_sd714"]
 resource_name = "Notice"
@@ -994,6 +1006,18 @@ tracks/28/keys = {
 "update": 1,
 "values": [&"Curl"]
 }
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Skeleton2D/Hip/Body/Head/Jaw:bone_angle")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_44bto"]
 resource_name = "Rest"
@@ -1331,15 +1355,12 @@ _data = {
 }
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_8h4wm"]
-target_nodepath = NodePath("Hip/Body/Head")
-jiggle_data_chain_length = 2
+target_nodepath = NodePath("../Targets/HeadTarget")
+jiggle_data_chain_length = 1
 use_gravity = true
-joint_data/0/bone_index = -1
-joint_data/0/bone2d_node = NodePath("")
+joint_data/0/bone_index = 2
+joint_data/0/bone2d_node = NodePath("Hip/Body/Head")
 joint_data/0/override_defaults = false
-joint_data/1/bone_index = -1
-joint_data/1/bone2d_node = NodePath("")
-joint_data/1/override_defaults = false
 
 [sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_iokgd"]
 bone_index = 4
@@ -1401,19 +1422,20 @@ libraries = {
 autoplay = "Idle"
 
 [node name="Targets" type="Node2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(0, -52)
 
 [node name="HeadTarget" type="Marker2D" parent="Targets"]
-position = Vector2(184, 67)
+position = Vector2(202, 127)
 gizmo_extents = 18.5
 
 [node name="EyeTarget" type="Marker2D" parent="Targets"]
-position = Vector2(533, -436)
+position = Vector2(634, -450)
 gizmo_extents = 18.5
 
 [node name="HandLTarget" type="Marker2D" parent="Targets"]
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
+position = Vector2(-1, -70)
 modification_stack = SubResource("SkeletonModificationStack2D_17jbv")
 
 [node name="Hip" type="Bone2D" parent="Skeleton2D"]
@@ -1428,6 +1450,7 @@ rest = Transform2D(1, 0, 0, 1, 7, -204)
 position = Vector2(-11.0007, -79.0049)
 scale = Vector2(0.999929, 0.999929)
 rest = Transform2D(1, 0, 0, 1, -11, -79)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="Jaw" type="Bone2D" parent="Skeleton2D/Hip/Body/Head"]
 position = Vector2(30, 40)
@@ -1448,6 +1471,7 @@ metadata/_local_pose_override_enabled_ = true
 position = Vector2(-7.43107, -0.798448)
 scale = Vector2(0.437842, 0.371009)
 remote_path = NodePath("../../../../../../Body/Head/EyeClippingMask/Eye")
+use_global_coordinates = false
 
 [node name="HeadTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/Head"]
 remote_path = NodePath("../../../../../Body/Head")
@@ -1511,7 +1535,6 @@ rotation = -3.43939
 scale = Vector2(0.386361, 0.386361)
 sprite_frames = SubResource("SpriteFrames_xq2gk")
 autoplay = "default"
-frame_progress = 0.887095
 offset = Vector2(39.2419, 9.18604)
 
 [node name="HornR" type="Sprite2D" parent="Body/Head"]
@@ -1543,6 +1566,7 @@ scale = Vector2(1.12327, 1.12327)
 sprite_frames = ExtResource("8_ixd6g")
 animation = &"Curl"
 autoplay = "Curl"
+frame_progress = 0.303606
 flip_h = true
 
 [node name="End" type="Marker2D" parent="Body/HandR"]

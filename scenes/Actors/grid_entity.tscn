@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://yqxyjxhsvfqi"]
+[gd_scene load_steps=33 format=3 uid="uid://yqxyjxhsvfqi"]
 
 [ext_resource type="Script" uid="uid://l0k61db14icb" path="res://scripts/Actors/grid_entity.gd" id="1_u0fqg"]
 [ext_resource type="AudioStream" uid="uid://cxmd2cbaxkq6d" path="res://audio/SFX/Thump/125429__jspath1__three-bass-thumps-1.ogg" id="2_6nj4f"]
@@ -18,6 +18,8 @@
 [ext_resource type="AudioStream" uid="uid://d3dload3sw6cq" path="res://audio/SFX/Misc/erro.mp3" id="15_kfa6g"]
 [ext_resource type="AudioStream" uid="uid://csxh0hijpki70" path="res://audio/SFX/Misc/584860__sfxafrik__doors-wooden-door-long-creak-open-close-office-wooden-door-office-door-knock.ogg" id="17_ous7d"]
 [ext_resource type="PackedScene" uid="uid://dcjnpsm2nll1" path="res://scenes/Actors/health_component.tscn" id="18_vnsn2"]
+[ext_resource type="Texture2D" uid="uid://cs15uwjngcgt0" path="res://textures/MonsterMaker/canvasTexture.png" id="19_h3mly"]
+[ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/UI/Cursor.png" id="20_lx1x2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo564"]
 
@@ -69,6 +71,28 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("17_ous7d")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyxbn"]
+atlas = ExtResource("20_lx1x2")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tu85t"]
+atlas = ExtResource("20_lx1x2")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h3mly"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyxbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tu85t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="GridEntity" type="Area2D" groups=["GridEntity"]]
 top_level = true
 collision_layer = 2
@@ -117,5 +141,20 @@ volume_db = 8.254
 [node name="HealthComponent" parent="." instance=ExtResource("18_vnsn2")]
 position = Vector2(0, 74)
 scale = Vector2(0.712558, 0.712558)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 0.345098, 0.301961)
+z_index = -1
+position = Vector2(1, 0.5)
+scale = Vector2(1, 1.03)
+texture = ExtResource("19_h3mly")
+
+[node name="Cursor" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_h3mly")
+autoplay = "default"
+frame_progress = 0.97355
+speed_scale = 0.3
 
 [connection signal="died" from="HealthComponent" to="." method="on_death"]

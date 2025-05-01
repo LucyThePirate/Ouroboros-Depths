@@ -39,6 +39,7 @@ debug_color = Color(0.627606, 0.530906, 0, 0.42)
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
 [connection signal="performed_action" from="GridEntity" to="." method="_on_grid_entity_performed_action"]
 [connection signal="moved_self" from="DashSkillStrategy" to="." method="_on_dash_skill_strategy_moved_self"]
+[connection signal="requested_direction_input" from="DashSkillStrategy" to="." method="_on_dash_skill_strategy_requested_direction_input"]
 [connection signal="turn_started" from="TurnComponent" to="." method="_on_turn_component_turn_started"]
 
 [editable path="GridEntity"]
