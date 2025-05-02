@@ -21,6 +21,9 @@ var entity_positions: Dictionary
 var direction: Vector2i
 var cursor: Vector2i
 
+enum States { IDLE, AWAITING_DIRECTION, AWAITING_CURSOR }
+var state = States.IDLE
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,13 +45,12 @@ func get_valid_moves() -> Array:
 
 
 func request_direction():
-	requested_direction_input.emit(self)
-	await direction_set
+	state = States.AWAITING_DIRECTION
 
 
 func set_direction(newDirection: Vector2i):
 	direction = newDirection
-	direction_set.emit()
+	state = States.IDLE
 
 
 func set_cursor(newCursor: Vector2i):

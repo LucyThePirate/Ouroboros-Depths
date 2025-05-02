@@ -12,8 +12,10 @@ var initialized = false
 
 var skills = []
 var stack = []
-var executing_stack = false
-var awaiting_directional_input = false
+var current_skill: SkillStrategy
+
+enum States { IDLE, DEAD, EXECUTING_STACK, AWAITING_DIRECTIONAL_INPUT, AWAITING_CURSOR_INPUT }
+var state = States.IDLE
 
 
 # Called when the node enters the scene tree for the first time.
@@ -46,10 +48,15 @@ func _input(event):
 	if not turn_component.my_turn:
 		return
 
-	if not executing_stack:
-		_handle_movement()
-	else:
-		_handle_stack_execution()
+	match state:
+		States.IDLE:
+			_handle_movement()
+		States.EXECUTING_STACK:
+			_handle_stack_execution()
+		States.AWAITING_DIRECTIONAL_INPUT:
+			_handle_awaiting_directional_input()
+		States.AWAITING_CURSOR_INPUT:
+			pass
 
 
 func _handle_movement() -> void:
@@ -59,22 +66,23 @@ func _handle_movement() -> void:
 		var move_successful = grid_entity.move(moveDirection)
 		if not move_successful:
 			display.global_position += moveDirection * 25
-		#else:
-		#end_turn()
 
 	elif Input.is_action_just_pressed("Wait"):
 		end_turn()
 		return
 
 	elif Input.is_action_just_pressed("UseSkill1"):
-		if skills and stack.size() < 4:
-			stack.append(skills[0])
-			end_turn()
-			return
+		queue_skill(0)
+
+	elif Input.is_action_just_pressed("UseSkill2"):
+		queue_skill(1)
+
+	elif Input.is_action_just_pressed("UseSkill3"):
+		queue_skill(2)
 
 	elif Input.is_action_just_pressed("ExecuteStack"):
 		if stack:
-			executing_stack = true
+			state = States.EXECUTING_STACK
 
 
 func _get_directional_input():
@@ -95,25 +103,33 @@ func _get_directional_input():
 	return moveDirection
 
 
-func _handle_stack_execution():
-	if not stack:
-		executing_stack = false
-		return
-	if not awaiting_directional_input:
-		var current_skill = stack.pop_front() as SkillStrategy
-		if current_skill.ready_skill(grid_entity):
-			current_skill.use_skill(grid_entity)
-		elif awaiting_directional_input:
-			var move_direction = _get_directional_input()
-			if move_direction:
-				current_skill.set_direction(move_direction)
-				awaiting_directional_input = false
-				current_skill.use_skill(grid_entity)
+func queue_skill(skill_number):
+	if skills.size() >= skill_number + 1 and stack.size() < 4:
+		print(name, " queued skill: ", skills[skill_number].name)
+		stack.append(skills[skill_number])
+		end_turn()
 
+
+func _handle_stack_execution():
 	if stack.is_empty():
-		executing_stack = false
+		state = States.IDLE
 		end_turn()
 		return
+	current_skill = stack.pop_front() as SkillStrategy
+	if current_skill.ready_skill(grid_entity):
+		_handle_stack_execution()
+	elif current_skill.state == SkillStrategy.States.AWAITING_DIRECTION:
+		state = States.AWAITING_DIRECTIONAL_INPUT
+	elif current_skill.state == SkillStrategy.States.AWAITING_CURSOR:
+		state = States.AWAITING_CURSOR_INPUT
+
+
+func _handle_awaiting_directional_input():
+	var moveDirection = _get_directional_input()
+	if moveDirection:
+		current_skill.set_direction(moveDirection)
+		current_skill.use_skill(grid_entity)
+		state = States.EXECUTING_STACK
 
 
 func _on_grid_entity_grid_entity_initialized() -> void:
@@ -122,7 +138,7 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 	grid_entity.name = name
 	initialized = true
 	global_position = grid_entity.position
-	skills = Debug.find_children_in_group(self, "Skill", false)
+	skills = Debug.find_children_in_group($Skills, "Skill", false)
 
 
 func end_turn():
@@ -144,9 +160,5 @@ func _update_movement_visuals():
 
 
 func _on_grid_entity_performed_action() -> void:
-	if not executing_stack:
+	if state == States.IDLE:
 		end_turn()
-
-
-func _on_dash_skill_strategy_requested_direction_input(skill: SkillStrategy) -> void:
-	awaiting_directional_input = true
