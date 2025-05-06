@@ -2,6 +2,8 @@ extends SkillStrategy
 
 var max_distance = 5
 
+@export var DashVFX: PackedScene
+
 
 func ready_skill(grid_entity: GridEntity) -> bool:
 	request_direction()
@@ -12,8 +14,14 @@ func use_skill(grid_entity: GridEntity) -> bool:
 	print("Used skill ", name, " towards ", direction)
 	moved_self.emit()
 	for i in range(max_distance):
+		var new_dash_VFX = DashVFX.instantiate() as GPUParticles2D
+		new_dash_VFX.preprocess = (4 - i) * 0.15
+		new_dash_VFX.emitting = true
+		add_child(new_dash_VFX)
+		new_dash_VFX.global_position = grid_entity.global_position
 		if not grid_entity.move(direction):
 			break
+
 	return false
 
 

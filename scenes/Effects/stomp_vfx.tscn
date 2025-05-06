@@ -1,0 +1,52 @@
+[gd_scene load_steps=11 format=3 uid="uid://csmoib3nld3bv"]
+
+[ext_resource type="Texture2D" uid="uid://cuj851dc21lhv" path="res://textures/effects/shockwave.jpeg" id="1_eosi6"]
+[ext_resource type="Script" uid="uid://btlsdf173uwoy" path="res://scripts/Effects/stomp_vfx.gd" id="2_fvxl5"]
+[ext_resource type="AudioStream" uid="uid://dpu40sauods8n" path="res://audio/SFX/Skills/751116__kontraa__chimera-afro-congo-stomp-loop.ogg" id="3_fegjd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b6d7o"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_fvxl5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.280899, 0.685393), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4ydmv"]
+curve = SubResource("Curve_fvxl5")
+
+[sub_resource type="Curve" id="Curve_fegjd"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.808989, 0.640449), 0.205128, 0.205128, 0, 0, Vector2(1, 0.674157), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2db6e"]
+curve = SubResource("Curve_fegjd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yavas"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.46
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_2db6e")
+alpha_curve = SubResource("CurveTexture_4ydmv")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yavas"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("3_fegjd")
+
+[node name="StompVFX" type="GPUParticles2D"]
+top_level = true
+material = SubResource("CanvasItemMaterial_b6d7o")
+emitting = false
+amount = 1
+texture = ExtResource("1_eosi6")
+lifetime = 0.25
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_yavas")
+script = ExtResource("2_fvxl5")
+
+[node name="StompSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_yavas")
+volume_db = 14.857
+
+[connection signal="finished" from="StompSound" to="." method="_on_stomp_sound_finished"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=15 format=3 uid="uid://bdlhc6l33oqyf"]
+
+[ext_resource type="Texture2D" uid="uid://cuj851dc21lhv" path="res://textures/effects/shockwave.jpeg" id="1_miw24"]
+[ext_resource type="Script" uid="uid://dcejcan6u0755" path="res://scripts/Effects/dash_vfx.gd" id="2_wh1vl"]
+[ext_resource type="AudioStream" uid="uid://ck2nnti7dyqc0" path="res://audio/SFX/Skills/742717__artix0__dash-sound-effect.ogg" id="3_8k8ii"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xmqnl"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_wh1vl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.752809, 0.707865), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_52a6f"]
+curve = SubResource("Curve_wh1vl")
+
+[sub_resource type="Gradient" id="Gradient_8k8ii"]
+colors = PackedColorArray(1, 0, 0, 1, 0.137255, 1, 0.552941, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dbsje"]
+gradient = SubResource("Gradient_8k8ii")
+
+[sub_resource type="Gradient" id="Gradient_37khe"]
+offsets = PackedFloat32Array(0.144737, 0.578947, 1)
+colors = PackedColorArray(1, 0.164706, 0, 1, 0.248988, 0.814272, 0.0796236, 1, 0.470579, 0.102832, 0.836048, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m2yqr"]
+gradient = SubResource("Gradient_37khe")
+
+[sub_resource type="Curve" id="Curve_eahoo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.297753, 0), 0.0, 0.0, 0, 0, Vector2(0.775281, 0.235955), -0.666667, -0.666667, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ddaxy"]
+curve = SubResource("Curve_eahoo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_j0w01"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_ddaxy")
+color_ramp = SubResource("GradientTexture1D_m2yqr")
+color_initial_ramp = SubResource("GradientTexture1D_dbsje")
+alpha_curve = SubResource("CurveTexture_52a6f")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_37khe"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("3_8k8ii")
+
+[node name="DashVFX" type="GPUParticles2D"]
+top_level = true
+material = SubResource("CanvasItemMaterial_xmqnl")
+emitting = false
+texture = ExtResource("1_miw24")
+lifetime = 0.52
+one_shot = true
+speed_scale = 1.5
+process_material = SubResource("ParticleProcessMaterial_j0w01")
+script = ExtResource("2_wh1vl")
+
+[node name="DashSFX" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_37khe")
+volume_db = 11.555
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[connection signal="finished" from="DashSFX" to="." method="_on_dash_sfx_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

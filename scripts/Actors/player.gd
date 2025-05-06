@@ -117,6 +117,7 @@ func _handle_stack_execution():
 		return
 	current_skill = stack.pop_front() as SkillStrategy
 	if current_skill.ready_skill(grid_entity):
+		await get_tree().create_timer(.15).timeout
 		_handle_stack_execution()
 	elif current_skill.state == SkillStrategy.States.AWAITING_DIRECTION:
 		state = States.AWAITING_DIRECTIONAL_INPUT
