@@ -8,6 +8,8 @@ signal requested_cursor_input
 signal direction_set
 signal cursor_set
 
+@export var icon: Sprite2D
+
 const CELL_SIZE = 100
 var initialized = false
 var my_turn = false

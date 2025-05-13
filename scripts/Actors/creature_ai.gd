@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var grid_entity = $GridEntity
 @onready var display = $Display
-@onready var visual = $Sprite2D
+@onready var visual = $LichTest
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $TurnComponent
 

@@ -3,6 +3,7 @@ extends Node2D
 class_name GridEntity
 
 signal grid_entity_initialized
+signal moved(old_coord: Vector2i, new_coord: Vector2i)
 signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
 signal hurt
@@ -63,7 +64,8 @@ func move(direction: Vector2i) -> bool:
 	if not initialized:
 		return false
 
-	var grid_coords = floors.local_to_map(global_position) + direction
+	var old_coords = floors.local_to_map(global_position)
+	var grid_coords = old_coords + direction
 	var floor_data = floors.get_cell_tile_data(grid_coords)
 
 	if not floor_data:
@@ -96,6 +98,7 @@ func move(direction: Vector2i) -> bool:
 		return false
 
 	# Movement
+	moved.emit(old_coords, grid_coords)
 	entity_positions[grid_coords] = self
 	entity_positions.erase(floors.local_to_map(global_position))
 	global_position += Vector2(direction) * CELL_SIZE

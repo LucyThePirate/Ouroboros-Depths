@@ -1,0 +1,138 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd85kao70uoy4"]
+
+[ext_resource type="Script" uid="uid://b6uhrd8rdimmy" path="res://scripts/Actors/skill_stack_component.gd" id="1_rerjn"]
+[ext_resource type="AudioStream" uid="uid://d3dload3sw6cq" path="res://audio/SFX/Misc/erro.mp3" id="2_rerjn"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qowul"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_rerjn")
+
+[node name="SkillStackComponent" type="Node2D"]
+script = ExtResource("1_rerjn")
+
+[node name="Stack" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Stack"]
+layout_mode = 1
+offset_right = 547.0
+offset_bottom = 137.0
+scale = Vector2(0.328554, 0.284677)
+
+[node name="ColorRect" type="ColorRect" parent="Stack/MarginContainer"]
+layout_mode = 2
+color = Color(0.713726, 0.407843, 0, 0.352941)
+
+[node name="CenterContainer" type="CenterContainer" parent="Stack/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Stack/MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="ColorRect" type="ColorRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00272, 1.00272)
+color = Color(0.862745, 0, 0.219608, 0.298039)
+
+[node name="TextureRect2" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TextureRect3" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TextureRect4" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AvailableSkills" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AvailableSkills"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -84.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.758758, 0.633884)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/AvailableSkills/MarginContainer"]
+layout_mode = 2
+color = Color(0.713726, 0.407843, 0, 0.352941)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/AvailableSkills/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00272, 1.00272)
+color = Color(0.862745, 0, 0.219608, 0.298039)
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Error" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_qowul")
+
+[connection signal="emptied_stack" from="." to="." method="_on_emptied_stack"]
