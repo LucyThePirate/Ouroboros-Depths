@@ -70,6 +70,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="AvailableSkills" type="Control" parent="CanvasLayer"]
 layout_mode = 3

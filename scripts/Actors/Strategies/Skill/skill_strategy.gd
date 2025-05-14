@@ -13,6 +13,7 @@ signal cursor_set
 const CELL_SIZE = 100
 var initialized = false
 var my_turn = false
+var show_UI = true
 var grid: TileMap
 
 var floors: TileMapLayer
@@ -53,6 +54,14 @@ func request_direction():
 func set_direction(newDirection: Vector2i):
 	direction = newDirection
 	state = States.IDLE
+
+
+func request_cursor():
+	state = States.AWAITING_CURSOR
+
+
+func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
+	cursor += moveDirection
 
 
 func set_cursor(newCursor: Vector2i):

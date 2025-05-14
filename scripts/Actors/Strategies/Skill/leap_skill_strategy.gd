@@ -6,25 +6,29 @@ var max_distance = 5
 
 
 func ready_skill(grid_entity: GridEntity) -> bool:
-	request_direction()
+	request_cursor()
 	if show_UI:
-		$Arrows.global_position = grid_entity.global_position
-		$Arrows.show()
+		$Cursor.global_position = grid_entity.global_position
+		cursor = grid_entity.floors.local_to_map(grid_entity.global_position)
+		$Cursor.show()
 	return false
 
 
+func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
+	cursor += moveDirection
+	$Cursor.global_position = grid_entity.floors.map_to_local(cursor)
+
+
 func use_skill(grid_entity: GridEntity) -> bool:
-	$Arrows.hide()
-	print("Used skill ", name, " towards ", direction)
+	$Cursor.hide()
+	print("Used skill ", name, " towards ", cursor)
 	moved_self.emit()
-	for i in range(max_distance):
-		var new_dash_VFX = DashVFX.instantiate() as GPUParticles2D
-		new_dash_VFX.preprocess = (4 - i) * 0.15
-		new_dash_VFX.emitting = true
-		add_child(new_dash_VFX)
-		new_dash_VFX.global_position = grid_entity.global_position
-		if not grid_entity.move(direction):
-			break
+	var new_dash_VFX = DashVFX.instantiate() as GPUParticles2D
+	new_dash_VFX.emitting = true
+	add_child(new_dash_VFX)
+	new_dash_VFX.global_position = grid_entity.global_position
+	grid_entity.warp(cursor)
+
 	return false
 
 

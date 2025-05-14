@@ -5,6 +5,7 @@ extends Node2D
 @onready var visual = $LichTest
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $TurnComponent
+@onready var stack_component = $GridEntity/SkillStackComponent
 
 var initialized = false
 var level: Node2D
@@ -17,6 +18,7 @@ func _ready() -> void:
 	grid_entity.global_position = global_position
 	display.global_position = grid_entity.global_position
 	global_position = grid_entity.position
+	stack_component.initialize(grid_entity, false)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

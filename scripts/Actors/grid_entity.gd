@@ -107,6 +107,39 @@ func move(direction: Vector2i) -> bool:
 	return true
 
 
+func warp(position: Vector2i):
+	if not initialized:
+		return false
+
+	var old_coords = floors.local_to_map(global_position)
+	var grid_coords = position
+	var floor_data = floors.get_cell_tile_data(grid_coords)
+
+	if not floor_data:
+		return false
+
+	# Test for other bodies
+	if entity_positions.has(grid_coords):
+		hit(entity_positions[grid_coords])
+		performed_action.emit()
+		return false
+
+	# Check for walls
+	var wall_data = walls.get_cell_tile_data(grid_coords)
+	if wall_data and wall_data.get_custom_data("is_solid"):
+		play_thump_sound(wall_data.get_custom_data("material"))
+		return false
+
+	# Movement
+	moved.emit(old_coords, grid_coords)
+	entity_positions[grid_coords] = self
+	entity_positions.erase(floors.local_to_map(global_position))
+	global_position = Vector2(position) * CELL_SIZE + (Vector2(1, 1) * (CELL_SIZE / 2))
+	play_walk_sound(floor_data.get_custom_data("material"))
+	performed_action.emit()
+	return true
+
+
 func get_valid_moves() -> Array:
 	var move_options = []
 	if not initialized:
@@ -176,19 +209,6 @@ func play_thump_sound(material):
 			plant_thump_sound.play()
 		_:
 			thump_sound.play()
-
-
-#func take_turn():
-#my_turn = true
-#turn_started.emit()
-#
-#
-#func end_turn():
-#my_turn = false
-#if Debug.slowdown_enabled:
-#$Camera2D.make_current()
-#await get_tree().create_timer(.25).timeout
-#turn_ended.emit()
 
 
 func on_death() -> void:

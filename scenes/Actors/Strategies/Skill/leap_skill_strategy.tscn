@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://mjfsneo3jxah"]
+
+[ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/Testing/thisGuyPOV.png" id="1_f32hv"]
+[ext_resource type="Script" uid="uid://c3gnvqmpurome" path="res://scripts/Actors/Strategies/Skill/leap_skill_strategy.gd" id="1_mqx4p"]
+[ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/Effects/dash_vfx.tscn" id="2_clto2"]
+[ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/UI/Cursor.png" id="4_m0q40"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clto2"]
+atlas = ExtResource("1_f32hv")
+region = Rect2(110, 88, 109, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyxbn"]
+atlas = ExtResource("4_m0q40")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tu85t"]
+atlas = ExtResource("4_m0q40")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rsyhb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyxbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tu85t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="LeapSkillStrategy" type="Node2D" node_paths=PackedStringArray("icon") groups=["Skill"]]
+script = ExtResource("1_mqx4p")
+DashVFX = ExtResource("2_clto2")
+icon = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_clto2")
+
+[node name="Cursor" type="AnimatedSprite2D" parent="."]
+visible = false
+top_level = true
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_rsyhb")
+autoplay = "default"
+speed_scale = 0.3

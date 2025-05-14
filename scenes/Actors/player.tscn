@@ -1,12 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2wq4gejffyd"]
+[gd_scene load_steps=7 format=3 uid="uid://d2wq4gejffyd"]
 
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="1_exgt7"]
 [ext_resource type="Script" uid="uid://be6oo33bhfx63" path="res://scripts/Actors/player.gd" id="1_ochwc"]
-[ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/Actors/Strategies/Skill/dash_skill_strategy.tscn" id="4_qeqsv"]
 [ext_resource type="PackedScene" uid="uid://canci4neobys2" path="res://scenes/Actors/turn_component.tscn" id="5_f7yno"]
-[ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/Actors/Strategies/Skill/stomp_skill_strategy.tscn" id="6_bg3lr"]
 [ext_resource type="PackedScene" uid="uid://djc3cmcxnhe5l" path="res://scenes/Characters/Visuals/scarecrow_visual.tscn" id="6_jfrsc"]
-[ext_resource type="PackedScene" uid="uid://bd85kao70uoy4" path="res://scenes/Actors/skill_stack_component.tscn" id="7_jfrsc"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://demo/assets/fonts/Permanentmarker-Regular.ttf" id="8_wd2mq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gokip"]
@@ -31,22 +28,9 @@ debug_color = Color(0.627606, 0.530906, 0, 0.42)
 
 [node name="TurnComponent" parent="." instance=ExtResource("5_f7yno")]
 
-[node name="Skills" type="Node2D" parent="."]
-
-[node name="DashSkillStrategy" parent="Skills" instance=ExtResource("4_qeqsv")]
-
-[node name="StompSkillStrategy" parent="Skills" instance=ExtResource("6_bg3lr")]
-
 [node name="ScarecrowVisual" parent="." instance=ExtResource("6_jfrsc")]
 position = Vector2(5, -31)
 scale = Vector2(0.208175, 0.208175)
-
-[node name="SkillStackComponent" parent="." instance=ExtResource("7_jfrsc")]
-position = Vector2(-85, -191)
-
-[node name="DashSkillStrategy" parent="SkillStackComponent" instance=ExtResource("4_qeqsv")]
-
-[node name="StompSkillStrategy" parent="SkillStackComponent" instance=ExtResource("6_bg3lr")]
 
 [node name="StateLabel" type="Label" parent="."]
 offset_left = -85.0
@@ -58,11 +42,7 @@ theme_override_fonts/font = ExtResource("8_wd2mq")
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
 [connection signal="performed_action" from="GridEntity" to="." method="_on_grid_entity_performed_action"]
+[connection signal="emptied_stack" from="GridEntity/SkillStackComponent" to="." method="_on_skill_stack_component_emptied_stack"]
 [connection signal="turn_started" from="TurnComponent" to="." method="_on_turn_component_turn_started"]
-[connection signal="moved_self" from="Skills/DashSkillStrategy" to="." method="_on_dash_skill_strategy_moved_self"]
-[connection signal="requested_direction_input" from="Skills/DashSkillStrategy" to="." method="_on_dash_skill_strategy_requested_direction_input"]
-[connection signal="emptied_stack" from="SkillStackComponent" to="." method="_on_skill_stack_component_emptied_stack"]
-[connection signal="moved_self" from="SkillStackComponent/DashSkillStrategy" to="." method="_on_dash_skill_strategy_moved_self"]
-[connection signal="requested_direction_input" from="SkillStackComponent/DashSkillStrategy" to="." method="_on_dash_skill_strategy_requested_direction_input"]
 
 [editable path="GridEntity"]

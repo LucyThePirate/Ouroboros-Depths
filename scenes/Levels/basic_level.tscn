@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=4 uid="uid://ckfxqbg0kndv5"]
+[gd_scene load_steps=70 format=4 uid="uid://ckfxqbg0kndv5"]
 
 [ext_resource type="Script" uid="uid://brmtjl3tpqjav" path="res://scripts/Mechanics/level.gd" id="1_258pl"]
 [ext_resource type="Texture2D" uid="uid://b60fxmc7hxg5s" path="res://textures/PumpkinBlock2.png" id="1_xda08"]
@@ -12,6 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://bcwgrjr66bai4" path="res://audio/Music/RainSong.ogg" id="9_p5bfy"]
 [ext_resource type="Texture2D" uid="uid://boyi3dh24ewlf" path="res://textures/UI/black-star.png" id="11_g6qmd"]
 [ext_resource type="PackedScene" uid="uid://dctxwjwjiof17" path="res://scenes/Actors/creature_ai.tscn" id="12_x4eo6"]
+[ext_resource type="PackedScene" uid="uid://ds1r48clfb7k6" path="res://scenes/Characters/Visuals/wasp_visual.tscn" id="13_5cr7p"]
+[ext_resource type="SpriteFrames" uid="uid://clgsmejmokek7" path="res://textures/effects/potion_spin_fast.gif" id="14_2k8ia"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j1wxp"]
 
@@ -734,6 +736,20 @@ position = Vector2(-3550, -450)
 
 [node name="HealthComponent" parent="creatureAI5/GridEntity" index="10"]
 max_health = 5
+
+[node name="wasp_visual" parent="." instance=ExtResource("13_5cr7p")]
+position = Vector2(-450, 350)
+rotation = 0.0231713
+scale = Vector2(0.215666, 0.215666)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(550, 50)
+scale = Vector2(0.59397, 0.59397)
+sprite_frames = ExtResource("14_2k8ia")
+animation = &"gif"
+autoplay = "gif"
+frame_progress = 0.916882
+speed_scale = 1.5
 
 [connection signal="turn_ended" from="Player" to="." method="_on_player_turn_ended"]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1tq0r2hua7v8"]
+[gd_scene load_steps=6 format=3 uid="uid://c1tq0r2hua7v8"]
 
 [ext_resource type="Texture2D" uid="uid://b08oh14ot75ib" path="res://textures/Skills/SkillIcons.png" id="1_ododk"]
 [ext_resource type="Script" uid="uid://3u0aqmvw83u5" path="res://scripts/Actors/Strategies/Skill/dash_skill_strategy.gd" id="1_ss86u"]
 [ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/Effects/dash_vfx.tscn" id="2_au81m"]
+[ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="4_52a6f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_52a6f"]
 atlas = ExtResource("1_ododk")
@@ -16,3 +17,26 @@ icon = NodePath("Sprite2D")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture = SubResource("AtlasTexture_52a6f")
+
+[node name="Arrows" type="Node2D" parent="."]
+visible = false
+top_level = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Arrows"]
+position = Vector2(104, 0)
+texture = ExtResource("4_52a6f")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Arrows"]
+position = Vector2(0, -104)
+rotation = -1.57079
+texture = ExtResource("4_52a6f")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Arrows"]
+position = Vector2(-104, 0)
+rotation = 3.14159
+texture = ExtResource("4_52a6f")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Arrows"]
+position = Vector2(2.00011, 106)
+rotation = 1.57079
+texture = ExtResource("4_52a6f")

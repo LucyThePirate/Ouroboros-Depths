@@ -7,7 +7,7 @@ signal turn_ended
 @onready var visual = $ScarecrowVisual
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $TurnComponent
-@onready var stack_component = $SkillStackComponent
+@onready var stack_component = $GridEntity/SkillStackComponent
 
 var initialized = false
 
@@ -21,6 +21,7 @@ func _ready() -> void:
 	display.global_position = grid_entity.global_position
 	global_position = grid_entity.position
 	visual.initialize(grid_entity)
+	stack_component.initialize(grid_entity, true)
 
 
 #func _input(event):
@@ -38,7 +39,6 @@ func _process(delta: float) -> void:
 	display.global_position = display.global_position.lerp(
 		grid_entity.global_position, min(1, displayLerpTime)
 	)
-	#visual.global_position = visual.global_position.lerp(display.global_position, min(1, displayLerpTime))
 	visual.global_position = display.global_position
 	$StateLabel.text = (
 		"%s - %s" % [States.keys()[state], stack_component.States.keys()[stack_component.state]]
@@ -54,12 +54,11 @@ func _input(event):
 			_handle_movement()
 		States.EXECUTING_STACK:
 			if stack_component.state == SkillStackComponent.States.EXECUTING_STACK:
-				#stack_component.execute_stack(grid_entity)
 				pass
 			elif stack_component.state == SkillStackComponent.States.AWAITING_DIRECTIONAL_INPUT:
 				_handle_awaiting_directional_input()
 			elif stack_component.state == SkillStackComponent.States.AWAITING_CURSOR_INPUT:
-				pass
+				_handle_awaiting_cursor_input()
 			elif stack_component.state == SkillStackComponent.States.IDLE:
 				state = States.IDLE
 
@@ -88,7 +87,7 @@ func _handle_movement() -> void:
 	elif Input.is_action_just_pressed("ExecuteStack"):
 		if state == States.IDLE:
 			state = States.EXECUTING_STACK
-			stack_component.execute_stack(grid_entity)
+			stack_component.execute_stack()
 
 
 func _get_directional_input():
@@ -117,7 +116,15 @@ func queue_skill(skill_number):
 func _handle_awaiting_directional_input():
 	var moveDirection = _get_directional_input()
 	if moveDirection:
-		stack_component.set_direction(moveDirection, grid_entity)
+		stack_component.set_direction(moveDirection)
+
+
+func _handle_awaiting_cursor_input():
+	var moveDirection = _get_directional_input()
+	if moveDirection:
+		stack_component.move_cursor(moveDirection)
+	if Input.is_action_just_pressed("ui_accept"):
+		stack_component.accept_cursor()
 
 
 func _on_grid_entity_grid_entity_initialized() -> void:
@@ -134,10 +141,6 @@ func end_turn():
 
 func _on_grid_entity_died() -> void:
 	queue_free()
-
-
-func _on_dash_skill_strategy_moved_self() -> void:
-	_update_movement_visuals()
 
 
 func _update_movement_visuals():

@@ -17,11 +17,18 @@ var stack = []
 var current_skill: SkillStrategy
 enum States { IDLE, DEAD, EXECUTING_STACK, AWAITING_DIRECTIONAL_INPUT, AWAITING_CURSOR_INPUT }
 var state = States.IDLE
+var grid_entity: GridEntity
 
 
 func _ready() -> void:
 	skills = Debug.find_children_in_group(self, "Skill", false)
 	_update_skill_visuals()
+
+
+func initialize(grid_entity_parent: GridEntity, is_player: bool):
+	grid_entity = grid_entity_parent
+	if is_player:
+		$CanvasLayer.show()
 
 
 func _update_stack_visuals() -> void:
@@ -47,15 +54,15 @@ func queue_skill(skill_number) -> bool:
 	return false
 
 
-func execute_stack(grid_entity: GridEntity) -> bool:
+func execute_stack() -> bool:
 	if stack.is_empty():
 		return false
 	state = States.EXECUTING_STACK
-	_handle_stack_execution(grid_entity)
+	_handle_stack_execution()
 	return true
 
 
-func _handle_stack_execution(grid_entity: GridEntity):
+func _handle_stack_execution():
 	_update_stack_visuals()
 	if stack.is_empty():
 		state = States.IDLE
@@ -65,7 +72,7 @@ func _handle_stack_execution(grid_entity: GridEntity):
 	$Stack/MarginContainer/CenterContainer/HBoxContainer/TextureRect/ColorRect.show()
 	if current_skill.ready_skill(grid_entity):
 		await get_tree().create_timer(0.1).timeout
-		_handle_stack_execution(grid_entity)
+		_handle_stack_execution()
 
 	elif current_skill.state == SkillStrategy.States.AWAITING_DIRECTION:
 		state = States.AWAITING_DIRECTIONAL_INPUT
@@ -76,11 +83,28 @@ func _handle_stack_execution(grid_entity: GridEntity):
 		awaited_cursor_input.emit()
 
 
-func set_direction(moveDirection: Vector2i, grid_entity: GridEntity):
+func set_direction(moveDirection: Vector2i):
 	current_skill.set_direction(moveDirection)
 	current_skill.use_skill(grid_entity)
 	state = States.EXECUTING_STACK
-	_handle_stack_execution(grid_entity)
+	_handle_stack_execution()
+
+
+func move_cursor(moveDirection: Vector2i):
+	current_skill.move_cursor(moveDirection, grid_entity)
+
+
+func set_cursor(cursorPosition: Vector2i):
+	current_skill.set_cursor(cursorPosition)
+	current_skill.use_skill(grid_entity)
+	state = States.EXECUTING_STACK
+	_handle_stack_execution()
+
+
+func accept_cursor():
+	current_skill.use_skill(grid_entity)
+	state = States.EXECUTING_STACK
+	_handle_stack_execution()
 
 
 func _on_emptied_stack() -> void:

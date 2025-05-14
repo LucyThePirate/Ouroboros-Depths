@@ -19,7 +19,10 @@
 [ext_resource type="AudioStream" uid="uid://csxh0hijpki70" path="res://audio/SFX/Misc/584860__sfxafrik__doors-wooden-door-long-creak-open-close-office-wooden-door-office-door-knock.ogg" id="17_ous7d"]
 [ext_resource type="PackedScene" uid="uid://dcjnpsm2nll1" path="res://scenes/Actors/health_component.tscn" id="18_vnsn2"]
 [ext_resource type="Texture2D" uid="uid://cs15uwjngcgt0" path="res://textures/MonsterMaker/canvasTexture.png" id="19_h3mly"]
-[ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/UI/Cursor.png" id="20_lx1x2"]
+[ext_resource type="PackedScene" uid="uid://bd85kao70uoy4" path="res://scenes/Actors/skill_stack_component.tscn" id="22_off3y"]
+[ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/Actors/Strategies/Skill/dash_skill_strategy.tscn" id="23_s0jro"]
+[ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/Actors/Strategies/Skill/stomp_skill_strategy.tscn" id="24_8uxk8"]
+[ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/Actors/Strategies/Skill/leap_skill_strategy.tscn" id="25_s0jro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo564"]
 
@@ -70,28 +73,6 @@ stream_0/stream = ExtResource("15_kfa6g")
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("17_ous7d")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jyxbn"]
-atlas = ExtResource("20_lx1x2")
-region = Rect2(0, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tu85t"]
-atlas = ExtResource("20_lx1x2")
-region = Rect2(100, 0, 100, 100)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_h3mly"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jyxbn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tu85t")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="GridEntity" type="Area2D" groups=["GridEntity"]]
 top_level = true
@@ -149,12 +130,13 @@ position = Vector2(1, 0.5)
 scale = Vector2(1, 1.03)
 texture = ExtResource("19_h3mly")
 
-[node name="Cursor" type="AnimatedSprite2D" parent="."]
-visible = false
-z_index = -1
-sprite_frames = SubResource("SpriteFrames_h3mly")
-autoplay = "default"
-frame_progress = 0.97355
-speed_scale = 0.3
+[node name="SkillStackComponent" parent="." instance=ExtResource("22_off3y")]
+position = Vector2(-85, -191)
+
+[node name="DashSkillStrategy" parent="SkillStackComponent" instance=ExtResource("23_s0jro")]
+
+[node name="StompSkillStrategy" parent="SkillStackComponent" instance=ExtResource("24_8uxk8")]
+
+[node name="LeapSkillStrategy" parent="SkillStackComponent" instance=ExtResource("25_s0jro")]
 
 [connection signal="died" from="HealthComponent" to="." method="on_death"]
