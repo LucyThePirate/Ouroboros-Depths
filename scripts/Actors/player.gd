@@ -2,6 +2,9 @@ extends Node2D
 
 signal turn_ended
 
+@export var text_component: PackedScene
+
+@onready var current_text: TextComponent
 @onready var grid_entity = $GridEntity
 @onready var display = $Display
 @onready var visual = $ScarecrowVisual
@@ -24,12 +27,6 @@ func _ready() -> void:
 	stack_component.initialize(grid_entity, true)
 
 
-#func _input(event):
-#match event.as_text():
-#_:
-#print("Pressed:", event.as_text())
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not initialized:
@@ -46,7 +43,15 @@ func _process(delta: float) -> void:
 
 
 func _input(event):
-	if not turn_component.my_turn:
+	if Input.is_action_just_pressed("Chat") and not current_text:
+		var new_text_component = text_component.instantiate()
+		add_child(new_text_component)
+		new_text_component.global_position = grid_entity.global_position
+		current_text = new_text_component
+		new_text_component.text_changed.connect(visual._on_talked)
+		new_text_component.text_submitted.connect(_on_finished_writing_text)
+
+	if not turn_component.my_turn or current_text:
 		return
 
 	match state:
@@ -137,6 +142,8 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 
 func end_turn():
 	turn_component.end_turn()
+	if not grid_entity.is_on_floor():
+		_on_grid_entity_fell_off_map()
 
 
 func _on_grid_entity_died() -> void:
@@ -155,5 +162,16 @@ func _on_grid_entity_performed_action() -> void:
 
 
 func _on_skill_stack_component_emptied_stack() -> void:
-	state = States.IDLE
-	end_turn()
+	if state == States.EXECUTING_STACK:
+		state = States.IDLE
+		end_turn()
+
+
+func _on_finished_writing_text() -> void:
+	current_text = null
+
+
+func _on_grid_entity_fell_off_map() -> void:
+	visual._on_fell_off_map()
+	state = States.DEAD
+	visual.connect("finished_animation", _on_grid_entity_died)

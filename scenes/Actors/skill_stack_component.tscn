@@ -12,6 +12,7 @@ stream_0/stream = ExtResource("2_rerjn")
 script = ExtResource("1_rerjn")
 
 [node name="Stack" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

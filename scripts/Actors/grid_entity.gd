@@ -7,6 +7,7 @@ signal moved(old_coord: Vector2i, new_coord: Vector2i)
 signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
 signal hurt
+signal fell_off_map
 signal died
 signal performed_action
 
@@ -68,9 +69,6 @@ func move(direction: Vector2i) -> bool:
 	var grid_coords = old_coords + direction
 	var floor_data = floors.get_cell_tile_data(grid_coords)
 
-	if not floor_data:
-		return false
-
 	# Test for other bodies
 	if entity_positions.has(grid_coords):
 		hit(entity_positions[grid_coords])
@@ -102,8 +100,11 @@ func move(direction: Vector2i) -> bool:
 	entity_positions[grid_coords] = self
 	entity_positions.erase(floors.local_to_map(global_position))
 	global_position += Vector2(direction) * CELL_SIZE
-	play_walk_sound(floor_data.get_custom_data("material"))
 	performed_action.emit()
+	if not floor_data:
+		fell_off_map.emit()
+	else:
+		play_walk_sound(floor_data.get_custom_data("material"))
 	return true
 
 
@@ -114,9 +115,6 @@ func warp(position: Vector2i):
 	var old_coords = floors.local_to_map(global_position)
 	var grid_coords = position
 	var floor_data = floors.get_cell_tile_data(grid_coords)
-
-	if not floor_data:
-		return false
 
 	# Test for other bodies
 	if entity_positions.has(grid_coords):
@@ -135,8 +133,11 @@ func warp(position: Vector2i):
 	entity_positions[grid_coords] = self
 	entity_positions.erase(floors.local_to_map(global_position))
 	global_position = Vector2(position) * CELL_SIZE + (Vector2(1, 1) * (CELL_SIZE / 2))
-	play_walk_sound(floor_data.get_custom_data("material"))
 	performed_action.emit()
+	if not floor_data:
+		fell_off_map.emit()
+	else:
+		play_walk_sound(floor_data.get_custom_data("material"))
 	return true
 
 
@@ -221,3 +222,11 @@ func is_alive() -> bool:
 		return true
 	else:
 		return false
+
+
+func is_on_floor() -> bool:
+	var grid_coords = floors.local_to_map(global_position)
+	var floor_data = floors.get_cell_tile_data(grid_coords)
+	if not floor_data:
+		return false
+	return true

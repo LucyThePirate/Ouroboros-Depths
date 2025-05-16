@@ -1,12 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://djc3cmcxnhe5l"]
+[gd_scene load_steps=25 format=3 uid="uid://djc3cmcxnhe5l"]
 
 [ext_resource type="Script" uid="uid://b2ojdp2aq678e" path="res://scripts/Actors/Visuals/visualBase.gd" id="1_aedx2"]
 [ext_resource type="Texture2D" uid="uid://cja3aenkgrcib" path="res://textures/Creatures/Scarecrow.png" id="1_fcb6m"]
 [ext_resource type="AudioStream" uid="uid://beoy3p2juleon" path="res://audio/SFX/Step/Scarecrowstep1.ogg" id="3_750i8"]
 [ext_resource type="AudioStream" uid="uid://d3reymc3s8v1r" path="res://audio/SFX/Step/Scarecrowstep2.ogg" id="4_kcv6o"]
 [ext_resource type="AudioStream" uid="uid://dy5k5uk2de1uu" path="res://audio/SFX/Step/Scarecrowstep3.ogg" id="5_gqlsy"]
+[ext_resource type="AudioStream" uid="uid://dgdufp7c7rv1k" path="res://audio/SFX/Thump/540278__zepurple__tree-shake.ogg" id="6_gqlsy"]
+[ext_resource type="AudioStream" uid="uid://cow3rcuutupfc" path="res://audio/SFX/Step/kirby-falling.ogg" id="7_gqlsy"]
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_fcb6m"]
+resource_local_to_scene = true
 target_nodepath = NodePath("../LeftCapeTarget")
 jiggle_data_chain_length = 3
 use_gravity = true
@@ -21,6 +24,7 @@ joint_data/2/bone2d_node = NodePath("PostBase/PostTop/ShawlLeft")
 joint_data/2/override_defaults = false
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_aedx2"]
+resource_local_to_scene = true
 target_nodepath = NodePath("../MiddleCapeTarget")
 jiggle_data_chain_length = 3
 use_gravity = true
@@ -49,6 +53,7 @@ joint_data/2/bone2d_node = NodePath("PostBase/PostTop/ShawlRight/Shawl2/Shawl3")
 joint_data/2/override_defaults = false
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_c10f0"]
+resource_local_to_scene = true
 target_nodepath = NodePath("../LeftCapeTarget")
 jiggle_data_chain_length = 1
 damping = 0.25
@@ -59,6 +64,7 @@ joint_data/0/bone2d_node = NodePath("PostBase/PostTop/LeftGlove")
 joint_data/0/override_defaults = false
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_750i8"]
+resource_local_to_scene = true
 target_nodepath = NodePath("../RightCapeTarget")
 jiggle_data_chain_length = 1
 damping = 0.25
@@ -68,6 +74,7 @@ joint_data/0/bone2d_node = NodePath("PostBase/PostTop/RightGlove")
 joint_data/0/override_defaults = false
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_kcv6o"]
+resource_local_to_scene = true
 target_nodepath = NodePath("../GourdTarget")
 jiggle_data_chain_length = 1
 joint_data/0/bone_index = 3
@@ -667,14 +674,310 @@ tracks/16/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Skeleton2D/PostBase/PostTop/Gourd/Mouth:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(142.378, 36.517)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Skeleton2D/PostBase/PostTop/Gourd/Mouth:rotation")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.58628]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Skeleton2D/PostBase/PostTop/Gourd/Mouth:scale")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.388099, 1.11971)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Skeleton2D/PostBase/PostTop/Gourd:position")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -187)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Skeleton2D/PostBase/PostTop/Gourd:rotation")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.48932]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Skeleton2D/PostBase/PostTop/Gourd:scale")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.999991, 0.999991)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Skeleton2D/PostBase:scale")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Fall:playing")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Talk:playing")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_kcv6o"]
+resource_name = "Talking"
+length = 0.4675
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/PostBase/PostTop/Gourd/Mouth:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(142.378, 36.517)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D/PostBase/PostTop/Gourd/Mouth:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.58628]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D/PostBase/PostTop/Gourd/Mouth:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.182673, 0.336118, 0.497),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.388099, 1.11971), Vector2(0.491677, 1.76878), Vector2(0.598248, 0.612998), Vector2(0.471293, 1.14869)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D/PostBase/PostTop/Gourd:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton2D/PostBase/PostTop/Gourd:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton2D/PostBase/PostTop/Gourd:scale")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.986928, 1.1374), Vector2(0.868721, 1.23681), Vector2(0.999991, 0.999991)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Skeleton2D/PostBase:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, 517)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Skeleton2D/PostBase:rotation")
+tracks/7/interp = 4
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.109604, 0.336118, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0932042, 0.147221, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Skeleton2D/PostBase:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Talk:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_mk3eq"]
+resource_name = "Falling"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/PostBase:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, 517)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D/PostBase:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.5664]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D/PostBase:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Fall:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mw5ug"]
 _data = {
+&"Falling": SubResource("Animation_mk3eq"),
 &"Idle": SubResource("Animation_fcb6m"),
 &"Moving": SubResource("Animation_mw5ug"),
 &"Moving_Loop": SubResource("Animation_750i8"),
-&"RESET": SubResource("Animation_aedx2")
+&"RESET": SubResource("Animation_aedx2"),
+&"Talking": SubResource("Animation_kcv6o")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gqlsy"]
+random_pitch = 1.27
+streams_count = 1
+stream_0/stream = ExtResource("6_gqlsy")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d2vxg"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("7_gqlsy")
 
 [node name="ScarecrowVisual" type="Node2D"]
 script = ExtResource("1_aedx2")
@@ -705,7 +1008,7 @@ rest = Transform2D(1, 0, 0, 1, -10, 517)
 
 [node name="PostTop" type="Bone2D" parent="Skeleton2D/PostBase"]
 position = Vector2(-5, -568)
-scale = Vector2(0.999889, 0.999889)
+scale = Vector2(0.999888, 0.999888)
 rest = Transform2D(1, 0, 0, 1, -5, -568)
 
 [node name="LeftGlove" type="Bone2D" parent="Skeleton2D/PostBase/PostTop"]
@@ -719,7 +1022,8 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Gourd" type="Bone2D" parent="Skeleton2D/PostBase/PostTop"]
 position = Vector2(-2, -187)
-rotation = 1.55316
+rotation = 1.48932
+scale = Vector2(0.999991, 0.999991)
 rest = Transform2D(0.0176384, 0.999844, -0.999844, 0.0176384, -2, -187)
 auto_calculate_length_and_angle = false
 length = 132.64
@@ -829,6 +1133,7 @@ skeleton = NodePath("../Skeleton2D")
 polygon = PackedVector2Array(-205.887, -121.02, -300.238, 60.3149, -308.02, 433.814, 60.2921, 516.814, 275.573, 397.502, 278.167, -53.8098, -38.2701, -126.435)
 uv = PackedVector2Array(190.952, 424.681, 96.6006, 606.016, 88.8193, 979.515, 457.131, 1062.51, 672.412, 943.202, 675.005, 491.891, 358.569, 419.266)
 bones = ["PostBase", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop", PackedFloat32Array(0, 0, 0, 0, 0, 0, 1), "PostBase/PostTop/LeftGlove", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/Mouth", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/Hat", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeLeft", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeRight", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/RightGlove", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 1, 0, 0, 0), "PostBase/PostTop/ShawlLeft", PackedFloat32Array(1, 1, 1, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2", PackedFloat32Array(0, 1, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2/Shawl3", PackedFloat32Array(0, 0, 1, 0, 0, 0, 0), "PostBase/PostTop/ShawlRight", PackedFloat32Array(0, 0, 0, 0, 0, 1, 0), "PostBase/PostTop/ShawlRight/Shawl2", PackedFloat32Array(0, 0, 0, 0, 1, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 1, 0, 0, 0)]
+metadata/_edit_lock_ = true
 
 [node name="Post" type="Polygon2D" parent="ShawlBack"]
 position = Vector2(4, -108)
@@ -925,5 +1230,19 @@ speed_scale = 1.2
 [node name="Step" type="AudioStreamPlayer2D" parent="."]
 volume_db = 4.052
 pitch_scale = 0.95
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(10, -362)
+scale = Vector2(6.8125, 1.19091)
+zoom = Vector2(0.485, 0.485)
+
+[node name="Talk" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_gqlsy")
+volume_db = -4.571
+pitch_scale = 0.46
+
+[node name="Fall" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_d2vxg")
+volume_db = 13.506
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

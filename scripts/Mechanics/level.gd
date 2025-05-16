@@ -57,6 +57,10 @@ func _push_tile(tile_coords, direction):
 	if _is_obstructed(tile_coords + direction):
 		return
 
+	if not floors.get_cell_tile_data(tile_coords + direction):
+		objects.set_cell(tile_coords, -1)
+		return
+
 	if floors.get_cell_tile_data(tile_coords + direction).get_custom_data("is_liquid"):
 		floors.set_cell(tile_coords + direction, 2, Vector2i(0, 1))
 		var splashVFX = boulder_splash.instantiate()
@@ -72,9 +76,9 @@ func _push_tile(tile_coords, direction):
 
 
 func _is_obstructed(tile_coords) -> bool:
-	var floor_tile = floors.get_cell_tile_data(tile_coords)
-	if not floor_tile:
-		return true
+	#var floor_tile = floors.get_cell_tile_data(tile_coords)
+	#if not floor_tile:
+	#return true
 
 	var wall_tile = walls.get_cell_tile_data(tile_coords)
 	if wall_tile and wall_tile.get_custom_data("is_solid"):

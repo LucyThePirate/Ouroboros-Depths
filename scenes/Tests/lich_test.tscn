@@ -1355,6 +1355,7 @@ _data = {
 }
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_8h4wm"]
+resource_local_to_scene = true
 target_nodepath = NodePath("../Targets/HeadTarget")
 jiggle_data_chain_length = 1
 use_gravity = true
@@ -1363,11 +1364,13 @@ joint_data/0/bone2d_node = NodePath("Hip/Body/Head")
 joint_data/0/override_defaults = false
 
 [sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_iokgd"]
+resource_local_to_scene = true
 bone_index = 4
 bone2d_node = NodePath("Hip/Body/Head/Eye")
 target_nodepath = NodePath("../Targets/EyeTarget")
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_17jbv"]
+resource_local_to_scene = true
 enabled = true
 modification_count = 2
 modifications/0 = SubResource("SkeletonModification2DJiggle_8h4wm")
