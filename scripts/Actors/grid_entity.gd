@@ -55,6 +55,7 @@ func initialize(
 	global_position = floors.map_to_local(floors.local_to_map(global_position))
 	initialized = true
 	grid_entity_initialized.emit()
+	entity_positions[floors.local_to_map(global_position)] = self
 
 
 func get_skills() -> Array[Node]:

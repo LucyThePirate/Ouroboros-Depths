@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dctxwjwjiof17"]
+[gd_scene load_steps=8 format=3 uid="uid://dctxwjwjiof17"]
 
 [ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_sxdqt"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="2_sxdqt"]
 [ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="3_sxdqt"]
 [ext_resource type="PackedScene" uid="uid://canci4neobys2" path="res://scenes/Actors/turn_component.tscn" id="4_bls1m"]
 [ext_resource type="PackedScene" uid="uid://bwkb3crnbdvht" path="res://scenes/Tests/lich_test.tscn" id="5_tie3i"]
+[ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/Actors/Strategies/Planner/base_random_skill_planner.tscn" id="6_6hqks"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bls1m"]
 radius = 44.1022
@@ -37,6 +38,8 @@ one_shot = true
 y_sort_enabled = true
 position = Vector2(4, -63)
 scale = Vector2(0.3, 0.3)
+
+[node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("6_6hqks")]
 
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]

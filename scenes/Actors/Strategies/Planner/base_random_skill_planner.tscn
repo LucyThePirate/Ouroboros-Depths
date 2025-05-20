@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dudma3tdrvkgc"]
+
+[ext_resource type="Script" uid="uid://be8jpsq5kefvm" path="res://scripts/Actors/Strategies/Planner/base_random_skill_planner.gd" id="1_h5mmt"]
+
+[node name="BaseRandomSkillPlanner" type="Node2D" groups=["Planner"]]
+script = ExtResource("1_h5mmt")

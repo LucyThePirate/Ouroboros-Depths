@@ -6,6 +6,7 @@ extends Node2D
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $TurnComponent
 @onready var stack_component = $GridEntity/SkillStackComponent
+@onready var random_skill_planner = $BaseRandomSkillPlanner
 
 var initialized = false
 var level: Node2D
@@ -19,6 +20,7 @@ func _ready() -> void:
 	display.global_position = grid_entity.global_position
 	global_position = grid_entity.position
 	stack_component.initialize(grid_entity, false)
+	random_skill_planner.set_stack_component(stack_component)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,6 +48,9 @@ func take_turn():
 
 
 func move_randomly():
+	if randf() > 0.5:
+		random_skill_planner.perform_plan()
+		return
 	var moveDirection = grid_entity.get_valid_moves().pick_random()
 	if moveDirection:
 		move_in_direction(moveDirection)

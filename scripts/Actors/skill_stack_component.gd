@@ -4,6 +4,7 @@ class_name SkillStackComponent
 
 signal used_skill
 signal queued_skill
+signal stack_full
 signal emptied_stack
 signal awaited_directional_input
 signal awaited_cursor_input
@@ -11,6 +12,8 @@ signal awaited_cursor_input
 @onready
 var skill_icon_holder = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer
 @onready var stack_icon_holder = $Stack/MarginContainer/CenterContainer/HBoxContainer
+
+@export var max_stack_size = 4
 
 var skills = []
 var stack = []
@@ -44,13 +47,21 @@ func _update_skill_visuals() -> void:
 
 
 func queue_skill(skill_number) -> bool:
-	if skills.size() >= skill_number + 1 and stack.size() < 4:
+	if skills.size() >= skill_number + 1 and not is_full():
 		$Stack.show()
 		print(name, " queued skill: ", skills[skill_number].name)
 		stack.append(skills[skill_number])
 		_update_stack_visuals()
+		if is_full():
+			stack_full.emit()
 		return true
 	$Error.play()
+	return false
+
+
+func is_full() -> bool:
+	if stack.size() >= max_stack_size:
+		return true
 	return false
 
 

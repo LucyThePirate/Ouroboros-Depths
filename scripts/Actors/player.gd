@@ -89,6 +89,9 @@ func _handle_movement() -> void:
 	elif Input.is_action_just_pressed("UseSkill3"):
 		queue_skill(2)
 
+	elif Input.is_action_just_pressed("UseSkill4"):
+		queue_skill(3)
+
 	elif Input.is_action_just_pressed("ExecuteStack"):
 		if state == States.IDLE:
 			state = States.EXECUTING_STACK

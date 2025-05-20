@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://csjboon7n8lek"]
+
+[ext_resource type="Script" uid="uid://cbhkh67j5r5ni" path="res://scripts/Actors/Strategies/Skill/dark_star_skill_strategy.gd" id="1_sn4vy"]
+[ext_resource type="PackedScene" uid="uid://4acykyan5qq0" path="res://scenes/Effects/dark_star.tscn" id="2_e3lg0"]
+[ext_resource type="Texture2D" uid="uid://b08oh14ot75ib" path="res://textures/Skills/SkillIcons.png" id="2_jrkbo"]
+[ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="4_snp4d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3lg0"]
+atlas = ExtResource("2_jrkbo")
+region = Rect2(304, 8, 144, 136)
+
+[node name="DarkStarSkillStrategy" type="Node2D" node_paths=PackedStringArray("icon") groups=["Skill"]]
+script = ExtResource("1_sn4vy")
+StarVFX = ExtResource("2_e3lg0")
+icon = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("AtlasTexture_e3lg0")
+
+[node name="Arrows" type="Node2D" parent="."]
+visible = false
+top_level = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Arrows"]
+position = Vector2(104, 0)
+texture = ExtResource("4_snp4d")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Arrows"]
+position = Vector2(0, -104)
+rotation = -1.57079
+texture = ExtResource("4_snp4d")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Arrows"]
+position = Vector2(-104, 0)
+rotation = 3.14159
+texture = ExtResource("4_snp4d")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Arrows"]
+position = Vector2(2.00011, 106)
+rotation = 1.57079
+texture = ExtResource("4_snp4d")
