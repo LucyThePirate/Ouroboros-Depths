@@ -96,8 +96,11 @@ func _handle_stack_execution():
 
 func set_direction(moveDirection: Vector2i):
 	current_skill.set_direction(moveDirection)
-	current_skill.use_skill(grid_entity)
 	state = States.EXECUTING_STACK
+	var finished_skill = current_skill.skill_finished
+	current_skill.use_skill(grid_entity)
+	if current_skill.state == SkillStrategy.States.PLAYING_ANIMATION:
+		await finished_skill
 	_handle_stack_execution()
 
 
@@ -107,8 +110,11 @@ func move_cursor(moveDirection: Vector2i):
 
 func set_cursor(cursorPosition: Vector2i):
 	current_skill.set_cursor(cursorPosition)
-	current_skill.use_skill(grid_entity)
 	state = States.EXECUTING_STACK
+	var finished_skill = current_skill.skill_finished
+	current_skill.use_skill(grid_entity)
+	if current_skill.state == SkillStrategy.States.PLAYING_ANIMATION:
+		await finished_skill
 	_handle_stack_execution()
 
 

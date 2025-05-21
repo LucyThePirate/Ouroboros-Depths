@@ -15,6 +15,7 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 
 func use_skill(grid_entity: GridEntity) -> bool:
 	$Arrows.hide()
+	state = SkillStrategy.States.PLAYING_ANIMATION
 	print("Used skill ", name, " towards ", direction)
 	moved_self.emit()
 	for i in range(max_distance):
@@ -23,8 +24,11 @@ func use_skill(grid_entity: GridEntity) -> bool:
 		new_dash_VFX.emitting = true
 		add_child(new_dash_VFX)
 		new_dash_VFX.global_position = grid_entity.global_position
+		await get_tree().create_timer(0.025).timeout
 		if not grid_entity.move(direction):
 			break
+	skill_finished.emit()
+	state = SkillStrategy.States.IDLE
 	return false
 
 

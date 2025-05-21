@@ -1,6 +1,6 @@
 extends SkillStrategy
 
-var max_distance = 5
+var max_distance = 8
 
 @export var StarVFX: PackedScene
 
@@ -15,14 +15,20 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 
 func use_skill(grid_entity: GridEntity) -> bool:
 	$Arrows.hide()
+	state = SkillStrategy.States.PLAYING_ANIMATION
 	print("Used skill ", name, " towards ", direction)
-	moved_self.emit()
+	var new_star_VFX = StarVFX.instantiate()
+	add_child(new_star_VFX)
+	new_star_VFX.initialize(direction, grid_entity)
+	var grid_coords = grid_entity.floors.local_to_map(grid_entity.global_position) as Vector2i
 	for i in range(max_distance):
-		var new_dash_VFX = StarVFX.instantiate()
-		add_child(new_dash_VFX)
-		new_dash_VFX.global_position = grid_entity.global_position
-		if not grid_entity.move(direction):
+		new_star_VFX.position += Vector2(CELL_SIZE * direction)
+		await get_tree().create_timer(0.05).timeout
+		if grid_entity.is_obstructed(grid_coords + (direction * (i + 1)), false):
 			break
+	new_star_VFX.finish_flying()
+	skill_finished.emit()
+	state = SkillStrategy.States.IDLE
 	return false
 
 

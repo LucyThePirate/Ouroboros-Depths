@@ -7,6 +7,7 @@ signal requested_direction_input(requester)
 signal requested_cursor_input
 signal direction_set
 signal cursor_set
+signal skill_finished
 
 @export var icon: Sprite2D
 
@@ -24,7 +25,7 @@ var entity_positions: Dictionary
 var direction: Vector2i
 var cursor: Vector2i
 
-enum States { IDLE, AWAITING_DIRECTION, AWAITING_CURSOR }
+enum States { IDLE, AWAITING_DIRECTION, AWAITING_CURSOR, PLAYING_ANIMATION }
 var state = States.IDLE
 
 
@@ -39,6 +40,7 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 
 
 func use_skill(grid_entity: GridEntity) -> bool:
+	skill_finished.emit()
 	return false
 
 

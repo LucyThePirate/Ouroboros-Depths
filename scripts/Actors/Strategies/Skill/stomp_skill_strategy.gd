@@ -20,5 +20,5 @@ func use_skill(grid_entity: GridEntity) -> bool:
 				if entity_positions[checkingPosition] == grid_entity:
 					continue
 				entity_positions[checkingPosition]._on_hit(grid_entity)
-
+	skill_finished.emit()
 	return false

@@ -28,7 +28,7 @@ func use_skill(grid_entity: GridEntity) -> bool:
 	add_child(new_dash_VFX)
 	new_dash_VFX.global_position = grid_entity.global_position
 	grid_entity.warp(cursor)
-
+	skill_finished.emit()
 	return false
 
 
