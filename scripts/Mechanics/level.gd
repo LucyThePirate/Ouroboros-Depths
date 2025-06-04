@@ -17,6 +17,7 @@ func _ready() -> void:
 	for entity in get_tree().get_nodes_in_group("GridEntity"):
 		entity.opened_door.connect(_open_door)
 		entity.pushed_object.connect(_push_tile)
+		entity.spawn_tile.connect(_spawn_tile)
 	for entity in get_tree().get_nodes_in_group("TurnComponent"):
 		turn_queue.push_front(entity)
 		entity.turn_ended.connect(_entity_finished_turn)
@@ -73,6 +74,10 @@ func _push_tile(tile_coords, direction):
 			objects.get_cell_atlas_coords(tile_coords)
 		)
 	objects.set_cell(tile_coords, -1)
+
+
+func _spawn_tile(tile_coords):
+	floors.set_cell(tile_coords, 2, Vector2i(0, 1))
 
 
 func _is_obstructed(tile_coords) -> bool:

@@ -49,7 +49,7 @@ func _update_skill_visuals() -> void:
 func queue_skill(skill_number) -> bool:
 	if skills.size() >= skill_number + 1 and not is_full():
 		$Stack.show()
-		print(name, " queued skill: ", skills[skill_number].name)
+		#print(name, " queued skill: ", skills[skill_number].name)
 		stack.append(skills[skill_number])
 		_update_stack_visuals()
 		if is_full():
