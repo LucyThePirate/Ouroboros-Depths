@@ -23,6 +23,8 @@ uniform float pixelSize = 2.0;
 
 group_uniforms WaterReflects;
 
+
+
 void fragment(){
 	vec2 uv = UV;
 	uv *= pixelSize;
@@ -34,5 +36,5 @@ void fragment(){
 	+ distortionStrength * vec2(depth));
 	vec4 topLight = smoothstep(lightStart, lightEnd, depth) * topColor;
 	COLOR = screenColor * toneColor + topLight;
-	COLOR.a = 1.0;
+	COLOR.a = .7;
 }

@@ -112,8 +112,6 @@ grow_vertical = 2
 alignment = 1
 selecting_enabled = false
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_8yhkb")

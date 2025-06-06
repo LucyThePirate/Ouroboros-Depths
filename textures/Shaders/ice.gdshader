@@ -8,9 +8,9 @@ uniform sampler2D Tile;
 
 void fragment() {
 // Texture:2
-	vec4 ref = texture(SCREEN_TEXTURE, vec2(SCREEN_UV.x, 1.0 - SCREEN_UV.y - 0.13));
+	vec4 ref = texture(SCREEN_TEXTURE, vec2(SCREEN_UV.x, 1.0 - SCREEN_UV.y));
 	vec4 ice = texture(Tile, UV.xy);
 
 // Output:0
-	COLOR = ice/2.0 + ref/2.0;
+	COLOR = ice/1.5 + ref/1.0;
 }

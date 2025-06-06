@@ -1,6 +1,6 @@
 // From: https://godotshaders.com/shader/holographic-disc-pattern/
 
-shader_type spatial;
+shader_type canvas_item;
 render_mode unshaded;
 
 uniform float scale = 1.0;
@@ -54,7 +54,8 @@ float radial_gradient(vec2 uv, float target_angle) {
 void fragment() {
 	vec2 base_uv = UV;
 	if (screen_uv) {
-		float aspect = VIEWPORT_SIZE.y/VIEWPORT_SIZE.x;
+		
+		float aspect = SCREEN_PIXEL_SIZE.y/SCREEN_PIXEL_SIZE.x;
 		base_uv = vec2(SCREEN_UV.x, SCREEN_UV.y*aspect);
 	}
 	vec2 uv = base_uv * scale;
@@ -76,5 +77,8 @@ void fragment() {
 	hsv.r += shift * hue_shift_strength;
 	color = hsv2rgb(hsv);
 
-	ALBEDO = color;
+	//COLOR.b = color.b;
+	//COLOR.r = color.r;
+	//COLOR.g = color.g;
+	COLOR = vec4(color.r, color.g, color.b, 1);	
 }
