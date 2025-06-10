@@ -1,11 +1,11 @@
 extends Node2D
 
-class_name TextComponent
+class_name DamageNumberComponent
 
 signal finished_playing
 
 @export var display_text: RichTextLabel
-@onready var display_location = $CharacterBody2D as CharacterBody2D
+@export var display_location: CharacterBody2D
 
 const GRAVITY = 600.0
 const BOUNCINESS = 0.7
@@ -20,8 +20,10 @@ func _ready():
 
 
 func add_damage(amount: int):
-	$AnimationPlayer.play("Appear")
-	display_location.velocity += Vector2(randf_range(-SPREAD, SPREAD), -INITIAL_VELOCITY / 2.0)
+	$AnimationPlayer.play("MoreDamage")
+	$AnimationPlayer.seek(0)
+	display_location.position = Vector2(0, -40.0)
+	display_location.velocity = Vector2(randf_range(-SPREAD, SPREAD), -INITIAL_VELOCITY)
 	if amount <= 0:
 		return
 	damage_amount += amount
@@ -37,6 +39,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "Appear":
+	if anim_name == "Appear" or anim_name == "MoreDamage":
 		finished_playing.emit()
 		queue_free()

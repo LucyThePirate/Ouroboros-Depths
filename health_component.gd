@@ -5,10 +5,13 @@ signal healed
 signal died
 
 @export var max_health = 15
+@export var damage_number_scene: PackedScene
 
 @onready var health = max_health
 @onready var health_bar = $ProgressBar
 @onready var health_label = $Label
+
+var current_damage_number: DamageNumberComponent
 
 
 func _ready():
@@ -17,6 +20,14 @@ func _ready():
 
 func deal_damage(damage_amount = 1):
 	health -= damage_amount
+	if not is_instance_valid(current_damage_number):
+		current_damage_number = damage_number_scene.instantiate()
+		current_damage_number.add_damage(damage_amount)
+		current_damage_number.global_position = global_position
+		get_tree().current_scene.add_child(current_damage_number)
+	else:
+		current_damage_number.add_damage(damage_amount)
+		current_damage_number.global_position = global_position
 	if health <= 0:
 		died.emit()
 	else:
