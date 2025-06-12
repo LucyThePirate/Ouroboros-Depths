@@ -2,10 +2,12 @@ extends Node2D
 
 class_name TextComponent
 
-signal finished_playing
+signal text_submitted
+signal text_changed
+signal text_cancelled
 
-@export var display_text: RichTextLabel
-@onready var display_location = $CharacterBody2D as CharacterBody2D
+@onready var text = $Text as RichTextLabel
+@onready var text_editor = $LineEdit as LineEdit
 
 const GRAVITY = 600.0
 const BOUNCINESS = 0.7
@@ -16,27 +18,25 @@ var damage_amount = 0
 
 
 func _ready():
-	display_location.velocity = Vector2(randf_range(-SPREAD, SPREAD), -INITIAL_VELOCITY)
+	text.text = "[wave amp=50.0 freq=5.0 connected=1]...[/wave]"
+	text_editor.edit()
+	text_editor.keep_editing_on_text_submit = true
 
 
-func add_damage(amount: int):
-	$AnimationPlayer.play("Appear")
-	display_location.velocity += Vector2(randf_range(-SPREAD, SPREAD), -INITIAL_VELOCITY / 2.0)
-	if amount <= 0:
+func _on_line_edit_text_changed(new_text: String) -> void:
+	text.text = new_text
+	text_changed.emit()
+
+
+func _on_line_edit_text_submitted(new_text: String) -> void:
+	if new_text == "":
 		return
-	damage_amount += amount
-	display_text.text = "%s" % damage_amount
-
-
-func _physics_process(delta: float) -> void:
-	display_location.velocity.y += GRAVITY * delta
-	var collision = display_location.move_and_collide(display_location.velocity * delta)
-	if collision:
-		display_location.velocity = display_location.velocity.bounce(collision.get_normal())
-		display_location.velocity *= BOUNCINESS
+	text.text = new_text
+	$AnimationPlayer.play("float_away")
+	text_submitted.emit()
+	text_editor.release_focus()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "Appear":
-		finished_playing.emit()
+	if anim_name == "float_away":
 		queue_free()

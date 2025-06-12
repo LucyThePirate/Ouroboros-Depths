@@ -13,6 +13,7 @@ const INITIAL_VELOCITY = 200
 const SPREAD = 200
 
 var damage_amount = 0
+var base_font_size = 37
 
 
 func _ready():
@@ -23,11 +24,22 @@ func add_damage(amount: int):
 	$AnimationPlayer.play("MoreDamage")
 	$AnimationPlayer.seek(0)
 	display_location.position = Vector2(0, -40.0)
-	display_location.velocity = Vector2(randf_range(-SPREAD, SPREAD), -INITIAL_VELOCITY)
+	display_location.velocity.y += -INITIAL_VELOCITY / 2.0
 	if amount <= 0:
 		return
 	damage_amount += amount
-	display_text.text = "%s" % damage_amount
+	var damage_effect_percentage = clampi(damage_amount, 0, 10) / 10.0
+	var text_color = Color(1.0, 1.0 - damage_effect_percentage, 1.0 - damage_effect_percentage)
+	display_text.self_modulate = text_color
+	display_text.text = (
+		"[shake rate=%s level=%s][font_size=%s]%s[/font_size][/shake]"
+		% [
+			damage_effect_percentage * 20,
+			damage_effect_percentage * 50,
+			base_font_size + (base_font_size * damage_effect_percentage),
+			damage_amount
+		]
+	)
 
 
 func _physics_process(delta: float) -> void:

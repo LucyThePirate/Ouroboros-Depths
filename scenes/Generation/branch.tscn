@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc1yecsyjxrdr"]
+
+[ext_resource type="Script" uid="uid://cmm1msognp8ky" path="res://scripts/Generation/branch.gd" id="1_odb0c"]
+
+[node name="Branch" type="Node"]
+script = ExtResource("1_odb0c")
