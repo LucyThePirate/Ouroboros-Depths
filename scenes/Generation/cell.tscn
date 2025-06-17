@@ -996,11 +996,16 @@ pattern_3 = SubResource("TileMapPattern_ojjv0")
 pattern_4 = SubResource("TileMapPattern_lkcb0")
 
 [node name="Cell" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_44ypc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(2992, 1528)
+scale = Vector2(3.97837, -1.5527)
+zoom = Vector2(0.19, 0.195)
 
 [node name="Floors" type="TileMapLayer" parent="."]
+show_behind_parent = true
 z_index = -5
 y_sort_enabled = true
 texture_filter = 2
@@ -1008,11 +1013,13 @@ use_parent_material = true
 tile_set = SubResource("TileSet_qrcgv")
 
 [node name="Objects" type="TileMapLayer" parent="."]
+show_behind_parent = true
 y_sort_enabled = true
 use_parent_material = true
 tile_set = SubResource("TileSet_0xdhj")
 
 [node name="Walls" type="TileMapLayer" parent="."]
+show_behind_parent = true
 y_sort_enabled = true
 use_parent_material = true
 tile_set = SubResource("TileSet_0xdhj")
