@@ -5,7 +5,7 @@ var shockwave_radius = 3
 @export var StompVFX: PackedScene
 
 
-func use_skill(grid_entity: GridEntity) -> bool:
+func use_skill(grid_entity: GridEntity):
 	print("Used skill ", name, " towards ", direction)
 	entity_positions = grid_entity.entity_positions
 	var new_stomp_VFX = StompVFX.instantiate()
@@ -20,5 +20,4 @@ func use_skill(grid_entity: GridEntity) -> bool:
 				if entity_positions[checkingPosition] == grid_entity:
 					continue
 				entity_positions[checkingPosition]._on_hit(grid_entity)
-	skill_finished.emit()
-	return false
+	super(grid_entity)

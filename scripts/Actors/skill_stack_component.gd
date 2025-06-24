@@ -21,6 +21,7 @@ var current_skill: SkillStrategy
 enum States { IDLE, DEAD, EXECUTING_STACK, AWAITING_DIRECTIONAL_INPUT, AWAITING_CURSOR_INPUT }
 var state = States.IDLE
 var grid_entity: GridEntity
+var turn_component: TurnComponent
 
 
 func _ready() -> void:
@@ -28,26 +29,15 @@ func _ready() -> void:
 	_update_skill_visuals()
 
 
-func initialize(grid_entity_parent: GridEntity, is_player: bool):
+func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_component: TurnComponent):
 	grid_entity = grid_entity_parent
-	if is_player:
-		$CanvasLayer.show()
-
-
-func _update_stack_visuals() -> void:
-	for texture_panel in stack_icon_holder.get_children():
-		texture_panel.texture = null
-	for stack_item in range(stack.size()):
-		stack_icon_holder.get_child(stack_item).texture = stack[stack_item].icon.texture
-
-
-func _update_skill_visuals() -> void:
-	for skill in range(skills.size()):
-		skill_icon_holder.get_child(skill).texture = skills[skill].icon.texture
+	$CanvasLayer.visible = is_player
+	turn_component = new_turn_component
+	turn_component.turn_ended.connect(_update_turn_cooldown)
 
 
 func queue_skill(skill_number) -> bool:
-	if skills.size() >= skill_number + 1 and not is_full():
+	if skills.size() >= skill_number + 1 and not is_full() and skills[skill_number].can_use_skill():
 		$Stack.show()
 		#print(name, " queued skill: ", skills[skill_number].name)
 		stack.append(skills[skill_number])
@@ -55,7 +45,7 @@ func queue_skill(skill_number) -> bool:
 		if is_full():
 			stack_full.emit()
 		return true
-	$Error.play()
+		#$Error.play()
 	return false
 
 
@@ -78,6 +68,7 @@ func _handle_stack_execution():
 	if stack.is_empty():
 		state = States.IDLE
 		emptied_stack.emit()
+		_update_cooldown_visuals()
 		return
 	current_skill = stack.pop_front() as SkillStrategy
 	$Stack/MarginContainer/CenterContainer/HBoxContainer/TextureRect/ColorRect.show()
@@ -127,3 +118,36 @@ func accept_cursor():
 func _on_emptied_stack() -> void:
 	$Stack.hide()
 	$Stack/MarginContainer/CenterContainer/HBoxContainer/TextureRect/ColorRect.hide()
+
+
+func _update_stack_visuals() -> void:
+	for texture_panel in stack_icon_holder.get_children():
+		texture_panel.texture = null
+	for stack_item in range(stack.size()):
+		stack_icon_holder.get_child(stack_item).texture = stack[stack_item].icon.texture
+
+
+func _update_skill_visuals() -> void:
+	for skill in range(skills.size()):
+		skill_icon_holder.get_child(skill).texture = skills[skill].icon.texture
+
+
+func _update_turn_cooldown():
+	for skill in range(skills.size()):
+		skills[skill].decrement_turn_cooldown()
+		_update_cooldown_visuals()
+
+
+func _update_cooldown_visuals():
+	for skill in range(skills.size()):
+		var percentage = float(skills[skill].current_cooldown) / float(skills[skill].cooldown_turns)
+		var progress_bar = (
+			get_node(
+				(
+					"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect%s/ProgressBar"
+					% [skill + 1]
+				)
+			)
+			as ProgressBar
+		)
+		progress_bar.value = percentage

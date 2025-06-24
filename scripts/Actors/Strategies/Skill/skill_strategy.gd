@@ -10,6 +10,10 @@ signal cursor_set
 signal skill_finished
 
 @export var icon: Sprite2D
+@export var cooldown_turns := 5
+@onready var current_cooldown := 0
+#@export var max_per_stack := 1
+#@onready var current_in_stack := 0
 
 const CELL_SIZE = 100
 var initialized = false
@@ -39,9 +43,15 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 	return true
 
 
-func use_skill(grid_entity: GridEntity) -> bool:
+func use_skill(grid_entity: GridEntity):
 	skill_finished.emit()
-	return false
+	current_cooldown = cooldown_turns
+
+
+func can_use_skill() -> bool:
+	if current_cooldown > 0:
+		return false
+	return true
 
 
 func get_valid_moves() -> Array:
@@ -68,3 +78,7 @@ func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
 
 func set_cursor(newCursor: Vector2i):
 	cursor = newCursor
+
+
+func decrement_turn_cooldown():
+	current_cooldown = maxi(0, current_cooldown - 1)

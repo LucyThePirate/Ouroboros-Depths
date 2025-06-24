@@ -1,7 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd85kao70uoy4"]
+[gd_scene load_steps=6 format=3 uid="uid://bd85kao70uoy4"]
 
 [ext_resource type="Script" uid="uid://b6uhrd8rdimmy" path="res://scripts/Actors/skill_stack_component.gd" id="1_rerjn"]
 [ext_resource type="AudioStream" uid="uid://d3dload3sw6cq" path="res://audio/SFX/Misc/erro.mp3" id="2_rerjn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6r18"]
+bg_color = Color(0, 0, 0, 0.529412)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qowul"]
+bg_color = Color(1, 1, 1, 0.556863)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qowul"]
 random_pitch = 1.1
@@ -71,7 +78,6 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="AvailableSkills" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -103,12 +109,12 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="TextureRect1" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect1"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -119,20 +125,73 @@ grow_vertical = 2
 scale = Vector2(1.00272, 1.00272)
 color = Color(0.862745, 0, 0.219608, 0.298039)
 
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
+max_value = 1.0
+fill_mode = 3
+show_percentage = false
+
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
+max_value = 1.0
+fill_mode = 3
+show_percentage = false
 
 [node name="TextureRect3" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
+max_value = 1.0
+fill_mode = 3
+show_percentage = false
+
 [node name="TextureRect4" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.882122, 0.979893)
+theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
+max_value = 1.0
+fill_mode = 3
+show_percentage = false
 
 [node name="Error" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_qowul")

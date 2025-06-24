@@ -19,7 +19,7 @@ func _ready() -> void:
 	grid_entity.global_position = global_position
 	display.global_position = grid_entity.global_position
 	global_position = grid_entity.position
-	stack_component.initialize(grid_entity, false)
+	stack_component.initialize(grid_entity, false, turn_component)
 	random_skill_planner.set_stack_component(stack_component)
 
 

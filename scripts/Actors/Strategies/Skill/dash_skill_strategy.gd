@@ -13,7 +13,7 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 	return false
 
 
-func use_skill(grid_entity: GridEntity) -> bool:
+func use_skill(grid_entity: GridEntity):
 	$Arrows.hide()
 	state = SkillStrategy.States.PLAYING_ANIMATION
 	print("Used skill ", name, " towards ", direction)
@@ -27,9 +27,8 @@ func use_skill(grid_entity: GridEntity) -> bool:
 		await get_tree().create_timer(0.025).timeout
 		if not grid_entity.move(direction):
 			break
-	skill_finished.emit()
 	state = SkillStrategy.States.IDLE
-	return false
+	super(grid_entity)
 
 
 func get_valid_moves() -> Array:

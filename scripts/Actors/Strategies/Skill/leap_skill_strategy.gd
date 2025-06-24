@@ -19,7 +19,7 @@ func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
 	$Cursor.global_position = grid_entity.floors.map_to_local(cursor)
 
 
-func use_skill(grid_entity: GridEntity) -> bool:
+func use_skill(grid_entity: GridEntity):
 	$Cursor.hide()
 	print("Used skill ", name, " towards ", cursor)
 	moved_self.emit()
@@ -28,8 +28,7 @@ func use_skill(grid_entity: GridEntity) -> bool:
 	add_child(new_dash_VFX)
 	new_dash_VFX.global_position = grid_entity.global_position
 	grid_entity.warp(cursor)
-	skill_finished.emit()
-	return false
+	super(grid_entity)
 
 
 func get_valid_moves() -> Array:

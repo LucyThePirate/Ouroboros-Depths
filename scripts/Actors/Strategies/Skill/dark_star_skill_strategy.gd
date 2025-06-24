@@ -13,7 +13,7 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 	return false
 
 
-func use_skill(grid_entity: GridEntity) -> bool:
+func use_skill(grid_entity: GridEntity):
 	$Arrows.hide()
 	state = SkillStrategy.States.PLAYING_ANIMATION
 	#print("Used skill ", name, " towards ", direction)
@@ -21,6 +21,7 @@ func use_skill(grid_entity: GridEntity) -> bool:
 	add_child(new_star_VFX)
 	new_star_VFX.initialize(direction, grid_entity)
 	var grid_coords = grid_entity.floors.local_to_map(grid_entity.global_position) as Vector2i
+	grid_entity.move(-direction)
 	for i in range(max_distance):
 		grid_coords += direction
 		new_star_VFX.position += Vector2(CELL_SIZE * direction)
@@ -29,9 +30,8 @@ func use_skill(grid_entity: GridEntity) -> bool:
 			break
 	explode_star(grid_coords, grid_entity, direction)
 	new_star_VFX.finish_flying()
-	skill_finished.emit()
 	state = SkillStrategy.States.IDLE
-	return false
+	super(grid_entity)
 
 
 func explode_star(grid_coords, grid_entity, direction):

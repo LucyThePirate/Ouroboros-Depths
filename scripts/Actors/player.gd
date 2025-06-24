@@ -24,7 +24,7 @@ func _ready() -> void:
 	display.global_position = grid_entity.global_position
 	global_position = grid_entity.position
 	visual.initialize(grid_entity)
-	stack_component.initialize(grid_entity, true)
+	stack_component.initialize(grid_entity, true, turn_component)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
