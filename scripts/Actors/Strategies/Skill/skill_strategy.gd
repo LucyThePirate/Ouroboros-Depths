@@ -12,8 +12,8 @@ signal skill_finished
 @export var icon: Sprite2D
 @export var cooldown_turns := 5
 @onready var current_cooldown := 0
-#@export var max_per_stack := 1
-#@onready var current_in_stack := 0
+@export var max_per_stack := 1
+@onready var current_in_stack := 0
 
 const CELL_SIZE = 100
 var initialized = false
@@ -44,12 +44,13 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 
 
 func use_skill(grid_entity: GridEntity):
-	skill_finished.emit()
 	current_cooldown = cooldown_turns
+	current_in_stack = 0
+	skill_finished.emit()
 
 
 func can_use_skill() -> bool:
-	if current_cooldown > 0:
+	if current_cooldown > 0 or current_in_stack >= max_per_stack:
 		return false
 	return true
 
@@ -82,3 +83,11 @@ func set_cursor(newCursor: Vector2i):
 
 func decrement_turn_cooldown():
 	current_cooldown = maxi(0, current_cooldown - 1)
+
+
+func increment_in_stack_counter() -> bool:
+	if current_in_stack >= max_per_stack:
+		return false
+	else:
+		current_in_stack += 1
+		return true

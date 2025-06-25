@@ -48,9 +48,9 @@ func take_turn():
 
 
 func move_randomly():
-	if randf() > 0.5:
-		random_skill_planner.perform_plan()
-		return
+	#if randf() > 0.5:
+	#random_skill_planner.perform_plan()
+	#return
 	var moveDirection = grid_entity.get_valid_moves().pick_random()
 	if moveDirection:
 		move_in_direction(moveDirection)
@@ -67,7 +67,7 @@ func move_in_direction(moveDirection):
 	displayLerpTime = 0.0
 
 
-func move_towards_entity(entity: GridEntity):
+func get_direction_towards(entity: GridEntity) -> Vector2i:
 	var validMoves = grid_entity.get_valid_moves()
 	if validMoves:
 		# Pick a move pointing towards target, otherwise pick a random move.
@@ -83,15 +83,22 @@ func move_towards_entity(entity: GridEntity):
 			movesTowardsEntity.append(Vector2i(0, directionToEntity.y))
 
 		if movesTowardsEntity:
-			move_in_direction(movesTowardsEntity.pick_random())
+			return movesTowardsEntity.pick_random()
 		else:
-			move_in_direction(validMoves.pick_random())
+			return validMoves.pick_random()
+	return Vector2i.ZERO
 
 
 func pursue_entity(entity: GridEntity):
-	var attack_successful = grid_entity.try_attacking(entity)
-	if not attack_successful:
-		move_towards_entity(entity)
+	#var attack_successful = grid_entity.try_attacking(entity)
+	##if randf() > 0.5:
+#
+	##return
+	#if not attack_successful:
+	if randf() > 0.5:
+		move_in_direction(get_direction_towards(entity))
+	else:
+		random_skill_planner.perform_plan(entity)
 
 
 func _on_grid_entity_grid_entity_initialized() -> void:
@@ -105,9 +112,19 @@ func _on_grid_entity_died() -> void:
 	queue_free()
 
 
-func _on_grid_entity_hurt(attacker) -> void:
+func _on_grid_entity_hurt(attacker: GridEntity) -> void:
 	angry_at = attacker
+	angry_at.died.connect(_on_angry_at_died)
+
+
+func _on_angry_at_died():
+	angry_at = null
 
 
 func _on_turn_component_turn_started() -> void:
 	take_turn()
+
+
+func _on_base_random_skill_planner_awaited_directional_input() -> void:
+	if angry_at:
+		random_skill_planner.set_direction(get_direction_towards(angry_at))

@@ -38,6 +38,8 @@ func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_compon
 
 func queue_skill(skill_number) -> bool:
 	if skills.size() >= skill_number + 1 and not is_full() and skills[skill_number].can_use_skill():
+		skills[skill_number].increment_in_stack_counter()
+		_update_cooldown_visuals()
 		$Stack.show()
 		#print(name, " queued skill: ", skills[skill_number].name)
 		stack.append(skills[skill_number])
@@ -135,12 +137,11 @@ func _update_skill_visuals() -> void:
 func _update_turn_cooldown():
 	for skill in range(skills.size()):
 		skills[skill].decrement_turn_cooldown()
-		_update_cooldown_visuals()
+	_update_cooldown_visuals()
 
 
 func _update_cooldown_visuals():
 	for skill in range(skills.size()):
-		var percentage = float(skills[skill].current_cooldown) / float(skills[skill].cooldown_turns)
 		var progress_bar = (
 			get_node(
 				(
@@ -150,4 +151,14 @@ func _update_cooldown_visuals():
 			)
 			as ProgressBar
 		)
+		var percentage: float
+		var new_style_box = progress_bar.get_theme_stylebox("fill").duplicate() as StyleBoxFlat
+		if skills[skill].current_in_stack > 0:
+			percentage = float(skills[skill].current_in_stack) / float(skills[skill].max_per_stack)
+			new_style_box.bg_color = Color(1, 1, 1, 0.5)
+			progress_bar.add_theme_stylebox_override("fill", new_style_box)
+		else:
+			percentage = float(skills[skill].current_cooldown) / float(skills[skill].cooldown_turns)
+			new_style_box.bg_color = Color(1, 0, 0, 0.5)
+			progress_bar.add_theme_stylebox_override("fill", new_style_box)
 		progress_bar.value = percentage

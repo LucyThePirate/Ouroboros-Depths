@@ -13,6 +13,7 @@ region = Rect2(304, 8, 144, 136)
 script = ExtResource("1_sn4vy")
 StarVFX = ExtResource("2_e3lg0")
 icon = NodePath("Sprite2D")
+max_per_stack = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

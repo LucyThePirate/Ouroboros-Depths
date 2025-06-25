@@ -2,6 +2,9 @@ extends Node2D
 
 class_name PlannerStrategy
 
+signal awaited_directional_input
+signal set_directional_input
+
 var stack_component: SkillStackComponent
 
 
@@ -18,7 +21,7 @@ func queue_random_skill():
 	stack_component.queue_skill(random_skill)
 
 
-func perform_plan():
+func perform_plan(entity: GridEntity):
 	if stack_component.is_full():
 		stack_component.execute_stack()
 	else:
@@ -26,10 +29,14 @@ func perform_plan():
 
 
 func _on_requested_directional_input():
-	var moveDirection = (
-		[Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1, 0)].pick_random()
-	)
-	stack_component.set_direction(moveDirection)
+	awaited_directional_input.emit()
+	#var moveDirection = (
+	#[Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1, 0)].pick_random()
+	#)
+
+
+func set_direction(move_direction: Vector2i):
+	stack_component.set_direction(move_direction)
 
 
 func _on_requested_cursor_input():

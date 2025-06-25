@@ -184,7 +184,7 @@ func try_attacking(entity):
 
 
 func hit(entity):
-	if entity.has_method("_on_hit"):
+	if entity and entity.has_method("_on_hit"):
 		entity._on_hit(self)
 
 

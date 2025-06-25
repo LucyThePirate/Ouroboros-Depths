@@ -82,6 +82,7 @@ joint_data/0/bone2d_node = NodePath("PostBase/PostTop/Gourd")
 joint_data/0/override_defaults = false
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_fcb6m"]
+resource_local_to_scene = true
 enabled = true
 modification_count = 6
 modifications/0 = SubResource("SkeletonModification2DJiggle_fcb6m")

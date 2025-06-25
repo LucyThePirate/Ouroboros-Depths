@@ -25,6 +25,7 @@ region = Rect2(151.277, 20.7237, 148.762, 114.434)
 script = ExtResource("1_swfph")
 StompVFX = ExtResource("2_vm8f4")
 icon = NodePath("Sprite2D")
+max_per_stack = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
