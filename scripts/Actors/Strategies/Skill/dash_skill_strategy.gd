@@ -14,9 +14,17 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 
 
 func use_skill(grid_entity: GridEntity):
+	entity_positions = grid_entity.entity_positions
 	$Arrows.hide()
 	state = SkillStrategy.States.PLAYING_ANIMATION
-	print("Used skill ", name, " towards ", direction)
+	print(
+		"Used skill ",
+		name,
+		" towards ",
+		direction,
+		" from: ",
+		grid_entity.floors.local_to_map(grid_entity.global_position)
+	)
 	moved_self.emit()
 	for i in range(max_distance):
 		var new_dash_VFX = DashVFX.instantiate() as GPUParticles2D
@@ -25,7 +33,15 @@ func use_skill(grid_entity: GridEntity):
 		add_child(new_dash_VFX)
 		new_dash_VFX.global_position = grid_entity.global_position
 		await get_tree().create_timer(0.025).timeout
-		if not grid_entity.move(direction):
+		var successfully_moved = grid_entity.move(direction)
+
+		var check_coords = grid_entity.floors.local_to_map(grid_entity.global_position) + direction
+		if entity_positions.has(check_coords):
+			var target = entity_positions[check_coords]
+			target.move(direction)
+			target._on_hit(grid_entity)
+			break
+		if not successfully_moved:
 			break
 	state = SkillStrategy.States.IDLE
 	super(grid_entity)

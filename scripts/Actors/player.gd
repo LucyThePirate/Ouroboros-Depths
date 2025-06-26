@@ -1,7 +1,5 @@
 extends Node2D
 
-signal turn_ended
-
 @export var text_component: PackedScene
 
 @onready var current_text: TextComponent
@@ -11,6 +9,7 @@ signal turn_ended
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $TurnComponent
 @onready var stack_component = $GridEntity/SkillStackComponent
+@onready var health_component = $GridEntity/HealthComponent
 
 var initialized = false
 
@@ -25,6 +24,7 @@ func _ready() -> void:
 	global_position = grid_entity.position
 	visual.initialize(grid_entity)
 	stack_component.initialize(grid_entity, true, turn_component)
+	turn_component.turn_ended.connect(health_component.turn_ended)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

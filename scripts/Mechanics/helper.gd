@@ -25,15 +25,18 @@ func _process(_delta):
 		toggle_slowdown()
 	if Input.is_action_just_pressed("ZoomIn"):
 		var camera = get_viewport().get_camera_2d()
-		camera.zoom *= 1.1
-		camera.zoom = camera.zoom.clamp(MIN_CAMERA_ZOOM, MAX_CAMERA_ZOOM)
+		if camera:
+			camera.zoom *= 1.1
+			camera.zoom = camera.zoom.clamp(MIN_CAMERA_ZOOM, MAX_CAMERA_ZOOM)
 	if Input.is_action_just_pressed("ZoomOut"):
 		var camera = get_viewport().get_camera_2d()
-		camera.zoom *= 0.9
-		camera.zoom = camera.zoom.clamp(MIN_CAMERA_ZOOM, MAX_CAMERA_ZOOM)
+		if camera:
+			camera.zoom *= 0.9
+			camera.zoom = camera.zoom.clamp(MIN_CAMERA_ZOOM, MAX_CAMERA_ZOOM)
 	if Input.is_action_pressed("OffsetCamera"):
 		var camera = get_viewport().get_camera_2d()
-		camera.offset += Input.get_last_mouse_velocity() * _delta
+		if camera:
+			camera.offset += Input.get_last_mouse_velocity() * _delta
 
 
 func toggle_slowdown():

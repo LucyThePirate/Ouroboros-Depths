@@ -41,6 +41,10 @@ func heal(heal_amount):
 	_update_health_bar()
 
 
+func turn_ended():
+	current_damage_number = null
+
+
 func _update_health_bar():
 	health_bar.max_value = max_health
 	health_bar.value = health

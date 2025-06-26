@@ -755,5 +755,3 @@ offset_top = -88.9161
 offset_right = 119.404
 offset_bottom = 208.084
 texture = ExtResource("16_ve283")
-
-[connection signal="turn_ended" from="Player" to="." method="_on_player_turn_ended"]

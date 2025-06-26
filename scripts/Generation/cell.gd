@@ -111,6 +111,7 @@ func _draw():
 							objects.set_cell(
 								tile_coordinate, door_horizontal_tile[0], door_horizontal_tile[1]
 							)
+	var placed_stairs = false
 	for leaf in root_node.get_leaves():
 		#print("leaf path count:", leaf.path_intersection_count)
 		for x in range(leaf.size.x):
@@ -118,6 +119,14 @@ func _draw():
 				var tile_coordinate = Vector2i(x + leaf.position.x, y + leaf.position.y)
 				if leaf.path_intersection_count != 1:
 					floors.set_cell(tile_coordinate, stone_floor_tile[0], stone_floor_tile[1])
+		if leaf.path_intersection_count == 1 and not placed_stairs:
+			var tile_coordinate = Vector2i(
+				randi_range(1, leaf.size.x - 2) + leaf.position.x,
+				randi_range(1, leaf.size.y - 2) + leaf.position.y
+			)
+			floors.set_cell(tile_coordinate, stairs_down_tile[0], stairs_down_tile[1])
+			walls.set_cell(tile_coordinate, -1)
+			placed_stairs = true
 	floors.set_cell(root_node.get_center(), stairs_up_tile[0], stairs_up_tile[1])
 	_initialize_entities()
 

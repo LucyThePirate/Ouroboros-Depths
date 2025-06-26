@@ -6,6 +6,7 @@ extends Node2D
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $TurnComponent
 @onready var stack_component = $GridEntity/SkillStackComponent
+@onready var health_component = $GridEntity/HealthComponent
 @onready var random_skill_planner = $BaseRandomSkillPlanner
 
 var initialized = false
@@ -21,6 +22,7 @@ func _ready() -> void:
 	global_position = grid_entity.position
 	stack_component.initialize(grid_entity, false, turn_component)
 	random_skill_planner.set_stack_component(stack_component)
+	turn_component.turn_ended.connect(health_component.turn_ended)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -67,12 +69,15 @@ func move_in_direction(moveDirection):
 	displayLerpTime = 0.0
 
 
-func get_direction_towards(entity: GridEntity) -> Vector2i:
+func get_direction_towards(entity: GridEntity, allow_diagonals := false) -> Vector2i:
 	var validMoves = grid_entity.get_valid_moves()
 	if validMoves:
 		# Pick a move pointing towards target, otherwise pick a random move.
 		var directionToEntity = (entity.global_position - grid_entity.global_position).normalized()
 		directionToEntity = Vector2i(round(directionToEntity.x), round(directionToEntity.y))
+
+		if allow_diagonals:
+			return directionToEntity
 
 		var movesTowardsEntity = []
 		if directionToEntity in validMoves:
@@ -132,4 +137,4 @@ func _on_base_random_skill_planner_awaited_directional_input() -> void:
 
 func _on_base_random_skill_planner_awaited_cursor_input() -> void:
 	if angry_at:
-		random_skill_planner.set_cursor(get_direction_towards(angry_at))
+		random_skill_planner.set_cursor(get_direction_towards(angry_at, true))
