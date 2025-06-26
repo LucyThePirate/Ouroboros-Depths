@@ -2,6 +2,8 @@ extends Node
 
 var slowdown_enabled: bool = true
 var reload_count: int = 0
+const MIN_CAMERA_ZOOM := Vector2(0.1, 0.1)
+const MAX_CAMERA_ZOOM := Vector2(5, 5)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +23,17 @@ func _process(_delta):
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("DebugToggleSlowdown"):
 		toggle_slowdown()
+	if Input.is_action_just_pressed("ZoomIn"):
+		var camera = get_viewport().get_camera_2d()
+		camera.zoom *= 1.1
+		camera.zoom = camera.zoom.clamp(MIN_CAMERA_ZOOM, MAX_CAMERA_ZOOM)
+	if Input.is_action_just_pressed("ZoomOut"):
+		var camera = get_viewport().get_camera_2d()
+		camera.zoom *= 0.9
+		camera.zoom = camera.zoom.clamp(MIN_CAMERA_ZOOM, MAX_CAMERA_ZOOM)
+	if Input.is_action_pressed("OffsetCamera"):
+		var camera = get_viewport().get_camera_2d()
+		camera.offset += Input.get_last_mouse_velocity() * _delta
 
 
 func toggle_slowdown():

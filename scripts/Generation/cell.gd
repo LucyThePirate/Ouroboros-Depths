@@ -15,6 +15,8 @@ var tile_size: int = 100
 @onready var stone_floor_tile := [2, Vector2i(0, 1)]
 @onready var door_horizontal_tile := [2, Vector2i(1, 2)]
 @onready var door_vertical_tile := [2, Vector2i(2, 2)]
+@onready var stairs_up_tile := [2, Vector2i(0, 2)]
+@onready var stairs_down_tile := [2, Vector2i(0, 3)]
 
 @onready var turn_queue: Array[TurnComponent]
 @onready var entity_positions = {}
@@ -116,6 +118,7 @@ func _draw():
 				var tile_coordinate = Vector2i(x + leaf.position.x, y + leaf.position.y)
 				if leaf.path_intersection_count != 1:
 					floors.set_cell(tile_coordinate, stone_floor_tile[0], stone_floor_tile[1])
+	floors.set_cell(root_node.get_center(), stairs_up_tile[0], stairs_up_tile[1])
 	_initialize_entities()
 
 

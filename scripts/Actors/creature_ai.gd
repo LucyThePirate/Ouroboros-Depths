@@ -128,3 +128,8 @@ func _on_turn_component_turn_started() -> void:
 func _on_base_random_skill_planner_awaited_directional_input() -> void:
 	if angry_at:
 		random_skill_planner.set_direction(get_direction_towards(angry_at))
+
+
+func _on_base_random_skill_planner_awaited_cursor_input() -> void:
+	if angry_at:
+		random_skill_planner.set_cursor(get_direction_towards(angry_at))

@@ -3,7 +3,7 @@ extends Node2D
 class_name PlannerStrategy
 
 signal awaited_directional_input
-signal set_directional_input
+signal awaited_cursor_input
 
 var stack_component: SkillStackComponent
 
@@ -40,7 +40,10 @@ func set_direction(move_direction: Vector2i):
 
 
 func _on_requested_cursor_input():
-	#stack_component.set_cursor()
-	var moveDirection = Vector2i(randi_range(-3, 3), randi_range(-3, 3))
-	stack_component.move_cursor(moveDirection)
+	awaited_cursor_input.emit()
+
+
+func set_cursor(move_direction: Vector2i):
+	move_direction *= Vector2i(randi_range(0, 3), randi_range(0, 3))
+	stack_component.move_cursor(move_direction)
 	stack_component.accept_cursor()
