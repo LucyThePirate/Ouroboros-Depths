@@ -11,8 +11,17 @@ var tile_size: int = 100
 @onready var objects = $Objects as TileMapLayer
 @onready var path_tile := [3, Vector2i(1, 3)]
 @onready var room_floor_tile := [3, Vector2i(0, 3)]
+@onready var glass_wall_tile := [2, Vector2i(3, 0)]
 @onready var stone_wall_tile := [2, Vector2i(1, 0)]
+@onready var boulder_object_tile := [2, Vector2i(3, 2)]
+@onready var tall_tree_wall_tile := [3, Vector2i(3, 2)]
+@onready var small_tree_wall_tile := [3, Vector2i(2, 3)]
+@onready var clover_decor_tile := [3, Vector2i(3, 1)]
+@onready var grass_floor_tile := [3, Vector2i(1, 3)]
 @onready var stone_floor_tile := [2, Vector2i(0, 1)]
+@onready var water_floor_tile := [3, Vector2i(0, 0)]
+@onready var lilly_decor_tile := [3, Vector2i(3, 0)]
+@onready var ice_floor_tile := [3, Vector2i(2, 1)]
 @onready var door_horizontal_tile := [2, Vector2i(1, 2)]
 @onready var door_vertical_tile := [2, Vector2i(2, 2)]
 @onready var stairs_up_tile := [2, Vector2i(0, 2)]
@@ -23,11 +32,18 @@ var tile_size: int = 100
 var ready_for_next_turn = true
 var turn_counter = 0
 var paths: Array = []
+var noise = FastNoiseLite.new()
+var rng = RandomNumberGenerator.new()
 
 
 func _ready():
+	noise.seed = rng.get_seed()
+	noise.fractal_octaves = 2
+	noise.fractal_lacunarity = 1.575
+	noise.frequency = 0.05
+	noise.noise_type = 3
 	root_node = Branch.new(Vector2i(0, 0), Vector2i(60, 30))
-	root_node.split(4, paths)
+	root_node.split(3, paths)
 	queue_redraw()
 
 
@@ -44,7 +60,6 @@ func _initialize_entities():
 
 
 func _draw():
-	var rng = RandomNumberGenerator.new()
 	spawn_entity(root_node.get_center(), player_scene)
 
 	for leaf in root_node.get_leaves():
@@ -81,7 +96,6 @@ func _draw():
 				# horizontal
 				for i in range(path["right"].x - path["left"].x):
 					var tile_coordinate = Vector2i(path["left"].x + i, path["left"].y)
-					floors.set_cell(tile_coordinate, path_tile[0], path_tile[1])
 					if walls.get_cell_tile_data(tile_coordinate):
 						floors.set_cell(tile_coordinate, room_floor_tile[0], room_floor_tile[1])
 						walls.set_cell(tile_coordinate, -1)
@@ -98,7 +112,6 @@ func _draw():
 				# vertical
 				for i in range(path["right"].y - path["left"].y):
 					var tile_coordinate = Vector2i(path["left"].x, path["left"].y + i)
-					floors.set_cell(tile_coordinate, 3, Vector2i(2, 1))
 					if walls.get_cell_tile_data(tile_coordinate):
 						floors.set_cell(tile_coordinate, room_floor_tile[0], room_floor_tile[1])
 						walls.set_cell(tile_coordinate, -1)
@@ -117,16 +130,81 @@ func _draw():
 		for x in range(leaf.size.x):
 			for y in range(leaf.size.y):
 				var tile_coordinate = Vector2i(x + leaf.position.x, y + leaf.position.y)
-				if leaf.path_intersection_count != 1:
-					floors.set_cell(tile_coordinate, stone_floor_tile[0], stone_floor_tile[1])
-		if leaf.path_intersection_count == 1 and not placed_stairs:
-			var tile_coordinate = Vector2i(
-				randi_range(1, leaf.size.x - 2) + leaf.position.x,
-				randi_range(1, leaf.size.y - 2) + leaf.position.y
-			)
-			floors.set_cell(tile_coordinate, stairs_down_tile[0], stairs_down_tile[1])
-			walls.set_cell(tile_coordinate, -1)
-			placed_stairs = true
+				if leaf.path_intersection_count != 1:  # Place nature tiles
+					var random_tile = noise.get_noise_2dv(tile_coordinate)
+					walls.set_cell(tile_coordinate, -1)
+					match true:
+						_ when random_tile >= 0.5:
+							objects.set_cell(
+								tile_coordinate, boulder_object_tile[0], boulder_object_tile[1]
+							)
+							floors.set_cell(
+								tile_coordinate, stone_floor_tile[0], stone_floor_tile[1]
+							)
+						_ when random_tile >= 0.1 && random_tile < 0.4:
+							floors.set_cell(
+								tile_coordinate, grass_floor_tile[0], grass_floor_tile[1]
+							)
+							if rng.randf() > 0.9:
+								walls.set_cell(
+									tile_coordinate,
+									small_tree_wall_tile[0],
+									small_tree_wall_tile[1]
+								)
+							elif rng.randf() > 0.7:
+								walls.set_cell(
+									tile_coordinate, tall_tree_wall_tile[0], tall_tree_wall_tile[1]
+								)
+
+							objects.set_cell(
+								tile_coordinate, clover_decor_tile[0], clover_decor_tile[1]
+							)
+						_ when random_tile >= 0 && random_tile < 0.1:
+							floors.set_cell(
+								tile_coordinate, grass_floor_tile[0], grass_floor_tile[1]
+							)
+							objects.set_cell(
+								tile_coordinate, clover_decor_tile[0], clover_decor_tile[1]
+							)
+						_ when random_tile < 0 && random_tile > -0.1:
+							floors.set_cell(
+								tile_coordinate, grass_floor_tile[0], grass_floor_tile[1]
+							)
+						_ when random_tile <= -0.1 && random_tile > -0.15:
+							floors.set_cell(
+								tile_coordinate, stone_floor_tile[0], stone_floor_tile[1]
+							)
+						_ when random_tile <= -0.15:
+							floors.set_cell(
+								tile_coordinate, water_floor_tile[0], water_floor_tile[1]
+							)
+						_ when random_tile <= -0.3 && random_tile > -0.1:
+							floors.set_cell(
+								tile_coordinate, water_floor_tile[0], water_floor_tile[1]
+							)
+						_ when random_tile <= -0.45 && random_tile > -0.3:
+							objects.set_cell(
+								tile_coordinate, lilly_decor_tile[0], lilly_decor_tile[1]
+							)
+							floors.set_cell(
+								tile_coordinate, water_floor_tile[0], water_floor_tile[1]
+							)
+						_:
+							floors.set_cell(
+								tile_coordinate, stone_floor_tile[0], stone_floor_tile[1]
+							)
+				if leaf.path_intersection_count == 1:
+					var random_tile = noise.get_noise_2dv(tile_coordinate)
+					if walls.get_cell_tile_data(tile_coordinate) and random_tile < -0.15:
+						walls.set_cell(tile_coordinate, glass_wall_tile[0], glass_wall_tile[1])
+			if leaf.path_intersection_count == 1 and not placed_stairs:
+				var tile_coordinate = Vector2i(
+					randi_range(1, leaf.size.x - 2) + leaf.position.x,
+					randi_range(1, leaf.size.y - 2) + leaf.position.y
+				)
+				floors.set_cell(tile_coordinate, stairs_down_tile[0], stairs_down_tile[1])
+				walls.set_cell(tile_coordinate, -1)
+				placed_stairs = true
 	floors.set_cell(root_node.get_center(), stairs_up_tile[0], stairs_up_tile[1])
 	_initialize_entities()
 

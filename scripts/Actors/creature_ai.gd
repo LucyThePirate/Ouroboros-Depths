@@ -34,7 +34,6 @@ func _process(delta: float) -> void:
 	display.global_position = display.global_position.lerp(
 		grid_entity.global_position, min(1, displayLerpTime)
 	)
-	#visual.global_position = visual.global_position.lerp(display.global_position, min(1, displayLerpTime))
 	visual.global_position = display.global_position
 
 
@@ -118,8 +117,19 @@ func _on_grid_entity_died() -> void:
 
 
 func _on_grid_entity_hurt(attacker: GridEntity) -> void:
-	angry_at = attacker
+	_update_angry_at(attacker)
+
+
+func _update_angry_at(new_target: GridEntity):
+	if new_target == grid_entity or new_target is not GridEntity:
+		return
+	angry_at = new_target
 	angry_at.died.connect(_on_angry_at_died)
+	print(name, " pissed at ", new_target.name)
+	if new_target.is_in_group("Player"):
+		health_component.set_color(Color.RED)
+	else:
+		health_component.set_color(Color.WHITE)
 
 
 func _on_angry_at_died():
@@ -138,3 +148,9 @@ func _on_base_random_skill_planner_awaited_directional_input() -> void:
 func _on_base_random_skill_planner_awaited_cursor_input() -> void:
 	if angry_at:
 		random_skill_planner.set_cursor(get_direction_towards(angry_at, true))
+
+
+func _on_detection_radius_body_entered(body: Node2D) -> void:
+	if angry_at:
+		return
+	_update_angry_at(body)

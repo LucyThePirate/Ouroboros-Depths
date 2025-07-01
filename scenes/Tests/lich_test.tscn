@@ -1556,7 +1556,7 @@ position = Vector2(155, -143)
 rotation = 0.806708
 scale = Vector2(1.12327, 1.12327)
 sprite_frames = ExtResource("8_ixd6g")
-animation = &"Curl"
+animation = &"Point"
 autoplay = "Curl"
 
 [node name="End" type="Marker2D" parent="Body/HandL"]
@@ -1569,7 +1569,6 @@ scale = Vector2(1.12327, 1.12327)
 sprite_frames = ExtResource("8_ixd6g")
 animation = &"Curl"
 autoplay = "Curl"
-frame_progress = 0.303606
 flip_h = true
 
 [node name="End" type="Marker2D" parent="Body/HandR"]

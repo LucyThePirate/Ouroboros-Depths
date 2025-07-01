@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bwkb3crnbdvht" path="res://scenes/Tests/lich_test.tscn" id="5_tie3i"]
 [ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/Actors/Strategies/Planner/base_random_skill_planner.tscn" id="6_6hqks"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bls1m"]
-radius = 44.1022
+[sub_resource type="CircleShape2D" id="CircleShape2D_6hqks"]
+radius = 451.0
 
 [node name="creatureAI" type="Node2D" groups=["AI"]]
 script = ExtResource("1_sxdqt")
@@ -20,12 +20,6 @@ max_health = 7
 
 [node name="Display" type="Node2D" parent="."]
 top_level = true
-
-[node name="Area2D" type="Area2D" parent="Display"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Display/Area2D"]
-shape = SubResource("CircleShape2D_bls1m")
-debug_color = Color(0.627606, 0.530906, 0, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -44,6 +38,13 @@ scale = Vector2(0.3, 0.3)
 
 [node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("6_6hqks")]
 
+[node name="DetectionRadius" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+shape = SubResource("CircleShape2D_6hqks")
+
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
 [connection signal="hurt" from="GridEntity" to="." method="_on_grid_entity_hurt"]
@@ -51,5 +52,6 @@ scale = Vector2(0.3, 0.3)
 [connection signal="turn_started" from="TurnComponent" to="." method="_on_turn_component_turn_started"]
 [connection signal="awaited_cursor_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_cursor_input"]
 [connection signal="awaited_directional_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_directional_input"]
+[connection signal="body_entered" from="DetectionRadius" to="." method="_on_detection_radius_body_entered"]
 
 [editable path="GridEntity"]

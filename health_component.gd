@@ -8,7 +8,7 @@ signal died
 @export var damage_number_scene: PackedScene
 
 @onready var health = max_health
-@onready var health_bar = $ProgressBar
+@onready var health_bar = $ProgressBar as ProgressBar
 @onready var health_label = $Label
 
 var current_damage_number: DamageNumberComponent
@@ -43,6 +43,10 @@ func heal(heal_amount):
 
 func turn_ended():
 	current_damage_number = null
+
+
+func set_color(new_color: Color):
+	health_bar.self_modulate = new_color
 
 
 func _update_health_bar():

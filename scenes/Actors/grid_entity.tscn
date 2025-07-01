@@ -75,7 +75,7 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("17_ous7d")
 
-[node name="GridEntity" type="Area2D" groups=["GridEntity"]]
+[node name="GridEntity" type="CharacterBody2D" groups=["GridEntity"]]
 top_level = true
 collision_layer = 2
 collision_mask = 3
