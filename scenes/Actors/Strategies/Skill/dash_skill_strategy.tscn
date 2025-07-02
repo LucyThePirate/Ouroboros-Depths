@@ -16,7 +16,6 @@ icon = NodePath("Sprite2D")
 max_per_stack = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 texture = SubResource("AtlasTexture_52a6f")
 
 [node name="Arrows" type="Node2D" parent="."]

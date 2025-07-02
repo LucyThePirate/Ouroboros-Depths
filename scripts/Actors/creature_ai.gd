@@ -1,8 +1,9 @@
 extends Node2D
 
+@export var visual: Node2D
+
 @onready var grid_entity = $GridEntity
 @onready var display = $Display
-@onready var visual = $LichTest
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $TurnComponent
 @onready var stack_component = $GridEntity/SkillStackComponent
@@ -94,15 +95,16 @@ func get_direction_towards(entity: GridEntity, allow_diagonals := false) -> Vect
 
 
 func pursue_entity(entity: GridEntity):
-	#var attack_successful = grid_entity.try_attacking(entity)
+	var attack_successful = grid_entity.try_attacking(entity)
 	##if randf() > 0.5:
 #
 	##return
-	#if not attack_successful:
-	if randf() > 0.5:
-		move_in_direction(get_direction_towards(entity))
-	else:
-		random_skill_planner.perform_plan(entity)
+	if not attack_successful:
+		if randf() > 0.5:
+			move_in_direction(get_direction_towards(entity))
+		else:
+			if not random_skill_planner.perform_plan(entity):
+				move_in_direction(get_direction_towards(entity))
 
 
 func _on_grid_entity_grid_entity_initialized() -> void:
@@ -134,6 +136,7 @@ func _update_angry_at(new_target: GridEntity):
 
 func _on_angry_at_died():
 	angry_at = null
+	health_component.set_color(Color.WHITE)
 
 
 func _on_turn_component_turn_started() -> void:

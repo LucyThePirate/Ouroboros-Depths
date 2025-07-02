@@ -135,9 +135,10 @@ func _draw():
 					walls.set_cell(tile_coordinate, -1)
 					match true:
 						_ when random_tile >= 0.5:
-							objects.set_cell(
-								tile_coordinate, boulder_object_tile[0], boulder_object_tile[1]
-							)
+							if rng.randf() > 0.8:
+								objects.set_cell(
+									tile_coordinate, boulder_object_tile[0], boulder_object_tile[1]
+								)
 							floors.set_cell(
 								tile_coordinate, stone_floor_tile[0], stone_floor_tile[1]
 							)
@@ -155,17 +156,18 @@ func _draw():
 								walls.set_cell(
 									tile_coordinate, tall_tree_wall_tile[0], tall_tree_wall_tile[1]
 								)
-
-							objects.set_cell(
-								tile_coordinate, clover_decor_tile[0], clover_decor_tile[1]
-							)
+							if rng.randf() > 0.3:
+								objects.set_cell(
+									tile_coordinate, clover_decor_tile[0], clover_decor_tile[1]
+								)
 						_ when random_tile >= 0 && random_tile < 0.1:
 							floors.set_cell(
 								tile_coordinate, grass_floor_tile[0], grass_floor_tile[1]
 							)
-							objects.set_cell(
-								tile_coordinate, clover_decor_tile[0], clover_decor_tile[1]
-							)
+							if rng.randf() > 0.5:
+								objects.set_cell(
+									tile_coordinate, clover_decor_tile[0], clover_decor_tile[1]
+								)
 						_ when random_tile < 0 && random_tile > -0.1:
 							floors.set_cell(
 								tile_coordinate, grass_floor_tile[0], grass_floor_tile[1]
@@ -190,9 +192,14 @@ func _draw():
 								tile_coordinate, water_floor_tile[0], water_floor_tile[1]
 							)
 						_:
-							floors.set_cell(
-								tile_coordinate, stone_floor_tile[0], stone_floor_tile[1]
-							)
+							if rng.randf() > 0.2:
+								floors.set_cell(
+									tile_coordinate, stone_floor_tile[0], stone_floor_tile[1]
+								)
+							else:
+								floors.set_cell(
+									tile_coordinate, grass_floor_tile[0], grass_floor_tile[1]
+								)
 				if leaf.path_intersection_count == 1:
 					var random_tile = noise.get_noise_2dv(tile_coordinate)
 					if walls.get_cell_tile_data(tile_coordinate) and random_tile < -0.15:

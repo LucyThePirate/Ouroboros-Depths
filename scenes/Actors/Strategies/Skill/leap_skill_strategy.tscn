@@ -37,7 +37,6 @@ DashVFX = ExtResource("2_clto2")
 icon = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 texture = SubResource("AtlasTexture_clto2")
 
 [node name="Cursor" type="AnimatedSprite2D" parent="."]

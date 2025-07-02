@@ -14,18 +14,20 @@ func set_stack_component(new_stack_component: SkillStackComponent):
 	stack_component.connect("awaited_cursor_input", _on_requested_cursor_input)
 
 
-func queue_random_skill():
+func queue_random_skill() -> bool:
 	if stack_component.skills.size() < 1:
-		return
+		return false
 	var random_skill = randi() % stack_component.skills.size()
-	stack_component.queue_skill(random_skill)
+	return stack_component.queue_skill(random_skill)
 
 
-func perform_plan(entity: GridEntity):
+func perform_plan(entity: GridEntity) -> bool:
 	if stack_component.is_full():
-		stack_component.execute_stack()
+		return stack_component.execute_stack()
 	else:
-		queue_random_skill()
+		if not queue_random_skill():
+			return stack_component.execute_stack()
+		return true
 
 
 func _on_requested_directional_input():

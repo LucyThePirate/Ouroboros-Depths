@@ -13,10 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://c2xm6ut6p2ftp" path="res://scenes/Actors/grid_attack.tscn" id="8_viyuj"]
 [ext_resource type="AudioStream" uid="uid://bcwgrjr66bai4" path="res://audio/Music/RainSong.ogg" id="9_p5bfy"]
 [ext_resource type="PackedScene" uid="uid://dctxwjwjiof17" path="res://scenes/Actors/creature_ai.tscn" id="12_x4eo6"]
-[ext_resource type="PackedScene" uid="uid://ds1r48clfb7k6" path="res://scenes/Characters/Visuals/wasp_visual.tscn" id="13_5cr7p"]
 [ext_resource type="SpriteFrames" uid="uid://clgsmejmokek7" path="res://textures/effects/potion_spin_fast.gif" id="14_2k8ia"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/Shaders/stars.gdshader" id="15_f5ym2"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/Testing/thisGuyPOV.png" id="16_ve283"]
+[ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/Actors/Creatures/wasp_test.tscn" id="17_08gwj"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_f5ym2"]
 tile_data = PackedInt32Array(0, 3, 3, 65536, 3, 3, 131072, 3, 3, 196608, 3, 3, 262144, 3, 3, 1, 3, 3, 65537, 131074, 0, 131073, 131074, 0, 196609, 131074, 0, 262145, 3, 3, 2, 3, 3, 65538, 131074, 0, 131074, 131074, 0, 196610, 131074, 0, 262146, 3, 3, 3, 3, 3, 65539, 131074, 0, 131075, 131074, 0, 196611, 131074, 0, 262147, 3, 3, 4, 3, 3, 65540, 3, 3, 131076, 3, 3, 196612, 3, 3, 262148, 3, 3)
@@ -407,11 +407,15 @@ texture_region_size = Vector2i(100, 100)
 colors = PackedColorArray(0, 0.854902, 0.439216, 1, 1, 1, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ve283"]
+noise_type = 3
+domain_warp_enabled = true
+metadata/_preview_in_3d_space_ = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hemim"]
 width = 100
 height = 100
 seamless = true
+normalize = false
 color_ramp = SubResource("Gradient_f5ym2")
 noise = SubResource("FastNoiseLite_ve283")
 
@@ -419,11 +423,14 @@ noise = SubResource("FastNoiseLite_ve283")
 colors = PackedColorArray(0, 1, 0.631373, 1, 1, 0, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_lkcb0"]
+noise_type = 3
+domain_warp_enabled = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cu8oe"]
 width = 100
 height = 100
 seamless = true
+normalize = false
 color_ramp = SubResource("Gradient_ojjv0")
 noise = SubResource("FastNoiseLite_lkcb0")
 
@@ -433,7 +440,7 @@ shader_parameter/noise = SubResource("NoiseTexture2D_hemim")
 shader_parameter/secNoise = SubResource("NoiseTexture2D_cu8oe")
 shader_parameter/speed = Vector2(0.05, 0.05)
 shader_parameter/speedSecondNoise = Vector2(-0.05, -0.05)
-shader_parameter/distortionStrength = -1.0
+shader_parameter/distortionStrength = -0.261
 shader_parameter/toneColor = Color(0.671048, 0.780256, 1, 1)
 shader_parameter/topColor = Color(0, 0.760784, 0.811765, 1)
 shader_parameter/lightStart = 0.031
@@ -527,6 +534,7 @@ texture_region_size = Vector2i(100, 100)
 3:1/0/custom_data_4 = "plant"
 3:2/size_in_atlas = Vector2i(1, 2)
 3:2/0 = 0
+3:2/0/texture_origin = Vector2i(0, 49)
 3:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_sw3ye")
 3:2/0/custom_data_0 = true
 3:2/0/custom_data_4 = "wood"
@@ -718,11 +726,6 @@ position = Vector2(-1250, 250)
 [node name="creatureAI5" parent="." instance=ExtResource("12_x4eo6")]
 position = Vector2(-1250, 150)
 
-[node name="wasp_visual" parent="." instance=ExtResource("13_5cr7p")]
-position = Vector2(-450, 350)
-rotation = 0.0231713
-scale = Vector2(0.215666, 0.215666)
-
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_wtkbh")
 position = Vector2(2447, 244)
@@ -755,3 +758,5 @@ offset_top = -88.9161
 offset_right = 119.404
 offset_bottom = 208.084
 texture = ExtResource("16_ve283")
+
+[node name="WaspTest" parent="." instance=ExtResource("17_08gwj")]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_sxdqt"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="2_sxdqt"]
-[ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="3_sxdqt"]
+[ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/Actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="3_aa227"]
 [ext_resource type="PackedScene" uid="uid://canci4neobys2" path="res://scenes/Actors/turn_component.tscn" id="4_bls1m"]
 [ext_resource type="PackedScene" uid="uid://bwkb3crnbdvht" path="res://scenes/Tests/lich_test.tscn" id="5_tie3i"]
 [ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/Actors/Strategies/Planner/base_random_skill_planner.tscn" id="6_6hqks"]
@@ -10,35 +10,31 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6hqks"]
 radius = 451.0
 
-[node name="creatureAI" type="Node2D" groups=["AI"]]
+[node name="creatureAI" type="Node2D" node_paths=PackedStringArray("visual") groups=["AI"]]
 script = ExtResource("1_sxdqt")
+visual = NodePath("LichTest")
 
 [node name="GridEntity" parent="." instance=ExtResource("2_sxdqt")]
 
 [node name="HealthComponent" parent="GridEntity" index="10"]
 max_health = 7
 
+[node name="DarkStarSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("3_aa227")]
+
 [node name="Display" type="Node2D" parent="."]
 top_level = true
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(5.08267, 5.08267)
-texture = ExtResource("3_sxdqt")
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[node name="TurnComponent" parent="." instance=ExtResource("4_bls1m")]
 
 [node name="LichTest" parent="." instance=ExtResource("5_tie3i")]
 y_sort_enabled = true
 position = Vector2(4, -63)
 scale = Vector2(0.3, 0.3)
 
+[node name="TurnComponent" parent="." instance=ExtResource("4_bls1m")]
+
 [node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("6_6hqks")]
 
 [node name="DetectionRadius" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -48,7 +44,6 @@ shape = SubResource("CircleShape2D_6hqks")
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
 [connection signal="hurt" from="GridEntity" to="." method="_on_grid_entity_hurt"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="turn_started" from="TurnComponent" to="." method="_on_turn_component_turn_started"]
 [connection signal="awaited_cursor_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_cursor_input"]
 [connection signal="awaited_directional_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_directional_input"]

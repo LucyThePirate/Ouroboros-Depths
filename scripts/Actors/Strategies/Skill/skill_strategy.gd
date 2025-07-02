@@ -35,7 +35,7 @@ var state = States.IDLE
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	icon.hide()
 
 
 func ready_skill(grid_entity: GridEntity) -> bool:

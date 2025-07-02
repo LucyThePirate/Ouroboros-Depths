@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2wq4gejffyd"]
+[gd_scene load_steps=12 format=3 uid="uid://d2wq4gejffyd"]
 
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="1_exgt7"]
 [ext_resource type="Script" uid="uid://be6oo33bhfx63" path="res://scripts/Actors/player.gd" id="1_ochwc"]
 [ext_resource type="PackedScene" uid="uid://cg6jvx6qfd2jn" path="res://scenes/Actors/floating_text.tscn" id="2_bg3lr"]
+[ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/Actors/Strategies/Skill/dash_skill_strategy.tscn" id="4_jfrsc"]
 [ext_resource type="PackedScene" uid="uid://canci4neobys2" path="res://scenes/Actors/turn_component.tscn" id="5_f7yno"]
+[ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/Actors/Strategies/Skill/stomp_skill_strategy.tscn" id="5_wd2mq"]
+[ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/Actors/Strategies/Skill/leap_skill_strategy.tscn" id="6_2mxpg"]
 [ext_resource type="PackedScene" uid="uid://djc3cmcxnhe5l" path="res://scenes/Characters/Visuals/scarecrow_visual.tscn" id="6_jfrsc"]
+[ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/Actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="7_yw7wc"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://demo/assets/fonts/Permanentmarker-Regular.ttf" id="8_wd2mq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gokip"]
@@ -18,6 +22,14 @@ text_component = ExtResource("2_bg3lr")
 
 [node name="Camera2D" parent="GridEntity" index="8"]
 zoom = Vector2(0.595, 0.595)
+
+[node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("4_jfrsc")]
+
+[node name="StompSkillStrategy" parent="GridEntity/SkillStackComponent" index="4" instance=ExtResource("5_wd2mq")]
+
+[node name="LeapSkillStrategy" parent="GridEntity/SkillStackComponent" index="5" instance=ExtResource("6_2mxpg")]
+
+[node name="DarkStarSkillStrategy" parent="GridEntity/SkillStackComponent" index="6" instance=ExtResource("7_yw7wc")]
 
 [node name="Camera2D2" type="Camera2D" parent="GridEntity"]
 position_smoothing_enabled = true

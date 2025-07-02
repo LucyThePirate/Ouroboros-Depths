@@ -19,7 +19,7 @@ group_uniforms ScreenTextures;
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture;
 
 group_uniforms PixelBlicks;
-uniform float pixelSize = 2.0;
+uniform float pixelSize = 100.0;
 
 group_uniforms WaterReflects;
 
