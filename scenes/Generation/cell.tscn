@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://43rkgu17gs68"]
+[gd_scene load_steps=65 format=3 uid="uid://43rkgu17gs68"]
 
 [ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_44ypc"]
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/Effects/boulder_splash.tscn" id="2_cu8oe"]
@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://d2wq4gejffyd" path="res://scenes/Actors/player.tscn" id="3_iimes"]
 [ext_resource type="Shader" uid="uid://bbogpcxsif02r" path="res://textures/Shaders/water.gdshader" id="4_0a2yn"]
 [ext_resource type="PackedScene" uid="uid://dctxwjwjiof17" path="res://scenes/Actors/creature_ai.tscn" id="4_pdmi3"]
+[ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/Actors/Creatures/wasp_test.tscn" id="5_0xdhj"]
 [ext_resource type="Shader" uid="uid://dm5dyry10jg6e" path="res://textures/Shaders/tilemap_wind.gdshader" id="5_iimes"]
-[ext_resource type="Shader" uid="uid://bt1cyiambb33k" path="res://textures/Shaders/holo_disc.gdshader" id="6_pdmi3"]
 [ext_resource type="Shader" uid="uid://c5m81jjhpfjbx" path="res://textures/Shaders/ice.gdshader" id="7_5cpdm"]
 [ext_resource type="Texture2D" uid="uid://dhuxxosgrbwyl" path="res://textures/tiles/ChimeraTiles.png" id="8_0xdhj"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/Shaders/stars.gdshader" id="12_5cpdm"]
@@ -448,29 +448,8 @@ shader_parameter/global_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_w2vps"]
 polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
 
-[sub_resource type="Gradient" id="Gradient_08gwj"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ojjv0"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0a2yn"]
-width = 100
-height = 100
-seamless = true
-seamless_blend_skirt = 0.11
-color_ramp = SubResource("Gradient_08gwj")
-noise = SubResource("FastNoiseLite_ojjv0")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lkcb0"]
-shader = ExtResource("6_pdmi3")
-shader_parameter/scale = 1.0
-shader_parameter/gradient_power = 10.0
-shader_parameter/color_base = Color(0.898197, 4.81308e-08, 0.461019, 1)
-shader_parameter/color_shine_a = Color(0.980907, 0.557012, 0.737534, 1)
-shader_parameter/color_shine_b = Color(9.62615e-06, 0.95411, 0.939285, 1)
-shader_parameter/gradient_rotation = 1.068
-shader_parameter/hue_shift_map = SubResource("NoiseTexture2D_0a2yn")
-shader_parameter/hue_shift_strength = 1.0
-shader_parameter/screen_uv = false
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5cpdm"]
+blend_mode = 3
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uvtqv"]
 polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
@@ -510,7 +489,8 @@ texture_region_size = Vector2i(100, 100)
 0:1/0/custom_data_1 = true
 0:1/0/custom_data_4 = "wood"
 1:1/0 = 0
-1:1/0/material = SubResource("ShaderMaterial_lkcb0")
+1:1/0/modulate = Color(0, 0, 0, 1)
+1:1/0/material = SubResource("CanvasItemMaterial_5cpdm")
 1:1/0/custom_data_3 = true
 2:1/0 = 0
 2:1/0/material = SubResource("ShaderMaterial_ojjv0")
@@ -525,7 +505,6 @@ texture_region_size = Vector2i(100, 100)
 3:2/0 = 0
 3:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_sw3ye")
 3:2/0/custom_data_0 = true
-3:2/0/custom_data_4 = -0.261
 2:2/0 = 0
 2:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_bstpm")
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
@@ -907,6 +886,8 @@ texture_region_size = Vector2i(100, 100)
 0:3/0 = 0
 0:3/0/custom_data_4 = "wood"
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lkcb0"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5cpdm"]
 texture = ExtResource("8_0xdhj")
 texture_region_size = Vector2i(100, 100)
@@ -1001,6 +982,9 @@ pattern_2 = SubResource("TileMapPattern_08gwj")
 pattern_3 = SubResource("TileMapPattern_ojjv0")
 pattern_4 = SubResource("TileMapPattern_lkcb0")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fx61w"]
+blend_mode = 3
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fx61w"]
 shader = ExtResource("12_5cpdm")
 shader_parameter/bg_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
@@ -1010,7 +994,7 @@ y_sort_enabled = true
 script = ExtResource("1_44ypc")
 boulder_splash = ExtResource("2_cu8oe")
 player_scene = ExtResource("3_iimes")
-creature_scene = ExtResource("4_pdmi3")
+creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj")])
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2992, 1528)
@@ -1037,6 +1021,12 @@ show_behind_parent = true
 y_sort_enabled = true
 use_parent_material = true
 tile_set = SubResource("TileSet_0xdhj")
+
+[node name="Fog" type="TileMapLayer" parent="."]
+z_index = 10
+material = SubResource("CanvasItemMaterial_fx61w")
+scale = Vector2(1, 1)
+tile_set = SubResource("TileSet_qrcgv")
 
 [node name="Control" type="Control" parent="."]
 z_index = -100

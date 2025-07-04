@@ -2,8 +2,13 @@ extends Node2D
 
 @export var boulder_splash: PackedScene
 @export var player_scene: PackedScene
-@export var creature_scene: PackedScene
+@export var creature_scene: Array[PackedScene]
 
+#region Fog
+@onready var fog = $Fog
+#endregion
+
+#region Terrain generation and Tiles
 var root_node: Branch
 var tile_size: int = 100
 @onready var floors: TileMapLayer = $Floors
@@ -26,17 +31,22 @@ var tile_size: int = 100
 @onready var door_vertical_tile := [2, Vector2i(2, 2)]
 @onready var stairs_up_tile := [2, Vector2i(0, 2)]
 @onready var stairs_down_tile := [2, Vector2i(0, 3)]
+@onready var fog_tile := [3, Vector2i(1, 1)]
+
+var paths: Array = []
+var noise = FastNoiseLite.new()
+var rng = RandomNumberGenerator.new()
+#endregion
 
 @onready var turn_queue: Array[TurnComponent]
 @onready var entity_positions = {}
 var ready_for_next_turn = true
 var turn_counter = 0
-var paths: Array = []
-var noise = FastNoiseLite.new()
-var rng = RandomNumberGenerator.new()
+var player
 
 
 func _ready():
+#region Setting up RNG and dungeon generation
 	noise.seed = rng.get_seed()
 	noise.fractal_octaves = 2
 	noise.fractal_lacunarity = 1.575
@@ -45,6 +55,9 @@ func _ready():
 	root_node = Branch.new(Vector2i(0, 0), Vector2i(60, 30))
 	root_node.split(3, paths)
 	queue_redraw()
+
+
+#endregion
 
 
 func _initialize_entities():
@@ -59,12 +72,20 @@ func _initialize_entities():
 	process_turn()
 
 
+func _update_fog(old_coords: Vector2i, new_coords: Vector2i):
+	var radius = 7
+	for x in range(-radius, radius):
+		for y in range(-radius, radius):
+			fog.set_cell(Vector2i(x, y) + new_coords, -1)
+
+
 func _draw():
-	spawn_entity(root_node.get_center(), player_scene)
+	player = spawn_entity(root_node.get_center(), player_scene) as Player
+	player.grid_entity.moved.connect(_update_fog)
 
 	for leaf in root_node.get_leaves():
 		if 0.5 > randf():
-			spawn_entity(leaf.get_center(), creature_scene)
+			spawn_entity(leaf.get_center(), creature_scene.pick_random())
 		var padding = Vector4i(
 			rng.randi_range(0, 0),  # Left Padding
 			rng.randi_range(0, 0),  # Up Padding
@@ -84,6 +105,7 @@ func _draw():
 		for x in range(leaf.size.x):
 			for y in range(leaf.size.y):
 				var tile_coordinate = Vector2i(x + leaf.position.x, y + leaf.position.y)
+				fog.set_cell(tile_coordinate, fog_tile[0], fog_tile[1])
 				if not is_inside_padding(x, y, leaf, padding):
 					floors.set_cell(tile_coordinate, room_floor_tile[0], room_floor_tile[1])
 				else:  # Wall
@@ -214,6 +236,7 @@ func _draw():
 				placed_stairs = true
 	floors.set_cell(root_node.get_center(), stairs_up_tile[0], stairs_up_tile[1])
 	_initialize_entities()
+	_update_fog(Vector2i.ZERO, root_node.get_center())
 
 
 func is_inside_padding(x, y, leaf, padding):
@@ -230,6 +253,7 @@ func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):
 	new_entity.global_position = floors.map_to_local(grid_coordinate)
 	add_child(new_entity)
 	print("Spawned %s at: %s" % [new_entity.name, grid_coordinate])
+	return new_entity
 
 
 func process_turn():

@@ -1,7 +1,8 @@
 extends Node2D
 
-@export var text_component: PackedScene
+class_name Player
 
+@export var text_component: PackedScene
 @onready var current_text: TextComponent
 @onready var grid_entity = $GridEntity
 @onready var display = $Display
