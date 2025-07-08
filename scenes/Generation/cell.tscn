@@ -396,8 +396,11 @@ texture_region_size = Vector2i(100, 100)
 0:2/0 = 0
 0:2/0/custom_data_0 = true
 0:2/0/custom_data_4 = "wood"
+0:2/0/custom_data_5 = true
 0:3/0 = 0
 0:3/0/custom_data_4 = "wood"
+0:3/0/custom_data_5 = true
+0:3/0/custom_data_6 = true
 
 [sub_resource type="Gradient" id="Gradient_f5ym2"]
 colors = PackedColorArray(0, 0.854902, 0.439216, 1, 1, 1, 0, 1)
@@ -430,10 +433,10 @@ shader_parameter/secNoise = SubResource("NoiseTexture2D_cu8oe")
 shader_parameter/speed = Vector2(0.05, 0.05)
 shader_parameter/speedSecondNoise = Vector2(-0.05, -0.05)
 shader_parameter/distortionStrength = -0.261
-shader_parameter/toneColor = Color(0.417783, 0.725086, 0.791685, 1)
-shader_parameter/topColor = Color(0.674902, 0.839134, 0.685338, 1)
-shader_parameter/lightStart = 0.154
-shader_parameter/lightEnd = 0.8
+shader_parameter/toneColor = Color(0.26792, 0.801304, 0.721927, 1)
+shader_parameter/topColor = Color(0.47864, 0.8864, 0.67464, 1)
+shader_parameter/lightStart = 0.0
+shader_parameter/lightEnd = 0.431
 shader_parameter/pixelSize = 100.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hmhbi"]
@@ -515,6 +518,7 @@ texture_region_size = Vector2i(100, 100)
 1:2/0/custom_data_0 = true
 1:2/0/custom_data_1 = true
 1:2/0/custom_data_4 = "wood"
+1:2/0/custom_data_5 = true
 0:2/0 = 0
 0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
 0:2/0/custom_data_0 = true
@@ -551,6 +555,10 @@ custom_data_layer_3/name = "is_liquid"
 custom_data_layer_3/type = 1
 custom_data_layer_4/name = "material"
 custom_data_layer_4/type = 4
+custom_data_layer_5/name = "indestructable"
+custom_data_layer_5/type = 1
+custom_data_layer_6/name = "is_path_down"
+custom_data_layer_6/type = 1
 sources/0 = SubResource("TileSetAtlasSource_fx61w")
 sources/3 = SubResource("TileSetAtlasSource_cyo7g")
 sources/2 = SubResource("TileSetAtlasSource_eu30k")
@@ -1023,9 +1031,9 @@ use_parent_material = true
 tile_set = SubResource("TileSet_0xdhj")
 
 [node name="Fog" type="TileMapLayer" parent="."]
+visible = false
 z_index = 10
 material = SubResource("CanvasItemMaterial_fx61w")
-scale = Vector2(1, 1)
 tile_set = SubResource("TileSet_qrcgv")
 
 [node name="Control" type="Control" parent="."]

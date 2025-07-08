@@ -34,8 +34,8 @@ var tile_size: int = 100
 @onready var fog_tile := [3, Vector2i(1, 1)]
 
 var paths: Array = []
-var noise = FastNoiseLite.new()
-var rng = RandomNumberGenerator.new()
+var noise
+var rng
 #endregion
 
 @onready var turn_queue: Array[TurnComponent]
@@ -47,6 +47,8 @@ var player
 
 func _ready():
 #region Setting up RNG and dungeon generation
+	rng = RandomNumberGenerator.new()
+	noise = FastNoiseLite.new()
 	noise.seed = rng.get_seed()
 	noise.fractal_octaves = 2
 	noise.fractal_lacunarity = 1.575
@@ -54,6 +56,9 @@ func _ready():
 	noise.noise_type = 3
 	root_node = Branch.new(Vector2i(0, 0), Vector2i(60, 30))
 	root_node.split(3, paths)
+	floors.clear()
+	objects.clear()
+	walls.clear()
 	queue_redraw()
 
 
@@ -80,8 +85,12 @@ func _update_fog(old_coords: Vector2i, new_coords: Vector2i):
 
 
 func _draw():
-	player = spawn_entity(root_node.get_center(), player_scene) as Player
+	if not player:
+		player = spawn_entity(root_node.get_center(), player_scene) as Player
+	else:
+		player.global_position = floors.map_to_local(root_node.get_center())
 	player.grid_entity.moved.connect(_update_fog)
+	player.descended.connect(_ready)
 
 	for leaf in root_node.get_leaves():
 		if 0.5 > randf():
@@ -92,16 +101,16 @@ func _draw():
 			rng.randi_range(1, 1),  # Right Padding
 			rng.randi_range(1, 1)  # Down Padding
 		)
-		draw_rect(
-			Rect2(
-				leaf.position.x * tile_size,  # x
-				leaf.position.y * tile_size,  # y
-				leaf.size.x * tile_size,  # width
-				leaf.size.y * tile_size  # height
-			),
-			Color.GREEN,  # colour
-			false  # is filled
-		)
+		#draw_rect(
+		#Rect2(
+		#leaf.position.x * tile_size,  # x
+		#leaf.position.y * tile_size,  # y
+		#leaf.size.x * tile_size,  # width
+		#leaf.size.y * tile_size  # height
+		#),
+		#Color.GREEN,  # colour
+		#false  # is filled
+		#)
 		for x in range(leaf.size.x):
 			for y in range(leaf.size.y):
 				var tile_coordinate = Vector2i(x + leaf.position.x, y + leaf.position.y)
@@ -113,7 +122,7 @@ func _draw():
 					walls.set_cell(tile_coordinate, stone_wall_tile[0], stone_wall_tile[1])
 					# here Vector2i(2, 2) is where our floor is in the tileset we are using
 		for path in paths:
-			draw_line(path["left"] * tile_size, path["right"] * tile_size, Color.RED, 10)
+			#draw_line(path["left"] * tile_size, path["right"] * tile_size, Color.RED, 10)
 			if path["left"].y == path["right"].y:
 				# horizontal
 				for i in range(path["right"].x - path["left"].x):
@@ -153,79 +162,14 @@ func _draw():
 			for y in range(leaf.size.y):
 				var tile_coordinate = Vector2i(x + leaf.position.x, y + leaf.position.y)
 				if leaf.path_intersection_count != 1:  # Place nature tiles
-					var random_tile = noise.get_noise_2dv(tile_coordinate)
-					walls.set_cell(tile_coordinate, -1)
-					match true:
-						_ when random_tile >= 0.5:
-							if rng.randf() > 0.8:
-								objects.set_cell(
-									tile_coordinate, boulder_object_tile[0], boulder_object_tile[1]
-								)
-							floors.set_cell(
-								tile_coordinate, stone_floor_tile[0], stone_floor_tile[1]
-							)
-						_ when random_tile >= 0.1 && random_tile < 0.4:
-							floors.set_cell(
-								tile_coordinate, grass_floor_tile[0], grass_floor_tile[1]
-							)
-							if rng.randf() > 0.9:
-								walls.set_cell(
-									tile_coordinate,
-									small_tree_wall_tile[0],
-									small_tree_wall_tile[1]
-								)
-							elif rng.randf() > 0.7:
-								walls.set_cell(
-									tile_coordinate, tall_tree_wall_tile[0], tall_tree_wall_tile[1]
-								)
-							if rng.randf() > 0.3:
-								objects.set_cell(
-									tile_coordinate, clover_decor_tile[0], clover_decor_tile[1]
-								)
-						_ when random_tile >= 0 && random_tile < 0.1:
-							floors.set_cell(
-								tile_coordinate, grass_floor_tile[0], grass_floor_tile[1]
-							)
-							if rng.randf() > 0.5:
-								objects.set_cell(
-									tile_coordinate, clover_decor_tile[0], clover_decor_tile[1]
-								)
-						_ when random_tile < 0 && random_tile > -0.1:
-							floors.set_cell(
-								tile_coordinate, grass_floor_tile[0], grass_floor_tile[1]
-							)
-						_ when random_tile <= -0.1 && random_tile > -0.15:
-							floors.set_cell(
-								tile_coordinate, stone_floor_tile[0], stone_floor_tile[1]
-							)
-						_ when random_tile <= -0.15:
-							floors.set_cell(
-								tile_coordinate, water_floor_tile[0], water_floor_tile[1]
-							)
-						_ when random_tile <= -0.3 && random_tile > -0.1:
-							floors.set_cell(
-								tile_coordinate, water_floor_tile[0], water_floor_tile[1]
-							)
-						_ when random_tile <= -0.45 && random_tile > -0.3:
-							objects.set_cell(
-								tile_coordinate, lilly_decor_tile[0], lilly_decor_tile[1]
-							)
-							floors.set_cell(
-								tile_coordinate, water_floor_tile[0], water_floor_tile[1]
-							)
-						_:
-							if rng.randf() > 0.2:
-								floors.set_cell(
-									tile_coordinate, stone_floor_tile[0], stone_floor_tile[1]
-								)
-							else:
-								floors.set_cell(
-									tile_coordinate, grass_floor_tile[0], grass_floor_tile[1]
-								)
+					_place_nature_tile(tile_coordinate)
+
 				if leaf.path_intersection_count == 1:
 					var random_tile = noise.get_noise_2dv(tile_coordinate)
 					if walls.get_cell_tile_data(tile_coordinate) and random_tile < -0.15:
 						walls.set_cell(tile_coordinate, glass_wall_tile[0], glass_wall_tile[1])
+					if random_tile > 0.3 and rng.randf() > 0.6:
+						_place_nature_tile(tile_coordinate)
 			if leaf.path_intersection_count == 1 and not placed_stairs:
 				var tile_coordinate = Vector2i(
 					randi_range(1, leaf.size.x - 2) + leaf.position.x,
@@ -237,6 +181,44 @@ func _draw():
 	floors.set_cell(root_node.get_center(), stairs_up_tile[0], stairs_up_tile[1])
 	_initialize_entities()
 	_update_fog(Vector2i.ZERO, root_node.get_center())
+
+
+func _place_nature_tile(tile_coordinate: Vector2i):
+	var random_tile = noise.get_noise_2dv(tile_coordinate)
+	walls.set_cell(tile_coordinate, -1)
+	match true:
+		_ when random_tile >= 0.5:
+			if rng.randf() > 0.8:
+				objects.set_cell(tile_coordinate, boulder_object_tile[0], boulder_object_tile[1])
+			floors.set_cell(tile_coordinate, stone_floor_tile[0], stone_floor_tile[1])
+		_ when random_tile >= 0.1 && random_tile < 0.4:
+			floors.set_cell(tile_coordinate, grass_floor_tile[0], grass_floor_tile[1])
+			if rng.randf() > 0.9:
+				walls.set_cell(tile_coordinate, small_tree_wall_tile[0], small_tree_wall_tile[1])
+			elif rng.randf() > 0.7:
+				walls.set_cell(tile_coordinate, tall_tree_wall_tile[0], tall_tree_wall_tile[1])
+			if rng.randf() > 0.3:
+				objects.set_cell(tile_coordinate, clover_decor_tile[0], clover_decor_tile[1])
+		_ when random_tile >= 0 && random_tile < 0.1:
+			floors.set_cell(tile_coordinate, grass_floor_tile[0], grass_floor_tile[1])
+			if rng.randf() > 0.5:
+				objects.set_cell(tile_coordinate, clover_decor_tile[0], clover_decor_tile[1])
+		_ when random_tile < 0 && random_tile > -0.1:
+			floors.set_cell(tile_coordinate, grass_floor_tile[0], grass_floor_tile[1])
+		_ when random_tile <= -0.1 && random_tile > -0.15:
+			floors.set_cell(tile_coordinate, stone_floor_tile[0], stone_floor_tile[1])
+		_ when random_tile <= -0.15:
+			floors.set_cell(tile_coordinate, water_floor_tile[0], water_floor_tile[1])
+		_ when random_tile <= -0.3 && random_tile > -0.1:
+			floors.set_cell(tile_coordinate, water_floor_tile[0], water_floor_tile[1])
+		_ when random_tile <= -0.45 && random_tile > -0.3:
+			objects.set_cell(tile_coordinate, lilly_decor_tile[0], lilly_decor_tile[1])
+			floors.set_cell(tile_coordinate, water_floor_tile[0], water_floor_tile[1])
+		_:
+			if rng.randf() > 0.2:
+				floors.set_cell(tile_coordinate, stone_floor_tile[0], stone_floor_tile[1])
+			else:
+				floors.set_cell(tile_coordinate, grass_floor_tile[0], grass_floor_tile[1])
 
 
 func is_inside_padding(x, y, leaf, padding):
@@ -304,6 +286,9 @@ func _push_tile(tile_coords, direction):
 
 
 func _spawn_tile(tile_coords):
+	var existing_tile = floors.get_cell_tile_data(tile_coords)
+	if existing_tile and existing_tile.get_custom_data("indestructable"):
+		return
 	floors.set_cell(tile_coords, 2, Vector2i(0, 1))
 
 

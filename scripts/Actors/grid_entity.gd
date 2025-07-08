@@ -237,3 +237,11 @@ func is_on_floor() -> bool:
 	if not floor_data:
 		return false
 	return true
+
+
+func is_on_path_down() -> bool:
+	var grid_coords = floors.local_to_map(global_position)
+	var floor_data = floors.get_cell_tile_data(grid_coords)
+	if not floor_data or not floor_data.get_custom_data("is_path_down"):
+		return false
+	return true

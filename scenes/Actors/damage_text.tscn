@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2e4ygq1jbt56"]
+[gd_scene load_steps=9 format=3 uid="uid://b2e4ygq1jbt56"]
 
 [ext_resource type="Script" uid="uid://c5mqvugk7ofav" path="res://scripts/Actors/damage_text.gd" id="1_lntjd"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/Testing/thisGuyPOV.png" id="2_pv6l1"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://demo/assets/fonts/Permanentmarker-Regular.ttf" id="3_31a7n"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i37g1"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_glik6"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lntjd"]
 
 [sub_resource type="Animation" id="Animation_lntjd"]
 resource_name = "Appear"
@@ -74,9 +72,11 @@ display_location = NodePath("CharacterBody2D")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(0, -40)
+collision_layer = 32
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("RectangleShape2D_i37g1")
+shape = SubResource("CircleShape2D_lntjd")
 
 [node name="Display" type="Node2D" parent="CharacterBody2D"]
 position = Vector2(-1, 40)
@@ -113,11 +113,6 @@ visible = false
 position = Vector2(0, -43)
 scale = Vector2(0.121283, 0.14229)
 texture = ExtResource("2_pv6l1")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_glik6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

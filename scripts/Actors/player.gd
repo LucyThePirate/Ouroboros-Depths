@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Player
 
+signal descended
+
 @export var text_component: PackedScene
 @onready var current_text: TextComponent
 @onready var grid_entity = $GridEntity
@@ -148,6 +150,8 @@ func end_turn():
 	turn_component.end_turn()
 	if not grid_entity.is_on_floor():
 		_on_grid_entity_fell_off_map()
+	elif grid_entity.is_on_path_down():
+		descended.emit()
 
 
 func _on_grid_entity_died() -> void:

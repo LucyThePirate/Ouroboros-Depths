@@ -156,4 +156,5 @@ func _on_base_random_skill_planner_awaited_cursor_input() -> void:
 func _on_detection_radius_body_entered(body: Node2D) -> void:
 	if angry_at:
 		return
-	_update_angry_at(body)
+	if body.is_in_group("Player"):
+		_update_angry_at(body)

@@ -7,9 +7,10 @@ signal finished_playing
 @export var display_text: RichTextLabel
 @export var display_location: CharacterBody2D
 
-const GRAVITY = 600.0
+const GRAVITY = 200.0
 const BOUNCINESS = 0.7
-const INITIAL_VELOCITY = 200
+const INITIAL_VELOCITY = 300
+const TERMINAL_VELOCITY = 300
 const SPREAD = 200
 
 var damage_amount = 0
@@ -44,6 +45,9 @@ func add_damage(amount: int):
 
 func _physics_process(delta: float) -> void:
 	display_location.velocity.y += GRAVITY * delta
+	display_location.velocity.y = clampf(
+		display_location.velocity.y, -TERMINAL_VELOCITY, TERMINAL_VELOCITY
+	)
 	var collision = display_location.move_and_collide(display_location.velocity * delta)
 	if collision:
 		display_location.velocity = display_location.velocity.bounce(collision.get_normal())

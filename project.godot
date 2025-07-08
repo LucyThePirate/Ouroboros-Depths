@@ -185,6 +185,7 @@ OffsetCamera={
 2d_physics/layer_2="Creatures"
 2d_physics/layer_3="Attacks"
 2d_physics/layer_5="Item"
+2d_physics/layer_6="Text"
 2d_physics/layer_8="Sight"
 
 [rendering]

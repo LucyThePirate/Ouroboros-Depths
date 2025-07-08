@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://v4jyo2omhd1l"]
+[gd_scene load_steps=9 format=3 uid="uid://v4jyo2omhd1l"]
 
 [ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_t7k5d"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="2_nfndv"]
 [ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/Actors/Strategies/Skill/dash_skill_strategy.tscn" id="3_t7k5d"]
 [ext_resource type="PackedScene" uid="uid://ds1r48clfb7k6" path="res://scenes/Characters/Visuals/wasp_visual.tscn" id="4_iadu2"]
+[ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/Actors/Strategies/Skill/stomp_skill_strategy.tscn" id="4_nfndv"]
 [ext_resource type="PackedScene" uid="uid://canci4neobys2" path="res://scenes/Actors/turn_component.tscn" id="5_4bmfb"]
 [ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/Actors/Strategies/Planner/base_random_skill_planner.tscn" id="6_a3j1p"]
 
@@ -20,6 +21,8 @@ visual = NodePath("WaspVisual")
 max_health = 7
 
 [node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("3_t7k5d")]
+
+[node name="StompSkillStrategy" parent="GridEntity/SkillStackComponent" index="4" instance=ExtResource("4_nfndv")]
 
 [node name="Display" type="Node2D" parent="."]
 top_level = true
