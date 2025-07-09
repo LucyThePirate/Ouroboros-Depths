@@ -143,13 +143,13 @@ func warp(position: Vector2i):
 	return true
 
 
-func get_valid_moves() -> Array:
+func get_valid_moves(allow_moving_into_entities = false) -> Array:
 	var move_options = []
 	if not initialized:
 		return move_options
 	for direction in [Vector2i(-1, 0), Vector2i(1, 0), Vector2i(0, -1), Vector2i(0, 1)]:
 		var grid_coords = floors.local_to_map(global_position) + direction
-		if is_obstructed(grid_coords, true):
+		if is_obstructed(grid_coords, true, allow_moving_into_entities):
 			continue
 
 		# Nothing blocking movement in this direction.
@@ -157,7 +157,9 @@ func get_valid_moves() -> Array:
 	return move_options
 
 
-func is_obstructed(grid_coords: Vector2i, check_floor = true) -> bool:
+func is_obstructed(
+	grid_coords: Vector2i, check_floor = true, allow_moving_into_entities = false
+) -> bool:
 	if check_floor:
 		var floor_data = floors.get_cell_tile_data(grid_coords)
 		if not floor_data:
@@ -167,8 +169,9 @@ func is_obstructed(grid_coords: Vector2i, check_floor = true) -> bool:
 	if wall_data and wall_data.get_custom_data("is_solid"):
 		return true
 
-	if entity_positions.has(grid_coords):
-		return true
+	if not allow_moving_into_entities:
+		if entity_positions.has(grid_coords):
+			return true
 	return false
 
 

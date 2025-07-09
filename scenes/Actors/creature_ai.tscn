@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dctxwjwjiof17"]
+[gd_scene load_steps=10 format=3 uid="uid://dctxwjwjiof17"]
 
 [ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_sxdqt"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="2_sxdqt"]
 [ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/Actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="3_aa227"]
 [ext_resource type="PackedScene" uid="uid://canci4neobys2" path="res://scenes/Actors/turn_component.tscn" id="4_bls1m"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://demo/assets/fonts/Permanentmarker-Regular.ttf" id="4_tndlm"]
 [ext_resource type="PackedScene" uid="uid://bwkb3crnbdvht" path="res://scenes/Tests/lich_test.tscn" id="5_tie3i"]
 [ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/Actors/Strategies/Planner/base_random_skill_planner.tscn" id="6_6hqks"]
+[ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="7_aa227"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6hqks"]
 radius = 451.0
@@ -37,9 +39,28 @@ scale = Vector2(0.3, 0.3)
 visible = false
 collision_layer = 0
 collision_mask = 2
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
 shape = SubResource("CircleShape2D_6hqks")
+
+[node name="IntentArrow" type="Sprite2D" parent="."]
+self_modulate = Color(0.968627, 0, 0.364706, 0.823529)
+texture = ExtResource("7_aa227")
+offset = Vector2(118, 1)
+
+[node name="IntentLabel" type="RichTextLabel" parent="."]
+offset_left = -36.0
+offset_top = -230.0
+offset_right = 4.0
+offset_bottom = -190.0
+theme_override_fonts/normal_font = ExtResource("4_tndlm")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "..."
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]

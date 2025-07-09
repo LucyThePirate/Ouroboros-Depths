@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://43rkgu17gs68"]
+[gd_scene load_steps=75 format=3 uid="uid://43rkgu17gs68"]
 
 [ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_44ypc"]
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/Effects/boulder_splash.tscn" id="2_cu8oe"]
@@ -997,6 +997,55 @@ blend_mode = 3
 shader = ExtResource("12_5cpdm")
 shader_parameter/bg_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0xdhj"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_fx61w"]
+_data = [Vector2(0, 0), 0.0, 5.6789, 0, 0, Vector2(0.553371, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -7.34917, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dn63k"]
+curve = SubResource("Curve_fx61w")
+
+[sub_resource type="Gradient" id="Gradient_eu30k"]
+colors = PackedColorArray(1, 1, 1, 0.0980392, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jrvj4"]
+gradient = SubResource("Gradient_eu30k")
+
+[sub_resource type="Curve" id="Curve_v01jn"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1xklj"]
+_limits = [0.0, 30.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 30), 0.0, 0.0, 0, 0, Vector2(1, 30), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_cqjng"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_euqva"]
+curve_x = SubResource("Curve_v01jn")
+curve_y = SubResource("Curve_1xklj")
+curve_z = SubResource("Curve_cqjng")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cyo7g"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(800, 1, 1)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 3000, 0)
+scale_min = 0.2
+scale_over_velocity_curve = SubResource("CurveXYZTexture_euqva")
+color = Color(1, 0.996078, 0.996078, 1)
+color_initial_ramp = SubResource("GradientTexture1D_jrvj4")
+alpha_curve = SubResource("CurveTexture_dn63k")
+
 [node name="Cell" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_44ypc")
@@ -1059,3 +1108,12 @@ offset_top = -89.0
 offset_right = 190.0
 offset_bottom = 257.0
 texture = ExtResource("13_0xdhj")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_0xdhj")
+position = Vector2(0, -600)
+amount = 1000
+preprocess = 0.5
+visibility_rect = Rect2(-400, 100, 800, 400)
+process_material = SubResource("ParticleProcessMaterial_cyo7g")

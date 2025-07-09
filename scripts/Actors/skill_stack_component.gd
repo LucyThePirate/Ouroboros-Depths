@@ -12,8 +12,12 @@ signal awaited_cursor_input
 @onready
 var skill_icon_holder = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer
 @onready var stack_icon_holder = $Stack/MarginContainer/CenterContainer/HBoxContainer
+@onready
+var preview_queue_skill = $Stack/MarginContainer/CenterContainer/HBoxContainer/PreviewQueueSkill
+@onready var stack_color_rect = $Stack/MarginContainer/ColorRect
 
 @export var max_stack_size = 4
+@export var preview_queue_skill_texture := Texture2D
 
 var skills = []
 var stack = []
@@ -36,8 +40,14 @@ func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_compon
 	turn_component.turn_ended.connect(_update_turn_cooldown)
 
 
-func queue_skill(skill_number) -> bool:
+func can_queue_skill(skill_number) -> bool:
 	if skills.size() >= skill_number + 1 and not is_full() and skills[skill_number].can_use_skill():
+		return true
+	return false
+
+
+func queue_skill(skill_number) -> bool:
+	if can_queue_skill(skill_number):
 		skills[skill_number].increment_in_stack_counter()
 		_update_cooldown_visuals()
 		$Stack.show()
@@ -55,6 +65,12 @@ func is_full() -> bool:
 	if stack.size() >= max_stack_size:
 		return true
 	return false
+
+
+func can_execute_stack() -> bool:
+	if stack.is_empty():
+		return false
+	return true
 
 
 func execute_stack() -> bool:
@@ -162,3 +178,15 @@ func _update_cooldown_visuals():
 			new_style_box.bg_color = Color(1, 0, 0, 0.5)
 			progress_bar.add_theme_stylebox_override("fill", new_style_box)
 		progress_bar.value = percentage
+
+
+func preview_queueing_skill(show_preview := true):
+	preview_queue_skill.texture = preview_queue_skill_texture
+	preview_queue_skill.visible = show_preview
+
+
+func preview_executing_stack(show_preview := true):
+	if show_preview:
+		stack_color_rect.color = Color.from_rgba8(233, 0, 73, 200)
+	else:
+		stack_color_rect.color = Color.from_rgba8(182, 104, 0, 90)

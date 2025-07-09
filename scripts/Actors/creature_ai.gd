@@ -9,11 +9,14 @@ extends Node2D
 @onready var stack_component = $GridEntity/SkillStackComponent
 @onready var health_component = $GridEntity/HealthComponent
 @onready var random_skill_planner = $BaseRandomSkillPlanner
+@onready var intent_arrow = $IntentArrow
 
 var initialized = false
 var level: Node2D
-
 var angry_at: GridEntity
+@onready var intent := "Do Nothing"
+@onready var intent_label = $IntentLabel
+var intent_direction := Vector2i.ZERO
 
 
 # Called when the node enters the scene tree for the first time.
@@ -42,22 +45,41 @@ func take_turn():
 	if not grid_entity.is_alive():
 		turn_component.end_turn()
 		return
-	if not angry_at:
-		move_randomly()
-	else:
-		pursue_entity(angry_at)
+	match intent:
+		"Move":
+			move_in_direction(intent_direction)
+		"Queue Skill":
+			random_skill_planner.perform_plan("Queue Skill")
+		"Execute Stack":
+			random_skill_planner.perform_plan("Execute Stack")
+		_:
+			print("%s did %s" % [name, intent])
+			pass
+
+	update_intent()
 	turn_component.end_turn()
 
 
-func move_randomly():
-	#if randf() > 0.5:
-	#random_skill_planner.perform_plan()
-	#return
-	var moveDirection = grid_entity.get_valid_moves().pick_random()
-	if moveDirection:
-		move_in_direction(moveDirection)
-		#$Camera2D.make_current()
-		#$Timer.start()
+func update_intent():
+	if not angry_at:
+		intent = "Move"
+		intent_direction = get_random_direction() as Vector2i
+	else:
+		intent = "Move"
+		intent_direction = pursue_entity(angry_at)
+	if intent_arrow:
+		intent_arrow.visible = intent == "Move"
+		intent_arrow.look_at(intent_arrow.global_position + Vector2(intent_direction))
+	if intent_label:
+		intent_label.text = intent
+
+
+func get_random_direction() -> Vector2i:
+	var move_direction = grid_entity.get_valid_moves().pick_random()
+	if move_direction:
+		return move_direction
+	else:
+		return Vector2i.ZERO
 
 
 func move_in_direction(moveDirection):
@@ -69,8 +91,10 @@ func move_in_direction(moveDirection):
 	displayLerpTime = 0.0
 
 
-func get_direction_towards(entity: GridEntity, allow_diagonals := false) -> Vector2i:
-	var validMoves = grid_entity.get_valid_moves()
+func get_direction_towards(
+	entity: GridEntity, allow_diagonals := false, allow_moving_into_entities := false
+) -> Vector2i:
+	var validMoves = grid_entity.get_valid_moves(allow_moving_into_entities)
 	if validMoves:
 		# Pick a move pointing towards target, otherwise pick a random move.
 		var directionToEntity = (entity.global_position - grid_entity.global_position).normalized()
@@ -94,17 +118,18 @@ func get_direction_towards(entity: GridEntity, allow_diagonals := false) -> Vect
 	return Vector2i.ZERO
 
 
-func pursue_entity(entity: GridEntity):
-	var attack_successful = grid_entity.try_attacking(entity)
-	##if randf() > 0.5:
-#
-	##return
-	if not attack_successful:
-		if randf() > 0.5:
-			move_in_direction(get_direction_towards(entity))
-		else:
-			if not random_skill_planner.perform_plan(entity):
-				move_in_direction(get_direction_towards(entity))
+func pursue_entity(entity: GridEntity) -> Vector2i:
+	if randf() > 0.5:
+		return get_direction_towards(entity, false, true)
+	else:
+		intent = random_skill_planner.make_plan(entity)
+
+		stack_component.preview_queueing_skill(intent == "Queue Skill")
+		stack_component.preview_executing_stack(intent == "Execute Stack")
+
+		return Vector2i.ZERO
+		if not intent:
+			return get_direction_towards(entity, false, true)
 
 
 func _on_grid_entity_grid_entity_initialized() -> void:

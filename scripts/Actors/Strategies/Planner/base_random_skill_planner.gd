@@ -21,20 +21,32 @@ func queue_random_skill() -> bool:
 	return stack_component.queue_skill(random_skill)
 
 
-func perform_plan(entity: GridEntity) -> bool:
+func make_plan(entity: GridEntity) -> String:
 	if stack_component.is_full():
-		return stack_component.execute_stack()
+		return "Execute Stack"
 	else:
-		if not queue_random_skill():
+		var random_skill = randi() % stack_component.skills.size()
+		if stack_component.can_queue_skill(random_skill):
+			return "Queue Skill"
+		else:
+			if stack_component.can_execute_stack():
+				return "Execute Stack"
+			else:
+				return ""
+
+
+func perform_plan(plan: String) -> bool:
+	match plan:
+		"Execute Stack":
 			return stack_component.execute_stack()
-		return true
+		"Queue Skill":
+			return queue_random_skill()
+		_:
+			return false
 
 
 func _on_requested_directional_input():
 	awaited_directional_input.emit()
-	#var moveDirection = (
-	#[Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1, 0)].pick_random()
-	#)
 
 
 func set_direction(move_direction: Vector2i):
