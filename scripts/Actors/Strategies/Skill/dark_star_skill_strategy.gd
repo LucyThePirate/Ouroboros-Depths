@@ -20,11 +20,12 @@ func use_skill(grid_entity: GridEntity):
 	var new_star_VFX = StarVFX.instantiate()
 	add_child(new_star_VFX)
 	new_star_VFX.initialize(direction, grid_entity)
-	var grid_coords = grid_entity.floors.local_to_map(grid_entity.global_position) as Vector2i
-	grid_entity.move(-direction)
+	var grid_coords = Global.floors.local_to_map(grid_entity.global_position) as Vector2i
+	if grid_entity.move(-direction):
+		moved_self.emit()
 	for i in range(max_distance):
 		grid_coords += direction
-		new_star_VFX.position += Vector2(CELL_SIZE * direction)
+		new_star_VFX.position += Vector2(Global.CELL_SIZE * direction)
 		await get_tree().create_timer(0.05).timeout
 		if grid_entity.is_obstructed(grid_coords, false):
 			break
@@ -35,8 +36,6 @@ func use_skill(grid_entity: GridEntity):
 
 
 func explode_star(grid_coords, grid_entity, direction):
-	entity_positions = grid_entity.entity_positions
-
 	var star_points = [
 		Vector2.ZERO, Vector2(1, 0), Vector2(0, -1), Vector2(0, 1), Vector2(-1, -1), Vector2(-1, 1)
 	]
@@ -47,5 +46,5 @@ func explode_star(grid_coords, grid_entity, direction):
 		#"checking:", check_coords, "point:", Vector2i(point.rotated(Vector2(direction).angle()))
 		#)
 		grid_entity.spawn_tile.emit(check_coords)
-		if entity_positions.has(check_coords):
-			entity_positions[check_coords]._on_hit(grid_entity)
+		if Global.entity_positions.has(check_coords):
+			Global.entity_positions[check_coords]._on_hit(grid_entity)

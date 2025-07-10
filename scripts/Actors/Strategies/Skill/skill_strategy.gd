@@ -15,9 +15,7 @@ signal skill_finished
 @export var max_per_stack := 1
 @onready var current_in_stack := 0
 
-const CELL_SIZE = 100
-var initialized = false
-var my_turn = false
+var skill_crit := false
 var show_UI = true
 var grid: TileMap
 
@@ -39,6 +37,7 @@ func _ready() -> void:
 
 
 func ready_skill(grid_entity: GridEntity) -> bool:
+	skill_crit = false
 	use_skill(grid_entity)
 	return true
 

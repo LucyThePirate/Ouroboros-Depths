@@ -27,6 +27,8 @@ var state = States.IDLE
 var grid_entity: GridEntity
 var turn_component: TurnComponent
 
+var moved_by_skill := false
+
 
 func _ready() -> void:
 	skills = Debug.find_children_in_group(self, "Skill", false)
@@ -74,6 +76,7 @@ func can_execute_stack() -> bool:
 
 
 func execute_stack() -> bool:
+	grid_entity.moved_by_skill = false
 	if stack.is_empty():
 		return false
 	state = States.EXECUTING_STACK
@@ -89,6 +92,7 @@ func _handle_stack_execution():
 		_update_cooldown_visuals()
 		return
 	current_skill = stack.pop_front() as SkillStrategy
+	current_skill.connect("moved_self", _on_moved_by_skill)
 	$Stack/MarginContainer/CenterContainer/HBoxContainer/TextureRect/ColorRect.show()
 	if current_skill.ready_skill(grid_entity):
 		await get_tree().create_timer(0.1).timeout
@@ -101,6 +105,10 @@ func _handle_stack_execution():
 	elif current_skill.state == SkillStrategy.States.AWAITING_CURSOR:
 		state = States.AWAITING_CURSOR_INPUT
 		awaited_cursor_input.emit()
+
+
+func _on_moved_by_skill():
+	grid_entity.moved_by_skill = true
 
 
 func set_direction(moveDirection: Vector2i):

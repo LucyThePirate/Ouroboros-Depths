@@ -20,6 +20,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("DebugReloadScene"):
 		print_rich("[color=LIME]DEBUG: Reloaded (", reload_count, ")")
 		reload_count += 1
+		Global.entity_positions.clear()
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("DebugToggleSlowdown"):
 		toggle_slowdown()

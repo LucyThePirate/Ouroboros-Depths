@@ -14,7 +14,6 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 
 
 func use_skill(grid_entity: GridEntity):
-	entity_positions = grid_entity.entity_positions
 	$Arrows.hide()
 	state = SkillStrategy.States.PLAYING_ANIMATION
 	print(
@@ -23,9 +22,9 @@ func use_skill(grid_entity: GridEntity):
 		" towards ",
 		direction,
 		" from: ",
-		grid_entity.floors.local_to_map(grid_entity.global_position)
+		Global.floors.local_to_map(grid_entity.global_position)
 	)
-	moved_self.emit()
+
 	for i in range(max_distance):
 		var new_dash_VFX = DashVFX.instantiate() as GPUParticles2D
 		new_dash_VFX.preprocess = (4 - i) * 0.15
@@ -34,38 +33,14 @@ func use_skill(grid_entity: GridEntity):
 		new_dash_VFX.global_position = grid_entity.global_position
 		await get_tree().create_timer(0.025).timeout
 		var successfully_moved = grid_entity.move(direction)
-
-		var check_coords = grid_entity.floors.local_to_map(grid_entity.global_position) + direction
-		if entity_positions.has(check_coords):
-			var target = entity_positions[check_coords]
+		var check_coords = Global.floors.local_to_map(grid_entity.global_position) + direction
+		if Global.entity_positions.has(check_coords):
+			var target = Global.entity_positions[check_coords]
 			target.move(direction)
 			target._on_hit(grid_entity)
 			break
 		if not successfully_moved:
 			break
+		moved_self.emit()
 	state = SkillStrategy.States.IDLE
 	super(grid_entity)
-
-
-func get_valid_moves() -> Array:
-	var move_options = []
-	if not initialized:
-		return move_options
-	for direction in [Vector2i(-1, 0), Vector2i(1, 0), Vector2i(0, -1), Vector2i(0, 1)]:
-		var grid_coords = floors.local_to_map(global_position) + direction
-		var floor_data = floors.get_cell_tile_data(grid_coords)
-
-		if not floor_data:
-			continue
-
-		var wall_data = walls.get_cell_tile_data(grid_coords)
-		if wall_data and wall_data.get_custom_data("is_solid"):
-			continue
-
-		# Test for other bodies
-		if entity_positions.has(grid_coords):
-			continue
-
-		# Nothing blocking movement in this direction.
-		move_options.append(direction)
-	return move_options

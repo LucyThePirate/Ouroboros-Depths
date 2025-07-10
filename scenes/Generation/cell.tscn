@@ -928,7 +928,7 @@ texture_region_size = Vector2i(100, 100)
 3:0/0/custom_data_4 = "plant"
 3:1/0 = 0
 3:1/0/y_sort_origin = -43
-3:1/0/custom_data_4 = "plant"
+3:1/0/custom_data_4 = "grass"
 3:2/size_in_atlas = Vector2i(1, 2)
 3:2/0 = 0
 3:2/0/texture_origin = Vector2i(0, 49)
@@ -1052,6 +1052,7 @@ script = ExtResource("1_44ypc")
 boulder_splash = ExtResource("2_cu8oe")
 player_scene = ExtResource("3_iimes")
 creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj")])
+generation_size = Vector2i(60, 30)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2992, 1528)
@@ -1067,12 +1068,6 @@ texture_filter = 2
 use_parent_material = true
 tile_set = SubResource("TileSet_qrcgv")
 
-[node name="Objects" type="TileMapLayer" parent="."]
-show_behind_parent = true
-y_sort_enabled = true
-use_parent_material = true
-tile_set = SubResource("TileSet_0xdhj")
-
 [node name="Walls" type="TileMapLayer" parent="."]
 show_behind_parent = true
 y_sort_enabled = true
@@ -1080,7 +1075,6 @@ use_parent_material = true
 tile_set = SubResource("TileSet_0xdhj")
 
 [node name="Fog" type="TileMapLayer" parent="."]
-visible = false
 z_index = 10
 material = SubResource("CanvasItemMaterial_fx61w")
 tile_set = SubResource("TileSet_qrcgv")
@@ -1110,9 +1104,9 @@ offset_bottom = 257.0
 texture = ExtResource("13_0xdhj")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-visible = false
 material = SubResource("CanvasItemMaterial_0xdhj")
-position = Vector2(0, -600)
+position = Vector2(2635, -961)
+scale = Vector2(8.04692, 8.04692)
 amount = 1000
 preprocess = 0.5
 visibility_rect = Rect2(-400, 100, 800, 400)

@@ -4,6 +4,8 @@ extends Node2D
 @export var player_scene: PackedScene
 @export var creature_scene: Array[PackedScene]
 
+@export var generation_size: Vector2i
+
 #region Fog
 @onready var fog = $Fog
 #endregion
@@ -13,7 +15,6 @@ var root_node: Branch
 var tile_size: int = 100
 @onready var floors: TileMapLayer = $Floors
 @onready var walls = $Walls as TileMapLayer
-@onready var objects = $Objects as TileMapLayer
 @onready var path_tile := [3, Vector2i(1, 3)]
 @onready var room_floor_tile := [3, Vector2i(0, 3)]
 @onready var glass_wall_tile := [2, Vector2i(3, 0)]
@@ -39,7 +40,6 @@ var rng
 #endregion
 
 @onready var turn_queue: Array[TurnComponent]
-@onready var entity_positions = {}
 var ready_for_next_turn = true
 var turn_counter = 0
 var player
@@ -54,19 +54,25 @@ func _ready():
 	noise.fractal_lacunarity = 1.575
 	noise.frequency = 0.05
 	noise.noise_type = 3
-	root_node = Branch.new(Vector2i(0, 0), Vector2i(60, 30))
+	root_node = Branch.new(Vector2i(0, 0), generation_size)
 	root_node.split(3, paths)
-	floors.clear()
-	objects.clear()
-	walls.clear()
 	queue_redraw()
+
+
+func _redraw_map():
+	Global.floors.clear()
+	Global.walls.clear()
+	_update_fog(Vector2i.ZERO, Global.floors.local_to_map(player.grid_entity.global_position))
+	_ready()
 
 
 #endregion
 
 
 func _initialize_entities():
-	get_tree().call_group("GridEntity", "initialize", floors, walls, objects, entity_positions)
+	Global.floors = floors
+	Global.walls = walls
+	get_tree().call_group("GridEntity", "initialize")
 	for entity in get_tree().get_nodes_in_group("GridEntity"):
 		entity.opened_door.connect(_open_door)
 		entity.pushed_object.connect(_push_tile)
@@ -88,9 +94,10 @@ func _draw():
 	if not player:
 		player = spawn_entity(root_node.get_center(), player_scene) as Player
 	else:
-		player.global_position = floors.map_to_local(root_node.get_center())
+		#player.grid_entity.warp(floors.map_to_local(root_node.get_center()))
+		pass
 	player.grid_entity.moved.connect(_update_fog)
-	player.descended.connect(_ready)
+	player.descended.connect(_redraw_map)
 
 	for leaf in root_node.get_leaves():
 		if 0.5 > randf():
@@ -136,7 +143,7 @@ func _draw():
 							and walls.get_cell_tile_data(tile_coordinate + Vector2i(0, 1))
 						):
 							leaf.path_intersection_count += 1
-							objects.set_cell(
+							walls.set_cell(
 								tile_coordinate, door_vertical_tile[0], door_vertical_tile[1]
 							)
 			else:
@@ -152,7 +159,7 @@ func _draw():
 							and walls.get_cell_tile_data(tile_coordinate + Vector2i(1, 0))
 						):
 							leaf.path_intersection_count += 1
-							objects.set_cell(
+							walls.set_cell(
 								tile_coordinate, door_horizontal_tile[0], door_horizontal_tile[1]
 							)
 	var placed_stairs = false
@@ -177,10 +184,23 @@ func _draw():
 				)
 				floors.set_cell(tile_coordinate, stairs_down_tile[0], stairs_down_tile[1])
 				walls.set_cell(tile_coordinate, -1)
-				placed_stairs = true
+				placed_stairs = tile_coordinate
+	if not placed_stairs:
+		var tile_coordinate = Vector2i(
+			randi_range(
+				1,
+				generation_size.x,
+			),
+			randi_range(1, generation_size.y)
+		)
+		floors.set_cell(tile_coordinate, stairs_down_tile[0], stairs_down_tile[1])
+		walls.set_cell(tile_coordinate, -1)
+		placed_stairs = tile_coordinate
+	print_rich("[color=LIME]Stairs down at: %s" % placed_stairs)
 	floors.set_cell(root_node.get_center(), stairs_up_tile[0], stairs_up_tile[1])
 	_initialize_entities()
 	_update_fog(Vector2i.ZERO, root_node.get_center())
+	#player.grid_entity.warp(floors.map_to_local(root_node.get_center()))
 
 
 func _place_nature_tile(tile_coordinate: Vector2i):
@@ -189,7 +209,7 @@ func _place_nature_tile(tile_coordinate: Vector2i):
 	match true:
 		_ when random_tile >= 0.5:
 			if rng.randf() > 0.8:
-				objects.set_cell(tile_coordinate, boulder_object_tile[0], boulder_object_tile[1])
+				walls.set_cell(tile_coordinate, boulder_object_tile[0], boulder_object_tile[1])
 			floors.set_cell(tile_coordinate, stone_floor_tile[0], stone_floor_tile[1])
 		_ when random_tile >= 0.1 && random_tile < 0.4:
 			floors.set_cell(tile_coordinate, grass_floor_tile[0], grass_floor_tile[1])
@@ -198,11 +218,11 @@ func _place_nature_tile(tile_coordinate: Vector2i):
 			elif rng.randf() > 0.7:
 				walls.set_cell(tile_coordinate, tall_tree_wall_tile[0], tall_tree_wall_tile[1])
 			if rng.randf() > 0.3:
-				objects.set_cell(tile_coordinate, clover_decor_tile[0], clover_decor_tile[1])
+				walls.set_cell(tile_coordinate, clover_decor_tile[0], clover_decor_tile[1])
 		_ when random_tile >= 0 && random_tile < 0.1:
 			floors.set_cell(tile_coordinate, grass_floor_tile[0], grass_floor_tile[1])
 			if rng.randf() > 0.5:
-				objects.set_cell(tile_coordinate, clover_decor_tile[0], clover_decor_tile[1])
+				walls.set_cell(tile_coordinate, clover_decor_tile[0], clover_decor_tile[1])
 		_ when random_tile < 0 && random_tile > -0.1:
 			floors.set_cell(tile_coordinate, grass_floor_tile[0], grass_floor_tile[1])
 		_ when random_tile <= -0.1 && random_tile > -0.15:
@@ -212,7 +232,7 @@ func _place_nature_tile(tile_coordinate: Vector2i):
 		_ when random_tile <= -0.3 && random_tile > -0.1:
 			floors.set_cell(tile_coordinate, water_floor_tile[0], water_floor_tile[1])
 		_ when random_tile <= -0.45 && random_tile > -0.3:
-			objects.set_cell(tile_coordinate, lilly_decor_tile[0], lilly_decor_tile[1])
+			walls.set_cell(tile_coordinate, lilly_decor_tile[0], lilly_decor_tile[1])
 			floors.set_cell(tile_coordinate, water_floor_tile[0], water_floor_tile[1])
 		_:
 			if rng.randf() > 0.2:
@@ -256,40 +276,40 @@ func _entity_finished_turn():
 
 
 func _open_door(door_coords):
-	objects.set_cell(door_coords, -1)
+	walls.set_cell(door_coords, -1)
 
 
 func _push_tile(tile_coords, direction):
-	var tile = objects.get_cell_tile_data(tile_coords) as TileData
+	var tile = walls.get_cell_tile_data(tile_coords) as TileData
 	if not tile:
 		return
 
 	if _is_obstructed(tile_coords + direction):
 		return
 
-	if not floors.get_cell_tile_data(tile_coords + direction):
-		objects.set_cell(tile_coords, -1)
+	if not Global.floors.get_cell_tile_data(tile_coords + direction):
+		walls.set_cell(tile_coords, -1)
 		return
 
-	if floors.get_cell_tile_data(tile_coords + direction).get_custom_data("is_liquid"):
-		floors.set_cell(tile_coords + direction, 2, Vector2i(0, 1))
+	if Global.floors.get_cell_tile_data(tile_coords + direction).get_custom_data("is_liquid"):
+		Global.floors.set_cell(tile_coords + direction, 2, Vector2i(0, 1))
 		var splashVFX = boulder_splash.instantiate()
 		walls.add_child(splashVFX)
-		splashVFX.global_position = floors.map_to_local(tile_coords + direction)
+		splashVFX.global_position = Global.floors.map_to_local(tile_coords + direction)
 	else:
-		objects.set_cell(
+		walls.set_cell(
 			tile_coords + direction,
-			objects.get_cell_source_id(tile_coords),
-			objects.get_cell_atlas_coords(tile_coords)
+			walls.get_cell_source_id(tile_coords),
+			walls.get_cell_atlas_coords(tile_coords)
 		)
-	objects.set_cell(tile_coords, -1)
+	walls.set_cell(tile_coords, -1)
 
 
 func _spawn_tile(tile_coords):
-	var existing_tile = floors.get_cell_tile_data(tile_coords)
+	var existing_tile = Global.floors.get_cell_tile_data(tile_coords)
 	if existing_tile and existing_tile.get_custom_data("indestructable"):
 		return
-	floors.set_cell(tile_coords, 2, Vector2i(0, 1))
+	Global.floors.set_cell(tile_coords, 2, Vector2i(0, 1))
 
 
 func _is_obstructed(tile_coords) -> bool:
@@ -301,11 +321,11 @@ func _is_obstructed(tile_coords) -> bool:
 	if wall_tile and wall_tile.get_custom_data("is_solid"):
 		return true
 
-	var object_tile = objects.get_cell_tile_data(tile_coords)
+	var object_tile = walls.get_cell_tile_data(tile_coords)
 	if object_tile and object_tile.get_custom_data("is_solid"):
 		return true
 
-	if entity_positions.has(tile_coords):
+	if Global.entity_positions.has(tile_coords):
 		return true
 	return false
 

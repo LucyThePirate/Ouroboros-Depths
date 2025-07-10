@@ -1,21 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsonm026t0emp"]
+[gd_scene load_steps=5 format=3 uid="uid://bsonm026t0emp"]
 
 [ext_resource type="Texture2D" uid="uid://b08oh14ot75ib" path="res://textures/Skills/SkillIcons.png" id="1_87pt6"]
 [ext_resource type="Script" uid="uid://0xve3bfmqrk5" path="res://scripts/Actors/Strategies/Skill/stomp_skill_strategy.gd" id="1_swfph"]
 [ext_resource type="PackedScene" uid="uid://csmoib3nld3bv" path="res://scenes/Effects/stomp_vfx.tscn" id="2_vm8f4"]
-
-[sub_resource type="Animation" id="Animation_4ydmv"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_22evp"]
-resource_name = "Ripple"
-loop_mode = 1
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_y38n6"]
-_data = {
-&"RESET": SubResource("Animation_4ydmv"),
-&"Ripple": SubResource("Animation_22evp")
-}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_60mig"]
 atlas = ExtResource("1_87pt6")
@@ -26,11 +13,6 @@ script = ExtResource("1_swfph")
 StompVFX = ExtResource("2_vm8f4")
 icon = NodePath("Sprite2D")
 max_per_stack = 4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_y38n6")
-}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_60mig")

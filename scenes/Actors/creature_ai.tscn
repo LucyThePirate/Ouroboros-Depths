@@ -36,12 +36,12 @@ scale = Vector2(0.3, 0.3)
 [node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("6_6hqks")]
 
 [node name="DetectionRadius" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+scale = Vector2(1.66251, 1.66251)
 shape = SubResource("CircleShape2D_6hqks")
 
 [node name="IntentArrow" type="Sprite2D" parent="."]
