@@ -14,15 +14,10 @@ signal skill_finished
 @onready var current_cooldown := 0
 @export var max_per_stack := 1
 @onready var current_in_stack := 0
+@export var count := 3
 
 var skill_crit := false
 var show_UI = true
-var grid: TileMap
-
-var floors: TileMapLayer
-var walls: TileMapLayer
-var objects: TileMapLayer
-var entity_positions: Dictionary
 
 var direction: Vector2i
 var cursor: Vector2i
@@ -52,11 +47,6 @@ func can_use_skill() -> bool:
 	if current_cooldown > 0 or current_in_stack >= max_per_stack:
 		return false
 	return true
-
-
-func get_valid_moves() -> Array:
-	var move_options = []
-	return move_options
 
 
 func request_direction():

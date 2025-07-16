@@ -100,6 +100,9 @@ func _handle_movement() -> void:
 			state = States.EXECUTING_STACK
 			stack_component.execute_stack()
 
+	elif Input.is_action_just_pressed("Reload"):
+		stack_component.reload_deck()
+
 
 func _get_directional_input():
 	var moveDirection = Input.get_vector("Left", "Right", "Up", "Down")
