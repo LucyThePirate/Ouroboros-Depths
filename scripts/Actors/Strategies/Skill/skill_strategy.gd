@@ -15,8 +15,8 @@ signal skill_finished
 @export var max_per_stack := 1
 @onready var current_in_stack := 0
 @export var count := 3
+@onready var current_count := count
 @export var is_depletable := false
-var depleted := false
 
 var skill_crit := false
 var show_UI = true
@@ -43,6 +43,8 @@ func use_skill(grid_entity: GridEntity):
 	current_cooldown = cooldown_turns
 	current_in_stack = 0
 	skill_finished.emit()
+	if is_depletable and current_count > 0:
+		current_count -= 1
 
 
 func can_use_skill() -> bool:
@@ -52,7 +54,7 @@ func can_use_skill() -> bool:
 
 
 func on_next_floor_reached():
-	depleted = false
+	current_count = count
 
 
 func request_direction():

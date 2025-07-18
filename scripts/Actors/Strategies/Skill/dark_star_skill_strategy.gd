@@ -46,5 +46,8 @@ func explode_star(grid_coords, grid_entity, direction):
 		#"checking:", check_coords, "point:", Vector2i(point.rotated(Vector2(direction).angle()))
 		#)
 		grid_entity.spawn_tile.emit(check_coords)
-		if Global.entity_positions.has(check_coords):
+		if (
+			Global.entity_positions.has(check_coords)
+			and is_instance_valid(Global.entity_positions[check_coords])
+		):
 			Global.entity_positions[check_coords]._on_hit(grid_entity)

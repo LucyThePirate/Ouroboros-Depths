@@ -9,6 +9,7 @@ signal pushed_object(object_coord, direction)
 signal spawn_tile(tile_coord)
 signal hurt
 signal fell_off_map
+signal descended
 signal died
 signal performed_action
 

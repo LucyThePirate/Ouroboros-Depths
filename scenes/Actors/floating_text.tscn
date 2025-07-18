@@ -33,7 +33,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_uopox"]
 resource_name = "float_away"
-length = 7.0
+length = 10.0
 step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -42,7 +42,7 @@ tracks/0/path = NodePath("Text:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(5, 7),
+"times": PackedFloat32Array(8, 10),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -54,10 +54,10 @@ tracks/1/path = NodePath("Text:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 7),
+"times": PackedFloat32Array(0, 10),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-538, -240), Vector2(-538, -390)]
+"values": [Vector2(-538, -240), Vector2(-538, -590)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8yhkb"]
@@ -92,7 +92,6 @@ bbcode_enabled = true
 text = "Testing, of course!"
 fit_content = true
 scroll_active = false
-autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -121,6 +120,9 @@ libraries = {
 visible = false
 texture = ExtResource("3_6q6jx")
 
+[node name="TypeDelay" type="Timer" parent="."]
+
 [connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="TypeDelay" to="." method="_on_type_delay_timeout"]

@@ -35,6 +35,7 @@ animations = [{
 script = ExtResource("1_mqx4p")
 DashVFX = ExtResource("2_clto2")
 icon = NodePath("Sprite2D")
+count = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_clto2")

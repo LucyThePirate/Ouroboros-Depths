@@ -47,8 +47,9 @@ func _process(delta: float) -> void:
 
 func _input(event):
 	if Input.is_action_just_pressed("Chat") and not current_text:
-		var new_text_component = text_component.instantiate()
+		var new_text_component = text_component.instantiate() as TextComponent
 		add_child(new_text_component)
+		new_text_component.initialize(true)
 		new_text_component.global_position = grid_entity.global_position
 		current_text = new_text_component
 		new_text_component.text_changed.connect(visual._on_talked)
@@ -154,6 +155,7 @@ func end_turn():
 	if not grid_entity.is_on_floor():
 		_on_grid_entity_fell_off_map()
 	elif grid_entity.is_on_path_down():
+		grid_entity.descended.emit()
 		descended.emit()
 
 

@@ -45,6 +45,7 @@ func _ready() -> void:
 
 func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_component: TurnComponent):
 	grid_entity = grid_entity_parent
+	grid_entity.descended.connect(on_next_floor_reached)
 	$CanvasLayer.visible = is_player
 	turn_component = new_turn_component
 	turn_component.turn_ended.connect(_update_turn_cooldown)
@@ -180,7 +181,7 @@ func _on_emptied_stack() -> void:
 func _shuffle_skills() -> void:
 	for skill in skills:
 		skill.current_cooldown = 0
-		for i in range(skill.count):
+		for i in range(skill.current_count):
 			deck.append(skill)
 	deck.shuffle()
 	for i in range(hand_size):
@@ -188,6 +189,11 @@ func _shuffle_skills() -> void:
 			break
 		hand.append(deck.pop_front())
 	_update_skill_visuals()
+
+
+func on_next_floor_reached() -> void:
+	for skill in skills:
+		skill.on_next_floor_reached()
 
 
 func _update_stack_visuals() -> void:
