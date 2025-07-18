@@ -12,6 +12,7 @@ signal died
 @onready var health_label = $Label
 
 var current_damage_number: DamageNumberComponent
+var current_heal_number: DamageNumberComponent
 
 
 func _ready():
@@ -38,6 +39,14 @@ func deal_damage(damage_amount = 1):
 func heal(heal_amount):
 	health = min(health + heal_amount, max_health)
 	healed.emit()
+	if not is_instance_valid(current_heal_number):
+		current_heal_number = damage_number_scene.instantiate()
+		current_heal_number.add_heal(heal_amount)
+		current_heal_number.global_position = global_position
+		get_tree().current_scene.add_child(current_heal_number)
+	else:
+		current_heal_number.add_heal(heal_amount)
+		current_heal_number.global_position = global_position
 	_update_health_bar()
 
 

@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bd85kao70uoy4"]
+[gd_scene load_steps=16 format=3 uid="uid://bd85kao70uoy4"]
 
 [ext_resource type="Script" uid="uid://b6uhrd8rdimmy" path="res://scripts/Actors/skill_stack_component.gd" id="1_rerjn"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="2_qowul"]
 [ext_resource type="AudioStream" uid="uid://d3dload3sw6cq" path="res://audio/SFX/Misc/erro.mp3" id="2_rerjn"]
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="3_n6r18"]
+[ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="4_iqeie"]
+[ext_resource type="AudioStream" uid="uid://d2xfgpdhopbfj" path="res://audio/SFX/Skills/98329__cognito-perceptu__cassette-tape-action-2.ogg" id="5_8fyuu"]
+[ext_resource type="AudioStream" uid="uid://dp7jocijuqcyo" path="res://audio/SFX/Skills/98329__cognito-perceptu__cassette-tape-action-3.ogg" id="6_iqeie"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6r18"]
 bg_color = Color(0, 0, 0, 0.529412)
@@ -17,12 +20,40 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("2_rerjn")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rfo38"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("5_8fyuu")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gm5ox"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("6_iqeie")
+
+[sub_resource type="Curve" id="Curve_8fyuu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.109756, 1), 0.0, 0.0, 0, 0, Vector2(0.768293, 0.876405), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_iqeie"]
+curve = SubResource("Curve_8fyuu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8fyuu"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 175.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.0
+scale_max = 8.34
+scale_curve = SubResource("CurveTexture_iqeie")
+
 [node name="SkillStackComponent" type="Node2D"]
 script = ExtResource("1_rerjn")
 preview_queue_skill_texture = ExtResource("2_qowul")
 null_skill_texture = ExtResource("3_n6r18")
 
 [node name="Stack" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,21 +71,26 @@ offset_bottom = 137.0
 scale = Vector2(0.328554, 0.284677)
 
 [node name="ColorRect" type="ColorRect" parent="Stack/MarginContainer"]
+visible = false
 layout_mode = 2
 color = Color(0.713726, 0.407843, 0, 0.352941)
 
-[node name="CenterContainer" type="CenterContainer" parent="Stack/MarginContainer"]
+[node name="CenterContainer" type="PanelContainer" parent="Stack/MarginContainer"]
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Stack/MarginContainer/CenterContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
 
-[node name="ColorRect" type="ColorRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/TextureRect"]
+[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer/TextureRect"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -65,27 +101,40 @@ grow_vertical = 2
 scale = Vector2(1.00272, 1.00272)
 color = Color(0.862745, 0, 0.219608, 0.298039)
 
-[node name="TextureRect2" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="PanelContainer4" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
 
-[node name="TextureRect3" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer4"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
+expand_mode = 2
+stretch_mode = 5
 
-[node name="TextureRect4" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
 
-[node name="PreviewQueueSkill" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="PanelContainer3" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="PanelContainer5" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PreviewQueueSkill" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer5"]
 visible = false
 self_modulate = Color(0.870588, 0, 0.0117647, 1)
 layout_mode = 2
 texture = ExtResource("2_qowul")
-stretch_mode = 3
+expand_mode = 2
+stretch_mode = 5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -110,93 +159,84 @@ grow_vertical = 0
 scale = Vector2(0.758758, 0.633884)
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/AvailableSkills/MarginContainer"]
+visible = false
 layout_mode = 2
 color = Color(0.713726, 0.407843, 0, 0.352941)
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/AvailableSkills/MarginContainer"]
+[node name="CenterContainer" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer"]
+self_modulate = Color(1, 1, 1, 0.231373)
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="TextureRect1" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="PanelContainer1" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect1"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.00272, 1.00272)
-color = Color(0.862745, 0, 0.219608, 0.298039)
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer1"]
+layout_mode = 2
+texture = ExtResource("4_iqeie")
+expand_mode = 2
+stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer1"]
+layout_mode = 2
+size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
 max_value = 1.0
 fill_mode = 3
 show_percentage = false
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+texture = ExtResource("4_iqeie")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
 max_value = 1.0
 fill_mode = 3
 show_percentage = false
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+texture = ExtResource("4_iqeie")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
 max_value = 1.0
 fill_mode = 3
 show_percentage = false
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.882122, 0.979893)
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer4"]
+layout_mode = 2
+texture = ExtResource("4_iqeie")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer4"]
+layout_mode = 2
+size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
 max_value = 1.0
@@ -205,5 +245,24 @@ show_percentage = false
 
 [node name="Error" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_qowul")
+
+[node name="ReloadEnd" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_rfo38")
+volume_db = 2.633
+pitch_scale = 1.1
+
+[node name="ReloadStart" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_gm5ox")
+volume_db = 9.215
+pitch_scale = 1.2
+
+[node name="Reload" type="GPUParticles2D" parent="."]
+position = Vector2(99, 140)
+emitting = false
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.78
+explosiveness = 0.96
+process_material = SubResource("ParticleProcessMaterial_8fyuu")
 
 [connection signal="emptied_stack" from="." to="." method="_on_emptied_stack"]

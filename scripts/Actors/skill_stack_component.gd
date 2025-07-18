@@ -13,7 +13,7 @@ signal awaited_cursor_input
 var skill_icon_holder = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer
 @onready var stack_icon_holder = $Stack/MarginContainer/CenterContainer/HBoxContainer
 @onready
-var preview_queue_skill = $Stack/MarginContainer/CenterContainer/HBoxContainer/PreviewQueueSkill
+var preview_queue_skill = $Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer5/PreviewQueueSkill
 @onready var stack_color_rect = $Stack/MarginContainer/ColorRect
 
 @export var max_stack_size := 4
@@ -52,7 +52,10 @@ func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_compon
 
 func reload_deck() -> bool:
 	if state == States.IDLE and stack.is_empty():
-		print("%s is reloading!" % [grid_entity.name])
+		#print("%s is reloading!" % [grid_entity.name])
+		if $CanvasLayer.visible:
+			$ReloadStart.play()
+			$Reload.emitting = true
 		state = States.RELOADING
 		hand = []
 		deck = []
@@ -121,7 +124,7 @@ func _handle_stack_execution():
 		return
 	current_skill = stack.pop_front() as SkillStrategy
 	current_skill.connect("moved_self", _on_moved_by_skill)
-	$Stack/MarginContainer/CenterContainer/HBoxContainer/TextureRect/ColorRect.show()
+	stack_icon_holder.get_child(0).get_child(0).get_child(0).show()
 	if current_skill.ready_skill(grid_entity):
 		await get_tree().create_timer(0.1).timeout
 		_handle_stack_execution()
@@ -171,7 +174,7 @@ func accept_cursor():
 
 func _on_emptied_stack() -> void:
 	$Stack.hide()
-	$Stack/MarginContainer/CenterContainer/HBoxContainer/TextureRect/ColorRect.hide()
+	stack_icon_holder.get_child(0).get_child(0).get_child(0).hide()
 
 
 func _shuffle_skills() -> void:
@@ -188,18 +191,20 @@ func _shuffle_skills() -> void:
 
 
 func _update_stack_visuals() -> void:
-	for texture_panel in stack_icon_holder.get_children():
-		texture_panel.texture = null
+	for panel_container in stack_icon_holder.get_children():
+		panel_container.get_child(0).texture = null
 	for stack_item in range(stack.size()):
-		stack_icon_holder.get_child(stack_item).texture = stack[stack_item].icon.texture
+		stack_icon_holder.get_child(stack_item).get_child(0).texture = (
+			stack[stack_item].icon.texture
+		)
 
 
 func _update_skill_visuals() -> void:
 	for skill in range(hand_size):
 		if hand.size() <= skill or not hand[skill]:
-			skill_icon_holder.get_child(skill).texture = null_skill_texture
+			skill_icon_holder.get_child(skill).get_child(0).texture = null_skill_texture
 			continue
-		skill_icon_holder.get_child(skill).texture = hand[skill].icon.texture
+		skill_icon_holder.get_child(skill).get_child(0).texture = hand[skill].icon.texture
 
 
 func _update_turn_cooldown():
@@ -207,14 +212,15 @@ func _update_turn_cooldown():
 		shuffle_turns -= 1
 		if shuffle_turns <= 0:
 			state = States.IDLE
+			if $CanvasLayer.visible:
+				$ReloadEnd.play()
 			_shuffle_skills()
-		return
 	if state == States.IDLE:
 		for skill in range(hand.size()):
 			if not hand[skill]:
 				continue
 			hand[skill].decrement_turn_cooldown()
-		_update_cooldown_visuals()
+	_update_cooldown_visuals()
 
 
 func _update_cooldown_visuals():
@@ -223,7 +229,7 @@ func _update_cooldown_visuals():
 			var progress_bar = (
 				get_node(
 					(
-						"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect%s/ProgressBar"
+						"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer%s/ProgressBar"
 						% [skill + 1]
 					)
 				)
@@ -232,10 +238,10 @@ func _update_cooldown_visuals():
 			var percentage: float
 			var new_style_box = progress_bar.get_theme_stylebox("fill").duplicate() as StyleBoxFlat
 
-			if hand[skill].current_in_stack > 0:
-				percentage = float(shuffle_turns) / float(turns_to_reload)
-				new_style_box.bg_color = Color(1, 1, 1, 0.5)
-				progress_bar.add_theme_stylebox_override("fill", new_style_box)
+			percentage = float(shuffle_turns) / float(turns_to_reload)
+			new_style_box.bg_color = Color(1, 1, 1, 0.5)
+			progress_bar.add_theme_stylebox_override("fill", new_style_box)
+			progress_bar.value = percentage
 		return
 	for skill in range(hand.size()):
 		if not hand[skill]:
@@ -243,7 +249,7 @@ func _update_cooldown_visuals():
 		var progress_bar = (
 			get_node(
 				(
-					"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/TextureRect%s/ProgressBar"
+					"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer%s/ProgressBar"
 					% [skill + 1]
 				)
 			)

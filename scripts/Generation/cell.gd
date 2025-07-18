@@ -94,7 +94,7 @@ func _draw():
 	if not player:
 		player = spawn_entity(root_node.get_center(), player_scene) as Player
 	else:
-		#player.grid_entity.warp(floors.map_to_local(root_node.get_center()))
+		#player.grid_entity.warp(root_node.get_center())
 		pass
 	player.grid_entity.moved.connect(_update_fog)
 	player.descended.connect(_redraw_map)
@@ -200,7 +200,7 @@ func _draw():
 	floors.set_cell(root_node.get_center(), stairs_up_tile[0], stairs_up_tile[1])
 	_initialize_entities()
 	_update_fog(Vector2i.ZERO, root_node.get_center())
-	#player.grid_entity.warp(floors.map_to_local(root_node.get_center()))
+	player.grid_entity.warp(root_node.get_center())
 
 
 func _place_nature_tile(tile_coordinate: Vector2i):

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c5mqvugk7ofav" path="res://scripts/Actors/damage_text.gd" id="1_lntjd"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/Testing/thisGuyPOV.png" id="2_pv6l1"]
-[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://demo/assets/fonts/Permanentmarker-Regular.ttf" id="3_31a7n"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="3_31a7n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lntjd"]
 

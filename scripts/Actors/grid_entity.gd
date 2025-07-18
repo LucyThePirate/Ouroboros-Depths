@@ -94,6 +94,7 @@ func move(direction: Vector2i) -> bool:
 
 
 func warp(position: Vector2i) -> bool:
+	print("warping to:", position)
 	if not initialized:
 		return false
 
@@ -178,12 +179,17 @@ func hit(entity):
 
 
 func _on_hit(attacker, damage := 1):
-	print(self.name, "was hit by:", attacker.name)
 	if self == attacker:
-		$Error.play()
+		#$Error.play()
+		return
 	else:
+		print(self.name, "was hit by:", attacker.name)
 		health_component.deal_damage(damage)
 		hurt.emit(attacker)
+
+
+func heal(heal_amount := 1):
+	health_component.heal(heal_amount)
 
 
 func play_walk_sound(material):

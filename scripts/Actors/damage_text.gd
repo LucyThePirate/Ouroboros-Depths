@@ -14,6 +14,7 @@ const TERMINAL_VELOCITY = 300
 const SPREAD = 200
 
 var damage_amount = 0
+var heal_amount = 0
 var base_font_size = 37
 
 
@@ -39,6 +40,28 @@ func add_damage(amount: int):
 			damage_effect_percentage * 50,
 			base_font_size + (base_font_size * damage_effect_percentage),
 			damage_amount
+		]
+	)
+
+
+func add_heal(amount: int):
+	$AnimationPlayer.play("MoreDamage")
+	$AnimationPlayer.seek(0)
+	display_location.position = Vector2(0, -40.0)
+	display_location.velocity.y += -INITIAL_VELOCITY / 2.0
+	if amount <= 0:
+		return
+	heal_amount += amount
+	var heal_effect_percentage = clampi(heal_amount, 0, 10) / 10.0
+	var text_color = Color(1.0 - heal_effect_percentage, 1.0, 1.0 - heal_effect_percentage)
+	display_text.self_modulate = text_color
+	display_text.text = (
+		"[wave freq=%s amp=%s][font_size=%s]%s[/font_size][/wave]"
+		% [
+			heal_effect_percentage * 50,
+			heal_effect_percentage * 50,
+			base_font_size + (base_font_size * heal_effect_percentage),
+			heal_amount
 		]
 	)
 

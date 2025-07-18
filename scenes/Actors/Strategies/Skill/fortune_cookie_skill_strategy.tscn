@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnrxjlwuvjt6l"]
+
+[ext_resource type="Script" uid="uid://cjulx25cp14c1" path="res://scripts/Actors/Strategies/Skill/fortune_cookie_skill_strategy.gd" id="1_78wp6"]
+[ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="2_r62tr"]
+
+[node name="FortuneCookieSkillStrategy" type="Node2D" node_paths=PackedStringArray("icon")]
+script = ExtResource("1_78wp6")
+icon = NodePath("Icon")
+cooldown_turns = 0
+max_per_stack = 2
+count = 2
+is_depletable = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_r62tr")

@@ -15,6 +15,8 @@ signal skill_finished
 @export var max_per_stack := 1
 @onready var current_in_stack := 0
 @export var count := 3
+@export var is_depletable := false
+var depleted := false
 
 var skill_crit := false
 var show_UI = true
@@ -47,6 +49,10 @@ func can_use_skill() -> bool:
 	if current_cooldown > 0 or current_in_stack >= max_per_stack:
 		return false
 	return true
+
+
+func on_next_floor_reached():
+	depleted = false
 
 
 func request_direction():
