@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1tq0r2hua7v8"]
+[gd_scene load_steps=5 format=3 uid="uid://c1tq0r2hua7v8"]
 
-[ext_resource type="Texture2D" uid="uid://b08oh14ot75ib" path="res://textures/Skills/SkillIcons.png" id="1_ododk"]
 [ext_resource type="Script" uid="uid://3u0aqmvw83u5" path="res://scripts/Actors/Strategies/Skill/dash_skill_strategy.gd" id="1_ss86u"]
 [ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/Effects/dash_vfx.tscn" id="2_au81m"]
+[ext_resource type="Texture2D" uid="uid://ccdflf58itehp" path="res://textures/Skills/MadDashSkill.png" id="3_52a6f"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="4_52a6f"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_52a6f"]
-atlas = ExtResource("1_ododk")
-region = Rect2(8.96933, 5.5432, 129.152, 137.845)
 
 [node name="DashSkillStrategy" type="Node2D" node_paths=PackedStringArray("icon") groups=["Skill"]]
 script = ExtResource("1_ss86u")
@@ -16,7 +12,7 @@ icon = NodePath("Sprite2D")
 max_per_stack = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_52a6f")
+texture = ExtResource("3_52a6f")
 
 [node name="Arrows" type="Node2D" parent="."]
 visible = false

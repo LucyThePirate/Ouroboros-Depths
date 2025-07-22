@@ -77,9 +77,9 @@ func _initialize_entities():
 		entity.opened_door.connect(_open_door)
 		entity.pushed_object.connect(_push_tile)
 		entity.spawn_tile.connect(_spawn_tile)
-	for entity in get_tree().get_nodes_in_group("TurnComponent"):
-		turn_queue.push_front(entity)
-		entity.turn_ended.connect(_entity_finished_turn)
+	for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
+		turn_queue.push_front(turn_component)
+		turn_component.turn_ended.connect(_entity_finished_turn)
 	process_turn()
 
 
@@ -268,6 +268,10 @@ func process_turn():
 	if current_entity:
 		current_entity.take_turn()
 	#await current_entity.turn_ended
+
+
+#func _process(delta: float) -> void:
+#process_turn()
 
 
 func _entity_finished_turn():

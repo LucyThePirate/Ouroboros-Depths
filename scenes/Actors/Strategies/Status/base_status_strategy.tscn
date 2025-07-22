@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="1_6eb08"]
 [ext_resource type="Script" uid="uid://cg2e3022sib6v" path="res://scripts/Actors/Strategies/Status/base_status_strategy.gd" id="1_58i3t"]
 
-[node name="BaseStatusStrategy" type="Node2D"]
+[node name="BaseStatusStrategy" type="Node2D" groups=["Status"]]
 script = ExtResource("1_58i3t")
 
 [node name="Icon" type="TextureRect" parent="."]

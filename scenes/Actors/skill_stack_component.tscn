@@ -152,11 +152,13 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -84.0
-offset_bottom = 49.0
+offset_left = 76.0
+offset_top = -121.0
+offset_right = 76.0
+offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.758758, 0.633884)
+scale = Vector2(0.84102, 0.877923)
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/AvailableSkills/MarginContainer"]
 visible = false

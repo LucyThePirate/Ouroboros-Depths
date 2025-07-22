@@ -5,7 +5,7 @@ extends Node2D
 @onready var grid_entity = $GridEntity
 @onready var display = $Display
 @onready var displayLerpTime = 0.0
-@onready var turn_component = $TurnComponent
+@onready var turn_component = $GridEntity/TurnComponent
 @onready var stack_component = $GridEntity/SkillStackComponent
 @onready var health_component = $GridEntity/HealthComponent
 @onready var random_skill_planner = $BaseRandomSkillPlanner
@@ -75,9 +75,9 @@ func update_intent():
 
 
 func get_random_direction() -> Vector2i:
-	var move_direction = grid_entity.get_valid_moves().pick_random()
+	var move_direction = grid_entity.get_valid_moves()
 	if move_direction:
-		return move_direction
+		return move_direction.pick_random()
 	else:
 		return Vector2i.ZERO
 

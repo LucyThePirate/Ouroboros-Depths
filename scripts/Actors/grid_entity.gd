@@ -23,7 +23,8 @@ signal performed_action
 
 @onready var door_open = $DoorOpen
 
-@onready var health_component = $HealthComponent
+@onready var health_component = $HealthComponent as HealthComponent
+@onready var status_component = $StatusManagerComponent as StatusManagerComponent
 
 const CELL_SIZE = 100
 var initialized = false
@@ -191,6 +192,10 @@ func _on_hit(attacker, damage := 1):
 
 func heal(heal_amount := 1):
 	health_component.heal(heal_amount)
+
+
+func inflict_status(condition: StatusStrategy):
+	pass
 
 
 func play_walk_sound(material):

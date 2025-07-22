@@ -9,6 +9,10 @@ signal status_ended
 @export var power := 1
 
 
+func _ready() -> void:
+	$Icon.hide()
+
+
 func on_turn_ended():
 	current_turns_afflicted -= 1
 	if current_turns_afflicted <= 0:

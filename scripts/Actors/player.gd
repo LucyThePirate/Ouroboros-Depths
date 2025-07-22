@@ -10,7 +10,7 @@ signal descended
 @onready var display = $Display
 @onready var visual = $ScarecrowVisual
 @onready var displayLerpTime = 0.0
-@onready var turn_component = $TurnComponent
+@onready var turn_component = $GridEntity/TurnComponent
 @onready var stack_component = $GridEntity/SkillStackComponent
 @onready var health_component = $GridEntity/HealthComponent
 

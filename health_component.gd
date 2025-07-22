@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name HealthComponent
+
 signal hurt
 signal healed
 signal died
@@ -8,8 +10,8 @@ signal died
 @export var damage_number_scene: PackedScene
 
 @onready var health = max_health
-@onready var health_bar = $ProgressBar as ProgressBar
-@onready var health_label = $Label
+@onready var health_bar = $VBoxContainer/ProgressBar as ProgressBar
+@onready var health_label = $VBoxContainer/ProgressBar/Label
 
 var current_damage_number: DamageNumberComponent
 var current_heal_number: DamageNumberComponent

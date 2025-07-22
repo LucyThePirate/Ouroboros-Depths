@@ -9,14 +9,20 @@ signal direction_set
 signal cursor_set
 signal skill_finished
 
-@export var icon: Sprite2D
-@export var cooldown_turns := 5
+@export_category("Base Stats")
+
+@export var cooldown_turns := 1
 @onready var current_cooldown := 0
 @export var max_per_stack := 1
 @onready var current_in_stack := 0
 @export var count := 3
 @onready var current_count := count
 @export var is_depletable := false
+
+@export_category("Lore")
+@export var icon: Sprite2D
+@export var skill_name: String
+@export_multiline var skill_desc: String
 
 var skill_crit := false
 var show_UI = true
@@ -40,7 +46,8 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 
 
 func use_skill(grid_entity: GridEntity):
-	current_cooldown = cooldown_turns
+	current_cooldown = 0
+	#current_cooldown = cooldown_turns
 	current_in_stack = 0
 	skill_finished.emit()
 	if is_depletable and current_count > 0:
