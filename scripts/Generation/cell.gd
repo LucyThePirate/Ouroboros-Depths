@@ -78,8 +78,9 @@ func _initialize_entities():
 		entity.pushed_object.connect(_push_tile)
 		entity.spawn_tile.connect(_spawn_tile)
 	for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
-		turn_queue.push_front(turn_component)
+		turn_queue.push_back(turn_component)
 		turn_component.turn_ended.connect(_entity_finished_turn)
+		#print("Added to turn queue:", turn_component.get_parent().name)
 	process_turn()
 
 
@@ -262,11 +263,16 @@ func process_turn():
 	if turn_queue.size() <= 0:
 		turn_counter += 1
 		print(turn_counter)
-		for entity in get_tree().get_nodes_in_group("TurnComponent"):
-			turn_queue.push_front(entity)
+		for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
+			turn_queue.push_back(turn_component)
+
 	var current_entity = turn_queue.pop_front()
 	if current_entity:
+		#print("Taking turn now:", current_entity.get_parent().name)
 		current_entity.take_turn()
+	else:
+		#print("invalid entity?")
+		process_turn()
 	#await current_entity.turn_ended
 
 

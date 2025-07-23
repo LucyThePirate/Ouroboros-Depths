@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://yqxyjxhsvfqi"]
+[gd_scene load_steps=32 format=3 uid="uid://yqxyjxhsvfqi"]
 
 [ext_resource type="Script" uid="uid://l0k61db14icb" path="res://scripts/Actors/grid_entity.gd" id="1_u0fqg"]
 [ext_resource type="AudioStream" uid="uid://cxmd2cbaxkq6d" path="res://audio/SFX/Thump/125429__jspath1__three-bass-thumps-1.ogg" id="2_6nj4f"]
@@ -21,7 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://cs15uwjngcgt0" path="res://textures/MonsterMaker/canvasTexture.png" id="19_h3mly"]
 [ext_resource type="PackedScene" uid="uid://bn5ri0qp1ncea" path="res://scenes/Actors/status_manager_component.tscn" id="21_jyxbn"]
 [ext_resource type="PackedScene" uid="uid://bd85kao70uoy4" path="res://scenes/Actors/skill_stack_component.tscn" id="22_off3y"]
-[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/Actors/Strategies/Status/base_status_strategy.tscn" id="22_tu85t"]
 [ext_resource type="PackedScene" uid="uid://canci4neobys2" path="res://scenes/Actors/turn_component.tscn" id="23_rfqsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo564"]
@@ -134,8 +133,6 @@ texture = ExtResource("19_h3mly")
 position = Vector2(-85, -191)
 
 [node name="StatusManagerComponent" parent="." instance=ExtResource("21_jyxbn")]
-
-[node name="BaseStatusStrategy" parent="StatusManagerComponent" instance=ExtResource("22_tu85t")]
 
 [node name="TurnComponent" parent="." instance=ExtResource("23_rfqsp")]
 

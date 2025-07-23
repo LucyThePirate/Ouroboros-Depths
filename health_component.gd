@@ -22,6 +22,8 @@ func _ready():
 
 
 func deal_damage(damage_amount = 1):
+	if damage_amount < 1:
+		return
 	health -= damage_amount
 	if not is_instance_valid(current_damage_number):
 		current_damage_number = damage_number_scene.instantiate()

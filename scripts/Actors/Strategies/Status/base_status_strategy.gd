@@ -2,15 +2,16 @@ extends Node2D
 
 class_name StatusStrategy
 
-signal status_ended
+signal status_ended(StatusStrategy)
 
 @export var turns_afflicted := 5
 @onready var current_turns_afflicted := turns_afflicted
 @export var power := 1
+@export var icon: Texture2D
 
 
 func _ready() -> void:
-	$Icon.hide()
+	pass
 
 
 func on_turn_ended():
@@ -20,8 +21,8 @@ func on_turn_ended():
 
 
 func on_status_ended():
-	status_ended.emit()
+	status_ended.emit(self)
 
 
-func on_damaged():
-	pass
+func modify_damage(incoming_damage := 1) -> int:
+	return incoming_damage

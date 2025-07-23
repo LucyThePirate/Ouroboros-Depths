@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2wq4gejffyd"]
+[gd_scene load_steps=13 format=3 uid="uid://d2wq4gejffyd"]
 
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="1_exgt7"]
 [ext_resource type="Script" uid="uid://be6oo33bhfx63" path="res://scripts/Actors/player.gd" id="1_ochwc"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/Actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="7_yw7wc"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="8_wd2mq"]
 [ext_resource type="PackedScene" uid="uid://cnrxjlwuvjt6l" path="res://scenes/Actors/Strategies/Skill/fortune_cookie_skill_strategy.tscn" id="8_yw7wc"]
+[ext_resource type="PackedScene" uid="uid://bhxy4rfg3pad5" path="res://scenes/Actors/Strategies/Status/shield_status_strategy.tscn" id="9_yw7wc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gokip"]
 radius = 44.1022
@@ -32,6 +33,9 @@ zoom = Vector2(0.595, 0.595)
 [node name="DarkStarSkillStrategy" parent="GridEntity/SkillStackComponent" index="6" instance=ExtResource("7_yw7wc")]
 
 [node name="FortuneCookieSkillStrategy" parent="GridEntity/SkillStackComponent" index="10" groups=["Skill"] instance=ExtResource("8_yw7wc")]
+
+[node name="ShieldStatusStrategy" parent="GridEntity/StatusManagerComponent" index="0" instance=ExtResource("9_yw7wc")]
+power = 1000
 
 [node name="Camera2D2" type="Camera2D" parent="GridEntity"]
 position_smoothing_enabled = true

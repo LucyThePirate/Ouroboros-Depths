@@ -8,6 +8,7 @@ extends Node2D
 @onready var turn_component = $GridEntity/TurnComponent
 @onready var stack_component = $GridEntity/SkillStackComponent
 @onready var health_component = $GridEntity/HealthComponent
+@onready var status_manager_component = $GridEntity/StatusManagerComponent as StatusManagerComponent
 @onready var random_skill_planner = $BaseRandomSkillPlanner
 @onready var intent_arrow = $IntentArrow
 
@@ -27,6 +28,7 @@ func _ready() -> void:
 	stack_component.initialize(grid_entity, false, turn_component)
 	random_skill_planner.set_stack_component(stack_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
+	turn_component.turn_ended.connect(status_manager_component.on_turn_ended)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

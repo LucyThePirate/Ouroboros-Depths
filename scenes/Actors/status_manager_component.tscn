@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bn5ri0qp1ncea"]
+[gd_scene load_steps=3 format=3 uid="uid://bn5ri0qp1ncea"]
 
 [ext_resource type="Script" uid="uid://dlbj43u1y0vyw" path="res://scripts/Actors/status_manager_component.gd" id="1_lqbe1"]
+[ext_resource type="Texture2D" uid="uid://bbujvsn0j0wwi" path="res://textures/Skills/FortuneCookieSkill.png" id="2_51hwe"]
 
 [node name="StatusManagerComponent" type="Node2D"]
 script = ExtResource("1_lqbe1")
+
+[node name="StatusBar" type="HFlowContainer" parent="."]
+custom_minimum_size = Vector2(0, 15.78)
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="StatusBar"]
+layout_mode = 2
+texture = ExtResource("2_51hwe")
+expand_mode = 1

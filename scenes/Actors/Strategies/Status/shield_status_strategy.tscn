@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhxy4rfg3pad5"]
+
+[ext_resource type="Script" uid="uid://d18syuvo0mq51" path="res://scripts/Actors/Strategies/Status/shield_status_strategy.gd" id="1_lna0x"]
+[ext_resource type="Texture2D" uid="uid://y7pjcht62sql" path="res://icon.png" id="2_qv4l1"]
+
+[node name="ShieldStatusStrategy" type="Node2D" groups=["Status"]]
+script = ExtResource("1_lna0x")
+power = 5
+icon = ExtResource("2_qv4l1")
+metadata/_custom_type_script = "uid://cg2e3022sib6v"

@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://v4jyo2omhd1l"]
+[gd_scene load_steps=10 format=3 uid="uid://v4jyo2omhd1l"]
 
 [ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_t7k5d"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="2_nfndv"]
 [ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/Actors/Strategies/Skill/dash_skill_strategy.tscn" id="3_t7k5d"]
 [ext_resource type="PackedScene" uid="uid://ds1r48clfb7k6" path="res://scenes/Characters/Visuals/wasp_visual.tscn" id="4_iadu2"]
 [ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/Actors/Strategies/Skill/stomp_skill_strategy.tscn" id="4_nfndv"]
-[ext_resource type="PackedScene" uid="uid://canci4neobys2" path="res://scenes/Actors/turn_component.tscn" id="5_4bmfb"]
 [ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/Actors/Strategies/Planner/base_random_skill_planner.tscn" id="6_a3j1p"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="8_iadu2"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="9_4bmfb"]
@@ -33,8 +32,6 @@ top_level = true
 position = Vector2(-1.95578e-07, -105)
 rotation = 0.0231713
 scale = Vector2(0.215666, 0.215666)
-
-[node name="TurnComponent" parent="." instance=ExtResource("5_4bmfb")]
 
 [node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("6_a3j1p")]
 
@@ -67,7 +64,8 @@ autowrap_mode = 0
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
 [connection signal="hurt" from="GridEntity" to="." method="_on_grid_entity_hurt"]
-[connection signal="turn_started" from="TurnComponent" to="." method="_on_turn_component_turn_started"]
+[connection signal="turn_ended" from="GridEntity/TurnComponent" to="." method="_on_turn_component_turn_ended"]
+[connection signal="turn_started" from="GridEntity/TurnComponent" to="." method="_on_turn_component_turn_started"]
 [connection signal="awaited_cursor_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_cursor_input"]
 [connection signal="awaited_directional_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_directional_input"]
 [connection signal="body_entered" from="DetectionRadius" to="." method="_on_detection_radius_body_entered"]
