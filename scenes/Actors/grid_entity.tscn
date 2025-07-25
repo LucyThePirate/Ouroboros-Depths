@@ -118,10 +118,6 @@ position_smoothing_enabled = true
 stream = SubResource("AudioStreamRandomizer_vnsn2")
 volume_db = 8.254
 
-[node name="HealthComponent" parent="." instance=ExtResource("18_vnsn2")]
-position = Vector2(0, 74)
-scale = Vector2(0.712558, 0.712558)
-
 [node name="Shadow" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 0.345098, 0.301961)
 z_index = -1
@@ -132,8 +128,30 @@ texture = ExtResource("19_h3mly")
 [node name="SkillStackComponent" parent="." instance=ExtResource("22_off3y")]
 position = Vector2(-85, -191)
 
-[node name="StatusManagerComponent" parent="." instance=ExtResource("21_jyxbn")]
-
 [node name="TurnComponent" parent="." instance=ExtResource("23_rfqsp")]
 
-[connection signal="died" from="HealthComponent" to="." method="on_death"]
+[node name="UI" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(139.13, 37.22)
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -69.565
+offset_top = 56.0
+offset_right = 69.565
+offset_bottom = 93.22
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HealthComponent" parent="UI" instance=ExtResource("18_vnsn2")]
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="StatusManagerComponent" parent="UI" instance=ExtResource("21_jyxbn")]
+custom_minimum_size = Vector2(0, 3.52)
+layout_mode = 2
+
+[connection signal="gained_status" from="SkillStackComponent" to="." method="_on_skill_stack_component_gained_status"]
+[connection signal="died" from="UI/HealthComponent" to="." method="on_death"]

@@ -7,8 +7,9 @@ extends Node2D
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $GridEntity/TurnComponent
 @onready var stack_component = $GridEntity/SkillStackComponent
-@onready var health_component = $GridEntity/HealthComponent
-@onready var status_manager_component = $GridEntity/StatusManagerComponent as StatusManagerComponent
+@onready var health_component = $GridEntity/UI/HealthComponent
+@onready
+var status_manager_component = $GridEntity/UI/StatusManagerComponent as StatusManagerComponent
 @onready var random_skill_planner = $BaseRandomSkillPlanner
 @onready var intent_arrow = $IntentArrow
 

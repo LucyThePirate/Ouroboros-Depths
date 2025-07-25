@@ -1,14 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://cytonlpqlj6qy"]
+[gd_scene load_steps=5 format=3 uid="uid://cytonlpqlj6qy"]
 
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="1_6eb08"]
 [ext_resource type="Script" uid="uid://cg2e3022sib6v" path="res://scripts/Actors/Strategies/Status/base_status_strategy.gd" id="1_58i3t"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="3_t51o6"]
 
-[node name="BaseStatusStrategy" type="Node2D" groups=["Status"]]
+[sub_resource type="Theme" id="Theme_qr4in"]
+default_font = ExtResource("3_t51o6")
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.662745)
+RichTextLabel/constants/line_separation = 0
+RichTextLabel/constants/outline_size = 10
+RichTextLabel/constants/shadow_offset_x = 1
+
+[node name="BaseStatusStrategy" type="Panel" groups=["Status"]]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(20, 20)
+offset_right = 50.0
+offset_bottom = 50.0
+scale = Vector2(0.5821, 0.5821)
 script = ExtResource("1_58i3t")
 
-[node name="Icon" type="TextureRect" parent="."]
-visible = false
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_6eb08")
 expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="PanelContainer"]
+layout_mode = 2
+theme = SubResource("Theme_qr4in")
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 13
+text = "666"
+horizontal_alignment = 2
+
+[connection signal="power_changed" from="." to="." method="_on_power_changed"]

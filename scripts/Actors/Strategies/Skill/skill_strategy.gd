@@ -8,6 +8,7 @@ signal requested_cursor_input
 signal direction_set
 signal cursor_set
 signal skill_finished
+signal gained_status(status)
 
 @export_category("Base Stats")
 

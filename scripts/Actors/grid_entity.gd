@@ -23,8 +23,8 @@ signal performed_action
 
 @onready var door_open = $DoorOpen
 
-@onready var health_component = $HealthComponent as HealthComponent
-@onready var status_component = $StatusManagerComponent as StatusManagerComponent
+@onready var health_component = $UI/HealthComponent as HealthComponent
+@onready var status_component = $UI/StatusManagerComponent as StatusManagerComponent
 
 const CELL_SIZE = 100
 var initialized = false
@@ -247,3 +247,11 @@ func is_on_path_down() -> bool:
 	if not floor_data or not floor_data.get_custom_data("is_path_down"):
 		return false
 	return true
+
+
+func _on_skill_stack_component_gained_status(status: StatusStrategy) -> void:
+	gain_status(status)
+
+
+func gain_status(status: StatusStrategy):
+	status_component.add_status(status)

@@ -12,7 +12,7 @@ signal descended
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $GridEntity/TurnComponent
 @onready var stack_component = $GridEntity/SkillStackComponent
-@onready var health_component = $GridEntity/HealthComponent
+@onready var health_component = $GridEntity/UI/HealthComponent
 
 var initialized = false
 
@@ -68,7 +68,10 @@ func _input(event):
 				_handle_awaiting_directional_input()
 			elif stack_component.state == SkillStackComponent.States.AWAITING_CURSOR_INPUT:
 				_handle_awaiting_cursor_input()
-			elif stack_component.state == SkillStackComponent.States.IDLE:
+			elif (
+				stack_component.state == SkillStackComponent.States.IDLE
+				or stack_component.state == SkillStackComponent.States.RELOADING
+			):
 				state = States.IDLE
 
 

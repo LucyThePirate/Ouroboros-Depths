@@ -1,23 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcjnpsm2nll1"]
+[gd_scene load_steps=3 format=3 uid="uid://dcjnpsm2nll1"]
 
 [ext_resource type="Script" uid="uid://bur38hyf4r2ps" path="res://health_component.gd" id="1_swihn"]
 [ext_resource type="PackedScene" uid="uid://b2e4ygq1jbt56" path="res://scenes/Actors/damage_text.tscn" id="2_5ecpm"]
-[ext_resource type="Texture2D" uid="uid://bbujvsn0j0wwi" path="res://textures/Skills/FortuneCookieSkill.png" id="3_38li0"]
 
-[node name="HealthComponent" type="Node2D"]
+[node name="HealthComponent" type="CenterContainer"]
+custom_minimum_size = Vector2(92.265, 25.7)
+offset_right = 69.085
+offset_bottom = 25.7
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_swihn")
 damage_number_scene = ExtResource("2_5ecpm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(139.13, 37.22)
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(95.18, 23.915)
 layout_mode = 2
 size_flags_vertical = 3
 max_value = 15.0
@@ -26,7 +22,7 @@ value = 15.0
 rounded = true
 show_percentage = false
 
-[node name="Label" type="Label" parent="VBoxContainer/ProgressBar"]
+[node name="Label" type="Label" parent="ProgressBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,14 +33,3 @@ scale = Vector2(1.02386, 1.01116)
 text = "15"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="StatusBar" type="HFlowContainer" parent="VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 15.78)
-layout_mode = 2
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/StatusBar"]
-layout_mode = 2
-texture = ExtResource("3_38li0")
-expand_mode = 1

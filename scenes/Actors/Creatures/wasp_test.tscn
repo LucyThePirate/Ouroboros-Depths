@@ -18,12 +18,12 @@ visual = NodePath("WaspVisual")
 
 [node name="GridEntity" parent="." instance=ExtResource("2_nfndv")]
 
-[node name="HealthComponent" parent="GridEntity" index="10"]
-max_health = 7
-
 [node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("3_t7k5d")]
 
 [node name="StompSkillStrategy" parent="GridEntity/SkillStackComponent" index="4" instance=ExtResource("4_nfndv")]
+
+[node name="HealthComponent" parent="GridEntity/UI" index="0"]
+max_health = 4
 
 [node name="Display" type="Node2D" parent="."]
 top_level = true

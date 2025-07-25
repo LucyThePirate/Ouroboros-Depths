@@ -8,6 +8,7 @@ signal stack_full
 signal emptied_stack
 signal awaited_directional_input
 signal awaited_cursor_input
+signal gained_status(status)
 
 @onready
 var skill_icon_holder = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer
@@ -125,6 +126,7 @@ func _handle_stack_execution():
 		return
 	current_skill = stack.pop_front() as SkillStrategy
 	current_skill.connect("moved_self", _on_moved_by_skill)
+	current_skill.connect("gained_status", _on_gained_status)
 	stack_icon_holder.get_child(0).get_child(0).get_child(0).show()
 	if current_skill.ready_skill(grid_entity):
 		await get_tree().create_timer(0.1).timeout
@@ -141,6 +143,10 @@ func _handle_stack_execution():
 
 func _on_moved_by_skill():
 	grid_entity.moved_by_skill = true
+
+
+func _on_gained_status(status: StatusStrategy):
+	gained_status.emit(status)
 
 
 func set_direction(moveDirection: Vector2i):

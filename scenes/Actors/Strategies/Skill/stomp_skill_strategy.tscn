@@ -11,8 +11,8 @@ region = Rect2(151.277, 20.7237, 148.762, 114.434)
 [node name="StompSkillStrategy" type="Node2D" node_paths=PackedStringArray("icon") groups=["Skill"]]
 script = ExtResource("1_swfph")
 StompVFX = ExtResource("2_vm8f4")
-icon = NodePath("Sprite2D")
 max_per_stack = 4
+icon = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_60mig")
