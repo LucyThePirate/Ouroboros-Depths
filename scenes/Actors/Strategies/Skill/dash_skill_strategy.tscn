@@ -1,38 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://c1tq0r2hua7v8"]
 
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/skill_strategy.tscn" id="1_ododk"]
 [ext_resource type="Script" uid="uid://3u0aqmvw83u5" path="res://scripts/Actors/Strategies/Skill/dash_skill_strategy.gd" id="1_ss86u"]
 [ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/Effects/dash_vfx.tscn" id="2_au81m"]
 [ext_resource type="Texture2D" uid="uid://ccdflf58itehp" path="res://textures/Skills/MadDashSkill.png" id="3_52a6f"]
-[ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="4_52a6f"]
 
-[node name="DashSkillStrategy" type="Node2D" node_paths=PackedStringArray("icon") groups=["Skill"]]
+[node name="DashSkillStrategy" instance=ExtResource("1_ododk")]
 script = ExtResource("1_ss86u")
 DashVFX = ExtResource("2_au81m")
-icon = NodePath("Sprite2D")
-max_per_stack = 3
+skill_name = ""
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="TextureRect" parent="." index="0"]
 texture = ExtResource("3_52a6f")
-
-[node name="Arrows" type="Node2D" parent="."]
-visible = false
-top_level = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Arrows"]
-position = Vector2(104, 0)
-texture = ExtResource("4_52a6f")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Arrows"]
-position = Vector2(0, -104)
-rotation = -1.57079
-texture = ExtResource("4_52a6f")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Arrows"]
-position = Vector2(-104, 0)
-rotation = 3.14159
-texture = ExtResource("4_52a6f")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Arrows"]
-position = Vector2(2.00011, 106)
-rotation = 1.57079
-texture = ExtResource("4_52a6f")

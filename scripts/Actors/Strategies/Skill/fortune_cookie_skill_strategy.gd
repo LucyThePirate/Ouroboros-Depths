@@ -8,7 +8,7 @@ var fortunes := [
 	"you should drink water.... NOW!!!!",
 	"penis.",
 	"I forgot what I was going to say",
-	"Have you ever had a dream that you, um, you had, your, you- you could, you’ll do, you- you wants, you, you could do so, you- you’ll do, you could- you, you want, you want them to do you so much you could do anything?",
+	"Have you ever had a dream that you, um, you had, your, you- you could, you’ll do, you- you wants, you, you could do so, you- you’ll do, yskill_stratou could- you, you want, you want them to do you so much you could do anything?",
 	"oh! this fortune cookie was full of poison gas, make a constitution saving throw!",
 	"i forgor [img]res://textures/Creatures/Lich/Skull.png[/img]",
 	"🧱 When the walls fade 🧱  🕑 Time is your only enemy 🕖",

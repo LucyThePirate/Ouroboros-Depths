@@ -1,46 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://mjfsneo3jxah"]
+[gd_scene load_steps=5 format=3 uid="uid://mjfsneo3jxah"]
 
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/skill_strategy.tscn" id="1_clto2"]
 [ext_resource type="Script" uid="uid://c3gnvqmpurome" path="res://scripts/Actors/Strategies/Skill/leap_skill_strategy.gd" id="1_mqx4p"]
 [ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/Effects/dash_vfx.tscn" id="2_clto2"]
 [ext_resource type="Texture2D" uid="uid://ct3f0ftlw84y" path="res://textures/Skills/DiveBombSkill.png" id="3_m0q40"]
-[ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/UI/Cursor.png" id="4_m0q40"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jyxbn"]
-atlas = ExtResource("4_m0q40")
-region = Rect2(0, 0, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tu85t"]
-atlas = ExtResource("4_m0q40")
-region = Rect2(100, 0, 100, 100)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_rsyhb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jyxbn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tu85t")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[node name="LeapSkillStrategy" type="Node2D" node_paths=PackedStringArray("icon") groups=["Skill"]]
+[node name="LeapSkillStrategy" instance=ExtResource("1_clto2")]
 script = ExtResource("1_mqx4p")
 DashVFX = ExtResource("2_clto2")
-count = 2
-icon = NodePath("Sprite2D")
-skill_name = "Leap"
+skill_name = ""
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="TextureRect" parent="." index="0"]
 texture = ExtResource("3_m0q40")
-
-[node name="Cursor" type="AnimatedSprite2D" parent="."]
-visible = false
-top_level = true
-z_index = -1
-sprite_frames = SubResource("SpriteFrames_rsyhb")
-autoplay = "default"
-speed_scale = 0.3

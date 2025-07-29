@@ -1,6 +1,87 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcpo4dfcq62k2"]
+[gd_scene load_steps=10 format=3 uid="uid://bcpo4dfcq62k2"]
 
 [ext_resource type="Script" uid="uid://c0f56xso1fu7o" path="res://scripts/Actors/Strategies/Skill/skill_strategy.gd" id="1_tahbo"]
+[ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="2_ul1qo"]
+[ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/UI/Cursor.png" id="3_krjcc"]
+[ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="4_s17jk"]
 
-[node name="SkillStrategy" type="Node2D" groups=["Skill"]]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhk8g"]
+bg_color = Color(0, 0, 0, 0.529412)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krjcc"]
+bg_color = Color(1, 1, 1, 0.556863)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyxbn"]
+atlas = ExtResource("3_krjcc")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tu85t"]
+atlas = ExtResource("3_krjcc")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v8hib"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyxbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tu85t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SkillStrategy" type="PanelContainer" groups=["Skill"]]
+scale = Vector2(75.4159, 75.4159)
 script = ExtResource("1_tahbo")
+skill_name = "Default Skill"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_ul1qo")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_fhk8g")
+theme_override_styles/fill = SubResource("StyleBoxFlat_krjcc")
+max_value = 1.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Cursor" type="AnimatedSprite2D" parent="."]
+visible = false
+top_level = true
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_v8hib")
+autoplay = "default"
+speed_scale = 0.3
+
+[node name="Arrows" type="Node2D" parent="."]
+visible = false
+top_level = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Arrows"]
+position = Vector2(104, 0)
+texture = ExtResource("4_s17jk")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Arrows"]
+position = Vector2(0, -104)
+rotation = -1.57079
+texture = ExtResource("4_s17jk")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Arrows"]
+position = Vector2(-104, 0)
+rotation = 3.14159
+texture = ExtResource("4_s17jk")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Arrows"]
+position = Vector2(2.00011, 106)
+rotation = 1.57079
+texture = ExtResource("4_s17jk")

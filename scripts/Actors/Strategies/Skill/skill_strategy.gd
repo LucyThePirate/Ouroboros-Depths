@@ -1,4 +1,4 @@
-extends Node2D
+extends PanelContainer
 
 class_name SkillStrategy
 
@@ -21,9 +21,11 @@ signal gained_status(status)
 @export var is_depletable := false
 
 @export_category("Lore")
-@export var icon: Sprite2D
 @export var skill_name: String
 @export_multiline var skill_desc: String
+
+@onready var icon = $TextureRect
+@onready var progress_bar = $ProgressBar
 
 var skill_crit := false
 var show_UI = true
@@ -38,6 +40,7 @@ var state = States.IDLE
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	icon.hide()
+	progress_bar.hide()
 
 
 func ready_skill(grid_entity: GridEntity) -> bool:

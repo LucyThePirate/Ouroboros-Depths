@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnrxjlwuvjt6l"]
+[gd_scene load_steps=7 format=3 uid="uid://cnrxjlwuvjt6l"]
 
 [ext_resource type="Script" uid="uid://cjulx25cp14c1" path="res://scripts/Actors/Strategies/Skill/fortune_cookie_skill_strategy.gd" id="1_78wp6"]
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/skill_strategy.tscn" id="1_w7hts"]
 [ext_resource type="PackedScene" uid="uid://cg6jvx6qfd2jn" path="res://scenes/Actors/floating_text.tscn" id="2_w7hts"]
 [ext_resource type="Texture2D" uid="uid://bbujvsn0j0wwi" path="res://textures/Skills/FortuneCookieSkill.png" id="3_w7hts"]
 [ext_resource type="AudioStream" uid="uid://cbr830m1rpjsd" path="res://audio/SFX/Skills/319231__worthahep88__stick-snap-1.ogg" id="4_w7hts"]
@@ -10,22 +11,16 @@ random_pitch = 1.15
 streams_count = 1
 stream_0/stream = ExtResource("4_w7hts")
 
-[node name="FortuneCookieSkillStrategy" type="Node2D" node_paths=PackedStringArray("icon")]
+[node name="FortuneCookieSkillStrategy" instance=ExtResource("1_w7hts")]
 script = ExtResource("1_78wp6")
+heal_amount = 2
 text_scene = ExtResource("2_w7hts")
-cooldown_turns = 0
-max_per_stack = 2
-count = 2
-is_depletable = true
-icon = NodePath("Icon")
-skill_name = "Fortune Cookie"
-skill_desc = "Depletable.
-On use: heals the user for 2 and displays a \"useful\" message."
+skill_name = ""
 
-[node name="Icon" type="Sprite2D" parent="."]
+[node name="TextureRect" parent="." index="0"]
 texture = ExtResource("3_w7hts")
 
-[node name="CookieOpen" type="AudioStreamPlayer2D" parent="."]
+[node name="CookieOpen" type="AudioStreamPlayer2D" parent="." index="4"]
 stream = SubResource("AudioStreamRandomizer_ij5um")
 volume_db = 5.0
 pitch_scale = 1.36

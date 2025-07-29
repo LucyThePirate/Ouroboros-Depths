@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5jnedeqec3bx"]
+[gd_scene load_steps=5 format=3 uid="uid://b5jnedeqec3bx"]
 
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/skill_strategy.tscn" id="1_3kmmh"]
 [ext_resource type="Script" uid="uid://deabvcgkh4efg" path="res://scripts/Actors/Strategies/Skill/defend_skill_strategy.gd" id="1_wsy3c"]
 [ext_resource type="Texture2D" uid="uid://y7pjcht62sql" path="res://icon.png" id="2_3kmmh"]
 [ext_resource type="PackedScene" uid="uid://bhxy4rfg3pad5" path="res://scenes/Actors/Strategies/Status/shield_status_strategy.tscn" id="2_peluu"]
 
-[node name="DefendSkillStrategy" type="Node2D" node_paths=PackedStringArray("icon") groups=["Skill"]]
+[node name="DefendSkillStrategy" instance=ExtResource("1_3kmmh")]
 script = ExtResource("1_wsy3c")
 shield_status = ExtResource("2_peluu")
-icon = NodePath("Sprite2D")
-skill_name = "Defend"
+power = 5
+skill_name = ""
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="TextureRect" parent="." index="0"]
 texture = ExtResource("2_3kmmh")
