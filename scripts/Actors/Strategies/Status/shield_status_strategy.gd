@@ -13,6 +13,10 @@ func merge_status(status: StatusStrategy):
 	super(status)
 
 
+func on_turn_ended():
+	pass
+
+
 func modify_damage(incoming_damage := 1) -> int:
 	incoming_damage -= power
 	if incoming_damage < 0:
@@ -38,6 +42,7 @@ func on_status_ended():
 	if status_ID == Status_IDs.NONE:
 		return
 	status_ID = Status_IDs.NONE
+	hide()
 	$ShieldBreak.play()
 	await $ShieldBreak.finished
 	super()

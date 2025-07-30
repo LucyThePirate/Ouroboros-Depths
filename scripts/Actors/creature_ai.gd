@@ -29,7 +29,7 @@ func _ready() -> void:
 	stack_component.initialize(grid_entity, false, turn_component)
 	random_skill_planner.set_stack_component(stack_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
-	turn_component.turn_ended.connect(status_manager_component.on_turn_ended)
+	#turn_component.turn_ended.connect(status_manager_component.on_turn_ended)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -130,9 +130,9 @@ func pursue_entity(entity: GridEntity) -> Vector2i:
 		stack_component.preview_queueing_skill(intent == "Queue Skill")
 		stack_component.preview_executing_stack(intent == "Execute Stack")
 
-		return Vector2i.ZERO
 		if not intent:
 			return get_direction_towards(entity, false, true)
+		return Vector2i.ZERO
 
 
 func _on_grid_entity_grid_entity_initialized() -> void:

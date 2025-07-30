@@ -23,6 +23,7 @@ var preview_queue_skill = $Stack/MarginContainer/CenterContainer/HBoxContainer/P
 var shuffle_turns := 0
 @export var preview_queue_skill_texture := Texture2D
 @export var null_skill_texture := Texture2D
+@export var reload_status: PackedScene
 
 var skills = []
 var stack = []
@@ -63,6 +64,9 @@ func reload_deck() -> bool:
 		deck = []
 		_update_skill_visuals()
 		shuffle_turns = turns_to_reload
+		var new_status = reload_status.instantiate() as StatusStrategy
+		add_child(new_status)
+		gained_status.emit(new_status)
 		return true
 	return false
 
@@ -113,6 +117,8 @@ func execute_stack() -> bool:
 	if stack.is_empty():
 		return false
 	state = States.EXECUTING_STACK
+	for skill in stack:
+		skill.on_stack_execution_started(grid_entity)
 	_handle_stack_execution()
 	return true
 
@@ -123,6 +129,8 @@ func _handle_stack_execution():
 		state = States.IDLE
 		emptied_stack.emit()
 		_update_cooldown_visuals()
+		for skill in skills:
+			skill.on_stack_execution_finished(grid_entity)
 		return
 	current_skill = stack.pop_front() as SkillStrategy
 	current_skill.connect("moved_self", _on_moved_by_skill)

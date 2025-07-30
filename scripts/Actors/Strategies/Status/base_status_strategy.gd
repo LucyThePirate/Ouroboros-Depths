@@ -5,7 +5,7 @@ class_name StatusStrategy
 signal status_ended(StatusStrategy)
 signal power_changed
 
-enum Status_IDs { NONE, SHIELD }
+enum Status_IDs { NONE, SHIELD, RELOAD }
 
 @export var turns_afflicted := 5
 @onready var current_turns_afflicted := turns_afflicted

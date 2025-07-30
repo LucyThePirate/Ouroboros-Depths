@@ -28,6 +28,7 @@ func _ready() -> void:
 	visual.initialize(grid_entity)
 	stack_component.initialize(grid_entity, true, turn_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -68,6 +68,14 @@ func on_next_floor_reached():
 	current_count = count
 
 
+func on_stack_execution_started(grid_entity: GridEntity):
+	pass
+
+
+func on_stack_execution_finished(grid_entity: GridEntity):
+	pass
+
+
 func request_direction():
 	state = States.AWAITING_DIRECTION
 

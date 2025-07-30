@@ -25,6 +25,7 @@ signal performed_action
 
 @onready var health_component = $UI/HealthComponent as HealthComponent
 @onready var status_component = $UI/StatusManagerComponent as StatusManagerComponent
+@onready var turn_component = $TurnComponent as TurnComponent
 
 const CELL_SIZE = 100
 var initialized = false
@@ -34,7 +35,7 @@ var moved_by_skill := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	turn_component.turn_ended.connect(status_component.on_turn_ended)
 
 
 func initialize():

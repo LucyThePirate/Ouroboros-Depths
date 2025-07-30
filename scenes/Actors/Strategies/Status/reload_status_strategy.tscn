@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c063h7gtu7k4q"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/Actors/Strategies/Status/base_status_strategy.tscn" id="1_hucwu"]
+[ext_resource type="Script" uid="uid://dsr6db3orohuq" path="res://scripts/Actors/Strategies/Status/reload_status_strategy.gd" id="2_g6rj0"]
+
+[node name="ReloadStatusStrategy" instance=ExtResource("1_hucwu")]
+script = ExtResource("2_g6rj0")
+power = 5
+status_ID = 2

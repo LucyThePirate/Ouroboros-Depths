@@ -27,27 +27,18 @@ text_component = ExtResource("2_bg3lr")
 zoom = Vector2(0.595, 0.595)
 
 [node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("4_jfrsc")]
-scale = Vector2(75.4159, 75.4159)
 
 [node name="StompSkillStrategy" parent="GridEntity/SkillStackComponent" index="4" instance=ExtResource("5_wd2mq")]
-scale = Vector2(75.4159, 75.4159)
 
 [node name="LeapSkillStrategy" parent="GridEntity/SkillStackComponent" index="5" instance=ExtResource("6_2mxpg")]
-scale = Vector2(75.4159, 75.4159)
 
 [node name="DarkStarSkillStrategy" parent="GridEntity/SkillStackComponent" index="6" instance=ExtResource("7_yw7wc")]
-scale = Vector2(75.4159, 75.4159)
 
 [node name="FortuneCookieSkillStrategy" parent="GridEntity/SkillStackComponent" index="10" instance=ExtResource("8_yw7wc")]
-scale = Vector2(75.4159, 75.4159)
 
 [node name="DefendSkillStrategy" parent="GridEntity/SkillStackComponent" index="11" instance=ExtResource("9_mtoqb")]
-scale = Vector2(75.4159, 75.4159)
 
 [node name="OrchestrateSkillStrategy" parent="GridEntity/SkillStackComponent" index="12" instance=ExtResource("10_nbabl")]
-scale = Vector2(75.4159, 75.4159)
-notes = Array[String](["C", "D", "E", "F", "G", "A", "B"])
-count = 10
 
 [node name="Shield1000" parent="GridEntity/UI/StatusManagerComponent" index="1" instance=ExtResource("9_yw7wc")]
 layout_mode = 2
