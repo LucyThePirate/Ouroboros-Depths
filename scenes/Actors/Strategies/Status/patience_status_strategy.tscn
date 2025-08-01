@@ -1,0 +1,61 @@
+[gd_scene load_steps=15 format=3 uid="uid://bhqxbcyv7ix4j"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/Actors/Strategies/Status/base_status_strategy.tscn" id="1_glphx"]
+[ext_resource type="Script" uid="uid://dxvnn1c4xfxkr" path="res://scripts/Actors/Strategies/Status/patience_status_strategy.gd" id="2_dbbqb"]
+[ext_resource type="Texture2D" uid="uid://cags1t2j8djij" path="res://textures/Skills/BePatientSkill.png" id="2_i0xx3"]
+[ext_resource type="Script" uid="uid://dgyvnwtc4dcoj" path="res://addons/SimpleSampler/sampler_instrument.gd" id="4_rwbj8"]
+[ext_resource type="Script" uid="uid://cqiowphvax5uj" path="res://addons/SimpleSampler/sample_resource.gd" id="5_uqcgm"]
+[ext_resource type="AudioStream" uid="uid://b7al6hfvlygt7" path="res://audio/SFX/Status/Patience/MouthNoisesG4.ogg" id="7_uqcgm"]
+[ext_resource type="AudioStream" uid="uid://deihhyxq2dhch" path="res://audio/SFX/Status/Patience/MouthNoisesE4.ogg" id="8_dal4r"]
+[ext_resource type="AudioStream" uid="uid://chirmk154uvyl" path="res://audio/SFX/Status/Patience/MouthNoisesC4.ogg" id="8_hmaoa"]
+[ext_resource type="AudioStream" uid="uid://bu7548oy2sipr" path="res://audio/SFX/Status/Patience/MouthNoisesC5.ogg" id="9_7evat"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbbqb"]
+atlas = ExtResource("2_i0xx3")
+region = Rect2(58.5803, 36.9461, 50.2382, 46.8513)
+
+[sub_resource type="Resource" id="Resource_qufkg"]
+script = ExtResource("5_uqcgm")
+stream = ExtResource("8_hmaoa")
+tone = "C"
+octave = 4
+velocity = 5
+metadata/_custom_type_script = "uid://cqiowphvax5uj"
+
+[sub_resource type="Resource" id="Resource_hmaoa"]
+script = ExtResource("5_uqcgm")
+stream = ExtResource("7_uqcgm")
+tone = "G"
+octave = 4
+velocity = 5
+metadata/_custom_type_script = "uid://cqiowphvax5uj"
+
+[sub_resource type="Resource" id="Resource_mjg32"]
+script = ExtResource("5_uqcgm")
+stream = ExtResource("8_dal4r")
+tone = "E"
+octave = 4
+velocity = 5
+metadata/_custom_type_script = "uid://cqiowphvax5uj"
+
+[sub_resource type="Resource" id="Resource_sto30"]
+script = ExtResource("5_uqcgm")
+stream = ExtResource("9_7evat")
+tone = "C"
+octave = 5
+velocity = 5
+metadata/_custom_type_script = "uid://cqiowphvax5uj"
+
+[node name="PatienceStatusStrategy" instance=ExtResource("1_glphx")]
+script = ExtResource("2_dbbqb")
+status_ID = 3
+max_power = 12
+
+[node name="TextureRect" parent="." index="0"]
+texture = SubResource("AtlasTexture_dbbqb")
+
+[node name="SamplerInstrument" type="AudioStreamPlayer" parent="." index="2"]
+volume_db = -5.205
+script = ExtResource("4_rwbj8")
+samples = Array[ExtResource("5_uqcgm")]([SubResource("Resource_qufkg"), SubResource("Resource_hmaoa"), SubResource("Resource_mjg32"), SubResource("Resource_sto30")])
+metadata/_custom_type_script = "uid://dgyvnwtc4dcoj"

@@ -101,6 +101,14 @@ func decrement_turn_cooldown():
 	current_cooldown = maxi(0, current_cooldown - 1)
 
 
+func on_skill_queued():
+	pass
+
+
+func on_grid_entity_moved(old_coords: Vector2i, new_coords: Vector2i):
+	pass
+
+
 func increment_in_stack_counter() -> bool:
 	if current_in_stack >= max_per_stack:
 		return false

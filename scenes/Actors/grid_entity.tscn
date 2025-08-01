@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://yqxyjxhsvfqi"]
+[gd_scene load_steps=36 format=3 uid="uid://yqxyjxhsvfqi"]
 
 [ext_resource type="Script" uid="uid://l0k61db14icb" path="res://scripts/Actors/grid_entity.gd" id="1_u0fqg"]
 [ext_resource type="AudioStream" uid="uid://cxmd2cbaxkq6d" path="res://audio/SFX/Thump/125429__jspath1__three-bass-thumps-1.ogg" id="2_6nj4f"]
@@ -22,6 +22,9 @@
 [ext_resource type="PackedScene" uid="uid://bn5ri0qp1ncea" path="res://scenes/Actors/status_manager_component.tscn" id="21_jyxbn"]
 [ext_resource type="PackedScene" uid="uid://bd85kao70uoy4" path="res://scenes/Actors/skill_stack_component.tscn" id="22_off3y"]
 [ext_resource type="PackedScene" uid="uid://canci4neobys2" path="res://scenes/Actors/turn_component.tscn" id="23_rfqsp"]
+[ext_resource type="AudioStream" uid="uid://duevq7vgf28ks" path="res://audio/SFX/Misc/Punch1.ogg" id="23_s0jro"]
+[ext_resource type="AudioStream" uid="uid://b1nmnkp41rdqr" path="res://audio/SFX/Misc/Punch2.ogg" id="24_8uxk8"]
+[ext_resource type="AudioStream" uid="uid://c4iuvy3r2whs6" path="res://audio/SFX/Misc/Punch3.ogg" id="25_fec15"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jo564"]
 
@@ -72,6 +75,13 @@ stream_0/stream = ExtResource("15_kfa6g")
 random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("17_ous7d")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j0r3c"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("23_s0jro")
+stream_1/stream = ExtResource("24_8uxk8")
+stream_2/stream = ExtResource("25_fec15")
 
 [node name="GridEntity" type="CharacterBody2D" groups=["GridEntity"]]
 top_level = true
@@ -152,6 +162,10 @@ size_flags_vertical = 0
 [node name="StatusManagerComponent" parent="UI" instance=ExtResource("21_jyxbn")]
 custom_minimum_size = Vector2(0, 3.52)
 layout_mode = 2
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_j0r3c")
+volume_db = 7.971
 
 [connection signal="gained_status" from="SkillStackComponent" to="." method="_on_skill_stack_component_gained_status"]
 [connection signal="died" from="UI/HealthComponent" to="." method="on_death"]

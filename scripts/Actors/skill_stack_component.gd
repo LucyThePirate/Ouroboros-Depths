@@ -51,6 +51,7 @@ func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_compon
 	$CanvasLayer.visible = is_player
 	turn_component = new_turn_component
 	turn_component.turn_ended.connect(_update_turn_cooldown)
+	grid_entity.moved.connect(_on_grid_entity_moved)
 
 
 func reload_deck() -> bool:
@@ -89,6 +90,8 @@ func queue_skill(skill_number) -> bool:
 		$Stack.show()
 		#print(name, " queued skill: ", skills[skill_number].name)
 		stack.append(hand[skill_number])
+		hand[skill_number].connect("gained_status", _on_gained_status)
+		hand[skill_number].on_skill_queued()
 		_update_stack_visuals()
 		if is_full():
 			stack_full.emit()
@@ -134,7 +137,6 @@ func _handle_stack_execution():
 		return
 	current_skill = stack.pop_front() as SkillStrategy
 	current_skill.connect("moved_self", _on_moved_by_skill)
-	current_skill.connect("gained_status", _on_gained_status)
 	stack_icon_holder.get_child(0).get_child(0).get_child(0).show()
 	if current_skill.ready_skill(grid_entity):
 		await get_tree().create_timer(0.1).timeout
@@ -151,6 +153,11 @@ func _handle_stack_execution():
 
 func _on_moved_by_skill():
 	grid_entity.moved_by_skill = true
+
+
+func _on_grid_entity_moved(old_coords: Vector2i, new_coords: Vector2i):
+	for skill in stack:
+		skill.on_grid_entity_moved(old_coords, new_coords)
 
 
 func _on_gained_status(status: StatusStrategy):
@@ -193,6 +200,10 @@ func _on_emptied_stack() -> void:
 
 
 func _shuffle_skills() -> void:
+	state = States.IDLE
+	deck = []
+	stack = []
+	hand = []
 	for skill in skills:
 		skill.current_cooldown = 0
 		for i in range(skill.current_count):
@@ -203,11 +214,13 @@ func _shuffle_skills() -> void:
 			break
 		hand.append(deck.pop_front())
 	_update_skill_visuals()
+	_update_stack_visuals()
 
 
 func on_next_floor_reached() -> void:
 	for skill in skills:
 		skill.on_next_floor_reached()
+	_shuffle_skills()
 
 
 func _update_stack_visuals() -> void:
@@ -275,19 +288,20 @@ func _update_cooldown_visuals():
 			)
 			as ProgressBar
 		)
-		var percentage: float
-		var new_style_box = progress_bar.get_theme_stylebox("fill").duplicate() as StyleBoxFlat
+		if progress_bar:
+			var percentage: float
+			var new_style_box = progress_bar.get_theme_stylebox("fill").duplicate() as StyleBoxFlat
 
-		if hand[skill].current_in_stack > 0:
-			#percentage = float(hand[skill].current_in_stack) / float(hand[skill].max_per_stack)
-			percentage = 0
-			new_style_box.bg_color = Color(1, 1, 1, 0.5)
-			progress_bar.add_theme_stylebox_override("fill", new_style_box)
-		else:
-			percentage = float(hand[skill].current_cooldown) / float(hand[skill].cooldown_turns)
-			new_style_box.bg_color = Color(1, 0, 0, 0.5)
-			progress_bar.add_theme_stylebox_override("fill", new_style_box)
-		progress_bar.value = percentage
+			if hand[skill].current_in_stack > 0:
+				#percentage = float(hand[skill].current_in_stack) / float(hand[skill].max_per_stack)
+				percentage = 0
+				new_style_box.bg_color = Color(1, 1, 1, 0.5)
+				progress_bar.add_theme_stylebox_override("fill", new_style_box)
+			else:
+				percentage = float(hand[skill].current_cooldown) / float(hand[skill].cooldown_turns)
+				new_style_box.bg_color = Color(1, 0, 0, 0.5)
+				progress_bar.add_theme_stylebox_override("fill", new_style_box)
+			progress_bar.value = percentage
 
 
 func preview_queueing_skill(show_preview := true):

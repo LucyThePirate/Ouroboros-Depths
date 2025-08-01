@@ -24,7 +24,7 @@ func use_skill(grid_entity: GridEntity):
 		" from: ",
 		Global.floors.local_to_map(grid_entity.global_position)
 	)
-
+	var successfully_moved = false
 	for i in range(max_distance):
 		var new_dash_VFX = DashVFX.instantiate() as GPUParticles2D
 		new_dash_VFX.preprocess = (4 - i) * 0.15
@@ -32,7 +32,7 @@ func use_skill(grid_entity: GridEntity):
 		add_child(new_dash_VFX)
 		new_dash_VFX.global_position = grid_entity.global_position
 		await get_tree().create_timer(0.025).timeout
-		var successfully_moved = grid_entity.move(direction)
+		successfully_moved = grid_entity.move(direction)
 		var check_coords = Global.floors.local_to_map(grid_entity.global_position) + direction
 		if Global.entity_positions.has(check_coords):
 			var target = Global.entity_positions[check_coords]
@@ -41,6 +41,8 @@ func use_skill(grid_entity: GridEntity):
 			break
 		if not successfully_moved:
 			break
+		moved_self.emit()
+	if successfully_moved:
 		moved_self.emit()
 	state = SkillStrategy.States.IDLE
 	super(grid_entity)

@@ -5,14 +5,16 @@ class_name StatusStrategy
 signal status_ended(StatusStrategy)
 signal power_changed
 
-enum Status_IDs { NONE, SHIELD, RELOAD }
+enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE }
 
 @export var turns_afflicted := 5
 @onready var current_turns_afflicted := turns_afflicted
 @export var power := 1
 @export var status_ID := Status_IDs.NONE
 
-@onready var power_label = $PanelContainer/Label
+@onready var power_label = $PanelContainer/Label as RichTextLabel
+
+@export var max_power = 999
 
 
 func _ready() -> void:
@@ -43,4 +45,9 @@ func modify_damage(incoming_damage := 1) -> int:
 
 
 func _update_visuals() -> void:
-	power_label.text = str(power)
+	if power >= max_power:
+		power_label.text = (
+			"[outline_color=GOLDENROD][color=YELLOW]%s[/color][/outline_color]" % str(power)
+		)
+	else:
+		power_label.text = str(power)

@@ -12,6 +12,6 @@ script = ExtResource("1_lqbe1")
 [node name="StatusBar" type="HFlowContainer" parent="."]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
-theme_override_constants/h_separation = 1
-theme_override_constants/v_separation = 0
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
 alignment = 1

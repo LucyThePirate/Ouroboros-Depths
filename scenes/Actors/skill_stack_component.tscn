@@ -73,7 +73,6 @@ offset_bottom = 137.0
 scale = Vector2(0.328554, 0.284677)
 
 [node name="ColorRect" type="ColorRect" parent="Stack/MarginContainer"]
-visible = false
 layout_mode = 2
 color = Color(0.713726, 0.407843, 0, 0.352941)
 

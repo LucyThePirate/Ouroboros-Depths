@@ -1,0 +1,169 @@
+[gd_scene load_steps=24 format=3 uid="uid://d1ti6v0kdijnm"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/skill_strategy.tscn" id="1_ry74j"]
+[ext_resource type="Script" uid="uid://bnsmpae87jtaw" path="res://scenes/Actors/Strategies/Skill/be_patient_skill_strategy.gd" id="2_46xtg"]
+[ext_resource type="Texture2D" uid="uid://cags1t2j8djij" path="res://textures/Skills/BePatientSkill.png" id="2_fpgl5"]
+[ext_resource type="PackedScene" uid="uid://bhqxbcyv7ix4j" path="res://scenes/Actors/Strategies/Status/patience_status_strategy.tscn" id="3_ljuv8"]
+[ext_resource type="PackedScene" uid="uid://cmxeogtui2phc" path="res://scenes/Effects/note_vfx.tscn" id="4_qqyho"]
+[ext_resource type="AudioStream" uid="uid://bmfwrolntcqxp" path="res://audio/SFX/Skills/PennyBePatient/PennyYellShort1.ogg" id="6_tqy20"]
+[ext_resource type="AudioStream" uid="uid://c5kuv6pnoq1sn" path="res://audio/SFX/Skills/PennyBePatient/PennyYellShort2.ogg" id="7_t76qh"]
+[ext_resource type="AudioStream" uid="uid://bjx8lvl5ay1c5" path="res://audio/SFX/Skills/PennyBePatient/PennyYellMedium1.ogg" id="8_2sbj4"]
+[ext_resource type="AudioStream" uid="uid://dj45pkrlbb41b" path="res://audio/SFX/Skills/PennyBePatient/PennyYellMedium2.ogg" id="9_r8mp0"]
+[ext_resource type="AudioStream" uid="uid://b3nqhbiqcrr0g" path="res://audio/SFX/Skills/PennyBePatient/PennyYellMedium3.ogg" id="10_8yq4w"]
+[ext_resource type="AudioStream" uid="uid://dmrtus0h16rhd" path="res://audio/SFX/Skills/PennyBePatient/PennyYellLong1.ogg" id="11_86cgc"]
+[ext_resource type="AudioStream" uid="uid://co21f02qwdy8g" path="res://audio/SFX/Skills/PennyBePatient/PennyYellLong2.ogg" id="12_w0g1c"]
+[ext_resource type="AudioStream" uid="uid://de1wkdgu2ijs0" path="res://audio/SFX/Skills/PennyBePatient/PennyYellLong3.ogg" id="13_pf07p"]
+[ext_resource type="AudioStream" uid="uid://bdeqfat0wilcr" path="res://audio/SFX/Skills/PennyBePatient/PennyYellMax1.ogg" id="14_8yq4w"]
+[ext_resource type="AudioStream" uid="uid://cocp6ee458vtv" path="res://audio/SFX/Skills/PennyBePatient/PennyYellMax2.ogg" id="15_86cgc"]
+[ext_resource type="Texture2D" uid="uid://dv5udil1edet2" path="res://textures/Skills/BePatientPennyScream.png" id="16_86cgc"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y537m"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("6_tqy20")
+stream_1/stream = ExtResource("7_t76qh")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0gony"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("8_2sbj4")
+stream_1/stream = ExtResource("9_r8mp0")
+stream_2/stream = ExtResource("10_8yq4w")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_53gpo"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("11_86cgc")
+stream_1/stream = ExtResource("12_w0g1c")
+stream_2/stream = ExtResource("13_pf07p")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w0g1c"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("14_8yq4w")
+stream_1/stream = ExtResource("15_86cgc")
+
+[sub_resource type="Animation" id="Animation_86cgc"]
+resource_name = "Scream"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scream:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.031816, 0.031816), Vector2(0.027, 0.027), Vector2(0.031816, 0.031816), Vector2(0.027, 0.027), Vector2(0.031816, 0.031816), Vector2(0.027, 0.027), Vector2(0.031816, 0.031816), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scream:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scream:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w0g1c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scream:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.031816, 0.031816)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scream:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scream:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pf07p"]
+_data = {
+&"RESET": SubResource("Animation_w0g1c"),
+&"Scream": SubResource("Animation_86cgc")
+}
+
+[node name="BePatientSkillStrategy" instance=ExtResource("1_ry74j")]
+script = ExtResource("2_46xtg")
+patience_status = ExtResource("3_ljuv8")
+note_VFX = ExtResource("4_qqyho")
+power = 1
+is_depletable = true
+skill_name = ""
+
+[node name="TextureRect" parent="." index="0"]
+texture = ExtResource("2_fpgl5")
+
+[node name="YellShort" type="AudioStreamPlayer2D" parent="." index="4"]
+stream = SubResource("AudioStreamRandomizer_y537m")
+volume_db = 10.2
+
+[node name="YellMedium" type="AudioStreamPlayer2D" parent="." index="5"]
+stream = SubResource("AudioStreamRandomizer_0gony")
+volume_db = 13.915
+
+[node name="YellLong" type="AudioStreamPlayer2D" parent="." index="6"]
+stream = SubResource("AudioStreamRandomizer_53gpo")
+volume_db = 10.2
+
+[node name="YellMax" type="AudioStreamPlayer2D" parent="." index="7"]
+stream = SubResource("AudioStreamRandomizer_w0g1c")
+volume_db = 10.2
+
+[node name="Scream" type="Sprite2D" parent="." index="8"]
+visible = false
+position = Vector2(0.0265195, -0.0265194)
+scale = Vector2(0.031816, 0.031816)
+texture = ExtResource("16_86cgc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9"]
+libraries = {
+&"": SubResource("AnimationLibrary_pf07p")
+}
+speed_scale = 0.7

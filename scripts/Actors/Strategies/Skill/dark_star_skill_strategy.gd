@@ -50,4 +50,7 @@ func explode_star(grid_coords, grid_entity, direction):
 			Global.entity_positions.has(check_coords)
 			and is_instance_valid(Global.entity_positions[check_coords])
 		):
-			Global.entity_positions[check_coords]._on_hit(grid_entity)
+			if point == Vector2.ZERO:
+				Global.entity_positions[check_coords]._on_hit(grid_entity)
+			else:  # Skill crit
+				Global.entity_positions[check_coords]._on_hit(grid_entity, 2)

@@ -189,6 +189,7 @@ func _on_hit(attacker, damage := 1):
 		print(self.name, "was hit by:", attacker.name)
 		damage = status_component.modify_damage(damage)
 		health_component.deal_damage(damage)
+		$Hit.play()
 		hurt.emit(attacker)
 
 
