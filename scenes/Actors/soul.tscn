@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmo7bb0sbjha"]
+
+[ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="1_cu5r2"]
+[ext_resource type="Script" uid="uid://ccd4vktwbaeod" path="res://scripts/Actors/soul.gd" id="1_pmf2n"]
+[ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="1_r42nn"]
+
+[node name="GridEntity" instance=ExtResource("1_cu5r2")]
+script = ExtResource("1_pmf2n")
+
+[node name="UI" parent="." index="13"]
+visible = false
+
+[node name="Visual" type="Sprite2D" parent="." index="15"]
+scale = Vector2(0.232284, 0.232284)
+texture = ExtResource("1_r42nn")
+region_rect = Rect2(0, 0, 100, 100)
+
+[connection signal="turn_ended" from="TurnComponent" to="." method="_on_turn_component_turn_ended"]

@@ -13,6 +13,8 @@ signal descended
 signal died
 signal performed_action
 
+#@export var soul_scene: PackedScene
+
 @onready var thump_sound = $Thump
 @onready var glass_thump_sound = $GlassThump
 @onready var plant_thump_sound = $PlantThump
@@ -26,6 +28,7 @@ signal performed_action
 @onready var health_component = $UI/HealthComponent as HealthComponent
 @onready var status_component = $UI/StatusManagerComponent as StatusManagerComponent
 @onready var turn_component = $TurnComponent as TurnComponent
+@onready var stack_component = $SkillStackComponent as SkillStackComponent
 
 const CELL_SIZE = 100
 var initialized = false
@@ -225,6 +228,9 @@ func play_thump_sound(material):
 
 func on_death() -> void:
 	Global.entity_positions.erase(Global.floors.local_to_map(global_position))
+	#var new_soul = soul_scene.instantiate()
+	#new_soul.global_position = global_position
+	#get_tree().current_scene.add_child(new_soul)
 	died.emit()
 
 

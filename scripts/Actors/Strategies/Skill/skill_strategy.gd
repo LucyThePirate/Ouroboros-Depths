@@ -24,8 +24,10 @@ signal gained_status(status)
 @export var skill_name: String
 @export_multiline var skill_desc: String
 
-@onready var icon = $TextureRect
+@onready var icon = $Border/Crop/Icon
 @onready var progress_bar = $ProgressBar
+@onready var border = $Border
+@onready var crop = $Border/Crop
 
 var skill_crit := false
 var show_UI = true
@@ -41,6 +43,8 @@ var state = States.IDLE
 func _ready() -> void:
 	icon.hide()
 	progress_bar.hide()
+	border.hide()
+	crop.hide()
 
 
 func ready_skill(grid_entity: GridEntity) -> bool:

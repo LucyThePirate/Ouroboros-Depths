@@ -18,7 +18,12 @@ delay = 0.25
 count = 8
 skill_name = ""
 
-[node name="TextureRect" parent="." index="0"]
+[node name="Icon" parent="Border/Crop" index="0"]
+offset_left = -4.0
+offset_top = 7.0
+offset_right = 128.0
+offset_bottom = 115.0
+scale = Vector2(0.972949, 0.972949)
 texture = ExtResource("2_x1ymy")
 
 [node name="SamplerInstrument" type="AudioStreamPlayer" parent="." index="4"]

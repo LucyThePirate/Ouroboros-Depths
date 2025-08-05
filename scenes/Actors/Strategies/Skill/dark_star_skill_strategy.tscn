@@ -5,14 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://4acykyan5qq0" path="res://scenes/Effects/dark_star.tscn" id="2_e3lg0"]
 [ext_resource type="Texture2D" uid="uid://b08oh14ot75ib" path="res://textures/Skills/SkillIcons.png" id="2_jrkbo"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iv8dg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_snp4d"]
 atlas = ExtResource("2_jrkbo")
-region = Rect2(306.15, 23.5737, 131.522, 95.9606)
+region = Rect2(306.804, 28.6566, 133.78, 87.4935)
 
 [node name="DarkStarSkillStrategy" instance=ExtResource("1_snp4d")]
 script = ExtResource("1_sn4vy")
 StarVFX = ExtResource("2_e3lg0")
 skill_name = ""
 
-[node name="TextureRect" parent="." index="0"]
-texture = SubResource("AtlasTexture_iv8dg")
+[node name="Icon" parent="Border/Crop" index="0"]
+scale = Vector2(0.832895, 0.832895)
+texture = SubResource("AtlasTexture_snp4d")

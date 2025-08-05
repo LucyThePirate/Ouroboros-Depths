@@ -1,5 +1,7 @@
 extends Node
 
+signal turn_passed
+
 @onready var entity_positions = {}
 
 var floors: TileMapLayer

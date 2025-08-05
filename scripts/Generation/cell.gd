@@ -273,6 +273,7 @@ func process_turn():
 	else:
 		#print("invalid entity?")
 		process_turn()
+	Global.turn_passed.emit()
 	#await current_entity.turn_ended
 
 

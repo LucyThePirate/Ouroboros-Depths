@@ -85,6 +85,7 @@ func can_queue_skill(skill_number) -> bool:
 
 func queue_skill(skill_number) -> bool:
 	if can_queue_skill(skill_number):
+		$SkillAdded.play()
 		#hand[skill_number].increment_in_stack_counter()
 		_update_cooldown_visuals()
 		$Stack.show()

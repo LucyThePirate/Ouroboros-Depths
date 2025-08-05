@@ -11,5 +11,5 @@ shield_status = ExtResource("2_peluu")
 power = 5
 skill_name = ""
 
-[node name="TextureRect" parent="." index="0"]
+[node name="Icon" parent="Border/Crop" index="0"]
 texture = ExtResource("2_3kmmh")

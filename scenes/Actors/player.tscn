@@ -42,7 +42,6 @@ zoom = Vector2(0.595, 0.595)
 [node name="OrchestrateSkillStrategy" parent="GridEntity/SkillStackComponent" index="12" instance=ExtResource("10_nbabl")]
 
 [node name="BePatientSkillStrategy" parent="GridEntity/SkillStackComponent" index="13" instance=ExtResource("11_v7jyr")]
-count = 10
 
 [node name="Shield1000" parent="GridEntity/UI/StatusManagerComponent" index="1" instance=ExtResource("9_yw7wc")]
 layout_mode = 2
