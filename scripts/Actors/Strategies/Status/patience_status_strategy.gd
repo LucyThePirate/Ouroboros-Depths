@@ -11,7 +11,6 @@ func on_moved():
 
 
 func on_turn_ended():
-	if power < max_power:
-		power = min(max_power, power + 1)
+	if increase_power():
 		sampler.play_note(notes[power - 1], 4)
-		_update_visuals()
+	

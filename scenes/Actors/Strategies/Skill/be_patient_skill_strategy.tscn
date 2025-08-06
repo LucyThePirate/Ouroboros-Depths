@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://d1ti6v0kdijnm"]
 
-[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/skill_strategy.tscn" id="1_ry74j"]
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/base_skill_strategy.tscn" id="1_ry74j"]
 [ext_resource type="Script" uid="uid://bnsmpae87jtaw" path="res://scenes/Actors/Strategies/Skill/be_patient_skill_strategy.gd" id="2_46xtg"]
 [ext_resource type="Texture2D" uid="uid://cags1t2j8djij" path="res://textures/Skills/BePatientSkill.png" id="2_fpgl5"]
 [ext_resource type="PackedScene" uid="uid://bhqxbcyv7ix4j" path="res://scenes/Actors/Strategies/Status/patience_status_strategy.tscn" id="3_ljuv8"]
@@ -96,7 +96,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0.031816, 0.031816), Vector2(0.027, 0.027), Vector2(0.031816, 0.031816), Vector2(0.027, 0.027), Vector2(0.031816, 0.031816), Vector2(0.027, 0.027), Vector2(0.031816, 0.031816), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(0.5, 0.5), Vector2(1, 1), Vector2(0.5, 0.5), Vector2(1, 1), Vector2(0.5, 0.5), Vector2(1, 1), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false

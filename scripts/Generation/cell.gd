@@ -268,6 +268,8 @@ func process_turn():
 
 	var current_entity = turn_queue.pop_front()
 	if current_entity:
+		if current_entity.get_parent().is_in_group("Soul"):
+			print("soul")
 		#print("Taking turn now:", current_entity.get_parent().name)
 		current_entity.take_turn()
 	else:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c10nhwhuw3ge4"]
 
-[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/skill_strategy.tscn" id="1_cceox"]
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/base_skill_strategy.tscn" id="1_cceox"]
 [ext_resource type="Texture2D" uid="uid://bw5vnwnafwbci" path="res://textures/Skills/OrchestrateSkill.png" id="2_x1ymy"]
 [ext_resource type="Script" uid="uid://ccf38hgikhyb3" path="res://scripts/Actors/Strategies/Skill/orchestrate_skill_strategy.gd" id="2_x5ygo"]
 [ext_resource type="PackedScene" uid="uid://cmxeogtui2phc" path="res://scenes/Effects/note_vfx.tscn" id="3_go5wn"]

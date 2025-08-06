@@ -4,8 +4,9 @@ class_name StatusStrategy
 
 signal status_ended(StatusStrategy)
 signal power_changed
+signal max_power_reached
 
-enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE }
+enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS }
 
 @export var turns_afflicted := 5
 @onready var current_turns_afflicted := turns_afflicted
@@ -13,7 +14,6 @@ enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE }
 @export var status_ID := Status_IDs.NONE
 
 @onready var power_label = $PanelContainer/Label as RichTextLabel
-
 @export var max_power = 999
 
 
@@ -24,6 +24,16 @@ func _ready() -> void:
 func merge_status(status: StatusStrategy):
 	power += status.power
 	_update_visuals()
+
+
+func increase_power(amount := 1) -> bool:
+	if power >= max_power:
+		return false
+	power = min(max_power, power + amount)
+	_update_visuals()
+	if power >= max_power:
+		max_power_reached.emit()
+	return true
 
 
 func on_turn_ended():

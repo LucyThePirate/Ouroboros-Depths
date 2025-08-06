@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://bcpo4dfcq62k2"]
 
-[ext_resource type="Script" uid="uid://c0f56xso1fu7o" path="res://scripts/Actors/Strategies/Skill/skill_strategy.gd" id="1_tahbo"]
-[ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="2_ul1qo"]
-[ext_resource type="Texture2D" uid="uid://b1fluli6w541s" path="res://textures/Skills/SkillBorder.png" id="2_v8hib"]
-[ext_resource type="Texture2D" uid="uid://oyhibnqe4cjl" path="res://textures/Skills/SkillBorderCrop.png" id="3_au8hf"]
-[ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/UI/Cursor.png" id="3_krjcc"]
-[ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="4_s17jk"]
+[ext_resource type="Script" uid="uid://c0f56xso1fu7o" path="res://scripts/Actors/Strategies/Skill/skill_strategy.gd" id="1_kcxpa"]
+[ext_resource type="Texture2D" uid="uid://b1fluli6w541s" path="res://textures/Skills/SkillBorder.png" id="2_0vh6d"]
+[ext_resource type="Texture2D" uid="uid://oyhibnqe4cjl" path="res://textures/Skills/SkillBorderCrop.png" id="3_n3mpj"]
+[ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="4_0actt"]
+[ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/UI/Cursor.png" id="5_bxg8s"]
+[ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="6_sh0vo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhk8g"]
 bg_color = Color(0, 0, 0, 0.529412)
@@ -15,11 +15,11 @@ draw_center = false
 bg_color = Color(1, 1, 1, 0.556863)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jyxbn"]
-atlas = ExtResource("3_krjcc")
+atlas = ExtResource("5_bxg8s")
 region = Rect2(0, 0, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tu85t"]
-atlas = ExtResource("3_krjcc")
+atlas = ExtResource("5_bxg8s")
 region = Rect2(100, 0, 100, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v8hib"]
@@ -36,24 +36,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="SkillStrategy" type="PanelContainer" groups=["Skill"]]
+[node name="BaseSkillStrategy" type="PanelContainer" groups=["Skill"]]
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 144.0
 offset_bottom = 139.0
 scale = Vector2(1.18752, 1.18752)
-script = ExtResource("1_tahbo")
+script = ExtResource("1_kcxpa")
 skill_name = "Default Skill"
 
 [node name="Border" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("2_v8hib")
+texture = ExtResource("2_0vh6d")
 
 [node name="Crop" type="TextureRect" parent="Border"]
 clip_children = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("3_au8hf")
+texture = ExtResource("3_n3mpj")
 
 [node name="Icon" type="TextureRect" parent="Border/Crop"]
 layout_mode = 2
@@ -62,7 +62,7 @@ offset_top = 3.36836
 offset_right = 148.21
 offset_bottom = 142.368
 scale = Vector2(0.842108, 0.842108)
-texture = ExtResource("2_ul1qo")
+texture = ExtResource("4_0actt")
 expand_mode = 2
 stretch_mode = 5
 
@@ -90,19 +90,19 @@ top_level = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Arrows"]
 position = Vector2(104, 0)
-texture = ExtResource("4_s17jk")
+texture = ExtResource("6_sh0vo")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Arrows"]
 position = Vector2(0, -104)
 rotation = -1.57079
-texture = ExtResource("4_s17jk")
+texture = ExtResource("6_sh0vo")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Arrows"]
 position = Vector2(-104, 0)
 rotation = 3.14159
-texture = ExtResource("4_s17jk")
+texture = ExtResource("6_sh0vo")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Arrows"]
 position = Vector2(2.00011, 106)
 rotation = 1.57079
-texture = ExtResource("4_s17jk")
+texture = ExtResource("6_sh0vo")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5jnedeqec3bx"]
 
-[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/skill_strategy.tscn" id="1_3kmmh"]
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/base_skill_strategy.tscn" id="1_3kmmh"]
 [ext_resource type="Script" uid="uid://deabvcgkh4efg" path="res://scripts/Actors/Strategies/Skill/defend_skill_strategy.gd" id="1_wsy3c"]
 [ext_resource type="Texture2D" uid="uid://y7pjcht62sql" path="res://icon.png" id="2_3kmmh"]
 [ext_resource type="PackedScene" uid="uid://bhxy4rfg3pad5" path="res://scenes/Actors/Strategies/Status/shield_status_strategy.tscn" id="2_peluu"]

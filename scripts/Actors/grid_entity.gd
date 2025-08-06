@@ -228,9 +228,12 @@ func play_thump_sound(material):
 
 func on_death() -> void:
 	Global.entity_positions.erase(Global.floors.local_to_map(global_position))
+	#if soul_scene:
 	#var new_soul = soul_scene.instantiate()
 	#new_soul.global_position = global_position
 	#get_tree().current_scene.add_child(new_soul)
+	#else:
+	#push_error("Soul scene not initiated for: %s" % name)
 	died.emit()
 
 

@@ -5,6 +5,8 @@ class_name Player
 signal descended
 
 @export var text_component: PackedScene
+@export var chrysalis_status_scene: PackedScene
+
 @onready var current_text: TextComponent
 @onready var grid_entity = $GridEntity
 @onready var display = $Display
@@ -16,7 +18,7 @@ signal descended
 
 var initialized = false
 
-enum States { IDLE, DEAD, EXECUTING_STACK }
+enum States { IDLE, DEAD, EXECUTING_STACK, METAMORPHING }
 var state = States.IDLE
 
 
@@ -28,7 +30,6 @@ func _ready() -> void:
 	visual.initialize(grid_entity)
 	stack_component.initialize(grid_entity, true, turn_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,6 +45,8 @@ func _process(delta: float) -> void:
 	$StateLabel.text = (
 		"%s - %s" % [States.keys()[state], stack_component.States.keys()[stack_component.state]]
 	)
+	if turn_component.my_turn and state == States.METAMORPHING:
+		end_turn()
 
 
 func _input(event):
@@ -107,6 +110,26 @@ func _handle_movement() -> void:
 
 	elif Input.is_action_just_pressed("Reload"):
 		stack_component.reload_deck()
+
+	elif Input.is_action_just_pressed("Chrysalis"):
+		state = States.METAMORPHING
+		var new_chrysalis_status = chrysalis_status_scene.instantiate() as StatusStrategy
+		new_chrysalis_status.status_ended.connect(_metamorphing_interrupted)
+		new_chrysalis_status.max_power_reached.connect(_metamorphing_complete)
+		add_child(new_chrysalis_status)
+		grid_entity.gain_status(new_chrysalis_status)
+		end_turn()
+		return
+
+
+func _metamorphing_interrupted(status):
+	if state == States.METAMORPHING:
+		state = States.IDLE
+
+
+func _metamorphing_complete():
+	if state == States.METAMORPHING:
+		state = States.IDLE
 
 
 func _get_directional_input():
