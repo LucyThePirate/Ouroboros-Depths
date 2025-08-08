@@ -9,7 +9,7 @@
 script = ExtResource("1_wsy3c")
 shield_status = ExtResource("2_peluu")
 power = 5
-skill_name = ""
+skill_name = "Defend"
 
-[node name="Icon" parent="Border/Crop" index="0"]
+[node name="Icon" parent="." index="0"]
 texture = ExtResource("2_3kmmh")

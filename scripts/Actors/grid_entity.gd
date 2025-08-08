@@ -35,6 +35,9 @@ var initialized = false
 var my_turn = false
 var moved_by_skill := false
 
+var soul_count := 0
+var last_hit_by: GridEntity
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -190,6 +193,7 @@ func _on_hit(attacker, damage := 1):
 		return
 	else:
 		print(self.name, "was hit by:", attacker.name)
+		last_hit_by = attacker
 		damage = status_component.modify_damage(damage)
 		health_component.deal_damage(damage)
 		$Hit.play()
@@ -227,13 +231,9 @@ func play_thump_sound(material):
 
 
 func on_death() -> void:
+	if is_instance_valid(last_hit_by) and last_hit_by is GridEntity:
+		last_hit_by.soul_count += soul_count + 1
 	Global.entity_positions.erase(Global.floors.local_to_map(global_position))
-	#if soul_scene:
-	#var new_soul = soul_scene.instantiate()
-	#new_soul.global_position = global_position
-	#get_tree().current_scene.add_child(new_soul)
-	#else:
-	#push_error("Soul scene not initiated for: %s" % name)
 	died.emit()
 
 

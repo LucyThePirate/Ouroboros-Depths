@@ -19,12 +19,7 @@ count = 2
 is_depletable = true
 skill_name = ""
 
-[node name="Icon" parent="Border/Crop" index="0"]
-offset_left = 5.89463
-offset_top = 5.89463
-offset_right = 149.895
-offset_bottom = 144.895
-scale = Vector2(0.81606, 0.81606)
+[node name="Icon" parent="." index="0"]
 texture = ExtResource("3_w7hts")
 
 [node name="CookieOpen" type="AudioStreamPlayer2D" parent="." index="4"]

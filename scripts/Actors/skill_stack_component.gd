@@ -10,11 +10,10 @@ signal awaited_directional_input
 signal awaited_cursor_input
 signal gained_status(status)
 
+@onready var hand_visual = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual
+@onready var stack_icon_holder = $Stack/MarginContainer/CenterContainer/StackIconHolder
 @onready
-var skill_icon_holder = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer
-@onready var stack_icon_holder = $Stack/MarginContainer/CenterContainer/HBoxContainer
-@onready
-var preview_queue_skill = $Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer5/PreviewQueueSkill
+var preview_queue_skill = $Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer5/PreviewQueueSkill
 @onready var stack_color_rect = $Stack/MarginContainer/ColorRect
 
 @export var max_stack_size := 4
@@ -237,9 +236,9 @@ func _update_stack_visuals() -> void:
 func _update_skill_visuals() -> void:
 	for skill in range(hand_size):
 		if hand.size() <= skill or not hand[skill]:
-			skill_icon_holder.get_child(skill).get_child(0).texture = null_skill_texture
+			hand_visual.get_child(skill).get_child(0).texture = null_skill_texture
 			continue
-		skill_icon_holder.get_child(skill).get_child(0).texture = hand[skill].icon.texture
+		hand_visual.get_child(skill).get_child(0).texture = hand[skill].icon.texture
 
 
 func _update_turn_cooldown():
@@ -264,7 +263,7 @@ func _update_cooldown_visuals():
 			var progress_bar = (
 				get_node(
 					(
-						"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer%s/ProgressBar"
+						"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer%s/ProgressBar"
 						% [skill + 1]
 					)
 				)
@@ -284,7 +283,7 @@ func _update_cooldown_visuals():
 		var progress_bar = (
 			get_node(
 				(
-					"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer%s/ProgressBar"
+					"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer%s/ProgressBar"
 					% [skill + 1]
 				)
 			)
@@ -316,3 +315,23 @@ func preview_executing_stack(show_preview := true):
 		stack_color_rect.color = Color.from_rgba8(233, 0, 73, 200)
 	else:
 		stack_color_rect.color = Color.from_rgba8(182, 104, 0, 90)
+
+
+func _on_info_button_1_pressed() -> void:
+	if hand[0]:
+		hand[0].display_skill_info()
+
+
+func _on_info_button_2_pressed() -> void:
+	if hand[1]:
+		hand[1].display_skill_info()
+
+
+func _on_info_button_3_pressed() -> void:
+	if hand[2]:
+		hand[2].display_skill_info()
+
+
+func _on_info_button_4_pressed() -> void:
+	if hand[3]:
+		hand[3].display_skill_info()

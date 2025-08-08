@@ -175,7 +175,11 @@ func _draw():
 				if leaf.path_intersection_count == 1:
 					var random_tile = noise.get_noise_2dv(tile_coordinate)
 					if walls.get_cell_tile_data(tile_coordinate) and random_tile < -0.15:
-						walls.set_cell(tile_coordinate, glass_wall_tile[0], glass_wall_tile[1])
+						if (
+							walls.get_cell_tile_data(tile_coordinate).get_custom_data("is_door")
+							== false
+						):
+							walls.set_cell(tile_coordinate, glass_wall_tile[0], glass_wall_tile[1])
 					if random_tile > 0.3 and rng.randf() > 0.6:
 						_place_nature_tile(tile_coordinate)
 			if leaf.path_intersection_count == 1 and not placed_stairs:
@@ -268,8 +272,6 @@ func process_turn():
 
 	var current_entity = turn_queue.pop_front()
 	if current_entity:
-		if current_entity.get_parent().is_in_group("Soul"):
-			print("soul")
 		#print("Taking turn now:", current_entity.get_parent().name)
 		current_entity.take_turn()
 	else:

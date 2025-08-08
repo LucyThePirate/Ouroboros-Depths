@@ -1,0 +1,166 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjo5qx0fo3bej"]
+
+[ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="1_2lgn1"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="1_awmqf"]
+[ext_resource type="Script" uid="uid://cxokci3gd12kt" path="res://scripts/Actors/metamorphosis.gd" id="1_eg7uw"]
+[ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/Skills/SkillSack.png" id="2_jup3b"]
+[ext_resource type="Texture2D" uid="uid://gu7myu02v5ac" path="res://textures/Statuses/Chrysalis.png" id="4_o7w3c"]
+[ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="5_eg7uw"]
+
+[node name="Metamorphosis" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eg7uw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/HBoxContainer/Left"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_2lgn1")
+stretch_mode = 3
+
+[node name="SoulCount" type="RichTextLabel" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("1_awmqf")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Souls: 1000"
+fit_content = true
+autowrap_mode = 0
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_jup3b")
+stretch_mode = 3
+
+[node name="Center" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel/HBoxContainer/Center"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -4.0
+offset_right = -3.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("1_awmqf")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[rainbow][wave]METAPMORPHOSIS[/wave][/rainbow]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/HBoxContainer/Center"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_o7w3c")
+stretch_mode = 3
+
+[node name="ConfirmButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer"]
+layout_mode = 2
+text = "Confirm (Unspent souls = heal health)"
+
+[node name="Right" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel/HBoxContainer/Right"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -56.0
+offset_right = 184.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/GridContainer"]
+layout_mode = 2
+text = "Basic Skill
+1 Soul"
+icon = ExtResource("5_eg7uw")
+
+[node name="Button2" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/GridContainer"]
+layout_mode = 2
+text = "Basic Skill
+1 Soul"
+icon = ExtResource("5_eg7uw")
+
+[node name="Button3" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/GridContainer"]
+layout_mode = 2
+text = "Basic Skill
+1 Soul"
+icon = ExtResource("5_eg7uw")
+
+[node name="Button4" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/GridContainer"]
+layout_mode = 2
+text = "Basic Skill
+1 Soul"
+icon = ExtResource("5_eg7uw")
+
+[node name="Button5" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/GridContainer"]
+layout_mode = 2
+text = "Basic Skill
+1 Soul"
+icon = ExtResource("5_eg7uw")
+
+[node name="Button6" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/GridContainer"]
+layout_mode = 2
+text = "Basic Skill
+1 Soul"
+icon = ExtResource("5_eg7uw")
+
+[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

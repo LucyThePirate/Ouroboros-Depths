@@ -6,6 +6,7 @@ signal descended
 
 @export var text_component: PackedScene
 @export var chrysalis_status_scene: PackedScene
+@export var metamorphosis_scene: PackedScene
 
 @onready var current_text: TextComponent
 @onready var grid_entity = $GridEntity
@@ -18,7 +19,7 @@ signal descended
 
 var initialized = false
 
-enum States { IDLE, DEAD, EXECUTING_STACK, METAMORPHING }
+enum States { IDLE, DEAD, EXECUTING_STACK, METAMORPHOSIS_STARTED, METAMORPHING }
 var state = States.IDLE
 
 
@@ -45,7 +46,7 @@ func _process(delta: float) -> void:
 	$StateLabel.text = (
 		"%s - %s" % [States.keys()[state], stack_component.States.keys()[stack_component.state]]
 	)
-	if turn_component.my_turn and state == States.METAMORPHING:
+	if turn_component.my_turn and state == States.METAMORPHOSIS_STARTED:
 		end_turn()
 
 
@@ -112,10 +113,11 @@ func _handle_movement() -> void:
 		stack_component.reload_deck()
 
 	elif Input.is_action_just_pressed("Chrysalis"):
-		state = States.METAMORPHING
+		state = States.METAMORPHOSIS_STARTED
 		var new_chrysalis_status = chrysalis_status_scene.instantiate() as StatusStrategy
+		
+		new_chrysalis_status.max_power_reached.connect(_metamorphing_started)
 		new_chrysalis_status.status_ended.connect(_metamorphing_interrupted)
-		new_chrysalis_status.max_power_reached.connect(_metamorphing_complete)
 		add_child(new_chrysalis_status)
 		grid_entity.gain_status(new_chrysalis_status)
 		end_turn()
@@ -123,11 +125,20 @@ func _handle_movement() -> void:
 
 
 func _metamorphing_interrupted(status):
-	if state == States.METAMORPHING:
+	if state == States.METAMORPHOSIS_STARTED:
 		state = States.IDLE
 
 
-func _metamorphing_complete():
+func _metamorphing_started():
+	if state == States.METAMORPHOSIS_STARTED:
+		state = States.METAMORPHING
+		var new_metamorph = metamorphosis_scene.instantiate()
+		new_metamorph.grid_parent = grid_entity
+		new_metamorph.metamorphosis_completed.connect(_metamorphing_completed)
+		add_child(new_metamorph)
+
+
+func _metamorphing_completed():
 	if state == States.METAMORPHING:
 		state = States.IDLE
 

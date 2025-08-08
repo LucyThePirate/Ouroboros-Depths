@@ -14,6 +14,5 @@ script = ExtResource("1_sn4vy")
 StarVFX = ExtResource("2_e3lg0")
 skill_name = ""
 
-[node name="Icon" parent="Border/Crop" index="0"]
-scale = Vector2(0.832895, 0.832895)
+[node name="Icon" parent="." index="0"]
 texture = SubResource("AtlasTexture_snp4d")

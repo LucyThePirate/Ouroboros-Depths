@@ -93,19 +93,19 @@ color = Color(0.713726, 0.407843, 0, 0.352941)
 [node name="CenterContainer" type="PanelContainer" parent="Stack/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Stack/MarginContainer/CenterContainer"]
+[node name="StackIconHolder" type="HBoxContainer" parent="Stack/MarginContainer/CenterContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/StackIconHolder"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer"]
+[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer"]
 layout_mode = 2
 expand_mode = 2
 stretch_mode = 5
 
-[node name="ColorRect" type="ColorRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer/TextureRect"]
+[node name="ColorRect" type="ColorRect" parent="Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer/TextureRect"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -116,34 +116,34 @@ grow_vertical = 2
 scale = Vector2(1.00272, 1.00272)
 color = Color(0.862745, 0, 0.219608, 0.298039)
 
-[node name="PanelContainer4" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="PanelContainer4" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/StackIconHolder"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer4"]
-layout_mode = 2
-expand_mode = 2
-stretch_mode = 5
-
-[node name="PanelContainer2" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer2"]
+[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer4"]
 layout_mode = 2
 expand_mode = 2
 stretch_mode = 5
 
-[node name="PanelContainer3" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/StackIconHolder"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer3"]
+[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer2"]
 layout_mode = 2
 expand_mode = 2
 stretch_mode = 5
 
-[node name="PanelContainer5" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/StackIconHolder"]
 layout_mode = 2
 
-[node name="PreviewQueueSkill" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/HBoxContainer/PanelContainer5"]
+[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer3"]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="PanelContainer5" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/StackIconHolder"]
+layout_mode = 2
+
+[node name="PreviewQueueSkill" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer5"]
 visible = false
 self_modulate = Color(0.870588, 0, 0.0117647, 1)
 layout_mode = 2
@@ -184,20 +184,20 @@ color = Color(0.713726, 0.407843, 0, 0.352941)
 self_modulate = Color(1, 1, 1, 0.231373)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer"]
+[node name="HandVisual" type="HBoxContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="PanelContainer1" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="PanelContainer1" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer1"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1"]
 layout_mode = 2
 texture = ExtResource("4_iqeie")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer1"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
@@ -206,16 +206,21 @@ max_value = 1.0
 fill_mode = 3
 show_percentage = false
 
-[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="InfoButton1" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+button_mask = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2"]
 layout_mode = 2
 texture = ExtResource("4_iqeie")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer2"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
@@ -224,16 +229,21 @@ max_value = 1.0
 fill_mode = 3
 show_percentage = false
 
-[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="InfoButton2" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+button_mask = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer3"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3"]
 layout_mode = 2
 texture = ExtResource("4_iqeie")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer3"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
@@ -242,16 +252,21 @@ max_value = 1.0
 fill_mode = 3
 show_percentage = false
 
-[node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer"]
+[node name="InfoButton3" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+button_mask = 2
+
+[node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer4"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4"]
 layout_mode = 2
 texture = ExtResource("4_iqeie")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HBoxContainer/PanelContainer4"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
@@ -259,6 +274,11 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
 max_value = 1.0
 fill_mode = 3
 show_percentage = false
+
+[node name="InfoButton4" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+button_mask = 2
 
 [node name="Error" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_qowul")
@@ -286,3 +306,7 @@ process_material = SubResource("ParticleProcessMaterial_8fyuu")
 stream = SubResource("AudioStreamRandomizer_lqrbu")
 
 [connection signal="emptied_stack" from="." to="." method="_on_emptied_stack"]
+[connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1/InfoButton1" to="." method="_on_info_button_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2/InfoButton2" to="." method="_on_info_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3/InfoButton3" to="." method="_on_info_button_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4/InfoButton4" to="." method="_on_info_button_4_pressed"]

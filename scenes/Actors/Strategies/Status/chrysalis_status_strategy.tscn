@@ -11,3 +11,5 @@ max_power = 8
 
 [node name="TextureRect" parent="." index="0"]
 texture = ExtResource("2_yv11q")
+
+[connection signal="max_power_reached" from="." to="." method="_on_max_power_reached"]

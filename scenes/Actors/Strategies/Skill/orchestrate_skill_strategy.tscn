@@ -16,14 +16,14 @@ note_VFX = ExtResource("3_go5wn")
 notes = Array[String](["C", "D", "E", "F", "G", "A", "B"])
 delay = 0.25
 count = 8
-skill_name = ""
+skill_name = "Orchestrate"
+skill_desc = "Doh Reh Miiii!!! The power of music is at your fingertips. Use it to smite your enemies while creating a soothing melody at the same time!
 
-[node name="Icon" parent="Border/Crop" index="0"]
-offset_left = -4.0
-offset_top = 7.0
-offset_right = 128.0
-offset_bottom = 115.0
-scale = Vector2(0.972949, 0.972949)
+Upon use, the user selects a tile to create a music note on, the pitch changing relative to its position to the user. The note is also added to a sequence.
+
+When stack execution starts, the sequence of notes is replayed, also damaging creatures caught in its melody."
+
+[node name="Icon" parent="." index="0"]
 texture = ExtResource("2_x1ymy")
 
 [node name="SamplerInstrument" type="AudioStreamPlayer" parent="." index="4"]

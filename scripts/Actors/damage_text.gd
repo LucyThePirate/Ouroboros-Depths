@@ -45,12 +45,13 @@ func add_damage(amount: int):
 
 
 func add_heal(amount: int):
+	if amount <= 0:
+		return
 	$AnimationPlayer.play("MoreDamage")
 	$AnimationPlayer.seek(0)
 	display_location.position = Vector2(0, -40.0)
 	display_location.velocity.y += -INITIAL_VELOCITY / 2.0
-	if amount <= 0:
-		return
+
 	heal_amount += amount
 	var heal_effect_percentage = clampi(heal_amount, 0, 10) / 10.0
 	var text_color = Color(1.0 - heal_effect_percentage, 1.0, 1.0 - heal_effect_percentage)

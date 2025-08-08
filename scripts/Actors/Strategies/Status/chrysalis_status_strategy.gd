@@ -20,3 +20,7 @@ func modify_damage(incoming_damage := 1) -> int:
 
 func merge_status(status: StatusStrategy):
 	pass
+
+
+func _on_max_power_reached() -> void:
+	call_deferred("on_status_ended")

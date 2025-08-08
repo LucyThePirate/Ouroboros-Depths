@@ -135,14 +135,14 @@ patience_status = ExtResource("3_ljuv8")
 note_VFX = ExtResource("4_qqyho")
 power = 1
 is_depletable = true
-skill_name = ""
+skill_name = "Be Patient"
+skill_desc = "Sometimes to get what you want in life, you need to be patient... But not too patient, as screaming is often advisable for getting what you want.
 
-[node name="Icon" parent="Border/Crop" index="0"]
-offset_left = 5.05254
-offset_top = 9.26299
-offset_right = 149.053
-offset_bottom = 148.263
-scale = Vector2(0.775615, 0.784475)
+Upon Queueing this skill, the user will gain a Patience status effect that increases every turn they do not move.
+
+Upon use, the user damages all creatures around themselves, with increased damage and range the more Patience they have."
+
+[node name="Icon" parent="." index="0"]
 texture = ExtResource("2_fpgl5")
 
 [node name="YellShort" type="AudioStreamPlayer2D" parent="." index="4"]

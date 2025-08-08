@@ -10,6 +10,8 @@ signal cursor_set
 signal skill_finished
 signal gained_status(status)
 
+@export var skill_description_scene: PackedScene
+
 @export_category("Base Stats")
 
 @export var cooldown_turns := 1
@@ -24,10 +26,8 @@ signal gained_status(status)
 @export var skill_name: String
 @export_multiline var skill_desc: String
 
-@onready var icon = $Border/Crop/Icon
+@onready var icon = $Icon
 @onready var progress_bar = $ProgressBar
-@onready var border = $Border
-@onready var crop = $Border/Crop
 
 var skill_crit := false
 var show_UI = true
@@ -43,8 +43,6 @@ var state = States.IDLE
 func _ready() -> void:
 	icon.hide()
 	progress_bar.hide()
-	border.hide()
-	crop.hide()
 
 
 func ready_skill(grid_entity: GridEntity) -> bool:
@@ -119,3 +117,12 @@ func increment_in_stack_counter() -> bool:
 	else:
 		current_in_stack += 1
 		return true
+
+
+func display_skill_info() -> void:
+	var new_skill_description = skill_description_scene.instantiate() as SkillDescription
+	get_tree().current_scene.add_child(new_skill_description)
+	new_skill_description.icon.texture = icon.texture
+	new_skill_description.skill_name.text = skill_name
+	new_skill_description.skill_desc.text = skill_desc
+	print("skill desc:", skill_desc)

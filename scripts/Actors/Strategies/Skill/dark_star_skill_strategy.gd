@@ -18,18 +18,19 @@ func use_skill(grid_entity: GridEntity):
 	state = SkillStrategy.States.PLAYING_ANIMATION
 	#print("Used skill ", name, " towards ", direction)
 	var new_star_VFX = StarVFX.instantiate()
+	var direction_copy = direction
 	add_child(new_star_VFX)
-	new_star_VFX.initialize(direction, grid_entity)
+	new_star_VFX.initialize(direction_copy, grid_entity)
 	var grid_coords = Global.floors.local_to_map(grid_entity.global_position) as Vector2i
-	if grid_entity.move(-direction):
+	if grid_entity.move(-direction_copy):
 		moved_self.emit()
 	for i in range(max_distance):
-		grid_coords += direction
-		new_star_VFX.position += Vector2(Global.CELL_SIZE * direction)
+		grid_coords += direction_copy
+		new_star_VFX.position += Vector2(Global.CELL_SIZE * direction_copy)
 		await get_tree().create_timer(0.05).timeout
 		if grid_entity.is_obstructed(grid_coords, false):
 			break
-	explode_star(grid_coords, grid_entity, direction)
+	explode_star(grid_coords, grid_entity, direction_copy)
 	new_star_VFX.finish_flying()
 	state = SkillStrategy.States.IDLE
 	super(grid_entity)

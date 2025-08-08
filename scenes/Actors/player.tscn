@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2wq4gejffyd"]
+[gd_scene load_steps=18 format=3 uid="uid://d2wq4gejffyd"]
 
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="1_exgt7"]
 [ext_resource type="Script" uid="uid://be6oo33bhfx63" path="res://scripts/Actors/player.gd" id="1_ochwc"]
 [ext_resource type="PackedScene" uid="uid://cg6jvx6qfd2jn" path="res://scenes/Actors/floating_text.tscn" id="2_bg3lr"]
 [ext_resource type="PackedScene" uid="uid://bxxiyeix6rbob" path="res://scenes/Actors/Strategies/Status/chrysalis_status_strategy.tscn" id="3_b0c0w"]
 [ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/Actors/Strategies/Skill/dash_skill_strategy.tscn" id="4_jfrsc"]
+[ext_resource type="PackedScene" uid="uid://cjo5qx0fo3bej" path="res://scenes/Actors/metamorphosis.tscn" id="4_wes0m"]
 [ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/Actors/Strategies/Skill/stomp_skill_strategy.tscn" id="5_wd2mq"]
 [ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/Actors/Strategies/Skill/leap_skill_strategy.tscn" id="6_2mxpg"]
 [ext_resource type="PackedScene" uid="uid://djc3cmcxnhe5l" path="res://scenes/Characters/Visuals/scarecrow_visual.tscn" id="6_jfrsc"]
@@ -23,6 +24,7 @@ radius = 44.1022
 script = ExtResource("1_ochwc")
 text_component = ExtResource("2_bg3lr")
 chrysalis_status_scene = ExtResource("3_b0c0w")
+metamorphosis_scene = ExtResource("4_wes0m")
 
 [node name="GridEntity" parent="." groups=["Player"] instance=ExtResource("1_exgt7")]
 

@@ -10,5 +10,5 @@ script = ExtResource("1_ss86u")
 DashVFX = ExtResource("2_au81m")
 skill_name = ""
 
-[node name="Icon" parent="Border/Crop" index="0"]
+[node name="Icon" parent="." index="0"]
 texture = ExtResource("3_52a6f")

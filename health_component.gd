@@ -22,7 +22,7 @@ func _ready():
 
 
 func deal_damage(damage_amount = 1):
-	if damage_amount < 1:
+	if damage_amount <= 0:
 		return
 	health -= damage_amount
 	if not is_instance_valid(current_damage_number):
@@ -41,6 +41,8 @@ func deal_damage(damage_amount = 1):
 
 
 func heal(heal_amount):
+	if heal_amount <= 0:
+		return
 	health = min(health + heal_amount, max_health)
 	healed.emit()
 	if not is_instance_valid(current_heal_number):
