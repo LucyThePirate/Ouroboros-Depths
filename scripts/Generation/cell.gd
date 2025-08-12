@@ -272,7 +272,7 @@ func process_turn():
 
 	var current_entity = turn_queue.pop_front()
 	if current_entity:
-		#print("Taking turn now:", current_entity.get_parent().name)
+		print("Taking turn now:", current_entity.get_parent().name)
 		current_entity.take_turn()
 	else:
 		#print("invalid entity?")

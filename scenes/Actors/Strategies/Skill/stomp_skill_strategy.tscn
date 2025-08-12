@@ -6,7 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://cmxeogtui2phc" path="res://scenes/Effects/note_vfx.tscn" id="4_60mig"]
 
 [node name="StompSkillStrategy" instance=ExtResource("1_87pt6")]
+offset_left = -1.0
+offset_right = 143.0
 script = ExtResource("1_swfph")
 StompVFX = ExtResource("2_vm8f4")
 note_VFX = ExtResource("4_60mig")
-skill_name = ""
+skill_name = "Stomp"
+skill_desc = "You crack the ground with a mighty impact, damaging all creatures around you!
+
+A stomp from a stand-still is weak on its own, so it's recommended to chain stomps after other movement skills to give your impact all the more oomph."

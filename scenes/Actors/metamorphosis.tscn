@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjo5qx0fo3bej"]
+[gd_scene load_steps=10 format=3 uid="uid://cjo5qx0fo3bej"]
 
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="1_2lgn1"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="1_awmqf"]
 [ext_resource type="Script" uid="uid://cxokci3gd12kt" path="res://scripts/Actors/metamorphosis.gd" id="1_eg7uw"]
+[ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/Actors/Strategies/Skill/defend_skill_strategy.tscn" id="2_edy26"]
 [ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/Skills/SkillSack.png" id="2_jup3b"]
+[ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/Actors/Strategies/Skill/dash_skill_strategy.tscn" id="3_76q3q"]
+[ext_resource type="PackedScene" uid="uid://cnrxjlwuvjt6l" path="res://scenes/Actors/Strategies/Skill/fortune_cookie_skill_strategy.tscn" id="4_ncs2t"]
 [ext_resource type="Texture2D" uid="uid://gu7myu02v5ac" path="res://textures/Statuses/Chrysalis.png" id="4_o7w3c"]
 [ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="5_eg7uw"]
 
@@ -15,6 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eg7uw")
+buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3q"), ExtResource("4_ncs2t")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

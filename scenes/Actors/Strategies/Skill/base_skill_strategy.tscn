@@ -40,6 +40,7 @@ self_modulate = Color(1, 1, 1, 0)
 offset_right = 144.0
 offset_bottom = 139.0
 scale = Vector2(1.18752, 1.18752)
+mouse_filter = 1
 script = ExtResource("1_kcxpa")
 skill_description_scene = ExtResource("2_1ub1j")
 skill_name = "Default Skill"

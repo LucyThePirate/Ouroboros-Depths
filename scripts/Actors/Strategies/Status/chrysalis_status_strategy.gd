@@ -12,9 +12,11 @@ func on_turn_ended():
 
 
 func modify_damage(incoming_damage := 1) -> int:
-	power = 0
-	_update_visuals()
-	on_status_ended()
+	if incoming_damage > 0:
+		power = 0
+		_update_visuals()
+		on_status_ended()
+		return incoming_damage * 2
 	return super()
 
 

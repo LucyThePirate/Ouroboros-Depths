@@ -47,6 +47,9 @@ func _process(delta: float) -> void:
 		"%s - %s" % [States.keys()[state], stack_component.States.keys()[stack_component.state]]
 	)
 	if turn_component.my_turn and state == States.METAMORPHOSIS_STARTED:
+		process_mode = Node.PROCESS_MODE_DISABLED
+		await get_tree().create_timer(0.1).timeout
+		process_mode = Node.PROCESS_MODE_ALWAYS
 		end_turn()
 
 
@@ -113,15 +116,16 @@ func _handle_movement() -> void:
 		stack_component.reload_deck()
 
 	elif Input.is_action_just_pressed("Chrysalis"):
-		state = States.METAMORPHOSIS_STARTED
-		var new_chrysalis_status = chrysalis_status_scene.instantiate() as StatusStrategy
-		
-		new_chrysalis_status.max_power_reached.connect(_metamorphing_started)
-		new_chrysalis_status.status_ended.connect(_metamorphing_interrupted)
-		add_child(new_chrysalis_status)
-		grid_entity.gain_status(new_chrysalis_status)
-		end_turn()
-		return
+		if grid_entity.soul_count > -1:
+			state = States.METAMORPHOSIS_STARTED
+			var new_chrysalis_status = chrysalis_status_scene.instantiate() as StatusStrategy
+
+			new_chrysalis_status.max_power_reached.connect(_metamorphing_started)
+			new_chrysalis_status.status_ended.connect(_metamorphing_interrupted)
+			add_child(new_chrysalis_status)
+			grid_entity.gain_status(new_chrysalis_status)
+			end_turn()
+			return
 
 
 func _metamorphing_interrupted(status):

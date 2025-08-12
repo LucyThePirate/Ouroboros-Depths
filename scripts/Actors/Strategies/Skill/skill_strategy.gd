@@ -125,4 +125,3 @@ func display_skill_info() -> void:
 	new_skill_description.icon.texture = icon.texture
 	new_skill_description.skill_name.text = skill_name
 	new_skill_description.skill_desc.text = skill_desc
-	print("skill desc:", skill_desc)

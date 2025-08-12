@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://43rkgu17gs68"]
+[gd_scene load_steps=76 format=3 uid="uid://43rkgu17gs68"]
 
 [ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_44ypc"]
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/Effects/boulder_splash.tscn" id="2_cu8oe"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dctxwjwjiof17" path="res://scenes/Actors/creature_ai.tscn" id="4_pdmi3"]
 [ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/Actors/Creatures/wasp_test.tscn" id="5_0xdhj"]
 [ext_resource type="Shader" uid="uid://dm5dyry10jg6e" path="res://textures/Shaders/tilemap_wind.gdshader" id="5_iimes"]
+[ext_resource type="PackedScene" uid="uid://b2gdh6pqutscc" path="res://scenes/Actors/Creatures/chorustone.tscn" id="6_0xdhj"]
 [ext_resource type="Shader" uid="uid://c5m81jjhpfjbx" path="res://textures/Shaders/ice.gdshader" id="7_5cpdm"]
 [ext_resource type="Texture2D" uid="uid://dhuxxosgrbwyl" path="res://textures/tiles/ChimeraTiles.png" id="8_0xdhj"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/Shaders/stars.gdshader" id="12_5cpdm"]
@@ -1051,7 +1052,7 @@ y_sort_enabled = true
 script = ExtResource("1_44ypc")
 boulder_splash = ExtResource("2_cu8oe")
 player_scene = ExtResource("3_iimes")
-creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj")])
+creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj")])
 generation_size = Vector2i(60, 30)
 
 [node name="Camera2D" type="Camera2D" parent="."]

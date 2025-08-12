@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name CreatureAI
+
 @export var visual: Node2D
 
 @onready var grid_entity = $GridEntity

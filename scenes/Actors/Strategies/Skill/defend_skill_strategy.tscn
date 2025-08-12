@@ -10,6 +10,9 @@ script = ExtResource("1_wsy3c")
 shield_status = ExtResource("2_peluu")
 power = 5
 skill_name = "Defend"
+skill_desc = "Put your guard up!
+
+On use, the user gains a shield status condition, which absorbs damage in lieu of their health. Note that shields also deplete as you move, so be prepared to hunker down!"
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource("2_3kmmh")
