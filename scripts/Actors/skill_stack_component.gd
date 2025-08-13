@@ -10,12 +10,6 @@ signal awaited_directional_input
 signal awaited_cursor_input
 signal gained_status(status)
 
-@onready var hand_visual = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual
-@onready var stack_icon_holder = $Stack/MarginContainer/CenterContainer/StackIconHolder
-@onready
-var preview_queue_skill = $Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer5/PreviewQueueSkill
-@onready var stack_color_rect = $Stack/MarginContainer/ColorRect
-
 @export var max_stack_size := 4
 @export var hand_size := 4
 @export var turns_to_reload := 5
@@ -23,8 +17,17 @@ var shuffle_turns := 0
 @export var preview_queue_skill_texture := Texture2D
 @export var null_skill_texture := Texture2D
 @export var reload_status: PackedScene
+@export var skill_icon_scene: PackedScene
+
+@onready var hand_visual = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual
+@onready var stack_icon_holder = $Stack/MarginContainer/CenterContainer/StackIconHolder
+@onready
+var preview_queue_skill = $Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer5/PreviewQueueSkill
+@onready var stack_color_rect = $Stack/MarginContainer/ColorRect
+@onready var skill_bag = $CanvasLayer/AvailableSkills/PanelContainer/SkillBagButton as Button
 
 var skills = []
+var total_skill_count := 0
 var stack = []
 var deck = []
 var hand = []
@@ -42,6 +45,7 @@ var moved_by_skill := false
 func _ready() -> void:
 	skills = Debug.find_children_in_group(self, "Skill", false)
 	_shuffle_skills()
+	$CanvasLayer/SkillBagList.hide()
 
 
 func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_component: TurnComponent):
@@ -99,6 +103,7 @@ func queue_skill(skill_number) -> bool:
 		hand[skill_number] = null
 		if not deck.is_empty():
 			hand[skill_number] = deck.pop_front()
+			total_skill_count -= 1
 		_update_skill_visuals()
 		return true
 	return false
@@ -165,6 +170,24 @@ func _on_gained_status(status: StatusStrategy):
 	gained_status.emit(status)
 
 
+func add_skill(new_skill: SkillStrategy):
+	var existing_skill = find_skill_by_ID(new_skill.skill_ID)
+	if existing_skill:
+		existing_skill.count += 1
+		existing_skill.current_count += 1
+		new_skill.queue_free()
+	else:
+		new_skill.reparent(self)
+		skills.append(new_skill)
+
+
+func find_skill_by_ID(skill_ID := SkillStrategy.SkillIDs.NONE) -> SkillStrategy:
+	for skill in skills:
+		if skill.skill_ID == skill_ID and skill_ID != SkillStrategy.SkillIDs.NONE:
+			return skill
+	return null
+
+
 func set_direction(moveDirection: Vector2i):
 	current_skill.set_direction(moveDirection)
 	state = States.EXECUTING_STACK
@@ -205,15 +228,18 @@ func _shuffle_skills() -> void:
 	deck = []
 	stack = []
 	hand = []
+	total_skill_count = 0
 	for skill in skills:
 		skill.current_cooldown = 0
 		for i in range(skill.current_count):
+			total_skill_count += 1
 			deck.append(skill)
 	deck.shuffle()
 	for i in range(hand_size):
 		if deck.is_empty():
 			break
 		hand.append(deck.pop_front())
+		total_skill_count -= 1
 	_update_skill_visuals()
 	_update_stack_visuals()
 
@@ -234,6 +260,7 @@ func _update_stack_visuals() -> void:
 
 
 func _update_skill_visuals() -> void:
+	skill_bag.text = "x%s" % total_skill_count
 	for skill in range(hand_size):
 		if hand.size() <= skill or not hand[skill]:
 			hand_visual.get_child(skill).get_child(0).texture = null_skill_texture
@@ -335,3 +362,18 @@ func _on_info_button_3_pressed() -> void:
 func _on_info_button_4_pressed() -> void:
 	if hand[3]:
 		hand[3].display_skill_info()
+
+
+func _on_skill_bag_button_pressed() -> void:
+	for skill in skills:
+		var new_skill_icon = skill_icon_scene.instantiate()
+		new_skill_icon.set_icon_texture(skill.icon.texture)
+		new_skill_icon.set_count(skill.current_count)
+		$CanvasLayer/SkillBagList/Control/ScrollContainer/HFlowContainer.add_child(new_skill_icon)
+	$CanvasLayer/SkillBagList.show()
+
+
+func _on_skill_bag_list_close_requested() -> void:
+	$CanvasLayer/SkillBagList.hide()
+	for skill in $CanvasLayer/SkillBagList/Control/ScrollContainer/HFlowContainer.get_children():
+		skill.queue_free()

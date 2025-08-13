@@ -12,6 +12,7 @@ skill_name = "Leap"
 skill_desc = "Take a mighty leap through the air! For just a moment, you'll feel as though you are flying.
 
 Upon use, select a tile to leap to."
+skill_ID = 8
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource("3_m0q40")

@@ -24,7 +24,9 @@ NoteValue="*res://addons/SimpleSampler/note_value.gd"
 [display]
 
 window/size/borderless=true
+window/size/transparent=true
 window/stretch/mode="viewport"
+window/per_pixel_transparency/allowed=true
 window/vsync/vsync_mode=0
 
 [dotnet]

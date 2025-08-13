@@ -14,6 +14,7 @@ skill_name = "Dash"
 skill_desc = "Make a break for it!
 
 On use, pick a direction to run up to 5 tiles, potentially bowling over any creatures who dare get in your way."
+skill_ID = 1
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource("3_52a6f")

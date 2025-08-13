@@ -116,7 +116,7 @@ func _handle_movement() -> void:
 		stack_component.reload_deck()
 
 	elif Input.is_action_just_pressed("Chrysalis"):
-		if grid_entity.soul_count > -1:
+		if grid_entity.soul_count > 0:
 			state = States.METAMORPHOSIS_STARTED
 			var new_chrysalis_status = chrysalis_status_scene.instantiate() as StatusStrategy
 

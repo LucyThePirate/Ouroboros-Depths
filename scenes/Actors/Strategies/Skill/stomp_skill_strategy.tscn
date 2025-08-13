@@ -15,3 +15,4 @@ skill_name = "Stomp"
 skill_desc = "You crack the ground with a mighty impact, damaging all creatures around you!
 
 A stomp from a stand-still is weak on its own, so it's recommended to chain stomps after other movement skills to give your impact all the more oomph."
+skill_ID = 3

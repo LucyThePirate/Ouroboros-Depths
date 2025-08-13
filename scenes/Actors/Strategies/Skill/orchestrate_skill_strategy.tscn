@@ -22,6 +22,7 @@ skill_desc = "Doh Reh Miiii!!! The power of music is at your fingertips. Use it 
 Upon use, the user selects a tile to create a music note on, the pitch changing relative to its position to the user. The note is also added to a sequence.
 
 When stack execution starts, the sequence of notes is replayed, also damaging creatures caught in its melody."
+skill_ID = 5
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource("2_x1ymy")

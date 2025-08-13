@@ -12,7 +12,11 @@ region = Rect2(306.804, 28.6566, 133.78, 87.4935)
 [node name="DarkStarSkillStrategy" instance=ExtResource("1_snp4d")]
 script = ExtResource("1_sn4vy")
 StarVFX = ExtResource("2_e3lg0")
-skill_name = ""
+skill_name = "Dark Star"
+skill_desc = "A nefarious spell favored among liches. The caster hurls a shadowy bolt that bursts into a star formation.
+
+Those who take relief in narrowly dodging the star will be unpleasantly surprised to find that this spell inflicts the most damage on the border of its explosion."
+skill_ID = 7
 
 [node name="Icon" parent="." index="0"]
 texture = SubResource("AtlasTexture_snp4d")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1t1yix0mdkeh"]
+
+[ext_resource type="Script" uid="uid://cytgj5qy6k3wm" path="res://scripts/Actors/Strategies/Skill/skill_icon.gd" id="1_876ke"]
+[ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="1_b2gkx"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="2_876ke"]
+
+[node name="SkillIcon" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_876ke")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("1_b2gkx")
+expand_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("2_876ke")
+theme_override_font_sizes/normal_font_size = 26
+text = "x99"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+button_mask = 2

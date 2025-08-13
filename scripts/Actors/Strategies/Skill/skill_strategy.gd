@@ -38,6 +38,9 @@ var cursor: Vector2i
 enum States { IDLE, AWAITING_DIRECTION, AWAITING_CURSOR, PLAYING_ANIMATION }
 var state = States.IDLE
 
+enum SkillIDs {NONE, DASH, DEFEND, STOMP, FORTUNE_COOKIE, ORCHESTRATE, BE_PATIENT, DARK_STAR, LEAP}
+@export var skill_ID := SkillIDs.NONE
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

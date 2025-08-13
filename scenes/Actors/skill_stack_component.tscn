@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bd85kao70uoy4"]
+[gd_scene load_steps=26 format=3 uid="uid://bd85kao70uoy4"]
 
 [ext_resource type="Script" uid="uid://b6uhrd8rdimmy" path="res://scripts/Actors/skill_stack_component.gd" id="1_rerjn"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="2_qowul"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="4_iqeie"]
 [ext_resource type="PackedScene" uid="uid://c063h7gtu7k4q" path="res://scenes/Actors/Strategies/Status/reload_status_strategy.tscn" id="4_rfo38"]
 [ext_resource type="AudioStream" uid="uid://d2xfgpdhopbfj" path="res://audio/SFX/Skills/98329__cognito-perceptu__cassette-tape-action-2.ogg" id="5_8fyuu"]
+[ext_resource type="PackedScene" uid="uid://c1t1yix0mdkeh" path="res://scenes/Actors/Strategies/Skill/skill_icon.tscn" id="5_e1hdf"]
 [ext_resource type="AudioStream" uid="uid://dp7jocijuqcyo" path="res://audio/SFX/Skills/98329__cognito-perceptu__cassette-tape-action-3.ogg" id="6_iqeie"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="6_o3wly"]
+[ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/Skills/SkillSack.png" id="7_e1hdf"]
 [ext_resource type="AudioStream" uid="uid://d2tcjtyaf4ler" path="res://audio/SFX/Skills/Domino/DominoPlaced1.ogg" id="9_1u652"]
 [ext_resource type="AudioStream" uid="uid://css6o2ktbxenr" path="res://audio/SFX/Skills/Domino/DominoPlaced2.ogg" id="10_r0es2"]
 [ext_resource type="AudioStream" uid="uid://duwmpbw02i4u4" path="res://audio/SFX/Skills/Domino/DominoPlaced3.ogg" id="11_o3wly"]
@@ -67,6 +70,7 @@ script = ExtResource("1_rerjn")
 preview_queue_skill_texture = ExtResource("2_qowul")
 null_skill_texture = ExtResource("3_n6r18")
 reload_status = ExtResource("4_rfo38")
+skill_icon_scene = ExtResource("5_e1hdf")
 
 [node name="Stack" type="Control" parent="."]
 visible = false
@@ -280,6 +284,55 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 button_mask = 2
 
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/AvailableSkills"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -198.0
+offset_right = 1152.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="SkillBagButton" type="Button" parent="CanvasLayer/AvailableSkills/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("6_o3wly")
+theme_override_font_sizes/font_size = 37
+text = "x99"
+icon = ExtResource("7_e1hdf")
+
+[node name="SkillBagList" type="Window" parent="CanvasLayer"]
+transparent_bg = true
+initial_position = 1
+size = Vector2i(1000, 500)
+exclusive = true
+unresizable = true
+transparent = true
+popup_window = true
+
+[node name="Control" type="Control" parent="CanvasLayer/SkillBagList"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/SkillBagList/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/SkillBagList/Control/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="Error" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_qowul")
 
@@ -310,3 +363,5 @@ stream = SubResource("AudioStreamRandomizer_lqrbu")
 [connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2/InfoButton2" to="." method="_on_info_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3/InfoButton3" to="." method="_on_info_button_3_pressed"]
 [connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4/InfoButton4" to="." method="_on_info_button_4_pressed"]
+[connection signal="pressed" from="CanvasLayer/AvailableSkills/PanelContainer/SkillBagButton" to="." method="_on_skill_bag_button_pressed"]
+[connection signal="close_requested" from="CanvasLayer/SkillBagList" to="." method="_on_skill_bag_list_close_requested"]

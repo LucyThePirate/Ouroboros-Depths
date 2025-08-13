@@ -141,6 +141,7 @@ skill_desc = "Sometimes to get what you want in life, you need to be patient... 
 Upon Queueing this skill, the user will gain a Patience status effect that increases every turn they do not move.
 
 Upon use, the user damages all creatures around themselves, with increased damage and range the more Patience they have."
+skill_ID = 6
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource("2_fpgl5")

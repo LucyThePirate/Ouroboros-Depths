@@ -13,6 +13,7 @@ skill_name = "Defend"
 skill_desc = "Put your guard up!
 
 On use, the user gains a shield status condition, which absorbs damage in lieu of their health. Note that shields also deplete as you move, so be prepared to hunker down!"
+skill_ID = 2
 
 [node name="Icon" parent="." index="0"]
 texture = ExtResource("2_3kmmh")
