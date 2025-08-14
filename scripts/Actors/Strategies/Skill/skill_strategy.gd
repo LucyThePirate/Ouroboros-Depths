@@ -88,6 +88,7 @@ func request_direction():
 func set_direction(newDirection: Vector2i):
 	direction = newDirection
 	state = States.IDLE
+	$Arrows.hide()
 
 
 func request_cursor():
@@ -100,6 +101,8 @@ func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
 
 func set_cursor(newCursor: Vector2i):
 	cursor = newCursor
+	state = States.IDLE
+	$Cursor.hide()
 
 
 func decrement_turn_cooldown():

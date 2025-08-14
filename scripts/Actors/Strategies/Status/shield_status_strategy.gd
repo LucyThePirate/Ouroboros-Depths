@@ -38,6 +38,13 @@ func on_moved():
 		on_status_ended()
 
 
+func on_reload_started():
+	power = floor(power / 2)
+	_update_visuals()
+	if power <= 0:
+		on_status_ended()
+
+
 func on_status_ended():
 	if status_ID == Status_IDs.NONE:
 		return

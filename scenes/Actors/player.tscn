@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2wq4gejffyd"]
+[gd_scene load_steps=21 format=3 uid="uid://d2wq4gejffyd"]
 
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="1_exgt7"]
 [ext_resource type="Script" uid="uid://be6oo33bhfx63" path="res://scripts/Actors/player.gd" id="1_ochwc"]
@@ -15,9 +15,21 @@
 [ext_resource type="PackedScene" uid="uid://bhxy4rfg3pad5" path="res://scenes/Actors/Strategies/Status/shield_status_strategy.tscn" id="9_yw7wc"]
 [ext_resource type="PackedScene" uid="uid://c10nhwhuw3ge4" path="res://scenes/Actors/Strategies/Skill/orchestrate_skill_strategy.tscn" id="10_nbabl"]
 [ext_resource type="PackedScene" uid="uid://d1ti6v0kdijnm" path="res://scenes/Actors/Strategies/Skill/be_patient_skill_strategy.tscn" id="11_v7jyr"]
+[ext_resource type="AudioStream" uid="uid://0to1gxx02bfe" path="res://audio/SFX/Misc/OrangePeelReverse.ogg" id="16_nfopg"]
+[ext_resource type="AudioStream" uid="uid://cwqwqvrk8t7gj" path="res://audio/SFX/Misc/OrangePeel1.ogg" id="17_1vpxp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gokip"]
 radius = 44.1022
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u2nr5"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("16_nfopg")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ad5m5"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("17_1vpxp")
 
 [node name="Player" type="Node2D" groups=["Player"]]
 script = ExtResource("1_ochwc")
@@ -77,6 +89,13 @@ offset_top = -222.0
 offset_right = -45.0
 offset_bottom = -199.0
 theme_override_fonts/font = ExtResource("8_wd2mq")
+
+[node name="MetamorphosisStart" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_u2nr5")
+
+[node name="MetamorphosisEnd" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ad5m5")
+pitch_scale = 1.06
 
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]

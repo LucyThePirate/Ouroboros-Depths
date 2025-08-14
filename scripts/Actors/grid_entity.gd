@@ -12,6 +12,7 @@ signal fell_off_map
 signal descended
 signal died
 signal performed_action
+signal reload_started
 
 #@export var soul_scene: PackedScene
 
@@ -42,6 +43,7 @@ var last_hit_by: GridEntity
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	turn_component.turn_ended.connect(status_component.on_turn_ended)
+	stack_component.reload_started.connect(reload_started.emit)
 
 
 func initialize():

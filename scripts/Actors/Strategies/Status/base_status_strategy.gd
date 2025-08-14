@@ -50,6 +50,10 @@ func on_moved():
 	pass
 
 
+func on_reload_started():
+	pass
+
+
 func modify_damage(incoming_damage := 1) -> int:
 	return incoming_damage
 

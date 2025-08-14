@@ -116,10 +116,11 @@ func _handle_movement() -> void:
 		stack_component.reload_deck()
 
 	elif Input.is_action_just_pressed("Chrysalis"):
-		if grid_entity.soul_count > 0:
+		if grid_entity.soul_count > 0 and state == States.IDLE:
 			state = States.METAMORPHOSIS_STARTED
 			var new_chrysalis_status = chrysalis_status_scene.instantiate() as StatusStrategy
-
+			if not $MetamorphosisStart.playing:
+				$MetamorphosisStart.play()
 			new_chrysalis_status.max_power_reached.connect(_metamorphing_started)
 			new_chrysalis_status.status_ended.connect(_metamorphing_interrupted)
 			add_child(new_chrysalis_status)
@@ -144,6 +145,7 @@ func _metamorphing_started():
 
 func _metamorphing_completed():
 	if state == States.METAMORPHING:
+		$MetamorphosisEnd.play()
 		state = States.IDLE
 
 

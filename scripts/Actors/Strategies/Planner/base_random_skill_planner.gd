@@ -58,6 +58,6 @@ func _on_requested_cursor_input():
 
 
 func set_cursor(move_direction: Vector2i):
-	move_direction *= Vector2i(randi_range(2, 5), randi_range(2, 5))
+	move_direction *= Vector2i(randi_range(1, 5), randi_range(1, 5))
 	stack_component.move_cursor(move_direction)
 	stack_component.accept_cursor()

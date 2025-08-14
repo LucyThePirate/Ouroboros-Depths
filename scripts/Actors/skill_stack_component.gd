@@ -9,6 +9,7 @@ signal emptied_stack
 signal awaited_directional_input
 signal awaited_cursor_input
 signal gained_status(status)
+signal reload_started
 
 @export var max_stack_size := 4
 @export var hand_size := 4
@@ -25,6 +26,7 @@ var shuffle_turns := 0
 var preview_queue_skill = $Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer5/PreviewQueueSkill
 @onready var stack_color_rect = $Stack/MarginContainer/ColorRect
 @onready var skill_bag = $CanvasLayer/AvailableSkills/PanelContainer/SkillBagButton as Button
+@onready var skill_bag_list = $CanvasLayer/SkillBagList/Control/ScrollContainer/HFlowContainer
 
 var skills = []
 var total_skill_count := 0
@@ -63,6 +65,7 @@ func reload_deck() -> bool:
 		if $CanvasLayer.visible:
 			$ReloadStart.play()
 			$Reload.emitting = true
+		reload_started.emit()
 		state = States.RELOADING
 		hand = []
 		deck = []
@@ -181,8 +184,8 @@ func add_skill(new_skill: SkillStrategy):
 		skills.append(new_skill)
 
 
-func find_skill_by_ID(skill_ID := SkillStrategy.SkillIDs.NONE) -> SkillStrategy:
-	for skill in skills:
+func find_skill_by_ID(skill_ID := SkillStrategy.SkillIDs.NONE, group = skills) -> SkillStrategy:
+	for skill in group:
 		if skill.skill_ID == skill_ID and skill_ID != SkillStrategy.SkillIDs.NONE:
 			return skill
 	return null
@@ -365,15 +368,32 @@ func _on_info_button_4_pressed() -> void:
 
 
 func _on_skill_bag_button_pressed() -> void:
-	for skill in skills:
-		var new_skill_icon = skill_icon_scene.instantiate()
-		new_skill_icon.set_icon_texture(skill.icon.texture)
-		new_skill_icon.set_count(skill.current_count)
-		$CanvasLayer/SkillBagList/Control/ScrollContainer/HFlowContainer.add_child(new_skill_icon)
-	$CanvasLayer/SkillBagList.show()
+	if not $CanvasLayer/SkillBagList.visible:
+		var skills_in_display = []
+		var skill_counts = {}
+		for skill in deck:
+			var existing_skill = find_skill_by_ID(skill.skill_ID, skills_in_display)
+			if existing_skill:
+				skill_counts[existing_skill] += 1
+			else:
+				skills_in_display.append(skill)
+				skill_counts[skill] = 1
+		skills_in_display.sort_custom(func(a, b): return a.skill_ID < b.skill_ID)
+		for skill in skills_in_display:
+			var new_skill_icon = skill_icon_scene.instantiate()
+			new_skill_icon.info_button_pressed.connect(skill.display_skill_info)
+			new_skill_icon.set_icon_texture(skill.icon.texture)
+			new_skill_icon.set_count(skill_counts[skill])
+			skill_bag_list.add_child(new_skill_icon)
+		skill_bag_list.get_children().shuffle()
+		$CanvasLayer/SkillBagList.show()
+		$OpenBag.play()
+	else:
+		_on_skill_bag_list_close_requested()
 
 
 func _on_skill_bag_list_close_requested() -> void:
 	$CanvasLayer/SkillBagList.hide()
-	for skill in $CanvasLayer/SkillBagList/Control/ScrollContainer/HFlowContainer.get_children():
+	$CloseBag.play()
+	for skill in skill_bag_list.get_children():
 		skill.queue_free()

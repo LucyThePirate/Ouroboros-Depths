@@ -50,6 +50,7 @@ func _on_buy_skill_pressed(item_number) -> void:
 		return
 	print("Trying to buy:", item_to_buy)
 	if grid_parent.soul_count >= item_to_buy["cost"]:
+		$SkillBought.play()
 		grid_parent.soul_count -= item_to_buy["cost"]
 		soul_count.text = "Souls: %s" % grid_parent.soul_count
 		purchasable_items[item_number] = {}

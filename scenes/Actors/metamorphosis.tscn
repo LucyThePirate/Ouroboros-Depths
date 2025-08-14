@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjo5qx0fo3bej"]
+[gd_scene load_steps=16 format=3 uid="uid://cjo5qx0fo3bej"]
 
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="1_2lgn1"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="1_awmqf"]
@@ -9,6 +9,20 @@
 [ext_resource type="PackedScene" uid="uid://cnrxjlwuvjt6l" path="res://scenes/Actors/Strategies/Skill/fortune_cookie_skill_strategy.tscn" id="4_ncs2t"]
 [ext_resource type="Texture2D" uid="uid://gu7myu02v5ac" path="res://textures/Statuses/Chrysalis.png" id="4_o7w3c"]
 [ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="5_eg7uw"]
+[ext_resource type="AudioStream" uid="uid://d2tcjtyaf4ler" path="res://audio/SFX/Skills/Domino/DominoPlaced1.ogg" id="10_2vidy"]
+[ext_resource type="AudioStream" uid="uid://css6o2ktbxenr" path="res://audio/SFX/Skills/Domino/DominoPlaced2.ogg" id="11_dkf3k"]
+[ext_resource type="AudioStream" uid="uid://duwmpbw02i4u4" path="res://audio/SFX/Skills/Domino/DominoPlaced3.ogg" id="12_i6ueo"]
+[ext_resource type="AudioStream" uid="uid://xv37swpkyn2k" path="res://audio/SFX/Skills/Domino/DominoPlaced4.ogg" id="13_ahco4"]
+[ext_resource type="AudioStream" uid="uid://sso4h4r4ori1" path="res://audio/SFX/Skills/Domino/DominoPlaced5.ogg" id="14_jtw26"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o4b0d"]
+random_pitch = 1.1
+streams_count = 5
+stream_0/stream = ExtResource("10_2vidy")
+stream_1/stream = ExtResource("11_dkf3k")
+stream_2/stream = ExtResource("12_i6ueo")
+stream_3/stream = ExtResource("13_ahco4")
+stream_4/stream = ExtResource("14_jtw26")
 
 [node name="Metamorphosis" type="Control"]
 layout_mode = 3
@@ -166,5 +180,8 @@ layout_mode = 2
 text = "Basic Skill
 1 Soul"
 icon = ExtResource("5_eg7uw")
+
+[node name="SkillBought" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_o4b0d")
 
 [connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]

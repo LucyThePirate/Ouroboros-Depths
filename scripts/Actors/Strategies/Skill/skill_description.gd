@@ -7,6 +7,10 @@ class_name SkillDescription
 @onready var skill_desc = $CanvasLayer/Window/ScrollContainer/Control/SkillDesc
 
 
+func _ready():
+	$DominoFlip.play()
+
+
 func _on_window_close_requested() -> void:
 	queue_free()
 

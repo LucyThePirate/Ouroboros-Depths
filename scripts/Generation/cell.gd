@@ -258,6 +258,7 @@ func is_inside_padding(x, y, leaf, padding):
 func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):
 	var new_entity = entity_scene.instantiate()
 	new_entity.global_position = floors.map_to_local(grid_coordinate)
+	Global.entity_positions[grid_coordinate] = new_entity
 	add_child(new_entity)
 	print("Spawned %s at: %s" % [new_entity.name, grid_coordinate])
 	return new_entity

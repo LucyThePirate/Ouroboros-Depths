@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bd85kao70uoy4"]
+[gd_scene load_steps=30 format=3 uid="uid://bd85kao70uoy4"]
 
 [ext_resource type="Script" uid="uid://b6uhrd8rdimmy" path="res://scripts/Actors/skill_stack_component.gd" id="1_rerjn"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="2_qowul"]
@@ -16,6 +16,8 @@
 [ext_resource type="AudioStream" uid="uid://duwmpbw02i4u4" path="res://audio/SFX/Skills/Domino/DominoPlaced3.ogg" id="11_o3wly"]
 [ext_resource type="AudioStream" uid="uid://xv37swpkyn2k" path="res://audio/SFX/Skills/Domino/DominoPlaced4.ogg" id="12_e1hdf"]
 [ext_resource type="AudioStream" uid="uid://sso4h4r4ori1" path="res://audio/SFX/Skills/Domino/DominoPlaced5.ogg" id="13_wnbre"]
+[ext_resource type="AudioStream" uid="uid://brgjfi5b2rdyi" path="res://audio/SFX/Skills/Domino/DominoOpenBag1.ogg" id="17_lqrbu"]
+[ext_resource type="AudioStream" uid="uid://rnt18baa5lvp" path="res://audio/SFX/Skills/Domino/DominoOpenBag2.ogg" id="18_8of2w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6r18"]
 bg_color = Color(0, 0, 0, 0.529412)
@@ -64,6 +66,16 @@ stream_1/stream = ExtResource("10_r0es2")
 stream_2/stream = ExtResource("11_o3wly")
 stream_3/stream = ExtResource("12_e1hdf")
 stream_4/stream = ExtResource("13_wnbre")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5452a"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("17_lqrbu")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8of2w"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("18_8of2w")
 
 [node name="SkillStackComponent" type="Node2D"]
 script = ExtResource("1_rerjn")
@@ -298,6 +310,7 @@ mouse_filter = 2
 [node name="SkillBagButton" type="Button" parent="CanvasLayer/AvailableSkills/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+focus_mode = 0
 theme_override_fonts/font = ExtResource("6_o3wly")
 theme_override_font_sizes/font_size = 37
 text = "x99"
@@ -307,7 +320,6 @@ icon = ExtResource("7_e1hdf")
 transparent_bg = true
 initial_position = 1
 size = Vector2i(1000, 500)
-exclusive = true
 unresizable = true
 transparent = true
 popup_window = true
@@ -357,6 +369,12 @@ process_material = SubResource("ParticleProcessMaterial_8fyuu")
 
 [node name="SkillAdded" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_lqrbu")
+
+[node name="OpenBag" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_5452a")
+
+[node name="CloseBag" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_8of2w")
 
 [connection signal="emptied_stack" from="." to="." method="_on_emptied_stack"]
 [connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1/InfoButton1" to="." method="_on_info_button_1_pressed"]
