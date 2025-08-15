@@ -1,16 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://cjo5qx0fo3bej"]
+[gd_scene load_steps=21 format=3 uid="uid://cjo5qx0fo3bej"]
 
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="1_2lgn1"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="1_awmqf"]
 [ext_resource type="Script" uid="uid://cxokci3gd12kt" path="res://scripts/Actors/metamorphosis.gd" id="1_eg7uw"]
 [ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/Actors/Strategies/Skill/defend_skill_strategy.tscn" id="2_edy26"]
-[ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/Skills/SkillSack.png" id="2_jup3b"]
 [ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/Actors/Strategies/Skill/dash_skill_strategy.tscn" id="3_76q3q"]
 [ext_resource type="PackedScene" uid="uid://cnrxjlwuvjt6l" path="res://scenes/Actors/Strategies/Skill/fortune_cookie_skill_strategy.tscn" id="4_ncs2t"]
 [ext_resource type="Texture2D" uid="uid://gu7myu02v5ac" path="res://textures/Statuses/Chrysalis.png" id="4_o7w3c"]
-[ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="5_eg7uw"]
+[ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/Actors/Strategies/Skill/stomp_skill_strategy.tscn" id="5_o4b0d"]
+[ext_resource type="PackedScene" uid="uid://c10nhwhuw3ge4" path="res://scenes/Actors/Strategies/Skill/orchestrate_skill_strategy.tscn" id="6_emtfy"]
+[ext_resource type="PackedScene" uid="uid://d1ti6v0kdijnm" path="res://scenes/Actors/Strategies/Skill/be_patient_skill_strategy.tscn" id="7_1qkj3"]
+[ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/Actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="8_7g347"]
+[ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/Actors/Strategies/Skill/leap_skill_strategy.tscn" id="9_lvopp"]
 [ext_resource type="AudioStream" uid="uid://d2tcjtyaf4ler" path="res://audio/SFX/Skills/Domino/DominoPlaced1.ogg" id="10_2vidy"]
+[ext_resource type="PackedScene" uid="uid://c1t1yix0mdkeh" path="res://scenes/Actors/Strategies/Skill/skill_icon.tscn" id="10_emtfy"]
 [ext_resource type="AudioStream" uid="uid://css6o2ktbxenr" path="res://audio/SFX/Skills/Domino/DominoPlaced2.ogg" id="11_dkf3k"]
+[ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="11_emtfy"]
 [ext_resource type="AudioStream" uid="uid://duwmpbw02i4u4" path="res://audio/SFX/Skills/Domino/DominoPlaced3.ogg" id="12_i6ueo"]
 [ext_resource type="AudioStream" uid="uid://xv37swpkyn2k" path="res://audio/SFX/Skills/Domino/DominoPlaced4.ogg" id="13_ahco4"]
 [ext_resource type="AudioStream" uid="uid://sso4h4r4ori1" path="res://audio/SFX/Skills/Domino/DominoPlaced5.ogg" id="14_jtw26"]
@@ -32,7 +37,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eg7uw")
-buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3q"), ExtResource("4_ncs2t")])
+buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3q"), ExtResource("4_ncs2t"), ExtResource("5_o4b0d"), ExtResource("4_ncs2t"), ExtResource("6_emtfy"), ExtResource("7_1qkj3"), ExtResource("8_7g347"), ExtResource("9_lvopp")])
+skill_icon_scene = ExtResource("10_emtfy")
+sold_out_texture = ExtResource("11_emtfy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -50,6 +57,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
+mouse_filter = 0
 
 [node name="Left" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
@@ -62,7 +71,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer"]
 layout_mode = 2
@@ -85,7 +93,6 @@ autowrap_mode = 0
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_jup3b")
 stretch_mode = 3
 
 [node name="Center" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
@@ -129,6 +136,8 @@ text = "Confirm (Unspent souls = heal health)"
 [node name="Right" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 1
+mouse_filter = 2
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel/HBoxContainer/Right"]
 layout_mode = 1
@@ -143,43 +152,9 @@ offset_right = 184.0
 offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
+mouse_filter = 2
 columns = 3
-
-[node name="Button" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/GridContainer"]
-layout_mode = 2
-text = "Basic Skill
-1 Soul"
-icon = ExtResource("5_eg7uw")
-
-[node name="Button2" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/GridContainer"]
-layout_mode = 2
-text = "Basic Skill
-1 Soul"
-icon = ExtResource("5_eg7uw")
-
-[node name="Button3" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/GridContainer"]
-layout_mode = 2
-text = "Basic Skill
-1 Soul"
-icon = ExtResource("5_eg7uw")
-
-[node name="Button4" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/GridContainer"]
-layout_mode = 2
-text = "Basic Skill
-1 Soul"
-icon = ExtResource("5_eg7uw")
-
-[node name="Button5" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/GridContainer"]
-layout_mode = 2
-text = "Basic Skill
-1 Soul"
-icon = ExtResource("5_eg7uw")
-
-[node name="Button6" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/GridContainer"]
-layout_mode = 2
-text = "Basic Skill
-1 Soul"
-icon = ExtResource("5_eg7uw")
 
 [node name="SkillBought" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_o4b0d")

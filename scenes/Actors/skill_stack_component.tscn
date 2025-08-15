@@ -225,6 +225,7 @@ show_percentage = false
 [node name="InfoButton1" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+focus_mode = 0
 button_mask = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual"]
@@ -248,6 +249,7 @@ show_percentage = false
 [node name="InfoButton2" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+focus_mode = 0
 button_mask = 2
 
 [node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual"]
@@ -271,6 +273,7 @@ show_percentage = false
 [node name="InfoButton3" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+focus_mode = 0
 button_mask = 2
 
 [node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual"]
@@ -294,6 +297,7 @@ show_percentage = false
 [node name="InfoButton4" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+focus_mode = 0
 button_mask = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/AvailableSkills"]
@@ -320,6 +324,7 @@ icon = ExtResource("7_e1hdf")
 transparent_bg = true
 initial_position = 1
 size = Vector2i(1000, 500)
+visible = false
 unresizable = true
 transparent = true
 popup_window = true

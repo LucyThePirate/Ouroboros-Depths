@@ -381,7 +381,7 @@ func _on_skill_bag_button_pressed() -> void:
 		skills_in_display.sort_custom(func(a, b): return a.skill_ID < b.skill_ID)
 		for skill in skills_in_display:
 			var new_skill_icon = skill_icon_scene.instantiate()
-			new_skill_icon.info_button_pressed.connect(skill.display_skill_info)
+			new_skill_icon.clicked.connect(skill.display_skill_info)
 			new_skill_icon.set_icon_texture(skill.icon.texture)
 			new_skill_icon.set_count(skill_counts[skill])
 			skill_bag_list.add_child(new_skill_icon)
