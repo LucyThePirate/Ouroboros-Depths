@@ -1,9 +1,10 @@
-[gd_scene load_steps=76 format=3 uid="uid://43rkgu17gs68"]
+[gd_scene load_steps=77 format=3 uid="uid://43rkgu17gs68"]
 
 [ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_44ypc"]
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/Effects/boulder_splash.tscn" id="2_cu8oe"]
 [ext_resource type="Texture2D" uid="uid://b60fxmc7hxg5s" path="res://textures/PumpkinBlock2.png" id="2_hemim"]
 [ext_resource type="Texture2D" uid="uid://dfvius215va54" path="res://textures/tiles/3DTiles.png" id="3_cu8oe"]
+[ext_resource type="PackedScene" uid="uid://csox3ra3bo6o4" path="res://scenes/Effects/spawn_smoke_vfx.tscn" id="3_fx61w"]
 [ext_resource type="PackedScene" uid="uid://d2wq4gejffyd" path="res://scenes/Actors/player.tscn" id="3_iimes"]
 [ext_resource type="Shader" uid="uid://bbogpcxsif02r" path="res://textures/Shaders/water.gdshader" id="4_0a2yn"]
 [ext_resource type="PackedScene" uid="uid://dctxwjwjiof17" path="res://scenes/Actors/creature_ai.tscn" id="4_pdmi3"]
@@ -1051,6 +1052,7 @@ alpha_curve = SubResource("CurveTexture_dn63k")
 y_sort_enabled = true
 script = ExtResource("1_44ypc")
 boulder_splash = ExtResource("2_cu8oe")
+spawn_smoke_scene = ExtResource("3_fx61w")
 player_scene = ExtResource("3_iimes")
 creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj")])
 generation_size = Vector2i(60, 30)

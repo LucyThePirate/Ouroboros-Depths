@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://csox3ra3bo6o4"]
+
+[ext_resource type="SpriteFrames" uid="uid://bvhgsao0ehinv" path="res://textures/effects/smoke_puff_boomerang_once.gif" id="1_dgkyy"]
+[ext_resource type="Script" uid="uid://bm851jcqed7lm" path="res://scripts/Effects/spawn_smoke_vfx.gd" id="2_dgkyy"]
+[ext_resource type="AudioStream" uid="uid://chjpwcglsuv8j" path="res://audio/SFX/Misc/MouthPop1.ogg" id="3_lx20a"]
+[ext_resource type="AudioStream" uid="uid://bplurt5c5bhi4" path="res://audio/SFX/Misc/MouthPop2.ogg" id="4_acyy6"]
+[ext_resource type="AudioStream" uid="uid://dq1jya4ogujhm" path="res://audio/SFX/Misc/MouthPop3.ogg" id="5_dk7tm"]
+[ext_resource type="AudioStream" uid="uid://bbxvapkptbvuv" path="res://audio/SFX/Misc/MouthPop4.ogg" id="6_16fqp"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dgkyy"]
+blend_mode = 1
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7jvi6"]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("3_lx20a")
+stream_1/stream = ExtResource("4_acyy6")
+stream_2/stream = ExtResource("5_dk7tm")
+stream_3/stream = ExtResource("6_16fqp")
+
+[node name="SpawnSmokeVFX" type="AnimatedSprite2D"]
+material = SubResource("CanvasItemMaterial_dgkyy")
+position = Vector2(2.00002, -0.999996)
+scale = Vector2(0.804613, 0.804613)
+sprite_frames = ExtResource("1_dgkyy")
+animation = &"gif"
+autoplay = "gif"
+frame_progress = 0.395737
+speed_scale = 1.5
+offset = Vector2(-14.05, -36.23)
+script = ExtResource("2_dgkyy")
+
+[node name="Pop" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_7jvi6")
+volume_db = 6.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="animation_looped" from="." to="." method="_on_animation_looped"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

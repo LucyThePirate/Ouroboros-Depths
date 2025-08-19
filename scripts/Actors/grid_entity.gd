@@ -31,6 +31,9 @@ signal reload_started
 @onready var turn_component = $TurnComponent as TurnComponent
 @onready var stack_component = $SkillStackComponent as SkillStackComponent
 
+enum States { IDLE, DEAD }
+var state = States.IDLE
+
 const CELL_SIZE = 100
 var initialized = false
 var my_turn = false
@@ -61,7 +64,7 @@ func get_skills() -> Array[Node]:
 
 
 func move(direction: Vector2i) -> bool:
-	if not initialized:
+	if not initialized or state == States.DEAD:
 		return false
 
 	var old_coords = Global.floors.local_to_map(global_position)
@@ -233,10 +236,12 @@ func play_thump_sound(material):
 
 
 func on_death() -> void:
-	if is_instance_valid(last_hit_by) and last_hit_by is GridEntity:
-		last_hit_by.soul_count += soul_count + 1
-	Global.entity_positions.erase(Global.floors.local_to_map(global_position))
-	died.emit()
+	if state == States.IDLE:
+		if is_instance_valid(last_hit_by) and last_hit_by is GridEntity:
+			last_hit_by.soul_count += soul_count + 1
+		Global.entity_positions.erase(Global.floors.local_to_map(global_position))
+		state = States.DEAD
+		died.emit()
 
 
 func is_alive() -> bool:

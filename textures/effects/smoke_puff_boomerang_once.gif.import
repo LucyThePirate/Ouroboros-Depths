@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://bvhgsao0ehinv"
+path="res://.godot/imported/smoke_puff_boomerang_once.gif-06977a1a0eb9c603b70a198143e98748.tres"
+
+[deps]
+
+source_file="res://textures/effects/smoke_puff_boomerang_once.gif"
+dest_files=["res://.godot/imported/smoke_puff_boomerang_once.gif-06977a1a0eb9c603b70a198143e98748.tres"]
+
+[params]
+
+frames_per_second=30

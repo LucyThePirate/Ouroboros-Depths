@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var boulder_splash: PackedScene
+@export var spawn_smoke_scene: PackedScene
 @export var player_scene: PackedScene
 @export var creature_scene: Array[PackedScene]
 
@@ -60,6 +61,9 @@ func _ready():
 
 
 func _redraw_map():
+	for entity in get_tree().get_nodes_in_group("GridEntity") as Array[GridEntity]:
+		if not entity.is_in_group("Player"):
+			entity.on_death()
 	Global.floors.clear()
 	Global.walls.clear()
 	_update_fog(Vector2i.ZERO, Global.floors.local_to_map(player.grid_entity.global_position))
@@ -72,16 +76,18 @@ func _redraw_map():
 func _initialize_entities():
 	Global.floors = floors
 	Global.walls = walls
-	get_tree().call_group("GridEntity", "initialize")
 	for entity in get_tree().get_nodes_in_group("GridEntity"):
-		entity.opened_door.connect(_open_door)
-		entity.pushed_object.connect(_push_tile)
-		entity.spawn_tile.connect(_spawn_tile)
-	for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
-		turn_queue.push_back(turn_component)
-		turn_component.turn_ended.connect(_entity_finished_turn)
-		#print("Added to turn queue:", turn_component.get_parent().name)
+		_initialize_entity(entity)
 	process_turn()
+
+
+func _initialize_entity(new_entity: GridEntity):
+	new_entity.opened_door.connect(_open_door)
+	new_entity.pushed_object.connect(_push_tile)
+	new_entity.spawn_tile.connect(_spawn_tile)
+	turn_queue.push_back(new_entity.turn_component)
+	new_entity.turn_component.turn_ended.connect(_entity_finished_turn)
+	new_entity.initialize()
 
 
 func _update_fog(old_coords: Vector2i, new_coords: Vector2i):
@@ -203,6 +209,7 @@ func _draw():
 		placed_stairs = tile_coordinate
 	print_rich("[color=LIME]Stairs down at: %s" % placed_stairs)
 	floors.set_cell(root_node.get_center(), stairs_up_tile[0], stairs_up_tile[1])
+	walls.set_cell(root_node.get_center())
 	_initialize_entities()
 	_update_fog(Vector2i.ZERO, root_node.get_center())
 	player.grid_entity.warp(root_node.get_center())
@@ -258,7 +265,6 @@ func is_inside_padding(x, y, leaf, padding):
 func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):
 	var new_entity = entity_scene.instantiate()
 	new_entity.global_position = floors.map_to_local(grid_coordinate)
-	Global.entity_positions[grid_coordinate] = new_entity
 	add_child(new_entity)
 	print("Spawned %s at: %s" % [new_entity.name, grid_coordinate])
 	return new_entity
@@ -267,6 +273,8 @@ func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):
 func process_turn():
 	if turn_queue.size() <= 0:
 		turn_counter += 1
+		if (turn_counter % 5) == 0:
+			try_spawning_random_monster()
 		print(turn_counter)
 		for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
 			turn_queue.push_back(turn_component)
@@ -282,8 +290,15 @@ func process_turn():
 	#await current_entity.turn_ended
 
 
-#func _process(delta: float) -> void:
-#process_turn()
+func try_spawning_random_monster():
+	if Global.entity_positions.size() < 10:
+		var grid_coordinate = Global.floors.get_used_cells().pick_random()
+		if not _is_obstructed(grid_coordinate):
+			var new_entity = spawn_entity(grid_coordinate, creature_scene.pick_random())
+			_initialize_entity(new_entity.grid_entity)
+			var new_smoke = spawn_smoke_scene.instantiate()
+			new_smoke.global_position = Global.floors.map_to_local(grid_coordinate)
+			add_child(new_smoke)
 
 
 func _entity_finished_turn():
@@ -333,11 +348,11 @@ func _is_obstructed(tile_coords) -> bool:
 	#if not floor_tile:
 	#return true
 
-	var wall_tile = walls.get_cell_tile_data(tile_coords)
+	var wall_tile = Global.walls.get_cell_tile_data(tile_coords)
 	if wall_tile and wall_tile.get_custom_data("is_solid"):
 		return true
 
-	var object_tile = walls.get_cell_tile_data(tile_coords)
+	var object_tile = Global.walls.get_cell_tile_data(tile_coords)
 	if object_tile and object_tile.get_custom_data("is_solid"):
 		return true
 

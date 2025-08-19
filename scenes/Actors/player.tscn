@@ -65,7 +65,7 @@ mouse_filter = 0
 
 [node name="Shield1000" parent="GridEntity/UI/StatusManagerComponent" index="1" instance=ExtResource("9_yw7wc")]
 layout_mode = 2
-power = 5
+power = 999
 
 [node name="Camera2D2" type="Camera2D" parent="GridEntity"]
 position_smoothing_enabled = true
