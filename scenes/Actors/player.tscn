@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d2wq4gejffyd"]
+[gd_scene load_steps=25 format=3 uid="uid://d2wq4gejffyd"]
 
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="1_exgt7"]
 [ext_resource type="Script" uid="uid://be6oo33bhfx63" path="res://scripts/Actors/player.gd" id="1_ochwc"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://d1ti6v0kdijnm" path="res://scenes/Actors/Strategies/Skill/be_patient_skill_strategy.tscn" id="11_v7jyr"]
 [ext_resource type="AudioStream" uid="uid://0to1gxx02bfe" path="res://audio/SFX/Misc/OrangePeelReverse.ogg" id="16_nfopg"]
 [ext_resource type="AudioStream" uid="uid://cwqwqvrk8t7gj" path="res://audio/SFX/Misc/OrangePeel1.ogg" id="17_1vpxp"]
+[ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="18_1vpxp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gokip"]
 radius = 44.1022
@@ -30,6 +31,56 @@ stream_0/stream = ExtResource("16_nfopg")
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("17_1vpxp")
+
+[sub_resource type="Animation" id="Animation_1vpxp"]
+resource_name = "DisplaySouls"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 2, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u2nr5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ad5m5"]
+_data = {
+&"DisplaySouls": SubResource("Animation_1vpxp"),
+&"RESET": SubResource("Animation_u2nr5")
+}
 
 [node name="Player" type="Node2D" groups=["Player"]]
 script = ExtResource("1_ochwc")
@@ -97,6 +148,38 @@ stream = SubResource("AudioStreamRandomizer_u2nr5")
 stream = SubResource("AudioStreamRandomizer_ad5m5")
 pitch_scale = 1.06
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 285.0
+offset_bottom = 473.0
+scale = Vector2(0.415, 0.415)
+texture = ExtResource("18_1vpxp")
+
+[node name="SoulCountDisplay" type="RichTextLabel" parent="CanvasLayer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/normal_font = ExtResource("8_wd2mq")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "Souls: ???"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ad5m5")
+}
+
+[connection signal="absorbed_souls" from="GridEntity" to="." method="_on_grid_entity_absorbed_souls"]
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
 [connection signal="performed_action" from="GridEntity" to="." method="_on_grid_entity_performed_action"]

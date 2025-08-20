@@ -2,17 +2,14 @@ extends CreatureAI
 
 
 func pursue_entity(entity: GridEntity) -> Vector2i:
-	if randf() > 0.5:
-		return Vector2i.ZERO
-	else:
-		intent = random_skill_planner.make_plan(entity)
+	intent = random_skill_planner.make_plan(entity)
 
-		stack_component.preview_queueing_skill(intent == "Queue Skill")
-		stack_component.preview_executing_stack(intent == "Execute Stack")
+	stack_component.preview_queueing_skill(intent == "Queue Skill")
+	stack_component.preview_executing_stack(intent == "Execute Stack")
 
-		if not intent:
-			return Vector2i.ZERO
+	if not intent:
 		return Vector2i.ZERO
+	return Vector2i.ZERO
 
 
 func take_turn():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://43rkgu17gs68"]
+[gd_scene load_steps=81 format=3 uid="uid://43rkgu17gs68"]
 
 [ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_44ypc"]
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/Effects/boulder_splash.tscn" id="2_cu8oe"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dhuxxosgrbwyl" path="res://textures/tiles/ChimeraTiles.png" id="8_0xdhj"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/Shaders/stars.gdshader" id="12_5cpdm"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/Testing/thisGuyPOV.png" id="13_0xdhj"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="16_eu30k"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_f5ym2"]
 tile_data = PackedInt32Array(0, 3, 3, 65536, 3, 3, 131072, 3, 3, 196608, 3, 3, 262144, 3, 3, 1, 3, 3, 65537, 131074, 0, 131073, 131074, 0, 196609, 131074, 0, 262145, 3, 3, 2, 3, 3, 65538, 131074, 0, 131074, 131074, 0, 196610, 131074, 0, 262146, 3, 3, 3, 3, 3, 65539, 131074, 0, 131075, 131074, 0, 196611, 131074, 0, 262147, 3, 3, 4, 3, 3, 65540, 3, 3, 131076, 3, 3, 196612, 3, 3, 262148, 3, 3)
@@ -1048,6 +1049,68 @@ color = Color(1, 0.996078, 0.996078, 1)
 color_initial_ramp = SubResource("GradientTexture1D_jrvj4")
 alpha_curve = SubResource("CurveTexture_dn63k")
 
+[sub_resource type="Animation" id="Animation_eu30k"]
+resource_name = "floor_text"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v01jn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1xklj"]
+_data = {
+&"RESET": SubResource("Animation_v01jn"),
+&"floor_text": SubResource("Animation_eu30k")
+}
+
 [node name="Cell" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_44ypc")
@@ -1078,7 +1141,6 @@ use_parent_material = true
 tile_set = SubResource("TileSet_0xdhj")
 
 [node name="Fog" type="TileMapLayer" parent="."]
-visible = false
 z_index = 10
 material = SubResource("CanvasItemMaterial_fx61w")
 tile_set = SubResource("TileSet_qrcgv")
@@ -1115,3 +1177,36 @@ amount = 1000
 preprocess = 0.5
 visibility_rect = Rect2(-400, 100, 800, 400)
 process_material = SubResource("ParticleProcessMaterial_cyo7g")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="FloorLabel" type="RichTextLabel" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/normal_font = ExtResource("16_eu30k")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Floor: ???"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1xklj")
+}

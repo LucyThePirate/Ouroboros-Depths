@@ -90,6 +90,8 @@ bbcode_enabled = true
 text = "Souls: 1000"
 fit_content = true
 autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer"]
 layout_mode = 2

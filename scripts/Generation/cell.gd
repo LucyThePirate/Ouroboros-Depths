@@ -43,6 +43,7 @@ var rng
 @onready var turn_queue: Array[TurnComponent]
 var ready_for_next_turn = true
 var turn_counter = 0
+var current_floor := 0
 var player
 
 
@@ -61,6 +62,9 @@ func _ready():
 
 
 func _redraw_map():
+	current_floor += 1
+	$CanvasLayer/ColorRect/FloorLabel.text = "Floor: %s" % current_floor
+	$AnimationPlayer.play("floor_text")
 	for entity in get_tree().get_nodes_in_group("GridEntity") as Array[GridEntity]:
 		if not entity.is_in_group("Player"):
 			entity.on_death()
@@ -87,6 +91,12 @@ func _initialize_entity(new_entity: GridEntity):
 	new_entity.spawn_tile.connect(_spawn_tile)
 	turn_queue.push_back(new_entity.turn_component)
 	new_entity.turn_component.turn_ended.connect(_entity_finished_turn)
+	if not new_entity.is_in_group("Player"):
+		new_entity.health_component.max_health += floori(
+			new_entity.health_component.max_health * current_floor * 0.25
+		)
+		new_entity.health_component.health = new_entity.health_component.max_health
+		new_entity.health_component._update_health_bar()
 	new_entity.initialize()
 
 
@@ -207,7 +217,20 @@ func _draw():
 		floors.set_cell(tile_coordinate, stairs_down_tile[0], stairs_down_tile[1])
 		walls.set_cell(tile_coordinate, -1)
 		placed_stairs = tile_coordinate
-	print_rich("[color=LIME]Stairs down at: %s" % placed_stairs)
+	var surround_coords = [
+		Vector2i(1, 0),
+		Vector2i(1, 1),
+		Vector2i(0, 1),
+		Vector2i(-1, 1),
+		Vector2i(-1, 0),
+		Vector2i(-1, -1),
+		Vector2i(0, -1),
+		Vector2i(1, -1)
+	]
+	for coord in surround_coords:
+		floors.set_cell(placed_stairs + coord, ice_floor_tile[0], ice_floor_tile[1])
+	floors.set_cell(placed_stairs, stairs_down_tile[0], stairs_down_tile[1])
+	print_rich("[color=LIME]Floor: %s, Stairs down at: %s" % [current_floor, placed_stairs])
 	floors.set_cell(root_node.get_center(), stairs_up_tile[0], stairs_up_tile[1])
 	walls.set_cell(root_node.get_center())
 	_initialize_entities()
@@ -291,7 +314,7 @@ func process_turn():
 
 
 func try_spawning_random_monster():
-	if Global.entity_positions.size() < 10:
+	if Global.entity_positions.size() < 10 + current_floor:
 		var grid_coordinate = Global.floors.get_used_cells().pick_random()
 		if not _is_obstructed(grid_coordinate):
 			var new_entity = spawn_entity(grid_coordinate, creature_scene.pick_random())

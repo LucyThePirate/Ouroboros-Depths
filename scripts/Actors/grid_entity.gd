@@ -13,6 +13,7 @@ signal descended
 signal died
 signal performed_action
 signal reload_started
+signal absorbed_souls
 
 #@export var soul_scene: PackedScene
 
@@ -39,7 +40,7 @@ var initialized = false
 var my_turn = false
 var moved_by_skill := false
 
-var soul_count := 100
+var soul_count := 0
 var last_hit_by: GridEntity
 
 
@@ -239,6 +240,7 @@ func on_death() -> void:
 	if state == States.IDLE:
 		if is_instance_valid(last_hit_by) and last_hit_by is GridEntity:
 			last_hit_by.soul_count += soul_count + 1
+			last_hit_by.absorbed_souls.emit()
 		Global.entity_positions.erase(Global.floors.local_to_map(global_position))
 		state = States.DEAD
 		died.emit()

@@ -232,3 +232,11 @@ func _on_grid_entity_fell_off_map() -> void:
 	visual._on_fell_off_map()
 	state = States.DEAD
 	visual.connect("finished_animation", _on_grid_entity_died)
+
+
+func _on_grid_entity_absorbed_souls() -> void:
+	$CanvasLayer/TextureRect/SoulCountDisplay.text = "Souls: %s" % grid_entity.soul_count
+	if $AnimationPlayer.is_playing():
+		$AnimationPlayer.seek(0.5)
+	else:
+		$AnimationPlayer.play("DisplaySouls")

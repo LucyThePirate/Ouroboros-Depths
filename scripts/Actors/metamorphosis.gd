@@ -22,8 +22,9 @@ var num_items_on_sale := 6
 func _ready() -> void:
 	for soul in range(grid_parent.soul_count):
 		souls += soul + 1
+	var bonus_souls = souls - grid_parent.soul_count
 	grid_parent.soul_count = souls
-	soul_count.text = "Souls: %s" % souls
+	soul_count.text = "Souls: %s\n(+%s bonus souls!)" % [souls, bonus_souls]
 	for item_num in range(num_items_on_sale):
 		var new_item = {}
 		var random_skill = buyable_skills.pick_random().instantiate() as SkillStrategy
