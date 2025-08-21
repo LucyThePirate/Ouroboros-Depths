@@ -1049,6 +1049,33 @@ color = Color(1, 0.996078, 0.996078, 1)
 color_initial_ramp = SubResource("GradientTexture1D_jrvj4")
 alpha_curve = SubResource("CurveTexture_dn63k")
 
+[sub_resource type="Animation" id="Animation_v01jn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_eu30k"]
 resource_name = "floor_text"
 length = 5.0
@@ -1076,33 +1103,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_v01jn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/ColorRect:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1xklj"]
@@ -1203,6 +1203,76 @@ theme_override_fonts/normal_font = ExtResource("16_eu30k")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "Floor: ???"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathScreen" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeathScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="YouDied" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/normal_font = ExtResource("16_eu30k")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[rainbow][wave]you dead!!!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FloorReached" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/normal_font = ExtResource("16_eu30k")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Floor Reached: ???"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Kills" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/normal_font = ExtResource("16_eu30k")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Kills: ???"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Retry" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/normal_font = ExtResource("16_eu30k")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Press F5 to reload the game."
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -47,7 +47,10 @@ func _process(delta: float) -> void:
 
 
 func take_turn():
-	if not grid_entity.is_alive():
+	if (
+		not grid_entity.is_alive()
+		or stack_component.state == SkillStackComponent.States.EXECUTING_STACK
+	):
 		turn_component.end_turn()
 		return
 	match intent:

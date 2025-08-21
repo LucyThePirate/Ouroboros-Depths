@@ -13,7 +13,7 @@ enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS }
 @export var power := 1
 @export var status_ID := Status_IDs.NONE
 
-@onready var power_label = $PanelContainer/Label as RichTextLabel
+@onready var power_label = $Label as RichTextLabel
 @export var max_power = 999
 
 

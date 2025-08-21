@@ -114,6 +114,7 @@ func _draw():
 		#player.grid_entity.warp(root_node.get_center())
 		pass
 	player.grid_entity.moved.connect(_update_fog)
+	player.grid_entity.died.connect(_on_player_died)
 	player.descended.connect(_redraw_map)
 
 	for leaf in root_node.get_leaves():
@@ -389,3 +390,10 @@ func _on_player_turn_ended() -> void:
 		if entity.has_method("take_turn"):
 			entity.take_turn()
 			await entity.turn_ended
+
+
+func _on_player_died() -> void:
+	$Fog.hide()
+	$CanvasLayer/DeathScreen/VBoxContainer/FloorReached.text = "Floor Reached: %s" % current_floor
+	$CanvasLayer/DeathScreen/VBoxContainer/Kills.text = "Kills: %s" % player.grid_entity.kills
+	$CanvasLayer/DeathScreen.show()

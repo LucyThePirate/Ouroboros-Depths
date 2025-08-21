@@ -178,10 +178,14 @@ func add_skill(new_skill: SkillStrategy):
 	if existing_skill:
 		existing_skill.count += 1
 		existing_skill.current_count += 1
+		deck.push_back(existing_skill)
 		new_skill.queue_free()
 	else:
 		new_skill.reparent(self)
 		skills.append(new_skill)
+		deck.push_back(new_skill)
+	total_skill_count += 1
+	_update_skill_visuals()
 
 
 func find_skill_by_ID(skill_ID := SkillStrategy.SkillIDs.NONE, group = skills) -> SkillStrategy:
@@ -397,3 +401,7 @@ func _on_skill_bag_list_close_requested() -> void:
 	$CloseBag.play()
 	for skill in skill_bag_list.get_children():
 		skill.queue_free()
+
+
+func _on_close_skill_bag_pressed() -> void:
+	_on_skill_bag_list_close_requested()

@@ -204,7 +204,9 @@ func end_turn():
 
 
 func _on_grid_entity_died() -> void:
-	queue_free()
+	state = States.DEAD
+	grid_entity.on_death()
+	hide()
 
 
 func _update_movement_visuals():

@@ -17,7 +17,7 @@ self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(20, 20)
 offset_right = 50.0
 offset_bottom = 50.0
-scale = Vector2(0.5821, 0.5821)
+scale = Vector2(0.692048, 0.692048)
 script = ExtResource("1_58i3t")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -29,25 +29,22 @@ texture = ExtResource("1_6eb08")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-self_modulate = Color(1, 1, 1, 0)
+[node name="Label" type="RichTextLabel" parent="."]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -31.0
-offset_top = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="Label" type="RichTextLabel" parent="PanelContainer"]
-layout_mode = 2
+grow_horizontal = 2
+grow_vertical = 2
 theme = SubResource("Theme_qr4in")
 theme_override_constants/outline_size = 4
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "666"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 horizontal_alignment = 2
+vertical_alignment = 2
 
 [connection signal="power_changed" from="." to="." method="_on_power_changed"]

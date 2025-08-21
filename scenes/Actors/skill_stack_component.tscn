@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bd85kao70uoy4"]
+[gd_scene load_steps=34 format=3 uid="uid://bd85kao70uoy4"]
 
 [ext_resource type="Script" uid="uid://b6uhrd8rdimmy" path="res://scripts/Actors/skill_stack_component.gd" id="1_rerjn"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="2_qowul"]
@@ -25,6 +25,18 @@ draw_center = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qowul"]
 bg_color = Color(1, 1, 1, 0.556863)
+
+[sub_resource type="InputEventAction" id="InputEventAction_lqrbu"]
+action = &"OpenSkillBag"
+
+[sub_resource type="Shortcut" id="Shortcut_8of2w"]
+events = [SubResource("InputEventAction_lqrbu")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_8of2w"]
+action = &"OpenSkillBag"
+
+[sub_resource type="Shortcut" id="Shortcut_5452a"]
+events = [SubResource("InputEventAction_8of2w")]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qowul"]
 random_pitch = 1.1
@@ -317,6 +329,7 @@ size_flags_horizontal = 0
 focus_mode = 0
 theme_override_fonts/font = ExtResource("6_o3wly")
 theme_override_font_sizes/font_size = 37
+shortcut = SubResource("Shortcut_8of2w")
 text = "x99"
 icon = ExtResource("7_e1hdf")
 
@@ -324,7 +337,6 @@ icon = ExtResource("7_e1hdf")
 transparent_bg = true
 initial_position = 1
 size = Vector2i(1000, 500)
-visible = false
 unresizable = true
 transparent = true
 popup_window = true
@@ -349,6 +361,12 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="CloseSkillBag" type="Button" parent="CanvasLayer/SkillBagList"]
+offset_right = 8.0
+offset_bottom = 8.0
+button_mask = 0
+shortcut = SubResource("Shortcut_5452a")
 
 [node name="Error" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_qowul")
@@ -388,3 +406,4 @@ stream = SubResource("AudioStreamRandomizer_8of2w")
 [connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4/InfoButton4" to="." method="_on_info_button_4_pressed"]
 [connection signal="pressed" from="CanvasLayer/AvailableSkills/PanelContainer/SkillBagButton" to="." method="_on_skill_bag_button_pressed"]
 [connection signal="close_requested" from="CanvasLayer/SkillBagList" to="." method="_on_skill_bag_list_close_requested"]
+[connection signal="pressed" from="CanvasLayer/SkillBagList/CloseSkillBag" to="." method="_on_close_skill_bag_pressed"]
