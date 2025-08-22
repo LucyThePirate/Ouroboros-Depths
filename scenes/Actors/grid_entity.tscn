@@ -121,9 +121,6 @@ stream = SubResource("AudioStreamRandomizer_fbare")
 volume_db = -7.037
 pitch_scale = 1.02
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-
 [node name="DoorOpen" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_vnsn2")
 volume_db = 8.254

@@ -90,9 +90,6 @@ metamorphosis_scene = ExtResource("4_wes0m")
 
 [node name="GridEntity" parent="." groups=["Player"] instance=ExtResource("1_exgt7")]
 
-[node name="Camera2D" parent="GridEntity" index="8"]
-zoom = Vector2(0.595, 0.595)
-
 [node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("4_jfrsc")]
 mouse_filter = 0
 
@@ -119,6 +116,7 @@ layout_mode = 2
 power = 0
 
 [node name="Camera2D2" type="Camera2D" parent="GridEntity"]
+zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
 [node name="Display" type="Node2D" parent="."]

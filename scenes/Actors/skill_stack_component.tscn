@@ -363,8 +363,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CloseSkillBag" type="Button" parent="CanvasLayer/SkillBagList"]
+offset_top = 2.0
 offset_right = 8.0
-offset_bottom = 8.0
+offset_bottom = 10.0
 button_mask = 0
 shortcut = SubResource("Shortcut_5452a")
 

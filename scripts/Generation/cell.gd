@@ -6,6 +6,8 @@ extends Node2D
 @export var creature_scene: Array[PackedScene]
 
 @export var generation_size: Vector2i
+@export var spawn_creatures := true
+@export var tutorial_level := false
 
 #region Fog
 @onready var fog = $Fog
@@ -49,6 +51,21 @@ var player
 
 func _ready():
 #region Setting up RNG and dungeon generation
+	if (
+		$Floors.get_used_cells().size() > 0
+		and $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])
+	):
+		# There already is a level, no need to generate
+		Global.floors = floors
+		Global.walls = walls
+		player = (
+			spawn_entity(
+				$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0], player_scene
+			)
+			as Player
+		)
+		_initialize_entities()
+		return
 	rng = RandomNumberGenerator.new()
 	noise = FastNoiseLite.new()
 	noise.seed = rng.get_seed()
@@ -58,7 +75,7 @@ func _ready():
 	noise.noise_type = 3
 	root_node = Branch.new(Vector2i(0, 0), generation_size)
 	root_node.split(3, paths)
-	queue_redraw()
+	generate_level()
 
 
 func _redraw_map():
@@ -78,8 +95,6 @@ func _redraw_map():
 
 
 func _initialize_entities():
-	Global.floors = floors
-	Global.walls = walls
 	for entity in get_tree().get_nodes_in_group("GridEntity"):
 		_initialize_entity(entity)
 	process_turn()
@@ -97,6 +112,10 @@ func _initialize_entity(new_entity: GridEntity):
 		)
 		new_entity.health_component.health = new_entity.health_component.max_health
 		new_entity.health_component._update_health_bar()
+	else:
+		player.grid_entity.moved.connect(_update_fog)
+		player.grid_entity.died.connect(_on_player_died)
+		player.descended.connect(_redraw_map)
 	new_entity.initialize()
 
 
@@ -107,15 +126,9 @@ func _update_fog(old_coords: Vector2i, new_coords: Vector2i):
 			fog.set_cell(Vector2i(x, y) + new_coords, -1)
 
 
-func _draw():
+func generate_level():
 	if not player:
 		player = spawn_entity(root_node.get_center(), player_scene) as Player
-	else:
-		#player.grid_entity.warp(root_node.get_center())
-		pass
-	player.grid_entity.moved.connect(_update_fog)
-	player.grid_entity.died.connect(_on_player_died)
-	player.descended.connect(_redraw_map)
 
 	for leaf in root_node.get_leaves():
 		if 0.5 > randf():
@@ -145,7 +158,6 @@ func _draw():
 				else:  # Wall
 					floors.set_cell(tile_coordinate, stone_floor_tile[0], stone_floor_tile[1])
 					walls.set_cell(tile_coordinate, stone_wall_tile[0], stone_wall_tile[1])
-					# here Vector2i(2, 2) is where our floor is in the tileset we are using
 		for path in paths:
 			#draw_line(path["left"] * tile_size, path["right"] * tile_size, Color.RED, 10)
 			if path["left"].y == path["right"].y:
@@ -234,6 +246,8 @@ func _draw():
 	print_rich("[color=LIME]Floor: %s, Stairs down at: %s" % [current_floor, placed_stairs])
 	floors.set_cell(root_node.get_center(), stairs_up_tile[0], stairs_up_tile[1])
 	walls.set_cell(root_node.get_center())
+	Global.floors = floors
+	Global.walls = walls
 	_initialize_entities()
 	_update_fog(Vector2i.ZERO, root_node.get_center())
 	player.grid_entity.warp(root_node.get_center())
@@ -297,7 +311,7 @@ func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):
 func process_turn():
 	if turn_queue.size() <= 0:
 		turn_counter += 1
-		if (turn_counter % 5) == 0:
+		if spawn_creatures and (turn_counter % 5) == 0:
 			try_spawning_random_monster()
 		print(turn_counter)
 		for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
@@ -368,9 +382,8 @@ func _spawn_tile(tile_coords):
 
 
 func _is_obstructed(tile_coords) -> bool:
-	#var floor_tile = floors.get_cell_tile_data(tile_coords)
-	#if not floor_tile:
-	#return true
+	if not tile_coords:
+		return true
 
 	var wall_tile = Global.walls.get_cell_tile_data(tile_coords)
 	if wall_tile and wall_tile.get_custom_data("is_solid"):
@@ -394,6 +407,6 @@ func _on_player_turn_ended() -> void:
 
 func _on_player_died() -> void:
 	$Fog.hide()
-	$CanvasLayer/DeathScreen/VBoxContainer/FloorReached.text = "Floor Reached: %s" % current_floor
+	$CanvasLayer/DeathScreen/VBoxContainer/FloorReached.text = ("Floor Reached: %s" % current_floor)
 	$CanvasLayer/DeathScreen/VBoxContainer/Kills.text = "Kills: %s" % player.grid_entity.kills
 	$CanvasLayer/DeathScreen.show()

@@ -1232,11 +1232,6 @@ speed_scale = 1.2
 volume_db = 4.052
 pitch_scale = 0.95
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(10, -362)
-scale = Vector2(6.8125, 1.19091)
-zoom = Vector2(0.485, 0.485)
-
 [node name="Talk" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_gqlsy")
 volume_db = -4.571

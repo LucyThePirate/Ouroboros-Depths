@@ -1,5 +1,7 @@
 extends CreatureAI
 
+class_name StationaryAI
+
 
 func pursue_entity(entity: GridEntity) -> Vector2i:
 	intent = random_skill_planner.make_plan(entity)

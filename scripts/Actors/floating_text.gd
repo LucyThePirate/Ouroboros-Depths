@@ -65,6 +65,7 @@ func _on_type_delay_timeout() -> void:
 	if current_text.length() < target_text.length():
 		current_text += target_text[current_text.length()]
 		text.text = text_effect % current_text
+		text_changed.emit()
 	else:
 		$TypeDelay.stop()
 		$AnimationPlayer.play("float_away")
