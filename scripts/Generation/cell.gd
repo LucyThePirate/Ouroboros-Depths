@@ -1,5 +1,7 @@
 extends Node2D
 
+@export_file("*.tscn") var title_scene
+
 @export var boulder_splash: PackedScene
 @export var spawn_smoke_scene: PackedScene
 @export var player_scene: PackedScene
@@ -50,6 +52,7 @@ var player
 
 
 func _ready():
+	$CanvasLayer/DeathScreen.hide()
 #region Setting up RNG and dungeon generation
 	if (
 		$Floors.get_used_cells().size() > 0
@@ -243,6 +246,7 @@ func generate_level():
 	for coord in surround_coords:
 		floors.set_cell(placed_stairs + coord, ice_floor_tile[0], ice_floor_tile[1])
 	floors.set_cell(placed_stairs, stairs_down_tile[0], stairs_down_tile[1])
+	walls.set_cell(placed_stairs, -1)
 	print_rich("[color=LIME]Floor: %s, Stairs down at: %s" % [current_floor, placed_stairs])
 	floors.set_cell(root_node.get_center(), stairs_up_tile[0], stairs_up_tile[1])
 	walls.set_cell(root_node.get_center())
@@ -409,4 +413,18 @@ func _on_player_died() -> void:
 	$Fog.hide()
 	$CanvasLayer/DeathScreen/VBoxContainer/FloorReached.text = ("Floor Reached: %s" % current_floor)
 	$CanvasLayer/DeathScreen/VBoxContainer/Kills.text = "Kills: %s" % player.grid_entity.kills
+	$CanvasLayer/DeathScreen/VBoxContainer/Turns.text = "Turns: %s" % turn_counter
 	$CanvasLayer/DeathScreen.show()
+	$AutoTurnTimer.start()
+
+
+func _on_auto_turn_timer_timeout() -> void:
+	process_turn()
+
+
+func _on_new_run_button_pressed() -> void:
+	get_tree().reload_current_scene()
+
+
+func _on_title_screen_button_pressed() -> void:
+	get_tree().change_scene_to_file(title_scene)

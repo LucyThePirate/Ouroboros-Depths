@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 var slowdown_enabled: bool = true
 var reload_count: int = 0
@@ -37,7 +37,7 @@ func _process(_delta):
 	if Input.is_action_pressed("OffsetCamera"):
 		var camera = get_viewport().get_camera_2d()
 		if camera:
-			camera.offset += Input.get_last_mouse_velocity() * _delta
+			camera.global_position = get_global_mouse_position()
 
 
 func toggle_slowdown():
