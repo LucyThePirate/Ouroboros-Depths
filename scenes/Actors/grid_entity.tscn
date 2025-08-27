@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://yqxyjxhsvfqi"]
+[gd_scene load_steps=37 format=3 uid="uid://yqxyjxhsvfqi"]
 
 [ext_resource type="Script" uid="uid://l0k61db14icb" path="res://scripts/Actors/grid_entity.gd" id="1_u0fqg"]
 [ext_resource type="AudioStream" uid="uid://cxmd2cbaxkq6d" path="res://audio/SFX/Thump/125429__jspath1__three-bass-thumps-1.ogg" id="2_6nj4f"]
+[ext_resource type="PackedScene" uid="uid://cp76vu813yo6i" path="res://scenes/Actors/creature_description.tscn" id="2_8uxk8"]
 [ext_resource type="AudioStream" uid="uid://3xcvb1swv7pb" path="res://audio/SFX/Thump/125429__jspath1__three-bass-thumps-2.ogg" id="3_l01od"]
 [ext_resource type="AudioStream" uid="uid://i667cwtbq4eh" path="res://audio/SFX/Thump/125429__jspath1__three-bass-thumps-3.ogg" id="4_rglgn"]
 [ext_resource type="AudioStream" uid="uid://ds3dw50hewvc0" path="res://audio/SFX/Step/Generic walking thump1.ogg" id="5_vu2bh"]
@@ -88,6 +89,7 @@ top_level = true
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_u0fqg")
+description_scene = ExtResource("2_8uxk8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jo564")
@@ -164,5 +166,20 @@ layout_mode = 2
 stream = SubResource("AudioStreamRandomizer_j0r3c")
 volume_db = 7.971
 
+[node name="InfoButton" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+button_mask = 2
+
 [connection signal="gained_status" from="SkillStackComponent" to="." method="_on_skill_stack_component_gained_status"]
 [connection signal="died" from="UI/HealthComponent" to="." method="on_death"]
+[connection signal="pressed" from="InfoButton" to="." method="_on_info_button_pressed"]

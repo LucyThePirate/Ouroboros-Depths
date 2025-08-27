@@ -17,6 +17,10 @@ script = ExtResource("1_t7k5d")
 visual = NodePath("WaspVisual")
 
 [node name="GridEntity" parent="." instance=ExtResource("2_nfndv")]
+species_name = "Wasp"
+species_desc = "One brave soldier of many from the plane of One Trillion Wasps.
+
+Though wasps aren't much of a threat on their own, the fact that the swarm of One Trillion Wasps was able to take on The Power of Love AND Divine Punishment on their own instills you with hope. Hope, and also a healthy dose of fear."
 
 [node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("3_t7k5d")]
 mouse_filter = 0

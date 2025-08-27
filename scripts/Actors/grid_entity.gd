@@ -17,6 +17,12 @@ signal absorbed_souls
 
 #@export var soul_scene: PackedScene
 
+@export var description_scene: PackedScene
+
+@export_category("Lore")
+@export var species_name := "Default Entity"
+@export_multiline var species_desc := "Default creature description"
+
 @onready var thump_sound = $Thump
 @onready var glass_thump_sound = $GlassThump
 @onready var plant_thump_sound = $PlantThump
@@ -277,3 +283,12 @@ func _on_skill_stack_component_gained_status(status: StatusStrategy) -> void:
 
 func gain_status(status: StatusStrategy):
 	status_component.add_status(status)
+
+
+func _on_info_button_pressed() -> void:
+	var new_creature_description = description_scene.instantiate() as CreatureDescription
+	get_tree().current_scene.add_child(new_creature_description)
+	#new_creature_description.icon.texture = icon.texture
+	new_creature_description.creature_name.text = species_name
+	new_creature_description.creature_desc.text = species_desc
+	new_creature_description.set_status_descriptions(status_component.get_status_descriptions())

@@ -89,6 +89,8 @@ chrysalis_status_scene = ExtResource("3_b0c0w")
 metamorphosis_scene = ExtResource("4_wes0m")
 
 [node name="GridEntity" parent="." groups=["Player"] instance=ExtResource("1_exgt7")]
+species_name = "You!"
+species_desc = "It is you!"
 
 [node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("4_jfrsc")]
 mouse_filter = 0

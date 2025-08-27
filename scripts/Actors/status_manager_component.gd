@@ -57,3 +57,16 @@ func modify_damage(incoming_damage := 1) -> int:
 	for status in status_bar.get_children() as Array[StatusStrategy]:
 		incoming_damage = status.modify_damage(incoming_damage)
 	return incoming_damage
+
+
+func get_status_descriptions():
+	var descriptions := []
+	for status in status_bar.get_children() as Array[StatusStrategy]:
+		var new_desc = {
+			"Name": status.status_name,
+			"Desc": status.status_desc,
+			"Icon": status.icon.texture,
+			"Power": status.power
+		}
+		descriptions.append(new_desc)
+	return descriptions

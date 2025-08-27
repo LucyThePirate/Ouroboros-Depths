@@ -5,5 +5,7 @@
 
 [node name="ReloadStatusStrategy" instance=ExtResource("1_hucwu")]
 script = ExtResource("2_g6rj0")
+status_name = "Reloading"
+status_desc = "This creature is currently reloading and cannot use skills."
 power = 5
 status_ID = 2

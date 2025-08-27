@@ -18,6 +18,8 @@ script = ExtResource("1_l7r4i")
 visual = NodePath("Visual")
 
 [node name="GridEntity" parent="." instance=ExtResource("1_sts7m")]
+species_name = "Chorustone"
+species_desc = "An aged statue that is given life by the wind flowing through it... Or, at least, something life-adjacent."
 
 [node name="OrchestrateSkillStrategy" parent="GridEntity/SkillStackComponent" index="7" instance=ExtResource("2_l7r4i")]
 mouse_filter = 0

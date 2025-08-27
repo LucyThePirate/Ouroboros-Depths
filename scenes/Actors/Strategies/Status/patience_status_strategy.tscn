@@ -48,6 +48,8 @@ metadata/_custom_type_script = "uid://cqiowphvax5uj"
 
 [node name="PatienceStatusStrategy" instance=ExtResource("1_glphx")]
 script = ExtResource("2_dbbqb")
+status_name = "Patience"
+status_desc = "This creature is being patient. Patience builds the longer the creature stays in one spot."
 status_ID = 3
 max_power = 12
 

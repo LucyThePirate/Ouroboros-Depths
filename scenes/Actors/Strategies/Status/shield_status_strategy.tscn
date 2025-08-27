@@ -22,6 +22,8 @@ stream_2/stream = ExtResource("7_bv2po")
 
 [node name="ShieldStatusStrategy" instance=ExtResource("1_3xt2a")]
 script = ExtResource("1_lna0x")
+status_name = "Shield"
+status_desc = "This creature's guard is up, shields will intercept damage instead of their health. Additionally, shields are gradually depleted as the creature moves, as well as halved when the creature reloads."
 status_ID = 1
 
 [node name="TextureRect" parent="." index="0"]

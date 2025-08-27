@@ -8,11 +8,16 @@ signal max_power_reached
 
 enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS }
 
+@export_category("Lore")
+@export var status_name := "Default Status Name"
+@export_multiline var status_desc := "Default Status Desc"
+@onready var icon := $TextureRect
+
+@export_category("Stats")
 @export var turns_afflicted := 5
 @onready var current_turns_afflicted := turns_afflicted
 @export var power := 1
 @export var status_ID := Status_IDs.NONE
-
 @onready var power_label = $Label as RichTextLabel
 @export var max_power = 999
 

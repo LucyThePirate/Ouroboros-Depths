@@ -6,6 +6,8 @@
 
 [node name="ChrysalisStatusStrategy" instance=ExtResource("1_ajgdg")]
 script = ExtResource("2_3ft7r")
+status_name = "Chrystalizing"
+status_desc = "This creature is entering a chrysalis to power themselves up with souls. Any damage taken will interrupt the metamorphosis process, AND will be doubled!"
 status_ID = 4
 max_power = 8
 
