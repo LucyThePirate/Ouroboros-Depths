@@ -21,6 +21,7 @@ signal gained_status(status)
 @export var count := 3
 @onready var current_count := count
 @export var is_depletable := false
+@export var cost := 1
 
 @export_category("Lore")
 @export var skill_name: String

@@ -135,6 +135,7 @@ patience_status = ExtResource("3_ljuv8")
 note_VFX = ExtResource("4_qqyho")
 power = 1
 is_depletable = true
+cost = 3
 skill_name = "Be Patient"
 skill_desc = "Sometimes to get what you want in life, you need to be patient... But not too patient, as screaming is often advisable for getting what you want.
 

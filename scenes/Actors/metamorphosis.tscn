@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cjo5qx0fo3bej"]
+[gd_scene load_steps=17 format=3 uid="uid://cjo5qx0fo3bej"]
 
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="1_2lgn1"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="1_awmqf"]
@@ -12,22 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://d1ti6v0kdijnm" path="res://scenes/Actors/Strategies/Skill/be_patient_skill_strategy.tscn" id="7_1qkj3"]
 [ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/Actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="8_7g347"]
 [ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/Actors/Strategies/Skill/leap_skill_strategy.tscn" id="9_lvopp"]
-[ext_resource type="AudioStream" uid="uid://d2tcjtyaf4ler" path="res://audio/SFX/Skills/Domino/DominoPlaced1.ogg" id="10_2vidy"]
 [ext_resource type="PackedScene" uid="uid://c1t1yix0mdkeh" path="res://scenes/Actors/Strategies/Skill/skill_icon.tscn" id="10_emtfy"]
-[ext_resource type="AudioStream" uid="uid://css6o2ktbxenr" path="res://audio/SFX/Skills/Domino/DominoPlaced2.ogg" id="11_dkf3k"]
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="11_emtfy"]
-[ext_resource type="AudioStream" uid="uid://duwmpbw02i4u4" path="res://audio/SFX/Skills/Domino/DominoPlaced3.ogg" id="12_i6ueo"]
-[ext_resource type="AudioStream" uid="uid://xv37swpkyn2k" path="res://audio/SFX/Skills/Domino/DominoPlaced4.ogg" id="13_ahco4"]
-[ext_resource type="AudioStream" uid="uid://sso4h4r4ori1" path="res://audio/SFX/Skills/Domino/DominoPlaced5.ogg" id="14_jtw26"]
+[ext_resource type="AudioStream" uid="uid://brgjfi5b2rdyi" path="res://audio/SFX/Skills/Domino/DominoOpenBag1.ogg" id="15_dkf3k"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o4b0d"]
 random_pitch = 1.1
-streams_count = 5
-stream_0/stream = ExtResource("10_2vidy")
-stream_1/stream = ExtResource("11_dkf3k")
-stream_2/stream = ExtResource("12_i6ueo")
-stream_3/stream = ExtResource("13_ahco4")
-stream_4/stream = ExtResource("14_jtw26")
+streams_count = 1
+stream_0/stream = ExtResource("15_dkf3k")
 
 [node name="Metamorphosis" type="Control"]
 layout_mode = 3
@@ -109,6 +101,12 @@ offset_left = -4.0
 offset_right = -3.0
 offset_bottom = 50.0
 grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.588235)
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_outline_size = 5
 theme_override_fonts/normal_font = ExtResource("1_awmqf")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
@@ -133,6 +131,7 @@ stretch_mode = 3
 
 [node name="ConfirmButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 text = "Confirm (Unspent souls = heal health)"
 
 [node name="Right" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
@@ -141,24 +140,51 @@ size_flags_horizontal = 3
 focus_mode = 1
 mouse_filter = 2
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel/HBoxContainer/Right"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/HBoxContainer/Right"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -56.0
-offset_right = 184.0
-offset_bottom = 56.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
+
+[node name="BuySkillContainer" type="GridContainer" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer"]
+layout_mode = 2
 focus_mode = 1
 mouse_filter = 2
 columns = 3
 
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer"]
+custom_minimum_size = Vector2(0, 23.275)
+layout_mode = 2
+
+[node name="UpgradesContainer" type="GridContainer" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+mouse_filter = 2
+columns = 3
+
+[node name="RerollSkillsButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_mode = 0
+text = "Reroll Skills - 3 souls"
+expand_icon = true
+
+[node name="RemoveSkillButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_mode = 0
+text = "Remove Skill - 3 souls"
+expand_icon = true
+
 [node name="SkillBought" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_o4b0d")
 
+[node name="RerollSkillsBought" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_o4b0d")
+
 [connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer/RerollSkillsButton" to="." method="_on_reroll_skills_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer/RemoveSkillButton" to="." method="_on_remove_skill_button_pressed"]

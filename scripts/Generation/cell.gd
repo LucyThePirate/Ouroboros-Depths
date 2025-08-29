@@ -255,6 +255,7 @@ func generate_level():
 	_initialize_entities()
 	_update_fog(Vector2i.ZERO, root_node.get_center())
 	player.grid_entity.warp(root_node.get_center())
+	Global.entity_positions[root_node.get_center()] = player.grid_entity
 
 
 func _place_nature_tile(tile_coordinate: Vector2i):

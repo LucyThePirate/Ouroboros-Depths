@@ -24,7 +24,7 @@ func set_status_descriptions(descriptions: Array):
 		new_status_desc.label.text = (
 			"[color=GOLD]%s[/color] - %s" % [status_desc["Name"], status_desc["Desc"]]
 		)
-		new_status_desc.power.text = "%s" % status_desc["Power"]
+		new_status_desc.power.text = "[color=LIME]%s" % status_desc["Power"]
 
 
 func _on_window_close_requested() -> void:

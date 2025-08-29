@@ -188,6 +188,25 @@ func add_skill(new_skill: SkillStrategy):
 	_update_skill_visuals()
 
 
+func remove_skill(new_skill: SkillStrategy) -> bool:
+	var existing_skill = find_skill_by_ID(new_skill.skill_ID)
+	if existing_skill and existing_skill.count >= 1 and existing_skill.current_count >= 1:
+		existing_skill.count -= 1
+		existing_skill.current_count -= 1
+		deck.remove_at(deck.find(existing_skill))
+		#new_skill.queue_free()
+		total_skill_count -= 1
+		#if existing_skill.count <= 0:
+		#existing_skill.queue_free()
+		#_shuffle_skills()
+		_update_skill_visuals()
+		_on_skill_bag_list_close_requested()
+		return true
+	else:
+		# Couldn't remove skill
+		return false
+
+
 func find_skill_by_ID(skill_ID := SkillStrategy.SkillIDs.NONE, group = skills) -> SkillStrategy:
 	for skill in group:
 		if skill.skill_ID == skill_ID and skill_ID != SkillStrategy.SkillIDs.NONE:
@@ -401,6 +420,33 @@ func _on_skill_bag_list_close_requested() -> void:
 	$CloseBag.play()
 	for skill in skill_bag_list.get_children():
 		skill.queue_free()
+
+
+func open_skill_bag_for_skill_removal():
+	pass
+
+	if not $CanvasLayer/SkillBagList.visible:
+		var skills_in_display = []
+		var skill_counts = {}
+		for skill in deck:
+			var existing_skill = find_skill_by_ID(skill.skill_ID, skills_in_display)
+			if existing_skill:
+				skill_counts[existing_skill] += 1
+			else:
+				skills_in_display.append(skill)
+				skill_counts[skill] = 1
+		skills_in_display.sort_custom(func(a, b): return a.skill_ID < b.skill_ID)
+		for skill in skills_in_display:
+			var new_skill_icon = skill_icon_scene.instantiate()
+			new_skill_icon.clicked.connect(remove_skill.bind(skill))
+			new_skill_icon.set_icon_texture(skill.icon.texture)
+			new_skill_icon.set_count(skill_counts[skill])
+			skill_bag_list.add_child(new_skill_icon)
+		skill_bag_list.get_children().shuffle()
+		$CanvasLayer/SkillBagList.show()
+		$OpenBag.play()
+	else:
+		_on_skill_bag_list_close_requested()
 
 
 func _on_close_skill_bag_pressed() -> void:

@@ -46,7 +46,7 @@ var initialized = false
 var my_turn = false
 var moved_by_skill := false
 
-var soul_count := 0
+var soul_count := 25
 var kills := 0
 var last_hit_by: GridEntity
 
@@ -127,7 +127,7 @@ func warp(position: Vector2i) -> bool:
 	# Test for other bodies
 	if Global.entity_positions.has(grid_coords):
 		hit(Global.entity_positions[grid_coords])
-		performed_action.emit()
+		#performed_action.emit()
 		return false
 
 	# Check for walls
@@ -141,7 +141,7 @@ func warp(position: Vector2i) -> bool:
 	Global.entity_positions[grid_coords] = self
 	Global.entity_positions.erase(Global.floors.local_to_map(global_position))
 	global_position = Vector2(position) * CELL_SIZE + (Vector2(1, 1) * (CELL_SIZE / 2))
-	performed_action.emit()
+	#performed_action.emit()
 	if not floor_data:
 		fell_off_map.emit()
 	else:

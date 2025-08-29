@@ -338,7 +338,6 @@ icon = ExtResource("7_e1hdf")
 transparent_bg = true
 initial_position = 1
 size = Vector2i(1000, 500)
-visible = false
 unresizable = true
 transparent = true
 popup_window = true
