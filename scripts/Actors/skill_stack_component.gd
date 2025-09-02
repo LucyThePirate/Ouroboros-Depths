@@ -10,6 +10,7 @@ signal awaited_directional_input
 signal awaited_cursor_input
 signal gained_status(status)
 signal reload_started
+signal skill_removed
 
 @export var max_stack_size := 4
 @export var hand_size := 4
@@ -93,7 +94,7 @@ func queue_skill(skill_number) -> bool:
 	if can_queue_skill(skill_number):
 		$SkillAdded.pitch_scale = 0.7 + (0.20 * stack.size())
 		$SkillAdded.play()
-		#hand[skill_number].increment_in_stack_counter()
+		hand[skill_number].increment_in_stack_counter()
 		_update_cooldown_visuals()
 		$Stack.show()
 		#print(name, " queued skill: ", skills[skill_number].name)
@@ -201,6 +202,7 @@ func remove_skill(new_skill: SkillStrategy) -> bool:
 		#_shuffle_skills()
 		_update_skill_visuals()
 		_on_skill_bag_list_close_requested()
+		skill_removed.emit()
 		return true
 	else:
 		# Couldn't remove skill
@@ -423,8 +425,6 @@ func _on_skill_bag_list_close_requested() -> void:
 
 
 func open_skill_bag_for_skill_removal():
-	pass
-
 	if not $CanvasLayer/SkillBagList.visible:
 		var skills_in_display = []
 		var skill_counts = {}
@@ -438,7 +438,8 @@ func open_skill_bag_for_skill_removal():
 		skills_in_display.sort_custom(func(a, b): return a.skill_ID < b.skill_ID)
 		for skill in skills_in_display:
 			var new_skill_icon = skill_icon_scene.instantiate()
-			new_skill_icon.clicked.connect(remove_skill.bind(skill))
+			new_skill_icon.left_clicked.connect(remove_skill.bind(skill))
+			new_skill_icon.right_clicked.connect(skill.display_skill_info)
 			new_skill_icon.set_icon_texture(skill.icon.texture)
 			new_skill_icon.set_count(skill_counts[skill])
 			skill_bag_list.add_child(new_skill_icon)

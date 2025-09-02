@@ -13,15 +13,16 @@ signal gained_status(status)
 @export var skill_description_scene: PackedScene
 
 @export_category("Base Stats")
-
-@export var cooldown_turns := 1
-@onready var current_cooldown := 0
-@export var max_per_stack := 1
-@onready var current_in_stack := 0
 @export var count := 3
 @onready var current_count := count
 @export var is_depletable := false
 @export var cost := 1
+
+@export_category("AI Use Hints")
+@export var max_per_stack := 1
+@onready var current_in_stack := 0
+@export var cooldown_turns := 1
+@onready var current_cooldown := 0
 
 @export_category("Lore")
 @export var skill_name: String
@@ -39,7 +40,9 @@ var cursor: Vector2i
 enum States { IDLE, AWAITING_DIRECTION, AWAITING_CURSOR, PLAYING_ANIMATION }
 var state = States.IDLE
 
-enum SkillIDs {NONE, DASH, DEFEND, STOMP, FORTUNE_COOKIE, ORCHESTRATE, BE_PATIENT, DARK_STAR, LEAP}
+enum SkillIDs {
+	NONE, DASH, DEFEND, STOMP, FORTUNE_COOKIE, ORCHESTRATE, BE_PATIENT, DARK_STAR, LEAP, WARP
+}
 @export var skill_ID := SkillIDs.NONE
 
 
@@ -65,8 +68,8 @@ func use_skill(grid_entity: GridEntity):
 
 
 func can_use_skill() -> bool:
-	if current_cooldown > 0 or current_in_stack >= max_per_stack:
-		return false
+	#if current_cooldown > 0 or current_in_stack >= max_per_stack:
+	#return false
 	return true
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cjo5qx0fo3bej"]
+[gd_scene load_steps=18 format=3 uid="uid://cjo5qx0fo3bej"]
 
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="1_2lgn1"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="1_awmqf"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/Actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="8_7g347"]
 [ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/Actors/Strategies/Skill/leap_skill_strategy.tscn" id="9_lvopp"]
 [ext_resource type="PackedScene" uid="uid://c1t1yix0mdkeh" path="res://scenes/Actors/Strategies/Skill/skill_icon.tscn" id="10_emtfy"]
+[ext_resource type="PackedScene" uid="uid://djpdq4bxeklv3" path="res://scenes/Actors/Strategies/Skill/warp_skill_strategy.tscn" id="10_i6ueo"]
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="11_emtfy"]
 [ext_resource type="AudioStream" uid="uid://brgjfi5b2rdyi" path="res://audio/SFX/Skills/Domino/DominoOpenBag1.ogg" id="15_dkf3k"]
 
@@ -29,7 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eg7uw")
-buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3q"), ExtResource("4_ncs2t"), ExtResource("5_o4b0d"), ExtResource("4_ncs2t"), ExtResource("6_emtfy"), ExtResource("7_1qkj3"), ExtResource("8_7g347"), ExtResource("9_lvopp")])
+buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3q"), ExtResource("4_ncs2t"), ExtResource("5_o4b0d"), ExtResource("4_ncs2t"), ExtResource("6_emtfy"), ExtResource("7_1qkj3"), ExtResource("8_7g347"), ExtResource("9_lvopp"), ExtResource("10_i6ueo")])
 skill_icon_scene = ExtResource("10_emtfy")
 sold_out_texture = ExtResource("11_emtfy")
 

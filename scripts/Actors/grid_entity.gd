@@ -124,24 +124,24 @@ func warp(position: Vector2i) -> bool:
 	var grid_coords = position
 	var floor_data = Global.floors.get_cell_tile_data(grid_coords)
 
-	# Test for other bodies
-	if Global.entity_positions.has(grid_coords):
-		hit(Global.entity_positions[grid_coords])
-		#performed_action.emit()
-		return false
-
 	# Check for walls
 	var wall_data = Global.walls.get_cell_tile_data(grid_coords)
 	if wall_data and wall_data.get_custom_data("is_solid"):
 		play_thump_sound(wall_data.get_custom_data("material"))
 		return false
 
+	# Testing if there is already another entity on the target location
+	var target_entity
+	if Global.entity_positions.has(grid_coords):
+		target_entity = Global.entity_positions[grid_coords]
+
 	# Movement
 	moved.emit(old_coords, grid_coords)
 	Global.entity_positions[grid_coords] = self
-	Global.entity_positions.erase(Global.floors.local_to_map(global_position))
+	Global.entity_positions.erase(old_coords)
+	if target_entity:
+		target_entity.warp(old_coords)
 	global_position = Vector2(position) * CELL_SIZE + (Vector2(1, 1) * (CELL_SIZE / 2))
-	#performed_action.emit()
 	if not floor_data:
 		fell_off_map.emit()
 	else:

@@ -1,6 +1,6 @@
 extends SkillStrategy
 
-var max_distance = 3
+var max_distance = 5
 
 @export var DashVFX: PackedScene
 
@@ -16,7 +16,6 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 
 func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
 	cursor += moveDirection
-	#cursor = cursor.clampi(-max_distance, max_distance)
 	$Cursor.global_position = Global.floors.map_to_local(cursor)
 
 

@@ -32,8 +32,8 @@ func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
 
 func on_stack_execution_started(grid_entity: GridEntity):
 	if not is_playing:
-		replay_sequence(grid_entity)
 		is_playing = true
+		replay_sequence(grid_entity)
 
 
 func use_skill(grid_entity: GridEntity):
@@ -41,6 +41,8 @@ func use_skill(grid_entity: GridEntity):
 	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
 	var relative_cursor = cursor - grid_coords
 	print("Used skill ", name, " towards ", relative_cursor)
+	if relative_cursor in chord:
+		relative_cursor += Vector2i(randi_range(-1, 1), randi_range(-1, 1))
 	chord.append(relative_cursor)
 	coord_to_note(relative_cursor, grid_entity)
 	super(grid_entity)
@@ -49,7 +51,6 @@ func use_skill(grid_entity: GridEntity):
 func on_stack_execution_finished(grid_entity: GridEntity):
 	sequence.append(chord)
 	chord = []
-	is_playing = false
 
 
 func coord_to_note(relative_coord, grid_entity: GridEntity):
@@ -74,3 +75,9 @@ func replay_sequence(grid_entity: GridEntity):
 		for relative_coord in chord_coord:
 			coord_to_note(relative_coord, grid_entity)
 		await get_tree().create_timer(delay).timeout
+	is_playing = false
+
+
+func on_next_floor_reached():
+	sequence = []
+	super()

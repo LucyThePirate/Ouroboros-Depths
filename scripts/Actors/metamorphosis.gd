@@ -24,6 +24,11 @@ var reroll_cost := 3
 	$CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer/RerollSkillsButton
 	as Button
 )
+var removal_cost := 3
+@onready var removal_button = (
+	$CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer/RemoveSkillButton
+	as Button
+)
 
 
 func _ready() -> void:
@@ -33,6 +38,7 @@ func _ready() -> void:
 	grid_parent.soul_count = souls
 	soul_count.text = "Souls: %s\n(+%s bonus souls!)" % [souls, bonus_souls]
 	reroll_cost = 3
+	removal_cost = 3
 	_stock_buyable_skills()
 
 
@@ -102,4 +108,13 @@ func _on_reroll_skills_button_pressed() -> void:
 
 
 func _on_remove_skill_button_pressed() -> void:
-	grid_parent.stack_component.open_skill_bag_for_skill_removal()
+	if grid_parent.soul_count >= removal_cost:
+		grid_parent.stack_component.open_skill_bag_for_skill_removal()
+		grid_parent.stack_component.skill_removed.connect(_on_skill_removed)
+
+
+func _on_skill_removed() -> void:
+	grid_parent.soul_count -= removal_cost
+	soul_count.text = "Souls: %s" % grid_parent.soul_count
+	removal_cost += 2
+	removal_button.text = "Remove Skill - %s souls" % removal_cost
