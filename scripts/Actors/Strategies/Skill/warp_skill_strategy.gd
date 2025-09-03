@@ -22,7 +22,13 @@ func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
 func use_skill(grid_entity: GridEntity):
 	$Cursor.hide()
 	print("Used skill ", name, " towards ", cursor)
-	if grid_entity.warp(cursor):
+	var did_move = false
+	if Global.entity_positions.has(cursor):
+		grid_entity.swap(Global.entity_positions[cursor])
+		did_move = true
+	elif grid_entity.warp(cursor):
+		did_move = true
+	if did_move:
 		moved_self.emit()
 		var new_dash_VFX = DashVFX.instantiate() as GPUParticles2D
 		new_dash_VFX.emitting = true

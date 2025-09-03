@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bd85kao70uoy4"]
+[gd_scene load_steps=35 format=3 uid="uid://bd85kao70uoy4"]
 
 [ext_resource type="Script" uid="uid://b6uhrd8rdimmy" path="res://scripts/Actors/skill_stack_component.gd" id="1_rerjn"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="2_qowul"]
@@ -12,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="6_o3wly"]
 [ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/Skills/SkillSack.png" id="7_e1hdf"]
 [ext_resource type="AudioStream" uid="uid://d2tcjtyaf4ler" path="res://audio/SFX/Skills/Domino/DominoPlaced1.ogg" id="9_1u652"]
+[ext_resource type="Script" uid="uid://b57xlofytn3k" path="res://addons/ActionIcon/ActionIcon.gd" id="9_8of2w"]
 [ext_resource type="AudioStream" uid="uid://css6o2ktbxenr" path="res://audio/SFX/Skills/Domino/DominoPlaced2.ogg" id="10_r0es2"]
 [ext_resource type="AudioStream" uid="uid://duwmpbw02i4u4" path="res://audio/SFX/Skills/Domino/DominoPlaced3.ogg" id="11_o3wly"]
 [ext_resource type="AudioStream" uid="uid://xv37swpkyn2k" path="res://audio/SFX/Skills/Domino/DominoPlaced4.ogg" id="12_e1hdf"]
@@ -241,6 +242,18 @@ layout_mode = 2
 focus_mode = 0
 button_mask = 2
 
+[node name="ActionIcon5" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1/InfoButton1"]
+layout_mode = 2
+offset_left = -12.6871
+offset_top = -27.3372
+offset_right = 185.313
+offset_bottom = 170.663
+scale = Vector2(0.251101, 0.251101)
+mouse_filter = 2
+script = ExtResource("9_8of2w")
+action_name = &"UseSkill1"
+metadata/_custom_type_script = "uid://b57xlofytn3k"
+
 [node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual"]
 layout_mode = 2
 
@@ -264,6 +277,18 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 focus_mode = 0
 button_mask = 2
+
+[node name="ActionIcon4" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2/InfoButton2"]
+layout_mode = 2
+offset_left = -10.5703
+offset_top = -27.3372
+offset_right = 187.43
+offset_bottom = 170.663
+scale = Vector2(0.251101, 0.251101)
+mouse_filter = 2
+script = ExtResource("9_8of2w")
+action_name = &"UseSkill2"
+metadata/_custom_type_script = "uid://b57xlofytn3k"
 
 [node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual"]
 layout_mode = 2
@@ -289,6 +314,18 @@ layout_mode = 2
 focus_mode = 0
 button_mask = 2
 
+[node name="ActionIcon3" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3/InfoButton3"]
+layout_mode = 2
+offset_left = -10.8316
+offset_top = -27.3372
+offset_right = 187.168
+offset_bottom = 170.663
+scale = Vector2(0.251101, 0.251101)
+mouse_filter = 2
+script = ExtResource("9_8of2w")
+action_name = &"UseSkill3"
+metadata/_custom_type_script = "uid://b57xlofytn3k"
+
 [node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual"]
 layout_mode = 2
 
@@ -313,6 +350,18 @@ layout_mode = 2
 focus_mode = 0
 button_mask = 2
 
+[node name="ActionIcon2" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4/InfoButton4"]
+layout_mode = 2
+offset_left = -12.282
+offset_top = -27.337
+offset_right = 185.718
+offset_bottom = 170.663
+scale = Vector2(0.251101, 0.251101)
+mouse_filter = 2
+script = ExtResource("9_8of2w")
+action_name = &"UseSkill4"
+metadata/_custom_type_script = "uid://b57xlofytn3k"
+
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/AvailableSkills"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -334,10 +383,23 @@ shortcut = SubResource("Shortcut_8of2w")
 text = "x99"
 icon = ExtResource("7_e1hdf")
 
+[node name="ActionIcon" type="TextureRect" parent="CanvasLayer/AvailableSkills/PanelContainer/SkillBagButton"]
+layout_mode = 2
+offset_left = 47.0
+offset_top = 147.0
+offset_right = 1199.0
+offset_bottom = 345.0
+scale = Vector2(0.251101, 0.251101)
+mouse_filter = 2
+script = ExtResource("9_8of2w")
+action_name = &"OpenSkillBag"
+metadata/_custom_type_script = "uid://b57xlofytn3k"
+
 [node name="SkillBagList" type="Window" parent="CanvasLayer"]
 transparent_bg = true
 initial_position = 1
 size = Vector2i(1000, 500)
+visible = false
 unresizable = true
 transparent = true
 popup_window = true

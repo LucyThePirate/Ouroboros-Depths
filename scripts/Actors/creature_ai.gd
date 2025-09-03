@@ -158,6 +158,8 @@ func _on_grid_entity_hurt(attacker: GridEntity) -> void:
 func _update_angry_at(new_target: GridEntity):
 	if new_target == grid_entity or new_target is not GridEntity:
 		return
+	if new_target.species_name == grid_entity.species_name:
+		return
 	angry_at = new_target
 	angry_at.died.connect(_on_angry_at_died)
 	print(name, " pissed at ", new_target.name)

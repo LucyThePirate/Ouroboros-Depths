@@ -131,22 +131,32 @@ func warp(position: Vector2i) -> bool:
 		return false
 
 	# Testing if there is already another entity on the target location
-	var target_entity
 	if Global.entity_positions.has(grid_coords):
-		target_entity = Global.entity_positions[grid_coords]
+		return false
 
 	# Movement
 	moved.emit(old_coords, grid_coords)
 	Global.entity_positions[grid_coords] = self
 	Global.entity_positions.erase(old_coords)
-	if target_entity:
-		target_entity.warp(old_coords)
 	global_position = Vector2(position) * CELL_SIZE + (Vector2(1, 1) * (CELL_SIZE / 2))
 	if not floor_data:
 		fell_off_map.emit()
 	else:
 		play_walk_sound(floor_data.get_custom_data("material"))
 	return true
+
+
+func swap(swapping_with: GridEntity):
+	var temp_coords = Global.floors.local_to_map(global_position)
+	var swap_coords = Global.floors.local_to_map(swapping_with.global_position)
+	Global.entity_positions[temp_coords] = swapping_with
+	Global.entity_positions[swap_coords] = self
+	global_position = Vector2(swap_coords) * CELL_SIZE + (Vector2(1, 1) * (CELL_SIZE / 2))
+	swapping_with.global_position = (
+		Vector2(temp_coords) * CELL_SIZE + (Vector2(1, 1) * (CELL_SIZE / 2))
+	)
+	moved.emit(temp_coords, swap_coords)
+	swapping_with.moved.emit(swap_coords, temp_coords)
 
 
 func get_valid_moves(allow_moving_into_entities = false) -> Array:

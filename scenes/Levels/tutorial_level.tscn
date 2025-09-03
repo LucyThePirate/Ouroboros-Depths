@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://bkcktb2mpmgsc"]
+[gd_scene load_steps=82 format=4 uid="uid://bkcktb2mpmgsc"]
 
 [ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_qylo2"]
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/Effects/boulder_splash.tscn" id="2_o74wk"]
@@ -15,6 +15,8 @@
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="13_ob1md"]
 [ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/Actors/Creatures/wasp_test.tscn" id="14_o74wk"]
 [ext_resource type="PackedScene" uid="uid://cqjoguhw8mhj" path="res://scenes/Actors/Creatures/tutorial_scarecrow.tscn" id="15_kv4pv"]
+[ext_resource type="AudioStream" uid="uid://c6h5kgpbbohnv" path="res://audio/Music/TempleCardGameAstrMastr.mp3" id="16_hg4aq"]
+[ext_resource type="Script" uid="uid://b57xlofytn3k" path="res://addons/ActionIcon/ActionIcon.gd" id="17_1enxm"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_f5ym2"]
 tile_data = PackedInt32Array(0, 3, 3, 65536, 3, 3, 131072, 3, 3, 196608, 3, 3, 262144, 3, 3, 1, 3, 3, 65537, 131074, 0, 131073, 131074, 0, 196609, 131074, 0, 262145, 3, 3, 2, 3, 3, 65538, 131074, 0, 131074, 131074, 0, 196610, 131074, 0, 262146, 3, 3, 3, 3, 3, 65539, 131074, 0, 131075, 131074, 0, 196611, 131074, 0, 262147, 3, 3, 4, 3, 3, 65540, 3, 3, 131076, 3, 3, 196612, 3, 3, 262148, 3, 3)
@@ -1385,6 +1387,91 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_u1sel")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_hg4aq")
+autoplay = true
+bus = &"Music"
+
+[node name="Controls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -101.0
+offset_top = -99.0
+offset_right = 199.0
+offset_bottom = 201.0
+
+[node name="ActionIcon" type="TextureRect" parent="Controls"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -44.0
+offset_right = -49.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.19143, 2.19143)
+script = ExtResource("17_1enxm")
+action_name = &"Right"
+metadata/_custom_type_script = "uid://b57xlofytn3k"
+
+[node name="ActionIcon2" type="TextureRect" parent="Controls"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -193.0
+offset_top = 52.0
+offset_right = -153.0
+offset_bottom = 92.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.19143, 2.19143)
+script = ExtResource("17_1enxm")
+action_name = &"Down"
+metadata/_custom_type_script = "uid://b57xlofytn3k"
+
+[node name="ActionIcon3" type="TextureRect" parent="Controls"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = -144.0
+offset_right = -154.0
+offset_bottom = -104.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.19143, 2.19143)
+script = ExtResource("17_1enxm")
+action_name = &"Up"
+metadata/_custom_type_script = "uid://b57xlofytn3k"
+
+[node name="ActionIcon4" type="TextureRect" parent="Controls"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -296.0
+offset_top = -45.0
+offset_right = -256.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.19143, 2.19143)
+script = ExtResource("17_1enxm")
+action_name = &"Left"
+metadata/_custom_type_script = "uid://b57xlofytn3k"
 
 [connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer/NewRunButton" to="." method="_on_new_run_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer2/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]
