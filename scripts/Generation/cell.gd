@@ -50,8 +50,12 @@ var turn_counter = 0
 var current_floor := 0
 var player
 
+var angry_at_player = []
+
 
 func _ready():
+	Global.aggroed_towards_player.connect(add_to_angry_at_player_list)
+	Global.deaggroed_towards_player.connect(remove_from_angry_at_player_list)
 	$CanvasLayer/DeathScreen.hide()
 #region Setting up RNG and dungeon generation
 	if (
@@ -79,6 +83,26 @@ func _ready():
 	root_node = Branch.new(Vector2i(0, 0), generation_size)
 	root_node.split(3, paths)
 	generate_level()
+
+
+func add_to_angry_at_player_list(grid_entity):
+	if grid_entity not in angry_at_player:
+		angry_at_player.append(grid_entity)
+	_update_dynamic_music()
+
+
+func remove_from_angry_at_player_list(grid_entity):
+	if grid_entity in angry_at_player:
+		angry_at_player.remove_at(angry_at_player.find(grid_entity))
+
+
+func _update_dynamic_music():
+	if angry_at_player.size() <= 0:
+		$GhostQuiet.volume_db = 0
+		$GhostBattle.volume_db = -50
+	else:
+		$GhostQuiet.volume_db = -50
+		$GhostBattle.volume_db = 0
 
 
 func _redraw_map():

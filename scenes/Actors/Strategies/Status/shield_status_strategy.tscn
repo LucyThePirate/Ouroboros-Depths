@@ -32,8 +32,10 @@ texture = ExtResource("3_ptsmc")
 [node name="ShieldBreak" type="AudioStreamPlayer2D" parent="." index="2"]
 stream = SubResource("AudioStreamRandomizer_k8qa8")
 volume_db = 9.215
+bus = &"SFX"
 
 [node name="ShieldAdded" type="AudioStreamPlayer2D" parent="." index="3"]
 stream = SubResource("AudioStreamRandomizer_tw7ks")
 volume_db = 9.0
 pitch_scale = 0.8
+bus = &"SFX"

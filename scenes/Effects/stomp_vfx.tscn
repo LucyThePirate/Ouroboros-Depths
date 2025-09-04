@@ -48,5 +48,6 @@ script = ExtResource("2_fvxl5")
 [node name="StompSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_yavas")
 volume_db = 14.857
+bus = &"SFX"
 
 [connection signal="finished" from="StompSound" to="." method="_on_stomp_sound_finished"]

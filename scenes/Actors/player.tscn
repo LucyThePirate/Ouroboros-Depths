@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d2wq4gejffyd"]
+[gd_scene load_steps=28 format=3 uid="uid://d2wq4gejffyd"]
 
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="1_exgt7"]
 [ext_resource type="Script" uid="uid://be6oo33bhfx63" path="res://scripts/Actors/player.gd" id="1_ochwc"]
@@ -18,6 +18,8 @@
 [ext_resource type="AudioStream" uid="uid://0to1gxx02bfe" path="res://audio/SFX/Misc/OrangePeelReverse.ogg" id="16_nfopg"]
 [ext_resource type="AudioStream" uid="uid://cwqwqvrk8t7gj" path="res://audio/SFX/Misc/OrangePeel1.ogg" id="17_1vpxp"]
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="18_1vpxp"]
+[ext_resource type="Script" uid="uid://b57xlofytn3k" path="res://addons/ActionIcon/ActionIcon.gd" id="19_u2nr5"]
+[ext_resource type="AudioStream" uid="uid://d3dload3sw6cq" path="res://audio/SFX/Misc/erro.mp3" id="20_ad5m5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gokip"]
 radius = 44.1022
@@ -82,6 +84,11 @@ _data = {
 &"RESET": SubResource("Animation_u2nr5")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_itc60"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("20_ad5m5")
+
 [node name="Player" type="Node2D" groups=["Player"]]
 script = ExtResource("1_ochwc")
 text_component = ExtResource("2_bg3lr")
@@ -142,10 +149,12 @@ theme_override_fonts/font = ExtResource("8_wd2mq")
 
 [node name="MetamorphosisStart" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_u2nr5")
+bus = &"SFX"
 
 [node name="MetamorphosisEnd" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_ad5m5")
 pitch_scale = 1.06
+bus = &"SFX"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -173,10 +182,42 @@ text = "Souls: ???"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ChrysalisPrompt" type="RichTextLabel" parent="CanvasLayer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/normal_font = ExtResource("8_wd2mq")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "Enter Chrysalis"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ActionIcon" type="TextureRect" parent="CanvasLayer/TextureRect"]
+layout_mode = 0
+offset_left = -43.3735
+offset_top = 428.916
+offset_right = 56.6265
+offset_bottom = 468.916
+scale = Vector2(1.37183, 1.37183)
+script = ExtResource("19_u2nr5")
+action_name = &"Chrysalis"
+metadata/_custom_type_script = "uid://b57xlofytn3k"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ad5m5")
 }
+
+[node name="Error" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_itc60")
+bus = &"SFX"
 
 [connection signal="absorbed_souls" from="GridEntity" to="." method="_on_grid_entity_absorbed_souls"]
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]

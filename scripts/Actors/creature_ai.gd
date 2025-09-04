@@ -2,6 +2,8 @@ extends Node2D
 
 class_name CreatureAI
 
+signal aggroed_towards_player(grid_entity)
+
 @export var visual: Node2D
 
 @onready var grid_entity = $GridEntity
@@ -164,8 +166,10 @@ func _update_angry_at(new_target: GridEntity):
 	angry_at.died.connect(_on_angry_at_died)
 	print(name, " pissed at ", new_target.name)
 	if new_target.is_in_group("Player"):
+		Global.aggroed_towards_player.emit(grid_entity)
 		health_component.set_color(Color.RED)
 	else:
+		Global.deaggroed_towards_player.emit(grid_entity)
 		health_component.set_color(Color.WHITE)
 
 

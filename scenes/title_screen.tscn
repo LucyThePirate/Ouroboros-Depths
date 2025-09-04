@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://c02to40218vlw"]
+[gd_scene load_steps=71 format=4 uid="uid://c02to40218vlw"]
 
 [ext_resource type="Texture2D" uid="uid://b60fxmc7hxg5s" path="res://textures/PumpkinBlock2.png" id="1_mykxm"]
 [ext_resource type="Script" uid="uid://chejtonyw0gfm" path="res://scripts/title_screen.gd" id="1_tklts"]
@@ -10,6 +10,10 @@
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/Shaders/stars.gdshader" id="7_e8tpv"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/Testing/thisGuyPOV.png" id="8_4qe4i"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="9_p07av"]
+[ext_resource type="AudioStream" uid="uid://duevq7vgf28ks" path="res://audio/SFX/Misc/Punch1.ogg" id="11_frs5l"]
+[ext_resource type="AudioStream" uid="uid://b1nmnkp41rdqr" path="res://audio/SFX/Misc/Punch2.ogg" id="12_mynnq"]
+[ext_resource type="AudioStream" uid="uid://c4iuvy3r2whs6" path="res://audio/SFX/Misc/Punch3.ogg" id="13_e8tpv"]
+[ext_resource type="AudioStream" uid="uid://c5shssvk8nqtq" path="res://audio/Music/AstrMusic/GOLD_DUST[continue,layered,mysterious]Astr.mp3" id="14_mynnq"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_f5ym2"]
 tile_data = PackedInt32Array(0, 3, 3, 65536, 3, 3, 131072, 3, 3, 196608, 3, 3, 262144, 3, 3, 1, 3, 3, 65537, 131074, 0, 131073, 131074, 0, 196609, 131074, 0, 262145, 3, 3, 2, 3, 3, 65538, 131074, 0, 131074, 131074, 0, 196610, 131074, 0, 262146, 3, 3, 3, 3, 3, 65539, 131074, 0, 131075, 131074, 0, 196611, 131074, 0, 262147, 3, 3, 4, 3, 3, 65540, 3, 3, 131076, 3, 3, 196612, 3, 3, 262148, 3, 3)
@@ -998,6 +1002,13 @@ shader_parameter/bg_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
 atlas = ExtResource("8_4qe4i")
 region = Rect2(107, 93, 118, 84)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4qe4i"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("11_frs5l")
+stream_1/stream = ExtResource("12_mynnq")
+stream_2/stream = ExtResource("13_e8tpv")
+
 [sub_resource type="Animation" id="Animation_tklts"]
 length = 0.001
 tracks/0/type = "value"
@@ -1295,6 +1306,10 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SFXTester" type="AudioStreamPlayer" parent="CanvasLayer/Options/CenterContainer2"]
+stream = SubResource("AudioStreamRandomizer_4qe4i")
+bus = &"SFX"
+
 [node name="CenterContainer3" type="CenterContainer" parent="CanvasLayer/Options"]
 layout_mode = 2
 
@@ -1342,6 +1357,11 @@ libraries = {
 }
 autoplay = "camera_pan"
 speed_scale = 0.5
+
+[node name="TitleBGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_mynnq")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/CenterContainer/StartTutorialButton" to="." method="_on_start_tutorial_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/CenterContainer2/NewGameButton" to="." method="_on_new_game_button_pressed"]

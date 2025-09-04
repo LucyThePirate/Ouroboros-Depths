@@ -1,5 +1,5 @@
 @icon("sampler_icon.png")
-extends AudioStreamPlayer2D
+extends AudioStreamPlayer
 class_name Sampler
 
 ## Audio instrument playing single notes

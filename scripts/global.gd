@@ -1,6 +1,8 @@
 extends Node
 
 signal turn_passed
+signal aggroed_towards_player(grid_entity)
+signal deaggroed_towards_player(grid_entity)
 
 @onready var entity_positions = {}
 

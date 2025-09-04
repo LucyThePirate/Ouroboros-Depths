@@ -20,6 +20,8 @@ var shuffle_turns := 0
 @export var null_skill_texture := Texture2D
 @export var reload_status: PackedScene
 @export var skill_icon_scene: PackedScene
+@export var text_scene: PackedScene
+@onready var current_error_text
 
 @onready var hand_visual = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual
 @onready var stack_icon_holder = $Stack/MarginContainer/CenterContainer/StackIconHolder
@@ -28,6 +30,8 @@ var preview_queue_skill = $Stack/MarginContainer/CenterContainer/StackIconHolder
 @onready var stack_color_rect = $Stack/MarginContainer/ColorRect
 @onready var skill_bag = $CanvasLayer/AvailableSkills/PanelContainer/SkillBagButton as Button
 @onready var skill_bag_list = $CanvasLayer/SkillBagList/Control/ScrollContainer/HFlowContainer
+@onready
+var execute_prompt = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/ExecutePrompt
 
 var skills = []
 var total_skill_count := 0
@@ -110,6 +114,11 @@ func queue_skill(skill_number) -> bool:
 			total_skill_count -= 1
 		_update_skill_visuals()
 		return true
+	else:
+		if state == States.RELOADING:
+			_display_error("Reloading!")
+		elif is_full():
+			_display_error("Stack is full!")
 	return false
 
 
@@ -128,6 +137,7 @@ func can_execute_stack() -> bool:
 func execute_stack() -> bool:
 	grid_entity.moved_by_skill = false
 	if stack.is_empty():
+		_display_error("Stack is empty!")
 		return false
 	state = States.EXECUTING_STACK
 	for skill in stack:
@@ -281,7 +291,10 @@ func on_next_floor_reached() -> void:
 func _update_stack_visuals() -> void:
 	for panel_container in stack_icon_holder.get_children():
 		panel_container.get_child(0).texture = null
+	execute_prompt.visible = false
 	for stack_item in range(stack.size()):
+		if state == States.IDLE:
+			execute_prompt.visible = true
 		stack_icon_holder.get_child(stack_item).get_child(0).texture = (
 			stack[stack_item].icon.texture
 		)
@@ -452,3 +465,13 @@ func open_skill_bag_for_skill_removal():
 
 func _on_close_skill_bag_pressed() -> void:
 	_on_skill_bag_list_close_requested()
+
+
+func _display_error(error_msg: String):
+	$Error.play()
+	if not current_error_text:
+		var new_text_scene = text_scene.instantiate() as TextComponent
+		current_error_text = new_text_scene
+		new_text_scene.global_position = grid_entity.global_position
+		get_tree().current_scene.add_child(new_text_scene)
+		new_text_scene.set_error_text(error_msg)

@@ -15,7 +15,7 @@
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="13_ob1md"]
 [ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/Actors/Creatures/wasp_test.tscn" id="14_o74wk"]
 [ext_resource type="PackedScene" uid="uid://cqjoguhw8mhj" path="res://scenes/Actors/Creatures/tutorial_scarecrow.tscn" id="15_kv4pv"]
-[ext_resource type="AudioStream" uid="uid://c6h5kgpbbohnv" path="res://audio/Music/TempleCardGameAstrMastr.mp3" id="16_hg4aq"]
+[ext_resource type="AudioStream" uid="uid://c6h5kgpbbohnv" path="res://audio/Music/AstrMusic/TempleCardGameAstrMastr.mp3" id="16_hg4aq"]
 [ext_resource type="Script" uid="uid://b57xlofytn3k" path="res://addons/ActionIcon/ActionIcon.gd" id="17_1enxm"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_f5ym2"]
@@ -1388,7 +1388,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_u1sel")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="bgMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_hg4aq")
 autoplay = true
 bus = &"Music"

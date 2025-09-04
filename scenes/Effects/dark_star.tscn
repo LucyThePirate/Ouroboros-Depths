@@ -248,10 +248,12 @@ process_material = SubResource("ParticleProcessMaterial_8wt1t")
 stream = SubResource("AudioStreamRandomizer_okq67")
 volume_db = 8.0
 autoplay = true
+bus = &"SFX"
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="StarSprite"]
 stream = SubResource("AudioStreamRandomizer_jvm20")
 volume_db = 6.858
+bus = &"SFX"
 
 [node name="Line2D" type="Line2D" parent="StarSprite"]
 visible = false

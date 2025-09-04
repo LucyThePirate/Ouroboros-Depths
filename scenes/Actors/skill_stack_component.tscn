@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bd85kao70uoy4"]
+[gd_scene load_steps=36 format=3 uid="uid://bd85kao70uoy4"]
 
 [ext_resource type="Script" uid="uid://b6uhrd8rdimmy" path="res://scripts/Actors/skill_stack_component.gd" id="1_rerjn"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="2_qowul"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c063h7gtu7k4q" path="res://scenes/Actors/Strategies/Status/reload_status_strategy.tscn" id="4_rfo38"]
 [ext_resource type="AudioStream" uid="uid://d2xfgpdhopbfj" path="res://audio/SFX/Skills/98329__cognito-perceptu__cassette-tape-action-2.ogg" id="5_8fyuu"]
 [ext_resource type="PackedScene" uid="uid://c1t1yix0mdkeh" path="res://scenes/Actors/Strategies/Skill/skill_icon.tscn" id="5_e1hdf"]
+[ext_resource type="PackedScene" uid="uid://cg6jvx6qfd2jn" path="res://scenes/Actors/floating_text.tscn" id="6_5452a"]
 [ext_resource type="AudioStream" uid="uid://dp7jocijuqcyo" path="res://audio/SFX/Skills/98329__cognito-perceptu__cassette-tape-action-3.ogg" id="6_iqeie"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="6_o3wly"]
 [ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/Skills/SkillSack.png" id="7_e1hdf"]
@@ -96,6 +97,7 @@ preview_queue_skill_texture = ExtResource("2_qowul")
 null_skill_texture = ExtResource("3_n6r18")
 reload_status = ExtResource("4_rfo38")
 skill_icon_scene = ExtResource("5_e1hdf")
+text_scene = ExtResource("6_5452a")
 
 [node name="Stack" type="Control" parent="."]
 visible = false
@@ -362,6 +364,39 @@ script = ExtResource("9_8of2w")
 action_name = &"UseSkill4"
 metadata/_custom_type_script = "uid://b57xlofytn3k"
 
+[node name="ExecutePrompt" type="Control" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(151.185, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="ActionIcon" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/ExecutePrompt"]
+layout_mode = 0
+offset_left = -82.882
+offset_top = 41.0059
+offset_right = 17.118
+offset_bottom = 81.0059
+scale = Vector2(2.17348, 2.17348)
+script = ExtResource("9_8of2w")
+action_name = &"ExecuteStack"
+metadata/_custom_type_script = "uid://b57xlofytn3k"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/ExecutePrompt"]
+layout_mode = 0
+offset_left = -93.5833
+offset_top = 12.5296
+offset_right = 139.417
+offset_bottom = 52.5296
+theme_override_constants/outline_size = 4
+theme_override_fonts/normal_font = ExtResource("6_o3wly")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[rainbow freq=0.14][wave]EXECUTE SKILLS!
+"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/AvailableSkills"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -434,16 +469,19 @@ shortcut = SubResource("Shortcut_5452a")
 
 [node name="Error" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_qowul")
+bus = &"SFX"
 
 [node name="ReloadEnd" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_rfo38")
 volume_db = 2.633
 pitch_scale = 1.1
+bus = &"SFX"
 
 [node name="ReloadStart" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_gm5ox")
 volume_db = 9.215
 pitch_scale = 1.2
+bus = &"SFX"
 
 [node name="Reload" type="GPUParticles2D" parent="."]
 position = Vector2(99, 140)
@@ -456,12 +494,15 @@ process_material = SubResource("ParticleProcessMaterial_8fyuu")
 
 [node name="SkillAdded" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_lqrbu")
+bus = &"SFX"
 
 [node name="OpenBag" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_5452a")
+bus = &"SFX"
 
 [node name="CloseBag" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_8of2w")
+bus = &"SFX"
 
 [connection signal="emptied_stack" from="." to="." method="_on_emptied_stack"]
 [connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1/InfoButton1" to="." method="_on_info_button_1_pressed"]

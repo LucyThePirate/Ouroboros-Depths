@@ -33,6 +33,7 @@ script = ExtResource("2_dgkyy")
 [node name="Pop" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_7jvi6")
 volume_db = 6.0
+bus = &"SFX"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

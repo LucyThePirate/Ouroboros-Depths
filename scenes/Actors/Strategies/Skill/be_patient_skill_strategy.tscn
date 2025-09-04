@@ -150,18 +150,22 @@ texture = ExtResource("2_fpgl5")
 [node name="YellShort" type="AudioStreamPlayer2D" parent="." index="4"]
 stream = SubResource("AudioStreamRandomizer_y537m")
 volume_db = 10.2
+bus = &"SFX"
 
 [node name="YellMedium" type="AudioStreamPlayer2D" parent="." index="5"]
 stream = SubResource("AudioStreamRandomizer_0gony")
 volume_db = 13.915
+bus = &"SFX"
 
 [node name="YellLong" type="AudioStreamPlayer2D" parent="." index="6"]
 stream = SubResource("AudioStreamRandomizer_53gpo")
 volume_db = 10.2
+bus = &"SFX"
 
 [node name="YellMax" type="AudioStreamPlayer2D" parent="." index="7"]
 stream = SubResource("AudioStreamRandomizer_w0g1c")
 volume_db = 10.2
+bus = &"SFX"
 
 [node name="Scream" type="Sprite2D" parent="." index="8"]
 visible = false

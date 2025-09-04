@@ -62,6 +62,7 @@ script = ExtResource("2_wh1vl")
 stream = SubResource("AudioStreamRandomizer_37khe")
 volume_db = 11.555
 autoplay = true
+bus = &"SFX"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5

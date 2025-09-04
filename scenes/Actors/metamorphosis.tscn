@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cjo5qx0fo3bej"]
+[gd_scene load_steps=19 format=3 uid="uid://cjo5qx0fo3bej"]
 
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="1_2lgn1"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="1_awmqf"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c1t1yix0mdkeh" path="res://scenes/Actors/Strategies/Skill/skill_icon.tscn" id="10_emtfy"]
 [ext_resource type="PackedScene" uid="uid://djpdq4bxeklv3" path="res://scenes/Actors/Strategies/Skill/warp_skill_strategy.tscn" id="10_i6ueo"]
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="11_emtfy"]
+[ext_resource type="Texture2D" uid="uid://bbujvsn0j0wwi" path="res://textures/Skills/FortuneCookieSkill.png" id="13_ahco4"]
 [ext_resource type="AudioStream" uid="uid://brgjfi5b2rdyi" path="res://audio/SFX/Skills/Domino/DominoOpenBag1.ogg" id="15_dkf3k"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o4b0d"]
@@ -42,6 +43,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
+self_modulate = Color(0.405299, 0.262067, 0.0330478, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_ahco4")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
 layout_mode = 1
@@ -182,9 +193,11 @@ expand_icon = true
 
 [node name="SkillBought" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_o4b0d")
+bus = &"SFX"
 
 [node name="RerollSkillsBought" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_o4b0d")
+bus = &"SFX"
 
 [connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer/RerollSkillsButton" to="." method="_on_reroll_skills_button_pressed"]

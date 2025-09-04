@@ -9,6 +9,7 @@ extends Control
 @onready var master_volume = $CanvasLayer/Options/CenterContainer/MasterVolume as HSlider
 @onready var sfx_volume = $CanvasLayer/Options/CenterContainer2/SFXVolume as HSlider
 @onready var music_volume = $CanvasLayer/Options/CenterContainer3/MusicVolume as HSlider
+@onready var sfx_tester = $CanvasLayer/Options/CenterContainer2/SFXTester
 
 
 func _ready() -> void:
@@ -70,6 +71,7 @@ func _on_master_volume_drag_ended(value_changed: bool) -> void:
 
 func _on_sfx_volume_drag_ended(value_changed: bool) -> void:
 	config.set_value("Volume", "SFX", sfx_volume.value)
+	sfx_tester.play()
 	update_audio_busses()
 
 

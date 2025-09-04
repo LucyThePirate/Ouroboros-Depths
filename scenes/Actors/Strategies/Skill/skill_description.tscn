@@ -72,6 +72,7 @@ fit_content = true
 
 [node name="DominoFlip" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_ep2fu")
+bus = &"SFX"
 
 [connection signal="close_requested" from="CanvasLayer/Window" to="." method="_on_window_close_requested"]
 [connection signal="focus_exited" from="CanvasLayer/Window" to="." method="_on_window_focus_exited"]

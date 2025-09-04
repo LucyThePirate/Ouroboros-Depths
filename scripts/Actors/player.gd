@@ -9,6 +9,7 @@ signal descended
 @export var metamorphosis_scene: PackedScene
 
 @onready var current_text: TextComponent
+@onready var current_error_text: TextComponent
 @onready var grid_entity = $GridEntity
 @onready var display = $Display
 @onready var visual = $ScarecrowVisual
@@ -127,6 +128,10 @@ func _handle_movement() -> void:
 			grid_entity.gain_status(new_chrysalis_status)
 			end_turn()
 			return
+		elif grid_entity.soul_count <= 0:
+			_display_error("Need souls!")
+		elif state != States.IDLE:
+			_display_error("Can't metamorph right now!")
 
 
 func _metamorphing_interrupted(status):
@@ -242,3 +247,13 @@ func _on_grid_entity_absorbed_souls() -> void:
 		$AnimationPlayer.seek(0.5)
 	else:
 		$AnimationPlayer.play("DisplaySouls")
+
+
+func _display_error(error_msg: String):
+	$Error.play()
+	if not current_error_text:
+		var new_text_scene = text_component.instantiate() as TextComponent
+		current_error_text = new_text_scene
+		new_text_scene.global_position = grid_entity.global_position
+		get_tree().current_scene.add_child(new_text_scene)
+		new_text_scene.set_error_text(error_msg)

@@ -57,7 +57,7 @@ func set_text(new_text: String, new_text_effect: String = "%s") -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "float_away":
+	if anim_name == "float_away" or anim_name == "float_away_error":
 		queue_free()
 
 
@@ -69,3 +69,8 @@ func _on_type_delay_timeout() -> void:
 	else:
 		$TypeDelay.stop()
 		$AnimationPlayer.play("float_away")
+
+
+func set_error_text(new_text: String) -> void:
+	text.text = "[color=RED][shake]%s" % new_text
+	$AnimationPlayer.play("float_away_error")

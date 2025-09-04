@@ -97,35 +97,43 @@ shape = SubResource("RectangleShape2D_jo564")
 [node name="Thump" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_1ohuh")
 volume_db = 10.0
+bus = &"SFX"
 
 [node name="Step" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_qliy4")
 volume_db = 1.286
+bus = &"SFX"
 
 [node name="GrassStep" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_7asle")
+bus = &"SFX"
 
 [node name="WaterStep" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_chbq4")
+bus = &"SFX"
 
 [node name="GlassThump" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_yrye8")
 volume_db = 2.786
 pitch_scale = 1.61
+bus = &"SFX"
 
 [node name="PlantThump" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_adfhp")
 volume_db = -3.0
 pitch_scale = 0.94
+bus = &"SFX"
 
 [node name="Error" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_fbare")
 volume_db = -7.037
 pitch_scale = 1.02
+bus = &"SFX"
 
 [node name="DoorOpen" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_vnsn2")
 volume_db = 8.254
+bus = &"SFX"
 
 [node name="Shadow" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 0.345098, 0.301961)
@@ -165,6 +173,7 @@ layout_mode = 2
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_j0r3c")
 volume_db = 7.971
+bus = &"SFX"
 
 [node name="InfoButton" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)

@@ -58,6 +58,7 @@ texture = SubResource("AtlasTexture_dbbqb")
 
 [node name="SamplerInstrument" type="AudioStreamPlayer" parent="." index="2"]
 volume_db = -5.205
+bus = &"SFX"
 script = ExtResource("4_rwbj8")
 samples = Array[ExtResource("5_uqcgm")]([SubResource("Resource_qufkg"), SubResource("Resource_hmaoa"), SubResource("Resource_mjg32"), SubResource("Resource_sto30")])
 metadata/_custom_type_script = "uid://dgyvnwtc4dcoj"
