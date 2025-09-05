@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bd85kao70uoy4"]
+[gd_scene load_steps=37 format=3 uid="uid://bd85kao70uoy4"]
 
 [ext_resource type="Script" uid="uid://b6uhrd8rdimmy" path="res://scripts/Actors/skill_stack_component.gd" id="1_rerjn"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="2_qowul"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dp7jocijuqcyo" path="res://audio/SFX/Skills/98329__cognito-perceptu__cassette-tape-action-3.ogg" id="6_iqeie"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="6_o3wly"]
 [ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/Skills/SkillSack.png" id="7_e1hdf"]
+[ext_resource type="Texture2D" uid="uid://cha8dq4v6awur" path="res://textures/Skills/ReloadSkill.png" id="7_qdnrn"]
 [ext_resource type="AudioStream" uid="uid://d2tcjtyaf4ler" path="res://audio/SFX/Skills/Domino/DominoPlaced1.ogg" id="9_1u652"]
 [ext_resource type="Script" uid="uid://b57xlofytn3k" path="res://addons/ActionIcon/ActionIcon.gd" id="9_8of2w"]
 [ext_resource type="AudioStream" uid="uid://css6o2ktbxenr" path="res://audio/SFX/Skills/Domino/DominoPlaced2.ogg" id="10_r0es2"]
@@ -192,6 +193,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Reload" type="TextureRect" parent="CanvasLayer/AvailableSkills"]
+layout_mode = 2
+offset_left = 246.0
+offset_top = 558.0
+offset_right = 464.0
+offset_bottom = 765.0
+scale = Vector2(0.252589, 0.252589)
+texture = ExtResource("7_qdnrn")
+stretch_mode = 2
+
+[node name="ActionIcon" type="TextureRect" parent="CanvasLayer/AvailableSkills/Reload"]
+layout_mode = 0
+offset_left = 75.2211
+offset_top = 134.606
+offset_right = 175.221
+offset_bottom = 174.606
+scale = Vector2(3.19498, 3.19498)
+script = ExtResource("9_8of2w")
+action_name = &"Reload"
+metadata/_custom_type_script = "uid://b57xlofytn3k"
+
+[node name="Reload2" type="TextureRect" parent="CanvasLayer/AvailableSkills/Reload"]
+self_modulate = Color(0, 0, 0, 0.662745)
+show_behind_parent = true
+layout_mode = 2
+offset_left = 7.91801
+offset_top = 11.877
+offset_right = 225.918
+offset_bottom = 218.877
+scale = Vector2(1.00401, 1.00401)
+texture = ExtResource("7_qdnrn")
+stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AvailableSkills"]
 layout_mode = 1

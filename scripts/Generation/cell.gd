@@ -37,6 +37,7 @@ var tile_size: int = 100
 @onready var door_vertical_tile := [2, Vector2i(2, 2)]
 @onready var stairs_up_tile := [2, Vector2i(0, 2)]
 @onready var stairs_down_tile := [2, Vector2i(0, 3)]
+@onready var lock_tile := [2, Vector2i(4, 2)]
 @onready var fog_tile := [3, Vector2i(1, 1)]
 
 var paths: Array = []
@@ -50,7 +51,7 @@ var turn_counter = 0
 var current_floor := 0
 var player
 
-var angry_at_player = []
+var angry_at_player = 0
 
 
 func _ready():
@@ -86,18 +87,20 @@ func _ready():
 
 
 func add_to_angry_at_player_list(grid_entity):
-	if grid_entity not in angry_at_player:
-		angry_at_player.append(grid_entity)
+	angry_at_player += 1
 	_update_dynamic_music()
 
 
 func remove_from_angry_at_player_list(grid_entity):
-	if grid_entity in angry_at_player:
-		angry_at_player.remove_at(angry_at_player.find(grid_entity))
+	angry_at_player -= 1
+	_update_dynamic_music()
 
 
 func _update_dynamic_music():
-	if angry_at_player.size() <= 0:
+	if not $GhostQuiet:
+		return
+	$CanvasLayer/AggroCount.text = "Angry: %s" % angry_at_player
+	if angry_at_player <= 0:
 		$GhostQuiet.volume_db = 0
 		$GhostBattle.volume_db = -50
 	else:
@@ -107,6 +110,7 @@ func _update_dynamic_music():
 
 func _redraw_map():
 	current_floor += 1
+	angry_at_player = 0
 	$CanvasLayer/ColorRect/FloorLabel.text = "Floor: %s" % current_floor
 	$AnimationPlayer.play("floor_text")
 	for entity in get_tree().get_nodes_in_group("GridEntity") as Array[GridEntity]:
@@ -267,12 +271,12 @@ func generate_level():
 		Vector2i(0, -1),
 		Vector2i(1, -1)
 	]
-	for coord in surround_coords:
-		floors.set_cell(placed_stairs + coord, ice_floor_tile[0], ice_floor_tile[1])
-	floors.set_cell(placed_stairs, stairs_down_tile[0], stairs_down_tile[1])
-	walls.set_cell(placed_stairs, -1)
 	print_rich("[color=LIME]Floor: %s, Stairs down at: %s" % [current_floor, placed_stairs])
 	floors.set_cell(root_node.get_center(), stairs_up_tile[0], stairs_up_tile[1])
+	for coord in surround_coords:
+		floors.set_cell(placed_stairs + coord, ice_floor_tile[0], ice_floor_tile[1])
+	walls.set_cell(placed_stairs, -1)
+	floors.set_cell(placed_stairs, stairs_down_tile[0], stairs_down_tile[1])
 	walls.set_cell(root_node.get_center())
 	Global.floors = floors
 	Global.walls = walls

@@ -65,7 +65,7 @@ func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_compon
 
 
 func reload_deck() -> bool:
-	if state == States.IDLE and stack.is_empty():
+	if state == States.IDLE:  # and stack.is_empty():
 		#print("%s is reloading!" % [grid_entity.name])
 		if $CanvasLayer.visible:
 			$ReloadStart.play()
@@ -75,6 +75,7 @@ func reload_deck() -> bool:
 		hand = []
 		deck = []
 		_update_skill_visuals()
+		_update_stack_visuals()
 		shuffle_turns = turns_to_reload
 		var new_status = reload_status.instantiate() as StatusStrategy
 		add_child(new_status)
@@ -129,15 +130,18 @@ func is_full() -> bool:
 
 
 func can_execute_stack() -> bool:
-	if stack.is_empty():
+	if stack.is_empty() or state != States.IDLE:
 		return false
 	return true
 
 
 func execute_stack() -> bool:
 	grid_entity.moved_by_skill = false
-	if stack.is_empty():
-		_display_error("Stack is empty!")
+	if not can_execute_stack():
+		if stack.is_empty():
+			_display_error("Stack is empty!")
+		elif state == States.RELOADING:
+			_display_error("Reloading!")
 		return false
 	state = States.EXECUTING_STACK
 	for skill in stack:
@@ -264,7 +268,7 @@ func _on_emptied_stack() -> void:
 func _shuffle_skills() -> void:
 	state = States.IDLE
 	deck = []
-	stack = []
+	#stack = []
 	hand = []
 	total_skill_count = 0
 	for skill in skills:
@@ -292,9 +296,9 @@ func _update_stack_visuals() -> void:
 	for panel_container in stack_icon_holder.get_children():
 		panel_container.get_child(0).texture = null
 	execute_prompt.visible = false
+	if can_execute_stack():
+		execute_prompt.visible = true
 	for stack_item in range(stack.size()):
-		if state == States.IDLE:
-			execute_prompt.visible = true
 		stack_icon_holder.get_child(stack_item).get_child(0).texture = (
 			stack[stack_item].icon.texture
 		)
@@ -323,6 +327,7 @@ func _update_turn_cooldown():
 				continue
 			hand[skill].decrement_turn_cooldown()
 	_update_cooldown_visuals()
+	_update_stack_visuals()
 
 
 func _update_cooldown_visuals():
@@ -468,6 +473,8 @@ func _on_close_skill_bag_pressed() -> void:
 
 
 func _display_error(error_msg: String):
+	if not grid_entity.is_in_group("Player"):
+		return
 	$Error.play()
 	if not current_error_text:
 		var new_text_scene = text_scene.instantiate() as TextComponent

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d2wq4gejffyd"]
+[gd_scene load_steps=32 format=3 uid="uid://d2wq4gejffyd"]
 
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="1_exgt7"]
 [ext_resource type="Script" uid="uid://be6oo33bhfx63" path="res://scripts/Actors/player.gd" id="1_ochwc"]
@@ -12,9 +12,6 @@
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="8_wd2mq"]
 [ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/Actors/Strategies/Skill/defend_skill_strategy.tscn" id="9_mtoqb"]
 [ext_resource type="PackedScene" uid="uid://bhxy4rfg3pad5" path="res://scenes/Actors/Strategies/Status/shield_status_strategy.tscn" id="9_yw7wc"]
-[ext_resource type="PackedScene" uid="uid://c10nhwhuw3ge4" path="res://scenes/Actors/Strategies/Skill/orchestrate_skill_strategy.tscn" id="10_nbabl"]
-[ext_resource type="PackedScene" uid="uid://d1ti6v0kdijnm" path="res://scenes/Actors/Strategies/Skill/be_patient_skill_strategy.tscn" id="11_v7jyr"]
-[ext_resource type="PackedScene" uid="uid://djpdq4bxeklv3" path="res://scenes/Actors/Strategies/Skill/warp_skill_strategy.tscn" id="12_1vpxp"]
 [ext_resource type="AudioStream" uid="uid://0to1gxx02bfe" path="res://audio/SFX/Misc/OrangePeelReverse.ogg" id="16_nfopg"]
 [ext_resource type="AudioStream" uid="uid://cwqwqvrk8t7gj" path="res://audio/SFX/Misc/OrangePeel1.ogg" id="17_1vpxp"]
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="18_1vpxp"]
@@ -89,6 +86,42 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("20_ad5m5")
 
+[sub_resource type="Curve" id="Curve_ad5m5"]
+_data = [Vector2(0, 0.988764), 0.0, 0.0, 0, 0, Vector2(0.788462, 0.741573), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_itc60"]
+curve = SubResource("Curve_ad5m5")
+
+[sub_resource type="Gradient" id="Gradient_ad5m5"]
+offsets = PackedFloat32Array(0, 0.203297, 0.456044, 0.648352, 0.851648, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 0.972549, 0, 1, 0, 0.996743, 0.881356, 1, 0, 0, 1, 1, 1, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_itc60"]
+gradient = SubResource("Gradient_ad5m5")
+
+[sub_resource type="Curve" id="Curve_befnt"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.730769, 1), -0.137475, -0.137475, 0, 0, Vector2(1, 0), -4.67416, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wtlns"]
+curve = SubResource("Curve_befnt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_befnt"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 12.83
+direction = Vector3(0, -1, 0)
+spread = 14.748
+initial_velocity_min = 180.11
+initial_velocity_max = 269.22
+gravity = Vector3(0, 98, 0)
+scale_min = 10.89
+scale_max = 10.89
+scale_curve = SubResource("CurveTexture_wtlns")
+color_initial_ramp = SubResource("GradientTexture1D_itc60")
+alpha_curve = SubResource("CurveTexture_itc60")
+
 [node name="Player" type="Node2D" groups=["Player"]]
 script = ExtResource("1_ochwc")
 text_component = ExtResource("2_bg3lr")
@@ -110,14 +143,6 @@ mouse_filter = 0
 
 [node name="DefendSkillStrategy" parent="GridEntity/SkillStackComponent" index="9" instance=ExtResource("9_mtoqb")]
 mouse_filter = 0
-
-[node name="OrchestrateSkillStrategy" parent="GridEntity/SkillStackComponent" index="10" instance=ExtResource("10_nbabl")]
-mouse_filter = 0
-
-[node name="BePatientSkillStrategy" parent="GridEntity/SkillStackComponent" index="11" instance=ExtResource("11_v7jyr")]
-mouse_filter = 0
-
-[node name="WarpSkillStrategy" parent="GridEntity/SkillStackComponent" index="15" instance=ExtResource("12_1vpxp")]
 
 [node name="Shield1000" parent="GridEntity/UI/StatusManagerComponent" index="1" instance=ExtResource("9_yw7wc")]
 layout_mode = 2
@@ -201,11 +226,11 @@ vertical_alignment = 2
 
 [node name="ActionIcon" type="TextureRect" parent="CanvasLayer/TextureRect"]
 layout_mode = 0
-offset_left = -43.3735
-offset_top = 428.916
-offset_right = 56.6265
-offset_bottom = 468.916
-scale = Vector2(1.37183, 1.37183)
+offset_left = -57.8313
+offset_top = 421.687
+offset_right = 42.1687
+offset_bottom = 461.687
+scale = Vector2(1.64259, 1.64259)
 script = ExtResource("19_u2nr5")
 action_name = &"Chrysalis"
 metadata/_custom_type_script = "uid://b57xlofytn3k"
@@ -218,6 +243,17 @@ libraries = {
 [node name="Error" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_itc60")
 bus = &"SFX"
+
+[node name="ExecutingParticles" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(4, 48)
+emitting = false
+amount = 32
+lifetime = 3.0
+speed_scale = 3.0
+trail_enabled = true
+trail_lifetime = 0.45
+process_material = SubResource("ParticleProcessMaterial_befnt")
 
 [connection signal="absorbed_souls" from="GridEntity" to="." method="_on_grid_entity_absorbed_souls"]
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]

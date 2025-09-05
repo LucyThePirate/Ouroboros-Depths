@@ -46,7 +46,7 @@ var initialized = false
 var my_turn = false
 var moved_by_skill := false
 
-var soul_count := 25
+var soul_count := 0
 var kills := 0
 var last_hit_by: GridEntity
 

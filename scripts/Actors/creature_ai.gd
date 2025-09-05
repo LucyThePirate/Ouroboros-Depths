@@ -150,15 +150,22 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 
 
 func _on_grid_entity_died() -> void:
+	_update_angry_at(null)
 	queue_free()
 
 
 func _on_grid_entity_hurt(attacker: GridEntity) -> void:
-	_update_angry_at(attacker)
+	if grid_entity.is_alive():
+		_update_angry_at(attacker)
 
 
 func _update_angry_at(new_target: GridEntity):
-	if new_target == grid_entity or new_target is not GridEntity:
+	if new_target == null:
+		if angry_at and angry_at.is_in_group("Player"):
+			Global.deaggroed_towards_player.emit(grid_entity)
+		angry_at = null
+		health_component.set_color(Color.WHITE)
+	if new_target == grid_entity or new_target is not GridEntity or new_target == angry_at:
 		return
 	if new_target.species_name == grid_entity.species_name:
 		return
@@ -174,8 +181,7 @@ func _update_angry_at(new_target: GridEntity):
 
 
 func _on_angry_at_died():
-	angry_at = null
-	health_component.set_color(Color.WHITE)
+	_update_angry_at(null)
 
 
 func _on_turn_component_turn_started() -> void:

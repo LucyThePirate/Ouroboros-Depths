@@ -110,6 +110,7 @@ func _handle_movement() -> void:
 
 	elif Input.is_action_just_pressed("ExecuteStack"):
 		if state == States.IDLE:
+			#$ExecutingParticles.emitting = true
 			state = States.EXECUTING_STACK
 			stack_component.execute_stack()
 
@@ -227,6 +228,7 @@ func _on_grid_entity_performed_action() -> void:
 
 func _on_skill_stack_component_emptied_stack() -> void:
 	if state == States.EXECUTING_STACK:
+		#$ExecutingParticles.emitting = false
 		state = States.IDLE
 		end_turn()
 
