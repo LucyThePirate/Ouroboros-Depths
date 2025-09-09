@@ -57,6 +57,7 @@ var angry_at_player = 0
 func _ready():
 	Global.aggroed_towards_player.connect(add_to_angry_at_player_list)
 	Global.deaggroed_towards_player.connect(remove_from_angry_at_player_list)
+	Global.entity_positions = {}
 	$CanvasLayer/DeathScreen.hide()
 #region Setting up RNG and dungeon generation
 	if (

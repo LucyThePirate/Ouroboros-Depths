@@ -67,6 +67,28 @@ func add_heal(amount: int):
 	)
 
 
+func add_damage_shield(amount: int):
+	$AnimationPlayer.play("MoreDamage")
+	$AnimationPlayer.seek(0)
+	display_location.position = Vector2(0, -40.0)
+	display_location.velocity.y += -INITIAL_VELOCITY / 2.0
+	if amount <= 0:
+		return
+	damage_amount += amount
+	var damage_effect_percentage = clampi(damage_amount, 0, 10) / 10.0
+	var text_color = Color(1.0 - damage_effect_percentage, 1.0 - damage_effect_percentage, 1.0)
+	display_text.self_modulate = text_color
+	display_text.text = (
+		"[shake rate=%s level=%s][font_size=%s]%s[/font_size][/shake]"
+		% [
+			damage_effect_percentage * 20,
+			damage_effect_percentage * 50,
+			base_font_size + (base_font_size * damage_effect_percentage),
+			damage_amount
+		]
+	)
+
+
 func _physics_process(delta: float) -> void:
 	display_location.velocity.y += GRAVITY * delta
 	display_location.velocity.y = clampf(

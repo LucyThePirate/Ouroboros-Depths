@@ -19,6 +19,13 @@ var buy_skill_buttons: Array[Button]
 var purchasable_items = []
 var num_items_on_sale := 6
 
+@onready var health_bar = (
+	$CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/CenterContainer/HealthBar as ProgressBar
+)
+@onready var health_label = (
+	$CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/CenterContainer/HealthBar/Label as Label
+)
+
 var reroll_cost := 3
 @onready var reroll_button = (
 	$CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer/RerollSkillsButton
@@ -39,6 +46,11 @@ func _ready() -> void:
 	soul_count.text = "Souls: %s\n(+%s bonus souls!)" % [souls, bonus_souls]
 	reroll_cost = 3
 	removal_cost = 3
+	health_bar.max_value = grid_parent.health_component.max_health
+	health_bar.value = grid_parent.health_component.health
+	health_label.text = (
+		"%s / %s" % [grid_parent.health_component.health, grid_parent.health_component.max_health]
+	)
 	_stock_buyable_skills()
 
 
@@ -116,5 +128,5 @@ func _on_remove_skill_button_pressed() -> void:
 func _on_skill_removed() -> void:
 	grid_parent.soul_count -= removal_cost
 	soul_count.text = "Souls: %s" % grid_parent.soul_count
-	removal_cost += 2
+	removal_cost += 1
 	removal_button.text = "Remove Skill - %s souls" % removal_cost

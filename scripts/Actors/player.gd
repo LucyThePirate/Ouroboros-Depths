@@ -53,8 +53,6 @@ func _process(delta: float) -> void:
 		process_mode = Node.PROCESS_MODE_ALWAYS
 		end_turn()
 
-
-func _input(event):
 	if Input.is_action_just_pressed("Chat") and not current_text:
 		var new_text_component = text_component.instantiate() as TextComponent
 		add_child(new_text_component)
@@ -156,17 +154,19 @@ func _metamorphing_completed():
 
 
 func _get_directional_input():
-	var moveDirection = Input.get_vector("Left", "Right", "Up", "Down")
-
-	if (
-		moveDirection
-		and (
-			Input.is_action_just_pressed("Left")
-			or Input.is_action_just_pressed("Right")
-			or Input.is_action_just_pressed("Down")
-			or Input.is_action_just_pressed("Up")
-		)
-	):
+	var moveDirection = Vector2()
+	var is_running = false
+	if Input.is_action_pressed("Run"):
+		is_running = true
+	if Input.is_action_just_pressed("Left") or (is_running and Input.is_action_pressed("Left")):
+		moveDirection.x -= 1
+	if Input.is_action_just_pressed("Right") or (is_running and Input.is_action_pressed("Right")):
+		moveDirection.x += 1
+	if Input.is_action_just_pressed("Up") or (is_running and Input.is_action_pressed("Up")):
+		moveDirection.y -= 1
+	if Input.is_action_just_pressed("Down") or (is_running and Input.is_action_pressed("Down")):
+		moveDirection.y += 1
+	if moveDirection:
 		moveDirection = Vector2(roundi(moveDirection.x), roundi(moveDirection.y))
 		if moveDirection.x and moveDirection.y:  # Disallow diagonal movements... for now.
 			return

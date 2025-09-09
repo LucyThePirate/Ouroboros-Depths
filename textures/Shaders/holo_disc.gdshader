@@ -54,7 +54,7 @@ float radial_gradient(vec2 uv, float target_angle) {
 void fragment() {
 	vec2 base_uv = UV;
 	if (screen_uv) {
-		
+
 		float aspect = SCREEN_PIXEL_SIZE.y/SCREEN_PIXEL_SIZE.x;
 		base_uv = vec2(SCREEN_UV.x, SCREEN_UV.y*aspect);
 	}
@@ -80,5 +80,5 @@ void fragment() {
 	//COLOR.b = color.b;
 	//COLOR.r = color.r;
 	//COLOR.g = color.g;
-	COLOR = vec4(color.r, color.g, color.b, 1);	
+	COLOR = vec4(color.r, color.g, color.b, 1);
 }

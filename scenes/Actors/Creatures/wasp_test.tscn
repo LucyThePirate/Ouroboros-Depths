@@ -33,9 +33,10 @@ max_health = 4
 
 [node name="Display" type="Node2D" parent="."]
 top_level = true
+position = Vector2(0, -34)
 
 [node name="WaspVisual" parent="." instance=ExtResource("4_iadu2")]
-position = Vector2(-1.95578e-07, -105)
+position = Vector2(-2.58908e-07, -139)
 rotation = 0.0231713
 scale = Vector2(0.215666, 0.215666)
 

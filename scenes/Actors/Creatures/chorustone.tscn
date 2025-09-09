@@ -20,6 +20,7 @@ visual = NodePath("Visual")
 [node name="GridEntity" parent="." instance=ExtResource("1_sts7m")]
 species_name = "Chorustone"
 species_desc = "An aged statue that is given life by the wind flowing through it... Or, at least, something life-adjacent."
+soul_count = 1
 
 [node name="OrchestrateSkillStrategy" parent="GridEntity/SkillStackComponent" index="7" instance=ExtResource("2_l7r4i")]
 mouse_filter = 0
@@ -33,6 +34,7 @@ max_health = 5
 
 [node name="Shield" parent="GridEntity/UI/StatusManagerComponent" index="1" instance=ExtResource("4_pp5e1")]
 layout_mode = 2
+text_scene = null
 power = 5
 
 [node name="Display" type="Node2D" parent="."]

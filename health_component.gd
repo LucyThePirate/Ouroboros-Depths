@@ -67,4 +67,4 @@ func set_color(new_color: Color):
 func _update_health_bar():
 	health_bar.max_value = max_health
 	health_bar.value = health
-	health_label.text = str(health)
+	health_label.text = "%s/%s" % [health, max_health]

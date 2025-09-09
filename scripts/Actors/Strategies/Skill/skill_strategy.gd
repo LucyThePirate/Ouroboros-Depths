@@ -134,4 +134,7 @@ func display_skill_info() -> void:
 	get_tree().current_scene.add_child(new_skill_description)
 	new_skill_description.icon.texture = icon.texture
 	new_skill_description.skill_name.text = skill_name
-	new_skill_description.skill_desc.text = skill_desc
+	new_skill_description.skill_desc.text = ""
+	if is_depletable:
+		new_skill_description.skill_desc.text += "[color=YELLOW]Depletable[/color]\n"
+	new_skill_description.skill_desc.text += skill_desc

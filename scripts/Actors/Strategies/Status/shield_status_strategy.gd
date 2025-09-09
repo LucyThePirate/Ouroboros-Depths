@@ -2,6 +2,8 @@ extends StatusStrategy
 
 class_name ShieldStatus
 
+@export var text_scene: PackedScene
+
 
 func _ready() -> void:
 	$ShieldAdded.play()
@@ -20,6 +22,10 @@ func on_turn_ended():
 func modify_damage(incoming_damage := 1) -> int:
 	incoming_damage -= power
 	if incoming_damage < 0:
+		var new_text_scene = text_scene.instantiate()
+		get_tree().current_scene.add_child(new_text_scene)
+		new_text_scene.global_position = global_position
+		new_text_scene.add_damage_shield(power - abs(incoming_damage))
 		power = abs(incoming_damage)
 		_update_visuals()
 		incoming_damage = 0
