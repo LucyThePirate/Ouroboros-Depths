@@ -11,23 +11,56 @@ extends Control
 @onready var music_volume = $CanvasLayer/Options/CenterContainer3/MusicVolume as HSlider
 @onready var sfx_tester = $CanvasLayer/Options/CenterContainer2/SFXTester
 
+@onready var load_progress_bar = $CanvasLayer/Loading/VBoxContainer/ProgressBar as ProgressBar
+@onready var loading_screen_tip = $CanvasLayer/Loading/VBoxContainer/Tip as RichTextLabel
+var tips = [
+	"Did you know?: 1 Trillion wasps is a lot of wasps. If you stacked them all on top of each other, they would get really mad!",
+	"Chorustone only has a wind-powered facsimile of life, and yet even this is enough for it to drop souls.",
+	"Did you know?: Feast your faces on greatest one game!",
+	"Thank you for playing! It warms my heart seeing people enjoying all the effort I put into making my game.",
+	"Skeletons enjoy such pastimes as prattling about, lobbing femurs at the living, and cackling madly. What a rich and exciting culture!",
+]
+var loading_scene
+enum States { IDLE, LOADING }
+var state := States.IDLE
+
 
 func _ready() -> void:
+	ResourceLoader.load_threaded_request(game_scene)
+	ResourceLoader.load_threaded_request(tutorial_scene)
 	var err = config.load(options_file)
 	load_volume_options()
 	_on_main_menu_button_pressed()
+	loading_screen_tip.text = tips.pick_random()
+
+
+func _process(delta: float) -> void:
+	if state == States.LOADING:
+		$CanvasLayer/Loading/CanvasLayer/CursorCollision.position = (
+			get_viewport().get_mouse_position()
+		)
+		var progress = []
+		var load_status := ResourceLoader.load_threaded_get_status(loading_scene, progress)
+		load_progress_bar.value = progress[0]
+		if load_status == ResourceLoader.THREAD_LOAD_LOADED:
+			var fully_loaded_scene = ResourceLoader.load_threaded_get(loading_scene)
+			get_tree().change_scene_to_packed(fully_loaded_scene)
 
 
 func _on_start_tutorial_button_pressed() -> void:
-	$CanvasLayer/Loading.show()
-	await get_tree().create_timer(0.1).timeout
-	get_tree().change_scene_to_file(tutorial_scene)
+	loading_scene = tutorial_scene
+	_start_loading()
 
 
 func _on_new_game_button_pressed() -> void:
+	loading_scene = game_scene
+	_start_loading()
+
+
+func _start_loading():
 	$CanvasLayer/Loading.show()
-	await get_tree().create_timer(0.1).timeout
-	get_tree().change_scene_to_file(game_scene)
+	state = States.LOADING
+	$CanvasLayer/Loading/CanvasLayer/TempFloor.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func _on_options_button_pressed() -> void:

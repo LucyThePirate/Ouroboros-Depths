@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7lgvin76pedb"
-path="res://.godot/imported/slopJohnses.png-0aed0164d560a5830b5db97757375f8c.ctex"
+uid="uid://b3d6wxumfs3s4"
+path="res://.godot/imported/voronoi_icon.png-2535410cd471b1c819b10e29f605ac2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://slopJohnses.png"
-dest_files=["res://.godot/imported/slopJohnses.png-0aed0164d560a5830b5db97757375f8c.ctex"]
+source_file="res://addons/softbody2d/voronoi_icon.png"
+dest_files=["res://.godot/imported/voronoi_icon.png-2535410cd471b1c819b10e29f605ac2f.ctex"]
 
 [params]
 

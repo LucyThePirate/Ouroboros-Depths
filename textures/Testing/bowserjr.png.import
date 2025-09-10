@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://teixo1eiibju"
-path="res://.godot/imported/what.png-43faef1705a943e81dc5343a05ad7022.ctex"
+uid="uid://4aw2nf61m1op"
+path="res://.godot/imported/bowserjr.png-cc54e13e6019be7fe0dc122c2f00968b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://what.png"
-dest_files=["res://.godot/imported/what.png-43faef1705a943e81dc5343a05ad7022.ctex"]
+source_file="res://textures/Testing/bowserjr.png"
+dest_files=["res://.godot/imported/bowserjr.png-cc54e13e6019be7fe0dc122c2f00968b.ctex"]
 
 [params]
 

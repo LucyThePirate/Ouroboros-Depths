@@ -1,7 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmxeogtui2phc"]
+[gd_scene load_steps=12 format=3 uid="uid://cmxeogtui2phc"]
 
 [ext_resource type="Texture2D" uid="uid://bwvtwmdsyty2g" path="res://textures/Testing/dottedLine.png" id="1_temwn"]
 [ext_resource type="Script" uid="uid://bl5geefd2ut0s" path="res://scripts/Effects/note_vfx.gd" id="2_al6sn"]
+[ext_resource type="Script" uid="uid://dgyvnwtc4dcoj" path="res://addons/SimpleSampler/sampler_instrument.gd" id="3_mfgr6"]
+[ext_resource type="Script" uid="uid://cqiowphvax5uj" path="res://addons/SimpleSampler/sample_resource.gd" id="4_spoek"]
+[ext_resource type="Resource" uid="uid://4fky4fiaq5cv" path="res://samples/synth/E4.tres" id="5_ytnom"]
+[ext_resource type="Resource" uid="uid://b17jir0nea6wb" path="res://samples/synth/E5.tres" id="6_o6xls"]
+[ext_resource type="Resource" uid="uid://or0rpm8mm2fx" path="res://samples/synth/G#4.tres" id="7_dlnl1"]
 
 [sub_resource type="Animation" id="Animation_1lnjl"]
 length = 0.001
@@ -12,6 +17,42 @@ tracks/0/path = NodePath("ColorRect:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Note:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Note:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Note:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -33,9 +74,63 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0.627451), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_bqrfq"]
+resource_name = "Telegraph"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.682353, 1, 0, 1), Color(1, 1, 1, 0.627451)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Note:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -96), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Note:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Note:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bqrfq"]
 _data = {
 &"RESET": SubResource("Animation_1lnjl"),
+&"Telegraph": SubResource("Animation_bqrfq"),
 &"Vanish": SubResource("Animation_al6sn")
 }
 
@@ -59,14 +154,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.886275, 0, 0, 0.439216)
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_bqrfq")
 }
 autoplay = "Vanish"
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Note" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(3.04089, 3.04089)
+texture = ExtResource("1_temwn")
+
+[node name="SamplerInstrument" type="AudioStreamPlayer" parent="."]
+volume_db = -5.205
+bus = &"SFX"
+script = ExtResource("3_mfgr6")
+samples = Array[ExtResource("4_spoek")]([ExtResource("5_ytnom"), ExtResource("6_o6xls"), ExtResource("7_dlnl1")])
+metadata/_custom_type_script = "uid://dgyvnwtc4dcoj"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

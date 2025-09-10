@@ -27,7 +27,8 @@ func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
 	$Cursor.global_position = Global.floors.map_to_local(cursor)
 	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
 	var relative_coord = cursor - grid_coords
-	sampler.play_note(notes[relative_coord.x % notes.size()], 4 - (relative_coord.y % 4))
+	if show_UI:
+		sampler.play_note(notes[relative_coord.x % notes.size()], 4 - (relative_coord.y % 4))
 
 
 func on_stack_execution_started(grid_entity: GridEntity):
@@ -54,19 +55,25 @@ func on_stack_execution_finished(grid_entity: GridEntity):
 
 
 func coord_to_note(relative_coord, grid_entity: GridEntity):
-	sampler.play_note(notes[relative_coord.x % notes.size()], 4 - (relative_coord.y % 4))
+	#sampler.play_note(notes[relative_coord.x % notes.size()], 4 - (relative_coord.y % 4))
 	var check_coords = Global.floors.local_to_map(grid_entity.global_position) + relative_coord
-	if (
-		Global.entity_positions.has(check_coords)
-		and is_instance_valid(Global.entity_positions[check_coords])
-	):
-		Global.entity_positions[check_coords]._on_hit(grid_entity)
+	#if (
+	#Global.entity_positions.has(check_coords)
+	#and is_instance_valid(Global.entity_positions[check_coords])
+	#):
+	#Global.entity_positions[check_coords]._on_hit(grid_entity)
 	#var note_rect = Rect2(
 	#check_coords * Global.CELL_SIZE, Vector2(Global.CELL_SIZE, Global.CELL_SIZE)
 	#)
 	#draw_rect(note_rect, Color.RED, true)
 	var new_note_VFX = note_VFX.instantiate()
 	get_tree().current_scene.add_child(new_note_VFX)
+	new_note_VFX.set_note(
+		notes[relative_coord.x % notes.size()],
+		4 - (relative_coord.y % 4),
+		check_coords,
+		grid_entity
+	)
 	new_note_VFX.global_position = Global.floors.map_to_local(check_coords)
 
 

@@ -1,9 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://bd85kao70uoy4"]
+[gd_scene load_steps=36 format=3 uid="uid://bd85kao70uoy4"]
 
 [ext_resource type="Script" uid="uid://b6uhrd8rdimmy" path="res://scripts/Actors/skill_stack_component.gd" id="1_rerjn"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="2_qowul"]
 [ext_resource type="AudioStream" uid="uid://d3dload3sw6cq" path="res://audio/SFX/Misc/erro.mp3" id="2_rerjn"]
-[ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="3_n6r18"]
 [ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="4_iqeie"]
 [ext_resource type="PackedScene" uid="uid://c063h7gtu7k4q" path="res://scenes/Actors/Strategies/Status/reload_status_strategy.tscn" id="4_rfo38"]
 [ext_resource type="AudioStream" uid="uid://d2xfgpdhopbfj" path="res://audio/SFX/Skills/98329__cognito-perceptu__cassette-tape-action-2.ogg" id="5_8fyuu"]
@@ -95,7 +94,7 @@ stream_0/stream = ExtResource("18_8of2w")
 [node name="SkillStackComponent" type="Node2D"]
 script = ExtResource("1_rerjn")
 preview_queue_skill_texture = ExtResource("2_qowul")
-null_skill_texture = ExtResource("3_n6r18")
+null_skill_texture = ExtResource("7_qdnrn")
 reload_status = ExtResource("4_rfo38")
 skill_icon_scene = ExtResource("5_e1hdf")
 text_scene = ExtResource("6_5452a")
