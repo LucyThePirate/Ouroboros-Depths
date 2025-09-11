@@ -211,7 +211,7 @@ func hit(entity):
 
 
 func _on_hit(attacker, damage := 1):
-	if self == attacker:
+	if self == attacker or not attacker:
 		#$Error.play()
 		return
 	else:
@@ -299,6 +299,8 @@ func _on_info_button_pressed() -> void:
 	var new_creature_description = description_scene.instantiate() as CreatureDescription
 	get_tree().current_scene.add_child(new_creature_description)
 	#new_creature_description.icon.texture = icon.texture
-	new_creature_description.creature_name.text = species_name
+	new_creature_description.creature_name.text = (
+		"%s [color=GRAY](%s)" % [species_name, get_parent().name]
+	)
 	new_creature_description.creature_desc.text = species_desc
 	new_creature_description.set_status_descriptions(status_component.get_status_descriptions())

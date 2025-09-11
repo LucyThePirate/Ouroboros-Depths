@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bkcktb2mpmgsc"]
+[gd_scene load_steps=29 format=4 uid="uid://bkcktb2mpmgsc"]
 
 [ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_qylo2"]
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/Effects/boulder_splash.tscn" id="2_o74wk"]
@@ -8,6 +8,7 @@
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="12_m3s0v"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/Testing/thisGuyPOV.png" id="12_u1sel"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="13_ob1md"]
+[ext_resource type="PackedScene" uid="uid://g7fhohrlv81x" path="res://scenes/Actors/Creatures/fuzz_tester.tscn" id="13_qylo2"]
 [ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/Actors/Creatures/wasp_test.tscn" id="14_o74wk"]
 [ext_resource type="PackedScene" uid="uid://cqjoguhw8mhj" path="res://scenes/Actors/Creatures/tutorial_scarecrow.tscn" id="15_kv4pv"]
 [ext_resource type="AudioStream" uid="uid://c6h5kgpbbohnv" path="res://audio/Music/AstrMusic/TempleCardGameAstrMastr.mp3" id="16_hg4aq"]
@@ -551,6 +552,9 @@ offset_bottom = 58.0
 scale = Vector2(1.89696, 1.89696)
 script = ExtResource("17_1enxm")
 metadata/_custom_type_script = "uid://b57xlofytn3k"
+
+[node name="FuzzTester" parent="." instance=ExtResource("13_qylo2")]
+position = Vector2(-144, -132)
 
 [connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer/NewRunButton" to="." method="_on_new_run_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer2/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]

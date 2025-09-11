@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://dgir4s3k6njaa" path="res://samples/softbody2d/pickable_rigidbody.gd" id="12_khjys"]
 [ext_resource type="AudioStream" uid="uid://b1nmnkp41rdqr" path="res://audio/SFX/Misc/Punch2.ogg" id="12_mynnq"]
 [ext_resource type="AudioStream" uid="uid://c4iuvy3r2whs6" path="res://audio/SFX/Misc/Punch3.ogg" id="13_e8tpv"]
-[ext_resource type="AudioStream" uid="uid://c5shssvk8nqtq" path="res://audio/Music/AstrMusic/GOLD_DUST[continue,layered,mysterious]Astr.mp3" id="14_mynnq"]
+[ext_resource type="AudioStream" uid="uid://dpm1ipsmp3ge" path="res://audio/Music/AstrMusic/Pathforgetting[ambient,wistful,fav].mp3" id="16_4qe4i"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mce2t"]
 blend_mode = 3
@@ -439,7 +439,7 @@ position = Vector2(579, 107)
 sprite_frames = ExtResource("5_tklts")
 animation = &"gif"
 autoplay = "gif"
-frame_progress = 0.481341
+frame_progress = 0.167857
 
 [node name="Title" type="RichTextLabel" parent="CanvasLayer/MainMenu"]
 layout_mode = 2
@@ -3280,7 +3280,8 @@ autoplay = "camera_pan"
 speed_scale = 0.5
 
 [node name="TitleBGMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_mynnq")
+stream = ExtResource("16_4qe4i")
+volume_db = 3.496
 autoplay = true
 bus = &"Music"
 

@@ -39,6 +39,8 @@ var removal_cost := 3
 
 
 func _ready() -> void:
+	if not grid_parent:
+		return
 	for soul in range(grid_parent.soul_count):
 		souls += soul + 1
 	var bonus_souls = souls - grid_parent.soul_count

@@ -19,10 +19,11 @@ signal gained_status(status)
 @export var cost := 1
 
 @export_category("AI Use Hints")
-@export var max_per_stack := 1
+@export var max_per_stack := 3
 @onready var current_in_stack := 0
 @export var cooldown_turns := 1
 @onready var current_cooldown := 0
+@export var priority := 0
 
 @export_category("Lore")
 @export var skill_name: String

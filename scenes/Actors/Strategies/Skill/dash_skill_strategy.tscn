@@ -10,6 +10,7 @@ offset_left = -1.0
 offset_right = 143.0
 script = ExtResource("1_ss86u")
 DashVFX = ExtResource("2_au81m")
+priority = 1
 skill_name = "Dash"
 skill_desc = "Make a break for it!
 

@@ -90,7 +90,7 @@ func can_queue_skill(skill_number) -> bool:
 	if hand.is_empty() or not hand[skill_number]:
 		reload_deck()
 		return false
-	if skills.size() >= skill_number + 1 and not is_full() and hand[skill_number].can_use_skill():
+	if not is_full() and hand[skill_number].can_use_skill():
 		return true
 	return false
 

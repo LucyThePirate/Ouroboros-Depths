@@ -12,6 +12,7 @@ offset_right = 143.0
 script = ExtResource("1_swfph")
 StompVFX = ExtResource("2_vm8f4")
 note_VFX = ExtResource("4_60mig")
+priority = -1
 skill_name = "Stomp"
 skill_desc = "You crack the ground with a mighty impact, damaging all creatures around you!
 

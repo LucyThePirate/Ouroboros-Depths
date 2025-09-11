@@ -9,6 +9,8 @@
 script = ExtResource("2_0lf28")
 DashVFX = ExtResource("3_plapq")
 is_depletable = true
+max_per_stack = 1
+priority = -1
 skill_name = "Warp"
 skill_desc = "A sly bit of wormhole magic to let you slip from here to there.
 
