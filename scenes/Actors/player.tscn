@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d2wq4gejffyd"]
+[gd_scene load_steps=32 format=3 uid="uid://d2wq4gejffyd"]
 
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="1_exgt7"]
 [ext_resource type="Script" uid="uid://be6oo33bhfx63" path="res://scripts/Actors/player.gd" id="1_ochwc"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/Actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="7_yw7wc"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="8_wd2mq"]
 [ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/Actors/Strategies/Skill/defend_skill_strategy.tscn" id="9_mtoqb"]
+[ext_resource type="PackedScene" uid="uid://c10nhwhuw3ge4" path="res://scenes/Actors/Strategies/Skill/orchestrate_skill_strategy.tscn" id="10_nfopg"]
 [ext_resource type="AudioStream" uid="uid://0to1gxx02bfe" path="res://audio/SFX/Misc/OrangePeelReverse.ogg" id="16_nfopg"]
 [ext_resource type="AudioStream" uid="uid://cwqwqvrk8t7gj" path="res://audio/SFX/Misc/OrangePeel1.ogg" id="17_1vpxp"]
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/Creatures/Soul.png" id="18_1vpxp"]
@@ -142,6 +143,8 @@ mouse_filter = 0
 
 [node name="DefendSkillStrategy" parent="GridEntity/SkillStackComponent" index="9" instance=ExtResource("9_mtoqb")]
 mouse_filter = 0
+
+[node name="OrchestrateSkillStrategy" parent="GridEntity/SkillStackComponent" index="13" instance=ExtResource("10_nfopg")]
 
 [node name="Camera2D2" type="Camera2D" parent="GridEntity"]
 zoom = Vector2(0.5, 0.5)

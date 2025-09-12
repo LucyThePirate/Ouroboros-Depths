@@ -22,8 +22,9 @@ func _ready():
 func initialize(is_player_typed := true):
 	if is_player_typed:
 		text.text = "[wave amp=50.0 freq=5.0 connected=1]...[/wave]"
+		text_editor.grab_focus()
 		text_editor.edit()
-		text_editor.keep_editing_on_text_submit = true
+		#text_editor.keep_editing_on_text_submit = true
 	else:
 		text.text = ""
 
@@ -42,6 +43,8 @@ func _on_line_edit_text_changed(new_text: String) -> void:
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	if new_text == "":
+		text_submitted.emit()
+		queue_free()
 		return
 	text.text = new_text
 	$AnimationPlayer.play("float_away")

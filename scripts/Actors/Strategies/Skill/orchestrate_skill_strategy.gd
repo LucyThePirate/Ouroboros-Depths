@@ -7,6 +7,7 @@ var max_distance = 5
 @export var delay := 0.25
 
 @onready var sampler = $SamplerInstrument
+@onready var stream_player = $SamplerInstrument/AudioStreamPlayer2D
 
 @onready var sequence: Array[Array] = []
 @onready var chord: Array[Vector2i] = []
@@ -28,6 +29,7 @@ func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
 	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
 	var relative_coord = cursor - grid_coords
 	if show_UI:
+		stream_player.position = $Cursor.global_position
 		sampler.play_note(notes[relative_coord.x % notes.size()], 4 - (relative_coord.y % 4))
 
 

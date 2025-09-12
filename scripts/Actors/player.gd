@@ -23,6 +23,8 @@ var initialized = false
 enum States { IDLE, DEAD, EXECUTING_STACK, METAMORPHOSIS_STARTED, METAMORPHING }
 var state = States.IDLE
 
+var is_talking := false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -53,14 +55,18 @@ func _process(delta: float) -> void:
 		process_mode = Node.PROCESS_MODE_ALWAYS
 		end_turn()
 
-	if Input.is_action_just_pressed("Chat") and not current_text:
-		var new_text_component = text_component.instantiate() as TextComponent
-		add_child(new_text_component)
-		new_text_component.initialize(true)
-		new_text_component.global_position = grid_entity.global_position
-		current_text = new_text_component
-		new_text_component.text_changed.connect(visual._on_talked)
-		new_text_component.text_submitted.connect(_on_finished_writing_text)
+	if Input.is_action_just_pressed("Chat"):
+		if not is_talking:
+			var new_text_component = text_component.instantiate() as TextComponent
+			add_child(new_text_component)
+			new_text_component.initialize(true)
+			new_text_component.global_position = grid_entity.global_position
+			current_text = new_text_component
+			is_talking = true
+			new_text_component.text_changed.connect(visual._on_talked)
+			#new_text_component.text_submitted.connect(_on_finished_writing_text)
+		else:
+			_on_finished_writing_text()
 
 	if not turn_component.my_turn or current_text:
 		return
@@ -235,6 +241,7 @@ func _on_skill_stack_component_emptied_stack() -> void:
 
 func _on_finished_writing_text() -> void:
 	current_text = null
+	is_talking = false
 
 
 func _on_grid_entity_fell_off_map() -> void:

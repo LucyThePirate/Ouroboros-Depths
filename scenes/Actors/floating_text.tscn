@@ -137,6 +137,7 @@ offset_right = 34.2812
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
+placeholder_text = "[wave amp=50.0 freq=5.0 connected=1]...[/wave]"
 alignment = 1
 selecting_enabled = false
 

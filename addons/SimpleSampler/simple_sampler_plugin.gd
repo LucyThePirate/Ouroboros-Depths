@@ -1,18 +1,23 @@
 @tool
 extends EditorPlugin
 
-
 func _enter_tree():
 	add_custom_type(
-		"NoteSample", "Resource", preload("sample_resource.gd"), preload("sample_icon.png")
+		"NoteSample",
+		"Resource",
+		preload("sample_resource.gd"),
+		preload("sample_icon.png")
 	)
 	add_autoload_singleton("NoteValue", "res://addons/SimpleSampler/note_value.gd")
 	add_custom_type(
-		"Sampler", "AudioStreamPlayer2D", preload("sampler.gd"), preload("sampler_icon.png")
+		"Sampler",
+		"AudioStreamPlayer",
+		preload("sampler.gd"),
+		preload("sampler_icon.png")
 	)
 	add_custom_type(
 		"SamplerInstrument",
-		"AudioStreamPlayer2D",
+		"AudioStreamPlayer",
 		preload("sampler_instrument.gd"),
 		preload("multisampler_icon.png")
 	)

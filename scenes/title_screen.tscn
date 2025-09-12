@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://c02to40218vlw"]
+[gd_scene load_steps=63 format=4 uid="uid://c02to40218vlw"]
 
 [ext_resource type="Script" uid="uid://chejtonyw0gfm" path="res://scripts/title_screen.gd" id="1_tklts"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="2_mykxm"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://e43003nmrylg" path="res://samples/softbody2d/pickable_rigidbody.tscn" id="10_4qe4i"]
 [ext_resource type="AudioStream" uid="uid://duevq7vgf28ks" path="res://audio/SFX/Misc/Punch1.ogg" id="11_frs5l"]
 [ext_resource type="PhysicsMaterial" uid="uid://2kay8j53abmv" path="res://samples/softbody2d/softbody2d_phys_slippery.tres" id="11_p07av"]
-[ext_resource type="Script" uid="uid://dgir4s3k6njaa" path="res://samples/softbody2d/pickable_rigidbody.gd" id="12_khjys"]
 [ext_resource type="AudioStream" uid="uid://b1nmnkp41rdqr" path="res://audio/SFX/Misc/Punch2.ogg" id="12_mynnq"]
 [ext_resource type="AudioStream" uid="uid://c4iuvy3r2whs6" path="res://audio/SFX/Misc/Punch3.ogg" id="13_e8tpv"]
 [ext_resource type="AudioStream" uid="uid://dpm1ipsmp3ge" path="res://audio/Music/AstrMusic/Pathforgetting[ambient,wistful,fav].mp3" id="16_4qe4i"]
@@ -617,7 +616,6 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-1" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(39.2917, 173.971)
 rotation = -0.469452
-scale = Vector2(1, 1)
 rest = Transform2D(0.891816, -0.452398, 0.452398, 0.891816, 39.2917, 173.971)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -644,6 +642,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-3" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(96.2855, 78.4352)
 rotation = -0.55623
+scale = Vector2(1, 1)
 rest = Transform2D(0.849252, -0.527988, 0.527988, 0.849252, 96.2855, 78.4352)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -655,7 +654,7 @@ metadata/connected_nodes_idx = [2, 4, 16, 18, 5]
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone-4" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
-position = Vector2(76.7781, 91.4406)
+position = Vector2(76.7782, 91.4405)
 rotation = 0.781059
 rest = Transform2D(0.710168, 0.704032, -0.704032, 0.710168, 76.7782, 91.4405)
 auto_calculate_length_and_angle = false
@@ -683,6 +682,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-6" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(69.4064, 127.073)
 rotation = -1.36679
+scale = Vector2(1, 1)
 rest = Transform2D(0.202592, -0.979263, 0.979263, 0.202592, 69.4064, 127.073)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -696,7 +696,6 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-7" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(100.171, 141.784)
 rotation = 2.63972
-scale = Vector2(1, 1)
 rest = Transform2D(-0.876682, 0.48107, -0.48107, -0.876682, 100.171, 141.784)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -708,8 +707,9 @@ metadata/connected_nodes_idx = [5, 20, 6, 8, 22, 9]
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone-8" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
-position = Vector2(68.7028, 159.052)
+position = Vector2(68.7027, 159.052)
 rotation = 1.54074
+scale = Vector2(1, 1)
 rest = Transform2D(0.0300513, 0.999548, -0.999548, 0.0300513, 68.7027, 159.052)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -736,6 +736,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-10" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(69.7157, 192.744)
 rotation = -0.599834
+scale = Vector2(1, 1)
 rest = Transform2D(0.825429, -0.564506, 0.564506, 0.825429, 69.7157, 192.744)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -788,7 +789,6 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-14" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(126.386, 29.989)
 rotation = 1.63657
-scale = Vector2(1, 1)
 rest = Transform2D(-0.0657229, 0.997838, -0.997838, -0.0657229, 126.386, 29.989)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -815,7 +815,6 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-16" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(124.345, 60.9906)
 rotation = 1.57882
-scale = Vector2(1, 1)
 rest = Transform2D(-0.00802036, 0.999968, -0.999968, -0.00802036, 124.345, 60.9906)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -855,6 +854,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-19" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(150.32, 112.246)
 rotation = 2.52873
+scale = Vector2(1, 1)
 rest = Transform2D(-0.818003, 0.575214, -0.575214, -0.818003, 150.32, 112.246)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -935,6 +935,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-25" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(153.082, 209.585)
 rotation = 2.71105
+scale = Vector2(1, 1)
 rest = Transform2D(-0.908739, 0.417366, -0.417366, -0.908739, 153.082, 209.585)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1000,7 +1001,6 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-30" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(187.169, 153.971)
 rotation = -1.88267
-scale = Vector2(1, 1)
 rest = Transform2D(-0.306842, -0.95176, 0.95176, -0.306842, 187.169, 153.971)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1040,6 +1040,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-33" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(178.533, 231.568)
 rotation = -1.48128
+scale = Vector2(1, 1)
 rest = Transform2D(0.0893961, -0.995996, 0.995996, 0.0893961, 178.533, 231.568)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1050,12 +1051,10 @@ metadata/connected_nodes_paths = [NodePath("Bone-25"), NodePath("Bone-32"), Node
 metadata/connected_nodes_idx = [25, 32, 27]
 metadata/_local_pose_override_enabled_ = true
 
-[node name="Bone-0" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-0" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(42.4661, 143.478)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 0
 metadata/bone_name = &"Bone-0"
 
@@ -1095,12 +1094,10 @@ node_b = NodePath("../../Bone-8")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-1" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-1" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(39.2917, 173.971)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 1
 metadata/bone_name = &"Bone-1"
 
@@ -1140,12 +1137,10 @@ node_b = NodePath("../../Bone-10")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-2" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-2" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(98.8251, 46.6292)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 2
 metadata/bone_name = &"Bone-2"
 
@@ -1185,12 +1180,10 @@ node_b = NodePath("../../Bone-16")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-3" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-3" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(96.2855, 78.4352)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 3
 metadata/bone_name = &"Bone-3"
 
@@ -1248,12 +1241,10 @@ node_b = NodePath("../../Bone-5")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-4" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-4" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(76.7782, 91.4405)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 4
 metadata/bone_name = &"Bone-4"
 
@@ -1293,12 +1284,10 @@ node_b = NodePath("../../Bone-6")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-5" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-5" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(98.4777, 112.953)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 5
 metadata/bone_name = &"Bone-5"
 
@@ -1365,12 +1354,10 @@ node_b = NodePath("../../Bone-7")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-6" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-6" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(69.4064, 127.073)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 6
 metadata/bone_name = &"Bone-6"
 
@@ -1428,12 +1415,10 @@ node_b = NodePath("../../Bone-7")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-7" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-7" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(100.171, 141.784)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 7
 metadata/bone_name = &"Bone-7"
 
@@ -1500,12 +1485,10 @@ node_b = NodePath("../../Bone-9")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-8" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-8" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(68.7027, 159.052)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 8
 metadata/bone_name = &"Bone-8"
 
@@ -1572,12 +1555,10 @@ node_b = NodePath("../../Bone-9")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-9" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-9" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(97.1292, 173.996)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 9
 metadata/bone_name = &"Bone-9"
 
@@ -1644,12 +1625,10 @@ node_b = NodePath("../../Bone-11")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-10" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-10" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(69.7157, 192.744)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 10
 metadata/bone_name = &"Bone-10"
 
@@ -1707,12 +1686,10 @@ node_b = NodePath("../../Bone-12")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-11" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-11" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(95.7421, 209.358)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 11
 metadata/bone_name = &"Bone-11"
 
@@ -1779,12 +1756,10 @@ node_b = NodePath("../../Bone-13")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-12" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-12" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(70.8059, 230.293)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 12
 metadata/bone_name = &"Bone-12"
 
@@ -1824,12 +1799,10 @@ node_b = NodePath("../../Bone-13")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-13" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-13" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(91.7349, 239.252)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 13
 metadata/bone_name = &"Bone-13"
 
@@ -1869,12 +1842,10 @@ node_b = NodePath("../../Bone-12")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-14" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-14" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(126.386, 29.989)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 14
 metadata/bone_name = &"Bone-14"
 
@@ -1914,12 +1885,10 @@ node_b = NodePath("../../Bone-15")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-15" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-15" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(151.343, 42.8821)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 15
 metadata/bone_name = &"Bone-15"
 
@@ -1959,12 +1928,10 @@ node_b = NodePath("../../Bone-16")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-16" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-16" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(124.345, 60.9906)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 16
 metadata/bone_name = &"Bone-16"
 
@@ -2031,12 +1998,10 @@ node_b = NodePath("../../Bone-17")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-17" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-17" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(157.854, 73.0115)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 17
 metadata/bone_name = &"Bone-17"
 
@@ -2094,12 +2059,10 @@ node_b = NodePath("../../Bone-19")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-18" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-18" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(124.056, 96.9696)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 18
 metadata/bone_name = &"Bone-18"
 
@@ -2166,12 +2129,10 @@ node_b = NodePath("../../Bone-19")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-19" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-19" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(150.32, 112.246)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 19
 metadata/bone_name = &"Bone-19"
 
@@ -2238,12 +2199,10 @@ node_b = NodePath("../../Bone-21")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-20" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-20" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(121.743, 132.341)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 20
 metadata/bone_name = &"Bone-20"
 
@@ -2310,12 +2269,10 @@ node_b = NodePath("../../Bone-21")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-21" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-21" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(149.101, 142.275)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 21
 metadata/bone_name = &"Bone-21"
 
@@ -2382,12 +2339,10 @@ node_b = NodePath("../../Bone-23")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-22" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-22" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(123.63, 155.083)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 22
 metadata/bone_name = &"Bone-22"
 
@@ -2454,12 +2409,10 @@ node_b = NodePath("../../Bone-23")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-23" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-23" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(151.558, 174.497)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 23
 metadata/bone_name = &"Bone-23"
 
@@ -2526,12 +2479,10 @@ node_b = NodePath("../../Bone-25")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-24" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-24" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(124.241, 191.016)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 24
 metadata/bone_name = &"Bone-24"
 
@@ -2598,12 +2549,10 @@ node_b = NodePath("../../Bone-25")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-25" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-25" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(153.082, 209.585)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 25
 metadata/bone_name = &"Bone-25"
 
@@ -2670,12 +2619,10 @@ node_b = NodePath("../../Bone-27")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-26" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-26" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(124.397, 222.76)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 26
 metadata/bone_name = &"Bone-26"
 
@@ -2733,12 +2680,10 @@ node_b = NodePath("../../Bone-27")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-27" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-27" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(156.096, 240.368)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 27
 metadata/bone_name = &"Bone-27"
 
@@ -2778,12 +2723,10 @@ node_b = NodePath("../../Bone-26")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-28" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-28" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(175.517, 94.1715)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 28
 metadata/bone_name = &"Bone-28"
 
@@ -2823,12 +2766,10 @@ node_b = NodePath("../../Bone-19")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-29" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-29" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(178.461, 126.962)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 29
 metadata/bone_name = &"Bone-29"
 
@@ -2877,12 +2818,10 @@ node_b = NodePath("../../Bone-30")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-30" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-30" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(187.169, 153.971)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 30
 metadata/bone_name = &"Bone-30"
 
@@ -2940,12 +2879,10 @@ node_b = NodePath("../../Bone-32")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-31" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-31" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(206.011, 179.281)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 31
 metadata/bone_name = &"Bone-31"
 
@@ -2976,12 +2913,10 @@ node_b = NodePath("../../Bone-30")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-32" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-32" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(181.978, 193.188)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 32
 metadata/bone_name = &"Bone-32"
 
@@ -3039,12 +2974,10 @@ node_b = NodePath("../../Bone-33")
 disable_collision = false
 softness = 2.0
 
-[node name="Bone-33" type="RigidBody2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
+[node name="Bone-33" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" instance=ExtResource("10_4qe4i")]
 position = Vector2(178.533, 231.568)
-input_pickable = true
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
-script = ExtResource("12_khjys")
 metadata/idx = 33
 metadata/bone_name = &"Bone-33"
 
@@ -3105,10 +3038,9 @@ rotation = 1.57079
 shape = SubResource("WorldBoundaryShape2D_gmx2j")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="CanvasLayer/Loading/CanvasLayer"]
-position = Vector2(1303, 574)
+position = Vector2(1152, 515)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Loading/CanvasLayer/StaticBody2D3"]
-position = Vector2(-154, -122)
 rotation = 4.71238
 shape = SubResource("WorldBoundaryShape2D_gmx2j")
 

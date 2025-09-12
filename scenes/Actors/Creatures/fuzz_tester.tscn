@@ -25,9 +25,6 @@ Even within their own species, Fuzz Testers differ wildly from each other.
 Due to their tendency to pick fights with anything that moves, it is not a bad idea to study their skirmishes from a safe distance before engaging."
 soul_count = 1
 
-[node name="SkillStackComponent" parent="GridEntity" index="10"]
-visible = false
-
 [node name="HealthComponent" parent="GridEntity/UI" index="0"]
 max_health = 10
 

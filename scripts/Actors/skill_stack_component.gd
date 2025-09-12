@@ -86,6 +86,7 @@ func reload_deck() -> bool:
 
 func can_queue_skill(skill_number) -> bool:
 	if state == States.RELOADING:
+		_display_error("Reloading!")
 		return false
 	if hand.is_empty() or not hand[skill_number]:
 		reload_deck()
@@ -114,11 +115,11 @@ func queue_skill(skill_number) -> bool:
 			hand[skill_number] = deck.pop_front()
 			total_skill_count -= 1
 		_update_skill_visuals()
+		if hand.all(func(skill): return skill == null):  # Automatically reload when out of skills
+			reload_deck()
 		return true
 	else:
-		if state == States.RELOADING:
-			_display_error("Reloading!")
-		elif is_full():
+		if is_full():
 			_display_error("Stack is full!")
 	return false
 
@@ -130,7 +131,7 @@ func is_full() -> bool:
 
 
 func can_execute_stack() -> bool:
-	if stack.is_empty() or state != States.IDLE:
+	if stack.is_empty() or (state != States.IDLE):
 		return false
 	return true
 
