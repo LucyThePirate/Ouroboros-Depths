@@ -422,9 +422,9 @@ colors = PackedColorArray(0, 0.854902, 0.439216, 1, 1, 1, 0, 1)
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1enxm"]
 width = 100
 height = 100
-seamless = true
-color_ramp = SubResource("Gradient_f5ym2")
 noise = SubResource("FastNoiseLite_ve283")
+color_ramp = SubResource("Gradient_f5ym2")
+seamless = true
 
 [sub_resource type="Gradient" id="Gradient_ojjv0"]
 colors = PackedColorArray(0, 1, 0.631373, 1, 1, 0, 1, 1)
@@ -434,9 +434,9 @@ colors = PackedColorArray(0, 1, 0.631373, 1, 1, 0, 1, 1)
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m3s0v"]
 width = 100
 height = 100
-seamless = true
-color_ramp = SubResource("Gradient_ojjv0")
 noise = SubResource("FastNoiseLite_lkcb0")
+color_ramp = SubResource("Gradient_ojjv0")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ve283"]
 shader = ExtResource("3_hqfjb")

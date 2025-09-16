@@ -18,10 +18,10 @@ func on_skill_queued():
 		current_patience.power = power
 		add_child(current_patience)
 		gained_status.emit(current_patience)
+	super()
 
 
 func use_skill(grid_entity: GridEntity):
-	print("Used skill ", name, " with patience at:", current_patience.power)
 	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
 	var total_radius = base_radius + floor(current_patience.power / 4.0)
 	if total_radius <= 2:
@@ -54,6 +54,6 @@ func use_skill(grid_entity: GridEntity):
 	super(grid_entity)
 
 
-func on_stack_execution_finished(grid_entity: GridEntity):
+func on_stack_execution_finished(_grid_entity: GridEntity):
 	if current_patience:
 		current_patience.on_status_ended()

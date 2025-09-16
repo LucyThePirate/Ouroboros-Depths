@@ -194,7 +194,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Reload" type="TextureRect" parent="CanvasLayer/AvailableSkills"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 246.0
 offset_top = 558.0
 offset_right = 464.0
@@ -217,7 +217,7 @@ metadata/_custom_type_script = "uid://b57xlofytn3k"
 [node name="Reload2" type="TextureRect" parent="CanvasLayer/AvailableSkills/Reload"]
 self_modulate = Color(0, 0, 0, 0.662745)
 show_behind_parent = true
-layout_mode = 2
+layout_mode = 0
 offset_left = 7.91801
 offset_top = 11.877
 offset_right = 225.918
@@ -278,7 +278,7 @@ focus_mode = 0
 button_mask = 2
 
 [node name="ActionIcon5" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1/InfoButton1"]
-layout_mode = 2
+layout_mode = 0
 offset_left = -12.6871
 offset_top = -27.3372
 offset_right = 185.313
@@ -314,7 +314,7 @@ focus_mode = 0
 button_mask = 2
 
 [node name="ActionIcon4" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2/InfoButton2"]
-layout_mode = 2
+layout_mode = 0
 offset_left = -10.5703
 offset_top = -27.3372
 offset_right = 187.43
@@ -350,7 +350,7 @@ focus_mode = 0
 button_mask = 2
 
 [node name="ActionIcon3" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3/InfoButton3"]
-layout_mode = 2
+layout_mode = 0
 offset_left = -10.8316
 offset_top = -27.3372
 offset_right = 187.168
@@ -386,7 +386,7 @@ focus_mode = 0
 button_mask = 2
 
 [node name="ActionIcon2" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4/InfoButton4"]
-layout_mode = 2
+layout_mode = 0
 offset_left = -12.282
 offset_top = -27.337
 offset_right = 185.718
@@ -452,7 +452,7 @@ text = "x99"
 icon = ExtResource("7_e1hdf")
 
 [node name="ActionIcon" type="TextureRect" parent="CanvasLayer/AvailableSkills/PanelContainer/SkillBagButton"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 47.0
 offset_top = 147.0
 offset_right = 1199.0
@@ -497,6 +497,7 @@ size_flags_vertical = 3
 offset_top = 2.0
 offset_right = 8.0
 offset_bottom = 10.0
+focus_mode = 0
 button_mask = 0
 shortcut = SubResource("Shortcut_5452a")
 

@@ -18,7 +18,7 @@ func queue_random_skill() -> bool:
 	if stack_component.skills.size() < 1:
 		return false
 	#var random_skill = randi() % stack_component.skills.size()
-	var chosen_skill
+	var chosen_skill = null
 	var chosen_skill_number = 0
 	var skill_number = 0
 	for skill in stack_component.hand as Array[SkillStrategy]:
@@ -37,13 +37,13 @@ func queue_random_skill() -> bool:
 	return stack_component.queue_skill(chosen_skill_number)
 
 
-func make_plan(entity: GridEntity) -> String:
+func make_plan(_entity: GridEntity) -> String:
 	if stack_component.is_full():
 		return "Execute Stack"
 	else:
 		if stack_component.skills.size() <= 0:
 			return ""
-		var random_skill = randi() % stack_component.skills.size()
+		var random_skill = randi() % stack_component.hand_size
 		if stack_component.can_queue_skill(random_skill):
 			return "Queue Skill"
 		else:

@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://g7fhohrlv81x"]
 
 [ext_resource type="Script" uid="uid://b1dpe7lobi7df" path="res://scripts/Actors/AI/fuzz_tester_ai.gd" id="1_netfx"]
-[ext_resource type="PackedScene" uid="uid://cjo5qx0fo3bej" path="res://scenes/Actors/metamorphosis.tscn" id="2_b1jpt"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="2_bobr6"]
-[ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="5_vft80"]
+[ext_resource type="PackedScene" uid="uid://dbbfr11nscu22" path="res://scenes/Actors/Strategies/Skill/possibilities_skill_strategy.tscn" id="3_netfx"]
+[ext_resource type="PackedScene" uid="uid://4ath7gf440gk" path="res://scenes/Actors/Visuals/fuzzer_visual.tscn" id="4_netfx"]
 [ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/Actors/Strategies/Planner/base_random_skill_planner.tscn" id="6_tfv2e"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="7_18tjo"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="8_4mppe"]
@@ -12,9 +12,9 @@
 radius = 451.0
 
 [node name="FuzzTester" type="Node2D" node_paths=PackedStringArray("visual") groups=["AI"]]
+position = Vector2(0, 15)
 script = ExtResource("1_netfx")
-metamorphosis_scene = ExtResource("2_b1jpt")
-visual = NodePath("Sprite2D")
+visual = NodePath("FuzzerVisual")
 
 [node name="GridEntity" parent="." instance=ExtResource("2_bobr6")]
 species_name = "Fuzz Tester"
@@ -25,6 +25,9 @@ Even within their own species, Fuzz Testers differ wildly from each other.
 Due to their tendency to pick fights with anything that moves, it is not a bad idea to study their skirmishes from a safe distance before engaging."
 soul_count = 1
 
+[node name="PossibilitiesSkillStrategy" parent="GridEntity/SkillStackComponent" index="9" instance=ExtResource("3_netfx")]
+count = 4
+
 [node name="HealthComponent" parent="GridEntity/UI" index="0"]
 max_health = 10
 
@@ -32,10 +35,9 @@ max_health = 10
 top_level = true
 position = Vector2(0, -34)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -40)
-scale = Vector2(5.54658, 5.54658)
-texture = ExtResource("5_vft80")
+[node name="FuzzerVisual" parent="." instance=ExtResource("4_netfx")]
+position = Vector2(4.0000005, 2)
+scale = Vector2(0.5069102, 0.5069102)
 
 [node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("6_tfv2e")]
 

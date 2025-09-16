@@ -1,6 +1,4 @@
-extends PanelContainer
-
-class_name SkillStrategy
+@abstract class_name SkillStrategy extends PanelContainer
 
 signal moved_self
 signal requested_direction_input(requester)
@@ -10,7 +8,7 @@ signal cursor_set
 signal skill_finished
 signal gained_status(status)
 
-@export var skill_description_scene: PackedScene
+const SKILL_DESCRIPTION = preload("uid://bvsqgo23yrgum")
 
 @export_category("Base Stats")
 @export var count := 3
@@ -42,7 +40,17 @@ enum States { IDLE, AWAITING_DIRECTION, AWAITING_CURSOR, PLAYING_ANIMATION }
 var state = States.IDLE
 
 enum SkillIDs {
-	NONE, DASH, DEFEND, STOMP, FORTUNE_COOKIE, ORCHESTRATE, BE_PATIENT, DARK_STAR, LEAP, WARP
+	NONE,
+	DASH,
+	DEFEND,
+	STOMP,
+	FORTUNE_COOKIE,
+	ORCHESTRATE,
+	BE_PATIENT,
+	DARK_STAR,
+	LEAP,
+	WARP,
+	POSSIBILITIES
 }
 @export var skill_ID := SkillIDs.NONE
 
@@ -64,8 +72,8 @@ func use_skill(grid_entity: GridEntity):
 	#current_cooldown = cooldown_turns
 	current_in_stack = 0
 	skill_finished.emit()
-	if is_depletable and current_count > 0:
-		current_count -= 1
+	#if is_depletable and current_count > 0:
+	#current_count -= 1
 
 
 func can_use_skill() -> bool:
@@ -115,7 +123,8 @@ func decrement_turn_cooldown():
 
 
 func on_skill_queued():
-	pass
+	if is_depletable and current_count > 0:
+		current_count -= 1
 
 
 func on_grid_entity_moved(old_coords: Vector2i, new_coords: Vector2i):
@@ -131,7 +140,7 @@ func increment_in_stack_counter() -> bool:
 
 
 func display_skill_info() -> void:
-	var new_skill_description = skill_description_scene.instantiate() as SkillDescription
+	var new_skill_description = SKILL_DESCRIPTION.instantiate() as SkillDescription
 	get_tree().current_scene.add_child(new_skill_description)
 	new_skill_description.icon.texture = icon.texture
 	new_skill_description.skill_name.text = skill_name

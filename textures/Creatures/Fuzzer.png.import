@@ -2,17 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfwqhrfcnved7"
-path="res://.godot/imported/generator.svg-b4af138265d248ced422f7dae52f0cf0.ctex"
+uid="uid://bbqymwo7s7ne4"
+path="res://.godot/imported/Fuzzer.png-3f5ce6f1178e53ae0d370d9cd0406868.ctex"
 metadata={
-"has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/gaea/generators/generator.svg"
-dest_files=["res://.godot/imported/generator.svg-b4af138265d248ced422f7dae52f0cf0.ctex"]
+source_file="res://textures/Creatures/Fuzzer.png"
+dest_files=["res://.godot/imported/Fuzzer.png-3f5ce6f1178e53ae0d370d9cd0406868.ctex"]
 
 [params]
 
@@ -39,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=true
-editor/convert_colors_with_editor_theme=true

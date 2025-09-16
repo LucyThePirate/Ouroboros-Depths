@@ -2,8 +2,8 @@ extends Node2D
 
 class_name SkillStackComponent
 
-signal used_skill
-signal queued_skill
+#signal used_skill
+#signal queued_skill
 signal stack_full
 signal emptied_stack
 signal awaited_directional_input
@@ -115,8 +115,8 @@ func queue_skill(skill_number) -> bool:
 			hand[skill_number] = deck.pop_front()
 			total_skill_count -= 1
 		_update_skill_visuals()
-		if hand.all(func(skill): return skill == null):  # Automatically reload when out of skills
-			reload_deck()
+		#if hand.all(func(skill): return skill == null):  # Automatically reload when out of skills
+		#reload_deck()
 		return true
 	else:
 		if is_full():
@@ -280,9 +280,10 @@ func _shuffle_skills() -> void:
 	deck.shuffle()
 	for i in range(hand_size):
 		if deck.is_empty():
-			break
-		hand.append(deck.pop_front())
-		total_skill_count -= 1
+			hand.append(null)
+		else:
+			hand.append(deck.pop_front())
+			total_skill_count -= 1
 	_update_skill_visuals()
 	_update_stack_visuals()
 

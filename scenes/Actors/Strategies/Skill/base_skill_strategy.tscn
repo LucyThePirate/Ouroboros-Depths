@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcpo4dfcq62k2"]
+[gd_scene load_steps=10 format=3 uid="uid://bcpo4dfcq62k2"]
 
 [ext_resource type="Script" uid="uid://c0f56xso1fu7o" path="res://scripts/Actors/Strategies/Skill/skill_strategy.gd" id="1_kcxpa"]
-[ext_resource type="PackedScene" uid="uid://bvsqgo23yrgum" path="res://scenes/Actors/Strategies/Skill/skill_description.tscn" id="2_1ub1j"]
 [ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="4_0actt"]
 [ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/UI/Cursor.png" id="5_bxg8s"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="6_sh0vo"]
@@ -42,7 +41,6 @@ offset_bottom = 139.0
 scale = Vector2(1.18752, 1.18752)
 mouse_filter = 1
 script = ExtResource("1_kcxpa")
-skill_description_scene = ExtResource("2_1ub1j")
 skill_name = "Default Skill"
 skill_desc = "Default skill description."
 
