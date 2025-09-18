@@ -8,6 +8,8 @@ func _ready():
 
 
 func use_skill(grid_entity: GridEntity):
+	$VFX.global_position = grid_entity.global_position - Vector2(0, 100)
+	$AnimationPlayer.play("Possibilities")
 	var new_metamorphosis = metamorphosis_scene.instantiate() as Metamorphosis
 	add_child(new_metamorphosis)
 	for i in range(3):

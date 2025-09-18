@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dksf4xo887bup"
+path="res://.godot/imported/Fuzz Tester-Possibilities1.ogg-cf215558d83167e9ad7fd4f9c4d2ba23.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/SFX/Creatures/Fuzzer/Fuzz Tester-Possibilities1.ogg"
+dest_files=["res://.godot/imported/Fuzz Tester-Possibilities1.ogg-cf215558d83167e9ad7fd4f9c4d2ba23.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

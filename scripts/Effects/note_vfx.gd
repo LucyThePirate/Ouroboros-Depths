@@ -23,7 +23,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Telegraph":
 		$Note.hide()
 		$AnimationPlayer.play("Vanish")
-		$SamplerInstrument/AudioStreamPlayer2D.position = global_position
 		$SamplerInstrument.play_note(note, octave)
 		if (
 			Global.entity_positions.has(check_coords)

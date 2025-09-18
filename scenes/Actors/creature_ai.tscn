@@ -25,7 +25,6 @@ soul_count = 1
 
 [node name="DarkStarSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("3_aa227")]
 mouse_filter = 0
-skill_description_scene = null
 count = 8
 skill_desc = ""
 

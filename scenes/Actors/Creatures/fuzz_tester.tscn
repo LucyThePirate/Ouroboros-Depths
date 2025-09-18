@@ -12,7 +12,6 @@
 radius = 451.0
 
 [node name="FuzzTester" type="Node2D" node_paths=PackedStringArray("visual") groups=["AI"]]
-position = Vector2(0, 15)
 script = ExtResource("1_netfx")
 visual = NodePath("FuzzerVisual")
 
@@ -36,8 +35,8 @@ top_level = true
 position = Vector2(0, -34)
 
 [node name="FuzzerVisual" parent="." instance=ExtResource("4_netfx")]
-position = Vector2(4.0000005, 2)
-scale = Vector2(0.5069102, 0.5069102)
+position = Vector2(3, 18)
+scale = Vector2(0.41309628, 0.41309628)
 
 [node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("6_tfv2e")]
 
@@ -70,6 +69,7 @@ autowrap_mode = 0
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
 [connection signal="hurt" from="GridEntity" to="." method="_on_grid_entity_hurt"]
+[connection signal="moved" from="GridEntity" to="FuzzerVisual" method="_on_moved"]
 [connection signal="turn_ended" from="GridEntity/TurnComponent" to="." method="_on_turn_component_turn_ended"]
 [connection signal="turn_started" from="GridEntity/TurnComponent" to="." method="_on_turn_component_turn_started"]
 [connection signal="awaited_cursor_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_cursor_input"]

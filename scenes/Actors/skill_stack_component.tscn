@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bd85kao70uoy4"]
+[gd_scene load_steps=37 format=3 uid="uid://bd85kao70uoy4"]
 
 [ext_resource type="Script" uid="uid://b6uhrd8rdimmy" path="res://scripts/Actors/skill_stack_component.gd" id="1_rerjn"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="2_qowul"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cha8dq4v6awur" path="res://textures/Skills/ReloadSkill.png" id="7_qdnrn"]
 [ext_resource type="AudioStream" uid="uid://d2tcjtyaf4ler" path="res://audio/SFX/Skills/Domino/DominoPlaced1.ogg" id="9_1u652"]
 [ext_resource type="Script" uid="uid://b57xlofytn3k" path="res://addons/ActionIcon/ActionIcon.gd" id="9_8of2w"]
+[ext_resource type="Theme" uid="uid://dsnesst3y61ol" path="res://resources/default_theme.tres" id="9_qdnrn"]
 [ext_resource type="AudioStream" uid="uid://css6o2ktbxenr" path="res://audio/SFX/Skills/Domino/DominoPlaced2.ogg" id="10_r0es2"]
 [ext_resource type="AudioStream" uid="uid://duwmpbw02i4u4" path="res://audio/SFX/Skills/Domino/DominoPlaced3.ogg" id="11_o3wly"]
 [ext_resource type="AudioStream" uid="uid://xv37swpkyn2k" path="res://audio/SFX/Skills/Domino/DominoPlaced4.ogg" id="12_e1hdf"]
@@ -262,6 +263,14 @@ texture = ExtResource("4_iqeie")
 expand_mode = 2
 stretch_mode = 5
 
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1"]
+layout_mode = 2
+theme = ExtResource("9_qdnrn")
+theme_override_font_sizes/normal_font_size = 23
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1"]
 layout_mode = 2
 size_flags_vertical = 1
@@ -297,6 +306,14 @@ layout_mode = 2
 texture = ExtResource("4_iqeie")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2"]
+layout_mode = 2
+theme = ExtResource("9_qdnrn")
+theme_override_font_sizes/normal_font_size = 23
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2"]
 layout_mode = 2
@@ -334,6 +351,14 @@ texture = ExtResource("4_iqeie")
 expand_mode = 2
 stretch_mode = 5
 
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3"]
+layout_mode = 2
+theme = ExtResource("9_qdnrn")
+theme_override_font_sizes/normal_font_size = 23
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3"]
 layout_mode = 2
 size_flags_vertical = 1
@@ -369,6 +394,14 @@ layout_mode = 2
 texture = ExtResource("4_iqeie")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4"]
+layout_mode = 2
+theme = ExtResource("9_qdnrn")
+theme_override_font_sizes/normal_font_size = 23
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4"]
 layout_mode = 2
@@ -419,6 +452,7 @@ offset_left = -93.5833
 offset_top = 12.5296
 offset_right = 139.417
 offset_bottom = 52.5296
+theme = ExtResource("9_qdnrn")
 theme_override_constants/outline_size = 4
 theme_override_fonts/normal_font = ExtResource("6_o3wly")
 theme_override_font_sizes/normal_font_size = 30
@@ -445,7 +479,7 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_horizontal = 0
 focus_mode = 0
-theme_override_fonts/font = ExtResource("6_o3wly")
+theme = ExtResource("9_qdnrn")
 theme_override_font_sizes/font_size = 37
 shortcut = SubResource("Shortcut_8of2w")
 text = "x99"
@@ -465,6 +499,7 @@ metadata/_custom_type_script = "uid://b57xlofytn3k"
 
 [node name="SkillBagList" type="Window" parent="CanvasLayer"]
 transparent_bg = true
+oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(1000, 500)
 visible = false
@@ -480,7 +515,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/SkillBagList/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SkillBagList/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -488,12 +523,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/SkillBagList/Control/ScrollContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/SkillBagList/Control/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/SkillBagList/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/SkillBagList/Control/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CloseSkillBag" type="Button" parent="CanvasLayer/SkillBagList"]
+self_modulate = Color(1, 1, 1, 0)
 offset_top = 2.0
 offset_right = 8.0
 offset_bottom = 10.0

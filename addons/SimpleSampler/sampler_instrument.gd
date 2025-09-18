@@ -2,9 +2,8 @@
 extends Sampler
 class_name SamplerInstrument
 
-## Audio instrument using samples to play notes
-##
-## Virtual instrument that uses a list of sample sound to infer notes between and play them
+## Audio instrument using samples to play notes [br][br]
+## [url=https://github.com/ClementRivaille/godot-simple-sampler?tab=readme-ov-file#simple-sampler]Documentation[/url]
 
 ## Maximum of simultaneous notes allowed
 @export var max_notes: int = 4
@@ -13,23 +12,12 @@ var samplers : Array[Sampler] = []
 var next_available := 0
 var last_sampler_used: Sampler
 
-var custom_player: Node
-var use_custom_player: bool = false
-
 func _ready():
-	# Use custom child instrument if set
-	for child: Node in get_children():
-		if child is AudioStreamPlayer \
-			|| child is AudioStreamPlayer2D \
-			|| child is AudioStreamPlayer3D:
-			custom_player = child
-			use_custom_player = true
-			break
-
 	# Create samplers
 	# warning-ignore:unused_variable
 	for i in range(max_notes):
 		var sampler := _build_sampler()
+
 		add_child(sampler)
 		samplers.append(sampler)
 
@@ -73,7 +61,7 @@ func chord_glide(note: String, octave: int = 4, duration: float = 0.1):
 		sampler.glide(note, octave, duration)
 
 func _can_glide(s: Sampler) -> bool:
-	return s.player.playing && !s.in_release && !(s.glissando != null && s.glissando.is_running())
+	return s.playing && !s.in_release && !(s.glissando != null && s.glissando.is_running())
 
 func _build_sampler() -> Sampler:
 	var sampler := Sampler.new()
@@ -83,9 +71,27 @@ func _build_sampler() -> Sampler:
 	sampler.env_release = env_release
 	sampler.volume_db = volume_db
 	sampler.bus = bus
-
-	if use_custom_player:
-		var sampler_player: Node = custom_player.duplicate()
-		sampler.add_child(sampler_player)
+	## COPY_SAMPLER_2D: _copy_player2D_properties(self, sampler)
+	## COPY_SAMPLER_3D: _copy_player3D_properties(self, sampler)
 
 	return sampler
+
+func _copy_player2D_properties(from: AudioStreamPlayer2D, to: AudioStreamPlayer2D):
+	to.max_distance = from.max_distance
+	to.attenuation = from.attenuation
+	to.panning_strength = from.panning_strength
+	to.area_mask = from.area_mask
+
+func _copy_player3D_properties(from: AudioStreamPlayer3D, to: AudioStreamPlayer3D):
+	to.max_distance = from.max_distance
+	to.panning_strength = from.panning_strength
+	to.area_mask = from.area_mask
+	to.attenuation_filter_cutoff_hz = from.attenuation_filter_cutoff_hz
+	to.attenuation_filter_db = from.attenuation_filter_db
+	to.attenuation_model = from.attenuation_model
+	to.doppler_tracking = from.doppler_tracking
+	to.emission_angle_degrees = from.emission_angle_degrees
+	to.emission_angle_enabled = from.emission_angle_enabled
+	to.emission_angle_filter_attenuation_db = from.emission_angle_filter_attenuation_db
+	to.max_db = from.max_db
+	to.unit_size = from.unit_size

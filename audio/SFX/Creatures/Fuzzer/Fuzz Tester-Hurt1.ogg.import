@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bb4nuvr5yy43r"
+path="res://.godot/imported/Fuzz Tester-Hurt1.ogg-6b8484a562032da6e9da3fb7c0c531d6.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/SFX/Creatures/Fuzzer/Fuzz Tester-Hurt1.ogg"
+dest_files=["res://.godot/imported/Fuzz Tester-Hurt1.ogg-6b8484a562032da6e9da3fb7c0c531d6.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

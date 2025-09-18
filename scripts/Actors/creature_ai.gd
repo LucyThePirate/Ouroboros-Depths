@@ -33,6 +33,7 @@ func _ready() -> void:
 	stack_component.initialize(grid_entity, false, turn_component)
 	random_skill_planner.set_stack_component(stack_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
+	visual.initialize(grid_entity)
 	#turn_component.turn_ended.connect(status_manager_component.on_turn_ended)
 
 
@@ -81,7 +82,9 @@ func update_intent():
 		intent_arrow.visible = intent == "Move"
 		intent_arrow.look_at(intent_arrow.global_position + Vector2(intent_direction))
 	if intent_label:
-		intent_label.text = intent
+		intent_label.text = (
+			"%s - %s" % [intent, stack_component.States.keys()[stack_component.state]]
+		)
 
 
 func get_random_direction() -> Vector2i:
@@ -169,6 +172,8 @@ func _update_angry_at(new_target: GridEntity):
 		return
 	if new_target.species_name == grid_entity.species_name:
 		return
+	if new_target.state == GridEntity.States.DEAD:
+		return
 	angry_at = new_target
 	angry_at.died.connect(_on_angry_at_died)
 	print(name, " pissed at ", new_target.name)
@@ -191,11 +196,15 @@ func _on_turn_component_turn_started() -> void:
 func _on_base_random_skill_planner_awaited_directional_input() -> void:
 	if angry_at:
 		random_skill_planner.set_direction(get_direction_towards(angry_at))
+	else:
+		random_skill_planner.set_direction(get_random_direction())
 
 
 func _on_base_random_skill_planner_awaited_cursor_input() -> void:
 	if angry_at:
 		random_skill_planner.set_cursor(get_direction_towards(angry_at, true))
+	else:
+		random_skill_planner.set_direction(get_random_direction())
 
 
 func _on_detection_radius_body_entered(body: Node2D) -> void:

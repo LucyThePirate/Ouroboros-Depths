@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://djc3cmcxnhe5l"]
+[gd_scene load_steps=23 format=3 uid="uid://djc3cmcxnhe5l"]
 
 [ext_resource type="Script" uid="uid://b2ojdp2aq678e" path="res://scripts/Actors/Visuals/visualBase.gd" id="1_aedx2"]
 [ext_resource type="Texture2D" uid="uid://cja3aenkgrcib" path="res://textures/Creatures/Scarecrow.png" id="1_fcb6m"]
@@ -7,21 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://dy5k5uk2de1uu" path="res://audio/SFX/Step/Scarecrowstep3.ogg" id="5_gqlsy"]
 [ext_resource type="AudioStream" uid="uid://dgdufp7c7rv1k" path="res://audio/SFX/Thump/540278__zepurple__tree-shake.ogg" id="6_gqlsy"]
 [ext_resource type="AudioStream" uid="uid://cow3rcuutupfc" path="res://audio/SFX/Step/kirby-falling.ogg" id="7_gqlsy"]
-
-[sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_fcb6m"]
-resource_local_to_scene = true
-target_nodepath = NodePath("../LeftCapeTarget")
-jiggle_data_chain_length = 3
-use_gravity = true
-joint_data/0/bone_index = 14
-joint_data/0/bone2d_node = NodePath("PostBase/PostTop/ShawlLeft/Shawl2/Shawl3")
-joint_data/0/override_defaults = false
-joint_data/1/bone_index = 13
-joint_data/1/bone2d_node = NodePath("PostBase/PostTop/ShawlLeft/Shawl2")
-joint_data/1/override_defaults = false
-joint_data/2/bone_index = 12
-joint_data/2/bone2d_node = NodePath("PostBase/PostTop/ShawlLeft")
-joint_data/2/override_defaults = false
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_aedx2"]
 resource_local_to_scene = true
@@ -36,20 +21,6 @@ joint_data/1/bone2d_node = NodePath("PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3"
 joint_data/1/override_defaults = false
 joint_data/2/bone_index = 10
 joint_data/2/bone2d_node = NodePath("PostBase/PostTop/ShawlMiddle/Shawl2")
-joint_data/2/override_defaults = false
-
-[sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_mw5ug"]
-target_nodepath = NodePath("../RightCapeTarget")
-jiggle_data_chain_length = 3
-use_gravity = true
-joint_data/0/bone_index = 15
-joint_data/0/bone2d_node = NodePath("PostBase/PostTop/ShawlRight")
-joint_data/0/override_defaults = false
-joint_data/1/bone_index = 16
-joint_data/1/bone2d_node = NodePath("PostBase/PostTop/ShawlRight/Shawl2")
-joint_data/1/override_defaults = false
-joint_data/2/bone_index = 17
-joint_data/2/bone2d_node = NodePath("PostBase/PostTop/ShawlRight/Shawl2/Shawl3")
 joint_data/2/override_defaults = false
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_c10f0"]
@@ -84,13 +55,11 @@ joint_data/0/override_defaults = false
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_fcb6m"]
 resource_local_to_scene = true
 enabled = true
-modification_count = 6
-modifications/0 = SubResource("SkeletonModification2DJiggle_fcb6m")
-modifications/1 = SubResource("SkeletonModification2DJiggle_aedx2")
-modifications/2 = SubResource("SkeletonModification2DJiggle_mw5ug")
-modifications/3 = SubResource("SkeletonModification2DJiggle_c10f0")
-modifications/4 = SubResource("SkeletonModification2DJiggle_750i8")
-modifications/5 = SubResource("SkeletonModification2DJiggle_kcv6o")
+modification_count = 4
+modifications/0 = SubResource("SkeletonModification2DJiggle_aedx2")
+modifications/1 = SubResource("SkeletonModification2DJiggle_c10f0")
+modifications/2 = SubResource("SkeletonModification2DJiggle_750i8")
+modifications/3 = SubResource("SkeletonModification2DJiggle_kcv6o")
 
 [sub_resource type="Animation" id="Animation_mk3eq"]
 resource_name = "Falling"
@@ -1077,7 +1046,7 @@ position = Vector2(1, 149)
 rest = Transform2D(1, 0, 0, 1, 1, 149)
 auto_calculate_length_and_angle = false
 length = 164.11
-bone_angle = 92.0953
+bone_angle = 92.09529
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Shawl3" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlMiddle/Shawl2"]
@@ -1094,15 +1063,13 @@ rest = Transform2D(1, 0, 0, 1, -190, 70)
 auto_calculate_length_and_angle = false
 length = 149.003
 bone_angle = 89.6155
-metadata/_local_pose_override_enabled_ = true
 
 [node name="Shawl2" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlLeft"]
 position = Vector2(1, 149)
 rest = Transform2D(1, 0, 0, 1, 1, 149)
 auto_calculate_length_and_angle = false
 length = 164.11
-bone_angle = 92.0953
-metadata/_local_pose_override_enabled_ = true
+bone_angle = 92.09529
 
 [node name="Shawl3" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlLeft/Shawl2"]
 position = Vector2(-6, 164)
@@ -1110,22 +1077,18 @@ rest = Transform2D(1, 0, 0, 1, -6, 164)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
-metadata/_local_pose_override_enabled_ = true
 
 [node name="ShawlRight" type="Bone2D" parent="Skeleton2D/PostBase/PostTop"]
 position = Vector2(202, 54)
 rest = Transform2D(1, 0, 0, 1, 202, 54)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="Shawl2" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlRight"]
 position = Vector2(1, 149)
 rest = Transform2D(1, 0, 0, 1, 1, 149)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="Shawl3" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlRight/Shawl2"]
 position = Vector2(-6, 164)
 rest = Transform2D(1, 0, 0, 1, -6, 164)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="ShawlBack" type="Polygon2D" parent="."]
 position = Vector2(9.01999, -251.565)

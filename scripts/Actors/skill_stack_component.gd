@@ -29,7 +29,11 @@ var shuffle_turns := 0
 var preview_queue_skill = $Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer5/PreviewQueueSkill
 @onready var stack_color_rect = $Stack/MarginContainer/ColorRect
 @onready var skill_bag = $CanvasLayer/AvailableSkills/PanelContainer/SkillBagButton as Button
-@onready var skill_bag_list = $CanvasLayer/SkillBagList/Control/ScrollContainer/HFlowContainer
+@onready
+var skill_bag_list = $CanvasLayer/SkillBagList/Control/VBoxContainer/ScrollContainer/HFlowContainer
+@onready var skill_bag_prompt = (
+	$CanvasLayer/SkillBagList/Control/VBoxContainer/RichTextLabel as RichTextLabel
+)
 @onready
 var execute_prompt = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/ExecutePrompt
 
@@ -311,8 +315,10 @@ func _update_skill_visuals() -> void:
 	for skill in range(hand_size):
 		if hand.size() <= skill or not hand[skill]:
 			hand_visual.get_child(skill).get_child(0).texture = null_skill_texture
+			hand_visual.get_child(skill).get_child(1).text = "Reload"
 			continue
 		hand_visual.get_child(skill).get_child(0).texture = hand[skill].icon.texture
+		hand_visual.get_child(skill).get_child(1).text = hand[skill].skill_name
 
 
 func _update_turn_cooldown():
@@ -414,6 +420,7 @@ func _on_info_button_4_pressed() -> void:
 
 func _on_skill_bag_button_pressed() -> void:
 	if not $CanvasLayer/SkillBagList.visible:
+		skill_bag_prompt.text = "Click: view skill info"
 		var skills_in_display = []
 		var skill_counts = {}
 		for skill in deck:
@@ -446,6 +453,7 @@ func _on_skill_bag_list_close_requested() -> void:
 
 func open_skill_bag_for_skill_removal():
 	if not $CanvasLayer/SkillBagList.visible:
+		skill_bag_prompt.text = "Left click: remove skill\nRight click: view skill info"
 		var skills_in_display = []
 		var skill_counts = {}
 		for skill in deck:

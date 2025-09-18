@@ -353,7 +353,7 @@ func process_turn():
 
 	var current_entity = turn_queue.pop_front()
 	if current_entity:
-		print("Taking turn now:", current_entity.get_parent().name)
+		#print("Taking turn now:", current_entity.get_parent().name)
 		current_entity.take_turn()
 	else:
 		#print("invalid entity?")
@@ -423,9 +423,9 @@ func _is_obstructed(tile_coords) -> bool:
 	if wall_tile and wall_tile.get_custom_data("is_solid"):
 		return true
 
-	var object_tile = Global.walls.get_cell_tile_data(tile_coords)
-	if object_tile and object_tile.get_custom_data("is_solid"):
-		return true
+	#var object_tile = Global.walls.get_cell_tile_data(tile_coords)
+	#if object_tile and object_tile.get_custom_data("is_solid"):
+		#return true
 
 	if Global.entity_positions.has(tile_coords):
 		return true
