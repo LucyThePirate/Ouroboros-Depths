@@ -38,7 +38,7 @@ func _on_moved(old_coords: Vector2i, new_coords: Vector2i):
 		animation_player.play("Moving")
 
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	finished_animation.emit()
 	animation_player.play("Idle")
 
@@ -52,4 +52,7 @@ func _on_fell_off_map():
 
 
 func _on_hurt(_attacker: GridEntity):
-	animation_player.play("Hurt")
+	if anim_tree:
+		anim_tree.set("parameters/HurtOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	else:
+		animation_player.play("Hurt")

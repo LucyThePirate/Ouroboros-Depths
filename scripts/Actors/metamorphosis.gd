@@ -41,11 +41,13 @@ var removal_cost := 3
 func _ready() -> void:
 	if not grid_parent:
 		return
-	for soul in range(grid_parent.soul_count):
-		souls += soul + 1
-	var bonus_souls = souls - grid_parent.soul_count
+	#for soul in range(grid_parent.soul_count):
+	#souls += soul + 1
+	souls = grid_parent.soul_count
+	#var bonus_souls = souls - grid_parent.soul_count
 	grid_parent.soul_count = souls
-	soul_count.text = "Souls: %s\n(+%s bonus souls!)" % [souls, bonus_souls]
+	#soul_count.text = "Souls: %s\n(+%s bonus souls!)" % [souls, bonus_souls]
+	soul_count.text = "Souls: %s" % souls
 	reroll_cost = 3
 	removal_cost = 3
 	health_bar.max_value = grid_parent.health_component.max_health

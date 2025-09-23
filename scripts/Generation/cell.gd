@@ -6,6 +6,7 @@ extends Node2D
 @export var spawn_smoke_scene: PackedScene
 @export var player_scene: PackedScene
 @export var creature_scene: Array[PackedScene]
+@export var bogosort_scene: PackedScene
 
 @export var generation_size: Vector2i
 @export var spawn_creatures := true
@@ -110,6 +111,7 @@ func _update_dynamic_music():
 
 
 func _redraw_map():
+	Global.next_floor_reached.emit()
 	current_floor += 1
 	angry_at_player = 0
 	$CanvasLayer/ColorRect/FloorLabel.text = "Floor: %s" % current_floor
@@ -120,6 +122,8 @@ func _redraw_map():
 	Global.floors.clear()
 	Global.walls.clear()
 	_update_fog(Vector2i.ZERO, Global.floors.local_to_map(player.grid_entity.global_position))
+	var bogo_sort = bogosort_scene.instantiate()
+	add_child(bogo_sort)
 	_ready()
 
 
@@ -425,7 +429,7 @@ func _is_obstructed(tile_coords) -> bool:
 
 	#var object_tile = Global.walls.get_cell_tile_data(tile_coords)
 	#if object_tile and object_tile.get_custom_data("is_solid"):
-		#return true
+	#return true
 
 	if Global.entity_positions.has(tile_coords):
 		return true

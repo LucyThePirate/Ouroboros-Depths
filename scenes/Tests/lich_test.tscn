@@ -1,5 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://bwkb3crnbdvht"]
+[gd_scene load_steps=22 format=3 uid="uid://bwkb3crnbdvht"]
 
+[ext_resource type="Script" uid="uid://b2ojdp2aq678e" path="res://scripts/Actors/Visuals/visualBase.gd" id="1_iokgd"]
 [ext_resource type="Texture2D" uid="uid://djbnu6ytor4b8" path="res://textures/Creatures/Lich/Robe1.tres" id="2_mlvm5"]
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="3_5vpul"]
 [ext_resource type="Texture2D" uid="uid://clqvltq2ok2uf" path="res://textures/Creatures/Lich/EyeMask.png" id="3_o442r"]
@@ -1356,6 +1357,7 @@ _data = {
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_8h4wm"]
 resource_local_to_scene = true
+enabled = false
 target_nodepath = NodePath("../Targets/HeadTarget")
 jiggle_data_chain_length = 1
 use_gravity = true
@@ -1417,6 +1419,7 @@ atlas = ExtResource("6_hf8mm")
 region = Rect2(603.554, 22.5921, 81.2787, 92.8899)
 
 [node name="LichTest" type="Node2D"]
+script = ExtResource("1_iokgd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1453,7 +1456,6 @@ rest = Transform2D(1, 0, 0, 1, 7, -204)
 position = Vector2(-11.0007, -79.0049)
 scale = Vector2(0.999929, 0.999929)
 rest = Transform2D(1, 0, 0, 1, -11, -79)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="Jaw" type="Bone2D" parent="Skeleton2D/Hip/Body/Head"]
 position = Vector2(30, 40)
@@ -1495,7 +1497,7 @@ remote_path = NodePath("../../../../../Body/HandR")
 [node name="HandL" type="Bone2D" parent="Skeleton2D/Hip/Body"]
 position = Vector2(118, 45)
 rotation = -0.729267
-scale = Vector2(1, 1)
+scale = Vector2(0.99999994, 0.99999994)
 rest = Transform2D(1, 0, 0, 1, 118, 45)
 auto_calculate_length_and_angle = false
 length = 40.0
@@ -1556,7 +1558,7 @@ position = Vector2(155, -143)
 rotation = 0.806708
 scale = Vector2(1.12327, 1.12327)
 sprite_frames = ExtResource("8_ixd6g")
-animation = &"Point"
+animation = &"Curl"
 autoplay = "Curl"
 
 [node name="End" type="Marker2D" parent="Body/HandL"]

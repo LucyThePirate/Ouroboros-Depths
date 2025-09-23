@@ -45,6 +45,7 @@ Skill=""
 Planner="Skill planner"
 Status=""
 AI=""
+GridEntity=""
 
 [input]
 

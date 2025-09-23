@@ -48,6 +48,7 @@ max_power = 12
 texture = SubResource("AtlasTexture_dbbqb")
 
 [node name="SamplerInstrument" type="AudioStreamPlayer2D" parent="." index="2"]
+bus = &"SFX"
 script = ExtResource("10_7evat")
 samples = Array[ExtResource("11_hmaoa")]([SubResource("Resource_xmrsl"), SubResource("Resource_n8svg"), SubResource("Resource_4c7yi"), SubResource("Resource_8mjgo")])
 metadata/_custom_type_script = "uid://bcwt5giabpceq"

@@ -1,6 +1,7 @@
 extends Node
 
 signal turn_passed
+signal next_floor_reached
 signal aggroed_towards_player(grid_entity)
 signal deaggroed_towards_player(grid_entity)
 

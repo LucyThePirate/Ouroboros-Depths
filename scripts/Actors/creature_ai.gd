@@ -33,7 +33,8 @@ func _ready() -> void:
 	stack_component.initialize(grid_entity, false, turn_component)
 	random_skill_planner.set_stack_component(stack_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
-	visual.initialize(grid_entity)
+	if visual.has_method("initialize"):
+		visual.initialize(grid_entity)
 	#turn_component.turn_ended.connect(status_manager_component.on_turn_ended)
 
 

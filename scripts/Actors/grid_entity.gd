@@ -255,6 +255,7 @@ func play_thump_sound(material):
 
 func on_death() -> void:
 	if state == States.IDLE:
+		health_component.health = 0
 		if is_instance_valid(last_hit_by) and last_hit_by is GridEntity:
 			last_hit_by.soul_count += soul_count + 1
 			last_hit_by.kills += 1

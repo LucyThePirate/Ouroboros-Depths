@@ -567,6 +567,7 @@ _data = {
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_2b8br"]
 resource_local_to_scene = true
+enabled = false
 target_nodepath = NodePath("LegUpperLeftTarget")
 jiggle_data_chain_length = 3
 stiffness = 3.36
@@ -583,6 +584,7 @@ joint_data/2/override_defaults = false
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_wniei"]
 resource_local_to_scene = true
+enabled = false
 target_nodepath = NodePath("LegLowerLeftTarget")
 jiggle_data_chain_length = 3
 stiffness = 3.36
@@ -599,6 +601,7 @@ joint_data/2/override_defaults = false
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_uxetw"]
 resource_local_to_scene = true
+enabled = false
 target_nodepath = NodePath("LegUpperRightTarget")
 jiggle_data_chain_length = 3
 stiffness = 3.36
@@ -615,6 +618,7 @@ joint_data/2/override_defaults = false
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_g3qj4"]
 resource_local_to_scene = true
+enabled = false
 target_nodepath = NodePath("LegLowerRightTarget")
 jiggle_data_chain_length = 3
 stiffness = 3.36
@@ -666,14 +670,14 @@ animation = &"Idle"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_kvjb5"]
 graph_offset = Vector2(-560.848, 118.822)
+nodes/output/position = Vector2(460, 160)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_2b8br")
 nodes/Add2/position = Vector2(360, 300)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_w6m1g")
 nodes/Animation/position = Vector2(-100, 120)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_wniei")
 "nodes/Animation 2/position" = Vector2(-80, 320)
-nodes/output/position = Vector2(460, 160)
-node_connections = [&"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2", &"output", 0, &"Add2"]
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2"]
 
 [node name="wasp_visual" type="Node2D"]
 script = ExtResource("1_1n6xu")
@@ -720,13 +724,13 @@ editor_settings/show_bone_gizmo = false
 
 [node name="Head" type="Bone2D" parent="Skeleton2D/Thorax"]
 position = Vector2(7, -91)
-scale = Vector2(0.999827, 0.999827)
+scale = Vector2(0.99982744, 0.99982744)
 rest = Transform2D(1, 0, 0, 1, 7, -91)
 editor_settings/show_bone_gizmo = false
 
 [node name="AntennaeLeft" type="Bone2D" parent="Skeleton2D/Thorax/Head"]
 position = Vector2(-16, -51)
-scale = Vector2(0.999834, 0.999834)
+scale = Vector2(0.99983484, 0.99983484)
 rest = Transform2D(1, 0, 0, 1, -16, -51)
 editor_settings/show_bone_gizmo = false
 
@@ -735,31 +739,31 @@ position = Vector2(6, -46)
 rest = Transform2D(1, 0, 0, 1, 6, -46)
 auto_calculate_length_and_angle = false
 length = 92.18
-bone_angle = -15.319
+bone_angle = -15.318998
 editor_settings/show_bone_gizmo = false
 metadata/_local_pose_override_enabled_ = true
 
 [node name="AntennaeRight" type="Bone2D" parent="Skeleton2D/Thorax/Head"]
 position = Vector2(26, -47)
 rotation = 0.141562
-scale = Vector2(0.999828, 0.999828)
+scale = Vector2(0.9998277, 0.9998277)
 rest = Transform2D(0.989997, 0.14109, -0.14109, 0.989997, 26, -47)
 editor_settings/show_bone_gizmo = false
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/Head/AntennaeRight"]
 position = Vector2(6, -46)
-rotation = 0.568864
+rotation = 0.56886405
 rest = Transform2D(0.842514, 0.538675, -0.538675, 0.842514, 6, -46)
 auto_calculate_length_and_angle = false
 length = 92.18
-bone_angle = -15.319
+bone_angle = -15.318998
 editor_settings/show_bone_gizmo = false
 metadata/_local_pose_override_enabled_ = true
 
 [node name="JawLeft" type="Bone2D" parent="Skeleton2D/Thorax/Head"]
 position = Vector2(-1, 28)
 rotation = 1.05867
-scale = Vector2(0.999898, 0.999898)
+scale = Vector2(0.9998967, 0.9998967)
 rest = Transform2D(0.490031, 0.871705, -0.871705, 0.490031, -1, 28)
 auto_calculate_length_and_angle = false
 length = 21.441
@@ -769,7 +773,7 @@ editor_settings/show_bone_gizmo = false
 [node name="JawRight" type="Bone2D" parent="Skeleton2D/Thorax/Head"]
 position = Vector2(18, 20)
 rotation = 1.05867
-scale = Vector2(0.999937, 0.999937)
+scale = Vector2(0.99993694, 0.99993694)
 rest = Transform2D(0.490031, 0.871705, -0.871705, 0.490031, 18, 20)
 auto_calculate_length_and_angle = false
 length = 21.441
@@ -788,20 +792,20 @@ position = Vector2(121.796, -129.132)
 [node name="ArmLeft" type="Bone2D" parent="Skeleton2D/Thorax"]
 position = Vector2(-14, -58)
 rotation = 1.15301
-scale = Vector2(0.999856, 0.999856)
+scale = Vector2(0.9998551, 0.9998551)
 rest = Transform2D(0.405743, 0.913987, -0.913987, 0.405743, -14, -58)
 editor_settings/show_bone_gizmo = false
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/ArmLeft"]
 position = Vector2(52.4945, 2.51564)
-scale = Vector2(0.999835, 0.999835)
+scale = Vector2(0.99983406, 0.99983406)
 rest = Transform2D(1, 0, 0, 1, 52.4945, 2.51564)
 editor_settings/show_bone_gizmo = false
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/ArmLeft/Bone2D"]
 position = Vector2(-27.7399, -48.42)
 rotation = 0.100154
-scale = Vector2(0.999836, 0.999836)
+scale = Vector2(0.9998368, 0.9998368)
 rest = Transform2D(0.994989, 0.0999869, -0.0999869, 0.994989, -27.7399, -48.42)
 auto_calculate_length_and_angle = false
 length = 86.739
@@ -811,20 +815,20 @@ editor_settings/show_bone_gizmo = false
 [node name="ArmRight" type="Bone2D" parent="Skeleton2D/Thorax"]
 position = Vector2(17, -80)
 rotation = 1.15301
-scale = Vector2(0.999873, 0.999873)
+scale = Vector2(0.99987197, 0.99987197)
 rest = Transform2D(0.405743, 0.913987, -0.913987, 0.405743, 17, -80)
 editor_settings/show_bone_gizmo = false
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/ArmRight"]
 position = Vector2(52.4945, 2.51564)
-scale = Vector2(0.999847, 0.999847)
+scale = Vector2(0.9998461, 0.9998461)
 rest = Transform2D(1, 0, 0, 1, 52.4945, 2.51564)
 editor_settings/show_bone_gizmo = false
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/ArmRight/Bone2D"]
 position = Vector2(-27.7399, -48.42)
 rotation = 0.100154
-scale = Vector2(0.99984, 0.99984)
+scale = Vector2(0.99983966, 0.99983966)
 rest = Transform2D(0.994989, 0.0999869, -0.0999869, 0.994989, -27.7399, -48.42)
 auto_calculate_length_and_angle = false
 length = 86.739
@@ -842,7 +846,7 @@ editor_settings/show_bone_gizmo = false
 
 [node name="WingRight" type="Bone2D" parent="Skeleton2D/Thorax"]
 position = Vector2(17, -61)
-rotation = 0.937242
+rotation = 0.9372419
 scale = Vector2(0.999993, 0.999993)
 rest = Transform2D(0.563249, 0.826287, -0.826287, 0.563249, 17, -61)
 auto_calculate_length_and_angle = false
@@ -853,16 +857,14 @@ editor_settings/show_bone_gizmo = false
 [node name="LegUpperLeft" type="Bone2D" parent="Skeleton2D/Thorax"]
 position = Vector2(-23, -20)
 rotation = 0.193033
-scale = Vector2(1, 1)
+scale = Vector2(0.99999994, 0.99999994)
 rest = Transform2D(0.981427, 0.191836, -0.191836, 0.981427, -23, -20)
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/LegUpperLeft"]
 position = Vector2(17.6934, 80.0933)
 rest = Transform2D(1, 0, 0, 1, 17.6934, 80.0933)
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/LegUpperLeft/Bone2D"]
 position = Vector2(26.643, 141.517)
@@ -872,21 +874,18 @@ auto_calculate_length_and_angle = false
 length = 81.298
 bone_angle = 0.0
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="LegLowerLeft" type="Bone2D" parent="Skeleton2D/Thorax"]
 position = Vector2(-7, 12)
 rotation = 0.193033
-scale = Vector2(1, 1)
+scale = Vector2(0.99999994, 0.99999994)
 rest = Transform2D(0.981427, 0.191836, -0.191836, 0.981427, -7, 12)
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/LegLowerLeft"]
 position = Vector2(17.6934, 80.0933)
 rest = Transform2D(1, 0, 0, 1, 17.6934, 80.0933)
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/LegLowerLeft/Bone2D"]
 position = Vector2(26.643, 141.517)
@@ -896,21 +895,18 @@ auto_calculate_length_and_angle = false
 length = 81.298
 bone_angle = 0.0
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="LegUpperRight" type="Bone2D" parent="Skeleton2D/Thorax"]
 position = Vector2(29, -38)
 rotation = 0.193033
-scale = Vector2(1, 1)
+scale = Vector2(0.99999994, 0.99999994)
 rest = Transform2D(0.981427, 0.191836, -0.191836, 0.981427, 29, -38)
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/LegUpperRight"]
 position = Vector2(17.6934, 80.0933)
 rest = Transform2D(1, 0, 0, 1, 17.6934, 80.0933)
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/LegUpperRight/Bone2D"]
 position = Vector2(26.643, 141.517)
@@ -920,21 +916,18 @@ auto_calculate_length_and_angle = false
 length = 81.298
 bone_angle = 0.0
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="LegLowerRight" type="Bone2D" parent="Skeleton2D/Thorax"]
 position = Vector2(37, -7)
 rotation = 0.148115
-scale = Vector2(1, 1)
+scale = Vector2(0.99999994, 0.99999994)
 rest = Transform2D(0.989051, 0.147574, -0.147574, 0.989051, 37, -7)
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/LegLowerRight"]
 position = Vector2(17.6934, 80.0933)
 rest = Transform2D(1, 0, 0, 1, 17.6934, 80.0933)
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone2D" type="Bone2D" parent="Skeleton2D/Thorax/LegLowerRight/Bone2D"]
 position = Vector2(26.643, 141.517)
@@ -944,7 +937,6 @@ auto_calculate_length_and_angle = false
 length = 81.298
 bone_angle = 0.0
 editor_settings/show_bone_gizmo = false
-metadata/_local_pose_override_enabled_ = true
 
 [node name="BasePosition" type="Node2D" parent="."]
 position = Vector2(-201, -256)

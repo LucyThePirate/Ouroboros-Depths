@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://43rkgu17gs68"]
+[gd_scene load_steps=31 format=3 uid="uid://43rkgu17gs68"]
 
 [ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_44ypc"]
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/Effects/boulder_splash.tscn" id="2_cu8oe"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b2gdh6pqutscc" path="res://scenes/Actors/Creatures/chorustone.tscn" id="6_0xdhj"]
 [ext_resource type="PackedScene" uid="uid://g7fhohrlv81x" path="res://scenes/Actors/Creatures/fuzz_tester.tscn" id="8_0xdhj"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="8_5cpdm"]
+[ext_resource type="PackedScene" uid="uid://b04tvmeribd1k" path="res://scenes/Actors/Creatures/bogo_sort.tscn" id="9_fx61w"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/Shaders/stars.gdshader" id="12_5cpdm"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/Testing/thisGuyPOV.png" id="13_0xdhj"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="16_eu30k"]
@@ -141,6 +142,7 @@ boulder_splash = ExtResource("2_cu8oe")
 spawn_smoke_scene = ExtResource("3_fx61w")
 player_scene = ExtResource("3_iimes")
 creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj"), ExtResource("8_0xdhj")])
+bogosort_scene = ExtResource("9_fx61w")
 generation_size = Vector2i(60, 30)
 
 [node name="Camera2D" type="Camera2D" parent="."]
