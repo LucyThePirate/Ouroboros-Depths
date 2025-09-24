@@ -6,10 +6,10 @@ extends Control
 @onready var config = ConfigFile.new()
 @onready var options_file = "user://options.cfg"
 
-@onready var master_volume = $CanvasLayer/Options/CenterContainer/MasterVolume as HSlider
-@onready var sfx_volume = $CanvasLayer/Options/CenterContainer2/SFXVolume as HSlider
-@onready var music_volume = $CanvasLayer/Options/CenterContainer3/MusicVolume as HSlider
-@onready var sfx_tester = $CanvasLayer/Options/CenterContainer2/SFXTester
+@onready var master_volume = $CanvasLayer/Options/Audio/CenterContainer/MasterVolume as HSlider
+@onready var sfx_volume = $CanvasLayer/Options/Audio/CenterContainer2/SFXVolume as HSlider
+@onready var music_volume = $CanvasLayer/Options/Audio/CenterContainer3/MusicVolume as HSlider
+@onready var sfx_tester = $CanvasLayer/Options/Audio/CenterContainer2/SFXTester
 
 @onready var load_progress_bar = $CanvasLayer/Loading/VBoxContainer/ProgressBar as ProgressBar
 @onready var loading_screen_tip = $CanvasLayer/Loading/VBoxContainer/Tip as RichTextLabel
@@ -79,6 +79,7 @@ func _on_main_menu_button_pressed() -> void:
 	$CanvasLayer/Options.hide()
 	$CanvasLayer/MainMenuButton.hide()
 	$CanvasLayer/MainMenu.show()
+	$CanvasLayer/Credits.hide()
 
 
 func load_volume_options():
@@ -111,3 +112,9 @@ func _on_sfx_volume_drag_ended(value_changed: bool) -> void:
 func _on_music_volume_drag_ended(value_changed: bool) -> void:
 	config.set_value("Volume", "Music", music_volume.value)
 	update_audio_busses()
+
+
+func _on_credits_button_pressed() -> void:
+	$CanvasLayer/MainMenu.hide()
+	$CanvasLayer/Credits.show()
+	$CanvasLayer/MainMenuButton.show()

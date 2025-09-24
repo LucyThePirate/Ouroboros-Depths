@@ -2,8 +2,16 @@ extends Node2D
 
 var target: GridEntity
 
-var speed := 100
 var block_range := 3
+var lurch_distance := 50.0
+const LURCH_INCREASE := 0.25
+const LURCH_MAX := 100.0
+var jitter := 40.0
+const JITTER_INCREASE := 0.25
+const JITTER_MAX := 100.0
+var lurch_timer := 1.0
+var LURCH_TIMER_DECREASE := 0.01
+var LURCH_TIMER_MIN := 0.25
 
 
 func _ready() -> void:
@@ -12,10 +20,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if target and target.is_alive():
-		global_position = global_position.move_toward(target.global_position, delta * speed)
-	else:
-		_find_target()
+	global_position += Vector2(
+		randf_range(-jitter, jitter) * delta, randf_range(-jitter, jitter) * delta
+	)
+	jitter = min(jitter + (JITTER_INCREASE * delta), JITTER_MAX)
+	lurch_distance = min(lurch_distance + (LURCH_INCREASE * delta), LURCH_MAX)
 
 
 func _find_target():
@@ -69,3 +78,12 @@ func _on_messwith_blocks_timer_timeout() -> void:
 		Global.walls.get_cell_atlas_coords(block_2_coords)
 	)
 	Global.walls.set_cell(block_2_coords, temp_source_id, temp_atlas_coords)
+
+
+func _on_lurch_timer_timeout() -> void:
+	if target and target.is_alive():
+		global_position = global_position.move_toward(target.global_position, lurch_distance)
+	else:
+		_find_target()
+	lurch_timer = max(LURCH_TIMER_MIN, lurch_timer - LURCH_TIMER_DECREASE)
+	$LurchTimer.start(lurch_timer)

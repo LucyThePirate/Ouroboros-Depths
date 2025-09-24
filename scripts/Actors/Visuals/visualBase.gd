@@ -20,6 +20,8 @@ func initialize(new_grid_entity: GridEntity) -> void:
 func _process(delta: float) -> void:
 	t += delta * TIME_SCALE
 	run_speed = clampf(lerpf(run_speed, 0, t), 0, 2)
+	if run_speed < 0.25:
+		run_speed = 0
 	if anim_tree:
 		anim_tree.set("parameters/RunBlend/blend_amount", run_speed)
 

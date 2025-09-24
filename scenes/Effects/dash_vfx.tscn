@@ -60,7 +60,7 @@ script = ExtResource("2_wh1vl")
 
 [node name="DashSFX" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_37khe")
-volume_db = 11.555
+volume_db = 7.814
 autoplay = true
 bus = &"SFX"
 

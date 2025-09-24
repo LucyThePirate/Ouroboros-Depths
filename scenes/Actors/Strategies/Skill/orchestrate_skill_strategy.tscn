@@ -48,7 +48,6 @@ skill_ID = 5
 texture = ExtResource("2_x1ymy")
 
 [node name="SamplerInstrument" type="AudioStreamPlayer2D" parent="." index="4"]
-volume_db = -5.0
 bus = &"SFX"
 script = ExtResource("10_r86bf")
 samples = Array[ExtResource("11_ot66j")]([SubResource("Resource_ot66j"), SubResource("Resource_ssolw"), SubResource("Resource_a0o2l")])

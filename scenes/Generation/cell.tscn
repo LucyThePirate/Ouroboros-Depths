@@ -143,7 +143,7 @@ spawn_smoke_scene = ExtResource("3_fx61w")
 player_scene = ExtResource("3_iimes")
 creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj"), ExtResource("8_0xdhj")])
 bogosort_scene = ExtResource("9_fx61w")
-generation_size = Vector2i(60, 30)
+generation_size = Vector2i(40, 30)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2992, 1528)

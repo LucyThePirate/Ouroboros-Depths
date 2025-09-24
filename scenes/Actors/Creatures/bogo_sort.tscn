@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://dvcwpl3qv0wsg" path="res://scripts/Actors/AI/bogo_sort.gd" id="1_qot6b"]
 [ext_resource type="AudioStream" uid="uid://b2kctwe7vp5ly" path="res://audio/Music/AstrMusic/computingnoises[ambient,singlenote].mp3" id="2_pmutu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_djnkf"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qot6b"]
+height = 30.925972
 
 [node name="BogoSort" type="Node2D"]
 script = ExtResource("1_qot6b")
@@ -18,17 +19,24 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(6.1437035, 6.1437035)
-shape = SubResource("CircleShape2D_djnkf")
+shape = SubResource("CapsuleShape2D_qot6b")
 
 [node name="Ambiance" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_pmutu")
-volume_db = 12.482
+volume_db = 16.971
 autoplay = true
+attenuation = 0.45062512
+panning_strength = 1.43
 bus = &"SFX"
 
 [node name="MesswithBlocksTimer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
 
+[node name="LurchTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="MesswithBlocksTimer" to="." method="_on_messwith_blocks_timer_timeout"]
+[connection signal="timeout" from="LurchTimer" to="." method="_on_lurch_timer_timeout"]

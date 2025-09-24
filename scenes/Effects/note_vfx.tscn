@@ -186,6 +186,7 @@ scale = Vector2(3.04089, 3.04089)
 texture = ExtResource("1_temwn")
 
 [node name="SamplerInstrument" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
 script = ExtResource("3_mfgr6")
 samples = Array[ExtResource("4_spoek")]([SubResource("Resource_ot66j"), SubResource("Resource_ssolw"), SubResource("Resource_a0o2l")])
 metadata/_custom_type_script = "uid://bcwt5giabpceq"

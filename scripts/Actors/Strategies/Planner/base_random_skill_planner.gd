@@ -37,19 +37,28 @@ func queue_random_skill() -> bool:
 	return stack_component.queue_skill(chosen_skill_number)
 
 
+func has_queueable_skill() -> bool:
+	for skill: SkillStrategy in stack_component.hand:
+		if not skill:
+			continue
+		if skill.current_in_stack < skill.max_per_stack:
+			return true
+	return false
+
+
 func make_plan(_entity: GridEntity) -> String:
 	if stack_component.is_full():
 		return "Execute Stack"
 	else:
 		if stack_component.skills.size() <= 0:
 			return ""
-		var random_skill = randi() % stack_component.hand_size
-		if stack_component.can_queue_skill(random_skill):
+		if has_queueable_skill():
 			return "Queue Skill"
 		else:
 			if stack_component.can_execute_stack():
 				return "Execute Stack"
 			else:
+				stack_component.reload_deck()
 				return ""
 
 

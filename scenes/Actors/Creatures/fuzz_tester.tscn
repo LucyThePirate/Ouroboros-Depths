@@ -25,7 +25,6 @@ Due to their tendency to pick fights with anything that moves, it is not a bad i
 soul_count = 1
 
 [node name="PossibilitiesSkillStrategy" parent="GridEntity/SkillStackComponent" index="9" instance=ExtResource("3_netfx")]
-count = 4
 
 [node name="HealthComponent" parent="GridEntity/UI" index="0"]
 max_health = 10
