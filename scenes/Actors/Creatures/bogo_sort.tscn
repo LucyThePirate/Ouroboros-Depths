@@ -30,10 +30,12 @@ panning_strength = 1.43
 bus = &"SFX"
 
 [node name="MesswithBlocksTimer" type="Timer" parent="."]
+process_callback = 0
 wait_time = 0.25
 autostart = true
 
 [node name="LurchTimer" type="Timer" parent="."]
+process_callback = 0
 one_shot = true
 autostart = true
 

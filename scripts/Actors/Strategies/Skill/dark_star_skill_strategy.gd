@@ -2,7 +2,8 @@ extends SkillStrategy
 
 var max_distance = 8
 
-@export var StarVFX: PackedScene
+@export var star_VFX: PackedScene
+@export var note_VFX: PackedScene
 
 
 func ready_skill(grid_entity: GridEntity) -> bool:
@@ -17,7 +18,7 @@ func use_skill(grid_entity: GridEntity):
 	$Arrows.hide()
 	state = SkillStrategy.States.PLAYING_ANIMATION
 	#print("Used skill ", name, " towards ", direction)
-	var new_star_VFX = StarVFX.instantiate()
+	var new_star_VFX = star_VFX.instantiate()
 	var direction_copy = direction
 	add_child(new_star_VFX)
 	new_star_VFX.initialize(direction_copy, grid_entity)
@@ -36,17 +37,20 @@ func use_skill(grid_entity: GridEntity):
 	super(grid_entity)
 
 
-func explode_star(grid_coords, grid_entity, direction):
+func explode_star(grid_coords, grid_entity, attack_direction):
 	var star_points = [
 		Vector2.ZERO, Vector2(1, 0), Vector2(0, -1), Vector2(0, 1), Vector2(-1, -1), Vector2(-1, 1)
 	]
 	for point in star_points:
-		var rotated_point = point.rotated(Vector2(direction).angle())
+		var rotated_point = point.rotated(Vector2(attack_direction).angle())
 		var check_coords = Vector2i(round(rotated_point.x), round(rotated_point.y)) + grid_coords
 		#print(
 		#"checking:", check_coords, "point:", Vector2i(point.rotated(Vector2(direction).angle()))
 		#)
-		grid_entity.spawn_tile.emit(check_coords)
+		#grid_entity.spawn_tile.emit(check_coords)
+		var new_note_VFX = note_VFX.instantiate()
+		get_tree().current_scene.add_child(new_note_VFX)
+		new_note_VFX.global_position = Global.floors.map_to_local(check_coords)
 		if (
 			Global.entity_positions.has(check_coords)
 			and is_instance_valid(Global.entity_positions[check_coords])

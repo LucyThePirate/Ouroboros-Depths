@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://djc3cmcxnhe5l" path="res://scenes/Characters/Visuals/scarecrow_visual.tscn" id="5_8jod5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vielv"]
-radius = 451.0
+radius = 692.6265
 
 [node name="TutorialScarecrow" type="Node2D" node_paths=PackedStringArray("visual")]
 script = ExtResource("1_i1trn")

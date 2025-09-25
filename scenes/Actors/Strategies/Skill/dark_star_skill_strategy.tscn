@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://csjboon7n8lek"]
+[gd_scene load_steps=7 format=3 uid="uid://csjboon7n8lek"]
 
 [ext_resource type="Script" uid="uid://cbhkh67j5r5ni" path="res://scripts/Actors/Strategies/Skill/dark_star_skill_strategy.gd" id="1_sn4vy"]
 [ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/base_skill_strategy.tscn" id="1_snp4d"]
 [ext_resource type="PackedScene" uid="uid://4acykyan5qq0" path="res://scenes/Effects/dark_star.tscn" id="2_e3lg0"]
 [ext_resource type="Texture2D" uid="uid://b08oh14ot75ib" path="res://textures/Skills/SkillIcons.png" id="2_jrkbo"]
+[ext_resource type="PackedScene" uid="uid://cmxeogtui2phc" path="res://scenes/Effects/note_vfx.tscn" id="4_iv8dg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_snp4d"]
 atlas = ExtResource("2_jrkbo")
@@ -11,7 +12,8 @@ region = Rect2(306.804, 28.6566, 133.78, 87.4935)
 
 [node name="DarkStarSkillStrategy" instance=ExtResource("1_snp4d")]
 script = ExtResource("1_sn4vy")
-StarVFX = ExtResource("2_e3lg0")
+star_VFX = ExtResource("2_e3lg0")
+note_VFX = ExtResource("4_iv8dg")
 skill_name = "Dark Star"
 skill_desc = "A nefarious spell favored among liches. The caster hurls a shadowy bolt that bursts into a star formation.
 

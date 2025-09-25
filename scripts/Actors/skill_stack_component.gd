@@ -78,9 +78,10 @@ func reload_deck() -> bool:
 		state = States.RELOADING
 		hand = []
 		deck = []
-		_update_skill_visuals()
-		_update_stack_visuals()
 		shuffle_turns = turns_to_reload
+		_update_skill_visuals()
+		_update_cooldown_visuals()
+		_update_stack_visuals()
 		var new_status = reload_status.instantiate() as StatusStrategy
 		add_child(new_status)
 		gained_status.emit(new_status)

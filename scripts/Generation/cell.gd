@@ -122,8 +122,10 @@ func _redraw_map():
 	Global.floors.clear()
 	Global.walls.clear()
 	_update_fog(Vector2i.ZERO, Global.floors.local_to_map(player.grid_entity.global_position))
-	var bogo_sort = bogosort_scene.instantiate()
-	add_child(bogo_sort)
+	if tutorial_level:
+		$Controls.hide()
+	else:
+		$BogoTimer.start()
 	_ready()
 
 
@@ -462,3 +464,16 @@ func _on_new_run_button_pressed() -> void:
 
 func _on_title_screen_button_pressed() -> void:
 	get_tree().change_scene_to_file(title_scene)
+
+
+func _on_bogo_timer_timeout() -> void:
+	$AnimationPlayer.play("BogoSortWarning")
+	var bogo_sort = bogosort_scene.instantiate()
+	var positions = [
+		Vector2(-100, -100),
+		Vector2(generation_size.x * 100 + 100, -100),
+		Vector2(-100, generation_size.y * 100 + 100),
+		Vector2(generation_size.x * 100 + 100, generation_size.y * 100 + 100)
+	]
+	bogo_sort.global_position = positions.pick_random()
+	add_child(bogo_sort)
