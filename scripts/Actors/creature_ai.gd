@@ -99,7 +99,7 @@ func get_random_direction() -> Vector2i:
 func move_in_direction(moveDirection):
 	visual.global_position = grid_entity.global_position
 	display.global_position = grid_entity.global_position
-	var move_successful = grid_entity.move(moveDirection)
+	var move_successful = grid_entity.move(moveDirection, angry_at == null)
 	if not move_successful:
 		display.global_position += Vector2(moveDirection) * 25
 	displayLerpTime = 0.0
@@ -184,6 +184,18 @@ func _update_angry_at(new_target: GridEntity):
 	else:
 		Global.deaggroed_towards_player.emit(grid_entity)
 		health_component.set_color(Color.WHITE)
+
+
+func can_aggro_against(new_target: GridEntity) -> bool:
+	if new_target == null:
+		return false
+	if new_target == grid_entity or new_target is not GridEntity:
+		return false
+	if new_target.species_name == grid_entity.species_name:
+		return false
+	if new_target.state == GridEntity.States.DEAD:
+		return false
+	return true
 
 
 func _on_angry_at_died():

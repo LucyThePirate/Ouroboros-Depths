@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://c02to40218vlw"]
+[gd_scene load_steps=67 format=4 uid="uid://c02to40218vlw"]
 
 [ext_resource type="Script" uid="uid://chejtonyw0gfm" path="res://scripts/title_screen.gd" id="1_tklts"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="2_mykxm"]
@@ -16,6 +16,9 @@
 [ext_resource type="AudioStream" uid="uid://b1nmnkp41rdqr" path="res://audio/SFX/Misc/Punch2.ogg" id="12_mynnq"]
 [ext_resource type="AudioStream" uid="uid://c4iuvy3r2whs6" path="res://audio/SFX/Misc/Punch3.ogg" id="13_e8tpv"]
 [ext_resource type="AudioStream" uid="uid://dpm1ipsmp3ge" path="res://audio/Music/AstrMusic/Pathforgetting[ambient,wistful,fav].mp3" id="16_4qe4i"]
+[ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/Skills/SkillSack.png" id="16_khjys"]
+[ext_resource type="Texture2D" uid="uid://ck7daww27ttty" path="res://textures/Skills/ConsiderThePossibilitiesSkill.png" id="17_174rq"]
+[ext_resource type="Texture2D" uid="uid://bw5vnwnafwbci" path="res://textures/Skills/OrchestrateSkill.png" id="18_174rq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mce2t"]
 blend_mode = 3
@@ -659,7 +662,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-3" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(96.28552, 78.43518)
 rotation = -0.55622995
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.849252, -0.527988, 0.527988, 0.849252, 96.2855, 78.4352)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -699,7 +702,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-6" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(69.40637, 127.073)
 rotation = -1.36679
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.202592, -0.979263, 0.979263, 0.202592, 69.4064, 127.073)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -726,7 +729,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-8" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(68.7027, 159.052)
 rotation = 1.54074
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.0300513, 0.999548, -0.999548, 0.0300513, 68.7027, 159.052)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -753,7 +756,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-10" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(69.7157, 192.74402)
 rotation = -0.599834
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.825429, -0.564506, 0.564506, 0.825429, 69.7157, 192.744)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -792,7 +795,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone-13" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(91.734924, 239.25201)
-rotation = -0.46758696
+rotation = -0.46758693
 rest = Transform2D(0.892658, -0.450734, 0.450734, 0.892658, 91.7349, 239.252)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -871,7 +874,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-19" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(150.32, 112.24597)
 rotation = 2.52873
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(-0.818003, 0.575214, -0.575214, -0.818003, 150.32, 112.246)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -912,7 +915,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-22" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(123.630005, 155.08301)
 rotation = 1.55378
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.0170144, 0.999855, -0.999855, 0.0170144, 123.63, 155.083)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -952,7 +955,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-25" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(153.08203, 209.58502)
 rotation = 2.71105
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(-0.908739, 0.417366, -0.417366, -0.908739, 153.082, 209.585)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1057,7 +1060,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-33" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(178.53302, 231.568)
 rotation = -1.48128
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.0893961, -0.995996, 0.995996, 0.0893961, 178.533, 231.568)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -3074,7 +3077,6 @@ offset_bottom = 40.0
 texture = ExtResource("7_u26n3")
 
 [node name="Options" type="TabContainer" parent="CanvasLayer"]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -3084,9 +3086,10 @@ grow_vertical = 2
 theme = ExtResource("12_4qe4i")
 theme_override_font_sizes/font_size = 36
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="Audio" type="VBoxContainer" parent="CanvasLayer/Options"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -3200,11 +3203,164 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DontHaveCow" type="RichTextLabel" parent="CanvasLayer/Options"]
+[node name="Gameplay" type="VBoxContainer" parent="CanvasLayer/Options"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Text" type="RichTextLabel" parent="CanvasLayer/Options/Gameplay"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.572549)
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("9_p07av")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "
+[rainbow freq=0.2][wave]Gameplay
+
+"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="VBoxContainer" parent="CanvasLayer/Options/Gameplay"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/Options/Gameplay/CenterContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.572549)
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("9_p07av")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Starting Deck"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeckSelect" type="TabContainer" parent="CanvasLayer/Options/Gameplay/CenterContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+tab_alignment = 1
+current_tab = 1
+
+[node name="Basic Deck" type="VBoxContainer" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect"]
 visible = false
 layout_mode = 2
-text = "dont have cow"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+metadata/_tab_index = 0
+
+[node name="DeckName" type="RichTextLabel" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect/Basic Deck"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("9_p07av")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Basic Deck
+"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect/Basic Deck"]
+layout_mode = 2
+texture = ExtResource("16_khjys")
+stretch_mode = 3
+
+[node name="DeckDesc" type="RichTextLabel" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect/Basic Deck"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("9_p07av")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "The basic deck. Recommended for beginners!"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Fuzzer Deck" type="VBoxContainer" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
 metadata/_tab_index = 1
+
+[node name="DeckName" type="RichTextLabel" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect/Fuzzer Deck"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("9_p07av")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Fuzzer Deck
+"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect/Fuzzer Deck"]
+layout_mode = 2
+texture = ExtResource("17_174rq")
+stretch_mode = 3
+
+[node name="DeckDesc" type="RichTextLabel" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect/Fuzzer Deck"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("9_p07av")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "A chaotic deck. You'll never know what you'll get!"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Musician Deck" type="VBoxContainer" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+metadata/_tab_index = 2
+
+[node name="DeckName" type="RichTextLabel" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect/Musician Deck"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("9_p07av")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Musician Deck"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect/Musician Deck"]
+layout_mode = 2
+texture = ExtResource("18_174rq")
+stretch_mode = 3
+
+[node name="DeckDesc" type="RichTextLabel" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect/Musician Deck"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("9_p07av")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "A musical deck centered around the Orchestrate skill."
+fit_content = true
+horizontal_alignment = 1
 
 [node name="Disclaimer" type="RichTextLabel" parent="CanvasLayer"]
 anchors_preset = 2
@@ -3225,6 +3381,7 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="Credits" type="VScrollBar" parent="CanvasLayer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -3297,4 +3454,5 @@ bus = &"Music"
 [connection signal="drag_ended" from="CanvasLayer/Options/Audio/CenterContainer/MasterVolume" to="." method="_on_master_volume_drag_ended"]
 [connection signal="drag_ended" from="CanvasLayer/Options/Audio/CenterContainer2/SFXVolume" to="." method="_on_sfx_volume_drag_ended"]
 [connection signal="drag_ended" from="CanvasLayer/Options/Audio/CenterContainer3/MusicVolume" to="." method="_on_music_volume_drag_ended"]
+[connection signal="tab_changed" from="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect" to="." method="_on_deck_select_tab_changed"]
 [connection signal="pressed" from="CanvasLayer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

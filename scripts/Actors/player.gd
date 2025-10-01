@@ -32,6 +32,7 @@ func _ready() -> void:
 	display.global_position = grid_entity.global_position
 	global_position = grid_entity.position
 	visual.initialize(grid_entity)
+	_load_deck()
 	stack_component.initialize(grid_entity, true, turn_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
 
@@ -96,7 +97,10 @@ func _handle_movement() -> void:
 		if not move_successful:
 			display.global_position += moveDirection * 25
 
-	elif Input.is_action_just_pressed("Wait"):
+	elif (
+		Input.is_action_just_pressed("Wait")
+		or (Input.is_action_pressed("Wait") and Input.is_action_pressed("Run"))
+	):
 		end_turn()
 		return
 
@@ -242,6 +246,14 @@ func _on_skill_stack_component_emptied_stack() -> void:
 func _on_finished_writing_text() -> void:
 	current_text = null
 	is_talking = false
+
+
+func _load_deck():
+	var deck = Global.load_deck().instantiate()
+	add_child(deck)
+	for skill in deck.get_children():
+		skill.reparent(stack_component)
+	deck.queue_free()
 
 
 func _on_grid_entity_fell_off_map() -> void:

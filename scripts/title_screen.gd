@@ -3,13 +3,12 @@ extends Control
 @export_file("*.tscn") var game_scene
 @export_file("*.tscn") var tutorial_scene
 
-@onready var config = ConfigFile.new()
-@onready var options_file = "user://options.cfg"
-
 @onready var master_volume = $CanvasLayer/Options/Audio/CenterContainer/MasterVolume as HSlider
 @onready var sfx_volume = $CanvasLayer/Options/Audio/CenterContainer2/SFXVolume as HSlider
 @onready var music_volume = $CanvasLayer/Options/Audio/CenterContainer3/MusicVolume as HSlider
 @onready var sfx_tester = $CanvasLayer/Options/Audio/CenterContainer2/SFXTester
+
+@onready var deck_select = $CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect as TabContainer
 
 @onready var load_progress_bar = $CanvasLayer/Loading/VBoxContainer/ProgressBar as ProgressBar
 @onready var loading_screen_tip = $CanvasLayer/Loading/VBoxContainer/Tip as RichTextLabel
@@ -28,8 +27,9 @@ var state := States.IDLE
 func _ready() -> void:
 	ResourceLoader.load_threaded_request(game_scene)
 	ResourceLoader.load_threaded_request(tutorial_scene)
-	var err = config.load(options_file)
+	var err = Global.config.load(Global.options_file)
 	load_volume_options()
+	_load_deck_select_options()
 	_on_main_menu_button_pressed()
 	loading_screen_tip.text = tips.pick_random()
 
@@ -74,7 +74,7 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_main_menu_button_pressed() -> void:
-	config.save(options_file)
+	Global.config.save(Global.options_file)
 	$CanvasLayer/Loading.hide()
 	$CanvasLayer/Options.hide()
 	$CanvasLayer/MainMenuButton.hide()
@@ -83,12 +83,12 @@ func _on_main_menu_button_pressed() -> void:
 
 
 func load_volume_options():
-	if config.get_value("Volume", "Master"):
-		master_volume.value = config.get_value("Volume", "Master")
-	if config.get_value("Volume", "SFX"):
-		sfx_volume.value = config.get_value("Volume", "SFX")
-	if config.get_value("Volume", "Music"):
-		music_volume.value = config.get_value("Volume", "Music")
+	if Global.config.get_value("Volume", "Master"):
+		master_volume.value = Global.config.get_value("Volume", "Master")
+	if Global.config.get_value("Volume", "SFX"):
+		sfx_volume.value = Global.config.get_value("Volume", "SFX")
+	if Global.config.get_value("Volume", "Music"):
+		music_volume.value = Global.config.get_value("Volume", "Music")
 	update_audio_busses()
 
 
@@ -99,18 +99,18 @@ func update_audio_busses():
 
 
 func _on_master_volume_drag_ended(value_changed: bool) -> void:
-	config.set_value("Volume", "Master", master_volume.value)
+	Global.config.set_value("Volume", "Master", master_volume.value)
 	update_audio_busses()
 
 
 func _on_sfx_volume_drag_ended(value_changed: bool) -> void:
-	config.set_value("Volume", "SFX", sfx_volume.value)
+	Global.config.set_value("Volume", "SFX", sfx_volume.value)
 	sfx_tester.play()
 	update_audio_busses()
 
 
 func _on_music_volume_drag_ended(value_changed: bool) -> void:
-	config.set_value("Volume", "Music", music_volume.value)
+	Global.config.set_value("Volume", "Music", music_volume.value)
 	update_audio_busses()
 
 
@@ -118,3 +118,13 @@ func _on_credits_button_pressed() -> void:
 	$CanvasLayer/MainMenu.hide()
 	$CanvasLayer/Credits.show()
 	$CanvasLayer/MainMenuButton.show()
+
+
+func _load_deck_select_options():
+	if Global.config.get_value("Gameplay", "SelectedDeck"):
+		deck_select.current_tab = Global.config.get_value("Gameplay", "SelectedDeck")
+
+
+func _on_deck_select_tab_changed(tab: int) -> void:
+	if Global.config:
+		Global.config.set_value("Gameplay", "SelectedDeck", tab)

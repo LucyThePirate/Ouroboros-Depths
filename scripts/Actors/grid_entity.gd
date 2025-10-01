@@ -71,7 +71,7 @@ func get_skills() -> Array[Node]:
 	return Debug.find_children_in_group(self, "Skill", true)
 
 
-func move(direction: Vector2i) -> bool:
+func move(direction: Vector2i, safe_walk := false) -> bool:
 	if not initialized or state == States.DEAD:
 		return false
 
@@ -81,9 +81,13 @@ func move(direction: Vector2i) -> bool:
 
 	# Test for other bodies
 	if Global.entity_positions.has(grid_coords):
-		hit(Global.entity_positions[grid_coords])
-		performed_action.emit()
-		return false
+		if not safe_walk:
+			hit(Global.entity_positions[grid_coords])
+			performed_action.emit()
+			return false
+		else: # safe walk on and we don't want to bump into this entity
+			performed_action.emit()
+			return false
 
 	# Object interaction
 	var wall_data = Global.walls.get_cell_tile_data(grid_coords)

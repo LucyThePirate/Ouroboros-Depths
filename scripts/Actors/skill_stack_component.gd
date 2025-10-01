@@ -54,8 +54,6 @@ var moved_by_skill := false
 
 
 func _ready() -> void:
-	skills = Debug.find_children_in_group(self, "Skill", false)
-	_shuffle_skills()
 	$CanvasLayer/SkillBagList.hide()
 
 
@@ -66,6 +64,8 @@ func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_compon
 	turn_component = new_turn_component
 	turn_component.turn_ended.connect(_update_turn_cooldown)
 	grid_entity.moved.connect(_on_grid_entity_moved)
+	skills = Debug.find_children_in_group(self, "Skill", false)
+	_shuffle_skills()
 
 
 func reload_deck() -> bool:
