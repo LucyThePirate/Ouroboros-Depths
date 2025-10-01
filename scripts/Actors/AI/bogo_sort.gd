@@ -3,13 +3,13 @@ extends Node2D
 var target: GridEntity
 
 var block_range := 3
-var lurch_distance := 50.0
-const LURCH_INCREASE := 0.25
+var lurch_distance := 40.0
+const LURCH_INCREASE := 0.15
 const LURCH_MAX := 100.0
 var jitter := 40.0
 const JITTER_INCREASE := 0.25
 const JITTER_MAX := 100.0
-var lurch_timer := 1.0
+var lurch_timer := 1.5
 var LURCH_TIMER_DECREASE := 0.01
 var LURCH_TIMER_MIN := 0.25
 

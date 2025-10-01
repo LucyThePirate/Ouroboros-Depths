@@ -3,8 +3,6 @@ extends Node2D
 class_name GenerationStrategy
 
 @export var generation_size: Vector2i
-@export var player_scene: PackedScene
-@export var creature_scene: Array[PackedScene]
 
 #region Terrain generation and Tiles
 var root_node: Branch
@@ -36,18 +34,15 @@ var paths: Array = []
 var noise
 var rng
 var current_floor := 0
+enum NatureModes { ALL, SOMETIMES, NONE }
+var nature_mode
 #endregion
 
-var player
 
-
-func initialize(
-	new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMapLayer, new_player: Player
-):
+func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMapLayer):
 	floors = new_floor
 	walls = new_wall
 	fog = new_fog
-	player = new_player
 	rng = RandomNumberGenerator.new()
 	noise = FastNoiseLite.new()
 	noise.seed = rng.get_seed()
@@ -56,13 +51,12 @@ func initialize(
 	noise.frequency = 0.05
 	noise.noise_type = 3
 	root_node = Branch.new(Vector2i(0, 0), generation_size)
-	root_node.split(3, paths)
+	root_node.split(randi_range(2, 4), paths)
+	nature_mode = [NatureModes.ALL, NatureModes.SOMETIMES, NatureModes.NONE].pick_random()
 
 
 func generate_level():
 	for leaf in root_node.get_leaves():
-		if 0.5 > randf():
-			spawn_entity(leaf.get_center(), creature_scene.pick_random())
 		var padding = Vector4i(
 			rng.randi_range(0, 0),  # Left Padding
 			rng.randi_range(0, 0),  # Up Padding
@@ -128,10 +122,13 @@ func generate_level():
 		for x in range(leaf.size.x):
 			for y in range(leaf.size.y):
 				var tile_coordinate = Vector2i(x + leaf.position.x, y + leaf.position.y)
-				if leaf.path_intersection_count != 1:  # Place nature tiles
+				if (
+					nature_mode == NatureModes.ALL
+					or (leaf.path_intersection_count != 1 and nature_mode == NatureModes.SOMETIMES)
+				):  # Place nature tiles
 					_place_nature_tile(tile_coordinate)
 
-				if leaf.path_intersection_count == 1:
+				else:
 					var random_tile = noise.get_noise_2dv(tile_coordinate)
 					if walls.get_cell_tile_data(tile_coordinate) and random_tile < -0.15:
 						if (
@@ -231,11 +228,3 @@ func is_inside_padding(x, y, leaf, padding):
 		or x >= leaf.size.x - padding.z
 		or y >= leaf.size.y - padding.w
 	)
-
-
-func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):
-	var new_entity = entity_scene.instantiate()
-	new_entity.global_position = floors.map_to_local(grid_coordinate)
-	add_child(new_entity)
-	print("Spawned %s at: %s" % [new_entity.name, grid_coordinate])
-	return new_entity

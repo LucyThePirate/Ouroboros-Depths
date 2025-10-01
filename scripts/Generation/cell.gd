@@ -77,14 +77,17 @@ func _ready():
 		_initialize_entities()
 		return
 	# Else, no existing level, generate
-	generator.initialize(floors, walls, fog, player)
+	generator.initialize(floors, walls, fog)
 	generator.generate_level()
-	player = (
-		spawn_entity(
-			$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0], player_scene
+	if not player:
+		player = (
+			spawn_entity(
+				$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0], player_scene
+			)
+			as Player
 		)
-		as Player
-	)
+	for i in range(8):
+		try_spawning_random_monster(false)
 	_initialize_entities()
 	_update_fog(Vector2i.ZERO, generator.root_node.get_center())
 	player.grid_entity.warp(generator.root_node.get_center())
@@ -179,7 +182,7 @@ func process_turn():
 	if turn_queue.size() <= 0:
 		turn_counter += 1
 		if spawn_creatures and (turn_counter % 5) == 0:
-			try_spawning_random_monster()
+			try_spawning_random_monster(true)
 		print(turn_counter)
 		for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
 			turn_queue.push_back(turn_component)
@@ -195,15 +198,16 @@ func process_turn():
 	#await current_entity.turn_ended
 
 
-func try_spawning_random_monster():
+func try_spawning_random_monster(initialize_entity := true):
 	if Global.entity_positions.size() < 10 + current_floor:
 		var grid_coordinate = Global.floors.get_used_cells().pick_random()
 		if not _is_obstructed(grid_coordinate):
 			var new_entity = spawn_entity(grid_coordinate, creature_scene.pick_random())
-			_initialize_entity(new_entity.grid_entity)
-			var new_smoke = spawn_smoke_scene.instantiate()
-			new_smoke.global_position = Global.floors.map_to_local(grid_coordinate)
-			add_child(new_smoke)
+			if initialize_entity:
+				_initialize_entity(new_entity.grid_entity)
+				var new_smoke = spawn_smoke_scene.instantiate()
+				new_smoke.global_position = Global.floors.map_to_local(grid_coordinate)
+				add_child(new_smoke)
 
 
 func _entity_finished_turn():

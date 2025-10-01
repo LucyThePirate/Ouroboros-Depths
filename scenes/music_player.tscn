@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4f00tfs8u6om"]
+
+[ext_resource type="AudioStream" uid="uid://ckploe52g84qd" path="res://audio/Music/AstrMusic/GHOST_NOODLES[8bit,loop,remix].mp3" id="1_ql6qh"]
+[ext_resource type="AudioStream" uid="uid://rnxn4j8uomna" path="res://audio/Music/AstrMusic/GHOST_NOODLES[loop,mysterious].mp3" id="2_l7xiw"]
+
+[node name="MusicPlayer" type="Node"]
+
+[node name="GhostQuiet" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ql6qh")
+autoplay = true
+bus = &"Music"
+playback_type = 1
+
+[node name="GhostBattle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l7xiw")
+volume_db = -50.0
+autoplay = true
+bus = &"Music"
+playback_type = 1

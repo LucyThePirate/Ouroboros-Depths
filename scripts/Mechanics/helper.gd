@@ -4,6 +4,7 @@ var slowdown_enabled: bool = true
 var reload_count: int = 0
 const MIN_CAMERA_ZOOM := Vector2(0.1, 0.1)
 const MAX_CAMERA_ZOOM := Vector2(5, 5)
+var fog_visible := true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -38,6 +39,10 @@ func _process(_delta):
 		var camera = get_viewport().get_camera_2d()
 		if camera:
 			camera.global_position = get_global_mouse_position()
+	if Input.is_action_just_pressed("DebugToggleFog"):
+		fog_visible = !fog_visible
+		for fog_node in get_tree().get_nodes_in_group("Fog"):
+			fog_node.visible = fog_visible
 
 
 func toggle_slowdown():
