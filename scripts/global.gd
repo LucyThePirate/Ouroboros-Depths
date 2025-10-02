@@ -17,6 +17,7 @@ enum DECKS { BASIC, FUZZER, MUSICIAN }
 var floors: TileMapLayer
 var objects: TileMapLayer
 var walls: TileMapLayer
+var darkness: TileMapLayer
 
 const CELL_SIZE = 100
 

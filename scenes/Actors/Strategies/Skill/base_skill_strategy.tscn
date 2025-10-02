@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcpo4dfcq62k2"]
+[gd_scene load_steps=9 format=3 uid="uid://bcpo4dfcq62k2"]
 
-[ext_resource type="Script" uid="uid://c0f56xso1fu7o" path="res://scripts/Actors/Strategies/Skill/skill_strategy.gd" id="1_kcxpa"]
 [ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="4_0actt"]
 [ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/UI/Cursor.png" id="5_bxg8s"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="6_sh0vo"]
@@ -40,9 +39,6 @@ offset_right = 144.0
 offset_bottom = 139.0
 scale = Vector2(1.18752, 1.18752)
 mouse_filter = 1
-script = ExtResource("1_kcxpa")
-skill_name = "Default Skill"
-skill_desc = "Default skill description."
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 2
@@ -64,6 +60,15 @@ show_percentage = false
 visible = false
 top_level = true
 z_index = -1
+sprite_frames = SubResource("SpriteFrames_v8hib")
+autoplay = "default"
+speed_scale = 0.3
+
+[node name="Cursor2" type="AnimatedSprite2D" parent="Cursor"]
+self_modulate = Color(0, 0, 0, 0.654902)
+show_behind_parent = true
+z_index = -1
+position = Vector2(2, 5)
 sprite_frames = SubResource("SpriteFrames_v8hib")
 autoplay = "default"
 speed_scale = 0.3

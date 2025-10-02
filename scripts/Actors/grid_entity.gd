@@ -85,7 +85,7 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 			hit(Global.entity_positions[grid_coords])
 			performed_action.emit()
 			return false
-		else: # safe walk on and we don't want to bump into this entity
+		else:  # safe walk on and we don't want to bump into this entity
 			performed_action.emit()
 			return false
 
@@ -94,6 +94,7 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 	if wall_data:
 		if wall_data.get_custom_data("is_door"):
 			opened_door.emit(grid_coords)
+			moved.emit(old_coords, grid_coords)
 			door_open.play()
 			performed_action.emit()
 			return false
@@ -288,6 +289,14 @@ func is_on_path_down() -> bool:
 	var grid_coords = Global.floors.local_to_map(global_position)
 	var floor_data = Global.floors.get_cell_tile_data(grid_coords)
 	if not floor_data or not floor_data.get_custom_data("is_path_down"):
+		return false
+	return true
+
+
+func is_in_darkness() -> bool:
+	var grid_coords = Global.floors.local_to_map(global_position)
+	var darkness_data = Global.darkness.get_cell_tile_data(grid_coords)
+	if not darkness_data:
 		return false
 	return true
 

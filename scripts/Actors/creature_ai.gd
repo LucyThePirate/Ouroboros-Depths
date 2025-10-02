@@ -18,6 +18,7 @@ var status_manager_component = $GridEntity/UI/StatusManagerComponent as StatusMa
 @onready var intent_arrow = $IntentArrow
 
 var initialized = false
+var in_darkness = false
 var level: Node2D
 var angry_at: GridEntity
 @onready var intent := "Do Nothing"
@@ -67,7 +68,12 @@ func take_turn():
 		_:
 			print("%s did %s" % [name, intent])
 			pass
-
+	in_darkness = grid_entity.is_in_darkness()
+	visible = not in_darkness
+	#if in_darkness:
+	#modulate = Color.BLACK
+	#else:
+	#modulate = Color.WHITE
 	update_intent()
 	turn_component.end_turn()
 
@@ -133,7 +139,7 @@ func get_direction_towards(
 
 
 func pursue_entity(entity: GridEntity) -> Vector2i:
-	if randf() > 0.5:
+	if randf() > 0.5 or in_darkness:
 		return get_direction_towards(entity, false, true)
 	else:
 		intent = random_skill_planner.make_plan(entity)
@@ -164,26 +170,24 @@ func _on_grid_entity_hurt(attacker: GridEntity) -> void:
 
 
 func _update_angry_at(new_target: GridEntity):
+	if new_target == angry_at:
+		return
 	if new_target == null:
 		if angry_at and angry_at.is_in_group("Player"):
 			Global.deaggroed_towards_player.emit(grid_entity)
 		angry_at = null
 		health_component.set_color(Color.WHITE)
-	if new_target == grid_entity or new_target is not GridEntity or new_target == angry_at:
+	if not can_aggro_against(new_target):
 		return
-	if new_target.species_name == grid_entity.species_name:
-		return
-	if new_target.state == GridEntity.States.DEAD:
-		return
-	angry_at = new_target
-	angry_at.died.connect(_on_angry_at_died)
-	print(name, " pissed at ", new_target.name)
 	if new_target.is_in_group("Player"):
 		Global.aggroed_towards_player.emit(grid_entity)
 		health_component.set_color(Color.RED)
-	else:
+	elif angry_at and angry_at.is_in_group("Player"):
 		Global.deaggroed_towards_player.emit(grid_entity)
 		health_component.set_color(Color.WHITE)
+	angry_at = new_target
+	angry_at.died.connect(_on_angry_at_died)
+	print(name, " pissed at ", new_target.name)
 
 
 func can_aggro_against(new_target: GridEntity) -> bool:
@@ -223,5 +227,5 @@ func _on_base_random_skill_planner_awaited_cursor_input() -> void:
 func _on_detection_radius_body_entered(body: Node2D) -> void:
 	if angry_at:
 		return
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and not in_darkness:
 		_update_angry_at(body)

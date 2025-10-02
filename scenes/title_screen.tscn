@@ -702,7 +702,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-6" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(69.40637, 127.073)
 rotation = -1.36679
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(0.9999998, 0.9999998)
 rest = Transform2D(0.202592, -0.979263, 0.979263, 0.202592, 69.4064, 127.073)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -729,7 +729,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-8" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(68.7027, 159.052)
 rotation = 1.54074
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(0.9999998, 0.9999998)
 rest = Transform2D(0.0300513, 0.999548, -0.999548, 0.0300513, 68.7027, 159.052)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -756,7 +756,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-10" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(69.7157, 192.74402)
 rotation = -0.599834
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(0.9999998, 0.9999998)
 rest = Transform2D(0.825429, -0.564506, 0.564506, 0.825429, 69.7157, 192.744)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -874,7 +874,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-19" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(150.32, 112.24597)
 rotation = 2.52873
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(0.9999998, 0.9999998)
 rest = Transform2D(-0.818003, 0.575214, -0.575214, -0.818003, 150.32, 112.246)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -915,7 +915,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-22" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(123.630005, 155.08301)
 rotation = 1.55378
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(0.9999998, 0.9999998)
 rest = Transform2D(0.0170144, 0.999855, -0.999855, 0.0170144, 123.63, 155.083)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -955,7 +955,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-25" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(153.08203, 209.58502)
 rotation = 2.71105
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(0.9999998, 0.9999998)
 rest = Transform2D(-0.908739, 0.417366, -0.417366, -0.908739, 153.082, 209.585)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1060,7 +1060,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-33" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(178.53302, 231.568)
 rotation = -1.48128
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(0.9999998, 0.9999998)
 rest = Transform2D(0.0893961, -0.995996, 0.995996, 0.0893961, 178.533, 231.568)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -3251,10 +3251,9 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 
 [node name="Basic Deck" type="VBoxContainer" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -3266,7 +3265,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("9_p07av")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
 text = "Basic Deck
 "
@@ -3291,6 +3290,7 @@ fit_content = true
 horizontal_alignment = 1
 
 [node name="Fuzzer Deck" type="VBoxContainer" parent="CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -3302,7 +3302,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("9_p07av")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
 text = "Fuzzer Deck
 "
@@ -3339,7 +3339,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("9_p07av")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
 text = "Musician Deck"
 fit_content = true
@@ -3376,7 +3376,7 @@ theme_override_constants/outline_size = 7
 theme_override_fonts/normal_font = ExtResource("9_p07av")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "SUPER DUPER EARLY PRIVATE ALPHA RELEASE V0.2.SOMETHING, DON'T EXPECT MUCH"
+text = "SUPER DUPER EARLY PRIVATE ALPHA RELEASE V0.2.1, DON'T EXPECT MUCH"
 fit_content = true
 autowrap_mode = 0
 

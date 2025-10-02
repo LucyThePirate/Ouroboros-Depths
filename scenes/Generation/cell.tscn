@@ -202,6 +202,12 @@ z_index = 10
 material = SubResource("CanvasItemMaterial_fx61w")
 tile_set = ExtResource("8_5cpdm")
 
+[node name="Darkness" type="TileMapLayer" parent="." groups=["Fog"]]
+self_modulate = Color(0.9529412, 0.6627451, 0.49803922, 0.44705883)
+z_index = 10
+material = SubResource("CanvasItemMaterial_fx61w")
+tile_set = ExtResource("8_5cpdm")
+
 [node name="BasicGenerationStrategy" parent="." instance=ExtResource("10_v01jn")]
 generation_size = Vector2i(40, 30)
 
@@ -336,7 +342,6 @@ theme_override_font_sizes/font_size = 30
 text = "Return to title screen"
 
 [node name="AggroCount" type="RichTextLabel" parent="CanvasLayer"]
-visible = false
 offset_left = 1.0
 offset_right = 41.0
 offset_bottom = 40.0
