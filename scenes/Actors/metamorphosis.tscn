@@ -36,6 +36,7 @@ skill_icon_scene = ExtResource("10_emtfy")
 sold_out_texture = ExtResource("11_emtfy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 anchors_preset = 15
@@ -115,10 +116,10 @@ offset_bottom = 50.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.588235)
-theme_override_constants/outline_size = 9
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 9
 theme_override_fonts/normal_font = ExtResource("1_awmqf")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true

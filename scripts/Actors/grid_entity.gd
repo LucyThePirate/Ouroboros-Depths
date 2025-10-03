@@ -101,6 +101,7 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 		if wall_data.get_custom_data("is_pushable"):
 			play_thump_sound(wall_data.get_custom_data("material"))
 			pushed_object.emit(grid_coords, direction)
+			moved.emit(old_coords, grid_coords)
 			performed_action.emit()
 			return false
 		if wall_data.get_custom_data("is_solid"):

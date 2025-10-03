@@ -2,7 +2,7 @@ extends Node2D
 
 class_name CreatureAI
 
-signal aggroed_towards_player(grid_entity)
+#signal aggroed_towards_player(grid_entity)
 
 @export var visual: Node2D
 

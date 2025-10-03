@@ -2,29 +2,56 @@ extends Node2D
 
 var target: GridEntity
 
+@export var lurch_distance := 40.0
+@export var jitter := 40.0
+@export var lurch_timer := 1.5
+
 var block_range := 3
-var lurch_distance := 40.0
+@onready var current_lurch_distance := lurch_distance
 const LURCH_INCREASE := 0.15
 const LURCH_MAX := 100.0
-var jitter := 40.0
+@onready var current_jitter := jitter
 const JITTER_INCREASE := 0.25
 const JITTER_MAX := 100.0
-var lurch_timer := 1.5
-var LURCH_TIMER_DECREASE := 0.01
-var LURCH_TIMER_MIN := 0.25
+@onready var current_lurch_timer := lurch_timer
+const LURCH_TIMER_DECREASE := 0.01
+const LURCH_TIMER_MIN := 0.25
+var paused := false
 
 
 func _ready() -> void:
 	Global.next_floor_reached.connect(queue_free)
+	Global.metamorphosis_started.connect(pause_bogo)
+	Global.metamorphosis_completed.connect(resume_bogo)
 	_find_target()
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if paused:
+		return
 	global_position += Vector2(
-		randf_range(-jitter, jitter) * delta, randf_range(-jitter, jitter) * delta
+		randf_range(-current_jitter, current_jitter) * delta,
+		randf_range(-current_jitter, current_jitter) * delta
 	)
-	jitter = min(jitter + (JITTER_INCREASE * delta), JITTER_MAX)
-	lurch_distance = min(lurch_distance + (LURCH_INCREASE * delta), LURCH_MAX)
+	current_jitter = min(current_jitter + (JITTER_INCREASE * delta), JITTER_MAX)
+	current_lurch_distance = min(current_lurch_distance + (LURCH_INCREASE * delta), LURCH_MAX)
+
+
+func pause_bogo():
+	$Ambiance.stream_paused = true
+	paused = true
+	$LurchTimer.paused = true
+	$MessWithBlocksTimer.paused = true
+	current_lurch_distance = lurch_distance
+	current_jitter = jitter
+	current_lurch_timer = lurch_timer
+
+
+func resume_bogo():
+	$Ambiance.stream_paused = false
+	paused = false
+	$LurchTimer.paused = false
+	$MessWithBlocksTimer.paused = false
 
 
 func _find_target():
@@ -42,7 +69,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.on_death()
 
 
-func _on_messwith_blocks_timer_timeout() -> void:
+func _on_mess_with_blocks_timer_timeout() -> void:
 	var block_1_coords = Global.floors.local_to_map(global_position)
 	var block_2_coords = Global.floors.local_to_map(global_position)
 	block_1_coords += Vector2i(
@@ -82,8 +109,10 @@ func _on_messwith_blocks_timer_timeout() -> void:
 
 func _on_lurch_timer_timeout() -> void:
 	if target and target.is_alive():
-		global_position = global_position.move_toward(target.global_position, lurch_distance)
+		global_position = global_position.move_toward(
+			target.global_position, current_lurch_distance
+		)
 	else:
 		_find_target()
-	lurch_timer = max(LURCH_TIMER_MIN, lurch_timer - LURCH_TIMER_DECREASE)
-	$LurchTimer.start(lurch_timer)
+	current_lurch_timer = max(LURCH_TIMER_MIN, current_lurch_timer - LURCH_TIMER_DECREASE)
+	$LurchTimer.start(current_lurch_timer)

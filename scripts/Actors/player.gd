@@ -143,7 +143,7 @@ func _handle_movement() -> void:
 			_display_error("Can't metamorph right now!")
 
 
-func _metamorphing_interrupted(status):
+func _metamorphing_interrupted(_status):
 	if state == States.METAMORPHOSIS_STARTED:
 		state = States.IDLE
 

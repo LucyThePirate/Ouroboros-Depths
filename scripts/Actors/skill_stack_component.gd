@@ -296,6 +296,7 @@ func _shuffle_skills() -> void:
 func on_next_floor_reached() -> void:
 	for skill in skills:
 		skill.on_next_floor_reached()
+	stack = []
 	_shuffle_skills()
 
 

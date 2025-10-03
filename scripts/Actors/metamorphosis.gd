@@ -41,6 +41,7 @@ var removal_cost := 3
 func _ready() -> void:
 	if not grid_parent:
 		return
+	Global.metamorphosis_started.emit()
 	#for soul in range(grid_parent.soul_count):
 	#souls += soul + 1
 	souls = grid_parent.soul_count
@@ -83,6 +84,7 @@ func _stock_buyable_skills():
 
 
 func _on_confirm_button_pressed() -> void:
+	Global.metamorphosis_completed.emit()
 	grid_parent.heal(grid_parent.soul_count)
 	grid_parent.soul_count = 0
 	metamorphosis_completed.emit()

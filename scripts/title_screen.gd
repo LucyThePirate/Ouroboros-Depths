@@ -8,7 +8,13 @@ extends Control
 @onready var music_volume = $CanvasLayer/Options/Audio/CenterContainer3/MusicVolume as HSlider
 @onready var sfx_tester = $CanvasLayer/Options/Audio/CenterContainer2/SFXTester
 
-@onready var deck_select = $CanvasLayer/Options/Gameplay/CenterContainer/DeckSelect as TabContainer
+@onready var deck_select = (
+	$CanvasLayer/Options/Gameplay/ScrollContainer/CenterContainer/DeckSelect as TabContainer
+)
+@onready var bogosort_timer_options = (
+	$CanvasLayer/Options/Gameplay/ScrollContainer/CenterContainer/BogosortTimerOptions
+	as OptionButton
+)
 
 @onready var load_progress_bar = $CanvasLayer/Loading/VBoxContainer/ProgressBar as ProgressBar
 @onready var loading_screen_tip = $CanvasLayer/Loading/VBoxContainer/Tip as RichTextLabel
@@ -18,6 +24,7 @@ var tips = [
 	"Did you know?: Feast your faces on greatest one game!",
 	"Thank you for playing! It warms my heart seeing people enjoying all the effort I put into making my game.",
 	"Skeletons enjoy such pastimes as prattling about, lobbing femurs at the living, and cackling madly. What a rich and exciting culture!",
+	"Pursued by Bogo? Bogo will respect those who metamorph, try entering your [C]hrysalis to make Bogo cool off!"
 ]
 var loading_scene
 enum States { IDLE, LOADING }
@@ -27,14 +34,14 @@ var state := States.IDLE
 func _ready() -> void:
 	ResourceLoader.load_threaded_request(game_scene)
 	ResourceLoader.load_threaded_request(tutorial_scene)
-	var err = Global.config.load(Global.options_file)
-	load_volume_options()
-	_load_deck_select_options()
+	Global.config.load(Global.options_file)
+	_load_volume_options()
+	_load_gameplay_options()
 	_on_main_menu_button_pressed()
 	loading_screen_tip.text = tips.pick_random()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if state == States.LOADING:
 		$CanvasLayer/Loading/CanvasLayer/CursorCollision.position = (
 			get_viewport().get_mouse_position()
@@ -82,12 +89,12 @@ func _on_main_menu_button_pressed() -> void:
 	$CanvasLayer/Credits.hide()
 
 
-func load_volume_options():
-	if Global.config.get_value("Volume", "Master"):
+func _load_volume_options():
+	if Global.config.has_section_key("Volume", "Master"):
 		master_volume.value = Global.config.get_value("Volume", "Master")
-	if Global.config.get_value("Volume", "SFX"):
+	if Global.config.has_section_key("Volume", "SFX"):
 		sfx_volume.value = Global.config.get_value("Volume", "SFX")
-	if Global.config.get_value("Volume", "Music"):
+	if Global.config.has_section_key("Volume", "Music"):
 		music_volume.value = Global.config.get_value("Volume", "Music")
 	update_audio_busses()
 
@@ -98,18 +105,18 @@ func update_audio_busses():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), music_volume.value)
 
 
-func _on_master_volume_drag_ended(value_changed: bool) -> void:
+func _on_master_volume_drag_ended(_value_changed: bool) -> void:
 	Global.config.set_value("Volume", "Master", master_volume.value)
 	update_audio_busses()
 
 
-func _on_sfx_volume_drag_ended(value_changed: bool) -> void:
+func _on_sfx_volume_drag_ended(_value_changed: bool) -> void:
 	Global.config.set_value("Volume", "SFX", sfx_volume.value)
 	sfx_tester.play()
 	update_audio_busses()
 
 
-func _on_music_volume_drag_ended(value_changed: bool) -> void:
+func _on_music_volume_drag_ended(_value_changed: bool) -> void:
 	Global.config.set_value("Volume", "Music", music_volume.value)
 	update_audio_busses()
 
@@ -120,11 +127,18 @@ func _on_credits_button_pressed() -> void:
 	$CanvasLayer/MainMenuButton.show()
 
 
-func _load_deck_select_options():
-	if Global.config.get_value("Gameplay", "SelectedDeck"):
+func _load_gameplay_options():
+	if Global.config.has_section_key("Gameplay", "SelectedDeck"):
 		deck_select.current_tab = Global.config.get_value("Gameplay", "SelectedDeck")
+	if Global.config.has_section_key("Gameplay", "BogosortTimer"):
+		bogosort_timer_options.selected = Global.config.get_value("Gameplay", "BogosortTimer")
 
 
 func _on_deck_select_tab_changed(tab: int) -> void:
 	if Global.config:
 		Global.config.set_value("Gameplay", "SelectedDeck", tab)
+
+
+func _on_bogosort_timer_options_item_selected(index: int) -> void:
+	if Global.config:
+		Global.config.set_value("Gameplay", "BogosortTimer", index)

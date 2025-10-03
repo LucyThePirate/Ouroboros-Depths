@@ -8,6 +8,9 @@ extends Node2D
 @export var creature_scene: Array[PackedScene]
 @export var bogosort_scene: PackedScene
 
+enum BOGOTIME { INSTANT, TIME_25, TIME_50, TIME_100, TIME_150, TIME_200, NEVER }
+@onready var selected_bogotime := BOGOTIME.TIME_100
+
 @export var generator: GenerationStrategy
 @export var spawn_creatures := true
 @export var tutorial_level := false
@@ -96,13 +99,31 @@ func _ready():
 	_initialize_fog()
 	player.grid_entity.warp(generator.root_node.get_center())
 	Global.entity_positions[generator.root_node.get_center()] = player.grid_entity
+	if not tutorial_level:
+		if Global.config.has_section_key("Gameplay", "BogosortTimer"):
+			selected_bogotime = Global.config.get_value("Gameplay", "BogosortTimer")
+		match selected_bogotime:
+			BOGOTIME.INSTANT:
+				$BogoTimer.start(3)
+			BOGOTIME.TIME_25:
+				$BogoTimer.start(25)
+			BOGOTIME.TIME_50:
+				$BogoTimer.start(50)
+			BOGOTIME.TIME_100:
+				$BogoTimer.start(100)
+			BOGOTIME.TIME_150:
+				$BogoTimer.start(150)
+			BOGOTIME.TIME_200:
+				$BogoTimer.start(200)
+			_:
+				print("Bogo timer not started.")
 
 
 func _initialize_fog():
 	astar_grid = AStarGrid2D.new()
 	astar_grid.region = Global.walls.get_used_rect()
 	astar_grid.cell_size = Vector2(100, 100)
-	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_MAX
+	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar_grid.update()
 	for x in Global.walls.get_used_rect().size.x:
 		for y in Global.walls.get_used_rect().size.y:
@@ -118,16 +139,17 @@ func _initialize_fog():
 					astar_grid.set_point_solid(tile_position, true)
 	Global.darkness = darkness
 	_update_fog(
-		Vector2i.ZERO, $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
+		$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0],
+		$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
 	)
 
 
-func add_to_angry_at_player_list(grid_entity):
+func add_to_angry_at_player_list(_grid_entity):
 	angry_at_player += 1
 	_update_dynamic_music()
 
 
-func remove_from_angry_at_player_list(grid_entity):
+func remove_from_angry_at_player_list(_grid_entity):
 	angry_at_player -= 1
 	_update_dynamic_music()
 
@@ -155,11 +177,12 @@ func _redraw_map():
 	angry_at_player = 0
 	Global.floors.clear()
 	Global.walls.clear()
-	_update_fog(Vector2i.ZERO, Global.floors.local_to_map(player.grid_entity.global_position))
+	_update_fog(
+		Global.floors.local_to_map(player.grid_entity.global_position),
+		Global.floors.local_to_map(player.grid_entity.global_position)
+	)
 	if tutorial_level:
 		$Controls.hide()
-	else:
-		$BogoTimer.start()
 	_ready()
 
 
@@ -193,6 +216,7 @@ func _initialize_entity(new_entity: GridEntity):
 
 func _update_fog(_old_coords: Vector2i, new_coords: Vector2i):
 	var radius = 7
+	#if old_coords == new_coords:
 	for tile in Global.floors.get_used_cells():
 		Global.darkness.set_cell(tile, fog_tile[0], fog_tile[1])
 	for x in range(-radius, radius):
@@ -203,6 +227,30 @@ func _update_fog(_old_coords: Vector2i, new_coords: Vector2i):
 				if destination.distance_to(path.back()) <= 1.5:
 					fog.set_cell(destination, -1)
 					Global.darkness.set_cell(destination, -1)
+	#else:
+	#var direction = (new_coords - old_coords) * radius
+	#if direction.x:
+	#for i in range(-radius, radius):
+	#var destination = Vector2i(direction.x, i) + new_coords
+	#var path = astar_grid.get_id_path(new_coords, destination, true)
+	#if path:
+	#if destination.distance_to(path.back()) <= 1.5:
+	#fog.set_cell(destination, -1)
+	#Global.darkness.set_cell(destination, -1)
+	#Global.darkness.set_cell(
+	#Vector2i(-direction.x, i) + old_coords, fog_tile[0], fog_tile[1]
+	#)
+	#elif direction.y:
+	#for i in range(-radius, radius):
+	#var destination = Vector2i(i, direction.y) + new_coords
+	#var path = astar_grid.get_id_path(new_coords, destination, true)
+	#if path:
+	#if destination.distance_to(path.back()) <= 1.5:
+	#fog.set_cell(destination, -1)
+	#Global.darkness.set_cell(destination, -1)
+	#Global.darkness.set_cell(
+	#Vector2i(i, -direction.y) + old_coords, fog_tile[0], fog_tile[1]
+	#)
 
 
 func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):
@@ -265,6 +313,7 @@ func _push_tile(tile_coords, direction):
 
 	if not Global.floors.get_cell_tile_data(tile_coords + direction):
 		walls.set_cell(tile_coords, -1)
+		astar_grid.set_point_solid(tile_coords, false)
 		return
 
 	if Global.floors.get_cell_tile_data(tile_coords + direction).get_custom_data("is_liquid"):
@@ -278,7 +327,9 @@ func _push_tile(tile_coords, direction):
 			walls.get_cell_source_id(tile_coords),
 			walls.get_cell_atlas_coords(tile_coords)
 		)
+		astar_grid.set_point_solid(tile_coords + direction, true)
 	walls.set_cell(tile_coords, -1)
+	astar_grid.set_point_solid(tile_coords, false)
 
 
 func _spawn_tile(tile_coords):
@@ -314,6 +365,7 @@ func _on_player_turn_ended() -> void:
 
 func _on_player_died() -> void:
 	$Fog.hide()
+	$Darkness.hide()
 	$CanvasLayer/DeathScreen/VBoxContainer/FloorReached.text = ("Floor Reached: %s" % current_floor)
 	$CanvasLayer/DeathScreen/VBoxContainer/Kills.text = "Kills: %s" % player.grid_entity.kills
 	$CanvasLayer/DeathScreen/VBoxContainer/Turns.text = "Turns: %s" % turn_counter
