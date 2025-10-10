@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://v4jyo2omhd1l"]
+[gd_scene load_steps=9 format=3 uid="uid://v4jyo2omhd1l"]
 
 [ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_t7k5d"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/Actors/grid_entity.tscn" id="2_nfndv"]
 [ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/Actors/Strategies/Skill/dash_skill_strategy.tscn" id="3_t7k5d"]
 [ext_resource type="PackedScene" uid="uid://ds1r48clfb7k6" path="res://scenes/Characters/Visuals/wasp_visual.tscn" id="4_iadu2"]
-[ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/Actors/Strategies/Skill/stomp_skill_strategy.tscn" id="4_nfndv"]
 [ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/Actors/Strategies/Planner/base_random_skill_planner.tscn" id="6_a3j1p"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/UI/Arrow.png" id="8_iadu2"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="9_4bmfb"]
@@ -23,9 +22,6 @@ species_desc = "One brave soldier of many from the plane of One Trillion Wasps.
 Though wasps aren't much of a threat on their own, the fact that the swarm of One Trillion Wasps was able to take on The Power of Love AND Divine Punishment on their own instills you with hope. Hope, and also a healthy dose of fear."
 
 [node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("3_t7k5d")]
-mouse_filter = 0
-
-[node name="StompSkillStrategy" parent="GridEntity/SkillStackComponent" index="4" instance=ExtResource("4_nfndv")]
 mouse_filter = 0
 
 [node name="HealthComponent" parent="GridEntity/UI" index="0"]

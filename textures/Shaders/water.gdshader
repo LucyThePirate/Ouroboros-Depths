@@ -22,13 +22,17 @@ group_uniforms PixelBlicks;
 uniform float pixelSize = 100.0;
 
 group_uniforms WaterReflects;
+varying vec2 world_position;
 
-
+void vertex() {
+	// calculate the world position for use in the fragment shader
+	world_position = (MODEL_MATRIX * vec4(VERTEX, 0.0, 1.0)).xy / 10.0;
+}
 
 void fragment(){
 	vec2 uv = UV;
 	uv *= pixelSize;
-	vec2 floorUv = floor(uv);
+	vec2 floorUv = floor(world_position);
 	floorUv /= pixelSize;
 	float depth = texture(noise, floorUv + speed * TIME).x
 	* texture(secNoise, floorUv + speedSecondNoise * TIME).x;

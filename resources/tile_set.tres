@@ -1,9 +1,8 @@
-[gd_resource type="TileSet" load_steps=59 format=3 uid="uid://bvxt455lja82q"]
+[gd_resource type="TileSet" load_steps=58 format=3 uid="uid://bvxt455lja82q"]
 
 [ext_resource type="Texture2D" uid="uid://b60fxmc7hxg5s" path="res://textures/PumpkinBlock2.png" id="1_dtrn4"]
 [ext_resource type="Texture2D" uid="uid://dfvius215va54" path="res://textures/tiles/3DTiles.png" id="2_fv5xq"]
 [ext_resource type="Shader" uid="uid://bbogpcxsif02r" path="res://textures/Shaders/water.gdshader" id="3_hqfjb"]
-[ext_resource type="Shader" uid="uid://dm5dyry10jg6e" path="res://textures/Shaders/tilemap_wind.gdshader" id="4_he30u"]
 [ext_resource type="Shader" uid="uid://c5m81jjhpfjbx" path="res://textures/Shaders/ice.gdshader" id="5_2t8fs"]
 [ext_resource type="Texture2D" uid="uid://dhuxxosgrbwyl" path="res://textures/tiles/ChimeraTiles.png" id="6_u4jh6"]
 [ext_resource type="Shader" uid="uid://ck13qixlbno6p" path="res://textures/Shaders/foliage_wind.gdshader" id="7_fv5xq"]
@@ -453,18 +452,11 @@ shader_parameter/speedSecondNoise = Vector2(-0.05, -0.05)
 shader_parameter/distortionStrength = -0.261
 shader_parameter/toneColor = Color(0.26792, 0.801304, 0.721927, 1)
 shader_parameter/topColor = Color(0.47864, 0.8864, 0.67464, 1)
-shader_parameter/lightStart = 0.0
-shader_parameter/lightEnd = 0.431
+shader_parameter/lightStart = 0.3650000173375
+shader_parameter/lightEnd = 1.0
 shader_parameter/pixelSize = 100.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hmhbi"]
-shader = ExtResource("4_he30u")
-shader_parameter/render_noise = false
-shader_parameter/move_top = true
-shader_parameter/distortion_force = Vector2(10, 0)
-shader_parameter/time_scale = 1.0
-shader_parameter/noise_scale = 0.002
-shader_parameter/global_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fv5xq"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_w2vps"]
 polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
@@ -525,7 +517,7 @@ texture_region_size = Vector2i(100, 100)
 0:0/0/custom_data_3 = true
 0:0/0/custom_data_4 = "water"
 1:0/0 = 0
-1:0/0/material = SubResource("ShaderMaterial_hmhbi")
+1:0/0/material = SubResource("ShaderMaterial_fv5xq")
 1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_w2vps")
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
 1:0/0/custom_data_0 = true
@@ -539,7 +531,7 @@ texture_region_size = Vector2i(100, 100)
 0:1/0/custom_data_1 = true
 0:1/0/custom_data_4 = "wood"
 1:1/0 = 0
-1:1/0/modulate = Color(0, 0, 0, 1)
+1:1/0/modulate = Color(0.5895947, 0.0002545154, 0.59009445, 1)
 1:1/0/material = SubResource("ShaderMaterial_lkcb0")
 1:1/0/custom_data_3 = true
 2:1/0 = 0

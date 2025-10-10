@@ -8,9 +8,8 @@ extends Control
 @onready var music_volume = $CanvasLayer/Options/Audio/CenterContainer3/MusicVolume as HSlider
 @onready var sfx_tester = $CanvasLayer/Options/Audio/CenterContainer2/SFXTester
 
-@onready var deck_select = (
-	$CanvasLayer/Options/Gameplay/ScrollContainer/CenterContainer/DeckSelect as TabContainer
-)
+@onready var dungeon_select = $CanvasLayer/NewRun/HContainer/Dungeon/DungeonSelect as TabContainer
+@onready var deck_select = $CanvasLayer/NewRun/HContainer/Deck/DeckSelect as TabContainer
 @onready var bogosort_timer_options = (
 	$CanvasLayer/Options/Gameplay/ScrollContainer/CenterContainer/BogosortTimerOptions
 	as OptionButton
@@ -54,14 +53,11 @@ func _process(_delta: float) -> void:
 			get_tree().change_scene_to_packed(fully_loaded_scene)
 
 
-func _on_start_tutorial_button_pressed() -> void:
-	loading_scene = tutorial_scene
-	_start_loading()
-
-
 func _on_new_game_button_pressed() -> void:
-	loading_scene = game_scene
-	_start_loading()
+	$CanvasLayer/MainMenu.hide()
+	$CanvasLayer/NewRun.show()
+	$CanvasLayer/MainMenuButton.show()
+	$CanvasLayer/Disclaimer.hide()
 
 
 func _start_loading():
@@ -74,6 +70,8 @@ func _on_options_button_pressed() -> void:
 	$CanvasLayer/MainMenu.hide()
 	$CanvasLayer/Options.show()
 	$CanvasLayer/MainMenuButton.show()
+	$CanvasLayer/Disclaimer.hide()
+	$CanvasLayer/NewRun.hide()
 
 
 func _on_quit_button_pressed() -> void:
@@ -87,6 +85,7 @@ func _on_main_menu_button_pressed() -> void:
 	$CanvasLayer/MainMenuButton.hide()
 	$CanvasLayer/MainMenu.show()
 	$CanvasLayer/Credits.hide()
+	$CanvasLayer/Disclaimer.show()
 
 
 func _load_volume_options():
@@ -125,6 +124,7 @@ func _on_credits_button_pressed() -> void:
 	$CanvasLayer/MainMenu.hide()
 	$CanvasLayer/Credits.show()
 	$CanvasLayer/MainMenuButton.show()
+	$CanvasLayer/Disclaimer.hide()
 
 
 func _load_gameplay_options():
@@ -142,3 +142,11 @@ func _on_deck_select_tab_changed(tab: int) -> void:
 func _on_bogosort_timer_options_item_selected(index: int) -> void:
 	if Global.config:
 		Global.config.set_value("Gameplay", "BogosortTimer", index)
+
+
+func _on_start_run_pressed() -> void:
+	if dungeon_select.current_tab == 0:
+		loading_scene = tutorial_scene
+	else:
+		loading_scene = game_scene
+	_start_loading()

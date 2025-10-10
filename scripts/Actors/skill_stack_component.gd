@@ -170,6 +170,7 @@ func _handle_stack_execution():
 	stack_icon_holder.get_child(0).get_child(0).get_child(0).show()
 	if current_skill.ready_skill(grid_entity):
 		await get_tree().create_timer(0.1).timeout
+		#await current_skill.skill_finished
 		_handle_stack_execution()
 
 	elif current_skill.state == SkillStrategy.States.AWAITING_DIRECTION:
@@ -239,10 +240,9 @@ func find_skill_by_ID(skill_ID := SkillStrategy.SkillIDs.NONE, group = skills) -
 func set_direction(moveDirection: Vector2i):
 	current_skill.set_direction(moveDirection)
 	state = States.EXECUTING_STACK
-	var finished_skill = current_skill.skill_finished
 	current_skill.use_skill(grid_entity)
 	if current_skill.state == SkillStrategy.States.PLAYING_ANIMATION:
-		await finished_skill
+		await current_skill.skill_finished
 	_handle_stack_execution()
 
 
@@ -253,10 +253,9 @@ func move_cursor(moveDirection: Vector2i):
 func set_cursor(cursorPosition: Vector2i):
 	current_skill.set_cursor(cursorPosition)
 	state = States.EXECUTING_STACK
-	var finished_skill = current_skill.skill_finished
 	current_skill.use_skill(grid_entity)
 	if current_skill.state == SkillStrategy.States.PLAYING_ANIMATION:
-		await finished_skill
+		await current_skill.skill_finished
 	_handle_stack_execution()
 
 

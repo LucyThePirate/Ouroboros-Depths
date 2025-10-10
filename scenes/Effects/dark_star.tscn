@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://4acykyan5qq0"]
+[gd_scene load_steps=29 format=3 uid="uid://4acykyan5qq0"]
 
 [ext_resource type="Texture2D" uid="uid://boyi3dh24ewlf" path="res://textures/UI/black-star.png" id="1_q4iqm"]
 [ext_resource type="Script" uid="uid://dw4oobaqtjp7g" path="res://scripts/Effects/dark_star.gd" id="1_qy7dk"]
+[ext_resource type="PackedScene" uid="uid://cmxeogtui2phc" path="res://scenes/Effects/note_vfx.tscn" id="2_okq67"]
 [ext_resource type="AudioStream" uid="uid://bt30ad6s0lmn0" path="res://audio/SFX/Skills/507161__ruidososoundfx__fast-woosh-ricrob-helm-12.ogg" id="3_3ynmf"]
 [ext_resource type="AudioStream" uid="uid://cjqcrnsc2kfj1" path="res://audio/SFX/Skills/507161__ruidososoundfx__fast-woosh-ricrob-helm-12-2.ogg" id="4_6x7fh"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/Shaders/stars.gdshader" id="5_6x7fh"]
@@ -217,6 +218,7 @@ _data = {
 top_level = true
 z_as_relative = false
 script = ExtResource("1_qy7dk")
+note_VFX = ExtResource("2_okq67")
 
 [node name="StarSprite" type="AnimatedSprite2D" parent="."]
 top_level = true

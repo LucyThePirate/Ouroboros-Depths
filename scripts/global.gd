@@ -12,7 +12,6 @@ enum DECKS { BASIC, FUZZER, MUSICIAN }
 @onready var entity_positions = {}
 
 
-
 @onready var config = ConfigFile.new()
 @onready var options_file = "user://options.cfg"
 

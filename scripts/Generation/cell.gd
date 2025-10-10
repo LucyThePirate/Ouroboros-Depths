@@ -167,6 +167,10 @@ func _update_dynamic_music():
 
 
 func _redraw_map():
+	if tutorial_level:
+		$Controls.hide()
+		get_tree().change_scene_to_file(title_scene)
+		return
 	Global.next_floor_reached.emit()
 	current_floor += 1
 	$CanvasLayer/ColorRect/FloorLabel.text = "Floor: %s" % current_floor
@@ -181,8 +185,6 @@ func _redraw_map():
 		Global.floors.local_to_map(player.grid_entity.global_position),
 		Global.floors.local_to_map(player.grid_entity.global_position)
 	)
-	if tutorial_level:
-		$Controls.hide()
 	_ready()
 
 
@@ -215,42 +217,39 @@ func _initialize_entity(new_entity: GridEntity):
 
 
 func _update_fog(_old_coords: Vector2i, new_coords: Vector2i):
-	var radius = 7
-	#if old_coords == new_coords:
+	var light_radius = 7
+	var tile_light = {}
+	var marked_tiles = [new_coords]
 	for tile in Global.floors.get_used_cells():
 		Global.darkness.set_cell(tile, fog_tile[0], fog_tile[1])
-	for x in range(-radius, radius):
-		for y in range(-radius, radius):
-			var destination = Vector2i(x, y) + new_coords
-			var path = astar_grid.get_id_path(new_coords, destination, true)
-			if path:
-				if destination.distance_to(path.back()) <= 1.5:
-					fog.set_cell(destination, -1)
-					Global.darkness.set_cell(destination, -1)
-	#else:
-	#var direction = (new_coords - old_coords) * radius
-	#if direction.x:
-	#for i in range(-radius, radius):
-	#var destination = Vector2i(direction.x, i) + new_coords
-	#var path = astar_grid.get_id_path(new_coords, destination, true)
-	#if path:
-	#if destination.distance_to(path.back()) <= 1.5:
-	#fog.set_cell(destination, -1)
-	#Global.darkness.set_cell(destination, -1)
-	#Global.darkness.set_cell(
-	#Vector2i(-direction.x, i) + old_coords, fog_tile[0], fog_tile[1]
-	#)
-	#elif direction.y:
-	#for i in range(-radius, radius):
-	#var destination = Vector2i(i, direction.y) + new_coords
-	#var path = astar_grid.get_id_path(new_coords, destination, true)
-	#if path:
-	#if destination.distance_to(path.back()) <= 1.5:
-	#fog.set_cell(destination, -1)
-	#Global.darkness.set_cell(destination, -1)
-	#Global.darkness.set_cell(
-	#Vector2i(i, -direction.y) + old_coords, fog_tile[0], fog_tile[1]
-	#)
+		tile_light[tile] = 0
+	tile_light[new_coords] = light_radius
+	while not marked_tiles.is_empty():
+		var checking_tile = marked_tiles.pop_front()
+		var current_light = tile_light[checking_tile]
+		Global.darkness.set_cell(checking_tile, -1)
+		fog.set_cell(checking_tile, -1)
+		if current_light <= 1:
+			continue
+		var adjacent_tiles = [
+			Vector2i(1, 0),
+			Vector2i(1, 1),
+			Vector2i(0, 1),
+			Vector2i(-1, 1),
+			Vector2i(-1, 0),
+			Vector2i(-1, -1),
+			Vector2i(0, -1),
+			Vector2i(1, -1)
+		]
+		for a_t in adjacent_tiles:
+			var tile = a_t + checking_tile
+			if tile not in tile_light or tile_light[tile] >= current_light:
+				continue
+			tile_light[tile] = current_light - 1
+			var wall_tile = Global.walls.get_cell_tile_data(checking_tile)
+			if wall_tile and wall_tile.get_custom_data("occluding"):
+				continue
+			marked_tiles.append(tile)
 
 
 func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):
