@@ -4,8 +4,8 @@ signal finished_animation
 
 var parent: Node2D
 var grid_entity: GridEntity
-@onready var animation_player = $AnimationPlayer
-@onready var anim_tree = $AnimationTree
+@onready var animation_player = $AnimationPlayer as AnimationPlayer
+@onready var anim_tree = $AnimationTree if $AnimationTree else null
 var run_speed := 0.0
 var t := 0.0
 const TIME_SCALE = 0.1
@@ -13,8 +13,8 @@ const TIME_SCALE = 0.1
 
 func initialize(new_grid_entity: GridEntity) -> void:
 	grid_entity = new_grid_entity
-	grid_entity.connect("moved", _on_moved)
-	grid_entity.connect("hurt", _on_hurt)
+	grid_entity.connect("moved", _on_grid_entity_moved)
+	grid_entity.connect("hurt", _on_grid_entity_hurt)
 
 
 func _process(delta: float) -> void:
@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 		anim_tree.set("parameters/RunBlend/blend_amount", run_speed)
 
 
-func _on_moved(old_coords: Vector2i, new_coords: Vector2i):
+func _on_grid_entity_moved(old_coords: Vector2i, new_coords: Vector2i):
 	#print("Moved from", old_coords, "to", new_coords)
 	t = 0
 	run_speed = clampf((new_coords - old_coords).length() * 2, 0, 2)
@@ -53,7 +53,7 @@ func _on_fell_off_map():
 	animation_player.play("Falling")
 
 
-func _on_hurt(_attacker: GridEntity):
+func _on_grid_entity_hurt(_attacker: GridEntity):
 	if anim_tree:
 		anim_tree.set("parameters/HurtOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	else:

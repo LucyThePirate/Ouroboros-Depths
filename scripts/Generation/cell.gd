@@ -15,6 +15,9 @@ enum BOGOTIME { INSTANT, TIME_25, TIME_50, TIME_100, TIME_150, TIME_200, NEVER }
 @export var spawn_creatures := true
 @export var tutorial_level := false
 
+@onready var pause_screen := %PauseScreen
+@onready var pause_button := %PauseButton
+
 #region Fog
 @onready var fog = $Fog
 @onready var darkness = $Darkness as TileMapLayer
@@ -62,6 +65,8 @@ var angry_at_player = 0
 
 
 func _ready():
+	_on_unpaused()
+	get_window().focus_exited.connect(_on_paused)
 	Global.aggroed_towards_player.connect(add_to_angry_at_player_list)
 	Global.deaggroed_towards_player.connect(remove_from_angry_at_player_list)
 	Global.entity_positions = {}
@@ -363,6 +368,8 @@ func _on_player_turn_ended() -> void:
 
 
 func _on_player_died() -> void:
+	for tile in Global.floors.get_used_cells():
+		Global.darkness.set_cell(tile, -1)
 	$Fog.hide()
 	$Darkness.hide()
 	$CanvasLayer/DeathScreen/VBoxContainer/FloorReached.text = ("Floor Reached: %s" % current_floor)
@@ -376,11 +383,24 @@ func _on_auto_turn_timer_timeout() -> void:
 	process_turn()
 
 
+func _on_paused() -> void:
+	get_tree().paused = true
+	pause_screen.show()
+	pause_button.hide()
+
+
+func _on_unpaused() -> void:
+	pause_screen.hide()
+	pause_button.show()
+	get_tree().paused = false
+
+
 func _on_new_run_button_pressed() -> void:
 	get_tree().reload_current_scene()
 
 
 func _on_title_screen_button_pressed() -> void:
+	_on_unpaused()
 	get_tree().change_scene_to_file(title_scene)
 
 

@@ -61,6 +61,7 @@ func _on_new_game_button_pressed() -> void:
 
 
 func _start_loading():
+	$CanvasLayer/MainMenuButton.hide()
 	$CanvasLayer/Loading.show()
 	state = States.LOADING
 	$CanvasLayer/Loading/CanvasLayer/TempFloor.process_mode = Node.PROCESS_MODE_DISABLED
@@ -71,7 +72,6 @@ func _on_options_button_pressed() -> void:
 	$CanvasLayer/Options.show()
 	$CanvasLayer/MainMenuButton.show()
 	$CanvasLayer/Disclaimer.hide()
-	$CanvasLayer/NewRun.hide()
 
 
 func _on_quit_button_pressed() -> void:
@@ -80,10 +80,11 @@ func _on_quit_button_pressed() -> void:
 
 func _on_main_menu_button_pressed() -> void:
 	Global.config.save(Global.options_file)
+	$CanvasLayer/MainMenu.show()
 	$CanvasLayer/Loading.hide()
 	$CanvasLayer/Options.hide()
 	$CanvasLayer/MainMenuButton.hide()
-	$CanvasLayer/MainMenu.show()
+	$CanvasLayer/NewRun.hide()
 	$CanvasLayer/Credits.hide()
 	$CanvasLayer/Disclaimer.show()
 
@@ -128,15 +129,12 @@ func _on_credits_button_pressed() -> void:
 
 
 func _load_gameplay_options():
+	if Global.config.has_section_key("Gameplay", "SelectedDungeon"):
+		dungeon_select.current_tab = Global.config.get_value("Gameplay", "SelectedDungeon")
 	if Global.config.has_section_key("Gameplay", "SelectedDeck"):
 		deck_select.current_tab = Global.config.get_value("Gameplay", "SelectedDeck")
 	if Global.config.has_section_key("Gameplay", "BogosortTimer"):
 		bogosort_timer_options.selected = Global.config.get_value("Gameplay", "BogosortTimer")
-
-
-func _on_deck_select_tab_changed(tab: int) -> void:
-	if Global.config:
-		Global.config.set_value("Gameplay", "SelectedDeck", tab)
 
 
 func _on_bogosort_timer_options_item_selected(index: int) -> void:
@@ -145,6 +143,10 @@ func _on_bogosort_timer_options_item_selected(index: int) -> void:
 
 
 func _on_start_run_pressed() -> void:
+	if Global.config:
+		Global.config.set_value("Gameplay", "SelectedDungeon", dungeon_select.current_tab)
+		Global.config.set_value("Gameplay", "SelectedDeck", deck_select.current_tab)
+	Global.config.save(Global.options_file)
 	if dungeon_select.current_tab == 0:
 		loading_scene = tutorial_scene
 	else:

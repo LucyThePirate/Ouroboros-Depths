@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bwkb3crnbdvht"]
+[gd_scene load_steps=23 format=3 uid="uid://bwkb3crnbdvht"]
 
 [ext_resource type="Script" uid="uid://b2ojdp2aq678e" path="res://scripts/Actors/Visuals/visualBase.gd" id="1_iokgd"]
 [ext_resource type="Texture2D" uid="uid://djbnu6ytor4b8" path="res://textures/Creatures/Lich/Robe1.tres" id="2_mlvm5"]
@@ -1347,9 +1347,14 @@ tracks/26/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_iokgd"]
+resource_name = "Moving"
+step = 0.5
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sfwps"]
 _data = {
 &"Idle": SubResource("Animation_uxnpr"),
+&"Moving": SubResource("Animation_iokgd"),
 &"Notice": SubResource("Animation_sd714"),
 &"RESET": SubResource("Animation_pg6lh"),
 &"Rest": SubResource("Animation_44bto")
@@ -1497,7 +1502,7 @@ remote_path = NodePath("../../../../../Body/HandR")
 [node name="HandL" type="Bone2D" parent="Skeleton2D/Hip/Body"]
 position = Vector2(118, 45)
 rotation = -0.729267
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(1, 0, 0, 1, 118, 45)
 auto_calculate_length_and_angle = false
 length = 40.0

@@ -1,11 +1,13 @@
-[gd_scene load_steps=31 format=4 uid="uid://bkcktb2mpmgsc"]
+[gd_scene load_steps=40 format=4 uid="uid://bkcktb2mpmgsc"]
 
 [ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_qylo2"]
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/Effects/boulder_splash.tscn" id="2_o74wk"]
 [ext_resource type="PackedScene" uid="uid://csox3ra3bo6o4" path="res://scenes/Effects/spawn_smoke_vfx.tscn" id="3_kv4pv"]
 [ext_resource type="PackedScene" uid="uid://d2wq4gejffyd" path="res://scenes/Actors/player.tscn" id="4_hg4aq"]
 [ext_resource type="PackedScene" uid="uid://mxsbm6suamyq" path="res://scenes/Generation/basic_generation_strategy.tscn" id="6_o74wk"]
+[ext_resource type="Texture2D" uid="uid://btflw1das7k7h" path="res://textures/Testing/zen_garden_WIP2.png" id="11_hg4aq"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/Shaders/stars.gdshader" id="11_utnk4"]
+[ext_resource type="Shader" uid="uid://daaonengjaclw" path="res://textures/Shaders/blur.gdshader" id="12_1enxm"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="12_m3s0v"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/Testing/thisGuyPOV.png" id="12_u1sel"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="13_ob1md"]
@@ -69,6 +71,28 @@ scale_over_velocity_curve = SubResource("CurveXYZTexture_euqva")
 color = Color(1, 0.996078, 0.996078, 1)
 color_initial_ramp = SubResource("GradientTexture1D_jrvj4")
 alpha_curve = SubResource("CurveTexture_dn63k")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m3s0v"]
+shader = ExtResource("11_utnk4")
+shader_parameter/bg_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7qwg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0nflp"]
+shader = ExtResource("12_1enxm")
+shader_parameter/offset = 6.9110003282725
+
+[sub_resource type="InputEventAction" id="InputEventAction_cqjng"]
+action = &"TogglePause"
+
+[sub_resource type="Shortcut" id="Shortcut_hkvov"]
+events = [SubResource("InputEventAction_cqjng")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_cyo7g"]
+action = &"TogglePause"
+
+[sub_resource type="Shortcut" id="Shortcut_xps83"]
+events = [SubResource("InputEventAction_cyo7g")]
 
 [sub_resource type="Animation" id="Animation_v01jn"]
 length = 0.001
@@ -316,6 +340,119 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("13_ob1md")
 theme_override_font_sizes/font_size = 30
 text = "Return to title screen"
+
+[node name="PauseScreen" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/PauseScreen"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_m3s0v")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -153.9751
+offset_top = -140.19872
+offset_right = 152.0249
+offset_bottom = 156.80127
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_u1sel")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PauseScreen"]
+material = SubResource("ShaderMaterial_q7qwg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_hg4aq")
+
+[node name="Blur" type="ColorRect" parent="CanvasLayer/PauseScreen"]
+material = SubResource("ShaderMaterial_0nflp")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Text" type="RichTextLabel" parent="CanvasLayer/PauseScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("13_ob1md")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "
+[rainbow freq=0.2][wave]You catch your breath."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text2" type="RichTextLabel" parent="CanvasLayer/PauseScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("13_ob1md")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[color=DARKGRAY][i]The game's paused. Take your time to recover your strength, brave warrior."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PauseScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="ContinueGameButton" type="Button" parent="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("13_ob1md")
+theme_override_font_sizes/font_size = 30
+shortcut = SubResource("Shortcut_hkvov")
+text = "Have you gathered yourself? Are you ready to Fight On?"
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/PauseScreen/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleScreenButton" type="Button" parent="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer2"]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("13_ob1md")
+theme_override_font_sizes/font_size = 30
+text = "... Or would you rather Retreat and return to the solace of the Title Screen"
+
+[node name="PauseButton" type="Button" parent="CanvasLayer"]
+unique_name_in_owner = true
+process_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+shortcut = SubResource("Shortcut_xps83")
+text = "||"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -571,6 +708,9 @@ position = Vector2(-5453, -350)
 
 [connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer/NewRunButton" to="." method="_on_new_run_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer2/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer/ContinueGameButton" to="." method="_on_unpaused"]
+[connection signal="pressed" from="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer2/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_paused"]
 [connection signal="timeout" from="AutoTurnTimer" to="." method="_on_auto_turn_timer_timeout"]
 
 [editable path="TutorialScarecrow"]

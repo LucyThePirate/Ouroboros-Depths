@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbkcdnm5ll84t"
-path="res://.godot/imported/gBot_foot_r.png-274c6bc326eba781e1be455cd3c31806.ctex"
+uid="uid://dg844w3alcmxs"
+path="res://.godot/imported/possum_render_smooth.png-88c209454985dc15eaa473455b68755a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/Testing/GodotRobot/gBot_foot_r.png"
-dest_files=["res://.godot/imported/gBot_foot_r.png-274c6bc326eba781e1be455cd3c31806.ctex"]
+source_file="res://textures/Testing/possum_render_smooth.png"
+dest_files=["res://.godot/imported/possum_render_smooth.png-88c209454985dc15eaa473455b68755a.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

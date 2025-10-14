@@ -24,6 +24,7 @@ status_description_scene = ExtResource("2_l7chq")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Window" type="Window" parent="CanvasLayer"]
+process_mode = 2
 auto_translate_mode = 1
 oversampling_override = 1.0
 initial_position = 1

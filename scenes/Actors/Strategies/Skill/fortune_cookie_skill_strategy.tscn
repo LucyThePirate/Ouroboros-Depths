@@ -13,7 +13,6 @@ stream_0/stream = ExtResource("4_w7hts")
 
 [node name="FortuneCookieSkillStrategy" instance=ExtResource("1_w7hts")]
 script = ExtResource("1_78wp6")
-heal_amount = 2
 text_scene = ExtResource("2_w7hts")
 count = 2
 is_depletable = true

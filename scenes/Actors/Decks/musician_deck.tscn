@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm7tndyucq5bf"]
+[gd_scene load_steps=6 format=3 uid="uid://cm7tndyucq5bf"]
 
 [ext_resource type="PackedScene" uid="uid://djpdq4bxeklv3" path="res://scenes/Actors/Strategies/Skill/warp_skill_strategy.tscn" id="1_p40mg"]
 [ext_resource type="PackedScene" uid="uid://c10nhwhuw3ge4" path="res://scenes/Actors/Strategies/Skill/orchestrate_skill_strategy.tscn" id="2_onlsj"]
 [ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/Actors/Strategies/Skill/defend_skill_strategy.tscn" id="3_hncto"]
 [ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/Actors/Strategies/Skill/leap_skill_strategy.tscn" id="4_d8n5f"]
+[ext_resource type="PackedScene" uid="uid://d1ti6v0kdijnm" path="res://scenes/Actors/Strategies/Skill/be_patient_skill_strategy.tscn" id="5_onlsj"]
 
 [node name="MusicianDeck" type="Control"]
 layout_mode = 3
@@ -25,3 +26,6 @@ layout_mode = 0
 [node name="LeapSkillStrategy" parent="." instance=ExtResource("4_d8n5f")]
 layout_mode = 0
 count = 1
+
+[node name="BePatientSkillStrategy" parent="." instance=ExtResource("5_onlsj")]
+layout_mode = 0
