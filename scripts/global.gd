@@ -6,11 +6,11 @@ signal aggroed_towards_player(grid_entity)
 signal deaggroed_towards_player(grid_entity)
 signal metamorphosis_started
 signal metamorphosis_completed
+signal UI_closed
 
 enum DECKS { BASIC, FUZZER, MUSICIAN }
 @onready var selected_deck := DECKS.BASIC
 @onready var entity_positions = {}
-
 
 @onready var config = ConfigFile.new()
 @onready var options_file = "user://options.cfg"

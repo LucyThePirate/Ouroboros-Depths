@@ -56,6 +56,16 @@ func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMa
 
 
 func generate_level():
+	for x in range(-1, generation_size.x + 1):
+		floors.set_cell(Vector2i(x, generation_size.y), stone_floor_tile[0], stone_floor_tile[1])
+		walls.set_cell(Vector2i(x, generation_size.y), stone_wall_tile[0], stone_wall_tile[1])
+		floors.set_cell(Vector2i(x, -1), stone_floor_tile[0], stone_floor_tile[1])
+		walls.set_cell(Vector2i(x, -1), stone_wall_tile[0], stone_wall_tile[1])
+	for y in range(-1, generation_size.y + 1):
+		floors.set_cell(Vector2i(generation_size.x, y), stone_floor_tile[0], stone_floor_tile[1])
+		walls.set_cell(Vector2i(generation_size.x, y), stone_wall_tile[0], stone_wall_tile[1])
+		floors.set_cell(Vector2i(-1, y), stone_floor_tile[0], stone_floor_tile[1])
+		walls.set_cell(Vector2i(-1, y), stone_wall_tile[0], stone_wall_tile[1])
 	for leaf in root_node.get_leaves():
 		var padding = Vector4i(
 			rng.randi_range(0, 0),  # Left Padding
@@ -73,6 +83,7 @@ func generate_level():
 		#Color.GREEN,  # colour
 		#false  # is filled
 		#)
+
 		for x in range(leaf.size.x):
 			for y in range(leaf.size.y):
 				var tile_coordinate = Vector2i(x + leaf.position.x, y + leaf.position.y)

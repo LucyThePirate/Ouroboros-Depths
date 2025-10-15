@@ -12,8 +12,10 @@ func _ready():
 
 
 func _on_window_close_requested() -> void:
+	Global.UI_closed.emit()
 	queue_free()
 
 
 func _on_window_focus_exited() -> void:
+	Global.UI_closed.emit()
 	queue_free()

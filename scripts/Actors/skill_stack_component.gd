@@ -450,6 +450,7 @@ func _on_skill_bag_list_close_requested() -> void:
 	$CloseBag.play()
 	for skill in skill_bag_list.get_children():
 		skill.queue_free()
+	Global.UI_closed.emit()
 
 
 func open_skill_bag_for_skill_removal():

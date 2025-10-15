@@ -12,6 +12,7 @@ streams_count = 1
 stream_0/stream = ExtResource("4_liy8y")
 
 [node name="CreatureDescription" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,7 +25,7 @@ status_description_scene = ExtResource("2_l7chq")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Window" type="Window" parent="CanvasLayer"]
-process_mode = 2
+process_mode = 3
 auto_translate_mode = 1
 oversampling_override = 1.0
 initial_position = 1
@@ -104,6 +105,7 @@ theme_override_constants/separation = 80
 
 [node name="DominoFlip" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_ep2fu")
+bus = &"SFX"
 
 [connection signal="close_requested" from="CanvasLayer/Window" to="." method="_on_window_close_requested"]
 [connection signal="focus_exited" from="CanvasLayer/Window" to="." method="_on_window_focus_exited"]

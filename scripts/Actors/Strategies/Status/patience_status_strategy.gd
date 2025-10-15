@@ -6,11 +6,10 @@ var notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 
 
 func on_moved():
-	power = 0
+	power = max(power - 2, 0)
 	_update_visuals()
 
 
 func on_turn_ended():
 	if increase_power():
 		sampler.play_note(notes[power - 1], 4)
-	

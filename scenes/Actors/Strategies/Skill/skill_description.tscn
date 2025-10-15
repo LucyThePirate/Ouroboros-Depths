@@ -11,6 +11,7 @@ streams_count = 1
 stream_0/stream = ExtResource("4_sj3rj")
 
 [node name="SkillDescription" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,18 +22,21 @@ script = ExtResource("1_owh6e")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Window" type="Window" parent="CanvasLayer"]
-process_mode = 2
+[node name="Window" type="PopupPanel" parent="CanvasLayer"]
+process_mode = 3
 oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(600, 500)
-unresizable = true
-popup_window = true
+visible = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Window"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 

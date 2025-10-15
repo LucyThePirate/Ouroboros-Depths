@@ -19,6 +19,7 @@ layout_mode = 0
 
 [node name="OrchestrateSkillStrategy" parent="." instance=ExtResource("2_onlsj")]
 layout_mode = 0
+count = 16
 
 [node name="DefendSkillStrategy" parent="." instance=ExtResource("3_hncto")]
 layout_mode = 0
