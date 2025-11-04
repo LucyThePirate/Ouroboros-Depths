@@ -229,7 +229,7 @@ material = SubResource("CanvasItemMaterial_fx61w")
 tile_set = ExtResource("8_5cpdm")
 
 [node name="BasicGenerationStrategy" parent="." instance=ExtResource("10_v01jn")]
-generation_size = Vector2i(40, 30)
+generation_size = Vector2i(30, 20)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_0xdhj")
