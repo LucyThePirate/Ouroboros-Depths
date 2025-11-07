@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bveghq3452ke2"]
+[gd_scene load_steps=6 format=3 uid="uid://bveghq3452ke2"]
 
 [ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/Actors/Strategies/Skill/dash_skill_strategy.tscn" id="1_s3nf8"]
 [ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/Actors/Strategies/Skill/defend_skill_strategy.tscn" id="2_eqxyh"]
 [ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/Actors/Strategies/Skill/stomp_skill_strategy.tscn" id="3_21vwe"]
 [ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/Actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="4_c5fl1"]
+[ext_resource type="PackedScene" uid="uid://bqe6kxf4uw66l" path="res://scenes/Actors/Strategies/Skill/drill_skill_strategy.tscn" id="5_eqxyh"]
 
 [node name="BasicDeck" type="Control"]
 layout_mode = 3
@@ -13,6 +14,8 @@ offset_bottom = 40.0
 
 [node name="DashSkillStrategy" parent="." instance=ExtResource("1_s3nf8")]
 layout_mode = 0
+offset_left = 0.0
+offset_right = 144.0
 
 [node name="DefendSkillStrategy" parent="." instance=ExtResource("2_eqxyh")]
 layout_mode = 0
@@ -22,6 +25,11 @@ scale = Vector2(1, 1)
 
 [node name="StompSkillStrategy" parent="." instance=ExtResource("3_21vwe")]
 layout_mode = 0
+offset_left = 0.0
+offset_right = 144.0
 
 [node name="DarkStarSkillStrategy" parent="." instance=ExtResource("4_c5fl1")]
+layout_mode = 0
+
+[node name="DrillSkillStrategy" parent="." instance=ExtResource("5_eqxyh")]
 layout_mode = 0

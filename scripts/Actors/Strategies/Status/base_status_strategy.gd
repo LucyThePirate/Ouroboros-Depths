@@ -6,7 +6,7 @@ signal status_ended(StatusStrategy)
 signal power_changed
 signal max_power_reached
 
-enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS }
+enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS, VIGOR }
 
 @export_category("Lore")
 @export var status_name := "Default Status Name"
@@ -59,8 +59,12 @@ func on_reload_started():
 	pass
 
 
-func modify_damage(incoming_damage := 1) -> int:
+func modify_incoming_damage(incoming_damage := 1) -> int:
 	return incoming_damage
+
+
+func modify_outgoing_damage(outgoing_damage := 1) -> int:
+	return outgoing_damage
 
 
 func _update_visuals() -> void:

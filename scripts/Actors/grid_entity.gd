@@ -211,9 +211,10 @@ func try_attacking(entity):
 	return false
 
 
-func hit(entity):
+func hit(entity, damage := 1):
 	if entity and entity.has_method("_on_hit"):
-		entity._on_hit(self)
+		damage = status_component.modify_outgoing_damage(damage)
+		entity._on_hit(self, damage)
 
 
 func _on_hit(attacker, damage := 1):
@@ -223,7 +224,7 @@ func _on_hit(attacker, damage := 1):
 	else:
 		print(self.name, "was hit by:", attacker.name)
 		last_hit_by = attacker
-		damage = status_component.modify_damage(damage)
+		damage = status_component.modify_incoming_damage(damage)
 		health_component.deal_damage(damage)
 		$Hit.play()
 		hurt.emit(attacker)

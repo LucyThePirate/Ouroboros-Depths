@@ -30,13 +30,13 @@ blend_mode = 1
 _data = [Vector2(0, 0), 0.0, 5.6789, 0, 0, Vector2(0.553371, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -7.34917, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_dn63k"]
+[sub_resource type="CurveTexture" id="CurveTexture_hg4aq"]
 curve = SubResource("Curve_ve5g5")
 
 [sub_resource type="Gradient" id="Gradient_yxirt"]
 colors = PackedColorArray(1, 1, 1, 0.0980392, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_jrvj4"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1enxm"]
 gradient = SubResource("Gradient_yxirt")
 
 [sub_resource type="Curve" id="Curve_epypf"]
@@ -54,7 +54,7 @@ _limits = [0.0, 3.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_euqva"]
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_m3s0v"]
 curve_x = SubResource("Curve_epypf")
 curve_y = SubResource("Curve_bow1d")
 curve_z = SubResource("Curve_bibib")
@@ -67,10 +67,10 @@ initial_velocity_min = 100.0
 initial_velocity_max = 100.0
 gravity = Vector3(0, 3000, 0)
 scale_min = 0.2
-scale_over_velocity_curve = SubResource("CurveXYZTexture_euqva")
+scale_over_velocity_curve = SubResource("CurveXYZTexture_m3s0v")
 color = Color(1, 0.996078, 0.996078, 1)
-color_initial_ramp = SubResource("GradientTexture1D_jrvj4")
-alpha_curve = SubResource("CurveTexture_dn63k")
+color_initial_ramp = SubResource("GradientTexture1D_1enxm")
+alpha_curve = SubResource("CurveTexture_hg4aq")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m3s0v"]
 shader = ExtResource("11_utnk4")

@@ -53,10 +53,16 @@ func on_reload_started():
 		status.on_reload_started()
 
 
-func modify_damage(incoming_damage := 1) -> int:
+func modify_incoming_damage(incoming_damage := 1) -> int:
 	for status in status_bar.get_children() as Array[StatusStrategy]:
-		incoming_damage = status.modify_damage(incoming_damage)
+		incoming_damage = status.modify_incoming_damage(incoming_damage)
 	return incoming_damage
+
+
+func modify_outgoing_damage(outgoing_damage := 1) -> int:
+	for status in status_bar.get_children() as Array[StatusStrategy]:
+		outgoing_damage = status.modify_outgoing_damage(outgoing_damage)
+	return outgoing_damage
 
 
 func get_status_descriptions():

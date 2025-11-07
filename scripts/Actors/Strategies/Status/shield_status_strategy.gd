@@ -19,7 +19,7 @@ func on_turn_ended():
 	pass
 
 
-func modify_damage(incoming_damage := 1) -> int:
+func modify_incoming_damage(incoming_damage := 1) -> int:
 	incoming_damage -= power
 	if incoming_damage < 0:
 		var new_text_scene = text_scene.instantiate()

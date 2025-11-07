@@ -345,6 +345,7 @@ func _spawn_tile(tile_coords):
 	if existing_tile and existing_tile.get_custom_data("indestructable"):
 		return
 	Global.floors.set_cell(tile_coords, 2, Vector2i(0, 1))
+	Global.walls.set_cell(tile_coords, -1)
 
 
 func _is_obstructed(tile_coords) -> bool:
