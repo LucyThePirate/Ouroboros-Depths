@@ -101,6 +101,7 @@ skill_icon_scene = ExtResource("5_e1hdf")
 text_scene = ExtResource("6_5452a")
 
 [node name="Stack" type="Control" parent="."]
+visible = false
 z_index = 11
 layout_mode = 3
 anchors_preset = 8

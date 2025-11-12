@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 
 @export_file("*.tscn") var title_scene
@@ -65,6 +66,12 @@ var angry_at_player = 0
 
 
 func _ready():
+	if Engine.is_editor_hint():
+		%Fog.hide()
+		%Darkness.hide()
+		return
+	%Fog.show()
+	%Darkness.show()
 	_on_unpaused()
 	#get_window().focus_exited.connect(_on_paused)
 	get_tree().get_root().focus_exited.connect(_on_paused)
@@ -145,6 +152,16 @@ func _initialize_fog():
 			if tile_data != null:
 				if tile_data.get_custom_data("occluding") == true:
 					astar_grid.set_point_solid(tile_position, true)
+
+	for tile_position in fog.get_used_cells():
+		var empty_tile = (
+			(Global.walls.get_cell_tile_data(tile_position) == null)
+			and (Global.floors.get_cell_tile_data(tile_position) == null)
+		)
+		if empty_tile:
+			fog.set_cell(tile_position, -1)
+			darkness.set_cell(tile_position, -1)
+
 	Global.darkness = darkness
 	_update_fog(
 		$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0],

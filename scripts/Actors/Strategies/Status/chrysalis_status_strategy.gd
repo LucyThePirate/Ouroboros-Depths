@@ -11,7 +11,7 @@ func on_turn_ended():
 	increase_power()
 
 
-func modify_damage(incoming_damage := 1) -> int:
+func modify_incoming_damage(incoming_damage := 1) -> int:
 	if incoming_damage > 0:
 		power = 0
 		_update_visuals()
