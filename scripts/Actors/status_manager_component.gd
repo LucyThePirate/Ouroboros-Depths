@@ -13,6 +13,7 @@ func _ready() -> void:
 	if grid_entity is GridEntity:
 		grid_entity.moved.connect(on_grid_entity_moved)
 		grid_entity.reload_started.connect(on_reload_started)
+		grid_entity.descended.connect(on_next_floor_reached)
 	for status in Debug.find_children_in_group(self, "Status") as Array[StatusStrategy]:
 		status.reparent(status_bar)
 		initialize_status(status)
@@ -41,6 +42,11 @@ func on_turn_ended():
 func on_status_ended(status: StatusStrategy):
 	print("Status ended: ", status.name)
 	status.queue_free()
+
+
+func on_next_floor_reached():
+	for status in status_bar.get_children() as Array[StatusStrategy]:
+		status.on_next_floor_reached()
 
 
 func on_grid_entity_moved(old_coord: Vector2i, new_coord: Vector2i):

@@ -35,7 +35,7 @@ func use_skill(grid_entity: GridEntity):
 			):
 				if Global.entity_positions[check_coords] == grid_entity:
 					continue
-				Global.entity_positions[check_coords]._on_hit(grid_entity, damage)
+				grid_entity.hit(Global.entity_positions[check_coords], damage)
 	if skill_crit:
 		shockwave_radius -= 1
 		damage -= 1

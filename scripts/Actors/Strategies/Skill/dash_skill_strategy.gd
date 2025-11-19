@@ -40,7 +40,7 @@ func use_skill(grid_entity: GridEntity):
 		):
 			var target = Global.entity_positions[check_coords]
 			target.move(direction)
-			target._on_hit(grid_entity)
+			grid_entity.hit(target)
 			break
 		if not successfully_moved:
 			break

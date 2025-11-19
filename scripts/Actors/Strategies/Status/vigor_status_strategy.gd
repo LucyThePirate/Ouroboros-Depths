@@ -2,7 +2,7 @@ extends StatusStrategy
 
 class_name VigorStatus
 
-@export var text_scene: PackedScene
+var used_effect := false
 
 
 func _ready() -> void:
@@ -15,14 +15,14 @@ func merge_status(status: StatusStrategy):
 
 func modify_outgoing_damage(outgoing_damage := 1) -> int:
 	outgoing_damage += power
-	power = 0
-	_update_visuals()
+	used_effect = true
 	return outgoing_damage
 
 
 func on_turn_ended():
-	if power <= 0:
-		on_status_ended()
+	if used_effect:
+		power = 0
+	super()
 
 
 func on_status_ended():

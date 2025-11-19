@@ -28,4 +28,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			Global.entity_positions.has(check_coords)
 			and is_instance_valid(Global.entity_positions[check_coords])
 		):
-			Global.entity_positions[check_coords]._on_hit(grid_parent)
+			grid_parent.hit(Global.entity_positions[check_coords])

@@ -6,7 +6,11 @@
 
 [node name="VigorStatusStrategy" instance=ExtResource("1_ehq37")]
 script = ExtResource("2_pj3ux")
-text_scene = null
+status_name = "Vigor"
+status_desc = "This creature is charged up! The next time they deal damage, it will be boosted by Vigor's power.
+
+Gradually decreases over time."
+status_ID = 5
 
 [node name="TextureRect" parent="." index="0"]
 texture = ExtResource("2_tlwxl")

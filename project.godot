@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 Debug="*res://scripts/Mechanics/helper.gd"
 Global="*res://scripts/global.gd"
 NoteValue="*res://addons/SimpleSampler/note_value.gd"
+Tiles="*res://scripts/tiles.gd"
 
 [display]
 

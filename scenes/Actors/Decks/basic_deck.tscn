@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bveghq3452ke2"]
+[gd_scene load_steps=8 format=3 uid="uid://bveghq3452ke2"]
 
 [ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/Actors/Strategies/Skill/dash_skill_strategy.tscn" id="1_s3nf8"]
 [ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/Actors/Strategies/Skill/defend_skill_strategy.tscn" id="2_eqxyh"]
 [ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/Actors/Strategies/Skill/stomp_skill_strategy.tscn" id="3_21vwe"]
 [ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/Actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="4_c5fl1"]
 [ext_resource type="PackedScene" uid="uid://bqe6kxf4uw66l" path="res://scenes/Actors/Strategies/Skill/drill_skill_strategy.tscn" id="5_eqxyh"]
+[ext_resource type="PackedScene" uid="uid://cmyas4xlndmy7" path="res://scenes/Actors/Strategies/Skill/earth_spike/earth_spike_skill_strategy.tscn" id="6_21vwe"]
+[ext_resource type="PackedScene" uid="uid://ojhyri4hjpam" path="res://scenes/Actors/Strategies/Skill/earth_spike/earth_spike_projectile.tscn" id="7_c5fl1"]
 
 [node name="BasicDeck" type="Control"]
 layout_mode = 3
@@ -33,3 +35,7 @@ layout_mode = 0
 
 [node name="DrillSkillStrategy" parent="." instance=ExtResource("5_eqxyh")]
 layout_mode = 0
+
+[node name="EarthSpikeSkillStrategy" parent="." instance=ExtResource("6_21vwe")]
+layout_mode = 0
+star_VFX = ExtResource("7_c5fl1")

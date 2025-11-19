@@ -133,7 +133,6 @@ _data = {
 script = ExtResource("2_46xtg")
 patience_status = ExtResource("3_ljuv8")
 note_VFX = ExtResource("4_qqyho")
-power = 1
 is_depletable = true
 cost = 3
 skill_name = "Be Patient"

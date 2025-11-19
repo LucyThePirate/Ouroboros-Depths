@@ -113,6 +113,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_v01jn"]
 length = 0.001
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -135,7 +136,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -173,10 +174,10 @@ tracks/1/path = NodePath("CanvasLayer/ColorRect:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 1.8, 2.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1.8, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1xklj"]
@@ -218,11 +219,13 @@ use_parent_material = true
 tile_set = ExtResource("8_5cpdm")
 
 [node name="Fog" type="TileMapLayer" parent="." groups=["Fog"]]
+unique_name_in_owner = true
 z_index = 10
 material = SubResource("CanvasItemMaterial_fx61w")
 tile_set = ExtResource("8_5cpdm")
 
 [node name="Darkness" type="TileMapLayer" parent="." groups=["Fog"]]
+unique_name_in_owner = true
 self_modulate = Color(0.9529412, 0.6627451, 0.49803922, 0.44705883)
 z_index = 10
 material = SubResource("CanvasItemMaterial_fx61w")
@@ -245,6 +248,7 @@ layer = 100
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -270,7 +274,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DeathScreen" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -296,7 +299,7 @@ theme_override_fonts/normal_font = ExtResource("16_eu30k")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "
-[rainbow][wave]you dead!!!
+[rainbow freq=0.2][wave]Perished and Killed!!
 "
 fit_content = true
 horizontal_alignment = 1

@@ -246,6 +246,9 @@ func _update_fog(_old_coords: Vector2i, new_coords: Vector2i):
 	var light_radius = 7
 	var tile_light = {}
 	var marked_tiles = [new_coords]
+	#for x in Global.floors.get_used_rect().size.x:
+	#for y in Global.floors.get_used_rect().size.y:
+	#var tile = Vector2i(x, y)
 	for tile in Global.floors.get_used_cells():
 		Global.darkness.set_cell(tile, fog_tile[0], fog_tile[1])
 		tile_light[tile] = 0
@@ -299,6 +302,7 @@ func process_turn():
 	if current_entity:
 		#print("Taking turn now:", current_entity.get_parent().name)
 		current_entity.take_turn()
+		await current_entity.turn_ended
 	else:
 		#print("invalid entity?")
 		process_turn()
@@ -357,12 +361,12 @@ func _push_tile(tile_coords, direction):
 	astar_grid.set_point_solid(tile_coords, false)
 
 
-func _spawn_tile(tile_coords):
+func _spawn_tile(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
 	var existing_tile = Global.floors.get_cell_tile_data(tile_coords)
 	if existing_tile and existing_tile.get_custom_data("indestructable"):
 		return
-	Global.floors.set_cell(tile_coords, 2, Vector2i(0, 1))
-	Global.walls.set_cell(tile_coords, -1)
+	#Global.floors.set_cell(tile_coords, 2, Vector2i(0, 1))
+	Global.walls.set_cell(tile_coords, tile_data[0], tile_data[1])
 
 
 func _is_obstructed(tile_coords) -> bool:

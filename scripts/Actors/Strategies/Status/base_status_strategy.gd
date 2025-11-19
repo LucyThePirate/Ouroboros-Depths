@@ -28,6 +28,7 @@ func _ready() -> void:
 
 func merge_status(status: StatusStrategy):
 	power += status.power
+	current_turns_afflicted = turns_afflicted
 	_update_visuals()
 
 
@@ -44,6 +45,10 @@ func increase_power(amount := 1) -> bool:
 func on_turn_ended():
 	current_turns_afflicted -= 1
 	if current_turns_afflicted <= 0:
+		power -= 1
+		current_turns_afflicted = turns_afflicted
+		_update_visuals()
+	if power <= 0:
 		on_status_ended()
 
 
@@ -57,6 +62,10 @@ func on_moved():
 
 func on_reload_started():
 	pass
+
+
+func on_next_floor_reached():
+	status_ended.emit(self)
 
 
 func modify_incoming_damage(incoming_damage := 1) -> int:

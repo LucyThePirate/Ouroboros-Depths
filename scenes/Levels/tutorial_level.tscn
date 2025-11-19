@@ -195,6 +195,7 @@ tile_map_data = PackedByteArray("AAD9//3/AgABAAAAAAD+//3/AgABAAAAAAD///3/AgABAAA
 tile_set = ExtResource("12_m3s0v")
 
 [node name="Fog" type="TileMapLayer" parent="." groups=["Fog"]]
+unique_name_in_owner = true
 visible = false
 z_index = 10
 material = SubResource("CanvasItemMaterial_8wy2e")
@@ -203,6 +204,7 @@ tile_map_data = PackedByteArray("AADO/+f/AwABAAEAAADO/+j/AwABAAEAAADO/+n/AwABAAE
 tile_set = ExtResource("12_m3s0v")
 
 [node name="Darkness" type="TileMapLayer" parent="." groups=["Fog"]]
+unique_name_in_owner = true
 self_modulate = Color(0.9529412, 0.6627451, 0.49803922, 0.44705883)
 z_index = 10
 material = SubResource("CanvasItemMaterial_o74wk")
