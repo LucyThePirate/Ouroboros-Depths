@@ -5,7 +5,6 @@ signal exploded
 @onready var displayLerpTime = 0.0
 
 @onready var sprite = $StarSprite
-@export var note_VFX: PackedScene
 
 @onready var speed = 2000
 var max_distance = 8
@@ -38,6 +37,7 @@ func initialize(direction: Vector2i, grid_entity: GridEntity):
 		await get_tree().create_timer(0.05).timeout
 		if grid_entity and grid_entity.is_obstructed(grid_coords, false):
 			break
+		grid_entity.spawn_tile.emit(grid_coords, Tiles.Walls["boulder"])
 	explode_star(grid_coords, grid_entity, direction)
 
 
@@ -47,26 +47,27 @@ func _on_expiration_timeout() -> void:
 
 func explode_star(grid_coords, grid_entity, attack_direction):
 	var star_points = [
-		Vector2.ZERO, Vector2(1, 0), Vector2(0, -1), Vector2(0, 1), Vector2(-1, -1), Vector2(-1, 1)
+		Vector2.ZERO,
+		Vector2(1, 0),
+		Vector2(1, 1),
+		Vector2(0, 1),
+		Vector2(-1, 1),
+		Vector2(-1, 0),
+		Vector2(-1, -1),
+		Vector2(0, -1),
+		Vector2(1, -1)
 	]
 	for point in star_points:
 		var rotated_point = point.rotated(Vector2(attack_direction).angle())
 		var check_coords = Vector2i(round(rotated_point.x), round(rotated_point.y)) + grid_coords
-		#print(
-		#"checking:", check_coords, "point:", Vector2i(point.rotated(Vector2(direction).angle()))
-		#)
-		#grid_entity.spawn_tile.emit(check_coords)
-		var new_note_VFX = note_VFX.instantiate()
-		get_tree().current_scene.add_child(new_note_VFX)
-		new_note_VFX.global_position = Global.floors.map_to_local(check_coords)
 		if (
 			Global.entity_positions.has(check_coords)
 			and is_instance_valid(Global.entity_positions[check_coords])
 		):
-			if point == Vector2.ZERO:
-				grid_entity.hit(Global.entity_positions[check_coords])
-			else:  # Skill crit
-				grid_entity.hit(Global.entity_positions[check_coords], 2)
+			grid_entity.hit(Global.entity_positions[check_coords])
+		elif point != Vector2.ZERO:
+			grid_entity.spawn_tile.emit(check_coords, Tiles.Walls["boulder"])
+
 	exploded.emit()
 	finish_flying()
 

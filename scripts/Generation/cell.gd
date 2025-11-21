@@ -342,6 +342,7 @@ func _push_tile(tile_coords, direction):
 
 	if not Global.floors.get_cell_tile_data(tile_coords + direction):
 		walls.set_cell(tile_coords, -1)
+		floors.set_cell(tile_coords + direction, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
 		astar_grid.set_point_solid(tile_coords, false)
 		return
 
@@ -366,7 +367,10 @@ func _spawn_tile(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
 	if existing_tile and existing_tile.get_custom_data("indestructable"):
 		return
 	#Global.floors.set_cell(tile_coords, 2, Vector2i(0, 1))
-	Global.walls.set_cell(tile_coords, tile_data[0], tile_data[1])
+	if not existing_tile:
+		floors.set_cell(tile_coords, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
+	else:
+		Global.walls.set_cell(tile_coords, tile_data[0], tile_data[1])
 
 
 func _is_obstructed(tile_coords) -> bool:
