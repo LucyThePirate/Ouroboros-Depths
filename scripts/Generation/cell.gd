@@ -227,7 +227,7 @@ func _initialize_entity(new_entity: GridEntity):
 	new_entity.pushed_object.connect(_push_tile)
 	new_entity.spawn_tile.connect(_spawn_tile)
 	turn_queue.push_back(new_entity.turn_component)
-	new_entity.turn_component.turn_ended.connect(_entity_finished_turn)
+	new_entity.turn_component.turn_ended.connect(_entity_finished_turn.bind(new_entity))
 	if not new_entity.is_in_group("Player"):
 		#new_entity.health_component.max_health += floori(
 		#new_entity.health_component.max_health * current_floor * 0.25
@@ -302,7 +302,8 @@ func process_turn():
 	if current_entity:
 		#print("Taking turn now:", current_entity.get_parent().name)
 		current_entity.take_turn()
-		await current_entity.turn_ended
+		#await current_entity.turn_ended
+
 	else:
 		#print("invalid entity?")
 		process_turn()
@@ -322,8 +323,11 @@ func try_spawning_random_monster(initialize_entity := true):
 				add_child(new_smoke)
 
 
-func _entity_finished_turn():
+func _entity_finished_turn(grid_entity: GridEntity):
 	#ready_for_next_turn = true
+	if grid_entity != player and not grid_entity.is_in_darkness():
+		await get_tree().create_timer(0.05).timeout
+		#await grid_entity.turn_component.turn_ended
 	process_turn()
 
 
@@ -388,13 +392,6 @@ func _is_obstructed(tile_coords) -> bool:
 	if Global.entity_positions.has(tile_coords):
 		return true
 	return false
-
-
-func _on_player_turn_ended() -> void:
-	for entity in get_tree().get_nodes_in_group("AI"):
-		if entity.has_method("take_turn"):
-			entity.take_turn()
-			await entity.turn_ended
 
 
 func _on_player_died() -> void:

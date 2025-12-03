@@ -54,6 +54,7 @@ var moved_by_skill := false
 
 
 func _ready() -> void:
+	show()
 	$CanvasLayer/SkillBagList.hide()
 
 

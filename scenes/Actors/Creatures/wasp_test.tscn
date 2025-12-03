@@ -68,7 +68,6 @@ autowrap_mode = 0
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
 [connection signal="hurt" from="GridEntity" to="." method="_on_grid_entity_hurt"]
 [connection signal="moved" from="GridEntity" to="WaspVisual" method="_on_moved"]
-[connection signal="turn_ended" from="GridEntity/TurnComponent" to="." method="_on_turn_component_turn_ended"]
 [connection signal="turn_started" from="GridEntity/TurnComponent" to="." method="_on_turn_component_turn_started"]
 [connection signal="awaited_cursor_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_cursor_input"]
 [connection signal="awaited_directional_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_directional_input"]

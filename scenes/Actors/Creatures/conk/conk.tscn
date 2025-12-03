@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuir68rh5ethv"]
+
+[ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/Actors/Creatures/base_creature/base_creature.tscn" id="1_da6my"]
+[ext_resource type="PackedScene" uid="uid://cmyas4xlndmy7" path="res://scenes/Actors/Strategies/Skill/earth_spike/earth_spike_skill_strategy.tscn" id="2_eu1md"]
+[ext_resource type="PackedScene" uid="uid://bqe6kxf4uw66l" path="res://scenes/Actors/Strategies/Skill/drill_skill_strategy.tscn" id="3_dstu7"]
+
+[node name="BaseCreature" instance=ExtResource("1_da6my")]
+
+[node name="EarthSpikeSkillStrategy" parent="GridEntity/SkillStackComponent" index="9" instance=ExtResource("2_eu1md")]
+
+[node name="DrillSkillStrategy" parent="GridEntity/SkillStackComponent" index="10" instance=ExtResource("3_dstu7")]
+
+[node name="Sprite2D" parent="." index="6"]
+position = Vector2(1, 1)
+scale = Vector2(6.052631, 11.138158)
+offset = Vector2(-0.08260894, -6.930006)
+
+[editable path="GridEntity"]
