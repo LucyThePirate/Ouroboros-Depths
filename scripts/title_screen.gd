@@ -14,6 +14,7 @@ extends Control
 	$CanvasLayer/Options/Gameplay/ScrollContainer/CenterContainer/BogosortTimerOptions
 	as OptionButton
 )
+@onready var turn_based_options = %TurnBasedOptions as OptionButton
 
 @onready var load_progress_bar = $CanvasLayer/Loading/VBoxContainer/ProgressBar as ProgressBar
 @onready var loading_screen_tip = $CanvasLayer/Loading/VBoxContainer/Tip as RichTextLabel
@@ -135,6 +136,8 @@ func _load_gameplay_options():
 		deck_select.current_tab = Global.config.get_value("Gameplay", "SelectedDeck")
 	if Global.config.has_section_key("Gameplay", "BogosortTimer"):
 		bogosort_timer_options.selected = Global.config.get_value("Gameplay", "BogosortTimer")
+	if Global.config.has_section_key("Gameplay", "TurnBased"):
+		turn_based_options.selected = Global.config.get_value("Gameplay", "TurnBased")
 
 
 func _on_bogosort_timer_options_item_selected(index: int) -> void:
@@ -152,3 +155,8 @@ func _on_start_run_pressed() -> void:
 	else:
 		loading_scene = game_scene
 	_start_loading()
+
+
+func _on_turn_based_options_item_selected(index: int) -> void:
+	if Global.config:
+		Global.config.set_value("Gameplay", "TurnBased", index)

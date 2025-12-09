@@ -50,7 +50,7 @@ func _process(delta: float) -> void:
 	$StateLabel.text = (
 		"%s - %s" % [States.keys()[state], stack_component.States.keys()[stack_component.state]]
 	)
-	if turn_component.my_turn and state == States.METAMORPHOSIS_STARTED:
+	if turn_component.is_my_turn() and state == States.METAMORPHOSIS_STARTED:
 		process_mode = Node.PROCESS_MODE_DISABLED
 		await get_tree().create_timer(0.1).timeout
 		process_mode = Node.PROCESS_MODE_ALWAYS
@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 		else:
 			_on_finished_writing_text()
 
-	if not turn_component.my_turn or current_text:
+	if not turn_component.is_my_turn() or current_text:
 		return
 
 	match state:

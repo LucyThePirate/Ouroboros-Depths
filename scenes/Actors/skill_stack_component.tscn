@@ -585,6 +585,8 @@ bus = &"SFX"
 stream = SubResource("AudioStreamRandomizer_8of2w")
 bus = &"SFX"
 
+[node name="TelegraphTimer" type="Timer" parent="."]
+
 [connection signal="emptied_stack" from="." to="." method="_on_emptied_stack"]
 [connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1/InfoButton1" to="." method="_on_info_button_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2/InfoButton2" to="." method="_on_info_button_2_pressed"]

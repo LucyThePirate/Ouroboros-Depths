@@ -165,7 +165,19 @@ func _handle_stack_execution():
 		_update_cooldown_visuals()
 		for skill in skills:
 			skill.on_stack_execution_finished(grid_entity)
+		if not grid_entity.is_in_group("Player"):
+			if (
+				Global.config.has_section_key("Gameplay", "TurnBased")
+				and Global.config.get_value("Gameplay", "TurnBased")
+			):
+				await get_tree().create_timer(1).timeout
 		return
+	if not grid_entity.is_in_group("Player"):
+		if (
+			Global.config.has_section_key("Gameplay", "TurnBased")
+			and Global.config.get_value("Gameplay", "TurnBased")
+		):
+			await get_tree().create_timer(0.25).timeout
 	current_skill = stack.pop_front() as SkillStrategy
 	current_skill.connect("moved_self", _on_moved_by_skill)
 	stack_icon_holder.get_child(0).get_child(0).get_child(0).show()

@@ -290,6 +290,12 @@ func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):
 
 
 func process_turn():
+	if not Global.is_turn_based():
+		turn_counter += 1
+		if spawn_creatures and (turn_counter % 10) == 0:
+			try_spawning_random_monster(true)
+		return
+
 	if turn_queue.size() <= 0:
 		turn_counter += 1
 		if spawn_creatures and (turn_counter % 5) == 0:
@@ -297,18 +303,12 @@ func process_turn():
 		print(turn_counter)
 		for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
 			turn_queue.push_back(turn_component)
-
 	var current_entity = turn_queue.pop_front()
 	if current_entity:
-		#print("Taking turn now:", current_entity.get_parent().name)
 		current_entity.take_turn()
-		#await current_entity.turn_ended
-
 	else:
-		#print("invalid entity?")
 		process_turn()
 	Global.turn_passed.emit()
-	#await current_entity.turn_ended
 
 
 func try_spawning_random_monster(initialize_entity := true):
@@ -325,10 +325,13 @@ func try_spawning_random_monster(initialize_entity := true):
 
 func _entity_finished_turn(grid_entity: GridEntity):
 	#ready_for_next_turn = true
-	if grid_entity != player and not grid_entity.is_in_darkness():
-		await get_tree().create_timer(0.05).timeout
-		#await grid_entity.turn_component.turn_ended
-	process_turn()
+	#if grid_entity != player and not grid_entity.is_in_darkness():
+	#await get_tree().create_timer(0.05).timeout
+	#await grid_entity.turn_component.turn_ended
+	if Global.is_turn_based():
+		process_turn()
+	elif grid_entity.is_in_group("Player"):
+		process_turn()
 
 
 func _open_door(door_coords):

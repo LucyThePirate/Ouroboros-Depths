@@ -4,3 +4,11 @@
 
 [node name="TurnComponent" type="Node2D" groups=["TurnComponent"]]
 script = ExtResource("1_yhamr")
+
+[node name="AutoTurnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="AutoTurnTimer" to="." method="_on_auto_turn_timer_timeout"]

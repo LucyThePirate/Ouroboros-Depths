@@ -25,6 +25,15 @@ var darkness: TileMapLayer
 const CELL_SIZE = 100
 
 
+func is_turn_based() -> bool:
+	if (
+		Global.config.has_section_key("Gameplay", "TurnBased")
+		and Global.config.get_value("Gameplay", "TurnBased")
+	):
+		return false
+	return true
+
+
 func load_deck() -> Resource:
 	if Global.config.get_value("Gameplay", "SelectedDeck"):
 		selected_deck = Global.config.get_value("Gameplay", "SelectedDeck")
