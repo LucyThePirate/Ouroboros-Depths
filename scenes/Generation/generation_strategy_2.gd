@@ -1,42 +1,4 @@
-extends Node2D
-
-class_name GenerationStrategy
-
-@export var generation_size: Vector2i
-
-#region Terrain generation and Tiles
-var root_node: Branch
-var tile_size: int = 100
-var floors: TileMapLayer
-var walls: TileMapLayer
-var fog: TileMapLayer
-@onready var path_tile := [3, Vector2i(1, 3)]
-@onready var room_floor_tile := [3, Vector2i(0, 3)]
-@onready var glass_wall_tile := [2, Vector2i(3, 0)]
-@onready var stone_wall_tile := [2, Vector2i(1, 0)]
-@onready var boulder_object_tile := [2, Vector2i(3, 2)]
-@onready var tall_tree_wall_tile := [2, Vector2i(8, 0)]
-@onready var small_tree_wall_tile := [2, Vector2i(7, 0)]
-@onready var clover_decor_tile := [3, Vector2i(3, 1)]
-@onready var grass_floor_tile := [3, Vector2i(1, 3)]
-@onready var stone_floor_tile := [2, Vector2i(0, 1)]
-@onready var water_floor_tile := [3, Vector2i(0, 0)]
-@onready var lilly_decor_tile := [3, Vector2i(3, 0)]
-@onready var ice_floor_tile := [3, Vector2i(2, 1)]
-@onready var door_horizontal_tile := [2, Vector2i(1, 2)]
-@onready var door_vertical_tile := [2, Vector2i(2, 2)]
-@onready var stairs_up_tile := [2, Vector2i(0, 2)]
-@onready var stairs_down_tile := [2, Vector2i(0, 3)]
-@onready var lock_tile := [2, Vector2i(4, 2)]
-@onready var fog_tile := [3, Vector2i(1, 1)]
-
-var paths: Array = []
-var noise
-var rng
-var current_floor := 0
-enum NatureModes { ALL, SOMETIMES, NONE }
-var nature_mode
-#endregion
+extends GenerationStrategy
 
 
 func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMapLayer):
@@ -52,20 +14,20 @@ func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMa
 	noise.noise_type = 3
 	root_node = Branch.new(Vector2i(0, 0), generation_size)
 	root_node.split(randi_range(2, 4), paths)
-	nature_mode = [NatureModes.ALL, NatureModes.SOMETIMES, NatureModes.NONE].pick_random()
+	nature_mode = [NatureModes.SOMETIMES].pick_random()
 
 
 func generate_level():
-	for x in range(-1, generation_size.x + 1):
-		floors.set_cell(Vector2i(x, generation_size.y), stone_floor_tile[0], stone_floor_tile[1])
-		walls.set_cell(Vector2i(x, generation_size.y), stone_wall_tile[0], stone_wall_tile[1])
-		floors.set_cell(Vector2i(x, -1), stone_floor_tile[0], stone_floor_tile[1])
-		walls.set_cell(Vector2i(x, -1), stone_wall_tile[0], stone_wall_tile[1])
-	for y in range(-1, generation_size.y + 1):
-		floors.set_cell(Vector2i(generation_size.x, y), stone_floor_tile[0], stone_floor_tile[1])
-		walls.set_cell(Vector2i(generation_size.x, y), stone_wall_tile[0], stone_wall_tile[1])
-		floors.set_cell(Vector2i(-1, y), stone_floor_tile[0], stone_floor_tile[1])
-		walls.set_cell(Vector2i(-1, y), stone_wall_tile[0], stone_wall_tile[1])
+	#for x in range(-1, generation_size.x + 1):
+		#floors.set_cell(Vector2i(x, generation_size.y), stone_floor_tile[0], stone_floor_tile[1])
+		#walls.set_cell(Vector2i(x, generation_size.y), stone_wall_tile[0], stone_wall_tile[1])
+		#floors.set_cell(Vector2i(x, -1), stone_floor_tile[0], stone_floor_tile[1])
+		#walls.set_cell(Vector2i(x, -1), stone_wall_tile[0], stone_wall_tile[1])
+	#for y in range(-1, generation_size.y + 1):
+		#floors.set_cell(Vector2i(generation_size.x, y), stone_floor_tile[0], stone_floor_tile[1])
+		#walls.set_cell(Vector2i(generation_size.x, y), stone_wall_tile[0], stone_wall_tile[1])
+		#floors.set_cell(Vector2i(-1, y), stone_floor_tile[0], stone_floor_tile[1])
+		#walls.set_cell(Vector2i(-1, y), stone_wall_tile[0], stone_wall_tile[1])
 	for leaf in root_node.get_leaves():
 		var padding = Vector4i(
 			rng.randi_range(0, 0),  # Left Padding
@@ -73,7 +35,6 @@ func generate_level():
 			rng.randi_range(1, 1),  # Right Padding
 			rng.randi_range(1, 1)  # Down Padding
 		)
-
 
 		for x in range(leaf.size.x):
 			for y in range(leaf.size.y):

@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmyas4xlndmy7"]
+[gd_scene load_steps=5 format=3 uid="uid://cmyas4xlndmy7"]
 
 [ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/Actors/Strategies/Skill/base_skill_strategy.tscn" id="1_ph7p1"]
 [ext_resource type="Script" uid="uid://ujgom7gnmt1" path="res://scenes/Actors/Strategies/Skill/earth_spike/earth_spike_skill_strategy.gd" id="2_n3f6c"]
 [ext_resource type="PackedScene" uid="uid://ojhyri4hjpam" path="res://scenes/Actors/Strategies/Skill/earth_spike/earth_spike_projectile.tscn" id="3_n3f6c"]
+[ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="4_ig3f7"]
 
 [node name="EarthSpikeSkillStrategy" instance=ExtResource("1_ph7p1")]
 script = ExtResource("2_n3f6c")
 earth_spike_projectile = ExtResource("3_n3f6c")
+priority = 1
 skill_name = "Earth Spike"
+skill_desc = "Call upon the power of the earth! 
+
+On use, choose a direction to hurl a wave of stone spikes, entrapping foes in a wall of boulders."
+skill_ID = 12
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("4_ig3f7")

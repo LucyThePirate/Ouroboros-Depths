@@ -11,6 +11,9 @@ script = ExtResource("2_g35iv")
 DashVFX = ExtResource("3_yyqck")
 vigor_status = ExtResource("4_yyqck")
 skill_name = "Drill"
+skill_desc = "Walls don't stand a chance! On use, pick a direction and start busting through walls like paper.
+
+Causing wanton destruction this way is SO satisfying, that it also grants the user Vigor for every wall broken, empowering their next attack."
 skill_ID = 11
 
 [node name="Icon" parent="." index="0"]

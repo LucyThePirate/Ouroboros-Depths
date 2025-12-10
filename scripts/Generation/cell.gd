@@ -245,13 +245,26 @@ func _initialize_entity(new_entity: GridEntity):
 func _update_fog(_old_coords: Vector2i, new_coords: Vector2i):
 	var light_radius = 7
 	var tile_light = {}
+	var terrain_rect = Global.floors.get_used_rect()
+	for x in terrain_rect.size.x:
+		for y in terrain_rect.size.y:
+			var tile = Vector2i(terrain_rect.position.x + x, terrain_rect.position.y + y)
+			Global.darkness.set_cell(tile, fog_tile[0], fog_tile[1])
+			tile_light[tile] = 0
 	var marked_tiles = [new_coords]
-	#for x in Global.floors.get_used_rect().size.x:
-	#for y in Global.floors.get_used_rect().size.y:
-	#var tile = Vector2i(x, y)
-	for tile in Global.floors.get_used_cells():
-		Global.darkness.set_cell(tile, fog_tile[0], fog_tile[1])
-		tile_light[tile] = 0
+	var adjacent_tiles = [
+		Vector2i(1, 0),
+		Vector2i(1, 1),
+		Vector2i(0, 1),
+		Vector2i(-1, 1),
+		Vector2i(-1, 0),
+		Vector2i(-1, -1),
+		Vector2i(0, -1),
+		Vector2i(1, -1)
+	]
+	#for a_t in adjacent_tiles:
+	#marked_tiles.append(new_coords + a_t)
+	#tile_light[new_coords + a_t] = light_radius - 1
 	tile_light[new_coords] = light_radius
 	while not marked_tiles.is_empty():
 		var checking_tile = marked_tiles.pop_front()
@@ -260,16 +273,7 @@ func _update_fog(_old_coords: Vector2i, new_coords: Vector2i):
 		fog.set_cell(checking_tile, -1)
 		if current_light <= 1:
 			continue
-		var adjacent_tiles = [
-			Vector2i(1, 0),
-			Vector2i(1, 1),
-			Vector2i(0, 1),
-			Vector2i(-1, 1),
-			Vector2i(-1, 0),
-			Vector2i(-1, -1),
-			Vector2i(0, -1),
-			Vector2i(1, -1)
-		]
+
 		for a_t in adjacent_tiles:
 			var tile = a_t + checking_tile
 			if tile not in tile_light or tile_light[tile] >= current_light:

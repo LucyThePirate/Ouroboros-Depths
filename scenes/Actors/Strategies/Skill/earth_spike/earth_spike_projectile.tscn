@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://ojhyri4hjpam"]
+[gd_scene load_steps=29 format=3 uid="uid://ojhyri4hjpam"]
 
 [ext_resource type="Script" uid="uid://d25q6ewbtmpiy" path="res://scenes/Actors/Strategies/Skill/earth_spike/earth_spike_projectile.gd" id="1_o5mhp"]
+[ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="3_n2bky"]
 [ext_resource type="Texture2D" uid="uid://boyi3dh24ewlf" path="res://textures/UI/black-star.png" id="3_upeyw"]
 [ext_resource type="AudioStream" uid="uid://bt30ad6s0lmn0" path="res://audio/SFX/Skills/507161__ruidososoundfx__fast-woosh-ricrob-helm-12.ogg" id="4_5jd82"]
 [ext_resource type="AudioStream" uid="uid://cjqcrnsc2kfj1" path="res://audio/SFX/Skills/507161__ruidososoundfx__fast-woosh-ricrob-helm-12-2.ogg" id="5_nfljx"]
@@ -99,6 +100,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_n2bky")
+}],
+"loop": true,
+"name": &"new_animation",
 "speed": 5.0
 }]
 
@@ -220,9 +229,11 @@ script = ExtResource("1_o5mhp")
 
 [node name="StarSprite" type="AnimatedSprite2D" parent="."]
 top_level = true
+position = Vector2(-1.8749987, -5.625)
+scale = Vector2(1.9868423, 2.1447368)
 sprite_frames = SubResource("SpriteFrames_8wt1t")
+animation = &"new_animation"
 autoplay = "default"
-frame_progress = 0.527529
 speed_scale = 12.705
 
 [node name="Trail" type="GPUParticles2D" parent="StarSprite"]

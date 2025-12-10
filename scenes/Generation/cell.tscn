@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://43rkgu17gs68"]
+[gd_scene load_steps=44 format=3 uid="uid://43rkgu17gs68"]
 
 [ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_44ypc"]
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/Effects/boulder_splash.tscn" id="2_cu8oe"]
@@ -15,6 +15,7 @@
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/Shaders/stars.gdshader" id="12_5cpdm"]
 [ext_resource type="Theme" uid="uid://dsnesst3y61ol" path="res://resources/default_theme.tres" id="12_eu30k"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/Testing/thisGuyPOV.png" id="13_0xdhj"]
+[ext_resource type="PackedScene" uid="uid://b27ysyp6osut2" path="res://scenes/Generation/generation_strategy_2.tscn" id="13_qrcgv"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="16_eu30k"]
 [ext_resource type="AudioStream" uid="uid://ckploe52g84qd" path="res://audio/Music/AstrMusic/GHOST_NOODLES[8bit,loop,remix].mp3" id="17_1xklj"]
 [ext_resource type="Shader" uid="uid://daaonengjaclw" path="res://textures/Shaders/blur.gdshader" id="17_cqjng"]
@@ -111,6 +112,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/BogoSortWarning:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_v01jn"]
 length = 0.001
@@ -150,6 +163,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/BogoSortWarning:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_eu30k"]
@@ -236,6 +261,9 @@ tile_set = ExtResource("8_5cpdm")
 
 [node name="BasicGenerationStrategy" parent="." instance=ExtResource("10_v01jn")]
 generation_size = Vector2i(30, 20)
+
+[node name="GenerationStrategy2" parent="." instance=ExtResource("13_qrcgv")]
+generation_size = Vector2i(40, 30)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_0xdhj")
@@ -377,6 +405,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="BogoSortWarning" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
