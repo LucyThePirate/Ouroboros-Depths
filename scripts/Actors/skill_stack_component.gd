@@ -325,6 +325,10 @@ func _update_skill_visuals() -> void:
 			continue
 		hand_visual.get_child(skill).get_child(0).texture = hand[skill].icon.texture
 		hand_visual.get_child(skill).get_child(1).text = hand[skill].skill_name
+	if deck.is_empty():
+		%NextSkillPreview.texture = null_skill_texture
+	else:
+		%NextSkillPreview.texture = deck.front().icon.texture
 
 
 func _update_turn_cooldown():

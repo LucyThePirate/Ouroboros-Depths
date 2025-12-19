@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://dctxwjwjiof17"]
+
+[ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_sxdqt"]
+[ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="2_sxdqt"]
+[ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="3_aa227"]
+[ext_resource type="PackedScene" uid="uid://djpdq4bxeklv3" path="res://scenes/actors/Strategies/Skill/warp_skill_strategy.tscn" id="4_rrpmr"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="4_tndlm"]
+[ext_resource type="PackedScene" uid="uid://bwkb3crnbdvht" path="res://scenes/Tests/lich_test.tscn" id="5_tie3i"]
+[ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/actors/Strategies/Planner/base_random_skill_planner.tscn" id="6_6hqks"]
+[ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/ui/Arrow.png" id="7_aa227"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6hqks"]
+radius = 451.0
+
+[node name="creatureAI" type="Node2D" node_paths=PackedStringArray("visual") groups=["AI"]]
+script = ExtResource("1_sxdqt")
+visual = NodePath("LichTest")
+
+[node name="GridEntity" parent="." instance=ExtResource("2_sxdqt")]
+species_name = "Lich"
+species_desc = "A once-human who traded their soul for dark powers, and, more importantly, for baller-ass horns.
+
+"
+soul_count = 1
+
+[node name="DarkStarSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("3_aa227")]
+mouse_filter = 0
+count = 8
+skill_desc = ""
+
+[node name="WarpSkillStrategy" parent="GridEntity/SkillStackComponent" index="10" instance=ExtResource("4_rrpmr")]
+
+[node name="HealthComponent" parent="GridEntity/UI" index="0"]
+max_health = 7
+
+[node name="Display" type="Node2D" parent="."]
+top_level = true
+
+[node name="LichTest" parent="." instance=ExtResource("5_tie3i")]
+y_sort_enabled = true
+position = Vector2(4, -63)
+scale = Vector2(0.3, 0.3)
+
+[node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("6_6hqks")]
+
+[node name="DetectionRadius" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+scale = Vector2(1.66251, 1.66251)
+shape = SubResource("CircleShape2D_6hqks")
+
+[node name="IntentArrow" type="Sprite2D" parent="."]
+self_modulate = Color(0.968627, 0, 0.364706, 0.823529)
+texture = ExtResource("7_aa227")
+offset = Vector2(118, 1)
+
+[node name="IntentLabel" type="RichTextLabel" parent="."]
+offset_left = -36.0
+offset_top = -230.0
+offset_right = 4.0
+offset_bottom = -190.0
+theme_override_fonts/normal_font = ExtResource("4_tndlm")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "..."
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
+[connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
+[connection signal="hurt" from="GridEntity" to="." method="_on_grid_entity_hurt"]
+[connection signal="turn_started" from="GridEntity/TurnComponent" to="." method="_on_turn_component_turn_started"]
+[connection signal="awaited_cursor_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_cursor_input"]
+[connection signal="awaited_directional_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_directional_input"]
+[connection signal="body_entered" from="DetectionRadius" to="." method="_on_detection_radius_body_entered"]
+
+[editable path="GridEntity"]

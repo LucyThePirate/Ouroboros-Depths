@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxxiyeix6rbob"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_ajgdg"]
+[ext_resource type="Script" uid="uid://b77r38bhu1aji" path="res://scripts/Actors/Strategies/Status/chrysalis_status_strategy.gd" id="2_3ft7r"]
+[ext_resource type="Texture2D" uid="uid://gu7myu02v5ac" path="res://textures/statuses/Chrysalis.png" id="2_yv11q"]
+
+[node name="ChrysalisStatusStrategy" instance=ExtResource("1_ajgdg")]
+script = ExtResource("2_3ft7r")
+status_name = "Chrystalizing"
+status_desc = "This creature is entering a chrysalis to power themselves up with souls. Any damage taken will interrupt the metamorphosis process, AND will be doubled!"
+status_ID = 4
+max_power = 8
+
+[node name="TextureRect" parent="." index="0"]
+texture = ExtResource("2_yv11q")
+
+[connection signal="max_power_reached" from="." to="." method="_on_max_power_reached"]

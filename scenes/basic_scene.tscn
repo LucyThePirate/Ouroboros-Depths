@@ -1,12 +1,12 @@
 [gd_scene load_steps=34 format=3 uid="uid://cfv6tbuwti31"]
 
 [ext_resource type="Texture2D" uid="uid://b60fxmc7hxg5s" path="res://textures/PumpkinBlock2.png" id="1_25xoa"]
-[ext_resource type="Script" uid="uid://cw1mrb5de8qd8" path="res://scripts/Characters/level.gd" id="1_cq1wp"]
-[ext_resource type="Texture2D" uid="uid://bgw2wj7opj2ih" path="res://textures/Testing/bullet shadow.png" id="2_3afyq"]
+[ext_resource type="Script" path="res://scripts/Characters/level.gd" id="1_cq1wp"]
+[ext_resource type="Texture2D" uid="uid://bgw2wj7opj2ih" path="res://textures/testing/bullet shadow.png" id="2_3afyq"]
 [ext_resource type="PackedScene" uid="uid://dd3yj1e7alom2" path="res://scenes/cretin.tscn" id="2_m7kxd"]
-[ext_resource type="Texture2D" uid="uid://k2fyngc72oja" path="res://textures/Testing/B E A N.jpg" id="2_mchlt"]
-[ext_resource type="PackedScene" uid="uid://dsh3fosuphuuo" path="res://scenes/Characters/player_brain_component.tscn" id="3_e5jyo"]
-[ext_resource type="PackedScene" uid="uid://dn5dwn4cxcre8" path="res://scenes/Characters/creature_brain_component.tscn" id="4_8oh63"]
+[ext_resource type="Texture2D" uid="uid://k2fyngc72oja" path="res://textures/testing/B E A N.jpg" id="2_mchlt"]
+[ext_resource type="PackedScene" uid="uid://dsh3fosuphuuo" path="res://scenes/characters/player_brain_component.tscn" id="3_e5jyo"]
+[ext_resource type="PackedScene" uid="uid://dn5dwn4cxcre8" path="res://scenes/characters/creature_brain_component.tscn" id="4_8oh63"]
 [ext_resource type="Texture2D" uid="uid://dhuxxosgrbwyl" path="res://textures/tiles/ChimeraTiles.png" id="5_itqjx"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j1wxp"]

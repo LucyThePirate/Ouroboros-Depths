@@ -1,0 +1,237 @@
+[gd_scene load_steps=19 format=3 uid="uid://cjo5qx0fo3bej"]
+
+[ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/creatures/Soul.png" id="1_2lgn1"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="1_awmqf"]
+[ext_resource type="Script" uid="uid://cxokci3gd12kt" path="res://scripts/Actors/metamorphosis.gd" id="1_eg7uw"]
+[ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/actors/Strategies/Skill/defend_skill_strategy.tscn" id="2_edy26"]
+[ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/actors/Strategies/Skill/dash_skill_strategy.tscn" id="3_76q3q"]
+[ext_resource type="PackedScene" uid="uid://cnrxjlwuvjt6l" path="res://scenes/actors/Strategies/Skill/fortune_cookie_skill_strategy.tscn" id="4_ncs2t"]
+[ext_resource type="Texture2D" uid="uid://gu7myu02v5ac" path="res://textures/statuses/Chrysalis.png" id="4_o7w3c"]
+[ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/actors/Strategies/Skill/stomp_skill_strategy.tscn" id="5_o4b0d"]
+[ext_resource type="PackedScene" uid="uid://c10nhwhuw3ge4" path="res://scenes/actors/Strategies/Skill/orchestrate_skill_strategy.tscn" id="6_emtfy"]
+[ext_resource type="PackedScene" uid="uid://d1ti6v0kdijnm" path="res://scenes/actors/Strategies/Skill/be_patient_skill_strategy.tscn" id="7_1qkj3"]
+[ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="8_7g347"]
+[ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/actors/Strategies/Skill/leap_skill_strategy.tscn" id="9_lvopp"]
+[ext_resource type="PackedScene" uid="uid://c1t1yix0mdkeh" path="res://scenes/actors/Strategies/Skill/skill_icon.tscn" id="10_emtfy"]
+[ext_resource type="PackedScene" uid="uid://djpdq4bxeklv3" path="res://scenes/actors/Strategies/Skill/warp_skill_strategy.tscn" id="10_i6ueo"]
+[ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/creatures/Lich/Skull.png" id="11_emtfy"]
+[ext_resource type="Texture2D" uid="uid://bbujvsn0j0wwi" path="res://textures/skills/FortuneCookieSkill.png" id="13_ahco4"]
+[ext_resource type="AudioStream" uid="uid://brgjfi5b2rdyi" path="res://audio/SFX/Skills/Domino/DominoOpenBag1.ogg" id="15_dkf3k"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o4b0d"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("15_dkf3k")
+
+[node name="Metamorphosis" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eg7uw")
+buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3q"), ExtResource("4_ncs2t"), ExtResource("5_o4b0d"), ExtResource("4_ncs2t"), ExtResource("6_emtfy"), ExtResource("7_1qkj3"), ExtResource("8_7g347"), ExtResource("9_lvopp"), ExtResource("10_i6ueo")])
+skill_icon_scene = ExtResource("10_emtfy")
+sold_out_texture = ExtResource("11_emtfy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
+self_modulate = Color(0.405299, 0.262067, 0.0330478, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_ahco4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+mouse_filter = 0
+
+[node name="Left" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/HBoxContainer/Left"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_2lgn1")
+stretch_mode = 3
+
+[node name="SoulCount" type="RichTextLabel" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("1_awmqf")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Souls: 1000"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer"]
+layout_mode = 2
+stretch_mode = 3
+
+[node name="Center" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel/HBoxContainer/Center"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -4.0
+offset_right = -3.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.588235)
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("1_awmqf")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[rainbow][wave]METAPMORPHOSIS[/wave][/rainbow]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/HBoxContainer/Center"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer"]
+layout_mode = 2
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(95.18, 23.915)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_awmqf")
+max_value = 15.0
+step = 1.0
+value = 15.0
+rounded = true
+show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/CenterContainer/HealthBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.02386, 1.01116)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_awmqf")
+theme_override_font_sizes/font_size = 26
+text = "???"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_o7w3c")
+stretch_mode = 3
+
+[node name="ConfirmButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Confirm (Unspent souls = heal health)"
+
+[node name="Right" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 1
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/HBoxContainer/Right"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="BuySkillContainer" type="GridContainer" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+mouse_filter = 2
+columns = 3
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer"]
+custom_minimum_size = Vector2(0, 23.275)
+layout_mode = 2
+
+[node name="UpgradesContainer" type="GridContainer" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer"]
+layout_mode = 2
+focus_mode = 1
+mouse_filter = 2
+columns = 3
+
+[node name="RerollSkillsButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_mode = 0
+text = "Reroll Skills - 3 souls"
+expand_icon = true
+
+[node name="RemoveSkillButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_mode = 0
+text = "Remove Skill - 3 souls"
+expand_icon = true
+
+[node name="SkillBought" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_o4b0d")
+bus = &"SFX"
+
+[node name="RerollSkillsBought" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_o4b0d")
+bus = &"SFX"
+
+[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer/RerollSkillsButton" to="." method="_on_reroll_skills_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer/RemoveSkillButton" to="." method="_on_remove_skill_button_pressed"]

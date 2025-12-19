@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqe6kxf4uw66l"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_epk3e"]
+[ext_resource type="Script" uid="uid://dw8xng5imw4s8" path="res://scripts/Actors/Strategies/Skill/drill_skill_strategy.gd" id="2_g35iv"]
+[ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/effects/dash_vfx.tscn" id="3_yyqck"]
+[ext_resource type="Texture2D" uid="uid://cs425qeot5emt" path="res://textures/creatures/Lich/HandPoint.png" id="4_g35iv"]
+[ext_resource type="PackedScene" uid="uid://boyoct3kot2q6" path="res://scenes/actors/Strategies/Status/vigor_status_strategy.tscn" id="4_yyqck"]
+
+[node name="DrillSkillStrategy" instance=ExtResource("1_epk3e")]
+script = ExtResource("2_g35iv")
+DashVFX = ExtResource("3_yyqck")
+vigor_status = ExtResource("4_yyqck")
+skill_name = "Drill"
+skill_desc = "Walls don't stand a chance! On use, pick a direction and start busting through walls like paper.
+
+Causing wanton destruction this way is SO satisfying, that it also grants the user Vigor for every wall broken, empowering their next attack."
+skill_ID = 11
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("4_g35iv")

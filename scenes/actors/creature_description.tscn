@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://cp76vu813yo6i"]
+
+[ext_resource type="Script" uid="uid://ox3myex03o1l" path="res://scripts/Actors/creature_description.gd" id="1_yqxde"]
+[ext_resource type="PackedScene" uid="uid://d34xrii4ll6v5" path="res://scenes/actors/status_description.tscn" id="2_l7chq"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="2_msx7r"]
+[ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="3_l7chq"]
+[ext_resource type="AudioStream" uid="uid://cg2qu12eah6qm" path="res://audio/SFX/Skills/Domino/DominoFlip.ogg" id="4_liy8y"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ep2fu"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("4_liy8y")
+
+[node name="CreatureDescription" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqxde")
+status_description_scene = ExtResource("2_l7chq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Window" type="Window" parent="CanvasLayer"]
+process_mode = 3
+auto_translate_mode = 1
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(700, 500)
+unresizable = true
+popup_window = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="VBoxContainer" parent="CanvasLayer/Window/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 9
+
+[node name="SkillName" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("2_msx7r")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Creature Name
+"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Window/ScrollContainer/Control"]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/Window/ScrollContainer/Control/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("3_l7chq")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="SkillDesc" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("2_msx7r")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Creature Description"
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Window/ScrollContainer/Control"]
+custom_minimum_size = Vector2(0, 34.485)
+layout_mode = 2
+
+[node name="ActiveStatuses" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("2_msx7r")
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "Active Statuses"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Statuses" type="VBoxContainer" parent="CanvasLayer/Window/ScrollContainer/Control"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="DominoFlip" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ep2fu")
+bus = &"SFX"
+
+[connection signal="close_requested" from="CanvasLayer/Window" to="." method="_on_window_close_requested"]
+[connection signal="focus_exited" from="CanvasLayer/Window" to="." method="_on_window_focus_exited"]

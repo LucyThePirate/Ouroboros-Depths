@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://g7fhohrlv81x"]
+
+[ext_resource type="Script" uid="uid://b1dpe7lobi7df" path="res://scripts/Actors/AI/fuzz_tester_ai.gd" id="1_netfx"]
+[ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="2_bobr6"]
+[ext_resource type="PackedScene" uid="uid://dbbfr11nscu22" path="res://scenes/actors/Strategies/Skill/possibilities_skill_strategy.tscn" id="3_netfx"]
+[ext_resource type="PackedScene" uid="uid://4ath7gf440gk" path="res://scenes/actors/Visuals/fuzzer_visual.tscn" id="4_netfx"]
+[ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/actors/Strategies/Planner/base_random_skill_planner.tscn" id="6_tfv2e"]
+[ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/ui/Arrow.png" id="7_18tjo"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="8_4mppe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6hqks"]
+radius = 451.0
+
+[node name="FuzzTester" type="Node2D" node_paths=PackedStringArray("visual") groups=["AI"]]
+script = ExtResource("1_netfx")
+visual = NodePath("FuzzerVisual")
+
+[node name="GridEntity" parent="." instance=ExtResource("2_bobr6")]
+species_name = "Fuzz Tester"
+species_desc = "A bizarre creature sporting garish colors and a tubular mouth.
+
+Even within their own species, Fuzz Testers differ wildly from each other. 
+
+Due to their tendency to pick fights with anything that moves, it is not a bad idea to study their skirmishes from a safe distance before engaging."
+soul_count = 2
+
+[node name="PossibilitiesSkillStrategy" parent="GridEntity/SkillStackComponent" index="9" instance=ExtResource("3_netfx")]
+
+[node name="HealthComponent" parent="GridEntity/UI" index="0"]
+max_health = 10
+
+[node name="Display" type="Node2D" parent="."]
+top_level = true
+position = Vector2(0, -34)
+
+[node name="FuzzerVisual" parent="." instance=ExtResource("4_netfx")]
+position = Vector2(3, 18)
+scale = Vector2(0.41309628, 0.41309628)
+
+[node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("6_tfv2e")]
+
+[node name="DetectionRadius" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+scale = Vector2(1.59033, 1.59033)
+shape = SubResource("CircleShape2D_6hqks")
+
+[node name="IntentArrow" type="Sprite2D" parent="."]
+self_modulate = Color(0.968627, 0, 0.364706, 0.823529)
+texture = ExtResource("7_18tjo")
+offset = Vector2(118, 1)
+
+[node name="IntentLabel" type="RichTextLabel" parent="."]
+offset_left = -36.0
+offset_top = -230.0
+offset_right = 4.0
+offset_bottom = -190.0
+theme_override_fonts/normal_font = ExtResource("8_4mppe")
+theme_override_font_sizes/normal_font_size = 33
+bbcode_enabled = true
+text = "..."
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
+[connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
+[connection signal="hurt" from="GridEntity" to="." method="_on_grid_entity_hurt"]
+[connection signal="moved" from="GridEntity" to="FuzzerVisual" method="_on_moved"]
+[connection signal="turn_ended" from="GridEntity/TurnComponent" to="." method="_on_turn_component_turn_ended"]
+[connection signal="turn_started" from="GridEntity/TurnComponent" to="." method="_on_turn_component_turn_started"]
+[connection signal="awaited_cursor_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_cursor_input"]
+[connection signal="awaited_directional_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_directional_input"]
+[connection signal="body_entered" from="DetectionRadius" to="." method="_on_detection_radius_body_entered"]
+
+[editable path="GridEntity"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcjnpsm2nll1"]
+
+[ext_resource type="Script" uid="uid://bur38hyf4r2ps" path="res://health_component.gd" id="1_swihn"]
+[ext_resource type="PackedScene" uid="uid://b2e4ygq1jbt56" path="res://scenes/actors/damage_text.tscn" id="2_5ecpm"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="3_38li0"]
+
+[node name="HealthComponent" type="CenterContainer"]
+custom_minimum_size = Vector2(92.265, 25.7)
+offset_right = 69.085
+offset_bottom = 25.7
+scale = Vector2(1.48706, 1.48706)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_swihn")
+damage_number_scene = ExtResource("2_5ecpm")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(106.55, 35.855)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_38li0")
+max_value = 15.0
+step = 1.0
+value = 15.0
+rounded = true
+show_percentage = false
+
+[node name="Label" type="Label" parent="ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.02386, 1.01116)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.533333)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_38li0")
+theme_override_font_sizes/font_size = 38
+text = "15"
+horizontal_alignment = 1
+vertical_alignment = 1

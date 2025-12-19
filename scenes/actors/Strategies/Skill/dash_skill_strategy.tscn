@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1tq0r2hua7v8"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_ododk"]
+[ext_resource type="Script" uid="uid://3u0aqmvw83u5" path="res://scripts/Actors/Strategies/Skill/dash_skill_strategy.gd" id="1_ss86u"]
+[ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/effects/dash_vfx.tscn" id="2_au81m"]
+[ext_resource type="Texture2D" uid="uid://ccdflf58itehp" path="res://textures/skills/MadDashSkill.png" id="3_52a6f"]
+
+[node name="DashSkillStrategy" instance=ExtResource("1_ododk")]
+offset_left = -1.0
+offset_right = 143.0
+script = ExtResource("1_ss86u")
+DashVFX = ExtResource("2_au81m")
+priority = 1
+skill_name = "Dash"
+skill_desc = "Make a break for it!
+
+On use, pick a direction to run up to 5 tiles, potentially bowling over any creatures who dare get in your way."
+skill_ID = 1
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("3_52a6f")

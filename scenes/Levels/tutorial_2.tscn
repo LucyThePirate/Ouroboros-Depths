@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=4 uid="uid://dmn1seuhf4qt8"]
 
 [ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/cell.tscn" id="1_5ip76"]
-[ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/Actors/Creatures/wasp_test.tscn" id="2_qp2jn"]
+[ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_test.tscn" id="2_qp2jn"]
 [ext_resource type="Theme" uid="uid://dsnesst3y61ol" path="res://resources/default_theme.tres" id="3_kf6in"]
-[ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/Skills/SkillSack.png" id="4_pybxo"]
+[ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/skills/SkillSack.png" id="4_pybxo"]
 
 [sub_resource type="Curve" id="Curve_fvcj8"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2598039, 1), 0.0, 0.0, 0, 0, Vector2(0.5539215, 0.77528095), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

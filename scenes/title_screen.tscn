@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://chejtonyw0gfm" path="res://scripts/title_screen.gd" id="1_tklts"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="2_mykxm"]
 [ext_resource type="SpriteFrames" uid="uid://clgsmejmokek7" path="res://textures/effects/potion_spin_fast.gif" id="5_tklts"]
-[ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/Shaders/stars.gdshader" id="7_e8tpv"]
-[ext_resource type="Texture2D" uid="uid://cj7hu7bmbt0qa" path="res://textures/Testing/Cottage.png" id="7_lrxh4"]
-[ext_resource type="Texture2D" uid="uid://cags1t2j8djij" path="res://textures/Skills/BePatientSkill.png" id="7_u26n3"]
-[ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/Testing/thisGuyPOV.png" id="8_4qe4i"]
-[ext_resource type="Texture2D" uid="uid://4aw2nf61m1op" path="res://textures/Testing/bowserjr.png" id="8_frs5l"]
-[ext_resource type="Texture2D" uid="uid://dg844w3alcmxs" path="res://textures/Testing/possum_render_smooth.png" id="8_neciy"]
+[ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="7_e8tpv"]
+[ext_resource type="Texture2D" uid="uid://cj7hu7bmbt0qa" path="res://textures/testing/Cottage.png" id="7_lrxh4"]
+[ext_resource type="Texture2D" uid="uid://cags1t2j8djij" path="res://textures/skills/BePatientSkill.png" id="7_u26n3"]
+[ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="8_4qe4i"]
+[ext_resource type="Texture2D" uid="uid://4aw2nf61m1op" path="res://textures/testing/bowserjr.png" id="8_frs5l"]
+[ext_resource type="Texture2D" uid="uid://dg844w3alcmxs" path="res://textures/testing/possum_render_smooth.png" id="8_neciy"]
 [ext_resource type="Script" uid="uid://kol6k5y6rb8a" path="res://addons/softbody2d/softbody2d.gd" id="9_mynnq"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="9_p07av"]
 [ext_resource type="PackedScene" uid="uid://e43003nmrylg" path="res://samples/softbody2d/pickable_rigidbody.tscn" id="10_4qe4i"]
@@ -18,9 +18,9 @@
 [ext_resource type="AudioStream" uid="uid://b1nmnkp41rdqr" path="res://audio/SFX/Misc/Punch2.ogg" id="12_mynnq"]
 [ext_resource type="AudioStream" uid="uid://c4iuvy3r2whs6" path="res://audio/SFX/Misc/Punch3.ogg" id="13_e8tpv"]
 [ext_resource type="AudioStream" uid="uid://dpm1ipsmp3ge" path="res://audio/Music/AstrMusic/Pathforgetting[ambient,wistful,fav].mp3" id="16_4qe4i"]
-[ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/Skills/SkillSack.png" id="16_khjys"]
-[ext_resource type="Texture2D" uid="uid://ck7daww27ttty" path="res://textures/Skills/ConsiderThePossibilitiesSkill.png" id="17_174rq"]
-[ext_resource type="Texture2D" uid="uid://bw5vnwnafwbci" path="res://textures/Skills/OrchestrateSkill.png" id="18_174rq"]
+[ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/skills/SkillSack.png" id="16_khjys"]
+[ext_resource type="Texture2D" uid="uid://ck7daww27ttty" path="res://textures/skills/ConsiderThePossibilitiesSkill.png" id="17_174rq"]
+[ext_resource type="Texture2D" uid="uid://bw5vnwnafwbci" path="res://textures/skills/OrchestrateSkill.png" id="18_174rq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mce2t"]
 blend_mode = 3
@@ -894,7 +894,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-6" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(69.40637, 127.073)
 rotation = -1.36679
-scale = Vector2(0.9999996, 0.9999996)
+scale = Vector2(0.9999994, 0.9999994)
 rest = Transform2D(0.202592, -0.979263, 0.979263, 0.202592, 69.4064, 127.073)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -921,7 +921,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-8" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(68.7027, 159.052)
 rotation = 1.54074
-scale = Vector2(0.9999996, 0.9999996)
+scale = Vector2(0.9999994, 0.9999994)
 rest = Transform2D(0.0300513, 0.999548, -0.999548, 0.0300513, 68.7027, 159.052)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -948,7 +948,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-10" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(69.7157, 192.74402)
 rotation = -0.599834
-scale = Vector2(0.9999998, 0.9999998)
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.825429, -0.564506, 0.564506, 0.825429, 69.7157, 192.744)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1107,7 +1107,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-22" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(123.630005, 155.08301)
 rotation = 1.55378
-scale = Vector2(0.9999996, 0.9999996)
+scale = Vector2(0.9999994, 0.9999994)
 rest = Transform2D(0.0170144, 0.999855, -0.999855, 0.0170144, 123.63, 155.083)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1252,7 +1252,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-33" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D"]
 position = Vector2(178.53302, 231.568)
 rotation = -1.48128
-scale = Vector2(0.9999996, 0.9999996)
+scale = Vector2(0.9999994, 0.9999994)
 rest = Transform2D(0.0893961, -0.995996, 0.995996, 0.0893961, 178.533, 231.568)
 auto_calculate_length_and_angle = false
 length = 36.0

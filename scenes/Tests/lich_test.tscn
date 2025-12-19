@@ -1,13 +1,13 @@
 [gd_scene load_steps=23 format=3 uid="uid://bwkb3crnbdvht"]
 
 [ext_resource type="Script" uid="uid://b2ojdp2aq678e" path="res://scripts/Actors/Visuals/visualBase.gd" id="1_iokgd"]
-[ext_resource type="Texture2D" uid="uid://djbnu6ytor4b8" path="res://textures/Creatures/Lich/Robe1.tres" id="2_mlvm5"]
-[ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/Creatures/Lich/Skull.png" id="3_5vpul"]
-[ext_resource type="Texture2D" uid="uid://clqvltq2ok2uf" path="res://textures/Creatures/Lich/EyeMask.png" id="3_o442r"]
-[ext_resource type="Texture2D" uid="uid://bu0loei7qohle" path="res://textures/Creatures/Lich/Eye1.png" id="4_jnpdv"]
-[ext_resource type="Texture2D" uid="uid://jvgj72ry5bcy" path="res://textures/Creatures/Lich/Eye2.png" id="5_mf5vi"]
-[ext_resource type="Texture2D" uid="uid://do8mfbe1gk4yt" path="res://textures/Creatures/Lich.png" id="6_hf8mm"]
-[ext_resource type="SpriteFrames" uid="uid://l8ucgemh6v2f" path="res://textures/Creatures/Lich/HandAnimation.tres" id="8_ixd6g"]
+[ext_resource type="Texture2D" uid="uid://djbnu6ytor4b8" path="res://textures/creatures/Lich/Robe1.tres" id="2_mlvm5"]
+[ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/creatures/Lich/Skull.png" id="3_5vpul"]
+[ext_resource type="Texture2D" uid="uid://clqvltq2ok2uf" path="res://textures/creatures/Lich/EyeMask.png" id="3_o442r"]
+[ext_resource type="Texture2D" uid="uid://bu0loei7qohle" path="res://textures/creatures/Lich/Eye1.png" id="4_jnpdv"]
+[ext_resource type="Texture2D" uid="uid://jvgj72ry5bcy" path="res://textures/creatures/Lich/Eye2.png" id="5_mf5vi"]
+[ext_resource type="Texture2D" uid="uid://do8mfbe1gk4yt" path="res://textures/creatures/Lich.png" id="6_hf8mm"]
+[ext_resource type="SpriteFrames" uid="uid://l8ucgemh6v2f" path="res://textures/creatures/Lich/HandAnimation.tres" id="8_ixd6g"]
 
 [sub_resource type="Animation" id="Animation_uxnpr"]
 resource_name = "Idle"

@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://b04tvmeribd1k"]
+
+[ext_resource type="Texture2D" uid="uid://4aw2nf61m1op" path="res://textures/testing/bowserjr.png" id="1_djnkf"]
+[ext_resource type="Script" uid="uid://dvcwpl3qv0wsg" path="res://scripts/Actors/AI/bogo_sort.gd" id="1_qot6b"]
+[ext_resource type="AudioStream" uid="uid://b2kctwe7vp5ly" path="res://audio/Music/AstrMusic/computingnoises[ambient,singlenote].mp3" id="2_pmutu"]
+[ext_resource type="Shader" uid="uid://cukc10pani5oh" path="res://textures/shaders/bogo_sort.gdshader" id="3_vg0l5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26qul"]
+shader = ExtResource("3_vg0l5")
+shader_parameter/chaos = 5.2630002499925
+shader_parameter/radius = 1.0
+shader_parameter/attenuation = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vg0l5"]
+radius = 8.0
+
+[node name="BogoSort" type="Node2D"]
+script = ExtResource("1_qot6b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 15
+texture = ExtResource("1_djnkf")
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+material = SubResource("ShaderMaterial_26qul")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -181.00002
+offset_top = -196.0
+offset_right = -181.00002
+offset_bottom = -196.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.4199603, 1.4199603)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(6.1437035, 6.1437035)
+shape = SubResource("CircleShape2D_vg0l5")
+
+[node name="Ambiance" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_pmutu")
+volume_db = 16.971
+autoplay = true
+attenuation = 0.45062512
+panning_strength = 1.43
+bus = &"SFX"
+
+[node name="MessWithBlocksTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.25
+autostart = true
+
+[node name="LurchTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="MessWithBlocksTimer" to="." method="_on_mess_with_blocks_timer_timeout"]
+[connection signal="timeout" from="LurchTimer" to="." method="_on_lurch_timer_timeout"]

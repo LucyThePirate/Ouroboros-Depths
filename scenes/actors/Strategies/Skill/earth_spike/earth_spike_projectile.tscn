@@ -1,0 +1,289 @@
+[gd_scene load_steps=29 format=3 uid="uid://ojhyri4hjpam"]
+
+[ext_resource type="Script" uid="uid://d25q6ewbtmpiy" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_projectile.gd" id="1_o5mhp"]
+[ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="3_n2bky"]
+[ext_resource type="Texture2D" uid="uid://boyi3dh24ewlf" path="res://textures/ui/black-star.png" id="3_upeyw"]
+[ext_resource type="AudioStream" uid="uid://bt30ad6s0lmn0" path="res://audio/SFX/Skills/507161__ruidososoundfx__fast-woosh-ricrob-helm-12.ogg" id="4_5jd82"]
+[ext_resource type="AudioStream" uid="uid://cjqcrnsc2kfj1" path="res://audio/SFX/Skills/507161__ruidososoundfx__fast-woosh-ricrob-helm-12-2.ogg" id="5_nfljx"]
+[ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="6_2df31"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqqwm"]
+atlas = ExtResource("3_upeyw")
+region = Rect2(0, 0, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcv26"]
+atlas = ExtResource("3_upeyw")
+region = Rect2(0, 166, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nphn2"]
+atlas = ExtResource("3_upeyw")
+region = Rect2(0, 332, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh175"]
+atlas = ExtResource("3_upeyw")
+region = Rect2(149, 0, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b62dl"]
+atlas = ExtResource("3_upeyw")
+region = Rect2(149, 166, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7u6y"]
+atlas = ExtResource("3_upeyw")
+region = Rect2(149, 332, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3heb"]
+atlas = ExtResource("3_upeyw")
+region = Rect2(298, 0, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki7vg"]
+atlas = ExtResource("3_upeyw")
+region = Rect2(298, 166, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yekc8"]
+atlas = ExtResource("3_upeyw")
+region = Rect2(298, 332, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dhts"]
+atlas = ExtResource("3_upeyw")
+region = Rect2(447, 0, 149, 166)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8wt1t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqqwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcv26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nphn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh175")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b62dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7u6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3heb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki7vg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yekc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dhts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yekc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki7vg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3heb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7u6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b62dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh175")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_n2bky")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4iqm"]
+atlas = ExtResource("3_upeyw")
+region = Rect2(8, 166.718, 134.868, 164.794)
+
+[sub_resource type="Curve" id="Curve_8wt1t"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.106529, 0.981742), 0.0, 0.0, 0, 0, Vector2(0.835052, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_qy7dk"]
+curve = SubResource("Curve_8wt1t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ynmf"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 7.875
+initial_velocity_min = 56.34
+initial_velocity_max = 216.78
+angular_velocity_min = -273.81
+angular_velocity_max = 231.61
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.15
+scale_curve = SubResource("CurveTexture_qy7dk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8wt1t"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 56.34
+initial_velocity_max = 216.78
+angular_velocity_min = -273.81
+angular_velocity_max = 231.61
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.15
+scale_curve = SubResource("CurveTexture_qy7dk")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_okq67"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("4_5jd82")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jvm20"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("5_nfljx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_okq67"]
+shader = ExtResource("6_2df31")
+shader_parameter/bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_3ynmf"]
+resource_name = "Impact"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StarSprite/Line2D:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StarSprite/Line2D:width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [10.0, 59.755, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_6x7fh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StarSprite/Line2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StarSprite/Line2D:width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [59.755]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_okq67"]
+_data = {
+&"Impact": SubResource("Animation_3ynmf"),
+&"RESET": SubResource("Animation_6x7fh")
+}
+
+[node name="EarthSpikeProjectile" type="Node2D"]
+top_level = true
+z_as_relative = false
+script = ExtResource("1_o5mhp")
+
+[node name="StarSprite" type="AnimatedSprite2D" parent="."]
+top_level = true
+position = Vector2(-1.8749987, -5.625)
+scale = Vector2(1.9868423, 2.1447368)
+sprite_frames = SubResource("SpriteFrames_8wt1t")
+animation = &"new_animation"
+autoplay = "default"
+speed_scale = 12.705
+
+[node name="Trail" type="GPUParticles2D" parent="StarSprite"]
+show_behind_parent = true
+rotation = -0.00216759
+amount = 32
+texture = SubResource("AtlasTexture_q4iqm")
+lifetime = 0.92
+process_material = SubResource("ParticleProcessMaterial_3ynmf")
+
+[node name="Impact" type="GPUParticles2D" parent="StarSprite"]
+top_level = true
+z_index = -1
+emitting = false
+amount = 15
+texture = SubResource("AtlasTexture_q4iqm")
+lifetime = 0.86
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8wt1t")
+
+[node name="Launch" type="AudioStreamPlayer2D" parent="StarSprite"]
+stream = SubResource("AudioStreamRandomizer_okq67")
+volume_db = 8.0
+autoplay = true
+bus = &"SFX"
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="StarSprite"]
+stream = SubResource("AudioStreamRandomizer_jvm20")
+volume_db = 6.858
+bus = &"SFX"
+
+[node name="Line2D" type="Line2D" parent="StarSprite"]
+visible = false
+material = SubResource("ShaderMaterial_okq67")
+position = Vector2(0, 23)
+rotation = 0.00402126
+points = PackedVector2Array(-97.6774, 80.3935, 97.8787, -30.3938, -106.1, -24.5735, 104.313, 77.5812, -0.510578, -126.999)
+closed = true
+width = 59.755
+default_color = Color(0, 0, 0, 1)
+joint_mode = 2
+
+[node name="Expiration" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_okq67")
+}
+
+[connection signal="timeout" from="Expiration" to="." method="_on_expiration_timeout"]

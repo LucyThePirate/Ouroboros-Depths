@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://boyoct3kot2q6"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_ehq37"]
+[ext_resource type="Script" uid="uid://bnok8v7mqt484" path="res://scripts/Actors/Strategies/Status/vigor_status_strategy.gd" id="2_pj3ux"]
+[ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/creatures/Soul.png" id="2_tlwxl"]
+
+[node name="VigorStatusStrategy" instance=ExtResource("1_ehq37")]
+script = ExtResource("2_pj3ux")
+status_name = "Vigor"
+status_desc = "This creature is charged up! The next time they deal damage, it will be boosted by Vigor's power.
+
+Gradually decreases over time."
+status_ID = 5
+
+[node name="TextureRect" parent="." index="0"]
+texture = ExtResource("2_tlwxl")

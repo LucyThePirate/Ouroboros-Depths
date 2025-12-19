@@ -1,0 +1,43 @@
+[gd_scene load_steps=11 format=3 uid="uid://bhxy4rfg3pad5"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_3xt2a"]
+[ext_resource type="Script" uid="uid://d18syuvo0mq51" path="res://scripts/Actors/Strategies/Status/shield_status_strategy.gd" id="1_lna0x"]
+[ext_resource type="PackedScene" uid="uid://b2e4ygq1jbt56" path="res://scenes/actors/damage_text.tscn" id="3_jf3l2"]
+[ext_resource type="Texture2D" uid="uid://dnufantqlt3qq" path="res://textures/skills/ShieldSkill.png" id="3_ptsmc"]
+[ext_resource type="AudioStream" uid="uid://du728n0xy36dw" path="res://audio/SFX/Skills/shield_break.ogg" id="4_f1cf0"]
+[ext_resource type="AudioStream" uid="uid://4ybjwejthj86" path="res://audio/SFX/Skills/metal clinking1.ogg" id="5_ptsmc"]
+[ext_resource type="AudioStream" uid="uid://b2kgymp48uqyy" path="res://audio/SFX/Skills/metal clinking2.ogg" id="6_jf3l2"]
+[ext_resource type="AudioStream" uid="uid://b0kjadj3irisr" path="res://audio/SFX/Skills/metal clinking3.ogg" id="7_bv2po"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k8qa8"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("4_f1cf0")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tw7ks"]
+random_pitch = 1.2
+streams_count = 3
+stream_0/stream = ExtResource("5_ptsmc")
+stream_1/stream = ExtResource("6_jf3l2")
+stream_2/stream = ExtResource("7_bv2po")
+
+[node name="ShieldStatusStrategy" instance=ExtResource("1_3xt2a")]
+script = ExtResource("1_lna0x")
+text_scene = ExtResource("3_jf3l2")
+status_name = "Shield"
+status_desc = "This creature's guard is up, shields will intercept damage instead of their health. Additionally, shields are gradually depleted as the creature moves, as well as halved when the creature reloads."
+status_ID = 1
+
+[node name="TextureRect" parent="." index="0"]
+texture = ExtResource("3_ptsmc")
+
+[node name="ShieldBreak" type="AudioStreamPlayer2D" parent="." index="2"]
+stream = SubResource("AudioStreamRandomizer_k8qa8")
+volume_db = 9.215
+bus = &"SFX"
+
+[node name="ShieldAdded" type="AudioStreamPlayer2D" parent="." index="3"]
+stream = SubResource("AudioStreamRandomizer_tw7ks")
+volume_db = 9.0
+pitch_scale = 0.8
+bus = &"SFX"

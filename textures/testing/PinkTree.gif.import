@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://dg65m80tb8r41"
+path="res://.godot/imported/PinkTree.gif-07d05213b34463b4ef98d4daacf4f66d.tres"
+
+[deps]
+
+source_file="res://textures/testing/PinkTree.gif"
+dest_files=["res://.godot/imported/PinkTree.gif-07d05213b34463b4ef98d4daacf4f66d.tres"]
+
+[params]
+
+frames_per_second=30

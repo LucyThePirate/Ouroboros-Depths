@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://djpdq4bxeklv3"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_0lf28"]
+[ext_resource type="Script" uid="uid://da4lxow0d2itc" path="res://scripts/Actors/Strategies/Skill/warp_skill_strategy.gd" id="2_0lf28"]
+[ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/effects/dash_vfx.tscn" id="3_plapq"]
+[ext_resource type="Texture2D" uid="uid://blcw853u18ahk" path="res://textures/skills/WarpSkill.png" id="4_d1e3j"]
+
+[node name="WarpSkillStrategy" instance=ExtResource("1_0lf28")]
+script = ExtResource("2_0lf28")
+DashVFX = ExtResource("3_plapq")
+is_depletable = true
+max_per_stack = 1
+priority = -1
+skill_name = "Warp"
+skill_desc = "A sly bit of wormhole magic to let you slip from here to there.
+
+As a side effect, if there is already a creature at your target destination, they'll be swapped with you.
+
+This spell is favored by those who would rather shrug off handling bad situations to others."
+skill_ID = 9
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("4_d1e3j")

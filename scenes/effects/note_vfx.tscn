@@ -1,0 +1,194 @@
+[gd_scene load_steps=15 format=3 uid="uid://cmxeogtui2phc"]
+
+[ext_resource type="Texture2D" uid="uid://bwvtwmdsyty2g" path="res://textures/testing/dottedLine.png" id="1_temwn"]
+[ext_resource type="Script" uid="uid://bl5geefd2ut0s" path="res://scripts/Effects/note_vfx.gd" id="2_al6sn"]
+[ext_resource type="Script" uid="uid://bcwt5giabpceq" path="res://addons/SimpleSampler/sampler_instrument_2D.gd" id="3_mfgr6"]
+[ext_resource type="Script" uid="uid://dtpmtwvvk0ac7" path="res://addons/SimpleSampler/sample_resource.gd" id="4_spoek"]
+[ext_resource type="AudioStream" uid="uid://d2ul4xbuec4jg" path="res://samples/synth/E4.ogg" id="5_ytnom"]
+[ext_resource type="AudioStream" uid="uid://els62rsymc5c" path="res://samples/synth/E5.ogg" id="6_o6xls"]
+[ext_resource type="AudioStream" uid="uid://bf67urmbgussm" path="res://samples/synth/B4.ogg" id="7_dlnl1"]
+
+[sub_resource type="Animation" id="Animation_1lnjl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Note:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Note:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Note:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bqrfq"]
+resource_name = "Telegraph"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.682353, 1, 0, 1), Color(1, 1, 1, 0.627451)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Note:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -96), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Note:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Note:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_al6sn"]
+resource_name = "Vanish"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.627451), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bqrfq"]
+_data = {
+&"RESET": SubResource("Animation_1lnjl"),
+&"Telegraph": SubResource("Animation_bqrfq"),
+&"Vanish": SubResource("Animation_al6sn")
+}
+
+[sub_resource type="Resource" id="Resource_ot66j"]
+script = ExtResource("4_spoek")
+stream = ExtResource("5_ytnom")
+tone = "E"
+octave = 3
+metadata/_custom_type_script = "uid://dtpmtwvvk0ac7"
+
+[sub_resource type="Resource" id="Resource_ssolw"]
+script = ExtResource("4_spoek")
+stream = ExtResource("6_o6xls")
+tone = "E"
+metadata/_custom_type_script = "uid://dtpmtwvvk0ac7"
+
+[sub_resource type="Resource" id="Resource_a0o2l"]
+script = ExtResource("4_spoek")
+stream = ExtResource("7_dlnl1")
+tone = "B"
+octave = 3
+metadata/_custom_type_script = "uid://dtpmtwvvk0ac7"
+
+[node name="NoteVFX" type="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0)
+texture = ExtResource("1_temwn")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 100)
+script = ExtResource("2_al6sn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.886275, 0, 0, 0.439216)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bqrfq")
+}
+autoplay = "Vanish"
+
+[node name="Note" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(3.04089, 3.04089)
+texture = ExtResource("1_temwn")
+
+[node name="SamplerInstrument" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+script = ExtResource("3_mfgr6")
+samples = Array[ExtResource("4_spoek")]([SubResource("Resource_ot66j"), SubResource("Resource_ssolw"), SubResource("Resource_a0o2l")])
+metadata/_custom_type_script = "uid://bcwt5giabpceq"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

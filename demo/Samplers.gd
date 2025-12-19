@@ -1,4 +1,4 @@
-extends Node2D
+xtends Node2D
 
 # Hi! This script is a good demo of what you can do with Simple Sampler, and how it works
 

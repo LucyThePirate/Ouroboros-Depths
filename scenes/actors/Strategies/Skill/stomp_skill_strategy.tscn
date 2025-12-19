@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsonm026t0emp"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_87pt6"]
+[ext_resource type="Script" uid="uid://0xve3bfmqrk5" path="res://scripts/Actors/Strategies/Skill/stomp_skill_strategy.gd" id="1_swfph"]
+[ext_resource type="PackedScene" uid="uid://csmoib3nld3bv" path="res://scenes/effects/stomp_vfx.tscn" id="2_vm8f4"]
+[ext_resource type="PackedScene" uid="uid://cmxeogtui2phc" path="res://scenes/effects/note_vfx.tscn" id="4_60mig"]
+[ext_resource type="Texture2D" uid="uid://c7oygssfx67cr" path="res://textures/skills/StompSkill.png" id="5_vm8f4"]
+
+[node name="StompSkillStrategy" instance=ExtResource("1_87pt6")]
+offset_left = -1.0
+offset_right = 143.0
+script = ExtResource("1_swfph")
+StompVFX = ExtResource("2_vm8f4")
+note_VFX = ExtResource("4_60mig")
+priority = -1
+skill_name = "Stomp"
+skill_desc = "You crack the ground with a mighty impact, damaging all creatures around you!
+
+A stomp from a stand-still is weak on its own, but perhaps if you added a bit of momentum behind it..."
+skill_ID = 3
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("5_vm8f4")
