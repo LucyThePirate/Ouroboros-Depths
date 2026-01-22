@@ -6,8 +6,6 @@ var max_distance = 5
 @export var notes: Array[String] = ["C", "D", "E", "F", "G", "A", "B"]
 @export var delay := 0.25
 
-@onready var sampler = $SamplerInstrument
-
 @onready var sequence: Array[Array] = []
 @onready var chord: Array[Vector2i] = []
 var is_playing = false
@@ -28,7 +26,7 @@ func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
 	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
 	var relative_coord = cursor - grid_coords
 	if show_UI:
-		sampler.play_note(notes[relative_coord.x % notes.size()], 4 - (relative_coord.y % 4))
+		%Sampler.play_note(notes[relative_coord.x % notes.size()], 4 - (relative_coord.y % 4))
 
 
 func on_stack_execution_started(grid_entity: GridEntity):
@@ -68,11 +66,13 @@ func coord_to_note(relative_coord, grid_entity: GridEntity):
 	#draw_rect(note_rect, Color.RED, true)
 	var new_note_VFX = note_VFX.instantiate()
 	get_tree().current_scene.add_child(new_note_VFX)
+	new_note_VFX
 	new_note_VFX.set_note(
 		notes[relative_coord.x % notes.size()],
 		4 - (relative_coord.y % 4),
 		check_coords,
-		grid_entity
+		grid_entity,
+		%Sampler.samples
 	)
 	new_note_VFX.global_position = Global.floors.map_to_local(check_coords)
 

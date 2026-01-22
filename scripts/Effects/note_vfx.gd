@@ -7,7 +7,13 @@ var check_coords: Vector2i
 var grid_parent: GridEntity
 
 
-func set_note(new_note: String, new_octave: int, new_coords: Vector2i, new_grid_entity: GridEntity):
+func set_note(
+	new_note: String,
+	new_octave: int,
+	new_coords: Vector2i,
+	new_grid_entity: GridEntity,
+	new_samples: Array
+):
 	is_note = true
 	$AnimationPlayer.play("Telegraph")
 	note = new_note
@@ -15,6 +21,7 @@ func set_note(new_note: String, new_octave: int, new_coords: Vector2i, new_grid_
 	check_coords = new_coords
 	grid_parent = new_grid_entity
 	$Note.show()
+	%Sampler.samples = new_samples
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -23,7 +30,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Telegraph":
 		$Note.hide()
 		$AnimationPlayer.play("Vanish")
-		$SamplerInstrument.play_note(note, octave)
+		%Sampler.play_note(note, octave)
 		if (
 			Global.entity_positions.has(check_coords)
 			and is_instance_valid(Global.entity_positions[check_coords])

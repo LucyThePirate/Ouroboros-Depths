@@ -242,7 +242,10 @@ func _initialize_entity(new_entity: GridEntity):
 	new_entity.initialize()
 
 
-func _update_fog(_old_coords: Vector2i, new_coords: Vector2i):
+func _update_fog(old_coords: Vector2i, new_coords: Vector2i):
+	#print("Old: %s, new: %s" % [old_coords, new_coords])
+	#if old_coords == new_coords:
+	#return
 	var light_radius = 7
 	var tile_light = {}
 	var terrain_rect = Global.floors.get_used_rect()
@@ -380,6 +383,11 @@ func _spawn_tile(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
 	#Global.floors.set_cell(tile_coords, 2, Vector2i(0, 1))
 	if not existing_tile:
 		floors.set_cell(tile_coords, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
+	elif existing_tile.get_custom_data("is_liquid"):
+		floors.set_cell(tile_coords, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
+		var splashVFX = boulder_splash.instantiate()
+		walls.add_child(splashVFX)
+		splashVFX.global_position = Global.floors.map_to_local(tile_coords)
 	else:
 		Global.walls.set_cell(tile_coords, tile_data[0], tile_data[1])
 

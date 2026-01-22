@@ -1,14 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2gdh6pqutscc"]
+[gd_scene load_steps=17 format=3 uid="uid://b2gdh6pqutscc"]
 
 [ext_resource type="Script" uid="uid://dvgonp868uqte" path="res://scripts/Actors/AI/stationary_ai.gd" id="1_l7r4i"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="1_sts7m"]
 [ext_resource type="PackedScene" uid="uid://c10nhwhuw3ge4" path="res://scenes/actors/Strategies/Skill/orchestrate_skill_strategy.tscn" id="2_l7r4i"]
 [ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/actors/Strategies/Skill/defend_skill_strategy.tscn" id="3_lijwr"]
 [ext_resource type="PackedScene" uid="uid://bhxy4rfg3pad5" path="res://scenes/actors/Strategies/Status/shield_status_strategy.tscn" id="4_pp5e1"]
+[ext_resource type="Script" uid="uid://dtpmtwvvk0ac7" path="res://addons/SimpleSampler/sample_resource.gd" id="4_swlj1"]
 [ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/actors/Strategies/Planner/base_random_skill_planner.tscn" id="5_gyt15"]
+[ext_resource type="Resource" uid="uid://jqnp08tb576n" path="res://samples/choir/choir_a4.tres" id="5_yuq31"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/ui/Arrow.png" id="6_jde01"]
+[ext_resource type="Resource" uid="uid://duhglxn2eqj8b" path="res://samples/choir/choir_c3.tres" id="6_obh5d"]
+[ext_resource type="Resource" uid="uid://crm2l6mdgfhfm" path="res://samples/choir/choir_d5.tres" id="7_h8xem"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="7_xtbm5"]
+[ext_resource type="Resource" uid="uid://cdsxyidj582fm" path="res://samples/choir/choir_e4.tres" id="8_gupfj"]
 [ext_resource type="Texture2D" uid="uid://cwsbr3uhtivnn" path="res://textures/creatures/Chorustone.png" id="8_mo24w"]
+[ext_resource type="Resource" uid="uid://5q6t12vf6bcj" path="res://samples/choir/choir_g4.tres" id="9_chlo0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k2ipq"]
 radius = 451.0
@@ -24,6 +30,13 @@ soul_count = 1
 
 [node name="OrchestrateSkillStrategy" parent="GridEntity/SkillStackComponent" index="7" instance=ExtResource("2_l7r4i")]
 mouse_filter = 0
+
+[node name="Sampler" parent="GridEntity/SkillStackComponent/OrchestrateSkillStrategy" index="4"]
+volume_db = 2.244
+samples = Array[ExtResource("4_swlj1")]([ExtResource("5_yuq31"), ExtResource("6_obh5d"), ExtResource("7_h8xem"), ExtResource("8_gupfj"), ExtResource("9_chlo0")])
+env_attack = -0.27
+env_sustain = -0.385
+env_release = -0.365
 
 [node name="DefendSkillStrategy" parent="GridEntity/SkillStackComponent" index="8" instance=ExtResource("3_lijwr")]
 mouse_filter = 0
@@ -84,3 +97,4 @@ offset = Vector2(0, -100)
 [connection signal="body_entered" from="DetectionRadius" to="." method="_on_detection_radius_body_entered"]
 
 [editable path="GridEntity"]
+[editable path="GridEntity/SkillStackComponent/OrchestrateSkillStrategy"]

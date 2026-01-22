@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NoteSample" load_steps=3 format=3 uid="uid://5q6t12vf6bcj"]
+
+[ext_resource type="Script" uid="uid://dtpmtwvvk0ac7" path="res://addons/SimpleSampler/sample_resource.gd" id="1_c2o8m"]
+[ext_resource type="AudioStream" uid="uid://8b1ydvgpedvy" path="res://samples/choir/church-choir-note-g4_96bpm_G_major.wav" id="2_lhdcm"]
+
+[resource]
+script = ExtResource("1_c2o8m")
+stream = ExtResource("2_lhdcm")
+tone = "G"
+metadata/_custom_type_script = "uid://dtpmtwvvk0ac7"

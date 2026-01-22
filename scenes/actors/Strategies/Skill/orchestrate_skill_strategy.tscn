@@ -33,8 +33,6 @@ metadata/_custom_type_script = "uid://dtpmtwvvk0ac7"
 [node name="OrchestrateSkillStrategy" instance=ExtResource("1_cceox")]
 script = ExtResource("2_x5ygo")
 note_VFX = ExtResource("3_go5wn")
-notes = Array[String](["C", "D", "E", "F", "G", "A", "B"])
-delay = 0.25
 count = 8
 skill_name = "Orchestrate"
 skill_desc = "Doh Reh Miiii!!! The power of music is at your fingertips. Use it to smite your enemies while creating a soothing melody at the same time!
@@ -47,7 +45,8 @@ skill_ID = 5
 [node name="Icon" parent="." index="0"]
 texture = ExtResource("2_x1ymy")
 
-[node name="SamplerInstrument" type="AudioStreamPlayer2D" parent="." index="4"]
+[node name="Sampler" type="AudioStreamPlayer2D" parent="." index="4"]
+unique_name_in_owner = true
 bus = &"SFX"
 script = ExtResource("10_r86bf")
 samples = Array[ExtResource("11_ot66j")]([SubResource("Resource_ot66j"), SubResource("Resource_ssolw"), SubResource("Resource_a0o2l")])
