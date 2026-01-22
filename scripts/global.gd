@@ -24,6 +24,8 @@ var darkness: TileMapLayer
 
 const CELL_SIZE = 100
 
+var metamorphosis_reroll_cost = 3
+
 
 func is_turn_based() -> bool:
 	if (

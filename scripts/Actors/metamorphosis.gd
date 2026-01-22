@@ -49,7 +49,8 @@ func _ready() -> void:
 	grid_parent.soul_count = souls
 	#soul_count.text = "Souls: %s\n(+%s bonus souls!)" % [souls, bonus_souls]
 	soul_count.text = "Souls: %s" % souls
-	reroll_cost = 3
+	reroll_cost = Global.metamorphosis_reroll_cost
+	reroll_button.text = "Reroll Skills - %s souls" % reroll_cost
 	removal_cost = 3
 	health_bar.max_value = grid_parent.health_component.max_health
 	health_bar.value = grid_parent.health_component.health
@@ -84,6 +85,7 @@ func _stock_buyable_skills():
 
 
 func _on_confirm_button_pressed() -> void:
+	Global.metamorphosis_reroll_cost = reroll_cost
 	Global.metamorphosis_completed.emit()
 	grid_parent.heal(grid_parent.soul_count)
 	grid_parent.soul_count = 0

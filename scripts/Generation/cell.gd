@@ -198,6 +198,7 @@ func _redraw_map():
 		return
 	Global.next_floor_reached.emit()
 	current_floor += 1
+	Global.metamorphosis_reroll_cost = 3
 	$CanvasLayer/ColorRect/FloorLabel.text = "Floor: %s" % current_floor
 	$AnimationPlayer.play("floor_text")
 	for entity in get_tree().get_nodes_in_group("GridEntity") as Array[GridEntity]:

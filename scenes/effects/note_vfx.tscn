@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmxeogtui2phc"]
+[gd_scene load_steps=16 format=3 uid="uid://cmxeogtui2phc"]
 
 [ext_resource type="Texture2D" uid="uid://bwvtwmdsyty2g" path="res://textures/testing/dottedLine.png" id="1_temwn"]
 [ext_resource type="Script" uid="uid://bl5geefd2ut0s" path="res://scripts/Effects/note_vfx.gd" id="2_al6sn"]
 [ext_resource type="Script" uid="uid://bcwt5giabpceq" path="res://addons/SimpleSampler/sampler_instrument_2D.gd" id="3_mfgr6"]
+[ext_resource type="PackedScene" uid="uid://bhxy4rfg3pad5" path="res://scenes/actors/Strategies/Status/shield_status_strategy.tscn" id="3_wcdkb"]
 [ext_resource type="Script" uid="uid://dtpmtwvvk0ac7" path="res://addons/SimpleSampler/sample_resource.gd" id="4_spoek"]
 [ext_resource type="AudioStream" uid="uid://d2ul4xbuec4jg" path="res://samples/synth/E4.ogg" id="5_ytnom"]
 [ext_resource type="AudioStream" uid="uid://els62rsymc5c" path="res://samples/synth/E5.ogg" id="6_o6xls"]
@@ -160,6 +161,7 @@ texture = ExtResource("1_temwn")
 region_enabled = true
 region_rect = Rect2(0, 0, 100, 100)
 script = ExtResource("2_al6sn")
+shield_status = ExtResource("3_wcdkb")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 show_behind_parent = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cjo5qx0fo3bej"]
+[gd_scene load_steps=21 format=3 uid="uid://cjo5qx0fo3bej"]
 
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/creatures/Soul.png" id="1_2lgn1"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="1_awmqf"]
@@ -14,7 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/actors/Strategies/Skill/leap_skill_strategy.tscn" id="9_lvopp"]
 [ext_resource type="PackedScene" uid="uid://c1t1yix0mdkeh" path="res://scenes/actors/Strategies/Skill/skill_icon.tscn" id="10_emtfy"]
 [ext_resource type="PackedScene" uid="uid://djpdq4bxeklv3" path="res://scenes/actors/Strategies/Skill/warp_skill_strategy.tscn" id="10_i6ueo"]
+[ext_resource type="PackedScene" uid="uid://cmyas4xlndmy7" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_skill_strategy.tscn" id="11_1u08f"]
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/creatures/Lich/Skull.png" id="11_emtfy"]
+[ext_resource type="PackedScene" uid="uid://bqe6kxf4uw66l" path="res://scenes/actors/Strategies/Skill/drill_skill_strategy.tscn" id="12_sjimc"]
 [ext_resource type="Texture2D" uid="uid://bbujvsn0j0wwi" path="res://textures/skills/FortuneCookieSkill.png" id="13_ahco4"]
 [ext_resource type="AudioStream" uid="uid://brgjfi5b2rdyi" path="res://audio/SFX/Skills/Domino/DominoOpenBag1.ogg" id="15_dkf3k"]
 
@@ -31,7 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eg7uw")
-buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3q"), ExtResource("4_ncs2t"), ExtResource("5_o4b0d"), ExtResource("4_ncs2t"), ExtResource("6_emtfy"), ExtResource("7_1qkj3"), ExtResource("8_7g347"), ExtResource("9_lvopp"), ExtResource("10_i6ueo")])
+buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3q"), ExtResource("4_ncs2t"), ExtResource("5_o4b0d"), ExtResource("4_ncs2t"), ExtResource("6_emtfy"), ExtResource("7_1qkj3"), ExtResource("8_7g347"), ExtResource("9_lvopp"), ExtResource("10_i6ueo"), ExtResource("11_1u08f"), ExtResource("12_sjimc")])
 skill_icon_scene = ExtResource("10_emtfy")
 sold_out_texture = ExtResource("11_emtfy")
 

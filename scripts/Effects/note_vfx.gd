@@ -1,5 +1,7 @@
 extends Sprite2D
 
+@export var shield_status: PackedScene
+
 var is_note := false
 var note := ""
 var octave: int
@@ -36,4 +38,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			and is_instance_valid(Global.entity_positions[check_coords])
 			and is_instance_valid(grid_parent)
 		):
-			grid_parent.hit(Global.entity_positions[check_coords])
+			if is_note and Global.entity_positions[check_coords] == grid_parent:
+				var new_status = shield_status.instantiate() as StatusStrategy
+				new_status.power = 1
+				add_child(new_status)
+				grid_parent.gain_status(new_status)
+			else:
+				grid_parent.hit(Global.entity_positions[check_coords])
