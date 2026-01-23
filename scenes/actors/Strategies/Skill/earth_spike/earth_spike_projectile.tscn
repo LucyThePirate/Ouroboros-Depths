@@ -267,11 +267,10 @@ volume_db = 6.858
 bus = &"SFX"
 
 [node name="Line2D" type="Line2D" parent="StarSprite"]
-visible = false
 material = SubResource("ShaderMaterial_okq67")
 position = Vector2(0, 23)
 rotation = 0.00402126
-points = PackedVector2Array(-97.6774, 80.3935, 97.8787, -30.3938, -106.1, -24.5735, 104.313, 77.5812, -0.510578, -126.999)
+points = PackedVector2Array(-48.232773, -88.257675, -79.57176, 3.7218475, 9.261536, 65.84365, 95.55474, -3.0437832, 32.769672, -96.04359)
 closed = true
 width = 59.755
 default_color = Color(0, 0, 0, 1)

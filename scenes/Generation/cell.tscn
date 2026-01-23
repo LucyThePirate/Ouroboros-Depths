@@ -15,7 +15,7 @@
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="12_5cpdm"]
 [ext_resource type="Theme" uid="uid://dsnesst3y61ol" path="res://resources/default_theme.tres" id="12_eu30k"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="13_0xdhj"]
-[ext_resource type="PackedScene" uid="uid://b27ysyp6osut2" path="res://scenes/Generation/generation_strategy_2.tscn" id="13_qrcgv"]
+[ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="13_qrcgv"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="16_eu30k"]
 [ext_resource type="AudioStream" uid="uid://ckploe52g84qd" path="res://audio/Music/AstrMusic/GHOST_NOODLES[8bit,loop,remix].mp3" id="17_1xklj"]
 [ext_resource type="Shader" uid="uid://daaonengjaclw" path="res://textures/shaders/blur.gdshader" id="17_cqjng"]
@@ -222,7 +222,7 @@ spawn_smoke_scene = ExtResource("3_fx61w")
 player_scene = ExtResource("3_iimes")
 creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj"), ExtResource("8_0xdhj"), ExtResource("9_cyo7g")])
 bogosort_scene = ExtResource("9_fx61w")
-generator = NodePath("BasicGenerationStrategy")
+generator = NodePath("IsaaclikeGenerationStrategy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2992, 1528)
@@ -262,8 +262,8 @@ tile_set = ExtResource("8_5cpdm")
 [node name="BasicGenerationStrategy" parent="." instance=ExtResource("10_v01jn")]
 generation_size = Vector2i(30, 20)
 
-[node name="GenerationStrategy2" parent="." instance=ExtResource("13_qrcgv")]
-generation_size = Vector2i(40, 30)
+[node name="IsaaclikeGenerationStrategy" parent="." instance=ExtResource("13_qrcgv")]
+max_room_size = 5
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_0xdhj")
