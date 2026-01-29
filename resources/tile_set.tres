@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=58 format=3 uid="uid://bvxt455lja82q"]
+[gd_resource type="TileSet" format=3 uid="uid://bvxt455lja82q"]
 
 [ext_resource type="Texture2D" uid="uid://b60fxmc7hxg5s" path="res://textures/PumpkinBlock2.png" id="1_dtrn4"]
 [ext_resource type="Texture2D" uid="uid://dfvius215va54" path="res://textures/tiles/3DTiles.png" id="2_fv5xq"]
@@ -368,6 +368,7 @@ texture_region_size = Vector2i(100, 100)
 5:0/0/y_sort_origin = 50
 5:0/0/custom_data_0 = true
 5:0/0/custom_data_4 = "plant"
+5:0/0/custom_data_7 = true
 4:0/0 = 0
 4:0/0/custom_data_4 = "plant"
 4:1/0 = 0
@@ -386,7 +387,6 @@ texture_region_size = Vector2i(100, 100)
 3:2/0/custom_data_0 = true
 3:2/0/custom_data_2 = true
 3:2/0/custom_data_4 = "stone"
-3:2/0/custom_data_7 = true
 1:2/size_in_atlas = Vector2i(1, 2)
 1:2/0 = 0
 1:2/0/texture_origin = Vector2i(0, 50)

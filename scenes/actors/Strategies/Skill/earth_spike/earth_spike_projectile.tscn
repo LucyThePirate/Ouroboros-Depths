@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ojhyri4hjpam"]
+[gd_scene format=3 uid="uid://ojhyri4hjpam"]
 
 [ext_resource type="Script" uid="uid://d25q6ewbtmpiy" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_projectile.gd" id="1_o5mhp"]
 [ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="3_n2bky"]
@@ -201,7 +201,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -213,7 +213,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [59.755]
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_okq67"]
@@ -222,12 +222,12 @@ _data = {
 &"RESET": SubResource("Animation_6x7fh")
 }
 
-[node name="EarthSpikeProjectile" type="Node2D"]
+[node name="EarthSpikeProjectile" type="Node2D" unique_id=341153392]
 top_level = true
 z_as_relative = false
 script = ExtResource("1_o5mhp")
 
-[node name="StarSprite" type="AnimatedSprite2D" parent="."]
+[node name="StarSprite" type="AnimatedSprite2D" parent="." unique_id=1644352079]
 top_level = true
 position = Vector2(-1.8749987, -5.625)
 scale = Vector2(1.9868423, 2.1447368)
@@ -236,7 +236,7 @@ animation = &"new_animation"
 autoplay = "default"
 speed_scale = 12.705
 
-[node name="Trail" type="GPUParticles2D" parent="StarSprite"]
+[node name="Trail" type="GPUParticles2D" parent="StarSprite" unique_id=1785858455]
 show_behind_parent = true
 rotation = -0.00216759
 amount = 32
@@ -244,7 +244,7 @@ texture = SubResource("AtlasTexture_q4iqm")
 lifetime = 0.92
 process_material = SubResource("ParticleProcessMaterial_3ynmf")
 
-[node name="Impact" type="GPUParticles2D" parent="StarSprite"]
+[node name="Impact" type="GPUParticles2D" parent="StarSprite" unique_id=2047383024]
 top_level = true
 z_index = -1
 emitting = false
@@ -255,34 +255,33 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_8wt1t")
 
-[node name="Launch" type="AudioStreamPlayer2D" parent="StarSprite"]
+[node name="Launch" type="AudioStreamPlayer2D" parent="StarSprite" unique_id=42800468]
 stream = SubResource("AudioStreamRandomizer_okq67")
 volume_db = 8.0
 autoplay = true
 bus = &"SFX"
 
-[node name="Hit" type="AudioStreamPlayer2D" parent="StarSprite"]
+[node name="Hit" type="AudioStreamPlayer2D" parent="StarSprite" unique_id=212962690]
 stream = SubResource("AudioStreamRandomizer_jvm20")
 volume_db = 6.858
 bus = &"SFX"
 
-[node name="Line2D" type="Line2D" parent="StarSprite"]
+[node name="Line2D" type="Line2D" parent="StarSprite" unique_id=95921398]
+self_modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_okq67")
 position = Vector2(0, 23)
 rotation = 0.00402126
 points = PackedVector2Array(-48.232773, -88.257675, -79.57176, 3.7218475, 9.261536, 65.84365, 95.55474, -3.0437832, 32.769672, -96.04359)
 closed = true
-width = 59.755
+width = 0.0
 default_color = Color(0, 0, 0, 1)
 joint_mode = 2
 
-[node name="Expiration" type="Timer" parent="."]
+[node name="Expiration" type="Timer" parent="." unique_id=1822372501]
 wait_time = 2.5
 one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_okq67")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2077989628]
+libraries/ = SubResource("AnimationLibrary_okq67")
 
 [connection signal="timeout" from="Expiration" to="." method="_on_expiration_timeout"]

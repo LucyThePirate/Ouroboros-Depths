@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://43rkgu17gs68"]
+[gd_scene format=3 uid="uid://43rkgu17gs68"]
 
 [ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_44ypc"]
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/effects/boulder_splash.tscn" id="2_cu8oe"]
@@ -11,7 +11,6 @@
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="8_5cpdm"]
 [ext_resource type="PackedScene" uid="uid://cuir68rh5ethv" path="res://scenes/actors/Creatures/conk/conk.tscn" id="9_cyo7g"]
 [ext_resource type="PackedScene" uid="uid://b04tvmeribd1k" path="res://scenes/actors/Creatures/bogo_sort.tscn" id="9_fx61w"]
-[ext_resource type="PackedScene" uid="uid://mxsbm6suamyq" path="res://scenes/Generation/basic_generation_strategy.tscn" id="10_v01jn"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="12_5cpdm"]
 [ext_resource type="Theme" uid="uid://dsnesst3y61ol" path="res://resources/default_theme.tres" id="12_eu30k"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="13_0xdhj"]
@@ -76,7 +75,7 @@ alpha_curve = SubResource("CurveTexture_4g2cj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eu30k"]
 shader = ExtResource("12_5cpdm")
-shader_parameter/bg_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
+shader_parameter/bg_color = Color(0.1004845, 0.0010928267, 0.17081612, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qrcgv"]
 
@@ -213,7 +212,7 @@ _data = {
 &"floor_text": SubResource("Animation_eu30k")
 }
 
-[node name="GameManager" type="Node2D" node_paths=PackedStringArray("generator")]
+[node name="GameManager" type="Node2D" unique_id=1347246317 node_paths=PackedStringArray("generator")]
 y_sort_enabled = true
 script = ExtResource("1_44ypc")
 title_scene = "uid://c02to40218vlw"
@@ -224,13 +223,13 @@ creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdh
 bogosort_scene = ExtResource("9_fx61w")
 generator = NodePath("IsaaclikeGenerationStrategy")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=800089894]
 position = Vector2(2992, 1528)
 scale = Vector2(3.97837, -1.5527)
 enabled = false
 zoom = Vector2(0.19, 0.195)
 
-[node name="Floors" type="TileMapLayer" parent="."]
+[node name="Floors" type="TileMapLayer" parent="." unique_id=1421824593]
 show_behind_parent = true
 z_index = -5
 y_sort_enabled = true
@@ -238,34 +237,29 @@ texture_filter = 2
 use_parent_material = true
 tile_set = ExtResource("8_5cpdm")
 
-[node name="Walls" type="TileMapLayer" parent="."]
+[node name="Walls" type="TileMapLayer" parent="." unique_id=1056884836]
 show_behind_parent = true
 y_sort_enabled = true
 use_parent_material = true
 tile_set = ExtResource("8_5cpdm")
 
-[node name="Fog" type="TileMapLayer" parent="." groups=["Fog"]]
+[node name="Fog" type="TileMapLayer" parent="." unique_id=341166173 groups=["Fog"]]
 unique_name_in_owner = true
-visible = false
 z_index = 10
 material = SubResource("CanvasItemMaterial_fx61w")
 tile_set = ExtResource("8_5cpdm")
 
-[node name="Darkness" type="TileMapLayer" parent="." groups=["Fog"]]
+[node name="Darkness" type="TileMapLayer" parent="." unique_id=1270013491 groups=["Fog"]]
 unique_name_in_owner = true
-visible = false
 self_modulate = Color(0.9529412, 0.6627451, 0.49803922, 0.44705883)
 z_index = 10
 material = SubResource("CanvasItemMaterial_fx61w")
 tile_set = ExtResource("8_5cpdm")
 
-[node name="BasicGenerationStrategy" parent="." instance=ExtResource("10_v01jn")]
-generation_size = Vector2i(30, 20)
-
-[node name="IsaaclikeGenerationStrategy" parent="." instance=ExtResource("13_qrcgv")]
+[node name="IsaaclikeGenerationStrategy" parent="." unique_id=1325901455 instance=ExtResource("13_qrcgv")]
 cell_size = 4
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1203335370]
 material = SubResource("CanvasItemMaterial_0xdhj")
 position = Vector2(2635, -961)
 scale = Vector2(8.04692, 8.04692)
@@ -274,10 +268,10 @@ preprocess = 0.5
 visibility_rect = Rect2(-400, 100, 800, 400)
 process_material = SubResource("ParticleProcessMaterial_cyo7g")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1285677614]
 layer = 100
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=662954778]
 visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -287,7 +281,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="FloorLabel" type="RichTextLabel" parent="CanvasLayer/ColorRect"]
+[node name="FloorLabel" type="RichTextLabel" parent="CanvasLayer/ColorRect" unique_id=1441883022]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -304,7 +298,7 @@ text = "Floor: ???"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DeathScreen" type="Control" parent="CanvasLayer"]
+[node name="DeathScreen" type="Control" parent="CanvasLayer" unique_id=1948540790]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -312,7 +306,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeathScreen"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeathScreen" unique_id=1146646180]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -321,7 +315,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="YouDied" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer"]
+[node name="YouDied" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer" unique_id=524105090]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
@@ -336,7 +330,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FloorReached" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer"]
+[node name="FloorReached" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer" unique_id=1908739697]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
@@ -349,7 +343,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Kills" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer"]
+[node name="Kills" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer" unique_id=479607914]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
@@ -362,7 +356,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Turns" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer"]
+[node name="Turns" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer" unique_id=1194779360]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
@@ -375,27 +369,27 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/DeathScreen/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/DeathScreen/VBoxContainer" unique_id=2002207546]
 layout_mode = 2
 
-[node name="NewRunButton" type="Button" parent="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer"]
+[node name="NewRunButton" type="Button" parent="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer" unique_id=1798756151]
 layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("16_eu30k")
 theme_override_font_sizes/font_size = 30
 text = "Start a new run"
 
-[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/DeathScreen/VBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/DeathScreen/VBoxContainer" unique_id=1652544113]
 layout_mode = 2
 
-[node name="TitleScreenButton" type="Button" parent="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer2"]
+[node name="TitleScreenButton" type="Button" parent="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer2" unique_id=54190548]
 layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("16_eu30k")
 theme_override_font_sizes/font_size = 30
 text = "Return to title screen"
 
-[node name="AggroCount" type="RichTextLabel" parent="CanvasLayer"]
+[node name="AggroCount" type="RichTextLabel" parent="CanvasLayer" unique_id=305472313]
 offset_left = 1.0
 offset_right = 41.0
 offset_bottom = 40.0
@@ -404,7 +398,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="BogoSortWarning" type="RichTextLabel" parent="CanvasLayer"]
+[node name="BogoSortWarning" type="RichTextLabel" parent="CanvasLayer" unique_id=1316931794]
 visible = false
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -419,7 +413,7 @@ text = "[color=RED][shake][font_size=30]SOMETHING DREADFUL AWAKES."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PauseScreen" type="Control" parent="CanvasLayer"]
+[node name="PauseScreen" type="Control" parent="CanvasLayer" unique_id=327995525]
 unique_name_in_owner = true
 process_mode = 2
 visible = false
@@ -430,7 +424,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/PauseScreen"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/PauseScreen" unique_id=187259101]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_eu30k")
 layout_mode = 1
@@ -445,7 +439,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("13_0xdhj")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PauseScreen"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PauseScreen" unique_id=472137901]
 material = SubResource("ShaderMaterial_qrcgv")
 layout_mode = 1
 anchors_preset = 15
@@ -455,7 +449,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("17_cyo7g")
 
-[node name="Blur" type="ColorRect" parent="CanvasLayer/PauseScreen"]
+[node name="Blur" type="ColorRect" parent="CanvasLayer/PauseScreen" unique_id=1842844146]
 material = SubResource("ShaderMaterial_cyo7g")
 layout_mode = 1
 anchors_preset = 15
@@ -464,7 +458,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseScreen"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseScreen" unique_id=1505501308]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -473,7 +467,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Text" type="RichTextLabel" parent="CanvasLayer/PauseScreen/VBoxContainer"]
+[node name="Text" type="RichTextLabel" parent="CanvasLayer/PauseScreen/VBoxContainer" unique_id=1779311328]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
@@ -487,7 +481,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text2" type="RichTextLabel" parent="CanvasLayer/PauseScreen/VBoxContainer"]
+[node name="Text2" type="RichTextLabel" parent="CanvasLayer/PauseScreen/VBoxContainer" unique_id=2074942340]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
@@ -500,10 +494,10 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PauseScreen/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PauseScreen/VBoxContainer" unique_id=1287428390]
 layout_mode = 2
 
-[node name="ContinueGameButton" type="Button" parent="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer"]
+[node name="ContinueGameButton" type="Button" parent="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer" unique_id=1581709327]
 layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("16_eu30k")
@@ -511,17 +505,17 @@ theme_override_font_sizes/font_size = 30
 shortcut = SubResource("Shortcut_cyo7g")
 text = "Have you gathered yourself? Are you ready to Fight On?"
 
-[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/PauseScreen/VBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/PauseScreen/VBoxContainer" unique_id=170415353]
 layout_mode = 2
 
-[node name="TitleScreenButton" type="Button" parent="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer2"]
+[node name="TitleScreenButton" type="Button" parent="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer2" unique_id=67200178]
 layout_mode = 2
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("16_eu30k")
 theme_override_font_sizes/font_size = 30
 text = "... Or would you rather Retreat and return to the solace of the Title Screen"
 
-[node name="PauseButton" type="Button" parent="CanvasLayer"]
+[node name="PauseButton" type="Button" parent="CanvasLayer" unique_id=719840358]
 unique_name_in_owner = true
 process_mode = 1
 anchors_preset = 1
@@ -533,18 +527,16 @@ grow_horizontal = 0
 shortcut = SubResource("Shortcut_qrcgv")
 text = "||"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_1xklj")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=478761725]
+libraries/ = SubResource("AnimationLibrary_1xklj")
 
-[node name="AutoTurnTimer" type="Timer" parent="."]
+[node name="AutoTurnTimer" type="Timer" parent="." unique_id=1502293745]
 wait_time = 0.3
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="." unique_id=1586894556]
 layer = -100
 
-[node name="Control" type="Control" parent="Background"]
+[node name="Control" type="Control" parent="Background" unique_id=389944638]
 z_index = -100
 layout_mode = 3
 anchors_preset = 15
@@ -557,7 +549,7 @@ grow_vertical = 2
 scale = Vector2(44.1435, 35.6066)
 metadata/_edit_lock_ = true
 
-[node name="TextureRect" type="TextureRect" parent="Background/Control"]
+[node name="TextureRect" type="TextureRect" parent="Background/Control" unique_id=1821577849]
 material = SubResource("ShaderMaterial_eu30k")
 layout_mode = 1
 anchors_preset = 15
@@ -571,20 +563,20 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("13_0xdhj")
 
-[node name="GhostQuiet" type="AudioStreamPlayer" parent="."]
+[node name="GhostQuiet" type="AudioStreamPlayer" parent="." unique_id=90373663]
 stream = ExtResource("17_1xklj")
 autoplay = true
 bus = &"Music"
 playback_type = 1
 
-[node name="GhostBattle" type="AudioStreamPlayer" parent="."]
+[node name="GhostBattle" type="AudioStreamPlayer" parent="." unique_id=1987515516]
 stream = ExtResource("18_cqjng")
 volume_db = -50.0
 autoplay = true
 bus = &"Music"
 playback_type = 1
 
-[node name="BogoTimer" type="Timer" parent="."]
+[node name="BogoTimer" type="Timer" parent="." unique_id=1125716364]
 process_callback = 0
 wait_time = 100.0
 one_shot = true

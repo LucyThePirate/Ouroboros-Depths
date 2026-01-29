@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://kvhp7jqu8okj"]
+[gd_scene format=3 uid="uid://kvhp7jqu8okj"]
 
 [ext_resource type="Script" uid="uid://dbluj4dxj7yku" path="res://scenes/Generation/isaaclike_generation_strategy.gd" id="1_tcb7u"]
 
-[node name="IsaaclikeGenerationStrategy" type="Node2D"]
+[node name="IsaaclikeGenerationStrategy" type="Node2D" unique_id=678348038]
 script = ExtResource("1_tcb7u")

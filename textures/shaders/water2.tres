@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://ctdu31juttm5h"]
+[gd_resource type="VisualShader" format=3 uid="uid://ctdu31juttm5h"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_gf2m5"]
 input_name = "time"
@@ -24,42 +24,6 @@ op_type = 5
 output_port_for_preview = 0
 
 [resource]
-code = "shader_type canvas_item;
-render_mode blend_mix;
-
-
-
-
-void fragment() {
-// Input:4
-	vec4 n_out4p0 = COLOR;
-
-
-// Input:7
-	vec4 n_out7p0 = FRAGCOORD;
-
-
-// Mix:8
-	vec4 n_in8p1 = vec4(1.00000, 1.00000, 1.00000, 1.00000);
-	vec4 n_in8p2 = vec4(0.50000, 0.50000, 0.50000, 0.50000);
-	vec4 n_out8p0 = mix(n_out7p0, n_in8p1, n_in8p2);
-
-
-// FloatFunc:6
-	float n_out6p0 = cos(n_out8p0.x);
-
-
-// Mix:5
-	vec4 n_in5p1 = vec4(1.00000, 1.00000, 1.00000, 1.00000);
-	vec4 n_out5p0 = mix(n_out4p0, n_in5p1, vec4(n_out6p0));
-
-
-// Output:0
-	COLOR.rgb = vec3(n_out5p0.xyz);
-
-
-}
-"
 mode = 1
 flags/light_only = false
 nodes/vertex/0/position = Vector2(980, 260)

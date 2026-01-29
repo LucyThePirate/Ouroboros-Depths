@@ -37,7 +37,7 @@ func initialize(direction: Vector2i, grid_entity: GridEntity):
 		await get_tree().create_timer(0.05).timeout
 		if grid_entity and grid_entity.is_obstructed(grid_coords, false):
 			break
-		grid_entity.spawn_tile.emit(grid_coords, Tiles.Walls["boulder"])
+		grid_entity.spawn_wall.emit(grid_coords, Tiles.Walls["boulder"])
 	explode_star(grid_coords, grid_entity, direction)
 
 
@@ -66,7 +66,7 @@ func explode_star(grid_coords, grid_entity, attack_direction):
 		):
 			grid_entity.hit(Global.entity_positions[check_coords])
 		elif point != Vector2.ZERO:
-			grid_entity.spawn_tile.emit(check_coords, Tiles.Walls["boulder"])
+			grid_entity.spawn_wall.emit(check_coords, Tiles.Walls["boulder"])
 
 	exploded.emit()
 	finish_flying()

@@ -8,6 +8,8 @@ extends GenerationStrategy
 
 var cells: Array[Vector2i] = []
 var rooms := {}
+var stairs_up_location = Vector2i.ZERO
+var stairs_down_location = Vector2i.ZERO
 
 
 func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMapLayer):
@@ -69,7 +71,6 @@ func generate_level():
 	for cell in cells:
 		for c_x in range(cell.x * cell_size, cell.x * cell_size + cell_size):
 			for c_y in range(cell.y * cell_size, cell.y * cell_size + cell_size):
-				#floors.set_cell(Vector2i(c_x, c_y), stone_floor_tile[0], stone_floor_tile[1])
 				_place_nature_tile(Vector2i(c_x, c_y))
 	for room in number_of_rooms:
 		for room_cell in rooms[room]:
@@ -78,17 +79,25 @@ func generate_level():
 					floors.set_cell(Vector2i(r_x, r_y), room_floor_tile[0], room_floor_tile[1])
 			for a in adjacent:
 				if not rooms[room].has(a + room_cell):
+					var door_orientation_horizontal = false
+					var door_placement = Vector2i.ZERO
 					for i in cell_size + 1:
 						var wall_select = Vector2i.ZERO
 						match a:
 							Vector2i.LEFT:
 								wall_select = Vector2i(0, i)
+								door_placement = Vector2i(0, (cell_size + 1) / 2)
 							Vector2i.RIGHT:
 								wall_select = Vector2i(cell_size, i)
+								door_placement = Vector2i(cell_size, (cell_size + 1) / 2)
 							Vector2i.UP:
 								wall_select = Vector2i(i, 0)
+								door_orientation_horizontal = true
+								door_placement = Vector2i((cell_size + 1) / 2, 0)
 							Vector2i.DOWN:
 								wall_select = Vector2i(i, cell_size)
+								door_orientation_horizontal = true
+								door_placement = Vector2i((cell_size + 1) / 2, cell_size)
 						walls.set_cell(
 							(
 								Vector2i(room_cell.x * cell_size, room_cell.y * cell_size)
@@ -105,22 +114,44 @@ func generate_level():
 							stone_floor_tile[0],
 							stone_floor_tile[1]
 						)
+					# Doors!!! generate them
+					if cells.has(a + room_cell):
+						if door_orientation_horizontal:
+							walls.set_cell(
+								(
+									Vector2i(room_cell.x * cell_size, room_cell.y * cell_size)
+									+ door_placement
+								),
+								door_horizontal_tile[0],
+								door_horizontal_tile[1]
+							)
+						else:
+							walls.set_cell(
+								(
+									Vector2i(room_cell.x * cell_size, room_cell.y * cell_size)
+									+ door_placement
+								),
+								door_vertical_tile[0],
+								door_vertical_tile[1]
+							)
 
 	# 4. Generate stairs up & down
 	var possible_stair_locations = rooms
 	var stairs_down_room = possible_stair_locations.keys().pick_random()
-	floors.set_cell(
-		rooms[stairs_down_room].pick_random() * cell_size + Vector2i(cell_size / 2, cell_size / 2),
-		stairs_down_tile[0],
-		stairs_down_tile[1]
+	stairs_down_location = (
+		rooms[stairs_down_room].pick_random() * cell_size + Vector2i(cell_size / 2, cell_size / 2)
 	)
+	floors.set_cell(stairs_down_location, stairs_down_tile[0], stairs_down_tile[1])
 	assert(possible_stair_locations.erase(stairs_down_room))
 	var stairs_up_room = possible_stair_locations.keys().pick_random()
-	floors.set_cell(
-		rooms[stairs_up_room].pick_random() * cell_size + Vector2i(cell_size / 2, cell_size / 2),
-		stairs_up_tile[0],
-		stairs_up_tile[1]
+	stairs_up_location = (
+		rooms[stairs_up_room].pick_random() * cell_size + Vector2i(cell_size / 2, cell_size / 2)
 	)
+	floors.set_cell(stairs_up_location, stairs_up_tile[0], stairs_up_tile[1])
+
+	for x in range(floors.get_used_rect().position.x - 1, floors.get_used_rect().size.x + 1):
+		for y in range(floors.get_used_rect().position.y - 1, floors.get_used_rect().size.y + 1):
+			fog.set_cell(Vector2i(x, y), fog_tile[0], fog_tile[1])
 
 	Global.floors = floors
 	Global.walls = walls

@@ -7,6 +7,7 @@ signal moved(old_coord: Vector2i, new_coord: Vector2i)
 signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
 signal spawn_tile(tile_coord)
+signal spawn_wall(wall_coord)
 signal hurt
 signal fell_off_map
 signal descended

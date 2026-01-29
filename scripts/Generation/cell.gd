@@ -112,8 +112,8 @@ func _ready():
 		try_spawning_random_monster(false)
 	_initialize_entities()
 	_initialize_fog()
-	player.grid_entity.warp(generator.root_node.get_center())
-	Global.entity_positions[generator.root_node.get_center()] = player.grid_entity
+	player.grid_entity.warp(generator.stairs_up_location)
+	Global.entity_positions[generator.stairs_up_location] = player.grid_entity
 	if not tutorial_level:
 		if Global.config.has_section_key("Gameplay", "BogosortTimer"):
 			selected_bogotime = Global.config.get_value("Gameplay", "BogosortTimer")
@@ -163,10 +163,7 @@ func _initialize_fog():
 			darkness.set_cell(tile_position, -1)
 
 	Global.darkness = darkness
-	_update_fog(
-		$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0],
-		$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
-	)
+	_update_fog(generator.stairs_up_location, generator.stairs_up_location)
 
 
 func add_to_angry_at_player_list(_grid_entity):
@@ -226,7 +223,8 @@ func _initialize_entities():
 func _initialize_entity(new_entity: GridEntity):
 	new_entity.opened_door.connect(_open_door)
 	new_entity.pushed_object.connect(_push_tile)
-	new_entity.spawn_tile.connect(_spawn_tile)
+	new_entity.spawn_tile.connect(spawn_tile)
+	new_entity.spawn_wall.connect(spawn_wall)
 	turn_queue.push_back(new_entity.turn_component)
 	new_entity.turn_component.turn_ended.connect(_entity_finished_turn.bind(new_entity))
 	if not new_entity.is_in_group("Player"):
@@ -377,20 +375,35 @@ func _push_tile(tile_coords, direction):
 	astar_grid.set_point_solid(tile_coords, false)
 
 
-func _spawn_tile(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
-	var existing_tile = Global.floors.get_cell_tile_data(tile_coords)
+func spawn_tile(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
+	var existing_tile = floors.get_cell_tile_data(tile_coords)
 	if existing_tile and existing_tile.get_custom_data("indestructable"):
 		return
 	#Global.floors.set_cell(tile_coords, 2, Vector2i(0, 1))
 	if not existing_tile:
 		floors.set_cell(tile_coords, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
-	elif existing_tile.get_custom_data("is_liquid"):
+	else:
+		floors.set_cell(tile_coords, tile_data[0], tile_data[1])
+
+
+func spawn_wall(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
+	var existing_wall = walls.get_cell_tile_data(tile_coords)
+	var existing_tile = floors.get_cell_tile_data(tile_coords)
+	if existing_wall and existing_wall.get_custom_data("indestructable"):
+		return
+	#Global.floors.set_cell(tile_coords, 2, Vector2i(0, 1))
+	if not existing_tile:
+		floors.set_cell(tile_coords, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
+	elif (
+		existing_tile.get_custom_data("is_liquid")
+		and not existing_tile.get_custom_data("indestructable")
+	):
 		floors.set_cell(tile_coords, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
 		var splashVFX = boulder_splash.instantiate()
 		walls.add_child(splashVFX)
 		splashVFX.global_position = Global.floors.map_to_local(tile_coords)
 	else:
-		Global.walls.set_cell(tile_coords, tile_data[0], tile_data[1])
+		walls.set_cell(tile_coords, tile_data[0], tile_data[1])
 
 
 func _is_obstructed(tile_coords) -> bool:
