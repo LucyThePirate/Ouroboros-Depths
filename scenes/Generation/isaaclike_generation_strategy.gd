@@ -69,20 +69,58 @@ func generate_level():
 	for cell in cells:
 		for c_x in range(cell.x * cell_size, cell.x * cell_size + cell_size):
 			for c_y in range(cell.y * cell_size, cell.y * cell_size + cell_size):
-				floors.set_cell(Vector2i(c_x, c_y), stone_floor_tile[0], stone_floor_tile[1])
+				#floors.set_cell(Vector2i(c_x, c_y), stone_floor_tile[0], stone_floor_tile[1])
+				_place_nature_tile(Vector2i(c_x, c_y))
 	for room in number_of_rooms:
 		for room_cell in rooms[room]:
 			for r_x in range(room_cell.x * cell_size, room_cell.x * cell_size + cell_size):
 				for r_y in range(room_cell.y * cell_size, room_cell.y * cell_size + cell_size):
 					floors.set_cell(Vector2i(r_x, r_y), room_floor_tile[0], room_floor_tile[1])
+			for a in adjacent:
+				if not rooms[room].has(a + room_cell):
+					for i in cell_size + 1:
+						var wall_select = Vector2i.ZERO
+						match a:
+							Vector2i.LEFT:
+								wall_select = Vector2i(0, i)
+							Vector2i.RIGHT:
+								wall_select = Vector2i(cell_size, i)
+							Vector2i.UP:
+								wall_select = Vector2i(i, 0)
+							Vector2i.DOWN:
+								wall_select = Vector2i(i, cell_size)
+						walls.set_cell(
+							(
+								Vector2i(room_cell.x * cell_size, room_cell.y * cell_size)
+								+ wall_select
+							),
+							stone_wall_tile[0],
+							stone_wall_tile[1]
+						)
+						floors.set_cell(
+							(
+								Vector2i(room_cell.x * cell_size, room_cell.y * cell_size)
+								+ wall_select
+							),
+							stone_floor_tile[0],
+							stone_floor_tile[1]
+						)
 
 	# 4. Generate stairs up & down
 	var possible_stair_locations = rooms
 	var stairs_down_room = possible_stair_locations.keys().pick_random()
-	floors.set_cell(rooms[stairs_down_room].pick_random(), stairs_down_tile[0], stairs_down_tile[1])
+	floors.set_cell(
+		rooms[stairs_down_room].pick_random() * cell_size + Vector2i(cell_size / 2, cell_size / 2),
+		stairs_down_tile[0],
+		stairs_down_tile[1]
+	)
 	assert(possible_stair_locations.erase(stairs_down_room))
 	var stairs_up_room = possible_stair_locations.keys().pick_random()
-	floors.set_cell(rooms[stairs_up_room].pick_random(), stairs_up_tile[0], stairs_up_tile[1])
+	floors.set_cell(
+		rooms[stairs_up_room].pick_random() * cell_size + Vector2i(cell_size / 2, cell_size / 2),
+		stairs_up_tile[0],
+		stairs_up_tile[1]
+	)
 
 	Global.floors = floors
 	Global.walls = walls

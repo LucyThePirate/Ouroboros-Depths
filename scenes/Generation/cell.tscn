@@ -263,7 +263,7 @@ tile_set = ExtResource("8_5cpdm")
 generation_size = Vector2i(30, 20)
 
 [node name="IsaaclikeGenerationStrategy" parent="." instance=ExtResource("13_qrcgv")]
-max_room_size = 5
+cell_size = 4
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_0xdhj")

@@ -74,7 +74,7 @@ func _ready():
 	%Darkness.show()
 	_on_unpaused()
 	#get_window().focus_exited.connect(_on_paused)
-	get_tree().get_root().focus_exited.connect(_on_paused)
+	#get_tree().get_root().focus_exited.connect(_on_paused)
 	#get_viewport().gui_focus_changed.connect(_on_paused)
 	Global.UI_closed.connect(_on_unpaused)
 	Global.aggroed_towards_player.connect(add_to_angry_at_player_list)
