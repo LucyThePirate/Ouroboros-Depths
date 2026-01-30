@@ -33,15 +33,17 @@ func generate_level():
 	cells = [Vector2i.ZERO]
 	var adjacent = [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN]
 	var expandable_areas = [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN]
-	for cell_num in range(0, number_of_cells):
+	while cells.size() < number_of_cells:
 		var new_cell = expandable_areas.pop_at(randi_range(0, expandable_areas.size() - 1))
-		cells.append(new_cell)
-		for a in adjacent:
-			if not cells.has(new_cell + a):
-				expandable_areas.append(new_cell + a)
+		if not new_cell in cells:
+			cells.append(new_cell)
+			for a in adjacent:
+				if not new_cell + a in cells:
+					expandable_areas.append(new_cell + a)
+	print("Cells after 1.:", cells)
 
 	# 2. Converting random cells into rooms
-	var possible_rooms = cells
+	var possible_rooms = cells.duplicate()
 	for room_num in number_of_rooms:
 		var new_room = possible_rooms.pop_at(randi_range(0, possible_rooms.size() - 1))
 		rooms[room_num] = [new_room]
@@ -72,6 +74,8 @@ func generate_level():
 		for c_x in range(cell.x * cell_size, cell.x * cell_size + cell_size):
 			for c_y in range(cell.y * cell_size, cell.y * cell_size + cell_size):
 				_place_nature_tile(Vector2i(c_x, c_y))
+	var horizontal_doors = []
+	var vertical_doors = []
 	for room in number_of_rooms:
 		for room_cell in rooms[room]:
 			for r_x in range(room_cell.x * cell_size, room_cell.x * cell_size + cell_size):
@@ -114,26 +118,45 @@ func generate_level():
 							stone_floor_tile[0],
 							stone_floor_tile[1]
 						)
-					# Doors!!! generate them
+					# Doors!!! Mark them for later so we can generate them on top of the walls
 					if cells.has(a + room_cell):
 						if door_orientation_horizontal:
-							walls.set_cell(
+							horizontal_doors.append(
 								(
 									Vector2i(room_cell.x * cell_size, room_cell.y * cell_size)
 									+ door_placement
-								),
-								door_horizontal_tile[0],
-								door_horizontal_tile[1]
+								)
 							)
 						else:
-							walls.set_cell(
+							vertical_doors.append(
 								(
 									Vector2i(room_cell.x * cell_size, room_cell.y * cell_size)
 									+ door_placement
-								),
-								door_vertical_tile[0],
-								door_vertical_tile[1]
+								)
 							)
+
+	# 3.1 Place the doors!
+	for h_d: Vector2i in horizontal_doors:
+		walls.set_cell(h_d, door_horizontal_tile[0], door_horizontal_tile[1])
+	for v_d: Vector2i in vertical_doors:
+		walls.set_cell(v_d, door_vertical_tile[0], door_vertical_tile[1])
+
+	# 3.2 Smooth out the nature tiles on the borders
+	#for e_a in expandable_areas:
+	#if e_a not in cells:
+	#var nature_tile_chance = 0.0
+	#for a in adjacent:
+	#if e_a + a in possible_rooms:
+	#nature_tile_chance += pow(0.5, 2)
+	#for x in range(e_a.x * cell_size, e_a.x * cell_size + cell_size):
+	#for y in range(e_a.y * cell_size, e_a.y * cell_size + cell_size):
+#
+	##if nature_tile_chance > randf():
+	#if nature_tile_chance > noise.get_noise_2dv(Vector2i(x, y)):
+	#_place_nature_tile(Vector2i(x, y))
+
+	print("cells:", cells)
+	print("Rooms:", rooms)
 
 	# 4. Generate stairs up & down
 	var possible_stair_locations = rooms

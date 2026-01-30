@@ -245,12 +245,14 @@ tile_set = ExtResource("8_5cpdm")
 
 [node name="Fog" type="TileMapLayer" parent="." unique_id=341166173 groups=["Fog"]]
 unique_name_in_owner = true
+visible = false
 z_index = 10
 material = SubResource("CanvasItemMaterial_fx61w")
 tile_set = ExtResource("8_5cpdm")
 
 [node name="Darkness" type="TileMapLayer" parent="." unique_id=1270013491 groups=["Fog"]]
 unique_name_in_owner = true
+visible = false
 self_modulate = Color(0.9529412, 0.6627451, 0.49803922, 0.44705883)
 z_index = 10
 material = SubResource("CanvasItemMaterial_fx61w")
