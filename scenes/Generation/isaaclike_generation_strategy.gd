@@ -70,7 +70,7 @@ func generate_level():
 					possible_joining_rooms.append(candidate_joining_cell + a)
 
 	# 3. Generate floor terrain, walls, doors, etc.
-	for cell in cells:
+	for cell in possible_rooms:
 		for c_x in range(cell.x * cell_size, cell.x * cell_size + cell_size):
 			for c_y in range(cell.y * cell_size, cell.y * cell_size + cell_size):
 				_place_nature_tile(Vector2i(c_x, c_y))
@@ -81,6 +81,7 @@ func generate_level():
 			for r_x in range(room_cell.x * cell_size, room_cell.x * cell_size + cell_size):
 				for r_y in range(room_cell.y * cell_size, room_cell.y * cell_size + cell_size):
 					floors.set_cell(Vector2i(r_x, r_y), room_floor_tile[0], room_floor_tile[1])
+					#walls.set_cell(Vector2i(r_x, r_y), -1)
 			for a in adjacent:
 				if not rooms[room].has(a + room_cell):
 					var door_orientation_horizontal = false
@@ -142,21 +143,28 @@ func generate_level():
 		walls.set_cell(v_d, door_vertical_tile[0], door_vertical_tile[1])
 
 	# 3.2 Smooth out the nature tiles on the borders
-	#for e_a in expandable_areas:
-	#if e_a not in cells:
-	#var nature_tile_chance = 0.0
-	#for a in adjacent:
-	#if e_a + a in possible_rooms:
-	#nature_tile_chance += pow(0.5, 2)
-	#for x in range(e_a.x * cell_size, e_a.x * cell_size + cell_size):
-	#for y in range(e_a.y * cell_size, e_a.y * cell_size + cell_size):
-#
-	##if nature_tile_chance > randf():
-	#if nature_tile_chance > noise.get_noise_2dv(Vector2i(x, y)):
-	#_place_nature_tile(Vector2i(x, y))
+#	var rotated_point = point.rotated(Vector2(attack_direction).angle())
+	#var chance_gradient = []
+	#for i in range(cell_size):
+	#chance_gradient.append(range(1, cell_size + 1))
 
-	print("cells:", cells)
-	print("Rooms:", rooms)
+	for e_a in expandable_areas:
+		if e_a not in cells:
+			var nature_tile_chance = 0.0
+			for a in adjacent:
+				if e_a + a in possible_rooms:
+					nature_tile_chance += pow(0.5, 2)
+			for x in range(e_a.x * cell_size, e_a.x * cell_size + cell_size):
+				for y in range(e_a.y * cell_size, e_a.y * cell_size + cell_size):
+					if nature_tile_chance > noise.get_noise_2dv(Vector2i(x, y)):
+						#_place_nature_tile(Vector2i(x, y))
+						pass
+
+	var bogo_room = expandable_areas.pick_random()
+	for x in range(bogo_room.x * cell_size, bogo_room.x * cell_size + cell_size):
+		for y in range(bogo_room.y * cell_size, bogo_room.y * cell_size + cell_size):
+			floors.set_cell(Vector2i(x, y), ice_floor_tile[0], ice_floor_tile[1])
+			walls.set_cell(Vector2i(x, y), -1)
 
 	# 4. Generate stairs up & down
 	var possible_stair_locations = rooms

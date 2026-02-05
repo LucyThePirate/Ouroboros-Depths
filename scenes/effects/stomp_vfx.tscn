@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://csmoib3nld3bv"]
+[gd_scene format=3 uid="uid://csmoib3nld3bv"]
 
 [ext_resource type="Texture2D" uid="uid://cuj851dc21lhv" path="res://textures/effects/shockwave.jpeg" id="1_eosi6"]
 [ext_resource type="Script" uid="uid://btlsdf173uwoy" path="res://scripts/Effects/stomp_vfx.gd" id="2_fvxl5"]
@@ -34,7 +34,7 @@ random_pitch = 1.25
 streams_count = 1
 stream_0/stream = ExtResource("3_fegjd")
 
-[node name="StompVFX" type="GPUParticles2D"]
+[node name="StompVFX" type="GPUParticles2D" unique_id=239856534]
 top_level = true
 material = SubResource("CanvasItemMaterial_b6d7o")
 emitting = false
@@ -45,9 +45,9 @@ one_shot = true
 process_material = SubResource("ParticleProcessMaterial_yavas")
 script = ExtResource("2_fvxl5")
 
-[node name="StompSound" type="AudioStreamPlayer2D" parent="."]
+[node name="StompSound" type="AudioStreamPlayer2D" parent="." unique_id=1128693144]
 stream = SubResource("AudioStreamRandomizer_yavas")
-volume_db = 14.857
+volume_db = 17.872
 bus = &"SFX"
 
 [connection signal="finished" from="StompSound" to="." method="_on_stomp_sound_finished"]

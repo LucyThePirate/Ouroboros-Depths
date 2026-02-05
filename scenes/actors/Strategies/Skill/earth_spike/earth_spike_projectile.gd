@@ -29,11 +29,11 @@ func initialize(direction: Vector2i, grid_entity: GridEntity):
 	sprite.global_position = grid_entity.global_position
 	sprite.look_at(global_position + Vector2(direction))
 	sprite.rotate(PI / 2)
-	$StarSprite/Launch.play()
 	var grid_coords = Global.floors.local_to_map(grid_entity.global_position) as Vector2i
 	for i in range(max_distance):
 		grid_coords += direction
 		position += Vector2(Global.CELL_SIZE * direction)
+		$StarSprite/Travel.play()
 		await get_tree().create_timer(0.05).timeout
 		if grid_entity and grid_entity.is_obstructed(grid_coords, false):
 			break

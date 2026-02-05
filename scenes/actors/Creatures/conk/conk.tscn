@@ -1,25 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuir68rh5ethv"]
+[gd_scene format=3 uid="uid://cuir68rh5ethv"]
 
 [ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_da6my"]
 [ext_resource type="PackedScene" uid="uid://cmyas4xlndmy7" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_skill_strategy.tscn" id="2_eu1md"]
 [ext_resource type="PackedScene" uid="uid://bqe6kxf4uw66l" path="res://scenes/actors/Strategies/Skill/drill_skill_strategy.tscn" id="3_dstu7"]
+[ext_resource type="Texture2D" uid="uid://cpo04niweceel" path="res://textures/creatures/Conk/conk_standing.png" id="4_ruryx"]
 
-[node name="Conk" instance=ExtResource("1_da6my")]
+[node name="Conk" unique_id=1547879972 instance=ExtResource("1_da6my")]
 
 [node name="GridEntity" parent="." index="0"]
 species_name = "Conk"
 species_desc = "A hardy creature that is at home in the rocky terrain of the dungeon. Its broad, sturdy horn is suitable both for launching debris and busting down obstacles."
 
-[node name="EarthSpikeSkillStrategy" parent="GridEntity/SkillStackComponent" index="9" instance=ExtResource("2_eu1md")]
+[node name="EarthSpikeSkillStrategy" parent="GridEntity/SkillStackComponent" index="9" unique_id=271779967 instance=ExtResource("2_eu1md")]
 
-[node name="DrillSkillStrategy" parent="GridEntity/SkillStackComponent" index="10" instance=ExtResource("3_dstu7")]
+[node name="DrillSkillStrategy" parent="GridEntity/SkillStackComponent" index="10" unique_id=1715827073 instance=ExtResource("3_dstu7")]
 
 [node name="HealthComponent" parent="GridEntity/UI" index="0"]
 max_health = 6
 
 [node name="Sprite2D" parent="." index="6"]
-position = Vector2(1, 1)
-scale = Vector2(6.052631, 11.138158)
-offset = Vector2(-0.08260894, -6.930006)
+position = Vector2(8, -24)
+scale = Vector2(0.80878234, 0.9203943)
+texture = ExtResource("4_ruryx")
 
 [editable path="GridEntity"]

@@ -8,7 +8,7 @@ signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
 signal spawn_tile(tile_coord)
 signal spawn_wall(wall_coord)
-signal hurt
+signal hurt(attacker, damage_amount)
 signal fell_off_map
 signal descended
 signal died
@@ -228,7 +228,7 @@ func _on_hit(attacker, damage := 1):
 		damage = status_component.modify_incoming_damage(damage)
 		health_component.deal_damage(damage)
 		$Hit.play()
-		hurt.emit(attacker)
+		hurt.emit(attacker, damage)
 
 
 func heal(heal_amount := 1):

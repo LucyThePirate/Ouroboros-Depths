@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://ojhyri4hjpam"]
 
 [ext_resource type="Script" uid="uid://d25q6ewbtmpiy" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_projectile.gd" id="1_o5mhp"]
-[ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="3_n2bky"]
+[ext_resource type="Texture2D" uid="uid://dfvius215va54" path="res://textures/tiles/3DTiles.png" id="3_l2vfv"]
 [ext_resource type="Texture2D" uid="uid://boyi3dh24ewlf" path="res://textures/ui/black-star.png" id="3_upeyw"]
-[ext_resource type="AudioStream" uid="uid://bt30ad6s0lmn0" path="res://audio/SFX/Skills/507161__ruidososoundfx__fast-woosh-ricrob-helm-12.ogg" id="4_5jd82"]
-[ext_resource type="AudioStream" uid="uid://cjqcrnsc2kfj1" path="res://audio/SFX/Skills/507161__ruidososoundfx__fast-woosh-ricrob-helm-12-2.ogg" id="5_nfljx"]
+[ext_resource type="Texture2D" uid="uid://bwvq8bfinhk3l" path="res://textures/skills/EarthSpikeProjectile.png" id="4_l2vfv"]
+[ext_resource type="AudioStream" uid="uid://bnjqqcol7p1vg" path="res://audio/SFX/Skills/Earth Spike/earth_spike_travel.ogg" id="5_l2vfv"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="6_2df31"]
+[ext_resource type="AudioStream" uid="uid://biyp26aw5dsce" path="res://audio/SFX/Skills/Earth Spike/earth_spike_end.ogg" id="6_l2vfv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqqwm"]
 atlas = ExtResource("3_upeyw")
@@ -46,6 +47,10 @@ region = Rect2(298, 332, 149, 166)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2dhts"]
 atlas = ExtResource("3_upeyw")
 region = Rect2(447, 0, 149, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2kmx"]
+atlas = ExtResource("3_l2vfv")
+region = Rect2(300, 250, 100, 125)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8wt1t"]
 animations = [{
@@ -104,59 +109,56 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_n2bky")
+"texture": SubResource("AtlasTexture_i2kmx")
 }],
 "loop": true,
 "name": &"new_animation",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q4iqm"]
-atlas = ExtResource("3_upeyw")
-region = Rect2(8, 166.718, 134.868, 164.794)
-
 [sub_resource type="Curve" id="Curve_8wt1t"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.106529, 0.981742), 0.0, 0.0, 0, 0, Vector2(0.835052, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10952381, 0.97752815), 0.0, 0.0, 0, 0, Vector2(0.20476192, 1), 0.0, 0.0, 0, 0, Vector2(0.9142857, 0.1685394), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="CurveTexture" id="CurveTexture_qy7dk"]
 curve = SubResource("Curve_8wt1t")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ynmf"]
 particle_flag_disable_z = true
+angle_min = -9.9999895
+angle_max = 10.0000105
 direction = Vector3(0, 1, 0)
 spread = 7.875
-initial_velocity_min = 56.34
-initial_velocity_max = 216.78
-angular_velocity_min = -273.81
-angular_velocity_max = 231.61
 gravity = Vector3(0, 0, 0)
-scale_min = 0.05
-scale_max = 0.15
+scale_max = 1.5
 scale_curve = SubResource("CurveTexture_qy7dk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8wt1t"]
+lifetime_randomness = 0.55
 particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 118.28
+emission_ring_inner_radius = 167.24
+emission_ring_cone_angle = 90.0
+angle_min = -19.99999
+angle_max = 20.000011
 direction = Vector3(0, 1, 0)
 spread = 180.0
-initial_velocity_min = 56.34
-initial_velocity_max = 216.78
-angular_velocity_min = -273.81
-angular_velocity_max = 231.61
 gravity = Vector3(0, 0, 0)
-scale_min = 0.05
-scale_max = 0.15
+scale_max = 2.5
 scale_curve = SubResource("CurveTexture_qy7dk")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_okq67"]
 random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("4_5jd82")
+stream_0/stream = ExtResource("5_l2vfv")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jvm20"]
 random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("5_nfljx")
+stream_0/stream = ExtResource("6_l2vfv")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_okq67"]
 shader = ExtResource("6_2df31")
@@ -238,27 +240,29 @@ speed_scale = 12.705
 
 [node name="Trail" type="GPUParticles2D" parent="StarSprite" unique_id=1785858455]
 show_behind_parent = true
+position = Vector2(6.2573235e-10, -2.506135)
 rotation = -0.00216759
-amount = 32
-texture = SubResource("AtlasTexture_q4iqm")
-lifetime = 0.92
+amount = 35
+texture = ExtResource("4_l2vfv")
+lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_3ynmf")
 
 [node name="Impact" type="GPUParticles2D" parent="StarSprite" unique_id=2047383024]
 top_level = true
 z_index = -1
+position = Vector2(2, 0)
 emitting = false
-amount = 15
-texture = SubResource("AtlasTexture_q4iqm")
-lifetime = 0.86
+amount = 25
+texture = ExtResource("4_l2vfv")
+lifetime = 1.3
 one_shot = true
 explosiveness = 1.0
+randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_8wt1t")
 
-[node name="Launch" type="AudioStreamPlayer2D" parent="StarSprite" unique_id=42800468]
+[node name="Travel" type="AudioStreamPlayer2D" parent="StarSprite" unique_id=42800468]
 stream = SubResource("AudioStreamRandomizer_okq67")
 volume_db = 8.0
-autoplay = true
 bus = &"SFX"
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="StarSprite" unique_id=212962690]
@@ -267,6 +271,7 @@ volume_db = 6.858
 bus = &"SFX"
 
 [node name="Line2D" type="Line2D" parent="StarSprite" unique_id=95921398]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_okq67")
 position = Vector2(0, 23)

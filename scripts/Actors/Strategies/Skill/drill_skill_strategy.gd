@@ -44,7 +44,12 @@ func use_skill(grid_entity: GridEntity):
 			target.move(direction)
 			target._on_hit(grid_entity)
 		var wall_data = Global.walls.get_cell_tile_data(check_coords)
-		if wall_data and wall_data.get_custom_data("is_solid"):  # Check for walls to break
+		if (
+			wall_data
+			and wall_data.get_custom_data("is_solid")
+			and not wall_data.get_custom_data("indestructable")
+		):  # Check for walls to break
+			%Travel.play()
 			grid_entity.spawn_wall.emit(check_coords)
 			var new_status = vigor_status.instantiate() as StatusStrategy
 			new_status.power = 1

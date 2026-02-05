@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmyas4xlndmy7"]
+[gd_scene format=3 uid="uid://cmyas4xlndmy7"]
 
 [ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_ph7p1"]
 [ext_resource type="Script" uid="uid://ujgom7gnmt1" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_skill_strategy.gd" id="2_n3f6c"]
 [ext_resource type="PackedScene" uid="uid://ojhyri4hjpam" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_projectile.tscn" id="3_n3f6c"]
-[ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="4_ig3f7"]
+[ext_resource type="Texture2D" uid="uid://xg53swbvhvwf" path="res://textures/skills/EarthSpikeSkill.png" id="4_dkqns"]
 
-[node name="EarthSpikeSkillStrategy" instance=ExtResource("1_ph7p1")]
+[node name="EarthSpikeSkillStrategy" unique_id=1348417474 instance=ExtResource("1_ph7p1")]
 script = ExtResource("2_n3f6c")
 earth_spike_projectile = ExtResource("3_n3f6c")
 priority = 1
@@ -16,4 +16,4 @@ On use, choose a direction to hurl a wave of stone spikes, entrapping foes in a 
 skill_ID = 12
 
 [node name="Icon" parent="." index="0"]
-texture = ExtResource("4_ig3f7")
+texture = ExtResource("4_dkqns")

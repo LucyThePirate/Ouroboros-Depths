@@ -8,6 +8,7 @@ extends Node2D
 @export var player_scene: PackedScene
 @export var creature_scene: Array[PackedScene]
 @export var bogosort_scene: PackedScene
+var bogo_egg_scene = preload("uid://dvtenp8g812ei")
 
 enum BOGOTIME { INSTANT, TIME_25, TIME_50, TIME_100, TIME_150, TIME_200, NEVER }
 @onready var selected_bogotime := BOGOTIME.TIME_100
@@ -110,6 +111,7 @@ func _ready():
 		)
 	for i in range(8):
 		try_spawning_random_monster(false)
+	spawn_bogo_egg()
 	_initialize_entities()
 	_initialize_fog()
 	player.grid_entity.warp(generator.stairs_up_location)
@@ -327,6 +329,14 @@ func try_spawning_random_monster(initialize_entity := true):
 				var new_smoke = spawn_smoke_scene.instantiate()
 				new_smoke.global_position = Global.floors.map_to_local(grid_coordinate)
 				add_child(new_smoke)
+
+
+func spawn_bogo_egg():
+	var grid_coordinate = (
+		Global.floors.get_used_cells_by_id(ice_floor_tile[0], ice_floor_tile[1]).pick_random()
+	)
+	var new_bogo_egg: BraindeadAI = spawn_entity(grid_coordinate, bogo_egg_scene)
+	new_bogo_egg.egg_died.connect(_on_bogo_timer_timeout)
 
 
 func _entity_finished_turn(grid_entity: GridEntity):

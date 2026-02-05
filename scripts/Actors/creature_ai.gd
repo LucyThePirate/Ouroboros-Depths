@@ -164,7 +164,7 @@ func _on_grid_entity_died() -> void:
 	queue_free()
 
 
-func _on_grid_entity_hurt(attacker: GridEntity) -> void:
+func _on_grid_entity_hurt(attacker: GridEntity, damage_amount: int) -> void:
 	if grid_entity.is_alive():
 		_update_angry_at(attacker)
 

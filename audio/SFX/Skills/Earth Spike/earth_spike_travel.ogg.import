@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bnjqqcol7p1vg"
+path="res://.godot/imported/earth_spike_travel.ogg-864e98cfd6630d85ef2c301274ffc627.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/SFX/Skills/Earth Spike/earth_spike_travel.ogg"
+dest_files=["res://.godot/imported/earth_spike_travel.ogg-864e98cfd6630d85ef2c301274ffc627.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
