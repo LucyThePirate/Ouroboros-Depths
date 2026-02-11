@@ -159,7 +159,7 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 	initialized = true
 
 
-func _on_grid_entity_died() -> void:
+func _on_grid_entity_died(is_despawning) -> void:
 	_update_angry_at(null)
 	queue_free()
 
@@ -191,7 +191,11 @@ func _update_angry_at(new_target: GridEntity):
 
 
 func can_aggro_against(new_target: GridEntity) -> bool:
-	if new_target == null:
+	if (
+		new_target == null
+		or not is_instance_valid(new_target)
+		or not is_instance_valid(grid_entity)
+	):
 		return false
 	if new_target == grid_entity or new_target is not GridEntity:
 		return false

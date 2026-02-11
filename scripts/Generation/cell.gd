@@ -9,9 +9,7 @@ extends Node2D
 @export var creature_scene: Array[PackedScene]
 @export var bogosort_scene: PackedScene
 var bogo_egg_scene = preload("uid://dvtenp8g812ei")
-
-enum BOGOTIME { INSTANT, TIME_25, TIME_50, TIME_100, TIME_150, TIME_200, NEVER }
-@onready var selected_bogotime := BOGOTIME.TIME_100
+var bogo_egg: BraindeadAI
 
 @export var generator: GenerationStrategy
 @export var spawn_creatures := true
@@ -114,26 +112,10 @@ func _ready():
 	spawn_bogo_egg()
 	_initialize_entities()
 	_initialize_fog()
-	player.grid_entity.warp(generator.stairs_up_location)
-	Global.entity_positions[generator.stairs_up_location] = player.grid_entity
-	if not tutorial_level:
-		if Global.config.has_section_key("Gameplay", "BogosortTimer"):
-			selected_bogotime = Global.config.get_value("Gameplay", "BogosortTimer")
-		match selected_bogotime:
-			BOGOTIME.INSTANT:
-				$BogoTimer.start(3)
-			BOGOTIME.TIME_25:
-				$BogoTimer.start(25)
-			BOGOTIME.TIME_50:
-				$BogoTimer.start(50)
-			BOGOTIME.TIME_100:
-				$BogoTimer.start(100)
-			BOGOTIME.TIME_150:
-				$BogoTimer.start(150)
-			BOGOTIME.TIME_200:
-				$BogoTimer.start(200)
-			_:
-				print("Bogo timer not started.")
+	player.grid_entity.warp($Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0])
+	Global.entity_positions[$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]] = (
+		player.grid_entity
+	)
 
 
 func _initialize_fog():
@@ -165,7 +147,10 @@ func _initialize_fog():
 			darkness.set_cell(tile_position, -1)
 
 	Global.darkness = darkness
-	_update_fog(generator.stairs_up_location, generator.stairs_up_location)
+	_update_fog(
+		$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0],
+		$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
+	)
 
 
 func add_to_angry_at_player_list(_grid_entity):
@@ -202,7 +187,7 @@ func _redraw_map():
 	$AnimationPlayer.play("floor_text")
 	for entity in get_tree().get_nodes_in_group("GridEntity") as Array[GridEntity]:
 		if not entity.is_in_group("Player"):
-			entity.on_death()
+			entity.on_death(true)
 	angry_at_player = 0
 	Global.floors.clear()
 	Global.walls.clear()
@@ -332,11 +317,14 @@ func try_spawning_random_monster(initialize_entity := true):
 
 
 func spawn_bogo_egg():
+	if tutorial_level:
+		return
 	var grid_coordinate = (
 		Global.floors.get_used_cells_by_id(ice_floor_tile[0], ice_floor_tile[1]).pick_random()
 	)
-	var new_bogo_egg: BraindeadAI = spawn_entity(grid_coordinate, bogo_egg_scene)
-	new_bogo_egg.egg_died.connect(_on_bogo_timer_timeout)
+	bogo_egg = spawn_entity(grid_coordinate, bogo_egg_scene)
+	bogo_egg.egg_died.connect(_on_bogo_timer_timeout)
+	bogo_egg.egg_timer_expired.connect(_on_bogo_timer_timeout)
 
 
 func _entity_finished_turn(grid_entity: GridEntity):
@@ -433,7 +421,7 @@ func _is_obstructed(tile_coords) -> bool:
 	return false
 
 
-func _on_player_died() -> void:
+func _on_player_died(_despawning) -> void:
 	for tile in Global.floors.get_used_cells():
 		Global.darkness.set_cell(tile, -1)
 	$Fog.hide()
@@ -471,13 +459,12 @@ func _on_title_screen_button_pressed() -> void:
 
 
 func _on_bogo_timer_timeout() -> void:
-	$AnimationPlayer.play("BogoSortWarning")
+	if tutorial_level:
+		return
 	var bogo_sort = bogosort_scene.instantiate()
-	var positions = [
-		Vector2(-100, -100),
-		Vector2(generator.generation_size.x * 100 + 100, -100),
-		Vector2(-100, generator.generation_size.y * 100 + 100),
-		Vector2(generator.generation_size.x * 100 + 100, generator.generation_size.y * 100 + 100)
-	]
-	bogo_sort.global_position = positions.pick_random()
+	if not is_instance_valid(bogo_egg):
+		return
+	else:
+		bogo_sort.global_position = bogo_egg.global_position
+		bogo_egg.queue_free()
 	add_child(bogo_sort)

@@ -219,9 +219,9 @@ func end_turn():
 		descended.emit()
 
 
-func _on_grid_entity_died() -> void:
+func _on_grid_entity_died(despawning) -> void:
 	state = States.DEAD
-	grid_entity.on_death()
+	grid_entity.on_death(despawning)
 	hide()
 
 
@@ -259,7 +259,9 @@ func _load_deck():
 func _on_grid_entity_fell_off_map() -> void:
 	visual._on_fell_off_map()
 	state = States.DEAD
-	visual.connect("finished_animation", _on_grid_entity_died)
+	await visual.finished_animation
+	#visual.connect("finished_animation", _on_grid_entity_died)
+	_on_grid_entity_died(false)
 
 
 func _on_grid_entity_absorbed_souls() -> void:

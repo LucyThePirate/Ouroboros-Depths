@@ -17,6 +17,7 @@ const JITTER_MAX := 100.0
 const LURCH_TIMER_DECREASE := 0.01
 const LURCH_TIMER_MIN := 0.25
 var paused := false
+var is_active := false
 
 
 func _ready() -> void:
@@ -27,6 +28,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not is_active:
+		return
 	if paused:
 		return
 	global_position += Vector2(
@@ -35,6 +38,10 @@ func _physics_process(delta: float) -> void:
 	)
 	current_jitter = min(current_jitter + (JITTER_INCREASE * delta), JITTER_MAX)
 	current_lurch_distance = min(current_lurch_distance + (LURCH_INCREASE * delta), LURCH_MAX)
+	if target:
+		%NearbyWarningSFX.pitch_scale = max(
+			4 - ((target.global_position - global_position).length() / 200), 0.1
+		)
 
 
 func pause_bogo():
@@ -59,14 +66,11 @@ func _find_target():
 	for entity in entities:
 		if entity.is_in_group("Player"):
 			target = entity
+			%NearbyWarningSFX.play()
 			break
 	if not (target and target.is_alive()):
 		target = entities.pick_random()
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("GridEntity"):
-		body.on_death()
+		%NearbyWarningSFX.stop()
 
 
 func _on_mess_with_blocks_timer_timeout() -> void:
@@ -116,3 +120,16 @@ func _on_lurch_timer_timeout() -> void:
 		_find_target()
 	current_lurch_timer = max(LURCH_TIMER_MIN, current_lurch_timer - LURCH_TIMER_DECREASE)
 	$LurchTimer.start(current_lurch_timer)
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "spawning":
+		is_active = true
+		%Hitbox.monitoring = true
+		%MessWithBlocksTimer.start()
+		%LurchTimer.start()
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("GridEntity"):
+		body.on_death()

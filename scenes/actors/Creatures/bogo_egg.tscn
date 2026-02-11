@@ -7,7 +7,7 @@
 [node name="Bogo Egg" unique_id=963460758 instance=ExtResource("1_y78e5")]
 script = ExtResource("2_my2fc")
 
-[node name="HealthComponent" parent="GridEntity/UI" index="0"]
+[node name="HealthComponent" parent="GridEntity/UI" index="0" unique_id=1357245310]
 max_health = 10
 
 [node name="IntentArrow" parent="." index="4"]
@@ -19,5 +19,12 @@ visible = false
 [node name="Sprite2D" parent="." index="6"]
 scale = Vector2(0.52939326, 0.60244954)
 texture = ExtResource("3_my2fc")
+
+[node name="BogoTimer" type="Timer" parent="." index="7" unique_id=328426292]
+process_callback = 0
+wait_time = 100.0
+one_shot = true
+
+[connection signal="timeout" from="BogoTimer" to="." method="_on_bogo_timer_timeout"]
 
 [editable path="GridEntity"]

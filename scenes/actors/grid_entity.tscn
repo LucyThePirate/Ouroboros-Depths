@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://yqxyjxhsvfqi"]
+[gd_scene format=3 uid="uid://yqxyjxhsvfqi"]
 
 [ext_resource type="Script" uid="uid://l0k61db14icb" path="res://scripts/Actors/grid_entity.gd" id="1_u0fqg"]
 [ext_resource type="AudioStream" uid="uid://cxmd2cbaxkq6d" path="res://audio/SFX/Thump/125429__jspath1__three-bass-thumps-1.ogg" id="2_6nj4f"]
@@ -84,70 +84,70 @@ stream_0/stream = ExtResource("23_s0jro")
 stream_1/stream = ExtResource("24_8uxk8")
 stream_2/stream = ExtResource("25_fec15")
 
-[node name="GridEntity" type="CharacterBody2D" groups=["GridEntity"]]
+[node name="GridEntity" type="CharacterBody2D" unique_id=2058875871 groups=["GridEntity"]]
 top_level = true
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_u0fqg")
 description_scene = ExtResource("2_8uxk8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=410011685]
 shape = SubResource("RectangleShape2D_jo564")
 
-[node name="Thump" type="AudioStreamPlayer2D" parent="."]
+[node name="Thump" type="AudioStreamPlayer2D" parent="." unique_id=173140461]
 stream = SubResource("AudioStreamRandomizer_1ohuh")
 volume_db = 10.0
 bus = &"SFX"
 
-[node name="Step" type="AudioStreamPlayer2D" parent="."]
+[node name="Step" type="AudioStreamPlayer2D" parent="." unique_id=1732872707]
 stream = SubResource("AudioStreamRandomizer_qliy4")
 volume_db = 1.286
 bus = &"SFX"
 
-[node name="GrassStep" type="AudioStreamPlayer2D" parent="."]
+[node name="GrassStep" type="AudioStreamPlayer2D" parent="." unique_id=184499379]
 stream = SubResource("AudioStreamRandomizer_7asle")
 bus = &"SFX"
 
-[node name="WaterStep" type="AudioStreamPlayer2D" parent="."]
+[node name="WaterStep" type="AudioStreamPlayer2D" parent="." unique_id=1330243059]
 stream = SubResource("AudioStreamRandomizer_chbq4")
 bus = &"SFX"
 
-[node name="GlassThump" type="AudioStreamPlayer2D" parent="."]
+[node name="GlassThump" type="AudioStreamPlayer2D" parent="." unique_id=1268883726]
 stream = SubResource("AudioStreamRandomizer_yrye8")
 volume_db = 2.786
 pitch_scale = 1.61
 bus = &"SFX"
 
-[node name="PlantThump" type="AudioStreamPlayer2D" parent="."]
+[node name="PlantThump" type="AudioStreamPlayer2D" parent="." unique_id=125511617]
 stream = SubResource("AudioStreamRandomizer_adfhp")
 volume_db = -3.0
 pitch_scale = 0.94
 bus = &"SFX"
 
-[node name="Error" type="AudioStreamPlayer2D" parent="."]
+[node name="Error" type="AudioStreamPlayer2D" parent="." unique_id=181515783]
 stream = SubResource("AudioStreamRandomizer_fbare")
 volume_db = -7.037
 pitch_scale = 1.02
 bus = &"SFX"
 
-[node name="DoorOpen" type="AudioStreamPlayer2D" parent="."]
+[node name="DoorOpen" type="AudioStreamPlayer2D" parent="." unique_id=2127013777]
 stream = SubResource("AudioStreamRandomizer_vnsn2")
 volume_db = 8.254
 bus = &"SFX"
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=222249653]
 self_modulate = Color(1, 1, 0.345098, 0.301961)
 z_index = -1
 position = Vector2(1, 0.5)
 scale = Vector2(1, 1.03)
 texture = ExtResource("19_h3mly")
 
-[node name="SkillStackComponent" parent="." instance=ExtResource("22_off3y")]
+[node name="SkillStackComponent" parent="." unique_id=1500394995 instance=ExtResource("22_off3y")]
 position = Vector2(-85, -191)
 
-[node name="TurnComponent" parent="." instance=ExtResource("23_rfqsp")]
+[node name="TurnComponent" parent="." unique_id=733984913 instance=ExtResource("23_rfqsp")]
 
-[node name="UI" type="VBoxContainer" parent="."]
+[node name="UI" type="VBoxContainer" parent="." unique_id=1710592687]
 custom_minimum_size = Vector2(139.13, 37.22)
 anchors_preset = 13
 anchor_left = 0.5
@@ -161,21 +161,21 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="HealthComponent" parent="UI" instance=ExtResource("18_vnsn2")]
+[node name="HealthComponent" parent="UI" unique_id=1357245310 instance=ExtResource("18_vnsn2")]
 layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="StatusManagerComponent" parent="UI" instance=ExtResource("21_jyxbn")]
+[node name="StatusManagerComponent" parent="UI" unique_id=963295090 instance=ExtResource("21_jyxbn")]
 custom_minimum_size = Vector2(0, 3.52)
 layout_mode = 2
 
-[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+[node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1089424246]
 stream = SubResource("AudioStreamRandomizer_j0r3c")
 volume_db = 7.971
 bus = &"SFX"
 
-[node name="InfoButton" type="Button" parent="."]
+[node name="InfoButton" type="Button" parent="." unique_id=399282758]
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d2wq4gejffyd"]
+[gd_scene format=3 uid="uid://d2wq4gejffyd"]
 
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="1_exgt7"]
 [ext_resource type="Script" uid="uid://be6oo33bhfx63" path="res://scripts/Actors/player.gd" id="1_ochwc"]
@@ -117,60 +117,60 @@ scale_curve = SubResource("CurveTexture_wtlns")
 color_initial_ramp = SubResource("GradientTexture1D_itc60")
 alpha_curve = SubResource("CurveTexture_itc60")
 
-[node name="Player" type="Node2D" groups=["Player"]]
+[node name="Player" type="Node2D" unique_id=1080900466 groups=["Player"]]
 process_mode = 1
 script = ExtResource("1_ochwc")
 text_component = ExtResource("2_bg3lr")
 chrysalis_status_scene = ExtResource("3_b0c0w")
 metamorphosis_scene = ExtResource("4_wes0m")
 
-[node name="GridEntity" parent="." groups=["Player"] instance=ExtResource("1_exgt7")]
+[node name="GridEntity" parent="." unique_id=1217274743 groups=["Player"] instance=ExtResource("1_exgt7")]
 species_name = "You!"
 species_desc = "It is you!"
 
-[node name="Camera2D2" type="Camera2D" parent="GridEntity"]
+[node name="Camera2D2" type="Camera2D" parent="GridEntity" unique_id=1260474723]
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
-[node name="Display" type="Node2D" parent="."]
+[node name="Display" type="Node2D" parent="." unique_id=1874228332]
 top_level = true
 
-[node name="Area2D" type="Area2D" parent="Display"]
+[node name="Area2D" type="Area2D" parent="Display" unique_id=1938533876]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Display/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Display/Area2D" unique_id=1112779701]
 shape = SubResource("CircleShape2D_gokip")
 debug_color = Color(0.627606, 0.530906, 0, 0.42)
 
-[node name="ScarecrowVisual" parent="." instance=ExtResource("6_jfrsc")]
+[node name="ScarecrowVisual" parent="." unique_id=1510832620 instance=ExtResource("6_jfrsc")]
 position = Vector2(5, -31)
 scale = Vector2(0.208175, 0.208175)
 
-[node name="StateLabel" type="Label" parent="."]
+[node name="StateLabel" type="Label" parent="." unique_id=185221372]
 offset_left = -85.0
 offset_top = -222.0
 offset_right = -45.0
 offset_bottom = -199.0
 theme_override_fonts/font = ExtResource("8_wd2mq")
 
-[node name="MetamorphosisStart" type="AudioStreamPlayer" parent="."]
+[node name="MetamorphosisStart" type="AudioStreamPlayer" parent="." unique_id=769215891]
 stream = SubResource("AudioStreamRandomizer_u2nr5")
 bus = &"SFX"
 
-[node name="MetamorphosisEnd" type="AudioStreamPlayer" parent="."]
+[node name="MetamorphosisEnd" type="AudioStreamPlayer" parent="." unique_id=1412882208]
 stream = SubResource("AudioStreamRandomizer_ad5m5")
 pitch_scale = 1.06
 bus = &"SFX"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1309852199]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=2085914598]
 modulate = Color(1, 1, 1, 0)
 offset_right = 285.0
 offset_bottom = 473.0
 scale = Vector2(0.415, 0.415)
 texture = ExtResource("18_1vpxp")
 
-[node name="SoulCountDisplay" type="RichTextLabel" parent="CanvasLayer/TextureRect"]
+[node name="SoulCountDisplay" type="RichTextLabel" parent="CanvasLayer/TextureRect" unique_id=1788771446]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -187,7 +187,7 @@ text = "Souls: ???"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ChrysalisPrompt" type="RichTextLabel" parent="CanvasLayer/TextureRect"]
+[node name="ChrysalisPrompt" type="RichTextLabel" parent="CanvasLayer/TextureRect" unique_id=1473559020]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,7 +204,7 @@ text = "Enter Chrysalis"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="ActionIcon" type="TextureRect" parent="CanvasLayer/TextureRect"]
+[node name="ActionIcon" type="TextureRect" parent="CanvasLayer/TextureRect" unique_id=1879362193]
 layout_mode = 0
 offset_left = -57.8313
 offset_top = 421.687
@@ -215,16 +215,14 @@ script = ExtResource("19_u2nr5")
 action_name = &"Chrysalis"
 metadata/_custom_type_script = "uid://b57xlofytn3k"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ad5m5")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=100793250]
+libraries/ = SubResource("AnimationLibrary_ad5m5")
 
-[node name="Error" type="AudioStreamPlayer" parent="."]
+[node name="Error" type="AudioStreamPlayer" parent="." unique_id=458834818]
 stream = SubResource("AudioStreamRandomizer_itc60")
 bus = &"SFX"
 
-[node name="ExecutingParticles" type="GPUParticles2D" parent="."]
+[node name="ExecutingParticles" type="GPUParticles2D" parent="." unique_id=162672340]
 visible = false
 position = Vector2(4, 48)
 emitting = false

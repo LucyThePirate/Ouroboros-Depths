@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/MoTWI-CrashAlarm[loop].mp3-523f46c6d1abcb6575
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

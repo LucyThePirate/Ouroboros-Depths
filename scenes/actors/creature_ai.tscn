@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dctxwjwjiof17"]
+[gd_scene format=3 uid="uid://dctxwjwjiof17"]
 
 [ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_sxdqt"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="2_sxdqt"]
@@ -12,52 +12,52 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6hqks"]
 radius = 451.0
 
-[node name="creatureAI" type="Node2D" node_paths=PackedStringArray("visual") groups=["AI"]]
+[node name="creatureAI" type="Node2D" unique_id=1348487989 node_paths=PackedStringArray("visual") groups=["AI"]]
 script = ExtResource("1_sxdqt")
 visual = NodePath("LichTest")
 
-[node name="GridEntity" parent="." instance=ExtResource("2_sxdqt")]
+[node name="GridEntity" parent="." unique_id=1367490962 instance=ExtResource("2_sxdqt")]
 species_name = "Lich"
 species_desc = "A once-human who traded their soul for dark powers, and, more importantly, for baller-ass horns.
 
 "
 soul_count = 1
 
-[node name="DarkStarSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("3_aa227")]
+[node name="DarkStarSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1367490962, 1500394995) index="3" unique_id=1361350763 instance=ExtResource("3_aa227")]
 mouse_filter = 0
 count = 8
 skill_desc = ""
 
-[node name="WarpSkillStrategy" parent="GridEntity/SkillStackComponent" index="10" instance=ExtResource("4_rrpmr")]
+[node name="WarpSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1367490962, 1500394995) index="10" unique_id=2128303912 instance=ExtResource("4_rrpmr")]
 
-[node name="HealthComponent" parent="GridEntity/UI" index="0"]
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1367490962, 1710592687) index="0" unique_id=1357245310]
 max_health = 7
 
-[node name="Display" type="Node2D" parent="."]
+[node name="Display" type="Node2D" parent="." unique_id=1342699200]
 top_level = true
 
-[node name="LichTest" parent="." instance=ExtResource("5_tie3i")]
+[node name="LichTest" parent="." unique_id=1942057904 instance=ExtResource("5_tie3i")]
 y_sort_enabled = true
 position = Vector2(4, -63)
 scale = Vector2(0.3, 0.3)
 
-[node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("6_6hqks")]
+[node name="BaseRandomSkillPlanner" parent="." unique_id=189804747 instance=ExtResource("6_6hqks")]
 
-[node name="DetectionRadius" type="Area2D" parent="."]
+[node name="DetectionRadius" type="Area2D" parent="." unique_id=1914247948]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius" unique_id=1302417308]
 scale = Vector2(1.66251, 1.66251)
 shape = SubResource("CircleShape2D_6hqks")
 
-[node name="IntentArrow" type="Sprite2D" parent="."]
+[node name="IntentArrow" type="Sprite2D" parent="." unique_id=242101032]
 self_modulate = Color(0.968627, 0, 0.364706, 0.823529)
 texture = ExtResource("7_aa227")
 offset = Vector2(118, 1)
 
-[node name="IntentLabel" type="RichTextLabel" parent="."]
+[node name="IntentLabel" type="RichTextLabel" parent="." unique_id=699125564]
 offset_left = -36.0
 offset_top = -230.0
 offset_right = 4.0

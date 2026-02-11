@@ -11,7 +11,7 @@ signal spawn_wall(wall_coord)
 signal hurt(attacker, damage_amount)
 signal fell_off_map
 signal descended
-signal died
+signal died(is_despawning)
 signal performed_action
 signal reload_started
 signal absorbed_souls
@@ -261,7 +261,7 @@ func play_thump_sound(material):
 			thump_sound.play()
 
 
-func on_death() -> void:
+func on_death(is_despawning := false) -> void:
 	if state == States.IDLE:
 		health_component.health = 0
 		if is_instance_valid(last_hit_by) and last_hit_by is GridEntity:
@@ -270,7 +270,7 @@ func on_death() -> void:
 			last_hit_by.absorbed_souls.emit()
 		Global.entity_positions.erase(Global.floors.local_to_map(global_position))
 		state = States.DEAD
-		died.emit()
+		died.emit(is_despawning)
 
 
 func is_alive() -> bool:

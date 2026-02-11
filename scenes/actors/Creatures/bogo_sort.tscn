@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b04tvmeribd1k"]
+[gd_scene format=3 uid="uid://b04tvmeribd1k"]
 
 [ext_resource type="Texture2D" uid="uid://4aw2nf61m1op" path="res://textures/testing/bowserjr.png" id="1_djnkf"]
 [ext_resource type="Script" uid="uid://dvcwpl3qv0wsg" path="res://scripts/Actors/AI/bogo_sort.gd" id="1_qot6b"]
 [ext_resource type="AudioStream" uid="uid://b2kctwe7vp5ly" path="res://audio/Music/AstrMusic/computingnoises[ambient,singlenote].mp3" id="2_pmutu"]
 [ext_resource type="Shader" uid="uid://cukc10pani5oh" path="res://textures/shaders/bogo_sort.gdshader" id="3_vg0l5"]
+[ext_resource type="Theme" uid="uid://dsnesst3y61ol" path="res://resources/default_theme.tres" id="5_5l3vm"]
+[ext_resource type="AudioStream" uid="uid://bacths5cg7yud" path="res://audio/Music/AstrMusic/MoTWI-CrashAlarm[loop].mp3" id="5_qapfj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_26qul"]
 shader = ExtResource("3_vg0l5")
@@ -14,14 +16,149 @@ shader_parameter/attenuation = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_vg0l5"]
 radius = 8.0
 
-[node name="BogoSort" type="Node2D"]
+[sub_resource type="Animation" id="Animation_5l3vm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ambiance:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [16.971]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ambiance:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/BogoSortWarning:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/BogoSortWarning:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fdy7a"]
+resource_name = "spawning"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ambiance:volume_db")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5.0, 16.971]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ambiance:pitch_scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/BogoSortWarning:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/BogoSortWarning:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.2, 3.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5l3vm"]
+_data = {
+&"RESET": SubResource("Animation_5l3vm"),
+&"spawning": SubResource("Animation_fdy7a")
+}
+
+[node name="BogoSort" type="Node2D" unique_id=1963513333]
 script = ExtResource("1_qot6b")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1755340626]
 z_index = 15
 texture = ExtResource("1_djnkf")
 
-[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+[node name="ColorRect" type="ColorRect" parent="Sprite2D" unique_id=2086489115]
+z_index = 100
 material = SubResource("ShaderMaterial_26qul")
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,15 +171,18 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.4199603, 1.4199603)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." unique_id=574656954]
+unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 2
+monitoring = false
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=358726144]
 scale = Vector2(6.1437035, 6.1437035)
 shape = SubResource("CircleShape2D_vg0l5")
 
-[node name="Ambiance" type="AudioStreamPlayer2D" parent="."]
+[node name="Ambiance" type="AudioStreamPlayer2D" parent="." unique_id=1311892957]
 stream = ExtResource("2_pmutu")
 volume_db = 16.971
 autoplay = true
@@ -50,16 +190,48 @@ attenuation = 0.45062512
 panning_strength = 1.43
 bus = &"SFX"
 
-[node name="MessWithBlocksTimer" type="Timer" parent="."]
+[node name="NearbyWarningSFX" type="AudioStreamPlayer2D" parent="." unique_id=1392631530]
+unique_name_in_owner = true
+stream = ExtResource("5_qapfj")
+volume_db = 12.449
+pitch_scale = 0.13
+autoplay = true
+panning_strength = 1.43
+bus = &"Reverb SFX"
+
+[node name="MessWithBlocksTimer" type="Timer" parent="." unique_id=1879117795]
+unique_name_in_owner = true
 process_callback = 0
 wait_time = 0.25
-autostart = true
 
-[node name="LurchTimer" type="Timer" parent="."]
+[node name="LurchTimer" type="Timer" parent="." unique_id=1542623201]
+unique_name_in_owner = true
 process_callback = 0
 one_shot = true
-autostart = true
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=906984722]
+libraries/ = SubResource("AnimationLibrary_5l3vm")
+autoplay = &"spawning"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1482656651]
+
+[node name="BogoSortWarning" type="RichTextLabel" parent="CanvasLayer" unique_id=1157394763]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_right = -0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("5_5l3vm")
+bbcode_enabled = true
+text = "[color=RED][shake][font_size=30]SOMETHING DREADFUL AWAKES."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="MessWithBlocksTimer" to="." method="_on_mess_with_blocks_timer_timeout"]
 [connection signal="timeout" from="LurchTimer" to="." method="_on_lurch_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
