@@ -74,7 +74,7 @@ alpha_curve = SubResource("CurveTexture_4g2cj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eu30k"]
 shader = ExtResource("12_5cpdm")
-shader_parameter/bg_color = Color(0.1004845, 0.0010928267, 0.17081612, 1)
+shader_parameter/bg_color = Color(0.1309329, 0.12740707, 0.2680826, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qrcgv"]
 

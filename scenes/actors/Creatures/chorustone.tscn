@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b2gdh6pqutscc"]
+[gd_scene format=3 uid="uid://b2gdh6pqutscc"]
 
 [ext_resource type="Script" uid="uid://dvgonp868uqte" path="res://scripts/Actors/AI/stationary_ai.gd" id="1_l7r4i"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="1_sts7m"]
@@ -19,16 +19,16 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_k2ipq"]
 radius = 451.0
 
-[node name="Chorustone" type="Node2D" node_paths=PackedStringArray("visual") groups=["AI"]]
+[node name="Chorustone" type="Node2D" unique_id=1034486580 node_paths=PackedStringArray("visual") groups=["AI"]]
 script = ExtResource("1_l7r4i")
 visual = NodePath("Visual")
 
-[node name="GridEntity" parent="." instance=ExtResource("1_sts7m")]
+[node name="GridEntity" parent="." unique_id=1561726841 instance=ExtResource("1_sts7m")]
 species_name = "Chorustone"
 species_desc = "An aged statue that is given life by the wind flowing through it... Or, at least, something life-adjacent."
 soul_count = 1
 
-[node name="OrchestrateSkillStrategy" parent="GridEntity/SkillStackComponent" index="7" instance=ExtResource("2_l7r4i")]
+[node name="OrchestrateSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1561726841, 1500394995) index="7" unique_id=1609460078 instance=ExtResource("2_l7r4i")]
 mouse_filter = 0
 
 [node name="Sampler" parent="GridEntity/SkillStackComponent/OrchestrateSkillStrategy" index="4"]
@@ -38,38 +38,39 @@ env_attack = -0.27
 env_sustain = -0.385
 env_release = -0.365
 
-[node name="DefendSkillStrategy" parent="GridEntity/SkillStackComponent" index="8" instance=ExtResource("3_lijwr")]
+[node name="DefendSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1561726841, 1500394995) index="8" unique_id=251920382 instance=ExtResource("3_lijwr")]
 mouse_filter = 0
 count = 2
 
-[node name="HealthComponent" parent="GridEntity/UI" index="0"]
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1561726841, 1710592687) index="0" unique_id=1357245310]
 max_health = 5
 
-[node name="Shield" parent="GridEntity/UI/StatusManagerComponent" index="1" instance=ExtResource("4_pp5e1")]
+[node name="Shield" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1561726841, 963295090) index="1" unique_id=1977673439 instance=ExtResource("4_pp5e1")]
 layout_mode = 2
 power = 5
 
-[node name="Display" type="Node2D" parent="."]
+[node name="Display" type="Node2D" parent="." unique_id=40254362]
 top_level = true
 position = Vector2(0, -135)
 
-[node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("5_gyt15")]
+[node name="BaseRandomSkillPlanner" parent="." unique_id=1770670013 instance=ExtResource("5_gyt15")]
 
-[node name="DetectionRadius" type="Area2D" parent="."]
+[node name="DetectionRadius" type="Area2D" parent="." unique_id=286474346]
 collision_layer = 0
 collision_mask = 2
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius" unique_id=291939166]
 scale = Vector2(1.59033, 1.59033)
 shape = SubResource("CircleShape2D_k2ipq")
 
-[node name="IntentArrow" type="Sprite2D" parent="."]
+[node name="IntentArrow" type="Sprite2D" parent="." unique_id=1514900570]
 visible = false
 self_modulate = Color(0.968627, 0, 0.364706, 0.823529)
 texture = ExtResource("6_jde01")
 offset = Vector2(118, 1)
 
-[node name="IntentLabel" type="RichTextLabel" parent="."]
+[node name="IntentLabel" type="RichTextLabel" parent="." unique_id=1694632687]
 offset_left = -36.0
 offset_top = -230.0
 offset_right = 4.0
@@ -82,7 +83,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Visual" type="Sprite2D" parent="."]
+[node name="Visual" type="Sprite2D" parent="." unique_id=1255517218]
 position = Vector2(0, -171)
 scale = Vector2(0.745887, 0.745887)
 texture = ExtResource("8_mo24w")

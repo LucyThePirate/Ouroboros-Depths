@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cjo5qx0fo3bej"]
+[gd_scene format=3 uid="uid://cjo5qx0fo3bej"]
 
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/creatures/Soul.png" id="1_2lgn1"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="1_awmqf"]
@@ -25,7 +25,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("15_dkf3k")
 
-[node name="Metamorphosis" type="Control"]
+[node name="Metamorphosis" type="Control" unique_id=1883942213]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,17 +37,17 @@ buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3
 skill_icon_scene = ExtResource("10_emtfy")
 sold_out_texture = ExtResource("11_emtfy")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1448154992]
 layer = 100
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1987143535]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel" unique_id=1977299140]
 self_modulate = Color(0.405299, 0.262067, 0.0330478, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -57,7 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("13_ahco4")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel" unique_id=1813534090]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,11 +67,11 @@ grow_vertical = 2
 focus_mode = 1
 mouse_filter = 0
 
-[node name="Left" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="Left" type="Control" parent="CanvasLayer/Panel/HBoxContainer" unique_id=1855141957]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/HBoxContainer/Left"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/HBoxContainer/Left" unique_id=829978640]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,15 +79,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer" unique_id=1989470441]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer/CenterContainer" unique_id=82675657]
 layout_mode = 2
 texture = ExtResource("1_2lgn1")
 stretch_mode = 3
 
-[node name="SoulCount" type="RichTextLabel" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer/CenterContainer"]
+[node name="SoulCount" type="RichTextLabel" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer/CenterContainer" unique_id=780718140]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
@@ -100,15 +100,15 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Left/VBoxContainer" unique_id=1973951419]
 layout_mode = 2
 stretch_mode = 3
 
-[node name="Center" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="Center" type="Control" parent="CanvasLayer/Panel/HBoxContainer" unique_id=1909509898]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel/HBoxContainer/Center"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel/HBoxContainer/Center" unique_id=914831627]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -130,7 +130,7 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/HBoxContainer/Center"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/HBoxContainer/Center" unique_id=1819841407]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -139,10 +139,10 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer" unique_id=515257301]
 layout_mode = 2
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/CenterContainer"]
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/CenterContainer" unique_id=1132828558]
 custom_minimum_size = Vector2(95.18, 23.915)
 layout_mode = 2
 size_flags_vertical = 3
@@ -154,7 +154,7 @@ value = 15.0
 rounded = true
 show_percentage = false
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/CenterContainer/HealthBar"]
+[node name="Label" type="Label" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/CenterContainer/HealthBar" unique_id=2040574272]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -171,23 +171,23 @@ text = "???"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer" unique_id=1654874517]
 layout_mode = 2
 texture = ExtResource("4_o7w3c")
 stretch_mode = 3
 
-[node name="ConfirmButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer"]
+[node name="ConfirmButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer" unique_id=1158479440]
 layout_mode = 2
 focus_mode = 0
 text = "Confirm (Unspent souls = heal health)"
 
-[node name="Right" type="Control" parent="CanvasLayer/Panel/HBoxContainer"]
+[node name="Right" type="Control" parent="CanvasLayer/Panel/HBoxContainer" unique_id=695924035]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 1
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/HBoxContainer/Right"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/HBoxContainer/Right" unique_id=841659117]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -196,41 +196,41 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="BuySkillContainer" type="GridContainer" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer"]
+[node name="BuySkillContainer" type="GridContainer" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer" unique_id=506003404]
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 2
 columns = 3
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer" unique_id=1311641887]
 custom_minimum_size = Vector2(0, 23.275)
 layout_mode = 2
 
-[node name="UpgradesContainer" type="GridContainer" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer"]
+[node name="UpgradesContainer" type="GridContainer" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer" unique_id=1089057721]
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 2
 columns = 3
 
-[node name="RerollSkillsButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer"]
+[node name="RerollSkillsButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer" unique_id=1513325453]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 focus_mode = 0
 text = "Reroll Skills - 3 souls"
 expand_icon = true
 
-[node name="RemoveSkillButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer"]
+[node name="RemoveSkillButton" type="Button" parent="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer" unique_id=700038386]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 focus_mode = 0
 text = "Remove Skill - 3 souls"
 expand_icon = true
 
-[node name="SkillBought" type="AudioStreamPlayer" parent="."]
+[node name="SkillBought" type="AudioStreamPlayer" parent="." unique_id=1485851325]
 stream = SubResource("AudioStreamRandomizer_o4b0d")
 bus = &"SFX"
 
-[node name="RerollSkillsBought" type="AudioStreamPlayer" parent="."]
+[node name="RerollSkillsBought" type="AudioStreamPlayer" parent="." unique_id=2090518383]
 stream = SubResource("AudioStreamRandomizer_o4b0d")
 bus = &"SFX"
 

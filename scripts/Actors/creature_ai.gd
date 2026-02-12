@@ -18,12 +18,13 @@ var status_manager_component = $GridEntity/UI/StatusManagerComponent as StatusMa
 @onready var intent_arrow = $IntentArrow
 
 var initialized = false
-var in_darkness = false
+var in_darkness = true
 var level: Node2D
 var angry_at: GridEntity
 @onready var intent := "Do Nothing"
 @onready var intent_label = $IntentLabel
 var intent_direction := Vector2i.ZERO
+var potential_targets: Array[GridEntity] = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -82,6 +83,7 @@ func update_intent():
 	if not angry_at:
 		intent = "Move"
 		intent_direction = get_random_direction() as Vector2i
+		check_for_targets()
 	else:
 		intent = "Move"
 		intent_direction = pursue_entity(angry_at)
@@ -159,17 +161,19 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 	initialized = true
 
 
-func _on_grid_entity_died(is_despawning) -> void:
+func _on_grid_entity_died(_is_despawning) -> void:
 	_update_angry_at(null)
 	queue_free()
 
 
-func _on_grid_entity_hurt(attacker: GridEntity, damage_amount: int) -> void:
+func _on_grid_entity_hurt(attacker: GridEntity, _damage_amount: int) -> void:
 	if grid_entity.is_alive():
 		_update_angry_at(attacker)
 
 
 func _update_angry_at(new_target: GridEntity):
+	if not initialized:
+		return
 	if new_target == angry_at:
 		return
 	if new_target == null:
@@ -188,6 +192,24 @@ func _update_angry_at(new_target: GridEntity):
 	angry_at = new_target
 	angry_at.died.connect(_on_angry_at_died)
 	print(name, " pissed at ", new_target.name)
+
+
+func check_for_targets():
+	if potential_targets.is_empty():
+		return
+	var random_target_index = randi_range(0, potential_targets.size() - 1)
+	if not potential_targets[random_target_index]:
+		potential_targets.remove_at(random_target_index)
+	else:
+		var potential_target = potential_targets[random_target_index]
+		# Check for LOS to target
+		var space_state = get_world_2d().direct_space_state
+		var query = PhysicsRayQueryParameters2D.create(
+			global_position, potential_target.global_position
+		)
+		var result = space_state.intersect_ray(query)
+		if result.is_empty():
+			_update_angry_at(potential_target)
 
 
 func can_aggro_against(new_target: GridEntity) -> bool:
@@ -229,7 +251,14 @@ func _on_base_random_skill_planner_awaited_cursor_input() -> void:
 
 
 func _on_detection_radius_body_entered(body: Node2D) -> void:
-	if angry_at:
-		return
-	if body.is_in_group("Player") and not in_darkness:
-		_update_angry_at(body)
+	if body.is_in_group("Player") and can_aggro_against(body) and body not in potential_targets:
+		potential_targets.append(body)
+	#if angry_at:
+	#return
+	#if body.is_in_group("Player") and not in_darkness:
+	#_update_angry_at(body)
+
+
+func _on_detection_radius_body_exited(body: Node2D) -> void:
+	if body in potential_targets:
+		potential_targets.remove_at(potential_targets.find(body))

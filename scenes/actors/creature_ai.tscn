@@ -44,6 +44,7 @@ scale = Vector2(0.3, 0.3)
 [node name="BaseRandomSkillPlanner" parent="." unique_id=189804747 instance=ExtResource("6_6hqks")]
 
 [node name="DetectionRadius" type="Area2D" parent="." unique_id=1914247948]
+unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 2
 monitorable = false

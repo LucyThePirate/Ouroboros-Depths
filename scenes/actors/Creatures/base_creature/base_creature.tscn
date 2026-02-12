@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnwm511b35g76"]
+[gd_scene format=3 uid="uid://dnwm511b35g76"]
 
 [ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_6r2tr"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="2_nyqal"]
@@ -10,40 +10,41 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_deqbg"]
 radius = 451.0
 
-[node name="BaseCreature" type="Node2D" node_paths=PackedStringArray("visual")]
+[node name="BaseCreature" type="Node2D" unique_id=707297936 node_paths=PackedStringArray("visual")]
 script = ExtResource("1_6r2tr")
 visual = NodePath("Sprite2D")
 
-[node name="GridEntity" parent="." instance=ExtResource("2_nyqal")]
+[node name="GridEntity" parent="." unique_id=1162874930 instance=ExtResource("2_nyqal")]
 species_name = "Default Creature"
 species_desc = "A creature that is remarkable in how unremarkable it is."
 
-[node name="SkillStackComponent" parent="GridEntity" index="10"]
+[node name="SkillStackComponent" parent="GridEntity" index="10" unique_id=1500394995]
 visible = false
 
-[node name="HealthComponent" parent="GridEntity/UI" index="0"]
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
 max_health = 4
 
-[node name="Display" type="Node2D" parent="."]
+[node name="Display" type="Node2D" parent="." unique_id=1627324750]
 top_level = true
 position = Vector2(0, -34)
 
-[node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("4_dn3ie")]
+[node name="BaseRandomSkillPlanner" parent="." unique_id=1557162231 instance=ExtResource("4_dn3ie")]
 
-[node name="DetectionRadius" type="Area2D" parent="."]
+[node name="DetectionRadius" type="Area2D" parent="." unique_id=795154734]
 collision_layer = 0
 collision_mask = 2
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius" unique_id=648668539]
 scale = Vector2(1.59033, 1.59033)
 shape = SubResource("CircleShape2D_deqbg")
 
-[node name="IntentArrow" type="Sprite2D" parent="."]
+[node name="IntentArrow" type="Sprite2D" parent="." unique_id=132546320]
 self_modulate = Color(0.968627, 0, 0.364706, 0.823529)
 texture = ExtResource("5_rb8ws")
 offset = Vector2(118, 1)
 
-[node name="IntentLabel" type="RichTextLabel" parent="."]
+[node name="IntentLabel" type="RichTextLabel" parent="." unique_id=798491599]
 offset_left = -36.0
 offset_top = -230.0
 offset_right = 4.0
@@ -56,7 +57,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=619217628]
 position = Vector2(-1, -28)
 scale = Vector2(5.144737, 5.855263)
 texture = ExtResource("7_nyqal")
@@ -68,5 +69,6 @@ texture = ExtResource("7_nyqal")
 [connection signal="awaited_cursor_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_cursor_input"]
 [connection signal="awaited_directional_input" from="BaseRandomSkillPlanner" to="." method="_on_base_random_skill_planner_awaited_directional_input"]
 [connection signal="body_entered" from="DetectionRadius" to="." method="_on_detection_radius_body_entered"]
+[connection signal="body_exited" from="DetectionRadius" to="." method="_on_detection_radius_body_exited"]
 
 [editable path="GridEntity"]

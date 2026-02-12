@@ -42,6 +42,7 @@ func _ready() -> void:
 	if not grid_parent:
 		return
 	Global.metamorphosis_started.emit()
+	get_tree().paused = true
 	#for soul in range(grid_parent.soul_count):
 	#souls += soul + 1
 	souls = grid_parent.soul_count
@@ -90,6 +91,7 @@ func _on_confirm_button_pressed() -> void:
 	grid_parent.heal(grid_parent.soul_count)
 	grid_parent.soul_count = 0
 	metamorphosis_completed.emit()
+	get_tree().paused = false
 	queue_free()
 
 

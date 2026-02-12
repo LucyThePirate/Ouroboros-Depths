@@ -72,3 +72,7 @@ func _on_grid_entity_died(is_despawning) -> void:
 
 func _on_bogo_timer_timeout() -> void:
 	egg_timer_expired.emit()
+
+
+func _update_angry_at(_new_target: GridEntity):
+	return

@@ -110,20 +110,15 @@ func _ready():
 	for i in range(8):
 		try_spawning_random_monster(false)
 	spawn_bogo_egg()
-	_initialize_entities()
 	_initialize_fog()
 	player.grid_entity.warp($Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0])
 	Global.entity_positions[$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]] = (
 		player.grid_entity
 	)
+	_initialize_entities()
 
 
 func _initialize_fog():
-	astar_grid = AStarGrid2D.new()
-	astar_grid.region = Global.walls.get_used_rect()
-	astar_grid.cell_size = Vector2(100, 100)
-	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
-	astar_grid.update()
 	for x in Global.walls.get_used_rect().size.x:
 		for y in Global.walls.get_used_rect().size.y:
 			var tile_position = Vector2i(
@@ -132,10 +127,6 @@ func _initialize_fog():
 			)
 			darkness.set_cell(tile_position, fog_tile[0], fog_tile[1])
 			var tile_data = Global.walls.get_cell_tile_data(tile_position)
-
-			if tile_data != null:
-				if tile_data.get_custom_data("occluding") == true:
-					astar_grid.set_point_solid(tile_position, true)
 
 	for tile_position in fog.get_used_cells():
 		var empty_tile = (
@@ -191,6 +182,7 @@ func _redraw_map():
 	angry_at_player = 0
 	Global.floors.clear()
 	Global.walls.clear()
+	fog.clear()
 	_update_fog(
 		Global.floors.local_to_map(player.grid_entity.global_position),
 		Global.floors.local_to_map(player.grid_entity.global_position)
@@ -340,7 +332,6 @@ func _entity_finished_turn(grid_entity: GridEntity):
 
 func _open_door(door_coords):
 	walls.set_cell(door_coords, -1)
-	astar_grid.set_point_solid(door_coords, false)
 
 
 func _push_tile(tile_coords, direction):
@@ -354,7 +345,6 @@ func _push_tile(tile_coords, direction):
 	if not Global.floors.get_cell_tile_data(tile_coords + direction):
 		walls.set_cell(tile_coords, -1)
 		floors.set_cell(tile_coords + direction, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
-		astar_grid.set_point_solid(tile_coords, false)
 		return
 
 	if Global.floors.get_cell_tile_data(tile_coords + direction).get_custom_data("is_liquid"):
@@ -368,9 +358,7 @@ func _push_tile(tile_coords, direction):
 			walls.get_cell_source_id(tile_coords),
 			walls.get_cell_atlas_coords(tile_coords)
 		)
-		astar_grid.set_point_solid(tile_coords + direction, true)
 	walls.set_cell(tile_coords, -1)
-	astar_grid.set_point_solid(tile_coords, false)
 
 
 func spawn_tile(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):

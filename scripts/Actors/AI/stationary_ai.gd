@@ -37,6 +37,7 @@ func update_intent():
 	if not angry_at:
 		intent = "Move"
 		intent_direction = Vector2i.ZERO
+		check_for_targets()
 	else:
 		intent = "Move"
 		intent_direction = pursue_entity(angry_at)

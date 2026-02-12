@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://g7fhohrlv81x"]
+[gd_scene format=3 uid="uid://g7fhohrlv81x"]
 
 [ext_resource type="Script" uid="uid://b1dpe7lobi7df" path="res://scripts/Actors/AI/fuzz_tester_ai.gd" id="1_netfx"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="2_bobr6"]
@@ -11,11 +11,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6hqks"]
 radius = 451.0
 
-[node name="FuzzTester" type="Node2D" node_paths=PackedStringArray("visual") groups=["AI"]]
+[node name="FuzzTester" type="Node2D" unique_id=711189580 node_paths=PackedStringArray("visual") groups=["AI"]]
 script = ExtResource("1_netfx")
 visual = NodePath("FuzzerVisual")
 
-[node name="GridEntity" parent="." instance=ExtResource("2_bobr6")]
+[node name="GridEntity" parent="." unique_id=625960076 instance=ExtResource("2_bobr6")]
 species_name = "Fuzz Tester"
 species_desc = "A bizarre creature sporting garish colors and a tubular mouth.
 
@@ -24,35 +24,35 @@ Even within their own species, Fuzz Testers differ wildly from each other.
 Due to their tendency to pick fights with anything that moves, it is not a bad idea to study their skirmishes from a safe distance before engaging."
 soul_count = 2
 
-[node name="PossibilitiesSkillStrategy" parent="GridEntity/SkillStackComponent" index="9" instance=ExtResource("3_netfx")]
+[node name="PossibilitiesSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(625960076, 1500394995) index="9" unique_id=638108110 instance=ExtResource("3_netfx")]
 
-[node name="HealthComponent" parent="GridEntity/UI" index="0"]
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(625960076, 1710592687) index="0" unique_id=1357245310]
 max_health = 10
 
-[node name="Display" type="Node2D" parent="."]
+[node name="Display" type="Node2D" parent="." unique_id=54024428]
 top_level = true
 position = Vector2(0, -34)
 
-[node name="FuzzerVisual" parent="." instance=ExtResource("4_netfx")]
+[node name="FuzzerVisual" parent="." unique_id=689876701 instance=ExtResource("4_netfx")]
 position = Vector2(3, 18)
 scale = Vector2(0.41309628, 0.41309628)
 
-[node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("6_tfv2e")]
+[node name="BaseRandomSkillPlanner" parent="." unique_id=1053001758 instance=ExtResource("6_tfv2e")]
 
-[node name="DetectionRadius" type="Area2D" parent="."]
+[node name="DetectionRadius" type="Area2D" parent="." unique_id=491649276]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius" unique_id=910469658]
 scale = Vector2(1.59033, 1.59033)
 shape = SubResource("CircleShape2D_6hqks")
 
-[node name="IntentArrow" type="Sprite2D" parent="."]
+[node name="IntentArrow" type="Sprite2D" parent="." unique_id=1836652253]
 self_modulate = Color(0.968627, 0, 0.364706, 0.823529)
 texture = ExtResource("7_18tjo")
 offset = Vector2(118, 1)
 
-[node name="IntentLabel" type="RichTextLabel" parent="."]
+[node name="IntentLabel" type="RichTextLabel" parent="." unique_id=600102492]
 offset_left = -36.0
 offset_top = -230.0
 offset_right = 4.0
