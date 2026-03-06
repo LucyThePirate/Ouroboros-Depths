@@ -43,21 +43,26 @@ func deal_damage(damage_amount = 1):
 func heal(heal_amount):
 	if heal_amount <= 0:
 		return
+	var healed_amount = health
 	health = min(health + heal_amount, max_health)
+	healed_amount = abs(health - healed_amount)
 	healed.emit()
+	if healed_amount <= 0:
+		return
 	if not is_instance_valid(current_heal_number):
 		current_heal_number = damage_number_scene.instantiate()
-		current_heal_number.add_heal(heal_amount)
+		current_heal_number.add_heal(healed_amount)
 		current_heal_number.global_position = global_position
 		get_tree().current_scene.add_child(current_heal_number)
 	else:
-		current_heal_number.add_heal(heal_amount)
+		current_heal_number.add_heal(healed_amount)
 		current_heal_number.global_position = global_position
 	_update_health_bar()
 
 
 func turn_ended():
 	current_damage_number = null
+	current_heal_number = null
 
 
 func set_color(new_color: Color):

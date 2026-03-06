@@ -20,6 +20,7 @@ var base_font_size = 37
 
 func _ready():
 	display_location.velocity = Vector2(randf_range(-SPREAD, SPREAD), -INITIAL_VELOCITY)
+	global_position += Vector2(randf(), randf())
 
 
 func add_damage(amount: int):

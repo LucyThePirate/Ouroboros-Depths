@@ -5,8 +5,9 @@ class_name StatusStrategy
 signal status_ended(StatusStrategy)
 signal power_changed
 signal max_power_reached
+signal healed(heal_amount)
 
-enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS, VIGOR }
+enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS, VIGOR, REGEN }
 
 @export_category("Lore")
 @export var status_name := "Default Status Name"

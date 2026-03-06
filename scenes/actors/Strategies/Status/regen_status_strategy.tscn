@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://s0ow7k38e4wl"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_6f0op"]
+[ext_resource type="Script" uid="uid://n28mkm2s83e1" path="res://scripts/Actors/Strategies/Status/regen_status_strategy.gd" id="2_0rsjw"]
+[ext_resource type="Texture2D" uid="uid://cmbifj4gnu1jd" path="res://textures/statuses/Regen.png" id="2_jlxun"]
+
+[node name="RegenStatusStrategy" unique_id=1047461156 instance=ExtResource("1_6f0op")]
+script = ExtResource("2_0rsjw")
+status_name = "Regen"
+status_desc = "This creature is regenerating health. Every turn, they will recover health equal to its power."
+power = 5
+status_ID = 6
+
+[node name="TextureRect" parent="." index="0" unique_id=1155837054]
+texture = ExtResource("2_jlxun")

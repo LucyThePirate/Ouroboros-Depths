@@ -119,6 +119,7 @@ alpha_curve = SubResource("CurveTexture_itc60")
 
 [node name="Player" type="Node2D" unique_id=1080900466 groups=["Player"]]
 process_mode = 1
+position = Vector2(0, 2)
 script = ExtResource("1_ochwc")
 text_component = ExtResource("2_bg3lr")
 chrysalis_status_scene = ExtResource("3_b0c0w")

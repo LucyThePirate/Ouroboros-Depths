@@ -15,6 +15,7 @@ func _ready() -> void:
 		grid_entity.reload_started.connect(on_reload_started)
 		grid_entity.descended.connect(on_next_floor_reached)
 	for status in Debug.find_children_in_group(self, "Status") as Array[StatusStrategy]:
+		status.healed.connect(_on_status_healed)
 		status.reparent(status_bar)
 		initialize_status(status)
 
@@ -82,3 +83,7 @@ func get_status_descriptions():
 		}
 		descriptions.append(new_desc)
 	return descriptions
+
+
+func _on_status_healed(heal_amount := 1):
+	grid_entity.heal(heal_amount)

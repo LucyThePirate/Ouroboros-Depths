@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqjoguhw8mhj"]
+[gd_scene format=3 uid="uid://cqjoguhw8mhj"]
 
 [ext_resource type="Script" uid="uid://dy336n4e7xyrx" path="res://scripts/Actors/AI/tutorial_scarecrow_ai.gd" id="1_i1trn"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="1_utsqi"]
@@ -11,42 +11,44 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_vielv"]
 radius = 692.6265
 
-[node name="TutorialScarecrow" type="Node2D" node_paths=PackedStringArray("visual")]
+[node name="TutorialScarecrow" type="Node2D" unique_id=322873272 node_paths=PackedStringArray("visual")]
 script = ExtResource("1_i1trn")
 text_scene = ExtResource("2_3rpcw")
 text_to_display = "Default Text!"
 visual = NodePath("ScarecrowVisual")
 
-[node name="GridEntity" parent="." instance=ExtResource("1_utsqi")]
+[node name="GridEntity" parent="." unique_id=1615670255 instance=ExtResource("1_utsqi")]
 species_name = "Scarecrow"
-species_desc = "A grinning jack-o-lantern peers into your soul. It sways uncannily on its own volition, but nonetheless seems to be friendly enough.
+species_desc = "A grinning jack-o-lantern peers into your soul, eagerly awaiting for you to smash it to pieces.
+
+It sways uncannily on its own volition, but nonetheless seems to be friendly enough.
 
 It is said that jack-o-lanterns keep evil spirits at bay."
 
-[node name="HealthComponent" parent="GridEntity/UI" index="0"]
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1615670255, 1710592687) index="0" unique_id=1357245310]
 max_health = 5
 
-[node name="Display" type="Node2D" parent="."]
+[node name="Display" type="Node2D" parent="." unique_id=1525120240]
 top_level = true
 position = Vector2(0, -135)
 
-[node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("2_i1trn")]
+[node name="BaseRandomSkillPlanner" parent="." unique_id=1888051578 instance=ExtResource("2_i1trn")]
 
-[node name="DetectionRadius" type="Area2D" parent="."]
+[node name="DetectionRadius" type="Area2D" parent="." unique_id=610409674]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius" unique_id=37217333]
 scale = Vector2(0.488689, 0.488689)
 shape = SubResource("CircleShape2D_vielv")
 
-[node name="IntentArrow" type="Sprite2D" parent="."]
+[node name="IntentArrow" type="Sprite2D" parent="." unique_id=455804481]
 visible = false
 self_modulate = Color(0.968627, 0, 0.364706, 0.823529)
 texture = ExtResource("3_3rpcw")
 offset = Vector2(118, 1)
 
-[node name="IntentLabel" type="RichTextLabel" parent="."]
+[node name="IntentLabel" type="RichTextLabel" parent="." unique_id=506035740]
 offset_left = -36.0
 offset_top = -230.0
 offset_right = 4.0
@@ -59,7 +61,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ScarecrowVisual" parent="." instance=ExtResource("5_8jod5")]
+[node name="ScarecrowVisual" parent="." unique_id=957441871 instance=ExtResource("5_8jod5")]
 scale = Vector2(0.233661, 0.233661)
 
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
