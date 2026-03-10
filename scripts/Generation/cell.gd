@@ -72,6 +72,8 @@ func _ready():
 	%Fog.show()
 	%Darkness.show()
 	_on_unpaused()
+	if tutorial_level:
+		Global.metamorphosis_completed.connect(_on_metamorphosis_tutorial_completed)
 	#get_window().focus_exited.connect(_on_paused)
 	#get_tree().get_root().focus_exited.connect(_on_paused)
 	#get_viewport().gui_focus_changed.connect(_on_paused)
@@ -168,7 +170,6 @@ func _update_dynamic_music():
 
 func _redraw_map():
 	if tutorial_level:
-		$Controls.hide()
 		get_tree().change_scene_to_file(title_scene)
 		return
 	Global.next_floor_reached.emit()
@@ -444,6 +445,11 @@ func _on_new_run_button_pressed() -> void:
 func _on_title_screen_button_pressed() -> void:
 	_on_unpaused()
 	get_tree().change_scene_to_file(title_scene)
+
+
+func _on_metamorphosis_tutorial_completed() -> void:
+	Global.walls.set_cell(Vector2i(9, -15), -1)
+	Global.walls.set_cell(Vector2i(10, -15), -1)
 
 
 func _on_bogo_timer_timeout() -> void:

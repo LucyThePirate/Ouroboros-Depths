@@ -55,6 +55,7 @@ var moved_by_skill := false
 
 func _ready() -> void:
 	show()
+	%Stack.hide()
 	$CanvasLayer/SkillBagList.hide()
 
 
@@ -350,6 +351,11 @@ func _update_turn_cooldown():
 
 func _update_cooldown_visuals():
 	if state == States.RELOADING:
+		%TurnsTilReloadText.show()
+		if shuffle_turns != 1:
+			%TurnsTilReloadText.text = "%s turns 'til reload complete" % shuffle_turns
+		else:
+			%TurnsTilReloadText.text = "%s turn 'til reload complete" % shuffle_turns
 		for skill in range(hand_size):
 			var progress_bar = (
 				get_node(
@@ -368,6 +374,8 @@ func _update_cooldown_visuals():
 			progress_bar.add_theme_stylebox_override("fill", new_style_box)
 			progress_bar.value = percentage
 		return
+	else:
+		%TurnsTilReloadText.hide()
 	for skill in range(hand.size()):
 		if not hand[skill]:
 			continue

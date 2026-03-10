@@ -19,4 +19,3 @@ func onClick(id: int):
 	text = "Velocity: " + popUp.get_item_text(idx)
 
 	emit_signal("switch_velocity", values[idx])
-
