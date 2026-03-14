@@ -45,3 +45,7 @@ theme_override_font_sizes/font_size = 38
 text = "15"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DamageNumberSpawn" type="Marker2D" parent="." unique_id=781135309]
+unique_name_in_owner = true
+position = Vector2(164.08215, -20.846502)

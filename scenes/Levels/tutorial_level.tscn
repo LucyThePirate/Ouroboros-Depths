@@ -723,7 +723,9 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "Creatures act after you do.
 
-         .   : Pass turn
+              .   : Pass turn
+
+              .   : Pass MANY turns
 
 "
 fit_content = true
@@ -733,12 +735,35 @@ autowrap_mode = 0
 [node name="ActionIcon5" type="TextureRect" parent="TutorialText/Wait Tutorial" unique_id=532215428]
 show_behind_parent = true
 layout_mode = 0
-offset_left = -10.0
+offset_left = 35.999996
 offset_top = 50.999996
-offset_right = 90.0
+offset_right = 136.0
 offset_bottom = 91.0
 scale = Vector2(1.89696, 1.89696)
 script = ExtResource("17_1enxm")
+metadata/_custom_type_script = "uid://b57xlofytn3k"
+
+[node name="ActionIcon6" type="TextureRect" parent="TutorialText/Wait Tutorial" unique_id=1911135124]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 35.999996
+offset_top = 124.999985
+offset_right = 136.0
+offset_bottom = 164.99998
+scale = Vector2(1.89696, 1.89696)
+script = ExtResource("17_1enxm")
+metadata/_custom_type_script = "uid://b57xlofytn3k"
+
+[node name="ActionIcon7" type="TextureRect" parent="TutorialText/Wait Tutorial" unique_id=1068499684]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -44.999996
+offset_top = 126.999985
+offset_right = 55.000004
+offset_bottom = 166.99998
+scale = Vector2(1.89696, 1.89696)
+script = ExtResource("17_1enxm")
+action_name = &"Run"
 metadata/_custom_type_script = "uid://b57xlofytn3k"
 
 [node name="SkillComboTutorial" type="Control" parent="TutorialText" unique_id=219907556]

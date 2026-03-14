@@ -15,8 +15,8 @@ script = ExtResource("1_6r2tr")
 visual = NodePath("Sprite2D")
 
 [node name="GridEntity" parent="." unique_id=1162874930 instance=ExtResource("2_nyqal")]
-species_name = "Default Creature"
-species_desc = "A creature that is remarkable in how unremarkable it is."
+species_name = "Something??"
+species_desc = "A creature who hasn't had their description set. What could it be???"
 
 [node name="SkillStackComponent" parent="GridEntity" index="10" unique_id=1500394995]
 visible = false

@@ -14,7 +14,7 @@ signal descended
 signal died(is_despawning)
 signal performed_action
 signal reload_started
-signal absorbed_souls
+signal absorbed_souls(soul_position)
 
 #@export var soul_scene: PackedScene
 
@@ -267,7 +267,7 @@ func on_death(is_despawning := false) -> void:
 		if is_instance_valid(last_hit_by) and last_hit_by is GridEntity:
 			last_hit_by.soul_count += soul_count + 1
 			last_hit_by.kills += 1
-			last_hit_by.absorbed_souls.emit()
+			last_hit_by.absorbed_souls.emit(global_position)
 		Global.entity_positions.erase(Global.floors.local_to_map(global_position))
 		state = States.DEAD
 		died.emit(is_despawning)

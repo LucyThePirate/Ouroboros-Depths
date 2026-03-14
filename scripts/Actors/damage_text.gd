@@ -58,7 +58,7 @@ func add_heal(amount: int):
 	var text_color = Color(1.0 - heal_effect_percentage, 1.0, 1.0 - heal_effect_percentage)
 	display_text.self_modulate = text_color
 	display_text.text = (
-		"[wave freq=%s amp=%s][font_size=%s]%s[/font_size][/wave]"
+		"[u][wave freq=%s amp=%s][font_size=%s]%s[/font_size][/wave]"
 		% [
 			heal_effect_percentage * 50,
 			heal_effect_percentage * 50,
@@ -91,7 +91,10 @@ func add_damage_shield(amount: int):
 
 
 func _physics_process(delta: float) -> void:
-	display_location.velocity.y += GRAVITY * delta
+	if heal_amount > 0:
+		display_location.velocity.y -= GRAVITY * delta
+	else:
+		display_location.velocity.y += GRAVITY * delta
 	display_location.velocity.y = clampf(
 		display_location.velocity.y, -TERMINAL_VELOCITY, TERMINAL_VELOCITY
 	)

@@ -28,11 +28,11 @@ func deal_damage(damage_amount = 1):
 	if not is_instance_valid(current_damage_number):
 		current_damage_number = damage_number_scene.instantiate()
 		current_damage_number.add_damage(damage_amount)
-		current_damage_number.global_position = global_position
+		current_damage_number.global_position = %DamageNumberSpawn.global_position
 		get_tree().current_scene.add_child(current_damage_number)
 	else:
 		current_damage_number.add_damage(damage_amount)
-		current_damage_number.global_position = global_position
+		current_damage_number.global_position = %DamageNumberSpawn.global_position
 	if health <= 0:
 		died.emit()
 	else:
@@ -52,11 +52,11 @@ func heal(heal_amount):
 	if not is_instance_valid(current_heal_number):
 		current_heal_number = damage_number_scene.instantiate()
 		current_heal_number.add_heal(healed_amount)
-		current_heal_number.global_position = global_position
+		current_heal_number.global_position = %DamageNumberSpawn.global_position
 		get_tree().current_scene.add_child(current_heal_number)
 	else:
 		current_heal_number.add_heal(healed_amount)
-		current_heal_number.global_position = global_position
+		current_heal_number.global_position = %DamageNumberSpawn.global_position
 	_update_health_bar()
 
 

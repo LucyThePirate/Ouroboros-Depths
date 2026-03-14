@@ -148,17 +148,11 @@ func generate_level():
 	#for i in range(cell_size):
 	#chance_gradient.append(range(1, cell_size + 1))
 
-	for e_a in expandable_areas:
-		if e_a not in cells:
-			var nature_tile_chance = 0.0
-			for a in adjacent:
-				if e_a + a in possible_rooms:
-					nature_tile_chance += pow(0.5, 2)
-			for x in range(e_a.x * cell_size, e_a.x * cell_size + cell_size):
-				for y in range(e_a.y * cell_size, e_a.y * cell_size + cell_size):
-					if nature_tile_chance > noise.get_noise_2dv(Vector2i(x, y)):
-						#_place_nature_tile(Vector2i(x, y))
-						pass
+	for cell in floors.get_used_cells():
+		for neighbor_cell in floors.get_surrounding_cells(cell):
+			if not floors.get_cell_tile_data(neighbor_cell):
+				floors.set_cell(neighbor_cell, stone_floor_tile[0], stone_floor_tile[1])
+				walls.set_cell(neighbor_cell, stone_wall_tile[0], stone_wall_tile[1])
 
 	var bogo_room = expandable_areas.pick_random()
 	for x in range(bogo_room.x * cell_size, bogo_room.x * cell_size + cell_size):
