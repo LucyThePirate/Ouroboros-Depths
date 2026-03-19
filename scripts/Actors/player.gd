@@ -8,6 +8,7 @@ signal descended
 @export var chrysalis_status_scene: PackedScene
 @export var metamorphosis_scene: PackedScene
 
+@onready var soul_particle_effect := preload("uid://doabdeo7r61yu")
 @onready var current_text: TextComponent
 @onready var current_error_text: TextComponent
 @onready var grid_entity = $GridEntity
@@ -35,6 +36,7 @@ func _ready() -> void:
 	_load_deck()
 	stack_component.initialize(grid_entity, true, turn_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
+	update_soul_counter()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -151,6 +153,7 @@ func _metamorphing_interrupted(_status):
 func _metamorphing_started():
 	if state == States.METAMORPHOSIS_STARTED:
 		state = States.METAMORPHING
+		update_soul_counter()
 		var new_metamorph = metamorphosis_scene.instantiate()
 		new_metamorph.grid_parent = grid_entity
 		new_metamorph.metamorphosis_completed.connect(_metamorphing_completed)
@@ -265,12 +268,20 @@ func _on_grid_entity_fell_off_map() -> void:
 
 
 func _on_grid_entity_absorbed_souls(soul_position: Vector2) -> void:
-	pass
+	var new_soul_particle = soul_particle_effect.instantiate() as SoulParticleEffect
+	new_soul_particle.target = grid_entity
+	new_soul_particle.global_position = soul_position
+	get_tree().current_scene.add_child(new_soul_particle)
+	new_soul_particle.reached_target.connect(update_soul_counter)
 	#$CanvasLayer/TextureRect/SoulCountDisplay.text = "Souls: %s" % grid_entity.soul_count
 	#if $AnimationPlayer.is_playing():
 	#$AnimationPlayer.seek(0.5)
 	#else:
 	#$AnimationPlayer.play("DisplaySouls")
+
+
+func update_soul_counter() -> void:
+	%SoulCountDisplay.text = "Souls: %s" % grid_entity.soul_count
 
 
 func _display_error(error_msg: String):
