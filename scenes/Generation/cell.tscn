@@ -191,7 +191,8 @@ tile_set = ExtResource("8_5cpdm")
 [node name="Fog" type="TileMapLayer" parent="." unique_id=341166173 groups=["Fog"]]
 unique_name_in_owner = true
 visible = false
-z_index = 10
+modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
+y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_fx61w")
 tile_set = ExtResource("8_5cpdm")
 

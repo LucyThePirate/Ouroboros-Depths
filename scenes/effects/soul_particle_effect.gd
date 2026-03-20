@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 			if %Trail.points.size() > MAX_POINTS:
 				%Trail.remove_point(0)
 			if (global_position - target_position).length_squared() <= 500:
-				if velocity.length_squared() <= 50000:
+				if velocity.length_squared() <= 90000:
 					state = States.TARGET_REACHED
 					reached_target.emit()
 					%ExplosionParticles.emitting = true

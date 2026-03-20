@@ -18,6 +18,7 @@ func _ready() -> void:
 		status.healed.connect(_on_status_healed)
 		status.reparent(status_bar)
 		initialize_status(status)
+		status.on_grid_entity_parent_set(grid_entity)
 
 
 func initialize_status(status: StatusStrategy):

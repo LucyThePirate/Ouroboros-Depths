@@ -177,6 +177,9 @@ func generate_level():
 	for x in range(floors.get_used_rect().position.x - 1, floors.get_used_rect().size.x + 1):
 		for y in range(floors.get_used_rect().position.y - 1, floors.get_used_rect().size.y + 1):
 			fog.set_cell(Vector2i(x, y), fog_tile[0], fog_tile[1])
+			pass
+
+	fog.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
 
 	Global.floors = floors
 	Global.walls = walls

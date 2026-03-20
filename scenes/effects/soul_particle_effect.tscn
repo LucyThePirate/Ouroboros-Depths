@@ -37,8 +37,8 @@ radial_accel_max = -60.420002
 damping_min = 8.333
 damping_max = 8.333
 attractor_interaction_enabled = false
-scale_min = 5.83
-scale_max = 14.17
+scale_min = 12.83
+scale_max = 21.17
 scale_curve = SubResource("CurveTexture_7h5r2")
 color_initial_ramp = SubResource("GradientTexture1D_xxg1h")
 

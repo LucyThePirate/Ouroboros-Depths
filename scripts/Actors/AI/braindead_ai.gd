@@ -61,6 +61,7 @@ func update_intent():
 
 func _on_grid_entity_hurt(attacker: GridEntity, damage_amount: int) -> void:
 	if grid_entity.is_alive():
+		attacker.soul_count += damage_amount
 		attacker.absorbed_souls.emit(global_position)
 
 

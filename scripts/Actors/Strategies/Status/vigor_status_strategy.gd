@@ -31,3 +31,7 @@ func on_status_ended():
 	status_ID = Status_IDs.NONE
 	hide()
 	super()
+
+
+func on_grid_entity_parent_set(grid_entity: GridEntity):
+	%RemoteTransform2D.remote_path = grid_entity.get_path()

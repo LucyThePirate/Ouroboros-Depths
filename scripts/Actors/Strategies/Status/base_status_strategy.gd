@@ -63,6 +63,10 @@ func on_moved():
 
 func on_reload_started():
 	pass
+	
+	
+func on_grid_entity_parent_set(grid_entity : GridEntity):
+	pass
 
 
 func on_next_floor_reached():

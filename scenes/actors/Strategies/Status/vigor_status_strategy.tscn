@@ -1,10 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://boyoct3kot2q6"]
+[gd_scene format=3 uid="uid://boyoct3kot2q6"]
 
 [ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_ehq37"]
 [ext_resource type="Script" uid="uid://bnok8v7mqt484" path="res://scripts/Actors/Strategies/Status/vigor_status_strategy.gd" id="2_pj3ux"]
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/creatures/Soul.png" id="2_tlwxl"]
+[ext_resource type="Shader" uid="uid://31ejev0563sr" path="res://textures/shaders/fire.gdshader" id="4_uc0c3"]
 
-[node name="VigorStatusStrategy" instance=ExtResource("1_ehq37")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ql5sh"]
+shader = ExtResource("4_uc0c3")
+shader_parameter/transparent = Color(0, 0, 0, 0)
+shader_parameter/inner = Color(1, 0.6568333, 0.29000002, 1)
+shader_parameter/outer = Color(0.9411765, 0.2784314, 0, 1)
+shader_parameter/inner_threshold = 0.4
+shader_parameter/outer_threshold = 0.15
+shader_parameter/soft_edge = 0.04
+shader_parameter/center = Vector2(0.5, 0.8)
+shader_parameter/OCTAVES = 6
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jpbfj"]
+
+[node name="VigorStatusStrategy" unique_id=1120027395 instance=ExtResource("1_ehq37")]
 script = ExtResource("2_pj3ux")
 status_name = "Vigor"
 status_desc = "This creature is charged up! The next time they deal damage, it will be boosted by Vigor's power.
@@ -12,5 +26,18 @@ status_desc = "This creature is charged up! The next time they deal damage, it w
 Gradually decreases over time."
 status_ID = 5
 
-[node name="TextureRect" parent="." index="0"]
+[node name="TextureRect" parent="." index="0" unique_id=1155837054]
 texture = ExtResource("2_tlwxl")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." index="3" unique_id=1454412527]
+unique_name_in_owner = true
+update_rotation = false
+update_scale = false
+
+[node name="TextureRect2" type="TextureRect" parent="RemoteTransform2D" index="0" unique_id=1842596126]
+material = SubResource("ShaderMaterial_ql5sh")
+offset_left = -69.359344
+offset_top = -145.94363
+offset_right = 69.359344
+offset_bottom = -4.794586
+texture = SubResource("CanvasTexture_jpbfj")

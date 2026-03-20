@@ -163,6 +163,7 @@ func _metamorphing_started():
 func _metamorphing_completed():
 	if state == States.METAMORPHING:
 		$MetamorphosisEnd.play()
+		update_soul_counter()
 		state = States.IDLE
 
 

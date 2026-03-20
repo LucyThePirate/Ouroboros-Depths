@@ -122,6 +122,7 @@ func _ready():
 
 
 func _initialize_fog():
+	darkness.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
 	for x in Global.walls.get_used_rect().size.x:
 		for y in Global.walls.get_used_rect().size.y:
 			var tile_position = Vector2i(
@@ -129,7 +130,6 @@ func _initialize_fog():
 				y + Global.walls.get_used_rect().position.y
 			)
 			darkness.set_cell(tile_position, fog_tile[0], fog_tile[1])
-			var tile_data = Global.walls.get_cell_tile_data(tile_position)
 
 	for tile_position in fog.get_used_cells():
 		var empty_tile = (
@@ -228,11 +228,15 @@ func _update_fog(old_coords: Vector2i, new_coords: Vector2i):
 	var light_radius = 7
 	var tile_light = {}
 	var terrain_rect = Global.floors.get_used_rect()
+
 	for x in terrain_rect.size.x:
 		for y in terrain_rect.size.y:
 			var tile = Vector2i(terrain_rect.position.x + x, terrain_rect.position.y + y)
 			Global.darkness.set_cell(tile, fog_tile[0], fog_tile[1])
 			tile_light[tile] = 0
+	#Global.darkness.set_pattern(
+	#walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells())
+	#)
 	var marked_tiles = [new_coords]
 	var adjacent_tiles = [
 		Vector2i(1, 0),
