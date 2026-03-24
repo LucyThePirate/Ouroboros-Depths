@@ -19,11 +19,53 @@
 [ext_resource type="PackedScene" uid="uid://bqe6kxf4uw66l" path="res://scenes/actors/Strategies/Skill/drill_skill_strategy.tscn" id="12_sjimc"]
 [ext_resource type="Texture2D" uid="uid://bbujvsn0j0wwi" path="res://textures/skills/FortuneCookieSkill.png" id="13_ahco4"]
 [ext_resource type="AudioStream" uid="uid://brgjfi5b2rdyi" path="res://audio/SFX/Skills/Domino/DominoOpenBag1.ogg" id="15_dkf3k"]
+[ext_resource type="Shader" uid="uid://o8om3hlnn5vh" path="res://textures/shaders/rainbow_edge.gdshader" id="15_l4hai"]
+[ext_resource type="Texture2D" uid="uid://kiicrhe5264c" path="res://textures/effects/lights/Circular Light.png" id="16_ay0iv"]
+[ext_resource type="AudioStream" uid="uid://wk7pfdy4e2u" path="res://audio/Music/AstrMusic/MOTWI-Leyline[ambient,nice].mp3" id="20_xccfo"]
+[ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="21_6vq4o"]
+[ext_resource type="AudioStream" uid="uid://bpbtx5myk6uul" path="res://audio/Music/AstrMusic/TheGoddessEtherea[ethereal, liveSinging, continue].mp3" id="21_fjae7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xccfo"]
+shader = ExtResource("15_l4hai")
+shader_parameter/influence = 0.999999977648
+
+[sub_resource type="Curve" id="Curve_6vq4o"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.46666667, 0.41573036), 0.0, 0.0, 0, 0, Vector2(1, 0.033707857), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_sjawx"]
+curve = SubResource("Curve_6vq4o")
+
+[sub_resource type="Curve" id="Curve_fjae7"]
+_data = [Vector2(0, 1), 0.0, -1.2870284, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6vq4o"]
+curve = SubResource("Curve_fjae7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sjawx"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(106.655, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 26.379
+initial_velocity_min = 10.42
+initial_velocity_max = 72.92
+gravity = Vector3(0, -98, 0)
+scale_min = 0.0
+scale_max = 1.5999999
+scale_curve = SubResource("CurveTexture_6vq4o")
+alpha_curve = SubResource("CurveTexture_sjawx")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o4b0d"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("15_dkf3k")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6vq4o"]
+streams_count = 2
+stream_0/stream = ExtResource("20_xccfo")
+stream_1/stream = ExtResource("21_fjae7")
 
 [node name="Metamorphosis" type="Control" unique_id=1883942213]
 layout_mode = 3
@@ -40,6 +82,16 @@ sold_out_texture = ExtResource("11_emtfy")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1448154992]
 layer = 100
 
+[node name="AuraFarmingSprite" type="Sprite2D" parent="CanvasLayer" unique_id=2018394579]
+unique_name_in_owner = true
+modulate = Color(1.6197081, 1.6197081, 1.6197081, 1)
+show_behind_parent = true
+z_index = 1
+material = SubResource("ShaderMaterial_xccfo")
+position = Vector2(577, 317)
+scale = Vector2(11.656038, 6.921255)
+texture = ExtResource("16_ay0iv")
+
 [node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1987143535]
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +100,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel" unique_id=1977299140]
-self_modulate = Color(0.405299, 0.262067, 0.0330478, 1)
+self_modulate = Color(0, 0, 0, 1)
+z_index = -4
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,6 +111,7 @@ grow_vertical = 2
 texture = ExtResource("13_ahco4")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel" unique_id=1813534090]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -125,7 +179,10 @@ theme_override_constants/outline_size = 9
 theme_override_fonts/normal_font = ExtResource("1_awmqf")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "[rainbow][wave]METAPMORPHOSIS[/wave][/rainbow]"
+text = "
+[rainbow freq=0.1][tornado] METAPMORPHOSIS [/tornado][/rainbow]
+
+"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -226,6 +283,15 @@ focus_mode = 0
 text = "Remove Skill - 3 souls"
 expand_icon = true
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CanvasLayer" unique_id=545398582]
+position = Vector2(586, 929)
+scale = Vector2(5.960203, 8.622842)
+amount = 50
+texture = ExtResource("21_6vq4o")
+lifetime = 5.0
+preprocess = 5.0
+process_material = SubResource("ParticleProcessMaterial_sjawx")
+
 [node name="SkillBought" type="AudioStreamPlayer" parent="." unique_id=1485851325]
 stream = SubResource("AudioStreamRandomizer_o4b0d")
 bus = &"SFX"
@@ -233,6 +299,12 @@ bus = &"SFX"
 [node name="RerollSkillsBought" type="AudioStreamPlayer" parent="." unique_id=2090518383]
 stream = SubResource("AudioStreamRandomizer_o4b0d")
 bus = &"SFX"
+
+[node name="MetamorphosisMusic" type="AudioStreamPlayer" parent="." unique_id=960646811]
+stream = SubResource("AudioStreamRandomizer_6vq4o")
+volume_db = -7.536
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer/RerollSkillsButton" to="." method="_on_reroll_skills_button_pressed"]

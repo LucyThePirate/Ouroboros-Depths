@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://djc3cmcxnhe5l"]
+[gd_scene format=3 uid="uid://djc3cmcxnhe5l"]
 
 [ext_resource type="Script" uid="uid://b2ojdp2aq678e" path="res://scripts/Actors/Visuals/visualBase.gd" id="1_aedx2"]
 [ext_resource type="Texture2D" uid="uid://cja3aenkgrcib" path="res://textures/creatures/Scarecrow.png" id="1_fcb6m"]
@@ -863,39 +863,40 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("7_gqlsy")
 
-[node name="ScarecrowVisual" type="Node2D"]
+[node name="ScarecrowVisual" type="Node2D" unique_id=766199107]
+use_parent_material = true
 script = ExtResource("1_aedx2")
 
-[node name="LeftCapeTarget" type="Marker2D" parent="."]
+[node name="LeftCapeTarget" type="Marker2D" parent="." unique_id=7894130]
 position = Vector2(-276, 439)
 rotation = 0.285984
 scale = Vector2(0.999829, 0.999829)
 
-[node name="MiddleCapeTarget" type="Marker2D" parent="."]
+[node name="MiddleCapeTarget" type="Marker2D" parent="." unique_id=1843408124]
 position = Vector2(-13, 505)
 
-[node name="RightCapeTarget" type="Marker2D" parent="."]
+[node name="RightCapeTarget" type="Marker2D" parent="." unique_id=364290029]
 position = Vector2(191, 424)
 
-[node name="GourdTarget" type="Marker2D" parent="."]
+[node name="GourdTarget" type="Marker2D" parent="." unique_id=660768528]
 position = Vector2(12.02, -244.565)
 rotation = -2.53143
 
-[node name="Skeleton2D" type="Skeleton2D" parent="."]
+[node name="Skeleton2D" type="Skeleton2D" parent="." unique_id=1922659475]
 position = Vector2(9.01999, -251.565)
 rotation = 0.000536165
 modification_stack = SubResource("SkeletonModificationStack2D_fcb6m")
 
-[node name="PostBase" type="Bone2D" parent="Skeleton2D"]
+[node name="PostBase" type="Bone2D" parent="Skeleton2D" unique_id=22064348]
 position = Vector2(-10, 517)
 rest = Transform2D(1, 0, 0, 1, -10, 517)
 
-[node name="PostTop" type="Bone2D" parent="Skeleton2D/PostBase"]
+[node name="PostTop" type="Bone2D" parent="Skeleton2D/PostBase" unique_id=1635207195]
 position = Vector2(-5, -568)
 scale = Vector2(0.99984455, 0.99984455)
 rest = Transform2D(1, 0, 0, 1, -5, -568)
 
-[node name="LeftGlove" type="Bone2D" parent="Skeleton2D/PostBase/PostTop"]
+[node name="LeftGlove" type="Bone2D" parent="Skeleton2D/PostBase/PostTop" unique_id=587807550]
 position = Vector2(-163, 81)
 rotation = 1.55316
 rest = Transform2D(0.0176384, 0.999844, -0.999844, 0.0176384, -163, 81)
@@ -904,7 +905,7 @@ length = 132.64
 bone_angle = 3.12936
 metadata/_local_pose_override_enabled_ = true
 
-[node name="Gourd" type="Bone2D" parent="Skeleton2D/PostBase/PostTop"]
+[node name="Gourd" type="Bone2D" parent="Skeleton2D/PostBase/PostTop" unique_id=938292997]
 position = Vector2(-2, -187)
 rotation = 1.48932
 scale = Vector2(0.999991, 0.999991)
@@ -914,31 +915,31 @@ length = 132.64
 bone_angle = 0.0
 metadata/_local_pose_override_enabled_ = true
 
-[node name="Mouth" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/Gourd"]
+[node name="Mouth" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/Gourd" unique_id=804951129]
 position = Vector2(142.378, 36.517)
 rotation = -1.58628
 scale = Vector2(0.388099, 1.11971)
 rest = Transform2D(-0.0060083, -0.388052, 1.11958, -0.0173347, 142.378, 36.517)
 
-[node name="Hat" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/Gourd"]
+[node name="Hat" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/Gourd" unique_id=1233362826]
 position = Vector2(-239.839, -11.2321)
 rotation = -1.58628
 scale = Vector2(0.388099, 1.11971)
 rest = Transform2D(-0.0060083, -0.388052, 1.11958, -0.0173347, -239.839, -11.2321)
 
-[node name="EyeLeft" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/Gourd"]
+[node name="EyeLeft" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/Gourd" unique_id=719026252]
 position = Vector2(66.8782, 64.1896)
 rotation = -0.259633
 scale = Vector2(0.388098, 1.11972)
 rest = Transform2D(0.375091, -0.099635, 0.28746, 1.08219, 66.8782, 64.1896)
 
-[node name="EyeRight" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/Gourd"]
+[node name="EyeRight" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/Gourd" unique_id=587961691]
 position = Vector2(70.6241, -34.7597)
 rotation = -1.2969
 scale = Vector2(0.388098, 1.11972)
 rest = Transform2D(0.104976, -0.373631, 1.07798, 0.30287, 70.6241, -34.7597)
 
-[node name="RightGlove" type="Bone2D" parent="Skeleton2D/PostBase/PostTop"]
+[node name="RightGlove" type="Bone2D" parent="Skeleton2D/PostBase/PostTop" unique_id=209052543]
 position = Vector2(166, 59)
 rotation = 1.56391
 rest = Transform2D(0.0068877, 0.999976, -0.999976, 0.0068877, 166, 59)
@@ -947,7 +948,7 @@ length = 10.0
 bone_angle = 0.0
 metadata/_local_pose_override_enabled_ = true
 
-[node name="ShawlMiddle" type="Bone2D" parent="Skeleton2D/PostBase/PostTop"]
+[node name="ShawlMiddle" type="Bone2D" parent="Skeleton2D/PostBase/PostTop" unique_id=60204564]
 position = Vector2(6, 132)
 rest = Transform2D(1, 0, 0, 1, 6, 132)
 auto_calculate_length_and_angle = false
@@ -955,7 +956,7 @@ length = 149.003
 bone_angle = 89.6155
 metadata/_local_pose_override_enabled_ = true
 
-[node name="Shawl2" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlMiddle"]
+[node name="Shawl2" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlMiddle" unique_id=1037474003]
 position = Vector2(1, 149)
 rest = Transform2D(1, 0, 0, 1, 1, 149)
 auto_calculate_length_and_angle = false
@@ -963,7 +964,7 @@ length = 164.11
 bone_angle = 92.09529
 metadata/_local_pose_override_enabled_ = true
 
-[node name="Shawl3" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlMiddle/Shawl2"]
+[node name="Shawl3" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlMiddle/Shawl2" unique_id=623443730]
 position = Vector2(-6, 164)
 rest = Transform2D(1, 0, 0, 1, -6, 164)
 auto_calculate_length_and_angle = false
@@ -971,40 +972,41 @@ length = 16.0
 bone_angle = 0.0
 metadata/_local_pose_override_enabled_ = true
 
-[node name="ShawlLeft" type="Bone2D" parent="Skeleton2D/PostBase/PostTop"]
+[node name="ShawlLeft" type="Bone2D" parent="Skeleton2D/PostBase/PostTop" unique_id=884284575]
 position = Vector2(-190, 70)
 rest = Transform2D(1, 0, 0, 1, -190, 70)
 auto_calculate_length_and_angle = false
 length = 149.003
 bone_angle = 89.6155
 
-[node name="Shawl2" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlLeft"]
+[node name="Shawl2" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlLeft" unique_id=875452418]
 position = Vector2(1, 149)
 rest = Transform2D(1, 0, 0, 1, 1, 149)
 auto_calculate_length_and_angle = false
 length = 164.11
 bone_angle = 92.09529
 
-[node name="Shawl3" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlLeft/Shawl2"]
+[node name="Shawl3" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlLeft/Shawl2" unique_id=418216779]
 position = Vector2(-6, 164)
 rest = Transform2D(1, 0, 0, 1, -6, 164)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 0.0
 
-[node name="ShawlRight" type="Bone2D" parent="Skeleton2D/PostBase/PostTop"]
+[node name="ShawlRight" type="Bone2D" parent="Skeleton2D/PostBase/PostTop" unique_id=606777311]
 position = Vector2(202, 54)
 rest = Transform2D(1, 0, 0, 1, 202, 54)
 
-[node name="Shawl2" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlRight"]
+[node name="Shawl2" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlRight" unique_id=273010225]
 position = Vector2(1, 149)
 rest = Transform2D(1, 0, 0, 1, 1, 149)
 
-[node name="Shawl3" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlRight/Shawl2"]
+[node name="Shawl3" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlRight/Shawl2" unique_id=2128769973]
 position = Vector2(-6, 164)
 rest = Transform2D(1, 0, 0, 1, -6, 164)
 
-[node name="ShawlBack" type="Polygon2D" parent="."]
+[node name="ShawlBack" type="Polygon2D" parent="." unique_id=1362771475]
+use_parent_material = true
 position = Vector2(9.01999, -251.565)
 texture = ExtResource("1_fcb6m")
 skeleton = NodePath("../Skeleton2D")
@@ -1013,7 +1015,8 @@ uv = PackedVector2Array(190.952, 424.681, 96.6006, 606.016, 88.8193, 979.515, 45
 bones = ["PostBase", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop", PackedFloat32Array(0, 0, 0, 0, 0, 0, 1), "PostBase/PostTop/LeftGlove", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/Mouth", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/Hat", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeLeft", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeRight", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/RightGlove", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 1, 0, 0, 0), "PostBase/PostTop/ShawlLeft", PackedFloat32Array(1, 1, 1, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2", PackedFloat32Array(0, 1, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2/Shawl3", PackedFloat32Array(0, 0, 1, 0, 0, 0, 0), "PostBase/PostTop/ShawlRight", PackedFloat32Array(0, 0, 0, 0, 0, 1, 0), "PostBase/PostTop/ShawlRight/Shawl2", PackedFloat32Array(0, 0, 0, 0, 1, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 1, 0, 0, 0)]
 metadata/_edit_lock_ = true
 
-[node name="Post" type="Polygon2D" parent="ShawlBack"]
+[node name="Post" type="Polygon2D" parent="ShawlBack" unique_id=535695503]
+use_parent_material = true
 position = Vector2(4, -108)
 texture = ExtResource("1_fcb6m")
 skeleton = NodePath("../../Skeleton2D")
@@ -1021,7 +1024,8 @@ polygon = PackedVector2Array(-297.774, -71.8514, -215.246, 593.09, 180.889, 583.
 uv = PackedVector2Array(879.943, 381.951, 971.027, 1115.84, 1408.23, 1105.43, 1444.66, 335.108, 1147.99, 329.903)
 bones = ["PostBase", PackedFloat32Array(1, 1, 1, 1, 1), "PostBase/PostTop", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/LeftGlove", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/Mouth", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/Hat", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeLeft", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeRight", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/RightGlove", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlRight", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0, 0)]
 
-[node name="GloveRight" type="Polygon2D" parent="ShawlBack"]
+[node name="GloveRight" type="Polygon2D" parent="ShawlBack" unique_id=1789359615]
+use_parent_material = true
 position = Vector2(-5, -4)
 texture = ExtResource("1_fcb6m")
 skeleton = NodePath("../../Skeleton2D")
@@ -1030,7 +1034,8 @@ uv = PackedVector2Array(1757.81, 515.92, 1737.1, 757.579, 1890.4, 755.994, 1885.
 bones = ["PostBase", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/LeftGlove", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/Mouth", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/Hat", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeLeft", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeRight", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/RightGlove", PackedFloat32Array(1, 1, 1, 1), "PostBase/PostTop/ShawlMiddle", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0)]
 metadata/_edit_lock_ = true
 
-[node name="GloveLeft" type="Polygon2D" parent="ShawlBack"]
+[node name="GloveLeft" type="Polygon2D" parent="ShawlBack" unique_id=1618316080]
+use_parent_material = true
 position = Vector2(-335, 13)
 texture = ExtResource("1_fcb6m")
 skeleton = NodePath("../../Skeleton2D")
@@ -1039,7 +1044,8 @@ uv = PackedVector2Array(1757.81, 515.92, 1737.1, 757.579, 1890.4, 755.994, 1885.
 bones = ["PostBase", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/LeftGlove", PackedFloat32Array(1, 1, 1, 1), "PostBase/PostTop/Gourd", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/Mouth", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/Hat", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeLeft", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeRight", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/RightGlove", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0)]
 metadata/_edit_lock_ = true
 
-[node name="ShawlFront" type="Polygon2D" parent="ShawlBack"]
+[node name="ShawlFront" type="Polygon2D" parent="ShawlBack" unique_id=1812613226]
+use_parent_material = true
 texture = ExtResource("1_fcb6m")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(-63.4848, -165.339, -325.003, -15.288, -312.141, 452.014, 330.936, 452.014, 298.782, -43.1547)
@@ -1047,7 +1053,7 @@ uv = PackedVector2Array(328.819, 1520, 67.301, 1670.05, 80.1625, 2137.35, 723.23
 bones = ["PostBase", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop", PackedFloat32Array(1, 0, 0, 0, 0), "PostBase/PostTop/LeftGlove", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/Mouth", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/Hat", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeLeft", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeRight", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/RightGlove", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft", PackedFloat32Array(0, 1, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2/Shawl3", PackedFloat32Array(0, 0, 1, 0, 0), "PostBase/PostTop/ShawlRight", PackedFloat32Array(0, 0, 0, 0, 1), "PostBase/PostTop/ShawlRight/Shawl2", PackedFloat32Array(0, 0, 0, 1, 0), "PostBase/PostTop/ShawlRight/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0, 0)]
 metadata/_edit_lock_ = true
 
-[node name="HatBack" type="Polygon2D" parent="ShawlBack"]
+[node name="HatBack" type="Polygon2D" parent="ShawlBack" unique_id=395800174]
 texture = ExtResource("1_fcb6m")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(-27.3171, -556.882, -272.856, -186.625, -40.9582, -126.215, 192.888, -229.497, 29.1957, -552.984)
@@ -1055,7 +1061,8 @@ uv = PackedVector2Array(1182.84, 1134.61, 937.298, 1504.86, 1169.2, 1565.27, 140
 bones = ["PostBase", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/LeftGlove", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/Mouth", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/Hat", PackedFloat32Array(1, 1, 1, 1, 1), "PostBase/PostTop/Gourd/EyeLeft", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeRight", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/RightGlove", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlRight", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0, 0)]
 metadata/_edit_lock_ = true
 
-[node name="Gourd" type="Polygon2D" parent="ShawlBack"]
+[node name="Gourd" type="Polygon2D" parent="ShawlBack" unique_id=1617800956]
+use_parent_material = true
 texture = ExtResource("1_fcb6m")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(-76.2835, -363.328, -245.445, -118.216, -148.781, 26.779, 85.9732, -11.1959, 182.637, -156.191, 47.9982, -370.232)
@@ -1063,10 +1070,10 @@ uv = PackedVector2Array(1923.62, 1324.66, 1754.46, 1569.78, 1851.12, 1714.77, 20
 bones = ["PostBase", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/LeftGlove", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd", PackedFloat32Array(1, 1, 1, 1, 1, 1), "PostBase/PostTop/Gourd/Mouth", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/Hat", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeLeft", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeRight", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/RightGlove", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlRight", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2", PackedFloat32Array(0, 0, 0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0, 0, 0)]
 metadata/_edit_lock_ = true
 
-[node name="Face" type="Node2D" parent="ShawlBack/Gourd"]
+[node name="Face" type="Node2D" parent="ShawlBack/Gourd" unique_id=1364207894]
 metadata/_edit_lock_ = true
 
-[node name="EyeLeft" type="Polygon2D" parent="ShawlBack/Gourd/Face"]
+[node name="EyeLeft" type="Polygon2D" parent="ShawlBack/Gourd/Face" unique_id=847181511]
 texture = ExtResource("1_fcb6m")
 skeleton = NodePath("../../../../Skeleton2D")
 polygon = PackedVector2Array(-72.0314, -273.851, -125.178, -123.268, 18.3182, -132.126)
@@ -1074,7 +1081,7 @@ uv = PackedVector2Array(2755.15, 1412.08, 2702, 1562.67, 2845.5, 1553.81)
 bones = ["PostBase", PackedFloat32Array(0, 0, 0), "PostBase/PostTop", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/LeftGlove", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/Gourd", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/Gourd/Mouth", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/Gourd/Hat", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/Gourd/EyeLeft", PackedFloat32Array(1, 1, 1), "PostBase/PostTop/Gourd/EyeRight", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/RightGlove", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/ShawlMiddle", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/ShawlLeft", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/ShawlRight", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2", PackedFloat32Array(0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0)]
 metadata/_edit_lock_ = true
 
-[node name="EyeRight" type="Polygon2D" parent="ShawlBack/Gourd/Face"]
+[node name="EyeRight" type="Polygon2D" parent="ShawlBack/Gourd/Face" unique_id=492976244]
 texture = ExtResource("1_fcb6m")
 skeleton = NodePath("../../../../Skeleton2D")
 polygon = PackedVector2Array(-41.3117, -237.368, -36.4717, -117.578, 63.9583, -117.578, 80.8984, -236.157)
@@ -1082,7 +1089,7 @@ uv = PackedVector2Array(1164.94, 2570.74, 1169.78, 2690.53, 1270.21, 2690.53, 12
 bones = ["PostBase", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/LeftGlove", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/Mouth", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/Hat", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeLeft", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeRight", PackedFloat32Array(1, 1, 1, 1), "PostBase/PostTop/RightGlove", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0)]
 metadata/_edit_lock_ = true
 
-[node name="Mouth" type="Polygon2D" parent="ShawlBack/Gourd/Face"]
+[node name="Mouth" type="Polygon2D" parent="ShawlBack/Gourd/Face" unique_id=226500865]
 texture = ExtResource("1_fcb6m")
 skeleton = NodePath("../../../../Skeleton2D")
 polygon = PackedVector2Array(-141.12, -179.914, -101.52, -43.5144, 48.0804, -44.6145, 111.88, -203.014)
@@ -1090,7 +1097,8 @@ uv = PackedVector2Array(261.811, 2636.97, 301.411, 2773.37, 451.011, 2772.27, 51
 bones = ["PostBase", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/LeftGlove", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/Mouth", PackedFloat32Array(1, 1, 1, 1), "PostBase/PostTop/Gourd/Hat", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeLeft", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeRight", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/RightGlove", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0)]
 metadata/_edit_lock_ = true
 
-[node name="HatFront" type="Polygon2D" parent="ShawlBack"]
+[node name="HatFront" type="Polygon2D" parent="ShawlBack" unique_id=1273063963]
+use_parent_material = true
 texture = ExtResource("1_fcb6m")
 skeleton = NodePath("../../Skeleton2D")
 polygon = PackedVector2Array(-37.2005, -596.116, -264.283, -174.162, 199.544, -191.878, 19.1673, -586.453)
@@ -1098,25 +1106,23 @@ uv = PackedVector2Array(1978.39, 2229.65, 1751.3, 2651.61, 2215.13, 2633.89, 203
 bones = ["PostBase", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/LeftGlove", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/Mouth", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/Hat", PackedFloat32Array(1, 1, 1, 1), "PostBase/PostTop/Gourd/EyeLeft", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/Gourd/EyeRight", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/RightGlove", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlMiddle/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlLeft/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2", PackedFloat32Array(0, 0, 0, 0), "PostBase/PostTop/ShawlRight/Shawl2/Shawl3", PackedFloat32Array(0, 0, 0, 0)]
 metadata/_edit_lock_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_mw5ug")
-}
-autoplay = "Idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1890337632]
+libraries/ = SubResource("AnimationLibrary_mw5ug")
+autoplay = &"Idle"
 speed_scale = 1.2
 
-[node name="Step" type="AudioStreamPlayer2D" parent="."]
+[node name="Step" type="AudioStreamPlayer2D" parent="." unique_id=75152638]
 volume_db = 4.052
 pitch_scale = 0.95
 bus = &"SFX"
 
-[node name="Talk" type="AudioStreamPlayer2D" parent="."]
+[node name="Talk" type="AudioStreamPlayer2D" parent="." unique_id=125813494]
 stream = SubResource("AudioStreamRandomizer_gqlsy")
 volume_db = -4.571
 pitch_scale = 0.46
 bus = &"SFX"
 
-[node name="Fall" type="AudioStreamPlayer2D" parent="."]
+[node name="Fall" type="AudioStreamPlayer2D" parent="." unique_id=1893452627]
 stream = SubResource("AudioStreamRandomizer_d2vxg")
 volume_db = 13.798
 bus = &"SFX"

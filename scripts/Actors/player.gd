@@ -89,6 +89,7 @@ func _process(delta: float) -> void:
 				or stack_component.state == SkillStackComponent.States.RELOADING
 			):
 				state = States.IDLE
+				%ScarecrowVisual.use_parent_material = true
 
 
 func _handle_movement() -> void:
@@ -122,6 +123,7 @@ func _handle_movement() -> void:
 		if state == States.IDLE:
 			#$ExecutingParticles.emitting = true
 			state = States.EXECUTING_STACK
+			%ScarecrowVisual.use_parent_material = false
 			stack_component.execute_stack()
 
 	elif Input.is_action_just_pressed("Reload"):
@@ -244,6 +246,8 @@ func _on_skill_stack_component_emptied_stack() -> void:
 	if state == States.EXECUTING_STACK:
 		#$ExecutingParticles.emitting = false
 		state = States.IDLE
+		%ScarecrowVisual.use_parent_material = true
+
 		end_turn()
 
 

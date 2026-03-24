@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bxxiyeix6rbob" path="res://scenes/actors/Strategies/Status/chrysalis_status_strategy.tscn" id="3_b0c0w"]
 [ext_resource type="PackedScene" uid="uid://cjo5qx0fo3bej" path="res://scenes/actors/metamorphosis.tscn" id="4_wes0m"]
 [ext_resource type="PackedScene" uid="uid://djc3cmcxnhe5l" path="res://scenes/characters/Visuals/scarecrow_visual.tscn" id="6_jfrsc"]
-[ext_resource type="PackedScene" uid="uid://boyoct3kot2q6" path="res://scenes/actors/Strategies/Status/vigor_status_strategy.tscn" id="6_ypltb"]
+[ext_resource type="Shader" uid="uid://d1nmvep5qmo82" path="res://textures/shaders/rainbow_outline.gdshader" id="7_ypltb"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="8_wd2mq"]
 [ext_resource type="AudioStream" uid="uid://0to1gxx02bfe" path="res://audio/SFX/Misc/OrangePeelReverse.ogg" id="16_nfopg"]
 [ext_resource type="AudioStream" uid="uid://cwqwqvrk8t7gj" path="res://audio/SFX/Misc/OrangePeel1.ogg" id="17_1vpxp"]
@@ -16,6 +16,13 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gokip"]
 radius = 44.1022
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nmlhc"]
+shader = ExtResource("7_ypltb")
+shader_parameter/line_thickness = 10.34400049134
+shader_parameter/sin_frequency = 0.5
+shader_parameter/sin_offset = 0.0
+shader_parameter/light_offset = 0.5
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u2nr5"]
 random_pitch = 1.1
@@ -130,10 +137,6 @@ species_name = "You!"
 species_desc = "It is you!"
 soul_count = 1
 
-[node name="VigorStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1217274743, 963295090) index="1" unique_id=1120027395 instance=ExtResource("6_ypltb")]
-layout_mode = 2
-power = 5
-
 [node name="Camera2D2" type="Camera2D" parent="GridEntity" unique_id=1260474723]
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
@@ -148,6 +151,8 @@ shape = SubResource("CircleShape2D_gokip")
 debug_color = Color(0.627606, 0.530906, 0, 0.42)
 
 [node name="ScarecrowVisual" parent="." unique_id=1510832620 instance=ExtResource("6_jfrsc")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_nmlhc")
 position = Vector2(5, -31)
 scale = Vector2(0.208175, 0.208175)
 
