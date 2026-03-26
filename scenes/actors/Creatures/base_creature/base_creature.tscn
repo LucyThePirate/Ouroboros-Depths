@@ -45,6 +45,7 @@ texture = ExtResource("5_rb8ws")
 offset = Vector2(118, 1)
 
 [node name="IntentLabel" type="RichTextLabel" parent="." unique_id=798491599]
+visible = false
 offset_left = -36.0
 offset_top = -230.0
 offset_right = 4.0

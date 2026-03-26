@@ -305,6 +305,7 @@ stream = SubResource("AudioStreamRandomizer_6vq4o")
 volume_db = -7.536
 autoplay = true
 bus = &"Music"
+playback_type = 1
 
 [connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Center/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/HBoxContainer/Right/VBoxContainer/UpgradesContainer/RerollSkillsButton" to="." method="_on_reroll_skills_button_pressed"]

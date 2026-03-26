@@ -6,6 +6,7 @@ signal aggroed_towards_player(grid_entity)
 signal deaggroed_towards_player(grid_entity)
 signal metamorphosis_started
 signal metamorphosis_completed
+signal UI_opened
 signal UI_closed
 
 enum DECKS { BASIC, FUZZER, MUSICIAN }
@@ -25,6 +26,8 @@ var darkness: TileMapLayer
 const CELL_SIZE = 100
 
 var metamorphosis_reroll_cost = 3
+
+var pause_count := 0
 
 
 func is_turn_based() -> bool:

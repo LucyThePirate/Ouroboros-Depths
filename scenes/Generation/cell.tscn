@@ -19,6 +19,7 @@
 [ext_resource type="Shader" uid="uid://daaonengjaclw" path="res://textures/shaders/blur.gdshader" id="17_cqjng"]
 [ext_resource type="Texture2D" uid="uid://btflw1das7k7h" path="res://textures/testing/zen_garden_WIP2.png" id="17_cyo7g"]
 [ext_resource type="AudioStream" uid="uid://rnxn4j8uomna" path="res://audio/Music/AstrMusic/GHOST_NOODLES[loop,mysterious].mp3" id="18_cqjng"]
+[ext_resource type="AudioStream" uid="uid://d248dhagknhoc" path="res://audio/Music/AstrMusic/WarmHouse's Computer [loop, simple].mp3" id="18_cyo7g"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fx61w"]
 blend_mode = 3
@@ -87,6 +88,10 @@ action = &"TogglePause"
 
 [sub_resource type="Shortcut" id="Shortcut_cyo7g"]
 events = [SubResource("InputEventAction_cqjng")]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qrcgv"]
+streams_count = 1
+stream_0/stream = ExtResource("18_cyo7g")
 
 [sub_resource type="InputEventAction" id="InputEventAction_cyo7g"]
 action = &"TogglePause"
@@ -338,6 +343,7 @@ theme_override_font_sizes/font_size = 30
 text = "Return to title screen"
 
 [node name="AggroCount" type="RichTextLabel" parent="CanvasLayer" unique_id=305472313]
+visible = false
 offset_left = 1.0
 offset_right = 41.0
 offset_bottom = 40.0
@@ -448,6 +454,12 @@ theme_override_fonts/font = ExtResource("16_eu30k")
 theme_override_font_sizes/font_size = 30
 text = "... Or would you rather Retreat and return to the solace of the Title Screen"
 
+[node name="PauseMusic" type="AudioStreamPlayer" parent="CanvasLayer/PauseScreen" unique_id=871930823]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_qrcgv")
+bus = &"Music"
+playback_type = 1
+
 [node name="PauseButton" type="Button" parent="CanvasLayer" unique_id=719840358]
 unique_name_in_owner = true
 process_mode = 1
@@ -518,6 +530,6 @@ one_shot = true
 [connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer2/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer/ContinueGameButton" to="." method="_on_unpaused"]
 [connection signal="pressed" from="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer2/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_paused"]
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="timeout" from="AutoTurnTimer" to="." method="_on_auto_turn_timer_timeout"]
 [connection signal="timeout" from="BogoTimer" to="." method="_on_bogo_timer_timeout"]

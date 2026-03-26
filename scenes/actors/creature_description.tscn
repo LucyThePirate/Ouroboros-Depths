@@ -1,17 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://cp76vu813yo6i"]
+[gd_scene format=3 uid="uid://cp76vu813yo6i"]
 
 [ext_resource type="Script" uid="uid://ox3myex03o1l" path="res://scripts/Actors/creature_description.gd" id="1_yqxde"]
 [ext_resource type="PackedScene" uid="uid://d34xrii4ll6v5" path="res://scenes/actors/status_description.tscn" id="2_l7chq"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="2_msx7r"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="3_l7chq"]
 [ext_resource type="AudioStream" uid="uid://cg2qu12eah6qm" path="res://audio/SFX/Skills/Domino/DominoFlip.ogg" id="4_liy8y"]
+[ext_resource type="AudioStream" uid="uid://bvt76bf3b0oa" path="res://audio/Music/AstrMusic/clickclackstack[loop, strange].mp3" id="6_gcskg"]
+[ext_resource type="AudioStream" uid="uid://yc1apx3bg4pm" path="res://audio/Music/AstrMusic/Cave Crawler[simple,loop,8bit].mp3" id="7_yklmt"]
+[ext_resource type="AudioStream" uid="uid://dkdorot0kmda5" path="res://audio/Music/AstrMusic/bigbubble1.2[nice melody,continue].mp3" id="8_fh58y"]
+[ext_resource type="AudioStream" uid="uid://cssp4vajxpdn2" path="res://audio/Music/AstrMusic/Dull Bell (MidiInput)[simple, loop].mp3" id="9_07v11"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ep2fu"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("4_liy8y")
 
-[node name="CreatureDescription" type="Control"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ixsiw"]
+streams_count = 4
+stream_0/stream = ExtResource("6_gcskg")
+stream_1/stream = ExtResource("7_yklmt")
+stream_2/stream = ExtResource("8_fh58y")
+stream_3/stream = ExtResource("9_07v11")
+
+[node name="CreatureDescription" type="Control" unique_id=722377467]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -22,9 +33,9 @@ grow_vertical = 2
 script = ExtResource("1_yqxde")
 status_description_scene = ExtResource("2_l7chq")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=589976379]
 
-[node name="Window" type="Window" parent="CanvasLayer"]
+[node name="Window" type="Window" parent="CanvasLayer" unique_id=2144011804]
 process_mode = 3
 auto_translate_mode = 1
 oversampling_override = 1.0
@@ -33,20 +44,20 @@ size = Vector2i(700, 500)
 unresizable = true
 popup_window = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Window"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Window" unique_id=941524495]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="VBoxContainer" parent="CanvasLayer/Window/ScrollContainer"]
+[node name="Control" type="VBoxContainer" parent="CanvasLayer/Window/ScrollContainer" unique_id=731798370]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 9
 
-[node name="SkillName" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control"]
+[node name="SkillName" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control" unique_id=1768451697]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
@@ -59,7 +70,7 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Window/ScrollContainer/Control"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Window/ScrollContainer/Control" unique_id=1233849929]
 visible = false
 clip_contents = true
 custom_minimum_size = Vector2(300, 300)
@@ -67,13 +78,13 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Icon" type="TextureRect" parent="CanvasLayer/Window/ScrollContainer/Control/PanelContainer"]
+[node name="Icon" type="TextureRect" parent="CanvasLayer/Window/ScrollContainer/Control/PanelContainer" unique_id=1752281779]
 layout_mode = 2
 texture = ExtResource("3_l7chq")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="SkillDesc" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control"]
+[node name="SkillDesc" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control" unique_id=998460437]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
@@ -83,11 +94,11 @@ bbcode_enabled = true
 text = "Creature Description"
 fit_content = true
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Window/ScrollContainer/Control"]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Window/ScrollContainer/Control" unique_id=702804990]
 custom_minimum_size = Vector2(0, 34.485)
 layout_mode = 2
 
-[node name="ActiveStatuses" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control"]
+[node name="ActiveStatuses" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control" unique_id=575238494]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
@@ -99,13 +110,19 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="Statuses" type="VBoxContainer" parent="CanvasLayer/Window/ScrollContainer/Control"]
+[node name="Statuses" type="VBoxContainer" parent="CanvasLayer/Window/ScrollContainer/Control" unique_id=762539989]
 layout_mode = 2
 theme_override_constants/separation = 80
 
-[node name="DominoFlip" type="AudioStreamPlayer" parent="."]
+[node name="DominoFlip" type="AudioStreamPlayer" parent="." unique_id=788793800]
 stream = SubResource("AudioStreamRandomizer_ep2fu")
 bus = &"SFX"
+
+[node name="DescriptionMusic" type="AudioStreamPlayer" parent="." unique_id=856253713]
+stream = SubResource("AudioStreamRandomizer_ixsiw")
+autoplay = true
+bus = &"Music"
+playback_type = 1
 
 [connection signal="close_requested" from="CanvasLayer/Window" to="." method="_on_window_close_requested"]
 [connection signal="focus_exited" from="CanvasLayer/Window" to="." method="_on_window_focus_exited"]

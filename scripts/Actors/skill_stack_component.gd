@@ -458,6 +458,8 @@ func _on_skill_bag_button_pressed() -> void:
 		skill_bag_list.get_children().shuffle()
 		$CanvasLayer/SkillBagList.show()
 		$OpenBag.play()
+		%SkillDescriptionMusic.play()
+		Global.UI_opened.emit()
 	else:
 		_on_skill_bag_list_close_requested()
 
@@ -465,6 +467,7 @@ func _on_skill_bag_button_pressed() -> void:
 func _on_skill_bag_list_close_requested() -> void:
 	$CanvasLayer/SkillBagList.hide()
 	$CloseBag.play()
+	%SkillDescriptionMusic.stop()
 	for skill in skill_bag_list.get_children():
 		skill.queue_free()
 	Global.UI_closed.emit()
@@ -493,8 +496,9 @@ func open_skill_bag_for_skill_removal():
 		skill_bag_list.get_children().shuffle()
 		$CanvasLayer/SkillBagList.show()
 		$OpenBag.play()
-	else:
-		_on_skill_bag_list_close_requested()
+		Global.UI_opened.emit()
+	#else:
+	#_on_skill_bag_list_close_requested()
 
 
 func _on_close_skill_bag_pressed() -> void:

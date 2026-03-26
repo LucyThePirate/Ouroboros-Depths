@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvsqgo23yrgum"]
+[gd_scene format=3 uid="uid://bvsqgo23yrgum"]
 
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="1_mnuib"]
 [ext_resource type="Script" uid="uid://npkpiil52vcp" path="res://scripts/Actors/Strategies/Skill/skill_description.gd" id="1_owh6e"]
@@ -10,7 +10,7 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("4_sj3rj")
 
-[node name="SkillDescription" type="Control"]
+[node name="SkillDescription" type="Control" unique_id=226148701]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -20,16 +20,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_owh6e")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1249550407]
 
-[node name="Window" type="PopupPanel" parent="CanvasLayer"]
+[node name="Window" type="PopupPanel" parent="CanvasLayer" unique_id=1194509324]
 process_mode = 3
 oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(600, 500)
 visible = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Window"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Window" unique_id=1830702643]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -40,13 +40,13 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="VBoxContainer" parent="CanvasLayer/Window/ScrollContainer"]
+[node name="Control" type="VBoxContainer" parent="CanvasLayer/Window/ScrollContainer" unique_id=1864723845]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="SkillName" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control"]
+[node name="SkillName" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control" unique_id=220873345]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
@@ -59,18 +59,18 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Window/ScrollContainer/Control"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Window/ScrollContainer/Control" unique_id=1819920209]
 clip_contents = true
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 
-[node name="Icon" type="TextureRect" parent="CanvasLayer/Window/ScrollContainer/Control/PanelContainer"]
+[node name="Icon" type="TextureRect" parent="CanvasLayer/Window/ScrollContainer/Control/PanelContainer" unique_id=999747810]
 layout_mode = 2
 texture = ExtResource("1_mnuib")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="SkillDesc" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control"]
+[node name="SkillDesc" type="RichTextLabel" parent="CanvasLayer/Window/ScrollContainer/Control" unique_id=1459460078]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
@@ -80,7 +80,7 @@ bbcode_enabled = true
 text = "Skill Description"
 fit_content = true
 
-[node name="DominoFlip" type="AudioStreamPlayer" parent="."]
+[node name="DominoFlip" type="AudioStreamPlayer" parent="." unique_id=1429834935]
 stream = SubResource("AudioStreamRandomizer_ep2fu")
 bus = &"SFX"
 

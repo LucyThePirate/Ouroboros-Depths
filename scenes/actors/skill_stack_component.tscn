@@ -19,7 +19,10 @@
 [ext_resource type="AudioStream" uid="uid://duwmpbw02i4u4" path="res://audio/SFX/Skills/Domino/DominoPlaced3.ogg" id="11_o3wly"]
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/creatures/Lich/Skull.png" id="12_28yix"]
 [ext_resource type="AudioStream" uid="uid://xv37swpkyn2k" path="res://audio/SFX/Skills/Domino/DominoPlaced4.ogg" id="12_e1hdf"]
+[ext_resource type="AudioStream" uid="uid://cwef1r4cd4cm5" path="res://audio/Music/AstrMusic/unsure_discovery[mysterious, synth].mp3" id="13_t5vuw"]
 [ext_resource type="AudioStream" uid="uid://sso4h4r4ori1" path="res://audio/SFX/Skills/Domino/DominoPlaced5.ogg" id="13_wnbre"]
+[ext_resource type="AudioStream" uid="uid://bpnqf24heswk4" path="res://audio/Music/AstrMusic/toffeepot[loop, whymsisterious, simple].mp3" id="15_pw4qd"]
+[ext_resource type="AudioStream" uid="uid://ckq4r2tuhp7cf" path="res://audio/Music/AstrMusic/cheepchomp[puzzle,loop,temple-y].mp3" id="16_57c4j"]
 [ext_resource type="AudioStream" uid="uid://brgjfi5b2rdyi" path="res://audio/SFX/Skills/Domino/DominoOpenBag1.ogg" id="17_lqrbu"]
 [ext_resource type="AudioStream" uid="uid://rnt18baa5lvp" path="res://audio/SFX/Skills/Domino/DominoOpenBag2.ogg" id="18_8of2w"]
 
@@ -53,6 +56,12 @@ action = &"OpenSkillBag"
 
 [sub_resource type="Shortcut" id="Shortcut_5452a"]
 events = [SubResource("InputEventAction_8of2w")]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_m4f3e"]
+streams_count = 3
+stream_0/stream = ExtResource("13_t5vuw")
+stream_1/stream = ExtResource("15_pw4qd")
+stream_2/stream = ExtResource("16_57c4j")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qowul"]
 random_pitch = 1.1
@@ -599,6 +608,13 @@ focus_mode = 0
 button_mask = 0
 shortcut = SubResource("Shortcut_5452a")
 
+[node name="SkillDescriptionMusic" type="AudioStreamPlayer" parent="CanvasLayer/SkillBagList" unique_id=1991611922]
+unique_name_in_owner = true
+process_mode = 2
+stream = SubResource("AudioStreamRandomizer_m4f3e")
+bus = &"Music"
+playback_type = 1
+
 [node name="Error" type="AudioStreamPlayer2D" parent="." unique_id=222364818]
 stream = SubResource("AudioStreamRandomizer_qowul")
 bus = &"SFX"
@@ -629,10 +645,12 @@ stream = SubResource("AudioStreamRandomizer_lqrbu")
 bus = &"SFX"
 
 [node name="OpenBag" type="AudioStreamPlayer2D" parent="." unique_id=1353470391]
+process_mode = 3
 stream = SubResource("AudioStreamRandomizer_5452a")
 bus = &"SFX"
 
 [node name="CloseBag" type="AudioStreamPlayer2D" parent="." unique_id=681734774]
+process_mode = 3
 stream = SubResource("AudioStreamRandomizer_8of2w")
 bus = &"SFX"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnrxjlwuvjt6l"]
+[gd_scene format=3 uid="uid://cnrxjlwuvjt6l"]
 
 [ext_resource type="Script" uid="uid://cjulx25cp14c1" path="res://scripts/Actors/Strategies/Skill/fortune_cookie_skill_strategy.gd" id="1_78wp6"]
 [ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_w7hts"]
@@ -11,7 +11,7 @@ random_pitch = 1.15
 streams_count = 1
 stream_0/stream = ExtResource("4_w7hts")
 
-[node name="FortuneCookieSkillStrategy" instance=ExtResource("1_w7hts")]
+[node name="FortuneCookieSkillStrategy" unique_id=820831667 instance=ExtResource("1_w7hts")]
 script = ExtResource("1_78wp6")
 text_scene = ExtResource("2_w7hts")
 count = 2
@@ -27,7 +27,7 @@ skill_ID = 4
 [node name="Icon" parent="." index="0"]
 texture = ExtResource("3_w7hts")
 
-[node name="CookieOpen" type="AudioStreamPlayer2D" parent="." index="4"]
+[node name="CookieOpen" type="AudioStreamPlayer2D" parent="." index="4" unique_id=1215428960]
 stream = SubResource("AudioStreamRandomizer_ij5um")
 volume_db = 5.0
 pitch_scale = 1.36

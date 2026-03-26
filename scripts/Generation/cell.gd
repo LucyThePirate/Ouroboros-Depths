@@ -78,6 +78,7 @@ func _ready():
 	#get_tree().get_root().focus_exited.connect(_on_paused)
 	#get_viewport().gui_focus_changed.connect(_on_paused)
 	Global.UI_closed.connect(_on_unpaused)
+	Global.UI_opened.connect(_on_paused)
 	Global.aggroed_towards_player.connect(add_to_angry_at_player_list)
 	Global.deaggroed_towards_player.connect(remove_from_angry_at_player_list)
 	Global.entity_positions = {}
@@ -103,6 +104,8 @@ func _ready():
 	# Else, no existing level, generate
 	generator.initialize(floors, walls, fog)
 	generator.generate_level()
+	_initialize_fog()
+	spawn_bogo_egg()
 	if not player:
 		player = (
 			spawn_entity(
@@ -110,14 +113,14 @@ func _ready():
 			)
 			as Player
 		)
-	for i in range(8):
-		try_spawning_random_monster(false)
-	spawn_bogo_egg()
-	_initialize_fog()
 	player.grid_entity.warp($Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0])
 	Global.entity_positions[$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]] = (
 		player.grid_entity
 	)
+
+	for i in range(int(10 + current_floor) / 2):
+		try_spawning_random_monster(false)
+
 	_initialize_entities()
 
 
@@ -308,9 +311,10 @@ func try_spawning_random_monster(initialize_entity := true):
 			var new_entity = spawn_entity(grid_coordinate, creature_scene.pick_random())
 			if initialize_entity:
 				_initialize_entity(new_entity.grid_entity)
-				var new_smoke = spawn_smoke_scene.instantiate()
-				new_smoke.global_position = Global.floors.map_to_local(grid_coordinate)
-				add_child(new_smoke)
+				if not Global.darkness.get_cell_tile_data(grid_coordinate):
+					var new_smoke = spawn_smoke_scene.instantiate()
+					new_smoke.global_position = Global.floors.map_to_local(grid_coordinate)
+					add_child(new_smoke)
 
 
 func spawn_bogo_egg():
@@ -432,14 +436,24 @@ func _on_auto_turn_timer_timeout() -> void:
 
 func _on_paused() -> void:
 	get_tree().paused = true
+	Global.pause_count += 1
+
+
+func _on_pause_button_pressed() -> void:
+	%PauseMusic.play()
+	get_tree().paused = true
+	Global.pause_count += 1
 	pause_screen.show()
 	pause_button.hide()
 
 
 func _on_unpaused() -> void:
-	pause_screen.hide()
-	pause_button.show()
-	get_tree().paused = false
+	Global.pause_count = max(0, Global.pause_count - 1)
+	if Global.pause_count <= 0:
+		pause_screen.hide()
+		%PauseMusic.stop()
+		pause_button.show()
+		get_tree().paused = false
 
 
 func _on_new_run_button_pressed() -> void:

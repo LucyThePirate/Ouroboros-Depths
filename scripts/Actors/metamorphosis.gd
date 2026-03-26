@@ -42,12 +42,13 @@ func _ready() -> void:
 	if not grid_parent:
 		return
 	Global.metamorphosis_started.emit()
-	get_tree().paused = true
+	Global.UI_opened.emit()
 	#for soul in range(grid_parent.soul_count):
 	#souls += soul + 1
 	souls = grid_parent.soul_count
 	#var bonus_souls = souls - grid_parent.soul_count
 	grid_parent.soul_count = souls
+	grid_parent.stack_component._shuffle_skills()
 	#soul_count.text = "Souls: %s\n(+%s bonus souls!)" % [souls, bonus_souls]
 	soul_count.text = "Souls: %s" % souls
 	reroll_cost = Global.metamorphosis_reroll_cost
@@ -91,7 +92,7 @@ func _on_confirm_button_pressed() -> void:
 	grid_parent.heal(grid_parent.soul_count)
 	grid_parent.soul_count = 0
 	metamorphosis_completed.emit()
-	get_tree().paused = false
+	Global.UI_closed.emit()
 	queue_free()
 
 

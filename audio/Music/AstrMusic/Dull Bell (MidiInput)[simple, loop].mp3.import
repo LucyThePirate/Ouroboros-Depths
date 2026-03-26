@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cssp4vajxpdn2"
+path="res://.godot/imported/Dull Bell (MidiInput)[simple, loop].mp3-df77f7f188fbd99932e1ca0e47368ae3.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/AstrMusic/Dull Bell (MidiInput)[simple, loop].mp3"
+dest_files=["res://.godot/imported/Dull Bell (MidiInput)[simple, loop].mp3-df77f7f188fbd99932e1ca0e47368ae3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=5.0
+bpm=0.0
+beat_count=0
+bar_beats=4

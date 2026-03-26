@@ -135,7 +135,7 @@ metamorphosis_scene = ExtResource("4_wes0m")
 [node name="GridEntity" parent="." unique_id=1217274743 groups=["Player"] instance=ExtResource("1_exgt7")]
 species_name = "You!"
 species_desc = "It is you!"
-soul_count = 1
+soul_count = 10
 
 [node name="Camera2D2" type="Camera2D" parent="GridEntity" unique_id=1260474723]
 zoom = Vector2(0.5, 0.5)
@@ -157,6 +157,7 @@ position = Vector2(5, -31)
 scale = Vector2(0.208175, 0.208175)
 
 [node name="StateLabel" type="Label" parent="." unique_id=185221372]
+visible = false
 offset_left = -85.0
 offset_top = -222.0
 offset_right = -45.0

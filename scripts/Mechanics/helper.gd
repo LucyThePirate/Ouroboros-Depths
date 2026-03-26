@@ -25,6 +25,13 @@ func _process(_delta):
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("DebugToggleSlowdown"):
 		toggle_slowdown()
+	if Input.is_action_just_pressed("DebugToggleFog"):
+		fog_visible = !fog_visible
+		for fog_node in get_tree().get_nodes_in_group("Fog"):
+			fog_node.visible = fog_visible
+
+	if Global.pause_count >= 1:
+		return
 	if Input.is_action_just_pressed("ZoomIn"):
 		var camera = get_viewport().get_camera_2d()
 		if camera:
@@ -39,10 +46,6 @@ func _process(_delta):
 		var camera = get_viewport().get_camera_2d()
 		if camera:
 			camera.global_position = get_global_mouse_position()
-	if Input.is_action_just_pressed("DebugToggleFog"):
-		fog_visible = !fog_visible
-		for fog_node in get_tree().get_nodes_in_group("Fog"):
-			fog_node.visible = fog_visible
 
 
 func toggle_slowdown():

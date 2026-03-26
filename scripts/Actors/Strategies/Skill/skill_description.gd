@@ -9,6 +9,7 @@ class_name SkillDescription
 
 func _ready():
 	$DominoFlip.play()
+	Global.UI_opened.emit()
 
 
 func _on_window_close_requested() -> void:

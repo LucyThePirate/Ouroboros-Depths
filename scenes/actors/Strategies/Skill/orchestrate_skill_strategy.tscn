@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c10nhwhuw3ge4"]
+[gd_scene format=3 uid="uid://c10nhwhuw3ge4"]
 
 [ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_cceox"]
 [ext_resource type="Texture2D" uid="uid://bw5vnwnafwbci" path="res://textures/skills/OrchestrateSkill.png" id="2_x1ymy"]
@@ -30,7 +30,7 @@ tone = "B"
 octave = 3
 metadata/_custom_type_script = "uid://dtpmtwvvk0ac7"
 
-[node name="OrchestrateSkillStrategy" instance=ExtResource("1_cceox")]
+[node name="OrchestrateSkillStrategy" unique_id=1449820178 instance=ExtResource("1_cceox")]
 script = ExtResource("2_x5ygo")
 note_VFX = ExtResource("3_go5wn")
 count = 8
@@ -45,7 +45,7 @@ skill_ID = 5
 [node name="Icon" parent="." index="0"]
 texture = ExtResource("2_x1ymy")
 
-[node name="Sampler" type="AudioStreamPlayer2D" parent="." index="4"]
+[node name="Sampler" type="AudioStreamPlayer2D" parent="." index="4" unique_id=663795000]
 unique_name_in_owner = true
 bus = &"SFX"
 script = ExtResource("10_r86bf")

@@ -29,6 +29,7 @@ var potential_targets: Array[GridEntity] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	intent_label.hide()
 	grid_entity.global_position = global_position
 	display.global_position = grid_entity.global_position
 	global_position = grid_entity.position
@@ -37,6 +38,8 @@ func _ready() -> void:
 	turn_component.turn_ended.connect(health_component.turn_ended)
 	if visual.has_method("initialize"):
 		visual.initialize(grid_entity)
+	in_darkness = grid_entity.is_in_darkness()
+	visible = not in_darkness
 	#turn_component.turn_ended.connect(status_manager_component.on_turn_ended)
 
 

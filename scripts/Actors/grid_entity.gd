@@ -298,6 +298,8 @@ func is_on_path_down() -> bool:
 
 func is_in_darkness() -> bool:
 	var grid_coords = Global.floors.local_to_map(global_position)
+	if not Global.darkness:
+		return false
 	var darkness_data = Global.darkness.get_cell_tile_data(grid_coords)
 	if not darkness_data:
 		return false

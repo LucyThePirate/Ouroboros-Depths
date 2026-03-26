@@ -13,6 +13,7 @@ class_name CreatureDescription
 func _ready():
 	$DominoFlip.play()
 	$CanvasLayer/Window/ScrollContainer/Control/ActiveStatuses.hide()
+	Global.UI_opened.emit()
 
 
 func set_status_descriptions(descriptions: Array):

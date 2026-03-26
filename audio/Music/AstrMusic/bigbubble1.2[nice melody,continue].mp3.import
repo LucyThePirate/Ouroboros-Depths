@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkdorot0kmda5"
+path="res://.godot/imported/bigbubble1.2[nice melody,continue].mp3-7095e3f741c3d5e819eab02ee1c85f9d.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/AstrMusic/bigbubble1.2[nice melody,continue].mp3"
+dest_files=["res://.godot/imported/bigbubble1.2[nice melody,continue].mp3-7095e3f741c3d5e819eab02ee1c85f9d.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
