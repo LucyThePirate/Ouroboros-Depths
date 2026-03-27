@@ -134,7 +134,7 @@ metamorphosis_scene = ExtResource("4_wes0m")
 
 [node name="GridEntity" parent="." unique_id=1217274743 groups=["Player"] instance=ExtResource("1_exgt7")]
 species_name = "You!"
-species_desc = "It is you!"
+species_desc = "It is you! Or it is me? Whatever. "
 soul_count = 10
 
 [node name="Camera2D2" type="Camera2D" parent="GridEntity" unique_id=1260474723]
@@ -236,7 +236,6 @@ stream = SubResource("AudioStreamRandomizer_itc60")
 bus = &"SFX"
 
 [node name="ExecutingParticles" type="GPUParticles2D" parent="." unique_id=162672340]
-visible = false
 position = Vector2(4, 48)
 emitting = false
 amount = 32

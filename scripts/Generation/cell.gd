@@ -125,6 +125,7 @@ func _ready():
 
 
 func _initialize_fog():
+	darkness.clear()
 	darkness.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
 	for x in Global.walls.get_used_rect().size.x:
 		for y in Global.walls.get_used_rect().size.y:
@@ -134,14 +135,14 @@ func _initialize_fog():
 			)
 			darkness.set_cell(tile_position, fog_tile[0], fog_tile[1])
 
-	for tile_position in fog.get_used_cells():
-		var empty_tile = (
-			(Global.walls.get_cell_tile_data(tile_position) == null)
-			and (Global.floors.get_cell_tile_data(tile_position) == null)
-		)
-		if empty_tile:
-			fog.set_cell(tile_position, -1)
-			darkness.set_cell(tile_position, -1)
+	#for tile_position in fog.get_used_cells():
+	#var empty_tile = (
+	#(Global.walls.get_cell_tile_data(tile_position) == null)
+	#and (Global.floors.get_cell_tile_data(tile_position) == null)
+	#)
+	#if empty_tile:
+	#fog.set_cell(tile_position, -1)
+	#darkness.set_cell(tile_position, -1)
 
 	Global.darkness = darkness
 	_update_fog(

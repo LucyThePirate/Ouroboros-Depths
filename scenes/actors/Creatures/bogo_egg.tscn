@@ -11,15 +11,12 @@ script = ExtResource("2_my2fc")
 species_name = "Ominous Egg"
 species_desc = "The pearly-white egg shell is dense in soul-rich nutrients. Smashing it to bits would net you a large amount of souls!
 
-...But whatever is writing inside seems to be growing more and more restless by the second. If you're going to scramble this egg, you best have an escape route in mind."
+...But whatever is writhing inside seems to be growing more and more restless by the second. If you're going to scramble this egg, you best have an escape route in mind."
 
 [node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
 max_health = 10
 
 [node name="IntentArrow" parent="." index="4" unique_id=132546320]
-visible = false
-
-[node name="IntentLabel" parent="." index="5" unique_id=798491599]
 visible = false
 
 [node name="Sprite2D" parent="." index="6" unique_id=619217628]

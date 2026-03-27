@@ -40,7 +40,7 @@ func generate_level():
 			for a in adjacent:
 				if not new_cell + a in cells:
 					expandable_areas.append(new_cell + a)
-	print("Cells after 1.:", cells)
+	#print("Cells after 1.:", cells)
 
 	# 2. Converting random cells into rooms
 	var possible_rooms = cells.duplicate()
@@ -183,7 +183,6 @@ func generate_level():
 
 	Global.floors = floors
 	Global.walls = walls
-
 
 
 func _place_nature_tile(tile_coordinate: Vector2i):

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://biuojqtlmraek"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_xm1lf"]
+[ext_resource type="Script" uid="uid://5hsc8da22jyd" path="res://scenes/actors/Strategies/Skill/judo_throw/judo_throw_skill_strategy.gd" id="2_khnmr"]
+[ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/effects/dash_vfx.tscn" id="3_216uy"]
+[ext_resource type="PackedScene" uid="uid://csmoib3nld3bv" path="res://scenes/effects/stomp_vfx.tscn" id="4_5mm07"]
+[ext_resource type="Texture2D" uid="uid://bbu12jm0wnrab" path="res://textures/creatures/Lich/HandUnclenched.png" id="4_216uy"]
+[ext_resource type="PackedScene" uid="uid://cmxeogtui2phc" path="res://scenes/effects/note_vfx.tscn" id="5_myhxa"]
+
+[node name="JudoThrowSkillStrategy" unique_id=347600095 instance=ExtResource("1_xm1lf")]
+script = ExtResource("2_khnmr")
+DashVFX = ExtResource("3_216uy")
+StompVFX = ExtResource("4_5mm07")
+note_VFX = ExtResource("5_myhxa")
+cost = 2
+skill_name = "Judo Throw"
+skill_desc = "Use the weight of your foes to a dangerous degree!
+
+On use, the user grabs an adjacent foe, then lobs them to the chosen space, dealing area damage at the destination."
+skill_ID = 13
+
+[node name="Icon" parent="." index="0" unique_id=2096319184]
+texture = ExtResource("4_216uy")

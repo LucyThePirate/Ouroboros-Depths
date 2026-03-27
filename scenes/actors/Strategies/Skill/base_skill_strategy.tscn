@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcpo4dfcq62k2"]
+[gd_scene format=3 uid="uid://bcpo4dfcq62k2"]
 
 [ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="4_0actt"]
 [ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/ui/Cursor.png" id="5_bxg8s"]
@@ -33,20 +33,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="BaseSkillStrategy" type="PanelContainer" groups=["Skill"]]
+[node name="BaseSkillStrategy" type="PanelContainer" unique_id=1163924449 groups=["Skill"]]
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 144.0
 offset_bottom = 139.0
 scale = Vector2(1.18752, 1.18752)
 mouse_filter = 1
 
-[node name="Icon" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="." unique_id=2096319184]
 layout_mode = 2
 texture = ExtResource("4_0actt")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1046864371]
 visible = false
 layout_mode = 2
 size_flags_vertical = 1
@@ -56,7 +56,7 @@ max_value = 1.0
 fill_mode = 3
 show_percentage = false
 
-[node name="Cursor" type="AnimatedSprite2D" parent="."]
+[node name="Cursor" type="AnimatedSprite2D" parent="." unique_id=1446101111]
 visible = false
 top_level = true
 z_index = -1
@@ -64,7 +64,7 @@ sprite_frames = SubResource("SpriteFrames_v8hib")
 autoplay = "default"
 speed_scale = 0.3
 
-[node name="Cursor2" type="AnimatedSprite2D" parent="Cursor"]
+[node name="Cursor2" type="AnimatedSprite2D" parent="Cursor" unique_id=1918798329]
 self_modulate = Color(0, 0, 0, 0.654902)
 show_behind_parent = true
 z_index = -1
@@ -73,25 +73,25 @@ sprite_frames = SubResource("SpriteFrames_v8hib")
 autoplay = "default"
 speed_scale = 0.3
 
-[node name="Arrows" type="Node2D" parent="."]
+[node name="Arrows" type="Node2D" parent="." unique_id=250454663]
 visible = false
 top_level = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Arrows"]
+[node name="Sprite2D" type="Sprite2D" parent="Arrows" unique_id=580593896]
 position = Vector2(104, 0)
 texture = ExtResource("6_sh0vo")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Arrows"]
+[node name="Sprite2D2" type="Sprite2D" parent="Arrows" unique_id=822589165]
 position = Vector2(0, -104)
 rotation = -1.57079
 texture = ExtResource("6_sh0vo")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Arrows"]
+[node name="Sprite2D3" type="Sprite2D" parent="Arrows" unique_id=1968668061]
 position = Vector2(-104, 0)
 rotation = 3.14159
 texture = ExtResource("6_sh0vo")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Arrows"]
+[node name="Sprite2D4" type="Sprite2D" parent="Arrows" unique_id=1273877338]
 position = Vector2(2.00011, 106)
 rotation = 1.57079
 texture = ExtResource("6_sh0vo")

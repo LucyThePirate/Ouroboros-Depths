@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/RapBeat.mp3-b0bf8d705bab0c85bb6a3b21fdd72d91.
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

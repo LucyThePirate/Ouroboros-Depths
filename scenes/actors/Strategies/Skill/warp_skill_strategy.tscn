@@ -1,14 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://djpdq4bxeklv3"]
+[gd_scene format=3 uid="uid://djpdq4bxeklv3"]
 
 [ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_0lf28"]
 [ext_resource type="Script" uid="uid://da4lxow0d2itc" path="res://scripts/Actors/Strategies/Skill/warp_skill_strategy.gd" id="2_0lf28"]
 [ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/effects/dash_vfx.tscn" id="3_plapq"]
 [ext_resource type="Texture2D" uid="uid://blcw853u18ahk" path="res://textures/skills/WarpSkill.png" id="4_d1e3j"]
 
-[node name="WarpSkillStrategy" instance=ExtResource("1_0lf28")]
+[node name="WarpSkillStrategy" unique_id=982565225 instance=ExtResource("1_0lf28")]
 script = ExtResource("2_0lf28")
 DashVFX = ExtResource("3_plapq")
 is_depletable = true
+cost = 2
 max_per_stack = 1
 priority = -1
 skill_name = "Warp"
@@ -19,5 +20,5 @@ As a side effect, if there is already a creature at your target destination, the
 This spell is favored by those who would rather shrug off handling bad situations to others."
 skill_ID = 9
 
-[node name="Icon" parent="." index="0"]
+[node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("4_d1e3j")

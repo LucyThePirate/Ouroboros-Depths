@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://db3bk0lgv61c3"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_ubew5"]
+[ext_resource type="Script" uid="uid://dcm7h1vp8vbvp" path="res://scenes/actors/Strategies/Skill/harpoon/harpoon_skill_strategy.gd" id="2_5i853"]
+[ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/effects/dash_vfx.tscn" id="3_lvt6v"]
+[ext_resource type="Texture2D" uid="uid://dvk0lh8w8h2fe" path="res://textures/skills/HarpoonSkill.png" id="4_lvt6v"]
+
+[node name="HarpoonSkillStrategy" unique_id=1163924449 instance=ExtResource("1_ubew5")]
+script = ExtResource("2_5i853")
+DashVFX = ExtResource("3_lvt6v")
+skill_name = "Harpoon"
+skill_desc = "Latch onto foes with a sharp spear, then yank 'em close to you!"
+skill_ID = 14
+
+[node name="Icon" parent="." index="0" unique_id=2096319184]
+texture = ExtResource("4_lvt6v")

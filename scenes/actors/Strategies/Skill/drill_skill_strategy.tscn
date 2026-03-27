@@ -16,13 +16,14 @@ stream_0/stream = ExtResource("6_0ql5d")
 script = ExtResource("2_g35iv")
 DashVFX = ExtResource("3_yyqck")
 vigor_status = ExtResource("4_yyqck")
+cost = 2
 skill_name = "Drill"
 skill_desc = "Walls don't stand a chance! On use, pick a direction and start busting through walls like paper.
 
 Causing wanton destruction this way is SO satisfying, that it also grants the user Vigor for every wall broken, empowering their next attack."
 skill_ID = 11
 
-[node name="Icon" parent="." index="0"]
+[node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("5_kms4v")
 
 [node name="Travel" type="AudioStreamPlayer2D" parent="." index="4" unique_id=516931749]

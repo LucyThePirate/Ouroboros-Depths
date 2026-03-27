@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/actors/Strategies/Skill/defend_skill_strategy.tscn" id="2_eqxyh"]
 [ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/actors/Strategies/Skill/stomp_skill_strategy.tscn" id="3_21vwe"]
 [ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="4_c5fl1"]
+[ext_resource type="PackedScene" uid="uid://biuojqtlmraek" path="res://scenes/actors/Strategies/Skill/judo_throw/judo_throw_skill_strategy.tscn" id="5_hlff6"]
+[ext_resource type="PackedScene" uid="uid://db3bk0lgv61c3" path="res://scenes/actors/Strategies/Skill/harpoon/harpoon_skill_strategy.tscn" id="6_qgf6v"]
 
 [node name="BasicDeck" type="Control" unique_id=1324047796]
 layout_mode = 3
@@ -28,4 +30,10 @@ offset_left = 0.0
 offset_right = 144.0
 
 [node name="DarkStarSkillStrategy" parent="." unique_id=106841517 instance=ExtResource("4_c5fl1")]
+layout_mode = 0
+
+[node name="JudoThrowSkillStrategy" parent="." unique_id=347600095 instance=ExtResource("5_hlff6")]
+layout_mode = 0
+
+[node name="HarpoonSkillStrategy" parent="." unique_id=1163924449 instance=ExtResource("6_qgf6v")]
 layout_mode = 0
