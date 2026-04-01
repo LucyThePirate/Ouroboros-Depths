@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://v4jyo2omhd1l"]
+[gd_scene format=3 uid="uid://v4jyo2omhd1l"]
 
 [ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_t7k5d"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="2_nfndv"]
@@ -11,47 +11,50 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6hqks"]
 radius = 451.0
 
-[node name="WaspTest" type="Node2D" node_paths=PackedStringArray("visual") groups=["AI"]]
+[node name="WaspTest" type="Node2D" unique_id=1916860983 node_paths=PackedStringArray("visual") groups=["AI"]]
 script = ExtResource("1_t7k5d")
 visual = NodePath("WaspVisual")
 
-[node name="GridEntity" parent="." instance=ExtResource("2_nfndv")]
+[node name="GridEntity" parent="." unique_id=2059260571 instance=ExtResource("2_nfndv")]
 species_name = "Wasp"
 species_desc = "One brave soldier of many from the plane of One Trillion Wasps.
 
 Though wasps aren't much of a threat on their own, the fact that the swarm of One Trillion Wasps was able to take on The Power of Love AND Divine Punishment on their own instills you with hope. Hope, and also a healthy dose of fear."
 
-[node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" instance=ExtResource("3_t7k5d")]
+[node name="SkillStackComponent" parent="GridEntity" index="10" unique_id=1500394995]
+max_stack_size = 2
+
+[node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" unique_id=2063429728 instance=ExtResource("3_t7k5d")]
 mouse_filter = 0
 
-[node name="HealthComponent" parent="GridEntity/UI" index="0"]
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(2059260571, 1710592687) index="0" unique_id=1357245310]
 max_health = 4
 
-[node name="Display" type="Node2D" parent="."]
+[node name="Display" type="Node2D" parent="." unique_id=1105600931]
 top_level = true
 position = Vector2(0, -34)
 
-[node name="WaspVisual" parent="." instance=ExtResource("4_iadu2")]
+[node name="WaspVisual" parent="." unique_id=1839762042 instance=ExtResource("4_iadu2")]
 position = Vector2(-2.58908e-07, -139)
 rotation = 0.0231713
 scale = Vector2(0.215666, 0.215666)
 
-[node name="BaseRandomSkillPlanner" parent="." instance=ExtResource("6_a3j1p")]
+[node name="BaseRandomSkillPlanner" parent="." unique_id=1495131433 instance=ExtResource("6_a3j1p")]
 
-[node name="DetectionRadius" type="Area2D" parent="."]
+[node name="DetectionRadius" type="Area2D" parent="." unique_id=1639015288]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius" unique_id=653072089]
 scale = Vector2(1.59033, 1.59033)
 shape = SubResource("CircleShape2D_6hqks")
 
-[node name="IntentArrow" type="Sprite2D" parent="."]
+[node name="IntentArrow" type="Sprite2D" parent="." unique_id=869228418]
 self_modulate = Color(0.968627, 0, 0.364706, 0.823529)
 texture = ExtResource("8_iadu2")
 offset = Vector2(118, 1)
 
-[node name="IntentLabel" type="RichTextLabel" parent="."]
+[node name="IntentLabel" type="RichTextLabel" parent="." unique_id=157290585]
 offset_left = -36.0
 offset_top = -230.0
 offset_right = 4.0

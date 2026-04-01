@@ -77,7 +77,7 @@ func _stock_buyable_skills():
 		buy_skill_container.add_child(new_skill_icon)
 		add_child(random_skill)
 		new_item["cost"] = random_skill.cost
-		new_skill_icon.set_icon_texture(random_skill.icon.texture)
+		new_skill_icon.set_skill(random_skill, SkillIcon.IconPositions.METAMORPHOSIS)
 		new_skill_icon.left_clicked.connect(_on_buy_skill_pressed.bind(item_num))
 		new_skill_icon.right_clicked.connect(random_skill.display_skill_info)
 		#button.name = str(buy_skill_buttons.size())

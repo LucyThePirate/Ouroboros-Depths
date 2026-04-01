@@ -9,6 +9,7 @@
 script = ExtResource("2_n3f6c")
 earth_spike_projectile = ExtResource("3_n3f6c")
 cost = 2
+stack_size = 2
 priority = 1
 skill_name = "Earth Spike"
 skill_desc = "Call upon the power of the earth! 

@@ -1,19 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5jnedeqec3bx"]
+[gd_scene format=3 uid="uid://b5jnedeqec3bx"]
 
 [ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_3kmmh"]
 [ext_resource type="Script" uid="uid://deabvcgkh4efg" path="res://scripts/Actors/Strategies/Skill/defend_skill_strategy.gd" id="1_wsy3c"]
 [ext_resource type="PackedScene" uid="uid://bhxy4rfg3pad5" path="res://scenes/actors/Strategies/Status/shield_status_strategy.tscn" id="2_peluu"]
 [ext_resource type="Texture2D" uid="uid://dnufantqlt3qq" path="res://textures/skills/ShieldSkill.png" id="4_peluu"]
 
-[node name="DefendSkillStrategy" instance=ExtResource("1_3kmmh")]
+[node name="DefendSkillStrategy" unique_id=239261403 instance=ExtResource("1_3kmmh")]
 script = ExtResource("1_wsy3c")
 shield_status = ExtResource("2_peluu")
-power = 5
+stack_size = 2
 skill_name = "Defend"
 skill_desc = "Put your guard up!
 
 On use, the user gains a shield status condition, which absorbs damage in lieu of their health. Note that shields also deplete as you move, so be prepared to hunker down!"
 skill_ID = 2
 
-[node name="Icon" parent="." index="0"]
+[node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("4_peluu")

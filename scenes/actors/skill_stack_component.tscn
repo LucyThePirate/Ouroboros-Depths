@@ -3,10 +3,8 @@
 [ext_resource type="Script" uid="uid://b6uhrd8rdimmy" path="res://scripts/Actors/skill_stack_component.gd" id="1_rerjn"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="2_qowul"]
 [ext_resource type="AudioStream" uid="uid://d3dload3sw6cq" path="res://audio/SFX/Misc/erro.mp3" id="2_rerjn"]
-[ext_resource type="Texture2D" uid="uid://kd8f7tsvxdgb" path="res://textures/items/default_item.png" id="4_iqeie"]
 [ext_resource type="PackedScene" uid="uid://c063h7gtu7k4q" path="res://scenes/actors/Strategies/Status/reload_status_strategy.tscn" id="4_rfo38"]
 [ext_resource type="AudioStream" uid="uid://d2xfgpdhopbfj" path="res://audio/SFX/Skills/98329__cognito-perceptu__cassette-tape-action-2.ogg" id="5_8fyuu"]
-[ext_resource type="PackedScene" uid="uid://c1t1yix0mdkeh" path="res://scenes/actors/Strategies/Skill/skill_icon.tscn" id="5_e1hdf"]
 [ext_resource type="PackedScene" uid="uid://cg6jvx6qfd2jn" path="res://scenes/actors/floating_text.tscn" id="6_5452a"]
 [ext_resource type="AudioStream" uid="uid://dp7jocijuqcyo" path="res://audio/SFX/Skills/98329__cognito-perceptu__cassette-tape-action-3.ogg" id="6_iqeie"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="6_o3wly"]
@@ -25,13 +23,6 @@
 [ext_resource type="AudioStream" uid="uid://ckq4r2tuhp7cf" path="res://audio/Music/AstrMusic/cheepchomp[puzzle,loop,temple-y].mp3" id="16_57c4j"]
 [ext_resource type="AudioStream" uid="uid://brgjfi5b2rdyi" path="res://audio/SFX/Skills/Domino/DominoOpenBag1.ogg" id="17_lqrbu"]
 [ext_resource type="AudioStream" uid="uid://rnt18baa5lvp" path="res://audio/SFX/Skills/Domino/DominoOpenBag2.ogg" id="18_8of2w"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6r18"]
-bg_color = Color(0, 0, 0, 0.529412)
-draw_center = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qowul"]
-bg_color = Color(1, 1, 1, 0.556863)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28yix"]
 content_margin_left = 4.0
@@ -119,7 +110,6 @@ script = ExtResource("1_rerjn")
 preview_queue_skill_texture = ExtResource("2_qowul")
 null_skill_texture = ExtResource("7_qdnrn")
 reload_status = ExtResource("4_rfo38")
-skill_icon_scene = ExtResource("5_e1hdf")
 text_scene = ExtResource("6_5452a")
 
 [node name="Stack" type="Control" parent="." unique_id=57144844]
@@ -144,64 +134,30 @@ offset_right = 547.0
 offset_bottom = 137.0
 scale = Vector2(0.328554, 0.284677)
 
-[node name="ColorRect" type="ColorRect" parent="Stack/MarginContainer" unique_id=1881846182]
-layout_mode = 2
-color = Color(0.713726, 0.407843, 0, 0.352941)
-
 [node name="CenterContainer" type="PanelContainer" parent="Stack/MarginContainer" unique_id=489449637]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
-[node name="StackIconHolder" type="HBoxContainer" parent="Stack/MarginContainer/CenterContainer" unique_id=53826818]
+[node name="VBoxContainer" type="VBoxContainer" parent="Stack/MarginContainer/CenterContainer" unique_id=1246841075]
+layout_mode = 2
+
+[node name="StackSizeLabel" type="RichTextLabel" parent="Stack/MarginContainer/CenterContainer/VBoxContainer" unique_id=2133485242]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("9_qdnrn")
+theme_override_font_sizes/normal_font_size = 75
+text = "0/4"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="StackIconHolder" type="HBoxContainer" parent="Stack/MarginContainer/CenterContainer/VBoxContainer" unique_id=53826818]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/StackIconHolder" unique_id=1313026451]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer" unique_id=1389814744]
-layout_mode = 2
-expand_mode = 2
-stretch_mode = 5
-
-[node name="ColorRect" type="ColorRect" parent="Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer/TextureRect" unique_id=1464331516]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.00272, 1.00272)
-color = Color(0.862745, 0, 0.219608, 0.298039)
-
-[node name="PanelContainer4" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/StackIconHolder" unique_id=375928380]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer4" unique_id=998349460]
-layout_mode = 2
-expand_mode = 2
-stretch_mode = 5
-
-[node name="PanelContainer2" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/StackIconHolder" unique_id=636348587]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer2" unique_id=284255872]
-layout_mode = 2
-expand_mode = 2
-stretch_mode = 5
-
-[node name="PanelContainer3" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/StackIconHolder" unique_id=1283944794]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer3" unique_id=537897899]
-layout_mode = 2
-expand_mode = 2
-stretch_mode = 5
-
-[node name="PanelContainer5" type="PanelContainer" parent="Stack/MarginContainer/CenterContainer/StackIconHolder" unique_id=1540878774]
-layout_mode = 2
-
-[node name="PreviewQueueSkill" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer5" unique_id=1320977700]
+[node name="PreviewQueueSkill" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/VBoxContainer/StackIconHolder" unique_id=1320977700]
+unique_name_in_owner = true
 visible = false
 self_modulate = Color(0.870588, 0, 0.0117647, 1)
 layout_mode = 2
@@ -276,185 +232,10 @@ color = Color(0.713726, 0.407843, 0, 0.352941)
 self_modulate = Color(1, 1, 1, 0.231373)
 layout_mode = 2
 
-[node name="HandVisual" type="HBoxContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer" unique_id=593860678]
+[node name="HandIconHolder" type="HBoxContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer" unique_id=593860678]
+unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
-
-[node name="PanelContainer1" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual" unique_id=1970721238]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1" unique_id=133462710]
-layout_mode = 2
-texture = ExtResource("4_iqeie")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Label" type="RichTextLabel" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1" unique_id=1486669774]
-layout_mode = 2
-theme = ExtResource("9_qdnrn")
-theme_override_font_sizes/normal_font_size = 23
-bbcode_enabled = true
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1" unique_id=175915979]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
-theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
-max_value = 1.0
-fill_mode = 3
-show_percentage = false
-
-[node name="InfoButton1" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1" unique_id=2072376993]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-focus_mode = 0
-button_mask = 2
-
-[node name="ActionIcon5" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1/InfoButton1" unique_id=122296110]
-layout_mode = 0
-offset_left = -12.6871
-offset_top = -27.3372
-offset_right = 185.313
-offset_bottom = 170.663
-scale = Vector2(0.251101, 0.251101)
-mouse_filter = 2
-script = ExtResource("9_8of2w")
-action_name = &"UseSkill1"
-metadata/_custom_type_script = "uid://b57xlofytn3k"
-
-[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual" unique_id=440012409]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2" unique_id=1257294645]
-layout_mode = 2
-texture = ExtResource("4_iqeie")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Label" type="RichTextLabel" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2" unique_id=958436272]
-layout_mode = 2
-theme = ExtResource("9_qdnrn")
-theme_override_font_sizes/normal_font_size = 23
-bbcode_enabled = true
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2" unique_id=1834766486]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
-theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
-max_value = 1.0
-fill_mode = 3
-show_percentage = false
-
-[node name="InfoButton2" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2" unique_id=1132506876]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-focus_mode = 0
-button_mask = 2
-
-[node name="ActionIcon4" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2/InfoButton2" unique_id=2010434819]
-layout_mode = 0
-offset_left = -10.5703
-offset_top = -27.3372
-offset_right = 187.43
-offset_bottom = 170.663
-scale = Vector2(0.251101, 0.251101)
-mouse_filter = 2
-script = ExtResource("9_8of2w")
-action_name = &"UseSkill2"
-metadata/_custom_type_script = "uid://b57xlofytn3k"
-
-[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual" unique_id=356967749]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3" unique_id=1356078480]
-layout_mode = 2
-texture = ExtResource("4_iqeie")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Label" type="RichTextLabel" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3" unique_id=1601563505]
-layout_mode = 2
-theme = ExtResource("9_qdnrn")
-theme_override_font_sizes/normal_font_size = 23
-bbcode_enabled = true
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3" unique_id=599463313]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
-theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
-max_value = 1.0
-fill_mode = 3
-show_percentage = false
-
-[node name="InfoButton3" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3" unique_id=2108367426]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-focus_mode = 0
-button_mask = 2
-
-[node name="ActionIcon3" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3/InfoButton3" unique_id=1299023290]
-layout_mode = 0
-offset_left = -10.8316
-offset_top = -27.3372
-offset_right = 187.168
-offset_bottom = 170.663
-scale = Vector2(0.251101, 0.251101)
-mouse_filter = 2
-script = ExtResource("9_8of2w")
-action_name = &"UseSkill3"
-metadata/_custom_type_script = "uid://b57xlofytn3k"
-
-[node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual" unique_id=1255608062]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4" unique_id=742769301]
-layout_mode = 2
-texture = ExtResource("4_iqeie")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Label" type="RichTextLabel" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4" unique_id=2043082000]
-layout_mode = 2
-theme = ExtResource("9_qdnrn")
-theme_override_font_sizes/normal_font_size = 23
-bbcode_enabled = true
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4" unique_id=1515291495]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxFlat_n6r18")
-theme_override_styles/fill = SubResource("StyleBoxFlat_qowul")
-max_value = 1.0
-fill_mode = 3
-show_percentage = false
-
-[node name="InfoButton4" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4" unique_id=77323576]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-focus_mode = 0
-button_mask = 2
-
-[node name="ActionIcon2" type="TextureRect" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4/InfoButton4" unique_id=73052715]
-layout_mode = 0
-offset_left = -12.282
-offset_top = -27.337
-offset_right = 185.718
-offset_bottom = 170.663
-scale = Vector2(0.251101, 0.251101)
-mouse_filter = 2
-script = ExtResource("9_8of2w")
-action_name = &"UseSkill4"
-metadata/_custom_type_script = "uid://b57xlofytn3k"
 
 [node name="ExecutePrompt" type="Control" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer" unique_id=705751928]
 custom_minimum_size = Vector2(151.185, 0)
@@ -657,10 +438,6 @@ bus = &"SFX"
 [node name="TelegraphTimer" type="Timer" parent="." unique_id=1936790712]
 
 [connection signal="emptied_stack" from="." to="." method="_on_emptied_stack"]
-[connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer1/InfoButton1" to="." method="_on_info_button_1_pressed"]
-[connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer2/InfoButton2" to="." method="_on_info_button_2_pressed"]
-[connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer3/InfoButton3" to="." method="_on_info_button_3_pressed"]
-[connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer4/InfoButton4" to="." method="_on_info_button_4_pressed"]
 [connection signal="pressed" from="CanvasLayer/AvailableSkills/PanelContainer/SkillBagButton" to="." method="_on_skill_bag_button_pressed"]
 [connection signal="close_requested" from="CanvasLayer/SkillBagList" to="." method="_on_skill_bag_list_close_requested"]
 [connection signal="pressed" from="CanvasLayer/SkillBagList/CloseSkillBag" to="." method="_on_close_skill_bag_pressed"]

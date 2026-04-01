@@ -16,6 +16,7 @@ script = ExtResource("1_78wp6")
 text_scene = ExtResource("2_w7hts")
 count = 2
 is_depletable = true
+stack_size = -1
 skill_name = "Fortune Cookie"
 skill_desc = "A little scrap of wisdom tucked away behind a sugary exterior.
 
@@ -24,7 +25,7 @@ On use, a fortune is displayed.
 The usefulness of the fortunes are... debatable, at best. The tastiness of the cookie however, is considerably more assured, and heals the user a slight amount."
 skill_ID = 4
 
-[node name="Icon" parent="." index="0"]
+[node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("3_w7hts")
 
 [node name="CookieOpen" type="AudioStreamPlayer2D" parent="." index="4" unique_id=1215428960]

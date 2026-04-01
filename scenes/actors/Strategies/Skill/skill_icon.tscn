@@ -1,24 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1t1yix0mdkeh"]
+[gd_scene format=3 uid="uid://c1t1yix0mdkeh"]
 
 [ext_resource type="Script" uid="uid://cytgj5qy6k3wm" path="res://scripts/Actors/Strategies/Skill/skill_icon.gd" id="1_876ke"]
-[ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/creatures/Soul.png" id="1_b2gkx"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="2_876ke"]
+[ext_resource type="Texture2D" uid="uid://cha8dq4v6awur" path="res://textures/skills/ReloadSkill.png" id="2_ch6wj"]
 
-[node name="SkillIcon" type="PanelContainer"]
+[node name="SkillIcon" type="PanelContainer" unique_id=695944168]
 custom_minimum_size = Vector2(100, 100)
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("1_876ke")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(20, 20)
+[node name="TextureRect" type="TextureRect" parent="." unique_id=189083487]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("1_b2gkx")
+texture = ExtResource("2_ch6wj")
 expand_mode = 2
+stretch_mode = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="CountLabel" type="RichTextLabel" parent="." unique_id=1939386381]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -29,13 +31,35 @@ text = "x99"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="NameLabel" type="RichTextLabel" parent="." unique_id=414365784]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("2_876ke")
+theme_override_font_sizes/normal_font_size = 26
+text = "what??"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="StackSizeLabel" type="RichTextLabel" parent="." unique_id=165178283]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("2_876ke")
+theme_override_font_sizes/normal_font_size = 40
+text = ":-O"
+
+[node name="Button" type="Button" parent="." unique_id=1536083257]
 self_modulate = Color(1, 1, 1, 0.176471)
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1
-theme_override_colors/icon_hover_pressed_color = Color(0.918291, 0.599438, 0.711051, 1)
 theme_override_colors/icon_hover_color = Color(0.599971, 0.731475, 1, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.918291, 0.599438, 0.711051, 1)
 button_mask = 3
 
 [connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]

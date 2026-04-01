@@ -15,6 +15,7 @@ const SKILL_DESCRIPTION = preload("uid://bvsqgo23yrgum")
 @onready var current_count := count
 @export var is_depletable := false
 @export var cost := 1
+@export var stack_size := 1
 
 @export_category("AI Use Hints")
 @export var max_per_stack := 3
@@ -148,6 +149,7 @@ func display_skill_info() -> void:
 	get_tree().current_scene.add_child(new_skill_description)
 	new_skill_description.icon.texture = icon.texture
 	new_skill_description.skill_name.text = skill_name
+	new_skill_description.stack_size = stack_size
 	new_skill_description.skill_desc.text = ""
 	if is_depletable:
 		new_skill_description.skill_desc.text += "[color=YELLOW]Depletable[/color]\n"

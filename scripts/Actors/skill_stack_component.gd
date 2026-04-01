@@ -19,15 +19,10 @@ var shuffle_turns := 0
 @export var preview_queue_skill_texture := Texture2D
 @export var null_skill_texture := Texture2D
 @export var reload_status: PackedScene
-@export var skill_icon_scene: PackedScene
+@onready var skill_icon_scene := preload("uid://c1t1yix0mdkeh")
 @export var text_scene: PackedScene
 @onready var current_error_text
 
-@onready var hand_visual = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual
-@onready var stack_icon_holder = $Stack/MarginContainer/CenterContainer/StackIconHolder
-@onready
-var preview_queue_skill = $Stack/MarginContainer/CenterContainer/StackIconHolder/PanelContainer5/PreviewQueueSkill
-@onready var stack_color_rect = $Stack/MarginContainer/ColorRect
 @onready var skill_bag = $CanvasLayer/AvailableSkills/PanelContainer/SkillBagButton as Button
 @onready
 var skill_bag_list = $CanvasLayer/SkillBagList/Control/VBoxContainer/ScrollContainer/HFlowContainer
@@ -36,10 +31,11 @@ var skill_bag_list = $CanvasLayer/SkillBagList/Control/VBoxContainer/ScrollConta
 )
 @onready
 var execute_prompt = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/ExecutePrompt
-
+var stack_icons = []
 var skills = []
 var total_skill_count := 0
 var stack = []
+var current_stack_size := 0
 var deck = []
 var hand = []
 var current_skill: SkillStrategy
@@ -49,6 +45,7 @@ enum States {
 var state = States.IDLE
 var grid_entity: GridEntity
 var turn_component: TurnComponent
+var grid_entity_is_player := false
 
 var moved_by_skill := false
 
@@ -63,10 +60,14 @@ func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_compon
 	grid_entity = grid_entity_parent
 	grid_entity.descended.connect(on_next_floor_reached)
 	$CanvasLayer.visible = is_player
+	grid_entity_is_player = is_player
 	turn_component = new_turn_component
 	turn_component.turn_ended.connect(_update_turn_cooldown)
 	grid_entity.moved.connect(_on_grid_entity_moved)
 	skills = Debug.find_children_in_group(self, "Skill", false)
+	for hand_count in range(hand_size):
+		var new_skill_icon = skill_icon_scene.instantiate()
+		%HandIconHolder.add_child(new_skill_icon)
 	_shuffle_skills()
 
 
@@ -81,7 +82,7 @@ func reload_deck() -> bool:
 		hand = []
 		deck = []
 		shuffle_turns = turns_to_reload
-		_update_skill_visuals()
+		_update_hand_visuals()
 		_update_cooldown_visuals()
 		_update_stack_visuals()
 		var new_status = reload_status.instantiate() as StatusStrategy
@@ -112,6 +113,8 @@ func queue_skill(skill_number) -> bool:
 		$Stack.show()
 		#print(name, " queued skill: ", skills[skill_number].name)
 		stack.append(hand[skill_number])
+		current_stack_size += hand[skill_number].stack_size
+
 		hand[skill_number].connect("gained_status", _on_gained_status)
 		hand[skill_number].on_skill_queued()
 		_update_stack_visuals()
@@ -121,7 +124,7 @@ func queue_skill(skill_number) -> bool:
 		if not deck.is_empty():
 			hand[skill_number] = deck.pop_front()
 			total_skill_count -= 1
-		_update_skill_visuals()
+		_update_hand_visuals()
 		#if hand.all(func(skill): return skill == null):  # Automatically reload when out of skills
 		#reload_deck()
 		return true
@@ -132,7 +135,7 @@ func queue_skill(skill_number) -> bool:
 
 
 func is_full() -> bool:
-	if stack.size() >= max_stack_size:
+	if current_stack_size >= max_stack_size:
 		return true
 	return false
 
@@ -162,6 +165,7 @@ func _handle_stack_execution():
 	_update_stack_visuals()
 	if stack.is_empty():
 		state = States.IDLE
+		current_stack_size = 0
 		emptied_stack.emit()
 		_update_cooldown_visuals()
 		for skill in skills:
@@ -172,8 +176,9 @@ func _handle_stack_execution():
 	if not grid_entity.is_in_group("Player"):
 		await get_tree().create_timer(0.25).timeout
 	current_skill = stack.pop_front() as SkillStrategy
+	current_stack_size -= current_skill.stack_size
 	current_skill.connect("moved_self", _on_moved_by_skill)
-	stack_icon_holder.get_child(0).get_child(0).get_child(0).show()
+	#%StackIconHolder.get_child(0).get_child(0).get_child(0).show()
 	if current_skill.ready_skill(grid_entity):
 		await get_tree().create_timer(0.1).timeout
 		#await current_skill.skill_finished
@@ -213,7 +218,7 @@ func add_skill(new_skill: SkillStrategy):
 		skills.append(new_skill)
 		deck.push_back(new_skill)
 	total_skill_count += 1
-	_update_skill_visuals()
+	_update_hand_visuals()
 
 
 func remove_skill(new_skill: SkillStrategy) -> bool:
@@ -227,7 +232,7 @@ func remove_skill(new_skill: SkillStrategy) -> bool:
 		#if existing_skill.count <= 0:
 		#existing_skill.queue_free()
 		#_shuffle_skills()
-		_update_skill_visuals()
+		_update_hand_visuals()
 		_on_skill_bag_list_close_requested()
 		skill_removed.emit()
 		return true
@@ -273,7 +278,7 @@ func accept_cursor():
 
 func _on_emptied_stack() -> void:
 	$Stack.hide()
-	stack_icon_holder.get_child(0).get_child(0).get_child(0).hide()
+	#%StackIconHolder.get_child(0).get_child(0).get_child(0).hide()
 
 
 func _shuffle_skills() -> void:
@@ -294,7 +299,7 @@ func _shuffle_skills() -> void:
 		else:
 			hand.append(deck.pop_front())
 			total_skill_count -= 1
-	_update_skill_visuals()
+	_update_hand_visuals()
 	_update_stack_visuals()
 
 
@@ -306,26 +311,36 @@ func on_next_floor_reached() -> void:
 
 
 func _update_stack_visuals() -> void:
-	for panel_container in stack_icon_holder.get_children():
-		panel_container.get_child(0).texture = null
+	%StackSizeLabel.text = "%s/%s" % [current_stack_size, max_stack_size]
 	execute_prompt.visible = false
 	if can_execute_stack():
 		execute_prompt.visible = true
+
+	for stack_icon in stack_icons:
+		stack_icon.queue_free()
+	stack_icons = []
+
 	for stack_item in range(stack.size()):
-		stack_icon_holder.get_child(stack_item).get_child(0).texture = (
-			stack[stack_item].icon.texture
-		)
+		var new_stack_icon = skill_icon_scene.instantiate() as SkillIcon
+		stack_icons.append(new_stack_icon)
+		new_stack_icon.set_skill(stack[stack_item], SkillIcon.IconPositions.STACK)
+		%StackIconHolder.add_child(new_stack_icon)
+		#%StackIconHolder.get_child(stack_item).get_child(0).texture = (
+		#stack[stack_item].icon.texture
+		#)
 
 
-func _update_skill_visuals() -> void:
+func _update_hand_visuals() -> void:
+	if not grid_entity_is_player:
+		return
 	skill_bag.text = "x%s" % total_skill_count
 	for skill in range(hand_size):
+		var hand_skill_icon = %HandIconHolder.get_child(skill) as SkillIcon
 		if hand.size() <= skill or not hand[skill]:
-			hand_visual.get_child(skill).get_child(0).texture = null_skill_texture
-			hand_visual.get_child(skill).get_child(1).text = "Reload"
+			hand_skill_icon.set_skill(null, SkillIcon.IconPositions.HAND)
 			continue
-		hand_visual.get_child(skill).get_child(0).texture = hand[skill].icon.texture
-		hand_visual.get_child(skill).get_child(1).text = hand[skill].skill_name
+		hand_skill_icon.set_skill(hand[skill], SkillIcon.IconPositions.HAND)
+		hand_skill_icon.right_clicked.connect(hand[skill].display_skill_info)
 	if deck.is_empty():
 		%NextSkillPreview.texture = null_skill_texture
 	else:
@@ -344,9 +359,9 @@ func _update_turn_cooldown():
 		for skill in range(hand.size()):
 			if not hand[skill]:
 				continue
-			hand[skill].decrement_turn_cooldown()
 	_update_cooldown_visuals()
 	_update_stack_visuals()
+	_update_hand_visuals()
 
 
 func _update_cooldown_visuals():
@@ -356,64 +371,57 @@ func _update_cooldown_visuals():
 			%TurnsTilReloadText.text = "%s turns 'til reload complete" % shuffle_turns
 		else:
 			%TurnsTilReloadText.text = "%s turn 'til reload complete" % shuffle_turns
-		for skill in range(hand_size):
-			var progress_bar = (
-				get_node(
-					(
-						"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer%s/ProgressBar"
-						% [skill + 1]
-					)
-				)
-				as ProgressBar
-			)
-			var percentage: float
-			var new_style_box = progress_bar.get_theme_stylebox("fill").duplicate() as StyleBoxFlat
-
-			percentage = float(shuffle_turns) / float(turns_to_reload)
-			new_style_box.bg_color = Color(1, 1, 1, 0.5)
-			progress_bar.add_theme_stylebox_override("fill", new_style_box)
-			progress_bar.value = percentage
+		for skill_icon in range(hand_size) as Array[SkillIcon]:
+			var percentage := float(shuffle_turns) / float(turns_to_reload)
+			#var new_style_box = progress_bar.get_theme_stylebox("fill").duplicate() as StyleBoxFlat
+			#new_style_box.bg_color = Color(1, 1, 1, 0.5)
+			#progress_bar.add_theme_stylebox_override("fill", new_style_box)
+			#progress_bar.value = percentage
 		return
 	else:
 		%TurnsTilReloadText.hide()
 	for skill in range(hand.size()):
 		if not hand[skill]:
 			continue
-		var progress_bar = (
-			get_node(
-				(
-					"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer%s/ProgressBar"
-					% [skill + 1]
-				)
-			)
-			as ProgressBar
-		)
-		if progress_bar:
-			var percentage: float
-			var new_style_box = progress_bar.get_theme_stylebox("fill").duplicate() as StyleBoxFlat
+		#var progress_bar = (
+		#get_node(
+		#(
+		#"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer%s/ProgressBar"
+		#% [skill + 1]
+		#)
+		#)
+		#as ProgressBar
+		#)
+		#if progress_bar:
+		#var percentage: float
+		#var new_style_box = progress_bar.get_theme_stylebox("fill").duplicate() as StyleBoxFlat
 
-			if hand[skill].current_in_stack > 0:
-				#percentage = float(hand[skill].current_in_stack) / float(hand[skill].max_per_stack)
-				percentage = 0
-				new_style_box.bg_color = Color(1, 1, 1, 0.5)
-				progress_bar.add_theme_stylebox_override("fill", new_style_box)
-			else:
-				percentage = float(hand[skill].current_cooldown) / float(hand[skill].cooldown_turns)
-				new_style_box.bg_color = Color(1, 0, 0, 0.5)
-				progress_bar.add_theme_stylebox_override("fill", new_style_box)
-			progress_bar.value = percentage
+
+#
+#if hand[skill].current_in_stack > 0:
+##percentage = float(hand[skill].current_in_stack) / float(hand[skill].max_per_stack)
+#percentage = 0
+#new_style_box.bg_color = Color(1, 1, 1, 0.5)
+#progress_bar.add_theme_stylebox_override("fill", new_style_box)
+#else:
+#percentage = float(hand[skill].current_cooldown) / float(hand[skill].cooldown_turns)
+#new_style_box.bg_color = Color(1, 0, 0, 0.5)
+#progress_bar.add_theme_stylebox_override("fill", new_style_box)
+#progress_bar.value = percentage
 
 
 func preview_queueing_skill(show_preview := true):
-	preview_queue_skill.texture = preview_queue_skill_texture
-	preview_queue_skill.visible = show_preview
+	pass
+	#%PreviewQueueSkill.texture = preview_queue_skill_texture
+	#%PreviewQueueSkill.visible = show_preview
+	#%StackIconHolder.move_child(%PreviewQueueSkill, -1)
 
 
 func preview_executing_stack(show_preview := true):
 	if show_preview:
-		stack_color_rect.color = Color.from_rgba8(233, 0, 73, 200)
+		pass
 	else:
-		stack_color_rect.color = Color.from_rgba8(182, 104, 0, 90)
+		pass
 
 
 func _on_info_button_1_pressed() -> void:
@@ -452,8 +460,7 @@ func _on_skill_bag_button_pressed() -> void:
 		for skill in skills_in_display:
 			var new_skill_icon = skill_icon_scene.instantiate()
 			new_skill_icon.clicked.connect(skill.display_skill_info)
-			new_skill_icon.set_icon_texture(skill.icon.texture)
-			new_skill_icon.set_count(skill_counts[skill])
+			new_skill_icon.set_skill(skill)
 			skill_bag_list.add_child(new_skill_icon)
 		skill_bag_list.get_children().shuffle()
 		$CanvasLayer/SkillBagList.show()
@@ -490,8 +497,7 @@ func open_skill_bag_for_skill_removal():
 			var new_skill_icon = skill_icon_scene.instantiate()
 			new_skill_icon.left_clicked.connect(remove_skill.bind(skill))
 			new_skill_icon.right_clicked.connect(skill.display_skill_info)
-			new_skill_icon.set_icon_texture(skill.icon.texture)
-			new_skill_icon.set_count(skill_counts[skill])
+			new_skill_icon.set_skill(skill)
 			skill_bag_list.add_child(new_skill_icon)
 		skill_bag_list.get_children().shuffle()
 		$CanvasLayer/SkillBagList.show()

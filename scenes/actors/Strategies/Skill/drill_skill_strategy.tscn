@@ -17,6 +17,7 @@ script = ExtResource("2_g35iv")
 DashVFX = ExtResource("3_yyqck")
 vigor_status = ExtResource("4_yyqck")
 cost = 2
+stack_size = 2
 skill_name = "Drill"
 skill_desc = "Walls don't stand a chance! On use, pick a direction and start busting through walls like paper.
 

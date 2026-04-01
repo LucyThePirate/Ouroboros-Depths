@@ -6,21 +6,73 @@ signal clicked
 signal left_clicked
 signal right_clicked
 
+@onready var reload_texture = %TextureRect.texture
+
+enum IconPositions { HAND, BAG, STACK, METAMORPHOSIS }
+var icon_position := IconPositions.HAND
+
+
+func set_skill(new_skill: SkillStrategy, new_position := IconPositions.HAND):
+	icon_position = new_position
+	if not new_skill:
+		set_icon_texture(null)
+		set_text("Reload")
+		set_stack_size(0)
+	else:
+		set_icon_texture(new_skill.icon.texture)
+		set_stack_size(new_skill.stack_size)
+		set_count(new_skill.count)
+		set_text(new_skill.skill_name)
+	match new_position:
+		IconPositions.HAND:
+			%CountLabel.hide()
+			%NameLabel.show()
+			%StackSizeLabel.show()
+		IconPositions.STACK:
+			%CountLabel.hide()
+			%NameLabel.hide()
+			%StackSizeLabel.show()
+		IconPositions.BAG:
+			%CountLabel.show()
+			%NameLabel.show()
+			%StackSizeLabel.hide()
+		IconPositions.METAMORPHOSIS:
+			%CountLabel.hide()
+			%NameLabel.show()
+			%StackSizeLabel.hide()
+
 
 func set_icon_texture(new_icon: Texture2D):
-	$TextureRect.texture = new_icon
+	if not new_icon:
+		%TextureRect.texture = reload_texture
+		%StackSizeLabel.hide()
+	else:
+		%TextureRect.texture = new_icon
+
+
+func set_stack_size(new_size := 0):
+	if new_size == 0:
+		%StackSizeLabel.text = ""
+	else:
+		%StackSizeLabel.text = "%s" % new_size
+	if icon_position == IconPositions.STACK:
+		custom_minimum_size.x = 100 + (50 * (new_size - 1))
+		#if new_size > 0:
+		#custom_minimum_size.x = 100 + (50 * (new_size - 1))
+		#else:
+		#custom_minimum_size.x = 100
 
 
 func set_count(new_count := 1):
 	if new_count == 1:
-		$RichTextLabel.hide()
+		%CountLabel.hide()
 	else:
-		$RichTextLabel.show()
-		$RichTextLabel.text = "x%s" % new_count
+		%CountLabel.show()
+		%CountLabel.text = "x%s" % new_count
 
 
 func set_text(new_text := ""):
-	$RichTextLabel.text = new_text
+	%NameLabel.text = new_text
 
 
 func _on_button_gui_input(event: InputEvent) -> void:
