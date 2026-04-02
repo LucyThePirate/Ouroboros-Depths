@@ -3,6 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_y78e5"]
 [ext_resource type="Script" uid="uid://dhvs8sbk5hmdg" path="res://scripts/Actors/AI/braindead_ai.gd" id="2_my2fc"]
 [ext_resource type="Texture2D" uid="uid://c54qdmwot0v1f" path="res://samples/softbody2d/Boiled_Egg_Half.png" id="3_my2fc"]
+[ext_resource type="AudioStream" uid="uid://bl40i2grnp6ha" path="res://audio/SFX/Creatures/Bogo/614367__nicoproson__egg-shell-opened-and-crunched-4.ogg" id="4_yknto"]
+[ext_resource type="AudioStream" uid="uid://vnjsa550ch0n" path="res://audio/SFX/Creatures/Bogo/614367__nicoproson__egg-shell-opened-and-crunched-3.ogg" id="5_gqo8w"]
+[ext_resource type="AudioStream" uid="uid://b1h7ufmqnjkuw" path="res://audio/SFX/Creatures/Bogo/614367__nicoproson__egg-shell-opened-and-crunched-2.ogg" id="6_mmt26"]
+[ext_resource type="AudioStream" uid="uid://bd8nn64gk87vx" path="res://audio/SFX/Creatures/Bogo/614367__nicoproson__egg-shell-opened-and-crunched.ogg" id="7_cjyop"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lmpnd"]
+random_pitch = 1.0330547
+streams_count = 4
+stream_0/stream = ExtResource("4_yknto")
+stream_1/stream = ExtResource("5_gqo8w")
+stream_2/stream = ExtResource("6_mmt26")
+stream_3/stream = ExtResource("7_cjyop")
 
 [node name="Bogo Egg" unique_id=963460758 instance=ExtResource("1_y78e5")]
 script = ExtResource("2_my2fc")
@@ -26,7 +38,12 @@ texture = ExtResource("3_my2fc")
 [node name="BogoTimer" type="Timer" parent="." index="7" unique_id=328426292]
 process_callback = 0
 wait_time = 100.0
-one_shot = true
+
+[node name="EggCrack" type="AudioStreamPlayer2D" parent="." index="8" unique_id=1143981051]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_lmpnd")
+pitch_scale = 1.2
+bus = &"SFX"
 
 [connection signal="timeout" from="BogoTimer" to="." method="_on_bogo_timer_timeout"]
 

@@ -230,6 +230,10 @@ TogglePause={
 2d_physics/layer_6="Text"
 2d_physics/layer_8="Sight"
 
+[physics]
+
+2d/solver/solver_iterations=8
+
 [rendering]
 
 anti_aliasing/screen_space_roughness_limiter/enabled=false

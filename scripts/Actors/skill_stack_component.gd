@@ -13,6 +13,7 @@ signal reload_started
 signal skill_removed
 
 @export var max_stack_size := 4
+@onready var current_max_stack_size := max_stack_size
 @export var hand_size := 4
 @export var turns_to_reload := 5
 var shuffle_turns := 0
@@ -52,7 +53,7 @@ var moved_by_skill := false
 
 func _ready() -> void:
 	show()
-	%Stack.hide()
+	#%Stack.hide()
 	$CanvasLayer/SkillBagList.hide()
 
 
@@ -61,6 +62,8 @@ func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_compon
 	grid_entity.descended.connect(on_next_floor_reached)
 	$CanvasLayer.visible = is_player
 	grid_entity_is_player = is_player
+	if not is_player:
+		%Stack.hide()
 	turn_component = new_turn_component
 	turn_component.turn_ended.connect(_update_turn_cooldown)
 	grid_entity.moved.connect(_on_grid_entity_moved)
@@ -106,6 +109,12 @@ func can_queue_skill(skill_number) -> bool:
 
 func queue_skill(skill_number) -> bool:
 	if can_queue_skill(skill_number):
+		if current_stack_size + hand[skill_number].stack_size > current_max_stack_size:
+			# Not enough room, increase max stack size temporarily
+			current_max_stack_size += 1
+			$OpenBag.play()
+			_update_stack_visuals()
+			return true
 		$SkillAdded.pitch_scale = 0.7 + (0.20 * stack.size())
 		$SkillAdded.play()
 		hand[skill_number].increment_in_stack_counter()
@@ -135,7 +144,7 @@ func queue_skill(skill_number) -> bool:
 
 
 func is_full() -> bool:
-	if current_stack_size >= max_stack_size:
+	if current_stack_size >= current_max_stack_size:
 		return true
 	return false
 
@@ -165,6 +174,7 @@ func _handle_stack_execution():
 	_update_stack_visuals()
 	if stack.is_empty():
 		state = States.IDLE
+		current_max_stack_size = max_stack_size
 		current_stack_size = 0
 		emptied_stack.emit()
 		_update_cooldown_visuals()
@@ -277,7 +287,9 @@ func accept_cursor():
 
 
 func _on_emptied_stack() -> void:
-	$Stack.hide()
+	if not grid_entity_is_player:
+		$Stack.hide()
+	pass
 	#%StackIconHolder.get_child(0).get_child(0).get_child(0).hide()
 
 
@@ -307,11 +319,18 @@ func on_next_floor_reached() -> void:
 	for skill in skills:
 		skill.on_next_floor_reached()
 	stack = []
+	current_stack_size = 0
+	current_max_stack_size = max_stack_size
 	_shuffle_skills()
 
 
 func _update_stack_visuals() -> void:
-	%StackSizeLabel.text = "%s/%s" % [current_stack_size, max_stack_size]
+	if current_max_stack_size > max_stack_size:
+		%StackSizeLabel.text = (
+			"[color=orange]%s/%s[/color]" % [current_stack_size, current_max_stack_size]
+		)
+	else:
+		%StackSizeLabel.text = "%s/%s" % [current_stack_size, current_max_stack_size]
 	execute_prompt.visible = false
 	if can_execute_stack():
 		execute_prompt.visible = true
@@ -460,7 +479,7 @@ func _on_skill_bag_button_pressed() -> void:
 		for skill in skills_in_display:
 			var new_skill_icon = skill_icon_scene.instantiate()
 			new_skill_icon.clicked.connect(skill.display_skill_info)
-			new_skill_icon.set_skill(skill)
+			new_skill_icon.set_skill(skill, SkillIcon.IconPositions.BAG)
 			skill_bag_list.add_child(new_skill_icon)
 		skill_bag_list.get_children().shuffle()
 		$CanvasLayer/SkillBagList.show()
@@ -497,7 +516,7 @@ func open_skill_bag_for_skill_removal():
 			var new_skill_icon = skill_icon_scene.instantiate()
 			new_skill_icon.left_clicked.connect(remove_skill.bind(skill))
 			new_skill_icon.right_clicked.connect(skill.display_skill_info)
-			new_skill_icon.set_skill(skill)
+			new_skill_icon.set_skill(skill, SkillIcon.IconPositions.BAG)
 			skill_bag_list.add_child(new_skill_icon)
 		skill_bag_list.get_children().shuffle()
 		$CanvasLayer/SkillBagList.show()
