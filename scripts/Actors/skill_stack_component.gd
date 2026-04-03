@@ -325,7 +325,11 @@ func on_next_floor_reached() -> void:
 
 
 func _update_stack_visuals() -> void:
-	if current_max_stack_size > max_stack_size:
+	if current_stack_size == current_max_stack_size:
+		%StackSizeLabel.text = (
+			"[color=yellow]%s/%s[/color]" % [current_stack_size, current_max_stack_size]
+		)
+	elif current_max_stack_size > max_stack_size:
 		%StackSizeLabel.text = (
 			"[color=orange]%s/%s[/color]" % [current_stack_size, current_max_stack_size]
 		)

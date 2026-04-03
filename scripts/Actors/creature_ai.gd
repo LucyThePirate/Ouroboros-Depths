@@ -31,6 +31,7 @@ var potential_targets: Array[GridEntity] = []
 func _ready() -> void:
 	intent_label.hide()
 	grid_entity.global_position = global_position
+	grid_entity.team = grid_entity
 	display.global_position = grid_entity.global_position
 	global_position = grid_entity.position
 	stack_component.initialize(grid_entity, false, turn_component)
@@ -73,7 +74,7 @@ func take_turn():
 			print("%s did %s" % [name, intent])
 			pass
 	in_darkness = grid_entity.is_in_darkness()
-	visible = not in_darkness
+	visible = not in_darkness or Debug.fog_visible == false
 	#if in_darkness:
 	#modulate = Color.BLACK
 	#else:
@@ -183,7 +184,10 @@ func _update_angry_at(new_target: GridEntity):
 		if angry_at and angry_at.is_in_group("Player"):
 			Global.deaggroed_towards_player.emit(grid_entity)
 		angry_at = null
-		health_component.set_color(Color.WHITE)
+		if grid_entity.team and grid_entity.team.is_in_group("Player"):
+			health_component.set_color(Color.HOT_PINK)
+		else:
+			health_component.set_color(Color.WHITE)
 	if not can_aggro_against(new_target):
 		return
 	if new_target.is_in_group("Player"):
@@ -191,7 +195,10 @@ func _update_angry_at(new_target: GridEntity):
 		health_component.set_color(Color.RED)
 	elif angry_at and angry_at.is_in_group("Player"):
 		Global.deaggroed_towards_player.emit(grid_entity)
-		health_component.set_color(Color.WHITE)
+		if grid_entity.team and grid_entity.team.is_in_group("Player"):
+			health_component.set_color(Color.HOT_PINK)
+		else:
+			health_component.set_color(Color.WHITE)
 	angry_at = new_target
 	angry_at.died.connect(_on_angry_at_died)
 	print(name, " pissed at ", new_target.name)
@@ -215,12 +222,24 @@ func check_for_targets():
 			_update_angry_at(potential_target)
 
 
+func set_team(new_team: GridEntity):
+	if not new_team:
+		grid_entity.team = grid_entity
+	else:
+		grid_entity.team = new_team.team
+		if grid_entity.team.is_in_group("Player"):
+			health_component.set_color(Color.HOT_PINK)
+			health_component.set_text_color(Color.HOT_PINK)
+
+
 func can_aggro_against(new_target: GridEntity) -> bool:
 	if (
 		new_target == null
 		or not is_instance_valid(new_target)
 		or not is_instance_valid(grid_entity)
 	):
+		return false
+	if new_target.team == grid_entity.team:
 		return false
 	if new_target == grid_entity or new_target is not GridEntity:
 		return false

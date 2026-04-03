@@ -26,7 +26,8 @@ value = 15.0
 rounded = true
 show_percentage = false
 
-[node name="Label" type="Label" parent="ProgressBar" unique_id=2034432804]
+[node name="HealthLabel" type="Label" parent="ProgressBar" unique_id=2034432804]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

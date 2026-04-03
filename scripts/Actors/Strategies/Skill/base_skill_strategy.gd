@@ -56,6 +56,9 @@ enum SkillIDs {
 	EARTH_SPIKE,
 	JUDO_THROW,
 	HARPOON,
+	SUMMON_WASP,
+	BOMB,
+	FUSE,
 }
 @export var skill_ID := SkillIDs.NONE
 

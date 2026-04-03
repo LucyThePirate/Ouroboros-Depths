@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://g1l4hmiw4men"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_q8yp3"]
+[ext_resource type="Script" uid="uid://bxgkglt6w1v1x" path="res://scenes/actors/Strategies/Skill/summon_wasp/summon_wasp_skill_strategy.gd" id="2_x3uab"]
+[ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_test.tscn" id="3_fnj1f"]
+[ext_resource type="Texture2D" uid="uid://c7tdusuiv8e4m" path="res://textures/creatures/Wasp.png" id="4_w7fww"]
+
+[node name="SummonWaspSkillStrategy" unique_id=1163924449 instance=ExtResource("1_q8yp3")]
+script = ExtResource("2_x3uab")
+wasp_scene = ExtResource("3_fnj1f")
+count = 10
+is_depletable = true
+cost = 3
+stack_size = 2
+skill_name = "Summon Wasp"
+skill_desc = "Call forth a winged warrior to your aid!"
+skill_ID = 15
+
+[node name="Icon" parent="." index="0" unique_id=2096319184]
+texture = ExtResource("4_w7fww")

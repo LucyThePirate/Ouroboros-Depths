@@ -11,7 +11,6 @@ signal died
 
 @onready var health = max_health
 @onready var health_bar = $ProgressBar as ProgressBar
-@onready var health_label = $ProgressBar/Label
 
 var current_damage_number: DamageNumberComponent
 var current_heal_number: DamageNumberComponent
@@ -69,7 +68,11 @@ func set_color(new_color: Color):
 	health_bar.self_modulate = new_color
 
 
+func set_text_color(new_color: Color):
+	%HealthLabel.self_modulate = new_color
+
+
 func _update_health_bar():
 	health_bar.max_value = max_health
 	health_bar.value = health
-	health_label.text = "%s/%s" % [health, max_health]
+	%HealthLabel.text = "%s/%s" % [health, max_health]

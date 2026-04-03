@@ -170,6 +170,7 @@ boulder_splash = ExtResource("2_cu8oe")
 spawn_smoke_scene = ExtResource("3_fx61w")
 player_scene = ExtResource("3_iimes")
 creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj"), ExtResource("8_0xdhj"), ExtResource("9_cyo7g")])
+challenge_rating_capacity = null
 bogosort_scene = ExtResource("9_fx61w")
 generator = NodePath("IsaaclikeGenerationStrategy")
 

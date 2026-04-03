@@ -7,18 +7,19 @@
 
 [node name="Conk" unique_id=1547879972 instance=ExtResource("1_da6my")]
 
-[node name="GridEntity" parent="." index="0"]
+[node name="GridEntity" parent="." index="0" unique_id=1162874930]
 species_name = "Conk"
 species_desc = "A hardy creature that is at home in the rocky terrain of the dungeon. Its broad, sturdy horn is suitable both for launching debris and busting down obstacles."
+challenge_rating = 2.0
 
-[node name="EarthSpikeSkillStrategy" parent="GridEntity/SkillStackComponent" index="9" unique_id=271779967 instance=ExtResource("2_eu1md")]
+[node name="EarthSpikeSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="9" unique_id=271779967 instance=ExtResource("2_eu1md")]
 
-[node name="DrillSkillStrategy" parent="GridEntity/SkillStackComponent" index="10" unique_id=1715827073 instance=ExtResource("3_dstu7")]
+[node name="DrillSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="10" unique_id=1715827073 instance=ExtResource("3_dstu7")]
 
-[node name="HealthComponent" parent="GridEntity/UI" index="0"]
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
 max_health = 6
 
-[node name="Sprite2D" parent="." index="6"]
+[node name="Sprite2D" parent="." index="6" unique_id=619217628]
 position = Vector2(8, -24)
 scale = Vector2(0.80878234, 0.9203943)
 texture = ExtResource("4_ruryx")

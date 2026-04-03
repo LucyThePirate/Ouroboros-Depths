@@ -8,6 +8,7 @@ signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
 signal spawn_tile(tile_coord)
 signal spawn_wall(wall_coord)
+signal spawn_entity(entity_coord: Vector2i, entity_scene: PackedScene)
 signal hurt(attacker, damage_amount)
 signal fell_off_map
 signal descended
@@ -23,6 +24,9 @@ signal absorbed_souls(soul_position)
 @export_category("Lore")
 @export var species_name := "Default Entity"
 @export_multiline var species_desc := "Default creature description"
+@export var soul_count := 0
+@export var challenge_rating := 1.0
+var team: GridEntity
 
 @onready var thump_sound = $Thump
 @onready var glass_thump_sound = $GlassThump
@@ -47,7 +51,6 @@ var initialized = false
 var my_turn = false
 var moved_by_skill := false
 
-@export var soul_count := 0
 var kills := 0
 var last_hit_by: GridEntity
 
@@ -81,9 +84,16 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 	var floor_data = Global.floors.get_cell_tile_data(grid_coords)
 
 	# Test for other bodies
-	if Global.entity_positions.has(grid_coords):
+	var other_entity = Global.entity_positions.has(grid_coords)
+	if other_entity:
+		other_entity = Global.entity_positions[grid_coords] as GridEntity
+		# Test if entity is on this creature's team. If so, swap with them instead.
+		if is_in_group("Player") and other_entity.team == team:
+			swap(other_entity)
+			performed_action.emit()
+			return true
 		if not safe_walk:
-			hit(Global.entity_positions[grid_coords])
+			hit(other_entity)
 			performed_action.emit()
 			return false
 		else:  # safe walk on and we don't want to bump into this entity

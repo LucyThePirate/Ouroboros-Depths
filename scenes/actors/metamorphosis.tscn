@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/creatures/Lich/Skull.png" id="11_emtfy"]
 [ext_resource type="PackedScene" uid="uid://bqe6kxf4uw66l" path="res://scenes/actors/Strategies/Skill/drill_skill_strategy.tscn" id="12_sjimc"]
 [ext_resource type="Texture2D" uid="uid://bbujvsn0j0wwi" path="res://textures/skills/FortuneCookieSkill.png" id="13_ahco4"]
+[ext_resource type="PackedScene" uid="uid://db3bk0lgv61c3" path="res://scenes/actors/Strategies/Skill/harpoon/harpoon_skill_strategy.tscn" id="13_sjawx"]
+[ext_resource type="PackedScene" uid="uid://biuojqtlmraek" path="res://scenes/actors/Strategies/Skill/judo_throw/judo_throw_skill_strategy.tscn" id="14_14h1u"]
 [ext_resource type="AudioStream" uid="uid://brgjfi5b2rdyi" path="res://audio/SFX/Skills/Domino/DominoOpenBag1.ogg" id="15_dkf3k"]
 [ext_resource type="Shader" uid="uid://o8om3hlnn5vh" path="res://textures/shaders/rainbow_edge.gdshader" id="15_l4hai"]
 [ext_resource type="Texture2D" uid="uid://kiicrhe5264c" path="res://textures/effects/lights/Circular Light.png" id="16_ay0iv"]
@@ -75,7 +77,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eg7uw")
-buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3q"), ExtResource("4_ncs2t"), ExtResource("5_o4b0d"), ExtResource("4_ncs2t"), ExtResource("6_emtfy"), ExtResource("7_1qkj3"), ExtResource("8_7g347"), ExtResource("9_lvopp"), ExtResource("10_i6ueo"), ExtResource("11_1u08f"), ExtResource("12_sjimc")])
+buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3q"), ExtResource("4_ncs2t"), ExtResource("5_o4b0d"), ExtResource("4_ncs2t"), ExtResource("6_emtfy"), ExtResource("7_1qkj3"), ExtResource("8_7g347"), ExtResource("9_lvopp"), ExtResource("10_i6ueo"), ExtResource("11_1u08f"), ExtResource("12_sjimc"), ExtResource("13_sjawx"), ExtResource("14_14h1u")])
 skill_icon_scene = ExtResource("10_emtfy")
 sold_out_texture = ExtResource("11_emtfy")
 

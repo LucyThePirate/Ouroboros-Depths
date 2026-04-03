@@ -40,7 +40,7 @@ func take_turn():
 	match intent:
 		_:
 			pass
-	visible = not grid_entity.is_in_darkness()
+	visible = not grid_entity.is_in_darkness() or Debug.fog_visible == false
 	update_intent()
 	turn_component.end_turn()
 

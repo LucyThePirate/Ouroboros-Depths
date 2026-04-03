@@ -7,6 +7,8 @@ extends Node2D
 @export var spawn_smoke_scene: PackedScene
 @export var player_scene: PackedScene
 @export var creature_scene: Array[PackedScene]
+@export var challenge_rating_capacity := 10.0
+var current_challenge_rating := 0.0
 @export var bogosort_scene: PackedScene
 var bogo_egg_scene = preload("uid://dvtenp8g812ei")
 var bogo_egg: BraindeadAI
@@ -185,6 +187,7 @@ func _redraw_map():
 		if not entity.is_in_group("Player"):
 			entity.on_death(true)
 	angry_at_player = 0
+	current_challenge_rating = 0.0
 	Global.floors.clear()
 	Global.walls.clear()
 	fog.clear()
@@ -209,6 +212,8 @@ func _initialize_entity(new_entity: GridEntity):
 	new_entity.pushed_object.connect(_push_tile)
 	new_entity.spawn_tile.connect(spawn_tile)
 	new_entity.spawn_wall.connect(spawn_wall)
+	new_entity.spawn_entity.connect(spawn_entity_from_creature.bind(new_entity))
+	new_entity.died.connect(_on_entity_died.bind(new_entity))
 	turn_queue.push_back(new_entity.turn_component)
 	new_entity.turn_component.turn_ended.connect(_entity_finished_turn.bind(new_entity))
 	if not new_entity.is_in_group("Player"):
@@ -306,10 +311,11 @@ func process_turn():
 
 
 func try_spawning_random_monster(initialize_entity := true):
-	if Global.entity_positions.size() < 10 + current_floor:
+	if current_challenge_rating < challenge_rating_capacity + current_floor:
 		var grid_coordinate = Global.floors.get_used_cells().pick_random()
 		if not _is_obstructed(grid_coordinate):
 			var new_entity = spawn_entity(grid_coordinate, creature_scene.pick_random())
+			current_challenge_rating += new_entity.grid_entity.challenge_rating
 			if initialize_entity:
 				_initialize_entity(new_entity.grid_entity)
 				if not Global.darkness.get_cell_tile_data(grid_coordinate):
@@ -402,6 +408,22 @@ func spawn_wall(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
 		walls.set_cell(tile_coords, tile_data[0], tile_data[1])
 
 
+func spawn_entity_from_creature(
+	grid_coordinate: Vector2i, entity_scene: PackedScene, summoning_entity
+):
+	for adjacent_tile in Global.floors.get_surrounding_cells(grid_coordinate):
+		if not _is_obstructed(adjacent_tile):
+			var new_entity = spawn_entity(adjacent_tile, entity_scene)
+			_initialize_entity(new_entity.grid_entity)
+			new_entity.grid_entity.challenge_rating = 0.0
+			new_entity.set_team(summoning_entity)
+			if not Global.darkness.get_cell_tile_data(adjacent_tile):
+				var new_smoke = spawn_smoke_scene.instantiate()
+				new_smoke.global_position = Global.floors.map_to_local(adjacent_tile)
+				add_child(new_smoke)
+			return
+
+
 func _is_obstructed(tile_coords) -> bool:
 	if not tile_coords:
 		return true
@@ -417,6 +439,10 @@ func _is_obstructed(tile_coords) -> bool:
 	if Global.entity_positions.has(tile_coords):
 		return true
 	return false
+
+
+func _on_entity_died(grid_entity: GridEntity):
+	current_challenge_rating -= grid_entity.challenge_rating
 
 
 func _on_player_died(_despawning) -> void:
