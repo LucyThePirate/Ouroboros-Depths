@@ -21,7 +21,6 @@ species_name = "Lich"
 species_desc = "A once-human who traded their soul for dark powers, and, more importantly, for baller-ass horns.
 
 "
-soul_count = 1
 challenge_rating = 2.5
 
 [node name="DarkStarSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1367490962, 1500394995) index="3" unique_id=1361350763 instance=ExtResource("3_aa227")]

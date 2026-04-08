@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d30kixvdm73ts"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_0iqoy"]
+[ext_resource type="Script" uid="uid://bllxmi6a0igvs" path="res://scenes/actors/Strategies/Skill/spark/spark_skill_strategy.gd" id="2_0se5w"]
+[ext_resource type="PackedScene" uid="uid://cmxeogtui2phc" path="res://scenes/effects/note_vfx.tscn" id="3_nsof0"]
+[ext_resource type="Texture2D" uid="uid://ddy45xw8kvq47" path="res://textures/skills/SparkSkill.png" id="4_2ajgy"]
+
+[node name="SparkSkillStrategy" unique_id=1163924449 instance=ExtResource("1_0iqoy")]
+script = ExtResource("2_0se5w")
+note_VFX = ExtResource("3_nsof0")
+skill_name = "Spark"
+skill_desc = "Harness the power of static electricity to deliver nasty shocks!
+
+While executing, adjacent foes will take damage as you move. The order you queue Spark and movement skills in doesn't matter."
+skill_ID = 18
+
+[node name="Icon" parent="." index="0" unique_id=2096319184]
+texture = ExtResource("4_2ajgy")

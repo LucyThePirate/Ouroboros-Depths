@@ -90,10 +90,6 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_u0fqg")
 description_scene = ExtResource("2_8uxk8")
-species_name = null
-species_desc = null
-soul_count = null
-challenge_rating = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=410011685]
 shape = SubResource("RectangleShape2D_jo564")

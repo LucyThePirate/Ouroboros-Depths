@@ -9,6 +9,7 @@ signal pushed_object(object_coord, direction)
 signal spawn_tile(tile_coord)
 signal spawn_wall(wall_coord)
 signal spawn_entity(entity_coord: Vector2i, entity_scene: PackedScene)
+signal slapped(victim)
 signal hurt(attacker, damage_amount)
 signal fell_off_map
 signal descended
@@ -24,7 +25,7 @@ signal absorbed_souls(soul_position)
 @export_category("Lore")
 @export var species_name := "Default Entity"
 @export_multiline var species_desc := "Default creature description"
-@export var soul_count := 0
+@export var soul_count := 1
 @export var challenge_rating := 1.0
 var team: GridEntity
 
@@ -223,7 +224,8 @@ func try_attacking(entity):
 
 
 func hit(entity, damage := 1):
-	if entity and entity.has_method("_on_hit"):
+	if entity and entity.has_method("_on_hit") and entity.team != team:
+		slapped.emit(entity)
 		damage = status_component.modify_outgoing_damage(damage)
 		entity._on_hit(self, damage)
 
@@ -275,9 +277,10 @@ func on_death(is_despawning := false) -> void:
 	if state == States.IDLE:
 		health_component.health = 0
 		if is_instance_valid(last_hit_by) and last_hit_by is GridEntity:
-			last_hit_by.soul_count += soul_count + 1
-			last_hit_by.kills += 1
-			last_hit_by.absorbed_souls.emit(global_position)
+			if soul_count > 0:
+				last_hit_by.soul_count += soul_count
+				last_hit_by.kills += 1
+				last_hit_by.absorbed_souls.emit(global_position)
 		Global.entity_positions.erase(Global.floors.local_to_map(global_position))
 		state = States.DEAD
 		died.emit(is_despawning)

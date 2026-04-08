@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/actors/Strategies/Skill/stomp_skill_strategy.tscn" id="3_21vwe"]
 [ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="4_c5fl1"]
 [ext_resource type="PackedScene" uid="uid://g1l4hmiw4men" path="res://scenes/actors/Strategies/Skill/summon_wasp/summon_wasp_skill_strategy.tscn" id="6_qgf6v"]
+[ext_resource type="PackedScene" uid="uid://d30kixvdm73ts" path="res://scenes/actors/Strategies/Skill/spark/spark_skill_strategy.tscn" id="7_nfhrd"]
 [ext_resource type="PackedScene" uid="uid://cnrxjlwuvjt6l" path="res://scenes/actors/Strategies/Skill/fortune_cookie_skill_strategy.tscn" id="7_talk5"]
 
 [node name="BasicDeck" type="Control" unique_id=1324047796]
@@ -38,3 +39,7 @@ scale = Vector2(1, 1)
 
 [node name="SummonWaspSkillStrategy" parent="." unique_id=1163924449 instance=ExtResource("6_qgf6v")]
 layout_mode = 0
+
+[node name="SparkSkillStrategy" parent="." unique_id=1500463930 instance=ExtResource("7_nfhrd")]
+layout_mode = 0
+count = 6

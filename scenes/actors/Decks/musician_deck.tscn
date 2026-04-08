@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm7tndyucq5bf"]
+[gd_scene format=3 uid="uid://cm7tndyucq5bf"]
 
 [ext_resource type="PackedScene" uid="uid://djpdq4bxeklv3" path="res://scenes/actors/Strategies/Skill/warp_skill_strategy.tscn" id="1_p40mg"]
 [ext_resource type="PackedScene" uid="uid://c10nhwhuw3ge4" path="res://scenes/actors/Strategies/Skill/orchestrate_skill_strategy.tscn" id="2_onlsj"]
 [ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/actors/Strategies/Skill/defend_skill_strategy.tscn" id="3_hncto"]
 [ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/actors/Strategies/Skill/leap_skill_strategy.tscn" id="4_d8n5f"]
 [ext_resource type="PackedScene" uid="uid://d1ti6v0kdijnm" path="res://scenes/actors/Strategies/Skill/be_patient_skill_strategy.tscn" id="5_onlsj"]
+[ext_resource type="PackedScene" uid="uid://g1l4hmiw4men" path="res://scenes/actors/Strategies/Skill/summon_wasp/summon_wasp_skill_strategy.tscn" id="6_ngg4h"]
 
-[node name="MusicianDeck" type="Control"]
+[node name="MusicianDeck" type="Control" unique_id=1879510122]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,19 +15,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WarpSkillStrategy" parent="." instance=ExtResource("1_p40mg")]
+[node name="WarpSkillStrategy" parent="." unique_id=227797435 instance=ExtResource("1_p40mg")]
 layout_mode = 0
 
-[node name="OrchestrateSkillStrategy" parent="." instance=ExtResource("2_onlsj")]
+[node name="OrchestrateSkillStrategy" parent="." unique_id=454046020 instance=ExtResource("2_onlsj")]
 layout_mode = 0
 count = 16
 
-[node name="DefendSkillStrategy" parent="." instance=ExtResource("3_hncto")]
+[node name="DefendSkillStrategy" parent="." unique_id=1358046931 instance=ExtResource("3_hncto")]
 layout_mode = 0
 
-[node name="LeapSkillStrategy" parent="." instance=ExtResource("4_d8n5f")]
+[node name="LeapSkillStrategy" parent="." unique_id=133114062 instance=ExtResource("4_d8n5f")]
 layout_mode = 0
 count = 1
 
-[node name="BePatientSkillStrategy" parent="." instance=ExtResource("5_onlsj")]
+[node name="BePatientSkillStrategy" parent="." unique_id=1340666243 instance=ExtResource("5_onlsj")]
+layout_mode = 0
+
+[node name="SummonWaspSkillStrategy" parent="." unique_id=1163924449 instance=ExtResource("6_ngg4h")]
 layout_mode = 0

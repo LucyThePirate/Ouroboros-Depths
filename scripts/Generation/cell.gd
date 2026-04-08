@@ -416,6 +416,7 @@ func spawn_entity_from_creature(
 			var new_entity = spawn_entity(adjacent_tile, entity_scene)
 			_initialize_entity(new_entity.grid_entity)
 			new_entity.grid_entity.challenge_rating = 0.0
+			new_entity.grid_entity.soul_count = 0
 			new_entity.set_team(summoning_entity)
 			if not Global.darkness.get_cell_tile_data(adjacent_tile):
 				var new_smoke = spawn_smoke_scene.instantiate()

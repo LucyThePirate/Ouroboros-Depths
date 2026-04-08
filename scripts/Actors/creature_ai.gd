@@ -86,7 +86,10 @@ func take_turn():
 func update_intent():
 	if not angry_at:
 		intent = "Move"
-		intent_direction = get_random_direction() as Vector2i
+		if grid_entity.team != grid_entity and is_instance_valid(grid_entity.team):
+			intent_direction = get_direction_towards(grid_entity.team)
+		else:
+			intent_direction = get_random_direction() as Vector2i
 		check_for_targets()
 	else:
 		intent = "Move"
@@ -227,9 +230,19 @@ func set_team(new_team: GridEntity):
 		grid_entity.team = grid_entity
 	else:
 		grid_entity.team = new_team.team
+		grid_entity.team.slapped.connect(_on_teammate_slapped_entity)
+		grid_entity.team.hurt.connect(_on_teammate_hurt)
 		if grid_entity.team.is_in_group("Player"):
 			health_component.set_color(Color.HOT_PINK)
 			health_component.set_text_color(Color.HOT_PINK)
+
+
+func _on_teammate_hurt(attacker: GridEntity, _damage_amount):
+	_update_angry_at(attacker)
+
+
+func _on_teammate_slapped_entity(victim: GridEntity):
+	_update_angry_at(victim)
 
 
 func can_aggro_against(new_target: GridEntity) -> bool:
