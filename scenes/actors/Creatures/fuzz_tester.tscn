@@ -16,7 +16,8 @@ script = ExtResource("1_netfx")
 visual = NodePath("FuzzerVisual")
 
 [node name="GridEntity" parent="." unique_id=625960076 instance=ExtResource("2_bobr6")]
-species_name = "Fuzz Tester"
+species_type = 3
+creature_name = "Fuzzer"
 species_desc = "A bizarre creature sporting garish colors and a tubular mouth.
 
 Even within their own species, Fuzz Testers differ wildly from each other. 

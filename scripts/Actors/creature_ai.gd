@@ -256,7 +256,10 @@ func can_aggro_against(new_target: GridEntity) -> bool:
 		return false
 	if new_target == grid_entity or new_target is not GridEntity:
 		return false
-	if new_target.species_name == grid_entity.species_name:
+	if (  # If neither creature is on a team, same species are allied by default
+		(new_target.team == new_target and grid_entity.team == grid_entity)
+		and new_target.species_type == grid_entity.species_type
+	):
 		return false
 	if new_target.state == GridEntity.States.DEAD:
 		return false

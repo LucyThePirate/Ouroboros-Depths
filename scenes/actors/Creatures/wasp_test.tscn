@@ -16,7 +16,8 @@ script = ExtResource("1_t7k5d")
 visual = NodePath("WaspVisual")
 
 [node name="GridEntity" parent="." unique_id=2059260571 instance=ExtResource("2_nfndv")]
-species_name = "Wasp"
+species_type = 1
+creature_name = "Wasp"
 species_desc = "One brave soldier of many from the plane of One Trillion Wasps.
 
 Though wasps aren't much of a threat on their own, the fact that the swarm of One Trillion Wasps was able to take on The Power of Love AND Divine Punishment on their own instills you with hope. Hope, and also a healthy dose of fear."
@@ -25,8 +26,7 @@ challenge_rating = 0.5
 [node name="SkillStackComponent" parent="GridEntity" index="10" unique_id=1500394995]
 max_stack_size = 2
 
-[node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" index="3" unique_id=2063429728 instance=ExtResource("3_t7k5d")]
-mouse_filter = 0
+[node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" index="10" unique_id=347541059 instance=ExtResource("3_t7k5d")]
 
 [node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(2059260571, 1710592687) index="0" unique_id=1357245310]
 max_health = 4

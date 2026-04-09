@@ -20,7 +20,8 @@ stream_3/stream = ExtResource("7_cjyop")
 script = ExtResource("2_my2fc")
 
 [node name="GridEntity" parent="." index="0" unique_id=1162874930]
-species_name = "Ominous Egg"
+species_type = 7
+creature_name = "Ominous Egg"
 species_desc = "The pearly-white egg shell is dense in soul-rich nutrients. Smashing it to bits would net you a large amount of souls!
 
 ...But whatever is writhing inside seems to be growing more and more restless by the second. If you're going to scramble this egg, you best have an escape route in mind."

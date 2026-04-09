@@ -133,7 +133,8 @@ chrysalis_status_scene = ExtResource("3_b0c0w")
 metamorphosis_scene = ExtResource("4_wes0m")
 
 [node name="GridEntity" parent="." unique_id=1217274743 groups=["Player"] instance=ExtResource("1_exgt7")]
-species_name = "You!"
+species_type = 5
+creature_name = "You!"
 species_desc = "It is you! Or it is me? Whatever. "
 soul_count = 10
 

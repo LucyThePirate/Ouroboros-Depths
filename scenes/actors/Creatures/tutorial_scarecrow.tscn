@@ -18,7 +18,8 @@ text_to_display = "Default Text!"
 visual = NodePath("ScarecrowVisual")
 
 [node name="GridEntity" parent="." unique_id=1615670255 instance=ExtResource("1_utsqi")]
-species_name = "Scarecrow"
+species_type = 6
+creature_name = "Scarecrow"
 species_desc = "A grinning jack-o-lantern peers into your soul, eagerly awaiting for you to smash it to pieces.
 
 It sways uncannily on its own volition, but nonetheless seems to be friendly enough.

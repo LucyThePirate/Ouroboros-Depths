@@ -409,10 +409,11 @@ func spawn_wall(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
 
 
 func spawn_entity_from_creature(
-	grid_coordinate: Vector2i, entity_scene: PackedScene, summoning_entity
+	grid_coordinate: Vector2i, entity_type: GridEntity.Species, summoning_entity
 ):
 	for adjacent_tile in Global.floors.get_surrounding_cells(grid_coordinate):
 		if not _is_obstructed(adjacent_tile):
+			var entity_scene = CreatureRepository.creatures[entity_type]
 			var new_entity = spawn_entity(adjacent_tile, entity_scene)
 			_initialize_entity(new_entity.grid_entity)
 			new_entity.grid_entity.challenge_rating = 0.0
@@ -442,7 +443,7 @@ func _is_obstructed(tile_coords) -> bool:
 	return false
 
 
-func _on_entity_died(grid_entity: GridEntity):
+func _on_entity_died(_is_despawning, grid_entity: GridEntity):
 	current_challenge_rating -= grid_entity.challenge_rating
 
 

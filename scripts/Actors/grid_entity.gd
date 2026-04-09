@@ -8,7 +8,7 @@ signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
 signal spawn_tile(tile_coord)
 signal spawn_wall(wall_coord)
-signal spawn_entity(entity_coord: Vector2i, entity_scene: PackedScene)
+signal spawn_entity(entity_coord: Vector2i, entity_type: Species)
 signal slapped(victim)
 signal hurt(attacker, damage_amount)
 signal fell_off_map
@@ -23,7 +23,9 @@ signal absorbed_souls(soul_position)
 @export var description_scene: PackedScene
 
 @export_category("Lore")
-@export var species_name := "Default Entity"
+enum Species { DEFAULT, WASP, LICH, FUZZER, CONK, PLAYER, SCARECROW, BOGO_EGG, CHORUSTONE }
+@export var species_type := Species.DEFAULT
+@export var creature_name := "Default Entity"
 @export_multiline var species_desc := "Default creature description"
 @export var soul_count := 1
 @export var challenge_rating := 1.0
@@ -334,7 +336,7 @@ func _on_info_button_pressed() -> void:
 	get_tree().current_scene.add_child(new_creature_description)
 	#new_creature_description.icon.texture = icon.texture
 	new_creature_description.creature_name.text = (
-		"%s [color=GRAY](%s)" % [species_name, get_parent().name]
+		"%s [color=GRAY](%s)" % [creature_name, get_parent().name]
 	)
 	new_creature_description.creature_desc.text = species_desc
 	new_creature_description.set_status_descriptions(status_component.get_status_descriptions())

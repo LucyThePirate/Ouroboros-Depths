@@ -24,9 +24,9 @@ script = ExtResource("1_l7r4i")
 visual = NodePath("Visual")
 
 [node name="GridEntity" parent="." unique_id=1561726841 instance=ExtResource("1_sts7m")]
-species_name = "Chorustone"
+species_type = 8
+creature_name = "Chorustone"
 species_desc = "An aged statue that is given life by the wind flowing through it... Or, at least, something life-adjacent."
-soul_count = 1
 
 [node name="OrchestrateSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1561726841, 1500394995) index="7" unique_id=1609460078 instance=ExtResource("2_l7r4i")]
 mouse_filter = 0

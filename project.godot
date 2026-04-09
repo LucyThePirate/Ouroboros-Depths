@@ -30,6 +30,7 @@ Debug="*res://scripts/Mechanics/helper.gd"
 Global="*res://scripts/global.gd"
 NoteValue="*uid://gdms0yobdmba"
 Tiles="*res://scripts/tiles.gd"
+CreatureRepository="*uid://cvvne22x17kb0"
 
 [display]
 

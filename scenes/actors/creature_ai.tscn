@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://djpdq4bxeklv3" path="res://scenes/actors/Strategies/Skill/warp_skill_strategy.tscn" id="4_rrpmr"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="4_tndlm"]
 [ext_resource type="PackedScene" uid="uid://bwkb3crnbdvht" path="res://scenes/Tests/lich_test.tscn" id="5_tie3i"]
+[ext_resource type="PackedScene" uid="uid://g1l4hmiw4men" path="res://scenes/actors/Strategies/Skill/summon_wasp/summon_wasp_skill_strategy.tscn" id="5_xt85a"]
 [ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/actors/Strategies/Planner/base_random_skill_planner.tscn" id="6_6hqks"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/ui/Arrow.png" id="7_aa227"]
 
@@ -17,7 +18,8 @@ script = ExtResource("1_sxdqt")
 visual = NodePath("LichTest")
 
 [node name="GridEntity" parent="." unique_id=1367490962 instance=ExtResource("2_sxdqt")]
-species_name = "Lich"
+species_type = 2
+creature_name = "Lich"
 species_desc = "A once-human who traded their soul for dark powers, and, more importantly, for baller-ass horns.
 
 "
@@ -29,6 +31,8 @@ count = 8
 skill_desc = ""
 
 [node name="WarpSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1367490962, 1500394995) index="10" unique_id=2128303912 instance=ExtResource("4_rrpmr")]
+
+[node name="SummonWaspSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1367490962, 1500394995) index="12" unique_id=1163924449 instance=ExtResource("5_xt85a")]
 
 [node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1367490962, 1710592687) index="0" unique_id=1357245310]
 max_health = 7
