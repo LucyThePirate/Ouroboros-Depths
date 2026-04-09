@@ -310,6 +310,8 @@ func is_on_path_down() -> bool:
 
 
 func is_in_darkness() -> bool:
+	if not Global.floors:
+		return false
 	var grid_coords = Global.floors.local_to_map(global_position)
 	if not Global.darkness:
 		return false

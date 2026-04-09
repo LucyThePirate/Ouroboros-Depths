@@ -10,6 +10,7 @@
 [ext_resource type="Shader" uid="uid://daaonengjaclw" path="res://textures/shaders/blur.gdshader" id="12_1enxm"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="12_m3s0v"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="12_u1sel"]
+[ext_resource type="AudioStream" uid="uid://d248dhagknhoc" path="res://audio/Music/AstrMusic/WarmHouse's Computer [loop, simple].mp3" id="13_0nflp"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="13_ob1md"]
 [ext_resource type="PackedScene" uid="uid://g7fhohrlv81x" path="res://scenes/actors/Creatures/fuzz_tester.tscn" id="13_qylo2"]
 [ext_resource type="PackedScene" uid="uid://s0ow7k38e4wl" path="res://scenes/actors/Strategies/Status/regen_status_strategy.tscn" id="14_1enxm"]
@@ -90,6 +91,10 @@ action = &"TogglePause"
 
 [sub_resource type="Shortcut" id="Shortcut_hkvov"]
 events = [SubResource("InputEventAction_cqjng")]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hkvov"]
+streams_count = 1
+stream_0/stream = ExtResource("13_0nflp")
 
 [sub_resource type="InputEventAction" id="InputEventAction_cyo7g"]
 action = &"TogglePause"
@@ -448,6 +453,12 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("13_ob1md")
 theme_override_font_sizes/font_size = 30
 text = "... Or would you rather Retreat and return to the solace of the Title Screen"
+
+[node name="PauseMusic" type="AudioStreamPlayer" parent="CanvasLayer/PauseScreen" unique_id=1402150210]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_hkvov")
+bus = &"Music"
+playback_type = 1
 
 [node name="PauseButton" type="Button" parent="CanvasLayer" unique_id=1902810551]
 unique_name_in_owner = true

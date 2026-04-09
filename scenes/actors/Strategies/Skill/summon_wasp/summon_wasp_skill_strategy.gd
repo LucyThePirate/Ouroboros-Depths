@@ -1,6 +1,6 @@
 extends SkillStrategy
 
-@export var wasp_scene := PackedScene
+@onready var wasp_scene := preload("uid://v4jyo2omhd1l")
 
 
 func _ready():
