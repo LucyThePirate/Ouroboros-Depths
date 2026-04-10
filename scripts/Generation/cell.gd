@@ -7,7 +7,7 @@ extends Node2D
 @export var spawn_smoke_scene: PackedScene
 @export var player_scene: PackedScene
 @export var creature_scene: Array[PackedScene]
-@export var challenge_rating_capacity := 10.0
+@export var challenge_rating_capacity := 15.0
 var current_challenge_rating := 0.0
 @export var bogosort_scene: PackedScene
 var bogo_egg_scene = preload("uid://dvtenp8g812ei")
@@ -311,7 +311,7 @@ func process_turn():
 
 
 func try_spawning_random_monster(initialize_entity := true):
-	if current_challenge_rating < challenge_rating_capacity + current_floor:
+	if current_challenge_rating < challenge_rating_capacity + current_floor * 2:
 		var grid_coordinate = Global.floors.get_used_cells().pick_random()
 		if not _is_obstructed(grid_coordinate):
 			var new_entity = spawn_entity(grid_coordinate, creature_scene.pick_random())

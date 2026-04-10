@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://xax1raatwfvk"]
+
+[ext_resource type="PackedScene" uid="uid://g1l4hmiw4men" path="res://scenes/actors/Strategies/Skill/summon_wasp/summon_wasp_skill_strategy.tscn" id="1_xjvnt"]
+[ext_resource type="PackedScene" uid="uid://biuojqtlmraek" path="res://scenes/actors/Strategies/Skill/judo_throw/judo_throw_skill_strategy.tscn" id="2_0st6l"]
+[ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/actors/Strategies/Skill/defend_skill_strategy.tscn" id="3_udfam"]
+[ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/actors/Strategies/Skill/leap_skill_strategy.tscn" id="4_0st6l"]
+[ext_resource type="PackedScene" uid="uid://db3bk0lgv61c3" path="res://scenes/actors/Strategies/Skill/harpoon/harpoon_skill_strategy.tscn" id="5_udfam"]
+
+[node name="BeastTamerDeck" type="Control" unique_id=535259336]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SummonWaspSkillStrategy" parent="." unique_id=1163924449 instance=ExtResource("1_xjvnt")]
+layout_mode = 0
+count = 5
+
+[node name="JudoThrowSkillStrategy" parent="." unique_id=347600095 instance=ExtResource("2_0st6l")]
+layout_mode = 0
+
+[node name="DefendSkillStrategy" parent="." unique_id=239261403 instance=ExtResource("3_udfam")]
+layout_mode = 0
+
+[node name="LeapSkillStrategy" parent="." unique_id=1411869531 instance=ExtResource("4_0st6l")]
+layout_mode = 0
+
+[node name="HarpoonSkillStrategy" parent="." unique_id=685542476 instance=ExtResource("5_udfam")]
+layout_mode = 0

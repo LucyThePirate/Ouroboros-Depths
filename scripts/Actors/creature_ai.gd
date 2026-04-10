@@ -226,7 +226,7 @@ func check_for_targets():
 
 
 func set_team(new_team: GridEntity):
-	if not new_team:
+	if not new_team or not new_team.team:
 		grid_entity.team = grid_entity
 	else:
 		grid_entity.team = new_team.team

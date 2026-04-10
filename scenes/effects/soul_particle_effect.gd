@@ -43,6 +43,7 @@ func _process(delta: float) -> void:
 					reached_target.emit()
 					%ExplosionParticles.emitting = true
 		States.TARGET_REACHED:
+			%ExplosionParticles.global_position = target.global_position
 			%Trail.add_point(global_position)
 			if %Trail.points.size() > MAX_POINTS:
 				%Trail.remove_point(0)

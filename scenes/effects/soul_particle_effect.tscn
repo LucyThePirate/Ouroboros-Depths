@@ -32,8 +32,8 @@ spread = 180.0
 initial_velocity_min = -10.41
 initial_velocity_max = 93.75
 gravity = Vector3(0, 0, 0)
-radial_accel_min = -60.420002
-radial_accel_max = -60.420002
+radial_accel_min = -93.75
+radial_accel_max = -93.75
 damping_min = 8.333
 damping_max = 8.333
 attractor_interaction_enabled = false
@@ -66,6 +66,7 @@ texture = ExtResource("2_wwuqk")
 
 [node name="ExplosionParticles" type="GPUParticles2D" parent="." unique_id=420064176]
 unique_name_in_owner = true
+top_level = true
 emitting = false
 amount = 12
 lifetime = 4.0

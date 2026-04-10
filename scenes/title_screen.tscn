@@ -16,6 +16,7 @@
 [ext_resource type="PhysicsMaterial" uid="uid://2kay8j53abmv" path="res://samples/softbody2d/softbody2d_phys_slippery.tres" id="11_p07av"]
 [ext_resource type="Theme" uid="uid://dsnesst3y61ol" path="res://resources/default_theme.tres" id="12_4qe4i"]
 [ext_resource type="AudioStream" uid="uid://b1nmnkp41rdqr" path="res://audio/SFX/Misc/Punch2.ogg" id="12_mynnq"]
+[ext_resource type="Texture2D" uid="uid://3r3gactvbgp7" path="res://textures/skills/SummonWaspSkill.png" id="12_w03br"]
 [ext_resource type="AudioStream" uid="uid://c4iuvy3r2whs6" path="res://audio/SFX/Misc/Punch3.ogg" id="13_e8tpv"]
 [ext_resource type="AudioStream" uid="uid://dpm1ipsmp3ge" path="res://audio/Music/AstrMusic/Pathforgetting[ambient,wistful,fav].mp3" id="16_4qe4i"]
 [ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/skills/SkillSack.png" id="16_khjys"]
@@ -707,6 +708,30 @@ text = "A musical deck centered around the Orchestrate skill."
 fit_content = true
 horizontal_alignment = 1
 
+[node name="Beast Tamer Deck" type="VBoxContainer" parent="CanvasLayer/NewRun/HContainer/Deck/DeckSelect" unique_id=1939325977]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+metadata/_tab_index = 3
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/NewRun/HContainer/Deck/DeckSelect/Beast Tamer Deck" unique_id=564419350]
+layout_mode = 2
+texture = ExtResource("12_w03br")
+stretch_mode = 3
+
+[node name="DeckDesc" type="RichTextLabel" parent="CanvasLayer/NewRun/HContainer/Deck/DeckSelect/Beast Tamer Deck" unique_id=1756963141]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("9_p07av")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Pelt your foes with the fury of wasps!"
+fit_content = true
+horizontal_alignment = 1
+
 [node name="StartRun" type="Button" parent="CanvasLayer/NewRun" unique_id=154428358]
 layout_mode = 2
 size_flags_vertical = 8
@@ -894,7 +919,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-6" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1359039404]
 position = Vector2(69.40637, 127.073)
 rotation = -1.36679
-scale = Vector2(0.9999992, 0.9999992)
+scale = Vector2(0.99999917, 0.99999917)
 rest = Transform2D(0.202592, -0.979263, 0.979263, 0.202592, 69.4064, 127.073)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -921,7 +946,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-8" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1969427454]
 position = Vector2(68.7027, 159.052)
 rotation = 1.54074
-scale = Vector2(0.9999992, 0.9999992)
+scale = Vector2(0.99999917, 0.99999917)
 rest = Transform2D(0.0300513, 0.999548, -0.999548, 0.0300513, 68.7027, 159.052)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -947,7 +972,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone-10" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=59431186]
 position = Vector2(69.7157, 192.74402)
-rotation = -0.59983397
+rotation = -0.599834
 scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.825429, -0.564506, 0.564506, 0.825429, 69.7157, 192.744)
 auto_calculate_length_and_angle = false
@@ -1107,7 +1132,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-22" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1625297829]
 position = Vector2(123.630005, 155.08301)
 rotation = 1.55378
-scale = Vector2(0.9999992, 0.9999992)
+scale = Vector2(0.99999917, 0.99999917)
 rest = Transform2D(0.0170144, 0.999855, -0.999855, 0.0170144, 123.63, 155.083)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1252,7 +1277,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-33" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1944610832]
 position = Vector2(178.53302, 231.568)
 rotation = -1.48128
-scale = Vector2(0.9999992, 0.9999992)
+scale = Vector2(0.99999917, 0.99999917)
 rest = Transform2D(0.0893961, -0.995996, 0.995996, 0.0893961, 178.533, 231.568)
 auto_calculate_length_and_angle = false
 length = 36.0
