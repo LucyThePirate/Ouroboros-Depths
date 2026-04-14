@@ -52,6 +52,13 @@ func _process(_delta: float) -> void:
 		if load_status == ResourceLoader.THREAD_LOAD_LOADED:
 			var fully_loaded_scene = ResourceLoader.load_threaded_get(loading_scene)
 			get_tree().change_scene_to_packed(fully_loaded_scene)
+	else:
+		$CanvasLayer/Loading/CanvasLayer/CursorCollision.position = (
+			get_viewport().get_mouse_position()
+		)
+		%TitlePotion.apply_force(
+			Vector2(%PositionPotionWantsToReturnTO.global_position - %TitlePotion.global_position)
+		)
 
 
 func _on_new_game_button_pressed() -> void:

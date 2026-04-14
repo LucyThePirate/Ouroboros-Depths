@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d1ti6v0kdijnm"]
+[gd_scene format=3 uid="uid://d1ti6v0kdijnm"]
 
 [ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_ry74j"]
 [ext_resource type="Script" uid="uid://bnsmpae87jtaw" path="res://scenes/actors/Strategies/Skill/be_patient_skill_strategy.gd" id="2_46xtg"]
@@ -129,12 +129,13 @@ _data = {
 &"Scream": SubResource("Animation_86cgc")
 }
 
-[node name="BePatientSkillStrategy" instance=ExtResource("1_ry74j")]
+[node name="BePatientSkillStrategy" unique_id=1837355809 instance=ExtResource("1_ry74j")]
 script = ExtResource("2_46xtg")
 patience_status = ExtResource("3_ljuv8")
 note_VFX = ExtResource("4_qqyho")
 is_depletable = true
 cost = 3
+rarity = 2
 skill_name = "Be Patient"
 skill_desc = "Sometimes to get what you want in life, you need to be patient... But not too patient, as screaming is often advisable for getting what you want.
 
@@ -143,37 +144,35 @@ Upon Queueing this skill, the user will gain a Patience status effect that incre
 Upon use, the user damages all creatures around themselves, with increased damage and range the more Patience they have."
 skill_ID = 6
 
-[node name="Icon" parent="." index="0"]
+[node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("2_fpgl5")
 
-[node name="YellShort" type="AudioStreamPlayer2D" parent="." index="4"]
+[node name="YellShort" type="AudioStreamPlayer2D" parent="." index="4" unique_id=1261299494]
 stream = SubResource("AudioStreamRandomizer_y537m")
 volume_db = 10.2
 bus = &"SFX"
 
-[node name="YellMedium" type="AudioStreamPlayer2D" parent="." index="5"]
+[node name="YellMedium" type="AudioStreamPlayer2D" parent="." index="5" unique_id=1711373683]
 stream = SubResource("AudioStreamRandomizer_0gony")
 volume_db = 13.915
 bus = &"SFX"
 
-[node name="YellLong" type="AudioStreamPlayer2D" parent="." index="6"]
+[node name="YellLong" type="AudioStreamPlayer2D" parent="." index="6" unique_id=158899845]
 stream = SubResource("AudioStreamRandomizer_53gpo")
 volume_db = 10.2
 bus = &"SFX"
 
-[node name="YellMax" type="AudioStreamPlayer2D" parent="." index="7"]
+[node name="YellMax" type="AudioStreamPlayer2D" parent="." index="7" unique_id=640957131]
 stream = SubResource("AudioStreamRandomizer_w0g1c")
 volume_db = 10.2
 bus = &"SFX"
 
-[node name="Scream" type="Sprite2D" parent="." index="8"]
+[node name="Scream" type="Sprite2D" parent="." index="8" unique_id=1181709413]
 visible = false
 position = Vector2(0.0265195, -0.0265194)
 scale = Vector2(0.031816, 0.031816)
 texture = ExtResource("16_86cgc")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9"]
-libraries = {
-&"": SubResource("AnimationLibrary_pf07p")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9" unique_id=711371724]
+libraries/ = SubResource("AnimationLibrary_pf07p")
 speed_scale = 0.7

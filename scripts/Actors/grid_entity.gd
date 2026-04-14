@@ -8,7 +8,7 @@ signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
 signal spawn_tile(tile_coord)
 signal spawn_wall(wall_coord)
-signal spawn_entity(entity_coord: Vector2i, entity_type: Species)
+signal spawn_entity(entity_coord: Vector2i, entity_type: Species, summoning_skill: SkillStrategy)
 signal slapped(victim)
 signal hurt(attacker, damage_amount)
 signal fell_off_map

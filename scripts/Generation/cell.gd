@@ -409,7 +409,10 @@ func spawn_wall(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
 
 
 func spawn_entity_from_creature(
-	grid_coordinate: Vector2i, entity_type: GridEntity.Species, summoning_entity
+	grid_coordinate: Vector2i,
+	entity_type: GridEntity.Species,
+	summoning_skill: SkillStrategy,
+	summoning_entity: GridEntity
 ):
 	for adjacent_tile in Global.floors.get_surrounding_cells(grid_coordinate):
 		if not _is_obstructed(adjacent_tile):
@@ -418,7 +421,7 @@ func spawn_entity_from_creature(
 			_initialize_entity(new_entity.grid_entity)
 			new_entity.grid_entity.challenge_rating = 0.0
 			new_entity.grid_entity.soul_count = 0
-			new_entity.set_team(summoning_entity)
+			summoning_skill.on_entity_summoned(summoning_entity, new_entity)
 			if not Global.darkness.get_cell_tile_data(adjacent_tile):
 				var new_smoke = spawn_smoke_scene.instantiate()
 				new_smoke.global_position = Global.floors.map_to_local(adjacent_tile)

@@ -1,60 +1,109 @@
 [gd_scene format=3 uid="uid://c1t1yix0mdkeh"]
 
 [ext_resource type="Script" uid="uid://cytgj5qy6k3wm" path="res://scripts/Actors/Strategies/Skill/skill_icon.gd" id="1_876ke"]
+[ext_resource type="Texture2D" uid="uid://73gcb7ha8dq4" path="res://textures/skills/SkillBorders/SkillBorderDefault.png" id="2_4rnhm"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="2_876ke"]
 [ext_resource type="Texture2D" uid="uid://cha8dq4v6awur" path="res://textures/skills/ReloadSkill.png" id="2_ch6wj"]
 
 [node name="SkillIcon" type="PanelContainer" unique_id=695944168]
-custom_minimum_size = Vector2(100, 100)
+self_modulate = Color(1, 1, 1, 0)
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("1_876ke")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=189083487]
+[node name="BorderTexture" type="TextureRect" parent="." unique_id=94989106]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(130.795, 118.07)
+layout_mode = 2
+texture = ExtResource("2_4rnhm")
+expand_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="BorderTexture" unique_id=1183934403]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BorderTexture/CenterContainer" unique_id=652422519]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="BorderTexture/CenterContainer/PanelContainer" unique_id=189083487]
+unique_name_in_owner = true
+show_behind_parent = true
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("2_ch6wj")
-expand_mode = 2
+expand_mode = 3
 stretch_mode = 5
 
-[node name="CountLabel" type="RichTextLabel" parent="." unique_id=1939386381]
+[node name="CountLabel" type="RichTextLabel" parent="BorderTexture" unique_id=1939386381]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.000008
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("2_876ke")
 theme_override_font_sizes/normal_font_size = 26
 text = "x99"
+fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="NameLabel" type="RichTextLabel" parent="." unique_id=414365784]
+[node name="NameLabel" type="RichTextLabel" parent="BorderTexture" unique_id=414365784]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.5
+offset_top = -26.0
+offset_right = 36.5
+grow_horizontal = 2
+grow_vertical = 0
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("2_876ke")
 theme_override_font_sizes/normal_font_size = 26
 text = "what??"
+fit_content = true
+autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="StackSizeLabel" type="RichTextLabel" parent="." unique_id=165178283]
+[node name="StackSizeLabel" type="RichTextLabel" parent="BorderTexture" unique_id=165178283]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+offset_right = 53.0
+offset_bottom = 40.0
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("2_876ke")
 theme_override_font_sizes/normal_font_size = 40
 text = ":-O"
+fit_content = true
+autowrap_mode = 0
 
 [node name="Button" type="Button" parent="." unique_id=1536083257]
-self_modulate = Color(1, 1, 1, 0.176471)
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1

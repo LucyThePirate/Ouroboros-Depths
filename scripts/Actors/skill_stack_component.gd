@@ -363,6 +363,7 @@ func _update_hand_visuals() -> void:
 			hand_skill_icon.set_skill(null, SkillIcon.IconPositions.HAND)
 			continue
 		hand_skill_icon.set_skill(hand[skill], SkillIcon.IconPositions.HAND)
+		#hand_skill_icon.left_clicked.connect(queue_skill.bind(skill))
 		hand_skill_icon.right_clicked.connect(hand[skill].display_skill_info)
 	if deck.is_empty():
 		%NextSkillPreview.texture = null_skill_texture

@@ -10,11 +10,16 @@ signal gained_status(status)
 
 const SKILL_DESCRIPTION = preload("uid://bvsqgo23yrgum")
 
+enum SkillRarities { CURSE, COMMON, RARE, RAINBOW }
+enum SkillTypes { DEFAULT, DIRECTIONAL, CURSOR, NULL }
+
 @export_category("Base Stats")
 @export var count := 3
 @onready var current_count := count
 @export var is_depletable := false
 @export var cost := 1
+@export var rarity := SkillRarities.COMMON
+@export var skill_type := SkillTypes.DEFAULT
 @export var stack_size := 1
 
 @export_category("AI Use Hints")
@@ -138,6 +143,10 @@ func on_skill_queued():
 
 func on_grid_entity_moved(old_coords: Vector2i, new_coords: Vector2i):
 	pass
+
+
+func on_entity_summoned(grid_entity: GridEntity, summoned_entity: CreatureAI):
+	summoned_entity.set_team(grid_entity)
 
 
 func increment_in_stack_counter() -> bool:

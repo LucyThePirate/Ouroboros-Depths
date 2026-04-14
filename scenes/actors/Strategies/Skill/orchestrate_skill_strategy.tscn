@@ -34,6 +34,7 @@ metadata/_custom_type_script = "uid://dtpmtwvvk0ac7"
 script = ExtResource("2_x5ygo")
 note_VFX = ExtResource("3_go5wn")
 count = 8
+skill_type = 2
 skill_name = "Orchestrate"
 skill_desc = "Doh Reh Miiii!!! The power of music is at your fingertips. Use it to smite your enemies while creating a soothing melody at the same time!
 
@@ -42,7 +43,7 @@ Upon use, the user selects a tile to create a music note on, the pitch changing 
 When stack execution starts, the sequence of notes is replayed, also damaging creatures caught in its melody."
 skill_ID = 5
 
-[node name="Icon" parent="." index="0"]
+[node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("2_x1ymy")
 
 [node name="Sampler" type="AudioStreamPlayer2D" parent="." index="4" unique_id=663795000]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dbbfr11nscu22"]
+[gd_scene format=3 uid="uid://dbbfr11nscu22"]
 
 [ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_hm5wb"]
 [ext_resource type="Script" uid="uid://brf13msxkhxjd" path="res://scripts/Actors/Strategies/Skill/possibilities_skill_strategy.gd" id="2_87f2s"]
@@ -254,12 +254,13 @@ scale_max = 13.389999
 color_initial_ramp = SubResource("GradientTexture1D_epser")
 alpha_curve = SubResource("CurveTexture_ok3q8")
 
-[node name="PossibilitiesSkillStrategy" instance=ExtResource("1_hm5wb")]
+[node name="PossibilitiesSkillStrategy" unique_id=1926893306 instance=ExtResource("1_hm5wb")]
 offset_left = -1.0
 offset_right = 143.0
 script = ExtResource("2_87f2s")
 metamorphosis_scene = ExtResource("3_87f2s")
 is_depletable = true
+rarity = 3
 max_per_stack = 4
 priority = 5
 skill_name = "The Possibilities"
@@ -268,23 +269,21 @@ skill_desc = "Your mind is alit as you consider the endless possibilities. Tryin
 Upon use, the user permanently gains 3 random skills."
 skill_ID = 10
 
-[node name="Icon" parent="." index="0"]
+[node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("3_giym1")
 
-[node name="SFX" type="AudioStreamPlayer2D" parent="." index="4"]
+[node name="SFX" type="AudioStreamPlayer2D" parent="." index="4" unique_id=1052939901]
 volume_db = 4.489
 bus = &"SFX"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
-libraries = {
-&"": SubResource("AnimationLibrary_4bdm5")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=2145049143]
+libraries/ = SubResource("AnimationLibrary_4bdm5")
 
-[node name="VFX" type="Node2D" parent="." index="6"]
+[node name="VFX" type="Node2D" parent="." index="6" unique_id=1126908210]
 modulate = Color(1, 1, 1, 0)
 top_level = true
 
-[node name="EyeWideL" type="Polygon2D" parent="VFX" index="0"]
+[node name="EyeWideL" type="Polygon2D" parent="VFX" index="0" unique_id=1646228946]
 clip_children = 2
 position = Vector2(-37.85375, 0.09246064)
 offset = Vector2(-83, -416)
@@ -294,7 +293,7 @@ polygon = PackedVector2Array(-2.0915527, 354.89056, 34.17932, 482.62726, 149.300
 uv = PackedVector2Array(-2.0915527, 354.89056, 34.17932, 482.62726, 149.30005, 460.54932, 124.068115, 348.58258)
 bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(1, 1, 1, 1), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0)]
 
-[node name="TextureRect" type="TextureRect" parent="VFX/EyeWideL" index="0"]
+[node name="TextureRect" type="TextureRect" parent="VFX/EyeWideL" index="0" unique_id=176551308]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -106.41875
 offset_top = -83.41794
@@ -304,7 +303,7 @@ scale = Vector2(0.3487849, 0.35129684)
 texture = ExtResource("9_drkv8")
 metadata/_edit_use_anchors_ = true
 
-[node name="EyeWideR" type="Polygon2D" parent="VFX" index="1"]
+[node name="EyeWideR" type="Polygon2D" parent="VFX" index="1" unique_id=467558363]
 clip_children = 2
 position = Vector2(42.146255, -9.907547)
 offset = Vector2(-209, -406)
@@ -314,7 +313,7 @@ polygon = PackedVector2Array(149.73782, 352.3103, 151.04117, 473.51743, 272.2482
 uv = PackedVector2Array(149.73782, 352.3103, 151.04117, 473.51743, 272.24826, 452.66458, 264.4285, 339.27725)
 bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(1, 1, 1, 1), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0)]
 
-[node name="TextureRect" type="TextureRect" parent="VFX/EyeWideR" index="0"]
+[node name="TextureRect" type="TextureRect" parent="VFX/EyeWideR" index="0" unique_id=2106174959]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -69.368095
 offset_top = -72.57584
@@ -323,7 +322,7 @@ offset_bottom = 357.42416
 scale = Vector2(0.3487849, 0.35129684)
 texture = ExtResource("9_drkv8")
 
-[node name="Stars" type="GPUParticles2D" parent="VFX" index="2"]
+[node name="Stars" type="GPUParticles2D" parent="VFX" index="2" unique_id=1866376644]
 show_behind_parent = true
 position = Vector2(-1, 0)
 scale = Vector2(1.18752, 1.18752)

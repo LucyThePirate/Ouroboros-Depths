@@ -76,7 +76,7 @@ func _stock_buyable_skills():
 		var new_skill_icon = skill_icon_scene.instantiate() as SkillIcon
 		buy_skill_container.add_child(new_skill_icon)
 		add_child(random_skill)
-		new_item["cost"] = random_skill.cost
+		new_item["cost"] = _get_price_from_rarity(random_skill.rarity)
 		new_skill_icon.set_skill(random_skill, SkillIcon.IconPositions.METAMORPHOSIS)
 		new_skill_icon.left_clicked.connect(_on_buy_skill_pressed.bind(item_num))
 		new_skill_icon.right_clicked.connect(random_skill.display_skill_info)
@@ -84,6 +84,20 @@ func _stock_buyable_skills():
 		new_skill_icon.set_text("%s\n%s Soul" % [random_skill.skill_name, new_item["cost"]])
 		#buy_skill_buttons.append(button)
 		purchasable_items.append(new_item)
+
+
+func _get_price_from_rarity(skill_rarity: SkillStrategy.SkillRarities) -> int:
+	match skill_rarity:
+		SkillStrategy.SkillRarities.CURSE:
+			return -5
+		SkillStrategy.SkillRarities.COMMON:
+			return 1
+		SkillStrategy.SkillRarities.RARE:
+			return 3
+		SkillStrategy.SkillRarities.RAINBOW:
+			return 5
+		_:
+			return 1
 
 
 func _on_confirm_button_pressed() -> void:

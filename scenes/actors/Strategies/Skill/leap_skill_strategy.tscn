@@ -8,6 +8,7 @@
 [node name="LeapSkillStrategy" unique_id=273578898 instance=ExtResource("1_clto2")]
 script = ExtResource("1_mqx4p")
 DashVFX = ExtResource("2_clto2")
+skill_type = 2
 stack_size = -1
 skill_name = "Leap"
 skill_desc = "Take a mighty leap through the air! For just a moment, you'll feel as though you are flying.

@@ -8,6 +8,7 @@
 script = ExtResource("2_x3uab")
 is_depletable = true
 cost = 3
+rarity = 2
 stack_size = 2
 priority = 5
 skill_name = "Summon Wasp"

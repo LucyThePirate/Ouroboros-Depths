@@ -8,6 +8,7 @@
 [node name="HarpoonSkillStrategy" unique_id=1163924449 instance=ExtResource("1_ubew5")]
 script = ExtResource("2_5i853")
 DashVFX = ExtResource("3_lvt6v")
+skill_type = 1
 skill_name = "Harpoon"
 skill_desc = "Latch onto foes with a sharp spear, then yank 'em close to you!"
 skill_ID = 14

@@ -30,6 +30,10 @@ blend_mode = 3
 shader = ExtResource("7_e8tpv")
 shader_parameter/bg_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w03br"]
+radius = 34.0
+height = 110.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u26n3"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -436,7 +440,6 @@ metadata/_edit_lock_ = true
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=742671025]
 
 [node name="MainMenu" type="VBoxContainer" parent="CanvasLayer" unique_id=1298551904]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -444,12 +447,28 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/MainMenu" unique_id=193837058]
+[node name="PositionPotionWantsToReturnTO" type="Marker2D" parent="CanvasLayer/MainMenu" unique_id=931455125]
+unique_name_in_owner = true
 position = Vector2(579, 107)
+
+[node name="TitlePotion" type="RigidBody2D" parent="CanvasLayer/MainMenu" unique_id=894109500]
+unique_name_in_owner = true
+position = Vector2(579, 107)
+collision_layer = 256
+collision_mask = 256
+mass = 4.962
+gravity_scale = 0.0
+linear_damp = 0.765
+
+[node name="TitlePotionSprite" type="AnimatedSprite2D" parent="CanvasLayer/MainMenu/TitlePotion" unique_id=193837058]
 sprite_frames = ExtResource("5_tklts")
 animation = &"gif"
 autoplay = "gif"
 frame_progress = 0.167857
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/MainMenu/TitlePotion" unique_id=1525712401]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_w03br")
 
 [node name="Title" type="RichTextLabel" parent="CanvasLayer/MainMenu" unique_id=1189659173]
 layout_mode = 2
@@ -636,6 +655,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 18
 tab_alignment = 1
 current_tab = 0
+clip_tabs = false
 
 [node name="Basic Deck" type="VBoxContainer" parent="CanvasLayer/NewRun/HContainer/Deck/DeckSelect" unique_id=1329305543]
 layout_mode = 2
@@ -830,6 +850,8 @@ disable_collision = false
 softness = 2.0
 radius = 28
 margin_offset_edge = 7.0
+collision_layer = 64
+collision_mask = 64
 rigidbody_scene = ExtResource("10_4qe4i")
 physics_material_override = ExtResource("11_p07av")
 
@@ -919,7 +941,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-6" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1359039404]
 position = Vector2(69.40637, 127.073)
 rotation = -1.36679
-scale = Vector2(0.99999917, 0.99999917)
+scale = Vector2(0.9999991, 0.9999991)
 rest = Transform2D(0.202592, -0.979263, 0.979263, 0.202592, 69.4064, 127.073)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -946,7 +968,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-8" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1969427454]
 position = Vector2(68.7027, 159.052)
 rotation = 1.54074
-scale = Vector2(0.99999917, 0.99999917)
+scale = Vector2(0.9999991, 0.9999991)
 rest = Transform2D(0.0300513, 0.999548, -0.999548, 0.0300513, 68.7027, 159.052)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -973,7 +995,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-10" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=59431186]
 position = Vector2(69.7157, 192.74402)
 rotation = -0.599834
-scale = Vector2(0.9999999, 0.9999999)
+scale = Vector2(0.9999998, 0.9999998)
 rest = Transform2D(0.825429, -0.564506, 0.564506, 0.825429, 69.7157, 192.744)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1132,7 +1154,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-22" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1625297829]
 position = Vector2(123.630005, 155.08301)
 rotation = 1.55378
-scale = Vector2(0.99999917, 0.99999917)
+scale = Vector2(0.9999991, 0.9999991)
 rest = Transform2D(0.0170144, 0.999855, -0.999855, 0.0170144, 123.63, 155.083)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1277,7 +1299,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-33" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1944610832]
 position = Vector2(178.53302, 231.568)
 rotation = -1.48128
-scale = Vector2(0.99999917, 0.99999917)
+scale = Vector2(0.9999991, 0.9999991)
 rest = Transform2D(0.0893961, -0.995996, 0.995996, 0.0893961, 178.533, 231.568)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1290,6 +1312,8 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone-0" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=2017979916 instance=ExtResource("10_4qe4i")]
 position = Vector2(42.4661, 143.478)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 0
@@ -1333,6 +1357,8 @@ softness = 2.0
 
 [node name="Bone-1" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=536727102 instance=ExtResource("10_4qe4i")]
 position = Vector2(39.2917, 173.971)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 1
@@ -1376,6 +1402,8 @@ softness = 2.0
 
 [node name="Bone-2" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=596709121 instance=ExtResource("10_4qe4i")]
 position = Vector2(98.8251, 46.6292)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 2
@@ -1419,6 +1447,8 @@ softness = 2.0
 
 [node name="Bone-3" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=81352984 instance=ExtResource("10_4qe4i")]
 position = Vector2(96.2855, 78.4352)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 3
@@ -1480,6 +1510,8 @@ softness = 2.0
 
 [node name="Bone-4" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=778059897 instance=ExtResource("10_4qe4i")]
 position = Vector2(76.7782, 91.4405)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 4
@@ -1523,6 +1555,8 @@ softness = 2.0
 
 [node name="Bone-5" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1342677250 instance=ExtResource("10_4qe4i")]
 position = Vector2(98.4777, 112.953)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 5
@@ -1593,6 +1627,8 @@ softness = 2.0
 
 [node name="Bone-6" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1416954478 instance=ExtResource("10_4qe4i")]
 position = Vector2(69.4064, 127.073)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 6
@@ -1654,6 +1690,8 @@ softness = 2.0
 
 [node name="Bone-7" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1652643582 instance=ExtResource("10_4qe4i")]
 position = Vector2(100.171, 141.784)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 7
@@ -1724,6 +1762,8 @@ softness = 2.0
 
 [node name="Bone-8" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1092589104 instance=ExtResource("10_4qe4i")]
 position = Vector2(68.7027, 159.052)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 8
@@ -1794,6 +1834,8 @@ softness = 2.0
 
 [node name="Bone-9" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1614933008 instance=ExtResource("10_4qe4i")]
 position = Vector2(97.1292, 173.996)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 9
@@ -1864,6 +1906,8 @@ softness = 2.0
 
 [node name="Bone-10" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1409952365 instance=ExtResource("10_4qe4i")]
 position = Vector2(69.7157, 192.744)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 10
@@ -1925,6 +1969,8 @@ softness = 2.0
 
 [node name="Bone-11" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=895802398 instance=ExtResource("10_4qe4i")]
 position = Vector2(95.7421, 209.358)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 11
@@ -1995,6 +2041,8 @@ softness = 2.0
 
 [node name="Bone-12" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1955309379 instance=ExtResource("10_4qe4i")]
 position = Vector2(70.8059, 230.293)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 12
@@ -2038,6 +2086,8 @@ softness = 2.0
 
 [node name="Bone-13" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=2063950989 instance=ExtResource("10_4qe4i")]
 position = Vector2(91.7349, 239.252)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 13
@@ -2081,6 +2131,8 @@ softness = 2.0
 
 [node name="Bone-14" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=305782345 instance=ExtResource("10_4qe4i")]
 position = Vector2(126.386, 29.989)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 14
@@ -2124,6 +2176,8 @@ softness = 2.0
 
 [node name="Bone-15" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1949042013 instance=ExtResource("10_4qe4i")]
 position = Vector2(151.343, 42.8821)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 15
@@ -2167,6 +2221,8 @@ softness = 2.0
 
 [node name="Bone-16" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=426077800 instance=ExtResource("10_4qe4i")]
 position = Vector2(124.345, 60.9906)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 16
@@ -2237,6 +2293,8 @@ softness = 2.0
 
 [node name="Bone-17" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=2121761188 instance=ExtResource("10_4qe4i")]
 position = Vector2(157.854, 73.0115)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 17
@@ -2298,6 +2356,8 @@ softness = 2.0
 
 [node name="Bone-18" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1625979135 instance=ExtResource("10_4qe4i")]
 position = Vector2(124.056, 96.9696)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 18
@@ -2368,6 +2428,8 @@ softness = 2.0
 
 [node name="Bone-19" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1168875452 instance=ExtResource("10_4qe4i")]
 position = Vector2(150.32, 112.246)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 19
@@ -2438,6 +2500,8 @@ softness = 2.0
 
 [node name="Bone-20" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1622308421 instance=ExtResource("10_4qe4i")]
 position = Vector2(121.743, 132.341)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 20
@@ -2508,6 +2572,8 @@ softness = 2.0
 
 [node name="Bone-21" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=372732291 instance=ExtResource("10_4qe4i")]
 position = Vector2(149.101, 142.275)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 21
@@ -2578,6 +2644,8 @@ softness = 2.0
 
 [node name="Bone-22" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1995620696 instance=ExtResource("10_4qe4i")]
 position = Vector2(123.63, 155.083)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 22
@@ -2648,6 +2716,8 @@ softness = 2.0
 
 [node name="Bone-23" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1119734468 instance=ExtResource("10_4qe4i")]
 position = Vector2(151.558, 174.497)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 23
@@ -2718,6 +2788,8 @@ softness = 2.0
 
 [node name="Bone-24" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=667824078 instance=ExtResource("10_4qe4i")]
 position = Vector2(124.241, 191.016)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 24
@@ -2788,6 +2860,8 @@ softness = 2.0
 
 [node name="Bone-25" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1215495810 instance=ExtResource("10_4qe4i")]
 position = Vector2(153.082, 209.585)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 25
@@ -2858,6 +2932,8 @@ softness = 2.0
 
 [node name="Bone-26" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=529859220 instance=ExtResource("10_4qe4i")]
 position = Vector2(124.397, 222.76)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 26
@@ -2919,6 +2995,8 @@ softness = 2.0
 
 [node name="Bone-27" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=172091038 instance=ExtResource("10_4qe4i")]
 position = Vector2(156.096, 240.368)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 27
@@ -2962,6 +3040,8 @@ softness = 2.0
 
 [node name="Bone-28" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1377990196 instance=ExtResource("10_4qe4i")]
 position = Vector2(175.517, 94.1715)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 28
@@ -3005,6 +3085,8 @@ softness = 2.0
 
 [node name="Bone-29" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=977972524 instance=ExtResource("10_4qe4i")]
 position = Vector2(178.461, 126.962)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 29
@@ -3057,6 +3139,8 @@ softness = 2.0
 
 [node name="Bone-30" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=1524447841 instance=ExtResource("10_4qe4i")]
 position = Vector2(187.169, 153.971)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 30
@@ -3118,6 +3202,8 @@ softness = 2.0
 
 [node name="Bone-31" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=654380057 instance=ExtResource("10_4qe4i")]
 position = Vector2(206.011, 179.281)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 31
@@ -3152,6 +3238,8 @@ softness = 2.0
 
 [node name="Bone-32" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=2033229928 instance=ExtResource("10_4qe4i")]
 position = Vector2(181.978, 193.188)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 32
@@ -3213,6 +3301,8 @@ softness = 2.0
 
 [node name="Bone-33" parent="CanvasLayer/Loading/CanvasLayer/SoftBody" unique_id=745207576 instance=ExtResource("10_4qe4i")]
 position = Vector2(178.533, 231.568)
+collision_layer = 64
+collision_mask = 64
 mass = 0.1
 physics_material_override = ExtResource("11_p07av")
 metadata/idx = 33
@@ -3256,18 +3346,21 @@ softness = 2.0
 
 [node name="TempFloor" type="StaticBody2D" parent="CanvasLayer/Loading/CanvasLayer" unique_id=1412721344]
 position = Vector2(557, -472)
+collision_layer = 65
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Loading/CanvasLayer/TempFloor" unique_id=646235804]
 shape = SubResource("WorldBoundaryShape2D_gmx2j")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer/Loading/CanvasLayer" unique_id=984769634]
 position = Vector2(155, 650)
+collision_layer = 321
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Loading/CanvasLayer/StaticBody2D" unique_id=251594764]
 shape = SubResource("WorldBoundaryShape2D_gmx2j")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="CanvasLayer/Loading/CanvasLayer" unique_id=1866765616]
 position = Vector2(155, 650)
+collision_layer = 321
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Loading/CanvasLayer/StaticBody2D2" unique_id=1518066557]
 position = Vector2(-154, -122)
@@ -3276,6 +3369,7 @@ shape = SubResource("WorldBoundaryShape2D_gmx2j")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="CanvasLayer/Loading/CanvasLayer" unique_id=1284026659]
 position = Vector2(1152, 515)
+collision_layer = 321
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Loading/CanvasLayer/StaticBody2D3" unique_id=1542409011]
 rotation = 4.71238
@@ -3283,6 +3377,8 @@ shape = SubResource("WorldBoundaryShape2D_gmx2j")
 
 [node name="CursorCollision" type="CharacterBody2D" parent="CanvasLayer/Loading/CanvasLayer" unique_id=1547387263]
 position = Vector2(390, 409)
+collision_layer = 320
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Loading/CanvasLayer/CursorCollision" unique_id=1567468240]
 shape = SubResource("CircleShape2D_frs5l")
@@ -3294,6 +3390,7 @@ offset_bottom = 40.0
 texture = ExtResource("7_u26n3")
 
 [node name="Options" type="TabContainer" parent="CanvasLayer" unique_id=474387243]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
