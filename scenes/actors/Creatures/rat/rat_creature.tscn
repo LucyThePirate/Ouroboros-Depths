@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cp6erui8kemoj"]
+
+[ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_dp6xf"]
+[ext_resource type="Texture2D" uid="uid://b5kbbawq2d6hf" path="res://textures/creatures/Rat/rat.png" id="2_01hbd"]
+
+[node name="RatCreature" unique_id=707297936 instance=ExtResource("1_dp6xf")]
+
+[node name="GridEntity" parent="." index="0" unique_id=1162874930]
+species_type = 9
+creature_name = "The Humble Rat"
+species_desc = "Every ecosystem needs something at the bottom of the food-chain. It is not a pretty niche to fill, but The Humble Rat crawls vigilantly forward.
+
+Look at their stupid little roach face, and know that it wears an expression of grim determination. The Humble Rat knows it excels at playing the part of idiot rodent, and it shall do so 'til the bitter end."
+challenge_rating = 0.5
+
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
+max_health = 3
+
+[node name="DetectionRadius" parent="." index="3" unique_id=795154734]
+collision_mask = 0
+monitoring = false
+
+[node name="Sprite2D" parent="." index="6" unique_id=619217628]
+position = Vector2(10.827297, -12.356087)
+scale = Vector2(0.98733544, 1.243102)
+texture = ExtResource("2_01hbd")
+
+[editable path="GridEntity"]

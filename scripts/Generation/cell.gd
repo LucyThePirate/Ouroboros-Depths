@@ -393,7 +393,6 @@ func spawn_wall(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
 	var existing_tile = floors.get_cell_tile_data(tile_coords)
 	if existing_wall and existing_wall.get_custom_data("indestructable"):
 		return
-	#Global.floors.set_cell(tile_coords, 2, Vector2i(0, 1))
 	if not existing_tile:
 		floors.set_cell(tile_coords, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
 	elif (

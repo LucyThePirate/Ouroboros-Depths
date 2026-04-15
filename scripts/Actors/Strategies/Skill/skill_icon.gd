@@ -80,18 +80,18 @@ func set_icon_texture(new_icon: Texture2D):
 		%TextureRect.texture = new_icon
 
 
-func set_stack_size(new_size := 0):
+func set_stack_size(new_size := 0, room_left := 999):
 	if new_size == 0:
 		%StackSizeLabel.text = ""
 	else:
-		%StackSizeLabel.text = "%s" % new_size
-	if icon_position == IconPositions.STACK:
-		pass
-		#custom_minimum_size.x = 100 + (50 * (new_size - 1))
-		#if new_size > 0:
-		#custom_minimum_size.x = 100 + (50 * (new_size - 1))
-		#else:
-		#custom_minimum_size.x = 100
+		if room_left == 0:
+			%StackSizeLabel.text = ("[color=red]%s[/color]" % new_size)
+		elif new_size > room_left:
+			%StackSizeLabel.text = (
+				"[pulse freq=2.0 color=orange ease=-2.0][color=yellow]%s[/color][/pulse]" % new_size
+			)
+		else:
+			%StackSizeLabel.text = "%s" % new_size
 
 
 func set_count(new_count := 1):

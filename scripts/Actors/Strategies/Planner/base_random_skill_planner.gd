@@ -38,6 +38,8 @@ func queue_random_skill() -> bool:
 
 
 func has_queueable_skill() -> bool:
+	if stack_component.hand.size() < 1:
+		return false
 	for skill: SkillStrategy in stack_component.hand:
 		if not skill:
 			continue

@@ -157,6 +157,7 @@ func pursue_entity(entity: GridEntity) -> Vector2i:
 		stack_component.preview_executing_stack(intent == "Execute Stack")
 
 		if not intent:
+			intent = "Move"
 			return get_direction_towards(entity, false, true)
 		return Vector2i.ZERO
 

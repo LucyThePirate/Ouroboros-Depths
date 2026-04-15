@@ -23,7 +23,7 @@ signal absorbed_souls(soul_position)
 @export var description_scene: PackedScene
 
 @export_category("Lore")
-enum Species { DEFAULT, WASP, LICH, FUZZER, CONK, PLAYER, SCARECROW, BOGO_EGG, CHORUSTONE }
+enum Species { DEFAULT, WASP, LICH, FUZZER, CONK, PLAYER, SCARECROW, BOGO_EGG, CHORUSTONE, RAT }
 @export var species_type := Species.DEFAULT
 @export var creature_name := "Default Entity"
 @export_multiline var species_desc := "Default creature description"

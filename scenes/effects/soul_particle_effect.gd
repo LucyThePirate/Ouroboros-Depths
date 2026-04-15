@@ -41,6 +41,7 @@ func _process(delta: float) -> void:
 				if velocity.length_squared() <= 90000:
 					state = States.TARGET_REACHED
 					reached_target.emit()
+					%ExplosionParticles.global_position = target.global_position
 					%ExplosionParticles.emitting = true
 		States.TARGET_REACHED:
 			%ExplosionParticles.global_position = target.global_position

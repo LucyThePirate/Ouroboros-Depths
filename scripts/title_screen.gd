@@ -57,7 +57,12 @@ func _process(_delta: float) -> void:
 			get_viewport().get_mouse_position()
 		)
 		%TitlePotion.apply_force(
-			Vector2(%PositionPotionWantsToReturnTO.global_position - %TitlePotion.global_position)
+			(
+				Vector2(
+					%PositionPotionWantsToReturnTO.global_position - %TitlePotion.global_position
+				)
+				* 5
+			)
 		)
 
 
