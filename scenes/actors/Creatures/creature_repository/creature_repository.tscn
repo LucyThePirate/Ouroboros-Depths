@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cvvne22x17kb0"]
 
 [ext_resource type="Script" uid="uid://bh7o2vdd6f8nm" path="res://scenes/actors/Creatures/creature_repository/creature_repository.gd" id="1_hrqpc"]
-[ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_test.tscn" id="2_awheb"]
+[ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_creature.tscn" id="2_awheb"]
 
 [node name="CreatureRepository" type="Node" unique_id=22139725]
 script = ExtResource("1_hrqpc")

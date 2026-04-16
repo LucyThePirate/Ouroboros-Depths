@@ -9,8 +9,8 @@ signal metamorphosis_completed
 signal UI_opened
 signal UI_closed
 
-enum DECKS { BASIC, FUZZER, MUSICIAN, BEAST_TAMER }
-@onready var selected_deck := DECKS.BASIC
+enum DECKS { BASIC, FUZZER, MUSICIAN, BEAST_TAMER, DEBUG }
+@onready var selected_deck := DECKS.DEBUG
 @onready var entity_positions = {}
 
 @onready var config = ConfigFile.new()
@@ -51,6 +51,8 @@ func load_deck() -> Resource:
 			return load("uid://cm7tndyucq5bf")  # Musician
 		DECKS.BEAST_TAMER:
 			return load("uid://xax1raatwfvk")  # Beast Tamer
+		DECKS.DEBUG:
+			return load("uid://cpjtvo62gc8ka")  # Debug
 		_:
 			printerr("UNRECOGNIZED DECK! %s", selected_deck)
 	return load("uid://bveghq3452ke2")  # Basic

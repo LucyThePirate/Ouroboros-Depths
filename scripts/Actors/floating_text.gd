@@ -55,6 +55,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 func set_text(new_text: String, new_text_effect: String = "%s") -> void:
 	target_text = new_text
 	text_effect = new_text_effect
+	text.append_text(new_text_effect)
 	current_text = ""
 	$TypeDelay.start(non_player_typing_delay)
 
@@ -67,7 +68,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func _on_type_delay_timeout() -> void:
 	if current_text.length() < target_text.length():
 		current_text += target_text[current_text.length()]
-		text.text = text_effect % current_text
+		#text.text = text_effect % current_text
+		text.add_text(target_text[current_text.length() - 1])
 		text_changed.emit()
 	else:
 		$TypeDelay.stop()

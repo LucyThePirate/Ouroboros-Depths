@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cpjtvo62gc8ka"]
+
+[ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/actors/Strategies/Skill/defend_skill_strategy.tscn" id="2_ue1ts"]
+[ext_resource type="PackedScene" uid="uid://biuojqtlmraek" path="res://scenes/actors/Strategies/Skill/judo_throw/judo_throw_skill_strategy.tscn" id="3_opytt"]
+[ext_resource type="PackedScene" uid="uid://bqe6kxf4uw66l" path="res://scenes/actors/Strategies/Skill/drill_skill_strategy.tscn" id="4_ue1ts"]
+[ext_resource type="PackedScene" uid="uid://g1l4hmiw4men" path="res://scenes/actors/Strategies/Skill/summon_wasp/summon_wasp_skill_strategy.tscn" id="5_j6hsg"]
+[ext_resource type="PackedScene" uid="uid://cnrxjlwuvjt6l" path="res://scenes/actors/Strategies/Skill/fortune_cookie_skill_strategy.tscn" id="5_jn52x"]
+
+[node name="DebugDeck" type="Control" unique_id=1324047796]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DefendSkillStrategy" parent="." unique_id=736815680 instance=ExtResource("2_ue1ts")]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 143.0
+scale = Vector2(1, 1)
+
+[node name="FortuneCookieSkillStrategy" parent="." unique_id=820831667 instance=ExtResource("5_jn52x")]
+layout_mode = 0
+scale = Vector2(1, 1)
+
+[node name="JudoThrowSkillStrategy" parent="." unique_id=347600095 instance=ExtResource("3_opytt")]
+layout_mode = 0
+
+[node name="DrillSkillStrategy" parent="." unique_id=1336427482 instance=ExtResource("4_ue1ts")]
+layout_mode = 0
+
+[node name="SummonWaspSkillStrategy" parent="." unique_id=1163924449 instance=ExtResource("5_j6hsg")]
+layout_mode = 0

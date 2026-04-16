@@ -33,7 +33,7 @@ func use_skill(grid_entity: GridEntity):
 			new_text_component
 			. set_text(
 				fortunes.pick_random(),
-				'[rainbow freq=.5 sat=0.8 val=0.8 speed=.5][wave amp=50.0 freq=5.0 connected=1]"%s"[/wave][/rainbow]'
+				'[rainbow freq=.5 sat=0.8 val=0.8 speed=.5][wave amp=50.0 freq=5.0 connected=1]'
 			)
 		)
 	grid_entity.heal(heal_amount)
