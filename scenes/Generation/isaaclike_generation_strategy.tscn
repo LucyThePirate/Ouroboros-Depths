@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://kvhp7jqu8okj"]
 
 [ext_resource type="Script" uid="uid://dbluj4dxj7yku" path="res://scenes/Generation/isaaclike_generation_strategy.gd" id="1_tcb7u"]
+[ext_resource type="PackedScene" uid="uid://5gc0ubf1th5e" path="res://scenes/Generation/SetPieces/Basic2by2SetPiece.tscn" id="2_yu7xt"]
 
 [node name="IsaaclikeGenerationStrategy" type="Node2D" unique_id=678348038]
 script = ExtResource("1_tcb7u")
+set_pieces = Array[PackedScene]([ExtResource("2_yu7xt")])

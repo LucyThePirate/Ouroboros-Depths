@@ -437,6 +437,17 @@ texture_region_size = Vector2i(100, 100)
 8:0/0/custom_data_0 = true
 8:0/0/custom_data_4 = "wood"
 8:0/0/custom_data_7 = true
+0:4/0 = 0
+0:4/0/custom_data_4 = "stone"
+0:5/0 = 0
+0:5/0/custom_data_4 = "stone"
+1:4/size_in_atlas = Vector2i(1, 2)
+1:4/0 = 0
+1:4/0/texture_origin = Vector2i(0, 50)
+1:4/0/y_sort_origin = 50
+1:4/0/custom_data_0 = true
+1:4/0/custom_data_4 = "stone"
+1:4/0/custom_data_7 = true
 
 [sub_resource type="Gradient" id="Gradient_f5ym2"]
 colors = PackedColorArray(0, 0.854902, 0.439216, 1, 1, 1, 0, 1)

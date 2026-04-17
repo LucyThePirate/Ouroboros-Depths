@@ -360,11 +360,13 @@ func _push_tile(tile_coords, direction):
 
 	if not Global.floors.get_cell_tile_data(tile_coords + direction):
 		walls.set_cell(tile_coords, -1)
-		floors.set_cell(tile_coords + direction, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
+		floors.set_cell(tile_coords + direction, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1])
 		return
 
 	if Global.floors.get_cell_tile_data(tile_coords + direction).get_custom_data("is_liquid"):
-		Global.floors.set_cell(tile_coords + direction, 2, Vector2i(0, 1))
+		Global.floors.set_cell(
+			tile_coords + direction, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1]
+		)
 		var splashVFX = boulder_splash.instantiate()
 		walls.add_child(splashVFX)
 		splashVFX.global_position = Global.floors.map_to_local(tile_coords + direction)
@@ -383,7 +385,7 @@ func spawn_tile(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
 		return
 	#Global.floors.set_cell(tile_coords, 2, Vector2i(0, 1))
 	if not existing_tile:
-		floors.set_cell(tile_coords, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
+		floors.set_cell(tile_coords, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1])
 	else:
 		floors.set_cell(tile_coords, tile_data[0], tile_data[1])
 
@@ -394,12 +396,12 @@ func spawn_wall(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
 	if existing_wall and existing_wall.get_custom_data("indestructable"):
 		return
 	if not existing_tile:
-		floors.set_cell(tile_coords, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
+		floors.set_cell(tile_coords, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1])
 	elif (
 		existing_tile.get_custom_data("is_liquid")
 		and not existing_tile.get_custom_data("indestructable")
 	):
-		floors.set_cell(tile_coords, Tiles.Floors["stone"][0], Tiles.Floors["stone"][1])
+		floors.set_cell(tile_coords, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1])
 		var splashVFX = boulder_splash.instantiate()
 		walls.add_child(splashVFX)
 		splashVFX.global_position = Global.floors.map_to_local(tile_coords)

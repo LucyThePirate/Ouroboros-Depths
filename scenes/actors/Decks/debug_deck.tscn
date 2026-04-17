@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bqe6kxf4uw66l" path="res://scenes/actors/Strategies/Skill/drill_skill_strategy.tscn" id="4_ue1ts"]
 [ext_resource type="PackedScene" uid="uid://g1l4hmiw4men" path="res://scenes/actors/Strategies/Skill/summon_wasp/summon_wasp_skill_strategy.tscn" id="5_j6hsg"]
 [ext_resource type="PackedScene" uid="uid://cnrxjlwuvjt6l" path="res://scenes/actors/Strategies/Skill/fortune_cookie_skill_strategy.tscn" id="5_jn52x"]
+[ext_resource type="PackedScene" uid="uid://cmyas4xlndmy7" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_skill_strategy.tscn" id="6_ue1ts"]
 
 [node name="DebugDeck" type="Control" unique_id=1324047796]
 layout_mode = 3
@@ -29,4 +30,7 @@ layout_mode = 0
 layout_mode = 0
 
 [node name="SummonWaspSkillStrategy" parent="." unique_id=1163924449 instance=ExtResource("5_j6hsg")]
+layout_mode = 0
+
+[node name="EarthSpikeSkillStrategy" parent="." unique_id=1348417474 instance=ExtResource("6_ue1ts")]
 layout_mode = 0

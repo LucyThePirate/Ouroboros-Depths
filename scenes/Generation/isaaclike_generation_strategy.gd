@@ -3,8 +3,10 @@ extends GenerationStrategy
 @export var number_of_cells := 40
 @export var cell_size := 5
 @export var number_of_rooms := 3
+@export var number_of_set_pieces := 2
 @export var max_room_size := 4
 @export var biggest_room_chance := 0.75
+@export var set_pieces: Array[PackedScene]
 
 var cells: Array[Vector2i] = []
 var rooms := {}
@@ -32,7 +34,7 @@ func generate_level():
 	# 1. Generating an arbitrarily connecting clump of cells
 	cells = [Vector2i.ZERO]
 	var adjacent = [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN]
-	var expandable_areas = [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN]
+	var expandable_areas := [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN] as Array[Vector2i]
 	while cells.size() < number_of_cells:
 		var new_cell = expandable_areas.pop_at(randi_range(0, expandable_areas.size() - 1))
 		if not new_cell in cells:
@@ -42,8 +44,10 @@ func generate_level():
 					expandable_areas.append(new_cell + a)
 	#print("Cells after 1.:", cells)
 
-	# 2. Converting random cells into rooms
+	# 1.5 Add set pieces
 	var possible_rooms = cells.duplicate()
+
+	# 2. Converting random cells into basic rooms
 	for room_num in number_of_rooms:
 		var new_room = possible_rooms.pop_at(randi_range(0, possible_rooms.size() - 1))
 		rooms[room_num] = [new_room]
@@ -62,7 +66,7 @@ func generate_level():
 			):
 				continue
 			rooms[room].append(candidate_joining_cell)
-			possible_rooms.remove_at(possible_rooms.find(candidate_joining_cell))
+			possible_rooms.erase(candidate_joining_cell)
 			if randf() > biggest_room_chance:
 				break
 			for a in adjacent:
@@ -148,6 +152,8 @@ func generate_level():
 	#for i in range(cell_size):
 	#chance_gradient.append(range(1, cell_size + 1))
 
+	_generate_set_pieces(expandable_areas)
+
 	for cell in floors.get_used_cells():
 		for neighbor_cell in floors.get_surrounding_cells(cell):
 			if not floors.get_cell_tile_data(neighbor_cell):
@@ -162,15 +168,16 @@ func generate_level():
 
 	# 4. Generate stairs up & down
 	var possible_stair_locations = rooms
-	var stairs_down_room = possible_stair_locations.keys().pick_random()
 	stairs_down_location = (
-		rooms[stairs_down_room].pick_random() * cell_size + Vector2i(cell_size / 2, cell_size / 2)
+		floors
+		. get_used_cells_by_id(Tiles.room_floor_tile[0], Tiles.room_floor_tile[1])
+		. pick_random()
 	)
 	floors.set_cell(stairs_down_location, stairs_down_tile[0], stairs_down_tile[1])
-	assert(possible_stair_locations.erase(stairs_down_room))
-	var stairs_up_room = possible_stair_locations.keys().pick_random()
 	stairs_up_location = (
-		rooms[stairs_up_room].pick_random() * cell_size + Vector2i(cell_size / 2, cell_size / 2)
+		floors
+		. get_used_cells_by_id(Tiles.room_floor_tile[0], Tiles.room_floor_tile[1])
+		. pick_random()
 	)
 	floors.set_cell(stairs_up_location, stairs_up_tile[0], stairs_up_tile[1])
 
@@ -183,6 +190,34 @@ func generate_level():
 
 	Global.floors = floors
 	Global.walls = walls
+
+
+func _generate_set_pieces(possible_locations: Array[Vector2i]):
+	for set_piece_num in number_of_set_pieces:
+		var new_set_piece = possible_locations.pop_at(randi_range(0, possible_locations.size() - 1))
+		var set_piece_scene = set_pieces.pick_random().instantiate() as SetPiece
+		add_child(set_piece_scene)
+		var set_piece_shape = set_piece_scene.get_cell_shape(cell_size) as Vector2i
+		var set_piece_position = set_piece_scene.get_cell_position() as Vector2i
+		for x in set_piece_shape.x:
+			for y in set_piece_shape.y:
+				var remove_from_possible_rooms = Vector2i(x, y) + set_piece_position
+				if possible_locations.has(remove_from_possible_rooms):
+					possible_locations.erase(remove_from_possible_rooms)
+				#if not cells.has(remove_from_possible_rooms):
+				#cells.append(remove_from_possible_rooms)
+				#for a in adjacent:
+				#if not remove_from_possible_rooms + a in cells:
+				#expandable_areas.append(remove_from_possible_rooms + a)
+		floors.set_pattern(
+			Vector2i(new_set_piece.x * cell_size, new_set_piece.y * cell_size),
+			set_piece_scene.get_floor_pattern()
+		)
+		walls.set_pattern(
+			Vector2i(new_set_piece.x * cell_size, new_set_piece.y * cell_size),
+			set_piece_scene.get_wall_pattern()
+		)
+		set_piece_scene.queue_free()
 
 
 func _place_nature_tile(tile_coordinate: Vector2i):
