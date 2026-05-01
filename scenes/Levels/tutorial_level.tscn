@@ -233,7 +233,6 @@ process_material = SubResource("ParticleProcessMaterial_qplaj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=247357319]
 layer = 100
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1999191695]
 visible = false
@@ -262,7 +261,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DeathScreen" type="Control" parent="CanvasLayer" unique_id=1574114986]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -993,7 +991,7 @@ position = Vector2(-1046, -1284)
 [connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer2/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer/ContinueGameButton" to="." method="_on_unpaused"]
 [connection signal="pressed" from="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer2/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_paused"]
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="timeout" from="AutoTurnTimer" to="." method="_on_auto_turn_timer_timeout"]
 
 [editable path="TutorialScarecrow"]

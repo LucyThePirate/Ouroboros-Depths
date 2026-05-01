@@ -1,17 +1,18 @@
 extends GenerationStrategy
 
 @export var number_of_cells := 40
-@export var cell_size := 5
+@export var cell_size := 4
 @export var number_of_rooms := 3
 @export var number_of_set_pieces := 2
 @export var max_room_size := 4
 @export var biggest_room_chance := 0.75
 @export var set_pieces: Array[PackedScene]
+@export var seed := 0
 
 var cells: Array[Vector2i] = []
 var rooms := {}
 var stairs_up_location = Vector2i.ZERO
-var stairs_down_location = Vector2i.ZERO
+var stairs_down_location = Vector2i.RIGHT
 
 
 func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMapLayer):
@@ -20,36 +21,38 @@ func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMa
 	fog = new_fog
 	rng = RandomNumberGenerator.new()
 	noise = FastNoiseLite.new()
+	if seed:
+		rng.seed = seed
+	%SeedLabel.text = "Seed: %s" % rng.seed
+	print_rich("[color=LIME]The seed is: %s" % rng.seed)
 	noise.seed = rng.get_seed()
 	noise.fractal_octaves = 2
 	noise.fractal_lacunarity = 1.575
 	noise.frequency = 0.05
 	noise.noise_type = 3
-	root_node = Branch.new(Vector2i(0, 0), generation_size)
-	root_node.split(randi_range(2, 4), paths)
-	nature_mode = [NatureModes.ALL, NatureModes.SOMETIMES, NatureModes.NONE].pick_random()
 
 
 func generate_level():
 	# 1. Generating an arbitrarily connecting clump of cells
 	cells = [Vector2i.ZERO]
 	var adjacent = [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN]
-	var expandable_areas := [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN] as Array[Vector2i]
+	var expandable_areas := (
+		[Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN] as Array[Vector2i]
+	)
 	while cells.size() < number_of_cells:
-		var new_cell = expandable_areas.pop_at(randi_range(0, expandable_areas.size() - 1))
+		var new_cell = expandable_areas.pop_at(rng.randi_range(0, expandable_areas.size() - 1))
 		if not new_cell in cells:
 			cells.append(new_cell)
 			for a in adjacent:
-				if not new_cell + a in cells:
+				if not new_cell + a in expandable_areas:
 					expandable_areas.append(new_cell + a)
 	#print("Cells after 1.:", cells)
 
-	# 1.5 Add set pieces
 	var possible_rooms = cells.duplicate()
 
 	# 2. Converting random cells into basic rooms
 	for room_num in number_of_rooms:
-		var new_room = possible_rooms.pop_at(randi_range(0, possible_rooms.size() - 1))
+		var new_room = possible_rooms.pop_at(rng.randi_range(0, possible_rooms.size() - 1))
 		rooms[room_num] = [new_room]
 	# 2.5 randomly join up neighboring cells into existing rooms, if possible
 	for room in number_of_rooms:
@@ -58,7 +61,7 @@ func generate_level():
 			possible_joining_rooms.append(rooms[room][0] + a)
 		while not possible_joining_rooms.is_empty() and rooms[room].size() < max_room_size:
 			var candidate_joining_cell = possible_joining_rooms.pop_at(
-				randi_range(0, possible_joining_rooms.size() - 1)
+				rng.randi_range(0, possible_joining_rooms.size() - 1)
 			)
 			if (
 				not possible_rooms.has(candidate_joining_cell)
@@ -67,21 +70,67 @@ func generate_level():
 				continue
 			rooms[room].append(candidate_joining_cell)
 			possible_rooms.erase(candidate_joining_cell)
-			if randf() > biggest_room_chance:
+			if rng.randf() > biggest_room_chance:
 				break
 			for a in adjacent:
 				if not rooms[room].has(candidate_joining_cell + a):
 					possible_joining_rooms.append(candidate_joining_cell + a)
 
 	# 3. Generate floor terrain, walls, doors, etc.
-	for cell in possible_rooms:
+	_generate_nature_tiles(possible_rooms, expandable_areas)
+
+	_generate_basic_rooms(expandable_areas)
+
+	_generate_set_pieces(expandable_areas)
+
+	_generate_border_walls()
+
+	_generate_bogo_room(expandable_areas)
+
+	#_debug_cover_rooms_in_trees(expandable_areas)
+
+	_clean_up_doors()
+
+	# 4. Generate stairs up & down
+	_place_stairs()
+
+	for x in range(floors.get_used_rect().position.x - 1, floors.get_used_rect().size.x + 1):
+		for y in range(floors.get_used_rect().position.y - 1, floors.get_used_rect().size.y + 1):
+			fog.set_cell(Vector2i(x, y), fog_tile[0], fog_tile[1])
+			pass
+
+	fog.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
+
+	Global.floors = floors
+	Global.walls = walls
+
+
+func _generate_nature_tiles(rooms: Array[Vector2i], expandable_areas):
+	for cell in rooms:
+		if cell in expandable_areas:
+			expandable_areas.erase(cell)
 		for c_x in range(cell.x * cell_size, cell.x * cell_size + cell_size):
 			for c_y in range(cell.y * cell_size, cell.y * cell_size + cell_size):
 				_place_nature_tile(Vector2i(c_x, c_y))
+
+
+func _debug_cover_rooms_in_trees(rooms: Array[Vector2i]):
+	for cell in rooms:
+		for c_x in range(cell.x * cell_size, cell.x * cell_size + cell_size):
+			for c_y in range(cell.y * cell_size, cell.y * cell_size + cell_size):
+				walls.set_cell(
+					Vector2i(c_x, c_y), Tiles.small_tree_wall_tile[0], Tiles.small_tree_wall_tile[1]
+				)
+
+
+func _generate_basic_rooms(expandable_areas):
 	var horizontal_doors = []
 	var vertical_doors = []
+	var adjacent = [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN]
 	for room in number_of_rooms:
 		for room_cell in rooms[room]:
+			if expandable_areas.has(room_cell):
+				expandable_areas.erase(room_cell)
 			for r_x in range(room_cell.x * cell_size, room_cell.x * cell_size + cell_size):
 				for r_y in range(room_cell.y * cell_size, room_cell.y * cell_size + cell_size):
 					floors.set_cell(Vector2i(r_x, r_y), room_floor_tile[0], room_floor_tile[1])
@@ -146,62 +195,19 @@ func generate_level():
 	for v_d: Vector2i in vertical_doors:
 		walls.set_cell(v_d, door_vertical_tile[0], door_vertical_tile[1])
 
-	# 3.2 Smooth out the nature tiles on the borders
-#	var rotated_point = point.rotated(Vector2(attack_direction).angle())
-	#var chance_gradient = []
-	#for i in range(cell_size):
-	#chance_gradient.append(range(1, cell_size + 1))
-
-	_generate_set_pieces(expandable_areas)
-
-	for cell in floors.get_used_cells():
-		for neighbor_cell in floors.get_surrounding_cells(cell):
-			if not floors.get_cell_tile_data(neighbor_cell):
-				floors.set_cell(neighbor_cell, stone_floor_tile[0], stone_floor_tile[1])
-				walls.set_cell(neighbor_cell, stone_wall_tile[0], stone_wall_tile[1])
-
-	var bogo_room = expandable_areas.pick_random()
-	for x in range(bogo_room.x * cell_size, bogo_room.x * cell_size + cell_size):
-		for y in range(bogo_room.y * cell_size, bogo_room.y * cell_size + cell_size):
-			floors.set_cell(Vector2i(x, y), ice_floor_tile[0], ice_floor_tile[1])
-			walls.set_cell(Vector2i(x, y), -1)
-
-	# 4. Generate stairs up & down
-	var possible_stair_locations = rooms
-	stairs_down_location = (
-		floors
-		. get_used_cells_by_id(Tiles.room_floor_tile[0], Tiles.room_floor_tile[1])
-		. pick_random()
-	)
-	floors.set_cell(stairs_down_location, stairs_down_tile[0], stairs_down_tile[1])
-	stairs_up_location = (
-		floors
-		. get_used_cells_by_id(Tiles.room_floor_tile[0], Tiles.room_floor_tile[1])
-		. pick_random()
-	)
-	floors.set_cell(stairs_up_location, stairs_up_tile[0], stairs_up_tile[1])
-
-	for x in range(floors.get_used_rect().position.x - 1, floors.get_used_rect().size.x + 1):
-		for y in range(floors.get_used_rect().position.y - 1, floors.get_used_rect().size.y + 1):
-			fog.set_cell(Vector2i(x, y), fog_tile[0], fog_tile[1])
-			pass
-
-	fog.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
-
-	Global.floors = floors
-	Global.walls = walls
-
 
 func _generate_set_pieces(possible_locations: Array[Vector2i]):
 	for set_piece_num in number_of_set_pieces:
-		var new_set_piece = possible_locations.pop_at(randi_range(0, possible_locations.size() - 1))
-		var set_piece_scene = set_pieces.pick_random().instantiate() as SetPiece
+		var set_piece_scene = (
+			set_pieces[rng.randi_range(0, set_pieces.size() - 1)].instantiate() as SetPiece
+		)
+
 		add_child(set_piece_scene)
 		var set_piece_shape = set_piece_scene.get_cell_shape(cell_size) as Vector2i
-		var set_piece_position = set_piece_scene.get_cell_position() as Vector2i
+		var set_piece_location = _find_room_for_rect(possible_locations, set_piece_shape)
 		for x in set_piece_shape.x:
 			for y in set_piece_shape.y:
-				var remove_from_possible_rooms = Vector2i(x, y) + set_piece_position
+				var remove_from_possible_rooms = Vector2i(x, y) + set_piece_location
 				if possible_locations.has(remove_from_possible_rooms):
 					possible_locations.erase(remove_from_possible_rooms)
 				#if not cells.has(remove_from_possible_rooms):
@@ -210,14 +216,153 @@ func _generate_set_pieces(possible_locations: Array[Vector2i]):
 				#if not remove_from_possible_rooms + a in cells:
 				#expandable_areas.append(remove_from_possible_rooms + a)
 		floors.set_pattern(
-			Vector2i(new_set_piece.x * cell_size, new_set_piece.y * cell_size),
+			Vector2i(set_piece_location.x * cell_size, set_piece_location.y * cell_size),
 			set_piece_scene.get_floor_pattern()
 		)
+		for x in set_piece_scene.get_set_piece_size().x:
+			for y in set_piece_scene.get_set_piece_size().y:
+				walls.set_cell(
+					(
+						Vector2i(x, y)
+						+ Vector2i(
+							set_piece_location.x * cell_size, set_piece_location.y * cell_size
+						)
+					),
+					-1
+				)
 		walls.set_pattern(
-			Vector2i(new_set_piece.x * cell_size, new_set_piece.y * cell_size),
+			Vector2i(set_piece_location.x * cell_size, set_piece_location.y * cell_size),
 			set_piece_scene.get_wall_pattern()
 		)
 		set_piece_scene.queue_free()
+
+
+func _find_room_for_rect(possible_locations: Array[Vector2i], rect_size: Vector2i) -> Vector2i:
+	var current_location = possible_locations[rng.randi_range(0, possible_locations.size() - 1)]
+	var adjacent = [Vector2i.RIGHT, Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN]
+	var locations_to_check = []
+	var checked_locations = []
+	while true:
+		if not _is_rect_obstructed(current_location, possible_locations, rect_size):
+			return current_location
+		for a in adjacent:
+			if (
+				current_location + a not in checked_locations
+				and current_location + a not in locations_to_check
+			):
+				locations_to_check.append(current_location + a)
+		checked_locations.append(current_location)
+		current_location = locations_to_check[rng.randi_range(0, locations_to_check.size() - 1)]
+	return current_location
+
+
+func _is_rect_obstructed(
+	checking_location: Vector2i, possible_locations: Array[Vector2i], rect_size: Vector2i
+) -> bool:
+	for x in rect_size.x:
+		for y in rect_size.y:
+			var cell_to_check = Vector2i(checking_location.x + x, checking_location.y + y)
+			if not cells.has(cell_to_check):
+				continue
+			if not possible_locations.has(cell_to_check):
+				return true
+	return false
+
+
+func _generate_border_walls():
+	for cell in floors.get_used_cells():
+		for neighbor_cell in floors.get_surrounding_cells(cell):
+			if not floors.get_cell_tile_data(neighbor_cell):
+				floors.set_cell(neighbor_cell, stone_floor_tile[0], stone_floor_tile[1])
+				_blend_in_with_neighboring_walls(
+					neighbor_cell,
+					[Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP],
+					stone_wall_tile
+				)
+				#walls.set_cell(neighbor_cell, stone_wall_tile[0], stone_wall_tile[1])
+
+
+func _generate_bogo_room(expandable_areas: Array[Vector2i]):
+	var bogo_room = expandable_areas[rng.randi_range(0, expandable_areas.size() - 1)]
+	expandable_areas.erase(bogo_room)
+	for x in range(bogo_room.x * cell_size, bogo_room.x * cell_size + cell_size):
+		for y in range(bogo_room.y * cell_size, bogo_room.y * cell_size + cell_size):
+			floors.set_cell(Vector2i(x, y), ice_floor_tile[0], ice_floor_tile[1])
+			walls.set_cell(Vector2i(x, y), -1)
+
+
+func _clean_up_doors():
+	var horizontal_doors = walls.get_used_cells_by_id(
+		Tiles.door_horizontal_tile[0], Tiles.door_horizontal_tile[1]
+	)
+	var vertical_doors = walls.get_used_cells_by_id(
+		Tiles.door_vertical_tile[0], Tiles.door_vertical_tile[1]
+	)
+	for h_d in horizontal_doors:
+		if _is_obstructed(h_d + Vector2i.UP) or _is_obstructed(h_d + Vector2i.DOWN):
+			_blend_in_with_neighboring_walls(
+				h_d, [Vector2i.LEFT, Vector2i.RIGHT], [-1, Vector2i(-1, -1)]
+			)
+	for v_d in vertical_doors:
+		if _is_obstructed(v_d + Vector2i.LEFT) or _is_obstructed(v_d + Vector2i.RIGHT):
+			_blend_in_with_neighboring_walls(
+				v_d, [Vector2i.UP, Vector2i.DOWN], [-1, Vector2i(-1, -1)]
+			)
+
+
+func _is_obstructed(tile_coords) -> bool:
+	if not tile_coords:
+		return true
+
+	var wall_tile = walls.get_cell_tile_data(tile_coords)
+	if (
+		wall_tile
+		and wall_tile.get_custom_data("is_solid")
+		and not wall_tile.get_custom_data("is_door")
+	):
+		return true
+
+	return false
+
+
+func _blend_in_with_neighboring_walls(
+	tile_coords: Vector2i, neighbors_to_copy: Array[Vector2i], default_tile: Array
+):
+	if neighbors_to_copy.is_empty():
+		return
+	neighbors_to_copy.shuffle()
+	for neighbor_wall in neighbors_to_copy:
+		var wall_tile = walls.get_cell_tile_data(tile_coords + neighbor_wall)
+		if wall_tile and wall_tile.get_custom_data("is_full_block"):
+			walls.set_cell(
+				tile_coords,
+				walls.get_cell_source_id(tile_coords + neighbor_wall),
+				walls.get_cell_atlas_coords(tile_coords + neighbor_wall)
+			)
+			return
+	# Couldn't find a valid wall to copy
+	walls.set_cell(tile_coords, default_tile[0], default_tile[1])
+
+
+func _place_stairs():
+	var possible_stair_locations = floors.get_used_cells_by_id(
+		Tiles.room_floor_tile[0], Tiles.room_floor_tile[1]
+	)
+	stairs_down_location = possible_stair_locations[rng.randi_range(
+		0, possible_stair_locations.size() - 1
+	)]
+	floors.set_cell(stairs_down_location, stairs_down_tile[0], stairs_down_tile[1])
+	possible_stair_locations = floors.get_used_cells_by_id(
+		Tiles.room_floor_tile[0], Tiles.room_floor_tile[1]
+	)
+	stairs_up_location = possible_stair_locations[rng.randi_range(
+		0, possible_stair_locations.size() - 1
+	)]
+	floors.set_cell(stairs_up_location, stairs_up_tile[0], stairs_up_tile[1])
+	walls.set_cell(stairs_up_location, -1)
+	print_rich(
+		"[color=LIME]Stairs up: %s\nStairs down: %s" % [stairs_up_location, stairs_down_location]
+	)
 
 
 func _place_nature_tile(tile_coordinate: Vector2i):
@@ -256,12 +401,3 @@ func _place_nature_tile(tile_coordinate: Vector2i):
 				floors.set_cell(tile_coordinate, stone_floor_tile[0], stone_floor_tile[1])
 			else:
 				floors.set_cell(tile_coordinate, grass_floor_tile[0], grass_floor_tile[1])
-
-
-func is_inside_padding(x, y, leaf, padding):
-	return (
-		x <= padding.x
-		or y <= padding.y
-		or x >= leaf.size.x - padding.z
-		or y >= leaf.size.y - padding.w
-	)

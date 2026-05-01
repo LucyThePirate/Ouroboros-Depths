@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://cdsxyidj582fm" path="res://samples/choir/choir_e4.tres" id="8_gupfj"]
 [ext_resource type="Texture2D" uid="uid://cwsbr3uhtivnn" path="res://textures/creatures/Chorustone.png" id="8_mo24w"]
 [ext_resource type="Resource" uid="uid://5q6t12vf6bcj" path="res://samples/choir/choir_g4.tres" id="9_chlo0"]
+[ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="15_obh5d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k2ipq"]
 radius = 451.0
@@ -84,6 +85,8 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Visual" type="Sprite2D" parent="." unique_id=1255517218]
+material = ExtResource("15_obh5d")
+use_parent_material = true
 position = Vector2(0, -171)
 scale = Vector2(0.745887, 0.745887)
 texture = ExtResource("8_mo24w")

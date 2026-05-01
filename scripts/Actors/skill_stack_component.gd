@@ -367,7 +367,8 @@ func _update_hand_visuals() -> void:
 			hand[skill].stack_size, current_max_stack_size - current_stack_size
 		)
 		#hand_skill_icon.left_clicked.connect(queue_skill.bind(skill))
-		hand_skill_icon.right_clicked.connect(hand[skill].display_skill_info)
+		if not hand_skill_icon.is_connected("right_clicked", hand[skill].display_skill_info):
+			hand_skill_icon.right_clicked.connect(hand[skill].display_skill_info)
 	if deck.is_empty():
 		%NextSkillPreview.texture = null_skill_texture
 	else:

@@ -120,6 +120,12 @@ func _ready():
 		player.grid_entity
 	)
 
+	for random_monster_tile in walls.get_used_cells_by_id(
+		Tiles.random_monster_tile[0], Tiles.random_monster_tile[1]
+	):
+		walls.set_cell(random_monster_tile, -1)
+		spawn_monster_at_coords(random_monster_tile)
+
 	for i in range(int(10 + current_floor) / 2):
 		try_spawning_random_monster(false)
 
@@ -284,7 +290,7 @@ func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):
 	var new_entity = entity_scene.instantiate()
 	new_entity.global_position = floors.map_to_local(grid_coordinate)
 	add_child(new_entity)
-	print("Spawned %s at: %s" % [new_entity.name, grid_coordinate])
+	#print("Spawned %s at: %s" % [new_entity.name, grid_coordinate])
 	return new_entity
 
 
@@ -299,7 +305,7 @@ func process_turn():
 		turn_counter += 1
 		if spawn_creatures and (turn_counter % 5) == 0:
 			try_spawning_random_monster(true)
-		print(turn_counter)
+		#print(turn_counter)
 		for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
 			turn_queue.push_back(turn_component)
 	var current_entity = turn_queue.pop_front()
@@ -308,6 +314,11 @@ func process_turn():
 	else:
 		process_turn()
 	Global.turn_passed.emit()
+
+
+func spawn_monster_at_coords(grid_coordinate: Vector2i):
+	var new_entity = spawn_entity(grid_coordinate, creature_scene.pick_random())
+	current_challenge_rating += new_entity.grid_entity.challenge_rating
 
 
 func try_spawning_random_monster(initialize_entity := true):

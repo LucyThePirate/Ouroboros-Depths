@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_6r2tr"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="2_nyqal"]
+[ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="3_4c4v1"]
 [ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/actors/Strategies/Planner/base_random_skill_planner.tscn" id="4_dn3ie"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/ui/Arrow.png" id="5_rb8ws"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="6_qmjjy"]
@@ -15,7 +16,6 @@ script = ExtResource("1_6r2tr")
 visual = NodePath("Sprite2D")
 
 [node name="GridEntity" parent="." unique_id=1162874930 instance=ExtResource("2_nyqal")]
-species_name = "Something??"
 species_desc = "A creature who hasn't had their description set. What could it be???"
 
 [node name="SkillStackComponent" parent="GridEntity" index="10" unique_id=1500394995]
@@ -26,6 +26,8 @@ max_health = 4
 
 [node name="Display" type="Node2D" parent="." unique_id=1627324750]
 top_level = true
+material = ExtResource("3_4c4v1")
+use_parent_material = true
 position = Vector2(0, -34)
 
 [node name="BaseRandomSkillPlanner" parent="." unique_id=1557162231 instance=ExtResource("4_dn3ie")]

@@ -52,6 +52,7 @@ func load_deck() -> Resource:
 		DECKS.BEAST_TAMER:
 			return load("uid://xax1raatwfvk")  # Beast Tamer
 		DECKS.DEBUG:
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -80)
 			return load("uid://cpjtvo62gc8ka")  # Debug
 		_:
 			printerr("UNRECOGNIZED DECK! %s", selected_deck)

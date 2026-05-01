@@ -3,11 +3,18 @@ extends CreatureAI
 class_name StationaryAI
 
 
+func _ready() -> void:
+	super()
+
+
 func pursue_entity(entity: GridEntity) -> Vector2i:
 	intent = random_skill_planner.make_plan(entity)
 
 	stack_component.preview_queueing_skill(intent == "Queue Skill")
 	stack_component.preview_executing_stack(intent == "Execute Stack")
+
+	if intent == "Execute Stack":
+		visual.use_parent_material = false
 
 	if not intent:
 		return Vector2i.ZERO

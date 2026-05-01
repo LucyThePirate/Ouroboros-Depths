@@ -1,0 +1,25 @@
+[gd_scene format=4 uid="uid://8aewrijk47tx"]
+
+[ext_resource type="Script" uid="uid://cdy66i7hskqd2" path="res://scenes/Generation/SetPieces/set_piece_strategy.gd" id="1_31nyv"]
+[ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="1_mt7ku"]
+
+[node name="Basic1by1SetPiece" type="Node2D" unique_id=893876554]
+script = ExtResource("1_31nyv")
+
+[node name="Floors" type="TileMapLayer" parent="." unique_id=2114537819]
+unique_name_in_owner = true
+show_behind_parent = true
+z_index = -5
+y_sort_enabled = true
+texture_filter = 2
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAAAAAgAAAAUAAAAAAAEAAgAAAAUAAAAAAAIAAgAAAAUAAAAAAAMAAgAAAAUAAAABAAAAAgAAAAUAAAABAAEAAgAAAAUAAAABAAIAAgAAAAUAAAABAAMAAgAAAAUAAAACAAAAAgAAAAUAAAACAAEAAgAAAAUAAAACAAIAAwAAAAMAAAACAAMAAgAAAAUAAAADAAAAAgAAAAUAAAADAAEAAgAAAAUAAAADAAIAAgAAAAUAAAADAAMAAgAAAAUAAAA=")
+tile_set = ExtResource("1_mt7ku")
+
+[node name="Walls" type="TileMapLayer" parent="." unique_id=218292017]
+unique_name_in_owner = true
+show_behind_parent = true
+y_sort_enabled = true
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAAAAAgABAAQAAAABAAAAAgABAAQAAAAAAAEAAgABAAQAAAACAAAAAgABAAIAAAAAAAIAAgACAAIAAAAAAAMAAgABAAQAAAABAAMAAgABAAIAAAACAAMAAgABAAQAAAADAAMAAgABAAQAAAADAAEAAgACAAIAAAADAAIAAgABAAQAAAADAAAAAgABAAQAAAA=")
+tile_set = ExtResource("1_mt7ku")

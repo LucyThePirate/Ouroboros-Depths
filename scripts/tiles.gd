@@ -18,10 +18,12 @@ extends Node
 @onready var ice_floor_tile := [3, Vector2i(2, 1)]
 @onready var door_horizontal_tile := [2, Vector2i(1, 2)]
 @onready var door_vertical_tile := [2, Vector2i(2, 2)]
+
 @onready var stairs_up_tile := [2, Vector2i(0, 2)]
 @onready var stairs_down_tile := [2, Vector2i(0, 3)]
 @onready var lock_tile := [2, Vector2i(4, 2)]
 @onready var fog_tile := [3, Vector2i(1, 1)]
+@onready var random_monster_tile := [2, Vector2i(9, 0)]
 
 @onready var Floors := {"stone": stone_floor_tile, "dirt": dirt_floor_tile}
 @onready var Walls := {"boulder": boulder_object_tile}

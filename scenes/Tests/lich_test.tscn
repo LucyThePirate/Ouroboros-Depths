@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://bwkb3crnbdvht"]
+[gd_scene format=3 uid="uid://bwkb3crnbdvht"]
 
+[ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="1_17jbv"]
 [ext_resource type="Script" uid="uid://b2ojdp2aq678e" path="res://scripts/Actors/Visuals/visualBase.gd" id="1_iokgd"]
 [ext_resource type="Texture2D" uid="uid://djbnu6ytor4b8" path="res://textures/creatures/Lich/Robe1.tres" id="2_mlvm5"]
 [ext_resource type="Texture2D" uid="uid://cknsa5tfsguso" path="res://textures/creatures/Lich/Skull.png" id="3_5vpul"]
@@ -302,6 +303,10 @@ tracks/23/keys = {
 "update": 0,
 "values": [0.0, 174.546, 0.16364]
 }
+
+[sub_resource type="Animation" id="Animation_iokgd"]
+resource_name = "Moving"
+step = 0.5
 
 [sub_resource type="Animation" id="Animation_sd714"]
 resource_name = "Notice"
@@ -1347,10 +1352,6 @@ tracks/26/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_iokgd"]
-resource_name = "Moving"
-step = 0.5
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sfwps"]
 _data = {
 &"Idle": SubResource("Animation_uxnpr"),
@@ -1423,70 +1424,70 @@ animations = [{
 atlas = ExtResource("6_hf8mm")
 region = Rect2(603.554, 22.5921, 81.2787, 92.8899)
 
-[node name="LichTest" type="Node2D"]
+[node name="LichTest" type="Node2D" unique_id=1874338272]
+material = ExtResource("1_17jbv")
+use_parent_material = true
 script = ExtResource("1_iokgd")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_sfwps")
-}
-autoplay = "Idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=497222030]
+libraries/ = SubResource("AnimationLibrary_sfwps")
+autoplay = &"Idle"
 
-[node name="Targets" type="Node2D" parent="."]
+[node name="Targets" type="Node2D" parent="." unique_id=1232308622]
 position = Vector2(0, -52)
 
-[node name="HeadTarget" type="Marker2D" parent="Targets"]
+[node name="HeadTarget" type="Marker2D" parent="Targets" unique_id=1254513740]
 position = Vector2(202, 127)
 gizmo_extents = 18.5
 
-[node name="EyeTarget" type="Marker2D" parent="Targets"]
+[node name="EyeTarget" type="Marker2D" parent="Targets" unique_id=1939219162]
 position = Vector2(634, -450)
 gizmo_extents = 18.5
 
-[node name="HandLTarget" type="Marker2D" parent="Targets"]
+[node name="HandLTarget" type="Marker2D" parent="Targets" unique_id=1183747181]
 
-[node name="Skeleton2D" type="Skeleton2D" parent="."]
+[node name="Skeleton2D" type="Skeleton2D" parent="." unique_id=2084800316]
 position = Vector2(-1, -70)
 modification_stack = SubResource("SkeletonModificationStack2D_17jbv")
 
-[node name="Hip" type="Bone2D" parent="Skeleton2D"]
+[node name="Hip" type="Bone2D" parent="Skeleton2D" unique_id=927680361]
 position = Vector2(0, 59)
 rest = Transform2D(1, 0, 0, 1, 0, 59)
 
-[node name="Body" type="Bone2D" parent="Skeleton2D/Hip"]
+[node name="Body" type="Bone2D" parent="Skeleton2D/Hip" unique_id=895437595]
 position = Vector2(7, -204)
 rest = Transform2D(1, 0, 0, 1, 7, -204)
 
-[node name="Head" type="Bone2D" parent="Skeleton2D/Hip/Body"]
+[node name="Head" type="Bone2D" parent="Skeleton2D/Hip/Body" unique_id=334898966]
 position = Vector2(-11.0007, -79.0049)
 scale = Vector2(0.999929, 0.999929)
 rest = Transform2D(1, 0, 0, 1, -11, -79)
 
-[node name="Jaw" type="Bone2D" parent="Skeleton2D/Hip/Body/Head"]
+[node name="Jaw" type="Bone2D" parent="Skeleton2D/Hip/Body/Head" unique_id=776179121]
 position = Vector2(30, 40)
 rest = Transform2D(1, 0, 0, 1, 30, 40)
 auto_calculate_length_and_angle = false
 length = 40.0
 bone_angle = 0.0
 
-[node name="JawTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/Head/Jaw"]
+[node name="JawTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/Head/Jaw" unique_id=126871881]
 remote_path = NodePath("../../../../../../Body/Head/Jaw")
 
-[node name="Eye" type="Bone2D" parent="Skeleton2D/Hip/Body/Head"]
+[node name="Eye" type="Bone2D" parent="Skeleton2D/Hip/Body/Head" unique_id=1462420099]
 position = Vector2(1, -46)
 rest = Transform2D(1, 0, 0, 1, 1, -46)
 metadata/_local_pose_override_enabled_ = true
 
-[node name="EyeTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/Head/Eye"]
+[node name="EyeTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/Head/Eye" unique_id=1996215300]
 position = Vector2(-7.43107, -0.798448)
 scale = Vector2(0.437842, 0.371009)
 remote_path = NodePath("../../../../../../Body/Head/EyeClippingMask/Eye")
 use_global_coordinates = false
 
-[node name="HeadTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/Head"]
+[node name="HeadTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/Head" unique_id=1640929452]
 remote_path = NodePath("../../../../../Body/Head")
 
-[node name="HandR" type="Bone2D" parent="Skeleton2D/Hip/Body"]
+[node name="HandR" type="Bone2D" parent="Skeleton2D/Hip/Body" unique_id=354849325]
 position = Vector2(-87, 37)
 rotation = -2.14057
 rest = Transform2D(1, 0, 0, 1, -87, 37)
@@ -1494,12 +1495,12 @@ auto_calculate_length_and_angle = false
 length = 40.0
 bone_angle = 0.0
 
-[node name="HandRTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/HandR"]
+[node name="HandRTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/HandR" unique_id=1245801352]
 position = Vector2(33.01, 15.2098)
 rotation = 1.60353
 remote_path = NodePath("../../../../../Body/HandR")
 
-[node name="HandL" type="Bone2D" parent="Skeleton2D/Hip/Body"]
+[node name="HandL" type="Bone2D" parent="Skeleton2D/Hip/Body" unique_id=1490012885]
 position = Vector2(118, 45)
 rotation = -0.729267
 scale = Vector2(0.9999999, 0.9999999)
@@ -1508,38 +1509,40 @@ auto_calculate_length_and_angle = false
 length = 40.0
 bone_angle = 0.0
 
-[node name="HandLTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/HandL"]
+[node name="HandLTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/HandL" unique_id=1723479905]
 position = Vector2(41.5346, -4.45852)
 rotation = 1.56872
 remote_path = NodePath("../../../../../Body/HandL")
 
-[node name="BodyTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body"]
+[node name="BodyTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body" unique_id=627595331]
 position = Vector2(-13, 132)
 remote_path = NodePath("../../../../Body")
 
-[node name="Body" type="AnimatedSprite2D" parent="."]
+[node name="Body" type="AnimatedSprite2D" parent="." unique_id=1212654663]
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_3n3yy")
 autoplay = "default"
 frame_progress = 0.509889
 
-[node name="Head" type="Sprite2D" parent="Body"]
+[node name="Head" type="Sprite2D" parent="Body" unique_id=1964587664]
+use_parent_material = true
 position = Vector2(-16, -230)
 rotation = 0.446168
 scale = Vector2(1.12327, 1.12327)
 texture = SubResource("AtlasTexture_xs8py")
 offset = Vector2(11, -46)
 
-[node name="Jaw" type="Sprite2D" parent="Body/Head"]
+[node name="Jaw" type="Sprite2D" parent="Body/Head" unique_id=1158366998]
 position = Vector2(25, 15)
 texture = SubResource("AtlasTexture_vxm3n")
 offset = Vector2(25, 2)
 
-[node name="EyeClippingMask" type="Sprite2D" parent="Body/Head"]
+[node name="EyeClippingMask" type="Sprite2D" parent="Body/Head" unique_id=2004216700]
 clip_children = 2
 position = Vector2(-0.630106, -40.7137)
 texture = ExtResource("3_o442r")
 
-[node name="Eye" type="AnimatedSprite2D" parent="Body/Head/EyeClippingMask"]
+[node name="Eye" type="AnimatedSprite2D" parent="Body/Head/EyeClippingMask" unique_id=989964109]
 position = Vector2(-0.470596, 1.33362)
 rotation = -3.43939
 scale = Vector2(0.386361, 0.386361)
@@ -1547,18 +1550,21 @@ sprite_frames = SubResource("SpriteFrames_xq2gk")
 autoplay = "default"
 offset = Vector2(39.2419, 9.18604)
 
-[node name="HornR" type="Sprite2D" parent="Body/Head"]
+[node name="HornR" type="Sprite2D" parent="Body/Head" unique_id=485516676]
+use_parent_material = true
 position = Vector2(-53.6199, -28.6688)
 rotation = 0.29641
 texture = SubResource("AtlasTexture_oe7eu")
 
-[node name="HornL" type="Sprite2D" parent="Body/Head"]
+[node name="HornL" type="Sprite2D" parent="Body/Head" unique_id=1417581791]
 show_behind_parent = true
+use_parent_material = true
 position = Vector2(-18.4784, -68.7572)
 rotation = 2.06499
 texture = SubResource("AtlasTexture_oe7eu")
 
-[node name="HandL" type="AnimatedSprite2D" parent="Body"]
+[node name="HandL" type="AnimatedSprite2D" parent="Body" unique_id=717424382]
+use_parent_material = true
 position = Vector2(155, -143)
 rotation = 0.806708
 scale = Vector2(1.12327, 1.12327)
@@ -1566,10 +1572,11 @@ sprite_frames = ExtResource("8_ixd6g")
 animation = &"Curl"
 autoplay = "Curl"
 
-[node name="End" type="Marker2D" parent="Body/HandL"]
+[node name="End" type="Marker2D" parent="Body/HandL" unique_id=1415206444]
 position = Vector2(-0.83165, -39.0206)
 
-[node name="HandR" type="AnimatedSprite2D" parent="Body"]
+[node name="HandR" type="AnimatedSprite2D" parent="Body" unique_id=1018081655]
+use_parent_material = true
 position = Vector2(-90, -149)
 rotation = -0.672856
 scale = Vector2(1.12327, 1.12327)
@@ -1578,5 +1585,5 @@ animation = &"Curl"
 autoplay = "Curl"
 flip_h = true
 
-[node name="End" type="Marker2D" parent="Body/HandR"]
+[node name="End" type="Marker2D" parent="Body/HandR" unique_id=809606156]
 position = Vector2(-11.0626, -41.8287)

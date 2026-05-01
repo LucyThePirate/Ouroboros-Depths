@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/ui/Arrow.png" id="3_3rpcw"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="4_akmkx"]
 [ext_resource type="PackedScene" uid="uid://djc3cmcxnhe5l" path="res://scenes/characters/Visuals/scarecrow_visual.tscn" id="5_8jod5"]
+[ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="8_gim28"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vielv"]
 radius = 692.6265
@@ -63,6 +64,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="ScarecrowVisual" parent="." unique_id=957441871 instance=ExtResource("5_8jod5")]
+material = ExtResource("8_gim28")
 scale = Vector2(0.233661, 0.233661)
 
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]

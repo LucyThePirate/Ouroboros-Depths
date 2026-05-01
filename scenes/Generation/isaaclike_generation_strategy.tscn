@@ -1,8 +1,38 @@
 [gd_scene format=3 uid="uid://kvhp7jqu8okj"]
 
 [ext_resource type="Script" uid="uid://dbluj4dxj7yku" path="res://scenes/Generation/isaaclike_generation_strategy.gd" id="1_tcb7u"]
-[ext_resource type="PackedScene" uid="uid://5gc0ubf1th5e" path="res://scenes/Generation/SetPieces/Basic2by2SetPiece.tscn" id="2_yu7xt"]
+[ext_resource type="PackedScene" uid="uid://5gc0ubf1th5e" path="res://scenes/Generation/SetPieces/basic_2x2_set_piece.tscn" id="2_yu7xt"]
+[ext_resource type="PackedScene" uid="uid://8aewrijk47tx" path="res://scenes/Generation/SetPieces/basic_1x1_set_piece.tscn" id="3_7cerw"]
+[ext_resource type="PackedScene" uid="uid://de38gfetcrhyr" path="res://scenes/Generation/SetPieces/basic_3x3_set_piece.tscn" id="4_445n4"]
+[ext_resource type="PackedScene" uid="uid://bn3qu6haktntd" path="res://scenes/Generation/SetPieces/boulder_walls_set_piece.tscn" id="5_741bn"]
+[ext_resource type="PackedScene" uid="uid://c1pwemoxn6shj" path="res://scenes/Generation/SetPieces/forest_set_piece.tscn" id="6_154c5"]
+[ext_resource type="PackedScene" uid="uid://dx7wmciau2ofu" path="res://scenes/Generation/SetPieces/horizontal_hallway_set_piece.tscn" id="7_mrka4"]
+[ext_resource type="PackedScene" uid="uid://nor7jylandkw" path="res://scenes/Generation/SetPieces/zoo_set_piece.tscn" id="8_mrka4"]
+[ext_resource type="PackedScene" uid="uid://5iki83mc664" path="res://scenes/Generation/SetPieces/tiny_hedge_pool_set_piece.tscn" id="9_fgfly"]
+[ext_resource type="PackedScene" uid="uid://b5a3dt4tdxwf3" path="res://scenes/Generation/SetPieces/dont_throw_stones_in_glass_houses_set_piece.tscn" id="10_12npv"]
+[ext_resource type="PackedScene" uid="uid://uwj04p3t4b0l" path="res://scenes/Generation/SetPieces/tiny_door_stim_set_piece.tscn" id="11_xjhvs"]
+[ext_resource type="PackedScene" uid="uid://chofm3cwkrprp" path="res://scenes/Generation/SetPieces/doors_doors_doors_set_piece.tscn" id="12_r26bt"]
+[ext_resource type="Theme" uid="uid://dsnesst3y61ol" path="res://resources/default_theme.tres" id="13_12npv"]
 
 [node name="IsaaclikeGenerationStrategy" type="Node2D" unique_id=678348038]
 script = ExtResource("1_tcb7u")
-set_pieces = Array[PackedScene]([ExtResource("2_yu7xt")])
+number_of_set_pieces = 5
+set_pieces = Array[PackedScene]([ExtResource("3_7cerw"), ExtResource("2_yu7xt"), ExtResource("4_445n4"), ExtResource("5_741bn"), ExtResource("6_154c5"), ExtResource("7_mrka4"), ExtResource("8_mrka4"), ExtResource("9_fgfly"), ExtResource("10_12npv"), ExtResource("11_xjhvs"), ExtResource("12_r26bt")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1854172308]
+
+[node name="SeedLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=1798912779]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("13_12npv")
+theme_override_colors/default_color = Color(1, 1, 1, 0.59607846)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.5254902)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+text = "Seed: ???"
+horizontal_alignment = 2
+vertical_alignment = 2

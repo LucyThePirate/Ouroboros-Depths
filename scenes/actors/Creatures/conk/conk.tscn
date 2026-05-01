@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cmyas4xlndmy7" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_skill_strategy.tscn" id="2_eu1md"]
 [ext_resource type="PackedScene" uid="uid://bqe6kxf4uw66l" path="res://scenes/actors/Strategies/Skill/drill_skill_strategy.tscn" id="3_dstu7"]
 [ext_resource type="Texture2D" uid="uid://cpo04niweceel" path="res://textures/creatures/Conk/conk_standing.png" id="4_ruryx"]
+[ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="4_xb6j1"]
 
 [node name="Conk" unique_id=1547879972 instance=ExtResource("1_da6my")]
 
@@ -21,6 +22,8 @@ challenge_rating = 2.0
 max_health = 6
 
 [node name="Sprite2D" parent="." index="6" unique_id=619217628]
+material = ExtResource("4_xb6j1")
+use_parent_material = true
 position = Vector2(8, -24)
 scale = Vector2(0.80878234, 0.9203943)
 texture = ExtResource("4_ruryx")

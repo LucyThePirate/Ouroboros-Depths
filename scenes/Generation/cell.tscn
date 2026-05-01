@@ -210,7 +210,6 @@ material = SubResource("CanvasItemMaterial_fx61w")
 tile_set = ExtResource("8_5cpdm")
 
 [node name="IsaaclikeGenerationStrategy" parent="." unique_id=1325901455 instance=ExtResource("13_qrcgv")]
-cell_size = 4
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1203335370]
 material = SubResource("CanvasItemMaterial_0xdhj")

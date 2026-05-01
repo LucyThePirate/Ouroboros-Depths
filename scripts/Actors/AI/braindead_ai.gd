@@ -5,7 +5,7 @@ signal egg_died
 signal egg_timer_expired
 
 enum BOGOTIME { INSTANT, TIME_25, TIME_50, TIME_100, TIME_150, TIME_200, NEVER }
-@onready var selected_bogo_time := BOGOTIME.TIME_100
+@onready var selected_bogo_time := BOGOTIME.TIME_150
 
 
 func _ready() -> void:
