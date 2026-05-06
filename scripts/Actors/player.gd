@@ -72,9 +72,6 @@ func _process(delta: float) -> void:
 		else:
 			_on_finished_writing_text()
 
-	if Input.is_action_just_pressed("DebugToggleFog"):
-		grid_entity.visible = not grid_entity.visible
-
 	if not turn_component.is_my_turn() or current_text:
 		return
 

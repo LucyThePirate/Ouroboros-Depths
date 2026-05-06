@@ -4,6 +4,8 @@ class_name GridEntity
 
 signal grid_entity_initialized
 signal moved(old_coord: Vector2i, new_coord: Vector2i)
+signal started_stack_execution
+signal ended_stack_execution
 signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
 signal spawn_tile(tile_coord)
@@ -23,7 +25,9 @@ signal absorbed_souls(soul_position)
 @export var description_scene: PackedScene
 
 @export_category("Lore")
-enum Species { DEFAULT, WASP, LICH, FUZZER, CONK, PLAYER, SCARECROW, BOGO_EGG, CHORUSTONE, RAT }
+enum Species {
+	DEFAULT, WASP, LICH, FUZZER, CONK, PLAYER, SCARECROW, BOGO_EGG, CHORUSTONE, RAT, SLIME
+}
 @export var species_type := Species.DEFAULT
 @export var creature_name := "Default Entity"
 @export_multiline var species_desc := "Default creature description"

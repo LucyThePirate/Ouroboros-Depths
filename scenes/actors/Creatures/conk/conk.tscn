@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cpo04niweceel" path="res://textures/creatures/Conk/conk_standing.png" id="4_ruryx"]
 [ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="4_xb6j1"]
 
-[node name="Conk" unique_id=1547879972 instance=ExtResource("1_da6my")]
+[node name="Conk" unique_id=1547879972 node_paths=PackedStringArray("visual") instance=ExtResource("1_da6my")]
+visual = NodePath("Sprite2D")
 
 [node name="GridEntity" parent="." index="0" unique_id=1162874930]
 species_type = 4
@@ -21,11 +22,11 @@ challenge_rating = 2.0
 [node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
 max_health = 6
 
-[node name="Sprite2D" parent="." index="6" unique_id=619217628]
+[node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=206483486]
 material = ExtResource("4_xb6j1")
 use_parent_material = true
-position = Vector2(8, -24)
-scale = Vector2(0.80878234, 0.9203943)
+position = Vector2(11, -9)
+scale = Vector2(0.7243908, 0.7243908)
 texture = ExtResource("4_ruryx")
 
 [editable path="GridEntity"]

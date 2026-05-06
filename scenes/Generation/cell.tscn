@@ -7,10 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://dctxwjwjiof17" path="res://scenes/actors/lich_creature.tscn" id="4_pdmi3"]
 [ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_creature.tscn" id="5_0xdhj"]
 [ext_resource type="PackedScene" uid="uid://b2gdh6pqutscc" path="res://scenes/actors/Creatures/chorustone.tscn" id="6_0xdhj"]
-[ext_resource type="PackedScene" uid="uid://g7fhohrlv81x" path="res://scenes/actors/Creatures/fuzz_tester.tscn" id="8_0xdhj"]
+[ext_resource type="PackedScene" uid="uid://g7fhohrlv81x" path="res://scenes/actors/Creatures/fuzzer_creature.tscn" id="8_0xdhj"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="8_5cpdm"]
 [ext_resource type="PackedScene" uid="uid://cuir68rh5ethv" path="res://scenes/actors/Creatures/conk/conk.tscn" id="9_cyo7g"]
 [ext_resource type="PackedScene" uid="uid://b04tvmeribd1k" path="res://scenes/actors/Creatures/bogo_sort.tscn" id="9_fx61w"]
+[ext_resource type="PackedScene" uid="uid://d3p2qbml7s288" path="res://scenes/actors/Creatures/slime/slime_creature.tscn" id="10_qrcgv"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="12_5cpdm"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="13_0xdhj"]
 [ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="13_qrcgv"]
@@ -23,55 +24,6 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fx61w"]
 blend_mode = 3
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0xdhj"]
-blend_mode = 1
-
-[sub_resource type="Curve" id="Curve_fx61w"]
-_data = [Vector2(0, 0), 0.0, 5.6789, 0, 0, Vector2(0.553371, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -7.34917, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_4g2cj"]
-curve = SubResource("Curve_fx61w")
-
-[sub_resource type="Gradient" id="Gradient_eu30k"]
-colors = PackedColorArray(1, 1, 1, 0.0980392, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_he0c6"]
-gradient = SubResource("Gradient_eu30k")
-
-[sub_resource type="Curve" id="Curve_v01jn"]
-_limits = [0.0, 3.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_1xklj"]
-_limits = [0.0, 30.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 30), 0.0, 0.0, 0, 0, Vector2(1, 30), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Curve" id="Curve_cqjng"]
-_limits = [0.0, 3.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_u1yjk"]
-curve_x = SubResource("Curve_v01jn")
-curve_y = SubResource("Curve_1xklj")
-curve_z = SubResource("Curve_cqjng")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cyo7g"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(800, 1, 1)
-initial_velocity_min = 100.0
-initial_velocity_max = 100.0
-gravity = Vector3(0, 3000, 0)
-scale_min = 0.2
-scale_over_velocity_curve = SubResource("CurveXYZTexture_u1yjk")
-color = Color(1, 0.996078, 0.996078, 1)
-color_initial_ramp = SubResource("GradientTexture1D_he0c6")
-alpha_curve = SubResource("CurveTexture_4g2cj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eu30k"]
 shader = ExtResource("12_5cpdm")
@@ -162,6 +114,55 @@ _data = {
 &"floor_text": SubResource("Animation_eu30k")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0xdhj"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_fx61w"]
+_data = [Vector2(0, 0), 0.0, 5.6789, 0, 0, Vector2(0.553371, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -7.34917, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cyo7g"]
+curve = SubResource("Curve_fx61w")
+
+[sub_resource type="Gradient" id="Gradient_eu30k"]
+colors = PackedColorArray(1, 1, 1, 0.0980392, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qrcgv"]
+gradient = SubResource("Gradient_eu30k")
+
+[sub_resource type="Curve" id="Curve_v01jn"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1xklj"]
+_limits = [0.0, 30.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 30), 0.0, 0.0, 0, 0, Vector2(1, 30), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_cqjng"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_4g2cj"]
+curve_x = SubResource("Curve_v01jn")
+curve_y = SubResource("Curve_1xklj")
+curve_z = SubResource("Curve_cqjng")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cyo7g"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(800, 1, 1)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 3000, 0)
+scale_min = 0.2
+scale_over_velocity_curve = SubResource("CurveXYZTexture_4g2cj")
+color = Color(1, 0.996078, 0.996078, 1)
+color_initial_ramp = SubResource("GradientTexture1D_qrcgv")
+alpha_curve = SubResource("CurveTexture_cyo7g")
+
 [node name="GameManager" type="Node2D" unique_id=1347246317 node_paths=PackedStringArray("generator")]
 y_sort_enabled = true
 script = ExtResource("1_44ypc")
@@ -169,7 +170,7 @@ title_scene = "uid://c02to40218vlw"
 boulder_splash = ExtResource("2_cu8oe")
 spawn_smoke_scene = ExtResource("3_fx61w")
 player_scene = ExtResource("3_iimes")
-creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj"), ExtResource("8_0xdhj"), ExtResource("9_cyo7g")])
+creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj"), ExtResource("8_0xdhj"), ExtResource("9_cyo7g"), ExtResource("10_qrcgv")])
 bogosort_scene = ExtResource("9_fx61w")
 generator = NodePath("IsaaclikeGenerationStrategy")
 
@@ -210,15 +211,9 @@ material = SubResource("CanvasItemMaterial_fx61w")
 tile_set = ExtResource("8_5cpdm")
 
 [node name="IsaaclikeGenerationStrategy" parent="." unique_id=1325901455 instance=ExtResource("13_qrcgv")]
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1203335370]
-material = SubResource("CanvasItemMaterial_0xdhj")
-position = Vector2(2635, -961)
-scale = Vector2(8.04692, 8.04692)
-amount = 1000
-preprocess = 0.5
-visibility_rect = Rect2(-400, 100, 800, 400)
-process_material = SubResource("ParticleProcessMaterial_cyo7g")
+number_of_cells = 25
+number_of_rooms = 2
+number_of_set_pieces = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1285677614]
 layer = 100
@@ -524,6 +519,17 @@ playback_type = 1
 process_callback = 0
 wait_time = 100.0
 one_shot = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1203335370]
+z_index = -1
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_0xdhj")
+position = Vector2(2635, -961)
+scale = Vector2(8.04692, 8.04692)
+amount = 1000
+preprocess = 0.5
+visibility_rect = Rect2(-400, 100, 800, 400)
+process_material = SubResource("ParticleProcessMaterial_cyo7g")
 
 [connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer/NewRunButton" to="." method="_on_new_run_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer2/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]

@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="12_u1sel"]
 [ext_resource type="AudioStream" uid="uid://d248dhagknhoc" path="res://audio/Music/AstrMusic/WarmHouse's Computer [loop, simple].mp3" id="13_0nflp"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="13_ob1md"]
-[ext_resource type="PackedScene" uid="uid://g7fhohrlv81x" path="res://scenes/actors/Creatures/fuzz_tester.tscn" id="13_qylo2"]
+[ext_resource type="PackedScene" uid="uid://g7fhohrlv81x" path="res://scenes/actors/Creatures/fuzzer_creature.tscn" id="13_qylo2"]
 [ext_resource type="PackedScene" uid="uid://s0ow7k38e4wl" path="res://scenes/actors/Strategies/Status/regen_status_strategy.tscn" id="14_1enxm"]
 [ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_creature.tscn" id="14_o74wk"]
 [ext_resource type="PackedScene" uid="uid://cqjoguhw8mhj" path="res://scenes/actors/Creatures/tutorial_scarecrow.tscn" id="15_kv4pv"]

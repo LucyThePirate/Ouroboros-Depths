@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://d3p2qbml7s288"]
+
+[ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_d6cwe"]
+[ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/actors/Strategies/Skill/leap_skill_strategy.tscn" id="2_nady4"]
+[ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/actors/Strategies/Skill/stomp_skill_strategy.tscn" id="3_rownt"]
+[ext_resource type="PackedScene" uid="uid://c7hjsw7k0yhur" path="res://scenes/actors/Creatures/slime/slime_visual.tscn" id="4_nady4"]
+
+[node name="SlimeCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_d6cwe")]
+visual = NodePath("SlimeVisual")
+
+[node name="GridEntity" parent="." index="0" unique_id=1162874930]
+species_type = 10
+creature_name = "Slime"
+species_desc = "A giant single-celled organism hops along corridors, absorbing any scraps it stumbles across. Or, in the absence of any food, it'll happily pulverize you into its next meal.
+
+The circular object suspended in its translucent body is actually its nucleus!"
+
+[node name="LeapSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="10" unique_id=273578898 instance=ExtResource("2_nady4")]
+max_per_stack = 1
+
+[node name="StompSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="11" unique_id=1440495377 instance=ExtResource("3_rownt")]
+max_per_stack = 1
+
+[node name="SlimeVisual" parent="." index="6" unique_id=1504317357 instance=ExtResource("4_nady4")]
+
+[editable path="GridEntity"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://g7fhohrlv81x"]
 
-[ext_resource type="Script" uid="uid://b1dpe7lobi7df" path="res://scripts/Actors/AI/fuzz_tester_ai.gd" id="1_netfx"]
+[ext_resource type="Script" uid="uid://b1dpe7lobi7df" path="res://scripts/Actors/AI/fuzzer_ai.gd" id="1_netfx"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="2_bobr6"]
 [ext_resource type="PackedScene" uid="uid://dbbfr11nscu22" path="res://scenes/actors/Strategies/Skill/possibilities_skill_strategy.tscn" id="3_netfx"]
 [ext_resource type="PackedScene" uid="uid://4ath7gf440gk" path="res://scenes/actors/Visuals/fuzzer_visual.tscn" id="4_netfx"]
@@ -11,7 +11,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6hqks"]
 radius = 451.0
 
-[node name="FuzzTester" type="Node2D" unique_id=711189580 node_paths=PackedStringArray("visual") groups=["AI"]]
+[node name="FuzzerCreature" type="Node2D" unique_id=711189580 node_paths=PackedStringArray("visual") groups=["AI"]]
 script = ExtResource("1_netfx")
 visual = NodePath("FuzzerVisual")
 

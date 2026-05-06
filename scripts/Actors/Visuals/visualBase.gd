@@ -17,6 +17,14 @@ func initialize(new_grid_entity: GridEntity) -> void:
 	grid_entity.connect("hurt", _on_grid_entity_hurt)
 
 
+func set_charging(is_charging: bool):
+	use_parent_material = not is_charging
+	if is_charging:
+		animation_player.play("Charging")
+	else:
+		animation_player.play("Idle")
+
+
 func _process(delta: float) -> void:
 	t += delta * TIME_SCALE
 	run_speed = clampf(lerpf(run_speed, 0, t), 0, 2)
@@ -53,7 +61,7 @@ func _on_fell_off_map():
 	animation_player.play("Falling")
 
 
-func _on_grid_entity_hurt(_attacker: GridEntity):
+func _on_grid_entity_hurt(_attacker: GridEntity, _damage):
 	if anim_tree:
 		anim_tree.set("parameters/HurtOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	else:

@@ -6,14 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/actors/Strategies/Planner/base_random_skill_planner.tscn" id="4_dn3ie"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/ui/Arrow.png" id="5_rb8ws"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="6_qmjjy"]
-[ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="7_nyqal"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_deqbg"]
 radius = 451.0
 
 [node name="BaseCreature" type="Node2D" unique_id=707297936 node_paths=PackedStringArray("visual")]
 script = ExtResource("1_6r2tr")
-visual = NodePath("Sprite2D")
+visual = NodePath("")
 
 [node name="GridEntity" parent="." unique_id=1162874930 instance=ExtResource("2_nyqal")]
 species_desc = "A creature who hasn't had their description set. What could it be???"
@@ -59,11 +58,6 @@ text = "..."
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=619217628]
-position = Vector2(-1, -28)
-scale = Vector2(5.144737, 5.855263)
-texture = ExtResource("7_nyqal")
 
 [connection signal="died" from="GridEntity" to="." method="_on_grid_entity_died"]
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]

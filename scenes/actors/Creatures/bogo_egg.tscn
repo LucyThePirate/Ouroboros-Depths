@@ -16,8 +16,9 @@ stream_1/stream = ExtResource("5_gqo8w")
 stream_2/stream = ExtResource("6_mmt26")
 stream_3/stream = ExtResource("7_cjyop")
 
-[node name="Bogo Egg" unique_id=963460758 instance=ExtResource("1_y78e5")]
+[node name="Bogo Egg" unique_id=963460758 node_paths=PackedStringArray("visual") instance=ExtResource("1_y78e5")]
 script = ExtResource("2_my2fc")
+visual = NodePath("Sprite2D")
 
 [node name="GridEntity" parent="." index="0" unique_id=1162874930]
 species_type = 7
@@ -34,19 +35,20 @@ max_health = 10
 [node name="IntentArrow" parent="." index="4" unique_id=132546320]
 visible = false
 
-[node name="Sprite2D" parent="." index="6" unique_id=619217628]
-scale = Vector2(0.52939326, 0.60244954)
-texture = ExtResource("3_my2fc")
-
-[node name="BogoTimer" type="Timer" parent="." index="7" unique_id=328426292]
+[node name="BogoTimer" type="Timer" parent="." index="6" unique_id=328426292]
 process_callback = 0
 wait_time = 100.0
 
-[node name="EggCrack" type="AudioStreamPlayer2D" parent="." index="8" unique_id=1143981051]
+[node name="EggCrack" type="AudioStreamPlayer2D" parent="." index="7" unique_id=1143981051]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_lmpnd")
 pitch_scale = 1.2
 bus = &"SFX"
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="8" unique_id=845169251]
+position = Vector2(0, -23.999998)
+scale = Vector2(0.4546871, 0.4546871)
+texture = ExtResource("3_my2fc")
 
 [connection signal="timeout" from="BogoTimer" to="." method="_on_bogo_timer_timeout"]
 

@@ -38,7 +38,7 @@ func _ready() -> void:
 	random_skill_planner.set_stack_component(stack_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
 	grid_entity.stack_component.emptied_stack.connect(_on_skill_stack_component_emptied_stack)
-	if visual.has_method("initialize"):
+	if visual and visual.has_method("initialize"):
 		visual.initialize(grid_entity)
 	in_darkness = grid_entity.is_in_darkness()
 	visible = not in_darkness
@@ -158,6 +158,8 @@ func pursue_entity(entity: GridEntity) -> Vector2i:
 		stack_component.preview_executing_stack(intent == "Execute Stack")
 		if intent == "Execute Stack":
 			visual.use_parent_material = false
+			if visual.has_method("set_charging"):
+				visual.set_charging(true)
 
 		if not intent:
 			intent = "Move"
@@ -308,3 +310,5 @@ func _on_detection_radius_body_exited(body: Node2D) -> void:
 
 func _on_skill_stack_component_emptied_stack() -> void:
 	visual.use_parent_material = true
+	if visual.has_method("set_charging"):
+		visual.set_charging(false)

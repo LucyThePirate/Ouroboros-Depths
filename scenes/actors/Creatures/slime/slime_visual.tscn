@@ -1,0 +1,302 @@
+[gd_scene format=3 uid="uid://c7hjsw7k0yhur"]
+
+[ext_resource type="Texture2D" uid="uid://bo71vee5bflkt" path="res://textures/creatures/slime_sprites.png" id="1_oprwn"]
+[ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="1_r5ox5"]
+[ext_resource type="Script" uid="uid://b2ojdp2aq678e" path="res://scripts/Actors/Visuals/visualBase.gd" id="2_0fio5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohcb5"]
+atlas = ExtResource("1_oprwn")
+region = Rect2(186, 157, 186, 157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fio5"]
+atlas = ExtResource("1_oprwn")
+region = Rect2(0, 0, 186, 157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5ox5"]
+atlas = ExtResource("1_oprwn")
+region = Rect2(186, 0, 186, 157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ougsw"]
+atlas = ExtResource("1_oprwn")
+region = Rect2(372, 0, 186, 157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1j2h"]
+atlas = ExtResource("1_oprwn")
+region = Rect2(0, 157, 186, 157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qajbn"]
+atlas = ExtResource("1_oprwn")
+region = Rect2(372, 157, 186, 157)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qtk4w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohcb5")
+}],
+"loop": true,
+"name": &"charging",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fio5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5ox5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ougsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1j2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohcb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qajbn")
+}],
+"loop": true,
+"name": &"default_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_qajbn")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1j2h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_ohcb5")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_r5ox5")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_ougsw")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_0fio5")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_a1j2h")
+}],
+"loop": false,
+"name": &"moving",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_a1j2h"]
+resource_name = "Charging"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"charging"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-3.66, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.885)]
+}
+
+[sub_resource type="Animation" id="Animation_oprwn"]
+resource_name = "Hurt"
+length = 0.25
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"hurt", &"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.78, 1.318), Vector2(1, 0.9328765)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.5619960191421741, 0.0]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["hurt"],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0fio5"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_r5ox5"]
+resource_name = "Moving"
+length = 0.25
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["moving"],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ougsw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:skew")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a1j2h"]
+_data = {
+&"Charging": SubResource("Animation_a1j2h"),
+&"Hurt": SubResource("Animation_oprwn"),
+&"Idle": SubResource("Animation_0fio5"),
+&"Moving": SubResource("Animation_r5ox5"),
+&"RESET": SubResource("Animation_ougsw")
+}
+
+[node name="SlimeVisual" type="AnimatedSprite2D" unique_id=1504317357]
+material = ExtResource("1_r5ox5")
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_qtk4w")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(4, -37)
+script = ExtResource("2_0fio5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1737002423]
+libraries/ = SubResource("AnimationLibrary_a1j2h")
+autoplay = &"Idle"

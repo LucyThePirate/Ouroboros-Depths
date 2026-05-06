@@ -13,11 +13,19 @@
 [ext_resource type="PackedScene" uid="uid://uwj04p3t4b0l" path="res://scenes/Generation/SetPieces/tiny_door_stim_set_piece.tscn" id="11_xjhvs"]
 [ext_resource type="PackedScene" uid="uid://chofm3cwkrprp" path="res://scenes/Generation/SetPieces/doors_doors_doors_set_piece.tscn" id="12_r26bt"]
 [ext_resource type="Theme" uid="uid://dsnesst3y61ol" path="res://resources/default_theme.tres" id="13_12npv"]
+[ext_resource type="PackedScene" uid="uid://b1a6uu3i5jwx1" path="res://scenes/Generation/SetPieces/no_walls_set_piece.tscn" id="13_xjhvs"]
+[ext_resource type="PackedScene" uid="uid://dmwmwtmuogae5" path="res://scenes/Generation/SetPieces/the_imprisoned_set_piece.tscn" id="14_wfmw7"]
+[ext_resource type="PackedScene" uid="uid://bndu5bkhnadmr" path="res://scenes/Generation/SetPieces/theres_that_symbol_again_set_piece.tscn" id="15_hwbqm"]
+[ext_resource type="PackedScene" uid="uid://8qn22cosj7n6" path="res://scenes/Generation/SetPieces/look_at_my_hedges_set_piece.tscn" id="16_s18cg"]
+[ext_resource type="PackedScene" uid="uid://c1rqb5hibrypo" path="res://scenes/Generation/SetPieces/dont_get_lost_set_piece.tscn" id="17_a0xml"]
+[ext_resource type="PackedScene" uid="uid://dbdorv8erjnkl" path="res://scenes/Generation/SetPieces/ant_tunnelts_set_piece.tscn" id="18_k6prg"]
+[ext_resource type="PackedScene" uid="uid://couvryfhqv7cw" path="res://scenes/Generation/SetPieces/pool_diamond_set_piece.tscn" id="19_2hfcj"]
+[ext_resource type="PackedScene" uid="uid://bbwo4kv64d5r0" path="res://scenes/Generation/SetPieces/dried_pond_set_piece.tscn" id="20_3mtk3"]
 
 [node name="IsaaclikeGenerationStrategy" type="Node2D" unique_id=678348038]
 script = ExtResource("1_tcb7u")
 number_of_set_pieces = 5
-set_pieces = Array[PackedScene]([ExtResource("3_7cerw"), ExtResource("2_yu7xt"), ExtResource("4_445n4"), ExtResource("5_741bn"), ExtResource("6_154c5"), ExtResource("7_mrka4"), ExtResource("8_mrka4"), ExtResource("9_fgfly"), ExtResource("10_12npv"), ExtResource("11_xjhvs"), ExtResource("12_r26bt")])
+set_pieces = Array[PackedScene]([ExtResource("3_7cerw"), ExtResource("2_yu7xt"), ExtResource("4_445n4"), ExtResource("5_741bn"), ExtResource("6_154c5"), ExtResource("7_mrka4"), ExtResource("8_mrka4"), ExtResource("9_fgfly"), ExtResource("10_12npv"), ExtResource("11_xjhvs"), ExtResource("12_r26bt"), ExtResource("13_xjhvs"), ExtResource("14_wfmw7"), ExtResource("15_hwbqm"), ExtResource("16_s18cg"), ExtResource("17_a0xml"), ExtResource("18_k6prg"), ExtResource("19_2hfcj"), ExtResource("20_3mtk3")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1854172308]
 
