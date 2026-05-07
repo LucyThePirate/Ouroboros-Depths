@@ -272,7 +272,10 @@ func _is_rect_obstructed(
 func _generate_border_walls():
 	for cell in floors.get_used_cells():
 		for neighbor_cell in floors.get_surrounding_cells(cell):
-			if not floors.get_cell_tile_data(neighbor_cell):
+			if (
+				not floors.get_cell_tile_data(neighbor_cell)
+				and not walls.get_cell_tile_data(neighbor_cell)
+			):
 				floors.set_cell(neighbor_cell, stone_floor_tile[0], stone_floor_tile[1])
 				_blend_in_with_neighboring_walls(
 					neighbor_cell,

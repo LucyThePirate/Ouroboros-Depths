@@ -12,8 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://cuir68rh5ethv" path="res://scenes/actors/Creatures/conk/conk.tscn" id="9_cyo7g"]
 [ext_resource type="PackedScene" uid="uid://b04tvmeribd1k" path="res://scenes/actors/Creatures/bogo_sort.tscn" id="9_fx61w"]
 [ext_resource type="PackedScene" uid="uid://d3p2qbml7s288" path="res://scenes/actors/Creatures/slime/slime_creature.tscn" id="10_qrcgv"]
+[ext_resource type="PackedScene" uid="uid://cp6erui8kemoj" path="res://scenes/actors/Creatures/rat/rat_creature.tscn" id="11_4g2cj"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="12_5cpdm"]
+[ext_resource type="PackedScene" uid="uid://oof35aakey11" path="res://scenes/actors/Creatures/gem_roach/gem_roach_creature.tscn" id="12_u1yjk"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="13_0xdhj"]
+[ext_resource type="PackedScene" uid="uid://w4kg23pb7tql" path="res://scenes/actors/Creatures/wasp_knight/wasp_knight_creature.tscn" id="13_2yrkk"]
 [ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="13_qrcgv"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="16_eu30k"]
 [ext_resource type="AudioStream" uid="uid://ckploe52g84qd" path="res://audio/Music/AstrMusic/GHOST_NOODLES[8bit,loop,remix].mp3" id="17_1xklj"]
@@ -170,7 +173,7 @@ title_scene = "uid://c02to40218vlw"
 boulder_splash = ExtResource("2_cu8oe")
 spawn_smoke_scene = ExtResource("3_fx61w")
 player_scene = ExtResource("3_iimes")
-creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj"), ExtResource("8_0xdhj"), ExtResource("9_cyo7g"), ExtResource("10_qrcgv")])
+creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj"), ExtResource("8_0xdhj"), ExtResource("9_cyo7g"), ExtResource("10_qrcgv"), ExtResource("11_4g2cj"), ExtResource("12_u1yjk"), ExtResource("13_2yrkk")])
 bogosort_scene = ExtResource("9_fx61w")
 generator = NodePath("IsaaclikeGenerationStrategy")
 

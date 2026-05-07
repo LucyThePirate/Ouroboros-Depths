@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://oof35aakey11"]
+
+[ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_utlvv"]
+[ext_resource type="PackedScene" uid="uid://d30kixvdm73ts" path="res://scenes/actors/Strategies/Skill/spark/spark_skill_strategy.tscn" id="2_qa3db"]
+[ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/actors/Strategies/Skill/defend_skill_strategy.tscn" id="3_xxmw2"]
+[ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/actors/Strategies/Skill/dash_skill_strategy.tscn" id="4_elwer"]
+[ext_resource type="Texture2D" uid="uid://cgiq7w86n2god" path="res://textures/creatures/gem_roach_sprites.png" id="5_qa3db"]
+[ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="5_xxmw2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxmw2"]
+atlas = ExtResource("5_qa3db")
+region = Rect2(310.99997, 197, 163.63638, 208.1818)
+
+[node name="GemRoachCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_utlvv")]
+visual = NodePath("Sprite2D")
+
+[node name="GridEntity" parent="." index="0" unique_id=1162874930]
+species_type = 12
+creature_name = "Gem Roach"
+species_desc = "A shy beetle that hides and defends itself with the crimson crystals growing on its carapace. The air around its crystals zap and crackle ominously."
+soul_count = 2
+challenge_rating = 2.0
+
+[node name="SparkSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="10" unique_id=1163924449 instance=ExtResource("2_qa3db")]
+
+[node name="DefendSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="11" unique_id=239261403 instance=ExtResource("3_xxmw2")]
+
+[node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="12" unique_id=1974758503 instance=ExtResource("4_elwer")]
+
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
+max_health = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=1514310148]
+material = ExtResource("5_xxmw2")
+use_parent_material = true
+texture = SubResource("AtlasTexture_xxmw2")
+offset = Vector2(-10.64, -42.25)
+
+[editable path="GridEntity"]

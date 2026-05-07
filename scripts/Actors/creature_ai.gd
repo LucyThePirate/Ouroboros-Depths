@@ -54,7 +54,8 @@ func _process(delta: float) -> void:
 	display.global_position = display.global_position.lerp(
 		grid_entity.global_position, min(1, displayLerpTime)
 	)
-	visual.global_position = display.global_position
+	if visual:
+		visual.global_position = display.global_position
 
 
 func take_turn():

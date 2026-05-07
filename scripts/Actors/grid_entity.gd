@@ -26,7 +26,19 @@ signal absorbed_souls(soul_position)
 
 @export_category("Lore")
 enum Species {
-	DEFAULT, WASP, LICH, FUZZER, CONK, PLAYER, SCARECROW, BOGO_EGG, CHORUSTONE, RAT, SLIME
+	DEFAULT,
+	WASP,
+	LICH,
+	FUZZER,
+	CONK,
+	PLAYER,
+	SCARECROW,
+	BOGO_EGG,
+	CHORUSTONE,
+	RAT,
+	SLIME,
+	WASP_KNIGHT,
+	GEM_ROACH
 }
 @export var species_type := Species.DEFAULT
 @export var creature_name := "Default Entity"

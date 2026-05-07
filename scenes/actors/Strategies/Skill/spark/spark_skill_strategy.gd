@@ -2,7 +2,7 @@ extends SkillStrategy
 
 var currently_executing := false
 var radius = 2
-var damage = 1
+var damage = 0
 
 @export var note_VFX: PackedScene
 
@@ -43,7 +43,7 @@ func _on_grid_entity_moved(_old_coord: Vector2i, new_coord: Vector2i, grid_entit
 
 func on_stack_execution_finished(grid_entity: GridEntity):
 	currently_executing = false
-	damage = 1
+	damage = 0
 
 
 func use_skill(grid_entity: GridEntity):

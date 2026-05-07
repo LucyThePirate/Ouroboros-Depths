@@ -1,9 +1,10 @@
 extends Control
 
-var slowdown_enabled: bool = true
-var reload_count: int = 0
 const MIN_CAMERA_ZOOM := Vector2(0.1, 0.1)
 const MAX_CAMERA_ZOOM := Vector2(5, 5)
+var slowdown_enabled: bool = true
+var reload_count: int = 0
+
 var fog_visible := true
 
 
@@ -32,6 +33,7 @@ func _process(_delta):
 
 	if Global.pause_count >= 1:
 		return
+
 	if Input.is_action_just_pressed("ZoomIn"):
 		var camera = get_viewport().get_camera_2d()
 		if camera:

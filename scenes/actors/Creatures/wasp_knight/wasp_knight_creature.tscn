@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://w4kg23pb7tql"]
+
+[ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_ffquk"]
+[ext_resource type="PackedScene" uid="uid://g1l4hmiw4men" path="res://scenes/actors/Strategies/Skill/summon_wasp/summon_wasp_skill_strategy.tscn" id="2_pc8oh"]
+[ext_resource type="PackedScene" uid="uid://biuojqtlmraek" path="res://scenes/actors/Strategies/Skill/judo_throw/judo_throw_skill_strategy.tscn" id="3_q8k4s"]
+[ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/actors/Strategies/Skill/defend_skill_strategy.tscn" id="4_kq4rl"]
+[ext_resource type="PackedScene" uid="uid://db3bk0lgv61c3" path="res://scenes/actors/Strategies/Skill/harpoon/harpoon_skill_strategy.tscn" id="5_bg03i"]
+[ext_resource type="Texture2D" uid="uid://j3nkjlbma27c" path="res://textures/creatures/wasp_knight.png" id="6_rsc3h"]
+
+[node name="WaspKnightCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_ffquk")]
+visual = NodePath("Sprite2D")
+
+[node name="GridEntity" parent="." index="0" unique_id=1162874930]
+species_type = 11
+creature_name = "Wasp Knight"
+species_desc = "A tall wasp hovers stoically. The bandana it sports and spear it brandishes makes one thing clear: this wasp means business, and it has more fight in it than your standard wasp."
+soul_count = 3
+challenge_rating = 4.0
+
+[node name="SummonWaspSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="10" unique_id=1163924449 instance=ExtResource("2_pc8oh")]
+count = 5
+
+[node name="JudoThrowSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="11" unique_id=347600095 instance=ExtResource("3_q8k4s")]
+
+[node name="DefendSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="12" unique_id=239261403 instance=ExtResource("4_kq4rl")]
+
+[node name="HarpoonSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="13" unique_id=430506558 instance=ExtResource("5_bg03i")]
+
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
+max_health = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=1974031856]
+scale = Vector2(0.457854, 0.457854)
+texture = ExtResource("6_rsc3h")
+offset = Vector2(-1.245, -104.385)
+
+[editable path="GridEntity"]

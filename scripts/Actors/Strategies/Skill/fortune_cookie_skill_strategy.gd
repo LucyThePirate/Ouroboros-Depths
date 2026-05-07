@@ -22,7 +22,7 @@ func _ready():
 	super()
 
 
-func on_stack_execution_finished(grid_entity: GridEntity):
+func on_stack_execution_started(grid_entity: GridEntity):
 	$CookieOpen.play()
 	if grid_entity.is_in_group("Player"):
 		var new_text_component = text_scene.instantiate() as TextComponent

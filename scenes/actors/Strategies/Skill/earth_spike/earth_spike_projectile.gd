@@ -49,13 +49,9 @@ func explode_star(grid_coords, grid_entity, attack_direction):
 	var star_points = [
 		Vector2.ZERO,
 		Vector2(1, 0),
-		Vector2(1, 1),
 		Vector2(0, 1),
-		Vector2(-1, 1),
 		Vector2(-1, 0),
-		Vector2(-1, -1),
 		Vector2(0, -1),
-		Vector2(1, -1)
 	]
 	for point in star_points:
 		var rotated_point = point.rotated(Vector2(attack_direction).angle())
@@ -65,7 +61,7 @@ func explode_star(grid_coords, grid_entity, attack_direction):
 			and is_instance_valid(Global.entity_positions[check_coords])
 		):
 			grid_entity.hit(Global.entity_positions[check_coords])
-		elif point != Vector2.ZERO:
+		else:
 			grid_entity.spawn_wall.emit(check_coords, Tiles.Walls["boulder"])
 
 	exploded.emit()

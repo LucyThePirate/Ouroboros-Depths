@@ -322,7 +322,7 @@ func spawn_monster_at_coords(grid_coordinate: Vector2i):
 
 
 func try_spawning_random_monster(initialize_entity := true):
-	if current_challenge_rating < challenge_rating_capacity + current_floor * 2:
+	if current_challenge_rating < challenge_rating_capacity + current_floor * 3:
 		var grid_coordinate = Global.floors.get_used_cells().pick_random()
 		if not _is_obstructed(grid_coordinate):
 			var new_entity = spawn_entity(grid_coordinate, creature_scene.pick_random())

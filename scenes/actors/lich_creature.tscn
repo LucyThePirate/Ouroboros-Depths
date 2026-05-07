@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="2_cdmuu"]
 [ext_resource type="PackedScene" uid="uid://csjboon7n8lek" path="res://scenes/actors/Strategies/Skill/dark_star_skill_strategy.tscn" id="3_n7lk1"]
 [ext_resource type="PackedScene" uid="uid://djpdq4bxeklv3" path="res://scenes/actors/Strategies/Skill/warp_skill_strategy.tscn" id="4_ad5vk"]
-[ext_resource type="PackedScene" uid="uid://g1l4hmiw4men" path="res://scenes/actors/Strategies/Skill/summon_wasp/summon_wasp_skill_strategy.tscn" id="5_1wac6"]
 [ext_resource type="PackedScene" uid="uid://bwkb3crnbdvht" path="res://scenes/Tests/lich_test.tscn" id="6_xk3h3"]
 [ext_resource type="PackedScene" uid="uid://dudma3tdrvkgc" path="res://scenes/actors/Strategies/Planner/base_random_skill_planner.tscn" id="7_cqvl6"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/ui/Arrow.png" id="8_vkbbb"]
@@ -23,6 +22,7 @@ creature_name = "Lich"
 species_desc = "A once-human who traded their soul for dark powers, and, more importantly, for baller-ass horns.
 
 "
+soul_count = 2
 challenge_rating = 2.5
 
 [node name="DarkStarSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1367490962, 1500394995) index="3" unique_id=1361350763 instance=ExtResource("3_n7lk1")]
@@ -31,8 +31,6 @@ count = 8
 skill_desc = ""
 
 [node name="WarpSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1367490962, 1500394995) index="10" unique_id=2128303912 instance=ExtResource("4_ad5vk")]
-
-[node name="SummonWaspSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1367490962, 1500394995) index="12" unique_id=1163924449 instance=ExtResource("5_1wac6")]
 
 [node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1367490962, 1710592687) index="0" unique_id=1357245310]
 max_health = 7

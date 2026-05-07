@@ -117,7 +117,6 @@ func queue_skill(skill_number) -> bool:
 			return true
 		$SkillAdded.pitch_scale = 0.7 + (0.20 * stack.size())
 		$SkillAdded.play()
-		hand[skill_number].increment_in_stack_counter()
 		_update_cooldown_visuals()
 		$Stack.show()
 		#print(name, " queued skill: ", skills[skill_number].name)

@@ -23,7 +23,7 @@ enum SkillTypes { DEFAULT, DIRECTIONAL, CURSOR, NULL }
 @export var stack_size := 1
 
 @export_category("AI Use Hints")
-@export var max_per_stack := 3
+@export var max_per_stack := 100
 @onready var current_in_stack := 0
 @export var cooldown_turns := 1
 @onready var current_cooldown := 0
@@ -137,6 +137,7 @@ func decrement_turn_cooldown():
 
 
 func on_skill_queued():
+	current_in_stack += 1
 	if is_depletable and current_count > 0:
 		current_count -= 1
 
@@ -147,14 +148,6 @@ func on_grid_entity_moved(old_coords: Vector2i, new_coords: Vector2i):
 
 func on_entity_summoned(grid_entity: GridEntity, summoned_entity: CreatureAI):
 	summoned_entity.set_team(grid_entity)
-
-
-func increment_in_stack_counter() -> bool:
-	if current_in_stack >= max_per_stack:
-		return false
-	else:
-		current_in_stack += 1
-		return true
 
 
 func display_skill_info() -> void:

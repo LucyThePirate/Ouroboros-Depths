@@ -4,7 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b5kbbawq2d6hf" path="res://textures/creatures/Rat/rat.png" id="2_01hbd"]
 [ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="2_xp2sa"]
 
-[node name="RatCreature" unique_id=707297936 instance=ExtResource("1_dp6xf")]
+[node name="RatCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_dp6xf")]
+visual = NodePath("Sprite2D")
 
 [node name="GridEntity" parent="." index="0" unique_id=1162874930]
 species_type = 9
@@ -21,11 +22,9 @@ max_health = 3
 collision_mask = 0
 monitoring = false
 
-[node name="Sprite2D" parent="." index="6" unique_id=619217628]
+[node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=1147356887]
 material = ExtResource("2_xp2sa")
 use_parent_material = true
-position = Vector2(10.827297, -12.356087)
-scale = Vector2(0.98733544, 1.243102)
 texture = ExtResource("2_01hbd")
 
 [editable path="GridEntity"]
