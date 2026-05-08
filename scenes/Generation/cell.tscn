@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="13_0xdhj"]
 [ext_resource type="PackedScene" uid="uid://w4kg23pb7tql" path="res://scenes/actors/Creatures/wasp_knight/wasp_knight_creature.tscn" id="13_2yrkk"]
 [ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="13_qrcgv"]
+[ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="14_2yrkk"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="16_eu30k"]
 [ext_resource type="AudioStream" uid="uid://ckploe52g84qd" path="res://audio/Music/AstrMusic/GHOST_NOODLES[8bit,loop,remix].mp3" id="17_1xklj"]
 [ext_resource type="Shader" uid="uid://daaonengjaclw" path="res://textures/shaders/blur.gdshader" id="17_cqjng"]
@@ -173,7 +174,7 @@ title_scene = "uid://c02to40218vlw"
 boulder_splash = ExtResource("2_cu8oe")
 spawn_smoke_scene = ExtResource("3_fx61w")
 player_scene = ExtResource("3_iimes")
-creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj"), ExtResource("8_0xdhj"), ExtResource("9_cyo7g"), ExtResource("10_qrcgv"), ExtResource("11_4g2cj"), ExtResource("12_u1yjk"), ExtResource("13_2yrkk")])
+creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj"), ExtResource("8_0xdhj"), ExtResource("9_cyo7g"), ExtResource("10_qrcgv"), ExtResource("11_4g2cj"), ExtResource("12_u1yjk"), ExtResource("13_2yrkk"), ExtResource("14_2yrkk")])
 bogosort_scene = ExtResource("9_fx61w")
 generator = NodePath("IsaaclikeGenerationStrategy")
 

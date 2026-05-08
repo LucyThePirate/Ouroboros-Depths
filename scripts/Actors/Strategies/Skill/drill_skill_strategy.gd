@@ -28,11 +28,6 @@ func use_skill(grid_entity: GridEntity):
 	var successfully_moved = false
 	var i = 0
 	while i < min_distance:
-		var new_dash_VFX = DashVFX.instantiate() as GPUParticles2D
-		new_dash_VFX.preprocess = (4 - i) * 0.15
-		new_dash_VFX.emitting = true
-		add_child(new_dash_VFX)
-		new_dash_VFX.global_position = grid_entity.global_position
 		await get_tree().create_timer(0.025).timeout
 		successfully_moved = grid_entity.move(direction)
 		var check_coords = Global.floors.local_to_map(grid_entity.global_position) + direction
@@ -49,13 +44,14 @@ func use_skill(grid_entity: GridEntity):
 			and wall_data.get_custom_data("is_solid")
 			and not wall_data.get_custom_data("indestructable")
 		):  # Check for walls to break
-			%Travel.play()
+			%Break.play()
 			grid_entity.spawn_wall.emit(check_coords)
 			var new_status = vigor_status.instantiate() as StatusStrategy
 			new_status.power = 1
 			add_child(new_status)
 			gained_status.emit(new_status)
 		else:
+			%Travel.play()
 			i += 1
 		moved_self.emit()
 	if successfully_moved:

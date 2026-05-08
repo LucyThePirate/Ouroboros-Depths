@@ -38,13 +38,15 @@ enum Species {
 	RAT,
 	SLIME,
 	WASP_KNIGHT,
-	GEM_ROACH
+	GEM_ROACH,
+	SNAKE_BLOCK,
 }
 @export var species_type := Species.DEFAULT
 @export var creature_name := "Default Entity"
 @export_multiline var species_desc := "Default creature description"
 @export var soul_count := 1
 @export var challenge_rating := 1.0
+@export var can_walk_through_walls := false
 var team: GridEntity
 
 @onready var thump_sound = $Thump
@@ -121,7 +123,7 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 
 	# Object interaction
 	var wall_data = Global.walls.get_cell_tile_data(grid_coords)
-	if wall_data:
+	if wall_data and not can_walk_through_walls:
 		if wall_data.get_custom_data("is_door"):
 			opened_door.emit(grid_coords)
 			moved.emit(old_coords, old_coords)
@@ -139,10 +141,10 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 			return false
 
 	# Movement
-	moved.emit(old_coords, grid_coords)
 	Global.entity_positions[grid_coords] = self
 	Global.entity_positions.erase(Global.floors.local_to_map(global_position))
 	global_position += Vector2(direction) * CELL_SIZE
+	moved.emit(old_coords, grid_coords)
 	performed_action.emit()
 	if not floor_data:
 		fell_off_map.emit()
@@ -162,7 +164,7 @@ func warp(position: Vector2i) -> bool:
 
 	# Check for walls
 	var wall_data = Global.walls.get_cell_tile_data(grid_coords)
-	if wall_data and wall_data.get_custom_data("is_solid"):
+	if wall_data and wall_data.get_custom_data("is_solid") and not can_walk_through_walls:
 		play_thump_sound(wall_data.get_custom_data("material"))
 		return false
 
@@ -218,7 +220,7 @@ func is_obstructed(
 			return true
 
 	var wall_data = Global.walls.get_cell_tile_data(grid_coords)
-	if wall_data and wall_data.get_custom_data("is_solid"):
+	if wall_data and wall_data.get_custom_data("is_solid") and not can_walk_through_walls:
 		return true
 
 	if not allow_moving_into_entities:

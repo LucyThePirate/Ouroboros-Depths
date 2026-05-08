@@ -12,6 +12,7 @@ cost = 2
 rarity = 2
 skill_type = 1
 stack_size = 2
+max_per_stack = 1
 priority = 1
 skill_name = "Earth Spike"
 skill_desc = "Call upon the power of the earth! 

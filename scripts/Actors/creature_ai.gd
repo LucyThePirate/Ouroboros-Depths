@@ -45,7 +45,7 @@ func _ready() -> void:
 	#turn_component.turn_ended.connect(status_manager_component.on_turn_ended)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since thfe previous frame.
 func _process(delta: float) -> void:
 	if not initialized or not grid_entity:
 		return
@@ -114,7 +114,8 @@ func get_random_direction() -> Vector2i:
 
 
 func move_in_direction(moveDirection):
-	visual.global_position = grid_entity.global_position
+	if visual:
+		visual.global_position = grid_entity.global_position
 	display.global_position = grid_entity.global_position
 	var move_successful = grid_entity.move(moveDirection, angry_at == null)
 	if not move_successful:

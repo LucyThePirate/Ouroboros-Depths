@@ -10,7 +10,8 @@ signal UI_opened
 signal UI_closed
 
 enum DECKS { BASIC, FUZZER, MUSICIAN, BEAST_TAMER, DEBUG }
-@onready var selected_deck := DECKS.DEBUG
+@onready var selected_deck := DECKS.BASIC
+
 @onready var entity_positions = {}
 
 @onready var config = ConfigFile.new()
@@ -40,6 +41,8 @@ func is_turn_based() -> bool:
 
 
 func load_deck() -> Resource:
+	if OS.is_debug_build():
+		selected_deck = DECKS.DEBUG
 	if Global.config.get_value("Gameplay", "SelectedDeck"):
 		selected_deck = Global.config.get_value("Gameplay", "SelectedDeck")
 	match selected_deck:

@@ -4,7 +4,12 @@
 [ext_resource type="Script" uid="uid://c3gnvqmpurome" path="res://scripts/Actors/Strategies/Skill/leap_skill_strategy.gd" id="1_mqx4p"]
 [ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/effects/dash_vfx.tscn" id="2_clto2"]
 [ext_resource type="Texture2D" uid="uid://ct3f0ftlw84y" path="res://textures/skills/DiveBombSkill.png" id="3_m0q40"]
+[ext_resource type="Shader" uid="uid://dagudpurbsskr" path="res://textures/shaders/scrolling_texture.gdshader" id="5_6gqs0"]
 [ext_resource type="Texture2D" uid="uid://bwvtwmdsyty2g" path="res://textures/testing/dottedLine.png" id="5_afogq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4fvk"]
+shader = ExtResource("5_6gqs0")
+shader_parameter/speed = Vector2(-1.5, 0)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_6gqs0"]
 diffuse_texture = ExtResource("5_afogq")
@@ -28,6 +33,8 @@ texture = ExtResource("3_m0q40")
 unique_name_in_owner = true
 visible = false
 top_level = true
+texture_repeat = 2
+material = SubResource("ShaderMaterial_y4fvk")
 points = PackedVector2Array(0, 0, 14.7, -12.5, 29.4, -22.2, 44.1, -29.1, 58.8, -33.2, 73.5, -34.5, 88.2, -33, 102.9, -28.7, 117.6, -21.6, 132.3, -11.7)
 width = 50.0
 texture = SubResource("CanvasTexture_6gqs0")
