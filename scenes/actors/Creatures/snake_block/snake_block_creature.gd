@@ -2,14 +2,24 @@ extends CreatureAI
 
 var block_segments = []
 var block_pattern
+var block_data
 const MAX_BLOCK_SIZE = 10
 
 
 func _on_grid_entity_moved(old_coord: Vector2i, new_coord: Vector2i) -> void:
 	if old_coord == new_coord:
 		return
+	%Sprite2D.rotation = (Vector2(new_coord) - Vector2(old_coord)).angle()
+
 	if block_segments.size() > 0:
-		Global.walls.set_cell(block_segments.pop_back(), -1)
+		var tail_block = block_segments.pop_back()
+		if Global.walls.get_cell_tile_data(tail_block) != block_data:
+			block_segments.pop_back()
+			health_component.deal_damage(2)
+			health_component.max_health -= 2
+
+		else:
+			Global.walls.set_cell(tail_block, -1)
 		Global.walls.set_pattern(new_coord, block_pattern)
 		block_segments.push_front(new_coord)
 	elif Global.walls.get_cell_tile_data(new_coord):
@@ -23,7 +33,7 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 
 func _form_block_snake() -> void:
 	var starting_coords = Global.floors.local_to_map(grid_entity.global_position)
-	var block_data = Global.walls.get_cell_tile_data(starting_coords)
+	block_data = Global.walls.get_cell_tile_data(starting_coords)
 	if (
 		not block_data
 		or not block_data.get_custom_data("is_solid")

@@ -263,9 +263,9 @@ func _update_fog(old_coords: Vector2i, new_coords: Vector2i):
 		Vector2i(0, -1),
 		Vector2i(1, -1)
 	]
-	#for a_t in adjacent_tiles:
-	#marked_tiles.append(new_coords + a_t)
-	#tile_light[new_coords + a_t] = light_radius - 1
+	for a_t in adjacent_tiles:
+		marked_tiles.append(new_coords + a_t)
+		tile_light[new_coords + a_t] = light_radius - 1
 	tile_light[new_coords] = light_radius
 	while not marked_tiles.is_empty():
 		var checking_tile = marked_tiles.pop_front()

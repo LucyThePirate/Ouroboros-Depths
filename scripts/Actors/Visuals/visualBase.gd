@@ -19,9 +19,9 @@ func initialize(new_grid_entity: GridEntity) -> void:
 
 func set_charging(is_charging: bool):
 	use_parent_material = not is_charging
-	if is_charging:
+	if is_charging and animation_player.has_animation("Charging"):
 		animation_player.play("Charging")
-	else:
+	elif animation_player.has_animation("Idle"):
 		animation_player.play("Idle")
 
 
@@ -44,25 +44,29 @@ func _on_grid_entity_moved(old_coords: Vector2i, new_coords: Vector2i):
 			scale.x *= -1
 		elif xDifference < 0 and scale.x > 0:
 			scale.x *= -1
-	if not anim_tree:
+	if not anim_tree and animation_player.has_animation("Moving"):
 		animation_player.play("Moving")
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	finished_animation.emit()
-	animation_player.play("Idle")
+	if animation_player.has_animation("Idle"):
+		animation_player.play("Idle")
 
 
 func _on_talked():
-	animation_player.play("Talking")
+	if animation_player.has_animation("Talking"):
+		animation_player.play("Talking")
 
 
 func _on_fell_off_map():
-	animation_player.play("Falling")
+	if animation_player.has_animation("Falling"):
+		animation_player.play("Falling")
 
 
 func _on_grid_entity_hurt(_attacker: GridEntity, _damage):
 	if anim_tree:
 		anim_tree.set("parameters/HurtOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	else:
-		animation_player.play("Hurt")
+		if animation_player.has_animation("Hurt"):
+			animation_player.play("Hurt")

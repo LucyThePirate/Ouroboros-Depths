@@ -30,6 +30,7 @@ count = 5
 max_health = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=1974031856]
+y_sort_enabled = true
 scale = Vector2(0.457854, 0.457854)
 texture = ExtResource("6_rsc3h")
 offset = Vector2(-1.245, -104.385)

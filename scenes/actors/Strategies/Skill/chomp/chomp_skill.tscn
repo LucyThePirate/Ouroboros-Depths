@@ -1,0 +1,379 @@
+[gd_scene format=3 uid="uid://cvwrdhp53rb8x"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_0vh3h"]
+[ext_resource type="Texture2D" uid="uid://l0o7nkn1kggg" path="res://textures/skills/Chomp/ChompSkill.png" id="2_8x4y4"]
+[ext_resource type="Script" uid="uid://btwxxk53dvxuy" path="res://scenes/actors/Strategies/Skill/chomp/chomp_skill.gd" id="2_p3agd"]
+[ext_resource type="AudioStream" uid="uid://dnf78wvpkt8fy" path="res://audio/SFX/Skills/Chomp/chomp_hiss.ogg" id="4_p3agd"]
+[ext_resource type="AudioStream" uid="uid://dw7661ic5c10q" path="res://audio/SFX/Skills/Chomp/chomp_miss.ogg" id="5_j3ten"]
+[ext_resource type="AudioStream" uid="uid://4ggb2nvktj5w" path="res://audio/SFX/Skills/Chomp/chomp_success.ogg" id="6_g3px8"]
+[ext_resource type="AudioStream" uid="uid://np71u6uibibv" path="res://audio/SFX/Skills/Chomp/chomp_hard.ogg" id="7_lxdx8"]
+[ext_resource type="Texture2D" uid="uid://csvmjvqk4pqfi" path="res://textures/skills/Chomp/ChompSpritesheet.png" id="8_lxdx8"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j3ten"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("4_p3agd")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ni1ys"]
+atlas = ExtResource("8_lxdx8")
+region = Rect2(165.91757, 0.45469666, 142.97519, 75.206604)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxdx8"]
+atlas = ExtResource("8_lxdx8")
+region = Rect2(0, 0, 156, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fgnd"]
+atlas = ExtResource("8_lxdx8")
+region = Rect2(156, 105, 156, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nbsr"]
+atlas = ExtResource("8_lxdx8")
+region = Rect2(0, 105, 156, 105)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_br3l0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxdx8")
+}],
+"loop": true,
+"name": &"Chipped",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fgnd")
+}],
+"loop": true,
+"name": &"bloody",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nbsr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_c74mn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChompVFX/BottomTeeth:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChompVFX/TopTeeth:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChompVFX/TopTeeth:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Chipped"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ChompVFX:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wy0pr"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("5_j3ten")
+
+[sub_resource type="Animation" id="Animation_647c6"]
+resource_name = "chomp"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChompVFX/BottomTeeth:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 41), Vector2(0, 47.885), Vector2(0, 0), Vector2(0, 41)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChompVFX/TopTeeth:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, -60.035), Vector2(0, 0), Vector2(0, -50)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChompVFX/TopTeeth:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ChompVFX:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ChompSFX")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_wy0pr")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ni1ys"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("7_lxdx8")
+
+[sub_resource type="Animation" id="Animation_ni1ys"]
+resource_name = "chomp_hard"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChompVFX/BottomTeeth:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.6, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 41), Vector2(0, 47.885), Vector2(7.55, 0), Vector2(-5.705, 0), Vector2(7.83, 0), Vector2(0, 0), Vector2(0, 41)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChompVFX/TopTeeth:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.6, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, -60.035), Vector2(-5.58, 0), Vector2(6.245, 0), Vector2(-2.215, 0), Vector2(0, 0), Vector2(0, -50)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChompVFX/TopTeeth:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"default", &"Chipped"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ChompVFX:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ChompSFX")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_ni1ys")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lxdx8"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("6_g3px8")
+
+[sub_resource type="Animation" id="Animation_lxdx8"]
+resource_name = "chomp_hit"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChompVFX/BottomTeeth:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 41), Vector2(0, 47.885), Vector2(0, 0), Vector2(0, 41)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChompVFX/TopTeeth:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, -60.035), Vector2(0, 0), Vector2(0, -50)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChompVFX/TopTeeth:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"default", &"bloody"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ChompVFX:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ChompSFX")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_lxdx8")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5x5t8"]
+_data = {
+&"RESET": SubResource("Animation_c74mn"),
+&"chomp": SubResource("Animation_647c6"),
+&"chomp_hard": SubResource("Animation_ni1ys"),
+&"chomp_hit": SubResource("Animation_lxdx8")
+}
+
+[node name="ChompSkill" unique_id=1163924449 instance=ExtResource("1_0vh3h")]
+script = ExtResource("2_p3agd")
+rarity = 2
+stack_size = 2
+skill_name = "Chomp"
+skill_desc = "You visciously rend your foe with your teeth. Most of the time, you are a civilized creature. Right now? You are in tune with the ancient reptilian part of your brain.
+
+On use, pick a direction and sink your fangs into an adjacent target, stealing their vitality and healing for the amount of unblocked damage dealt.
+
+Though your canines can tear apart flesh with ease, caution is advised with tougher customers, lest you chip a tooth."
+skill_ID = 19
+
+[node name="Icon" parent="." index="0" unique_id=2096319184]
+texture = ExtResource("2_8x4y4")
+
+[node name="HissSFX" type="AudioStreamPlayer2D" parent="." index="4" unique_id=487720234]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_j3ten")
+volume_db = 2.261
+pitch_scale = 1.09
+bus = &"SFX"
+
+[node name="ChompSFX" type="AudioStreamPlayer2D" parent="." index="5" unique_id=250234457]
+unique_name_in_owner = true
+volume_db = 5.275
+pitch_scale = 1.09
+bus = &"SFX"
+
+[node name="ChompVFX" type="Node2D" parent="." index="6" unique_id=1588373383]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+top_level = true
+
+[node name="BottomTeeth" type="Sprite2D" parent="ChompVFX" index="0" unique_id=364052121]
+texture = SubResource("AtlasTexture_ni1ys")
+
+[node name="TopTeeth" type="AnimatedSprite2D" parent="ChompVFX" index="1" unique_id=1906692259]
+sprite_frames = SubResource("SpriteFrames_br3l0")
+animation = &"Chipped"
+autoplay = "default"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7" unique_id=114306627]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_5x5t8")

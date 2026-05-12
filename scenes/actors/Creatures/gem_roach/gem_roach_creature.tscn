@@ -31,6 +31,7 @@ challenge_rating = 2.0
 max_health = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=1514310148]
+y_sort_enabled = true
 material = ExtResource("5_xxmw2")
 use_parent_material = true
 texture = SubResource("AtlasTexture_xxmw2")

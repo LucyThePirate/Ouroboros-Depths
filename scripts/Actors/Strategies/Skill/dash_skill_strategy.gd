@@ -16,14 +16,6 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 func use_skill(grid_entity: GridEntity):
 	$Arrows.hide()
 	state = SkillStrategy.States.PLAYING_ANIMATION
-	print(
-		"Used skill ",
-		name,
-		" towards ",
-		direction,
-		" from: ",
-		Global.floors.local_to_map(grid_entity.global_position)
-	)
 	var successfully_moved = false
 	for i in range(max_distance):
 		var new_dash_VFX = DashVFX.instantiate() as GPUParticles2D

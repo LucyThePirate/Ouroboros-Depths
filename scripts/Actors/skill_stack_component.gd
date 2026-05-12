@@ -188,7 +188,7 @@ func _handle_stack_execution():
 	current_stack_size -= current_skill.stack_size
 	current_skill.connect("moved_self", _on_moved_by_skill)
 	#%StackIconHolder.get_child(0).get_child(0).get_child(0).show()
-	if current_skill.ready_skill(grid_entity):
+	if await current_skill.ready_skill(grid_entity):
 		await get_tree().create_timer(0.1).timeout
 		#await current_skill.skill_finished
 		_handle_stack_execution()

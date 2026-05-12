@@ -22,5 +22,6 @@ max_per_stack = 1
 max_per_stack = 1
 
 [node name="SlimeVisual" parent="." index="6" unique_id=1504317357 instance=ExtResource("4_nady4")]
+y_sort_enabled = true
 
 [editable path="GridEntity"]

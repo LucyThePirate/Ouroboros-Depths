@@ -159,9 +159,10 @@ func pursue_entity(entity: GridEntity) -> Vector2i:
 		stack_component.preview_queueing_skill(intent == "Queue Skill")
 		stack_component.preview_executing_stack(intent == "Execute Stack")
 		if intent == "Execute Stack":
-			visual.use_parent_material = false
-			if visual.has_method("set_charging"):
-				visual.set_charging(true)
+			if visual:
+				visual.use_parent_material = false
+				if visual.has_method("set_charging"):
+					visual.set_charging(true)
 
 		if not intent:
 			intent = "Move"

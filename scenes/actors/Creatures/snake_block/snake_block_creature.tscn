@@ -4,18 +4,19 @@
 [ext_resource type="Script" uid="uid://cgjk3cwy74fut" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.gd" id="2_284f1"]
 [ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="2_e65ml"]
 [ext_resource type="Texture2D" uid="uid://dfvius215va54" path="res://textures/tiles/3DTiles.png" id="2_rirsd"]
-[ext_resource type="Texture2D" uid="uid://bbqymwo7s7ne4" path="res://textures/creatures/Fuzzer.png" id="3_rirsd"]
+[ext_resource type="PackedScene" uid="uid://cvwrdhp53rb8x" path="res://scenes/actors/Strategies/Skill/chomp/chomp_skill.tscn" id="3_284f1"]
+[ext_resource type="Texture2D" uid="uid://d32hq6sw2xfa3" path="res://textures/creatures/snake_block.png" id="4_rirsd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_284f1"]
-atlas = ExtResource("3_rirsd")
-region = Rect2(157.46281, 354.8843, 100.82643, 229.75204)
+atlas = ExtResource("4_rirsd")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lso1u"]
 atlas = ExtResource("2_rirsd")
 region = Rect2(497.87048, 3.9325848, 100.93298, 198.19516)
 
-[node name="SnakeBlockCreature" unique_id=707297936 instance=ExtResource("1_bkuqq")]
+[node name="SnakeBlockCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_bkuqq")]
 script = ExtResource("2_284f1")
+visual = NodePath("Node2D2")
 
 [node name="GridEntity" parent="." index="0" unique_id=1162874930]
 species_type = 13
@@ -27,18 +28,31 @@ soul_count = 2
 challenge_rating = 1.5
 can_walk_through_walls = true
 
+[node name="ChompSkill" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="10" unique_id=1163924449 instance=ExtResource("3_284f1")]
+
 [node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
 max_health = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=1392970866]
+[node name="Node2D2" type="Node2D" parent="." index="6" unique_id=1838522351]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D2" index="0" unique_id=1392970866]
+unique_name_in_owner = true
 z_index = 1
+y_sort_enabled = true
 material = ExtResource("2_e65ml")
 use_parent_material = true
-scale = Vector2(0.50174505, 0.44310763)
+position = Vector2(0.045, -54.72)
 texture = SubResource("AtlasTexture_284f1")
-offset = Vector2(58.767, -132)
+offset = Vector2(49.479, -7.337)
 
-[node name="Sprite2D2" type="Sprite2D" parent="." index="7" unique_id=29262752]
+[node name="Node2D" type="RemoteTransform2D" parent="." index="7" unique_id=65930657]
+material = ExtResource("2_e65ml")
+use_parent_material = true
+remote_path = NodePath("../Node2D2")
+update_rotation = false
+update_scale = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="8" unique_id=29262752]
 visible = false
 texture = SubResource("AtlasTexture_lso1u")
 offset = Vector2(0, -34.94)

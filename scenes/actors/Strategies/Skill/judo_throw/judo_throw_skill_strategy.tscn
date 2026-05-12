@@ -6,6 +6,103 @@
 [ext_resource type="PackedScene" uid="uid://csmoib3nld3bv" path="res://scenes/effects/stomp_vfx.tscn" id="4_5mm07"]
 [ext_resource type="PackedScene" uid="uid://cmxeogtui2phc" path="res://scenes/effects/note_vfx.tscn" id="5_myhxa"]
 [ext_resource type="Texture2D" uid="uid://mpnwcv84ukod" path="res://textures/skills/JudoThrowSkill.png" id="6_5mm07"]
+[ext_resource type="AudioStream" uid="uid://bf2qidj3aup4e" path="res://audio/SFX/Skills/JudoThrow/judo_throw_grab1.ogg" id="7_ge6ia"]
+[ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/ui/Cursor.png" id="7_jrxc6"]
+[ext_resource type="AudioStream" uid="uid://biudpnkhshtb6" path="res://audio/SFX/Skills/JudoThrow/judo_throw_grab2.ogg" id="8_kxfjh"]
+[ext_resource type="AudioStream" uid="uid://dfs01vir8uh0b" path="res://audio/SFX/Skills/JudoThrow/judo_throw_grab3.ogg" id="9_4rtpa"]
+[ext_resource type="AudioStream" uid="uid://dtlgsirfht6wf" path="res://audio/SFX/Skills/JudoThrow/judo_throw_grab_success.ogg" id="10_kxfjh"]
+[ext_resource type="AudioStream" uid="uid://15q6jgh644hn" path="res://audio/SFX/Skills/JudoThrow/judo_throw_throw.ogg" id="11_4rtpa"]
+[ext_resource type="Shader" uid="uid://dagudpurbsskr" path="res://textures/shaders/scrolling_texture.gdshader" id="13_3bgms"]
+[ext_resource type="Texture2D" uid="uid://bwvtwmdsyty2g" path="res://textures/testing/dottedLine.png" id="14_3j1d6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyxbn"]
+atlas = ExtResource("7_jrxc6")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tu85t"]
+atlas = ExtResource("7_jrxc6")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v8hib"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyxbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tu85t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jrxc6"]
+random_pitch = 1.0656005
+streams_count = 3
+stream_0/stream = ExtResource("7_ge6ia")
+stream_1/stream = ExtResource("8_kxfjh")
+stream_2/stream = ExtResource("9_4rtpa")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4rtpa"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("10_kxfjh")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kxfjh"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("11_4rtpa")
+
+[sub_resource type="Curve" id="Curve_4rtpa"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.8091603, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_4rtpa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GrabLineVFX:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jrxc6"]
+resource_name = "fade_line"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GrabLineVFX:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c21wq"]
+_data = {
+&"RESET": SubResource("Animation_4rtpa"),
+&"fade_line": SubResource("Animation_jrxc6")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4fvk"]
+shader = ExtResource("13_3bgms")
+shader_parameter/speed = Vector2(-1.5, 0)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6gqs0"]
+diffuse_texture = ExtResource("14_3j1d6")
+texture_repeat = 2
 
 [node name="JudoThrowSkillStrategy" unique_id=347600095 instance=ExtResource("1_xm1lf")]
 script = ExtResource("2_khnmr")
@@ -24,3 +121,84 @@ skill_ID = 13
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("6_5mm07")
+
+[node name="GrabCursor" type="AnimatedSprite2D" parent="." index="3" unique_id=1719182099]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.99229187, 0, 0.2342358, 1)
+top_level = true
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_v8hib")
+autoplay = "default"
+frame_progress = 0.70308584
+speed_scale = 0.3
+
+[node name="Cursor2" type="AnimatedSprite2D" parent="GrabCursor" index="0" unique_id=1985579753]
+self_modulate = Color(0, 0, 0, 0.654902)
+show_behind_parent = true
+z_index = -1
+position = Vector2(2, 5)
+sprite_frames = SubResource("SpriteFrames_v8hib")
+autoplay = "default"
+frame = 1
+frame_progress = 0.48193923
+speed_scale = 0.3
+
+[node name="GrabSFX" type="AudioStreamPlayer2D" parent="." index="5" unique_id=805571767]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_jrxc6")
+volume_db = 5.887
+bus = &"SFX"
+
+[node name="GrabSuccessSFX" type="AudioStreamPlayer2D" parent="." index="6" unique_id=1019247859]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_4rtpa")
+volume_db = 4.906
+pitch_scale = 1.06
+bus = &"SFX"
+
+[node name="ThrowSFX" type="AudioStreamPlayer2D" parent="." index="7" unique_id=969314508]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_kxfjh")
+volume_db = 4.907
+pitch_scale = 1.06
+bus = &"SFX"
+
+[node name="GrabLineVFX" type="Line2D" parent="." index="8" unique_id=351237851]
+unique_name_in_owner = true
+top_level = true
+width = 50.0
+width_curve = SubResource("Curve_4rtpa")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9" unique_id=476450906]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_c21wq")
+
+[node name="PreviewLine" type="Line2D" parent="." index="10" unique_id=339169075]
+unique_name_in_owner = true
+visible = false
+top_level = true
+texture_repeat = 2
+material = SubResource("ShaderMaterial_y4fvk")
+points = PackedVector2Array(0, 0, 14.7, -12.5, 29.4, -22.2, 44.1, -29.1, 58.8, -33.2, 73.5, -34.5, 88.2, -33, 102.9, -28.7, 117.6, -21.6, 132.3, -11.7)
+width = 50.0
+texture = SubResource("CanvasTexture_6gqs0")
+texture_mode = 1
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Line2D" type="Line2D" parent="." index="11" unique_id=852522524]
+visible = false
+top_level = true
+points = PackedVector2Array(0, 0, 73.5, -69.5, 147, 1)
+width = 20.215
+default_color = Color(1, 1, 1, 0.407843)
+texture_mode = 1
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
