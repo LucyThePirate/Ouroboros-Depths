@@ -7,7 +7,7 @@ signal power_changed
 signal max_power_reached
 signal healed(heal_amount)
 
-enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS, VIGOR, REGEN }
+enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS, VIGOR, REGEN, HIDDEN }
 
 @export_category("Lore")
 @export var status_name := "Default Status Name"
@@ -63,9 +63,9 @@ func on_moved():
 
 func on_reload_started():
 	pass
-	
-	
-func on_grid_entity_parent_set(grid_entity : GridEntity):
+
+
+func on_grid_entity_parent_set(grid_entity: GridEntity):
 	pass
 
 

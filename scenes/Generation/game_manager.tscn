@@ -1,42 +1,42 @@
 [gd_scene format=3 uid="uid://43rkgu17gs68"]
 
-[ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_44ypc"]
-[ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/effects/boulder_splash.tscn" id="2_cu8oe"]
-[ext_resource type="PackedScene" uid="uid://csox3ra3bo6o4" path="res://scenes/effects/spawn_smoke_vfx.tscn" id="3_fx61w"]
-[ext_resource type="PackedScene" uid="uid://d2wq4gejffyd" path="res://scenes/actors/player.tscn" id="3_iimes"]
-[ext_resource type="PackedScene" uid="uid://dctxwjwjiof17" path="res://scenes/actors/lich_creature.tscn" id="4_pdmi3"]
-[ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_creature.tscn" id="5_0xdhj"]
-[ext_resource type="PackedScene" uid="uid://b2gdh6pqutscc" path="res://scenes/actors/Creatures/chorustone.tscn" id="6_0xdhj"]
-[ext_resource type="PackedScene" uid="uid://g7fhohrlv81x" path="res://scenes/actors/Creatures/fuzzer_creature.tscn" id="8_0xdhj"]
-[ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="8_5cpdm"]
-[ext_resource type="PackedScene" uid="uid://cuir68rh5ethv" path="res://scenes/actors/Creatures/conk/conk.tscn" id="9_cyo7g"]
-[ext_resource type="PackedScene" uid="uid://b04tvmeribd1k" path="res://scenes/actors/Creatures/bogo_sort.tscn" id="9_fx61w"]
-[ext_resource type="PackedScene" uid="uid://d3p2qbml7s288" path="res://scenes/actors/Creatures/slime/slime_creature.tscn" id="10_qrcgv"]
-[ext_resource type="PackedScene" uid="uid://cp6erui8kemoj" path="res://scenes/actors/Creatures/rat/rat_creature.tscn" id="11_4g2cj"]
-[ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="12_5cpdm"]
-[ext_resource type="PackedScene" uid="uid://oof35aakey11" path="res://scenes/actors/Creatures/gem_roach/gem_roach_creature.tscn" id="12_u1yjk"]
-[ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="13_0xdhj"]
-[ext_resource type="PackedScene" uid="uid://w4kg23pb7tql" path="res://scenes/actors/Creatures/wasp_knight/wasp_knight_creature.tscn" id="13_2yrkk"]
-[ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="13_qrcgv"]
-[ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="14_2yrkk"]
-[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="16_eu30k"]
-[ext_resource type="AudioStream" uid="uid://ckploe52g84qd" path="res://audio/Music/AstrMusic/GHOST_NOODLES[8bit,loop,remix].mp3" id="17_1xklj"]
-[ext_resource type="Shader" uid="uid://daaonengjaclw" path="res://textures/shaders/blur.gdshader" id="17_cqjng"]
-[ext_resource type="Texture2D" uid="uid://btflw1das7k7h" path="res://textures/testing/zen_garden_WIP2.png" id="17_cyo7g"]
-[ext_resource type="AudioStream" uid="uid://rnxn4j8uomna" path="res://audio/Music/AstrMusic/GHOST_NOODLES[loop,mysterious].mp3" id="18_cqjng"]
-[ext_resource type="AudioStream" uid="uid://d248dhagknhoc" path="res://audio/Music/AstrMusic/WarmHouse's Computer [loop, simple].mp3" id="18_cyo7g"]
+[ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_iuxeh"]
+[ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/effects/boulder_splash.tscn" id="2_0qvfo"]
+[ext_resource type="PackedScene" uid="uid://csox3ra3bo6o4" path="res://scenes/effects/spawn_smoke_vfx.tscn" id="3_vk8p8"]
+[ext_resource type="PackedScene" uid="uid://d2wq4gejffyd" path="res://scenes/actors/player.tscn" id="4_3a4wt"]
+[ext_resource type="PackedScene" uid="uid://dctxwjwjiof17" path="res://scenes/actors/lich_creature.tscn" id="5_dimvc"]
+[ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_creature.tscn" id="6_hw4ns"]
+[ext_resource type="PackedScene" uid="uid://b2gdh6pqutscc" path="res://scenes/actors/Creatures/chorustone.tscn" id="7_fkop7"]
+[ext_resource type="PackedScene" uid="uid://g7fhohrlv81x" path="res://scenes/actors/Creatures/fuzzer_creature.tscn" id="8_73l8b"]
+[ext_resource type="PackedScene" uid="uid://cuir68rh5ethv" path="res://scenes/actors/Creatures/conk/conk.tscn" id="9_kmp3v"]
+[ext_resource type="PackedScene" uid="uid://d3p2qbml7s288" path="res://scenes/actors/Creatures/slime/slime_creature.tscn" id="10_mxyv8"]
+[ext_resource type="PackedScene" uid="uid://cp6erui8kemoj" path="res://scenes/actors/Creatures/rat/rat_creature.tscn" id="11_d2bkc"]
+[ext_resource type="PackedScene" uid="uid://oof35aakey11" path="res://scenes/actors/Creatures/gem_roach/gem_roach_creature.tscn" id="12_tir5h"]
+[ext_resource type="PackedScene" uid="uid://w4kg23pb7tql" path="res://scenes/actors/Creatures/wasp_knight/wasp_knight_creature.tscn" id="13_brfwm"]
+[ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="14_tjpqt"]
+[ext_resource type="PackedScene" uid="uid://b04tvmeribd1k" path="res://scenes/actors/Creatures/bogo_sort.tscn" id="15_73xfa"]
+[ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="16_cpcro"]
+[ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="17_ttnpg"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="18_d2p2i"]
+[ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="19_lq848"]
+[ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="20_fidet"]
+[ext_resource type="Texture2D" uid="uid://btflw1das7k7h" path="res://textures/testing/zen_garden_WIP2.png" id="21_lwe8p"]
+[ext_resource type="Shader" uid="uid://daaonengjaclw" path="res://textures/shaders/blur.gdshader" id="22_barpb"]
+[ext_resource type="AudioStream" uid="uid://d248dhagknhoc" path="res://audio/Music/AstrMusic/WarmHouse's Computer [loop, simple].mp3" id="23_7atmn"]
+[ext_resource type="AudioStream" uid="uid://ckploe52g84qd" path="res://audio/Music/AstrMusic/GHOST_NOODLES[8bit,loop,remix].mp3" id="24_cvrnj"]
+[ext_resource type="AudioStream" uid="uid://rnxn4j8uomna" path="res://audio/Music/AstrMusic/GHOST_NOODLES[loop,mysterious].mp3" id="25_1b3ug"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fx61w"]
 blend_mode = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eu30k"]
-shader = ExtResource("12_5cpdm")
+shader = ExtResource("19_lq848")
 shader_parameter/bg_color = Color(0.1309329, 0.12740707, 0.2680826, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qrcgv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cyo7g"]
-shader = ExtResource("17_cqjng")
+shader = ExtResource("22_barpb")
 shader_parameter/offset = 6.9110003282725
 
 [sub_resource type="InputEventAction" id="InputEventAction_cqjng"]
@@ -47,7 +47,7 @@ events = [SubResource("InputEventAction_cqjng")]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qrcgv"]
 streams_count = 1
-stream_0/stream = ExtResource("18_cyo7g")
+stream_0/stream = ExtResource("23_7atmn")
 
 [sub_resource type="InputEventAction" id="InputEventAction_cyo7g"]
 action = &"TogglePause"
@@ -169,13 +169,13 @@ alpha_curve = SubResource("CurveTexture_cyo7g")
 
 [node name="GameManager" type="Node2D" unique_id=1347246317 node_paths=PackedStringArray("generator")]
 y_sort_enabled = true
-script = ExtResource("1_44ypc")
+script = ExtResource("1_iuxeh")
 title_scene = "uid://c02to40218vlw"
-boulder_splash = ExtResource("2_cu8oe")
-spawn_smoke_scene = ExtResource("3_fx61w")
-player_scene = ExtResource("3_iimes")
-creature_scene = Array[PackedScene]([ExtResource("4_pdmi3"), ExtResource("5_0xdhj"), ExtResource("6_0xdhj"), ExtResource("8_0xdhj"), ExtResource("9_cyo7g"), ExtResource("10_qrcgv"), ExtResource("11_4g2cj"), ExtResource("12_u1yjk"), ExtResource("13_2yrkk"), ExtResource("14_2yrkk")])
-bogosort_scene = ExtResource("9_fx61w")
+boulder_splash = ExtResource("2_0qvfo")
+spawn_smoke_scene = ExtResource("3_vk8p8")
+player_scene = ExtResource("4_3a4wt")
+creature_scene = Array[PackedScene]([ExtResource("5_dimvc"), ExtResource("6_hw4ns"), ExtResource("7_fkop7"), ExtResource("8_73l8b"), ExtResource("9_kmp3v"), ExtResource("10_mxyv8"), ExtResource("11_d2bkc"), ExtResource("12_tir5h"), ExtResource("13_brfwm"), ExtResource("14_tjpqt")])
+bogosort_scene = ExtResource("15_73xfa")
 generator = NodePath("IsaaclikeGenerationStrategy")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=800089894]
@@ -190,13 +190,13 @@ z_index = -5
 y_sort_enabled = true
 texture_filter = 2
 use_parent_material = true
-tile_set = ExtResource("8_5cpdm")
+tile_set = ExtResource("16_cpcro")
 
 [node name="Walls" type="TileMapLayer" parent="." unique_id=1056884836]
 show_behind_parent = true
 y_sort_enabled = true
 use_parent_material = true
-tile_set = ExtResource("8_5cpdm")
+tile_set = ExtResource("16_cpcro")
 
 [node name="Fog" type="TileMapLayer" parent="." unique_id=341166173 groups=["Fog"]]
 unique_name_in_owner = true
@@ -204,7 +204,7 @@ visible = false
 modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_fx61w")
-tile_set = ExtResource("8_5cpdm")
+tile_set = ExtResource("16_cpcro")
 
 [node name="Darkness" type="TileMapLayer" parent="." unique_id=1270013491 groups=["Fog"]]
 unique_name_in_owner = true
@@ -212,9 +212,9 @@ visible = false
 self_modulate = Color(0.9529412, 0.6627451, 0.49803922, 0.44705883)
 z_index = 10
 material = SubResource("CanvasItemMaterial_fx61w")
-tile_set = ExtResource("8_5cpdm")
+tile_set = ExtResource("16_cpcro")
 
-[node name="IsaaclikeGenerationStrategy" parent="." unique_id=1325901455 instance=ExtResource("13_qrcgv")]
+[node name="IsaaclikeGenerationStrategy" parent="." unique_id=1325901455 instance=ExtResource("17_ttnpg")]
 number_of_cells = 25
 number_of_rooms = 2
 number_of_set_pieces = 4
@@ -242,7 +242,7 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
 theme_override_constants/outline_size = 10
-theme_override_fonts/normal_font = ExtResource("16_eu30k")
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "Floor: ???"
@@ -271,7 +271,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
 theme_override_constants/outline_size = 10
-theme_override_fonts/normal_font = ExtResource("16_eu30k")
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "
@@ -286,7 +286,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
 theme_override_constants/outline_size = 10
-theme_override_fonts/normal_font = ExtResource("16_eu30k")
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "Floor Reached: ???"
@@ -299,7 +299,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
 theme_override_constants/outline_size = 10
-theme_override_fonts/normal_font = ExtResource("16_eu30k")
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "Kills: ???"
@@ -312,7 +312,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
 theme_override_constants/outline_size = 10
-theme_override_fonts/normal_font = ExtResource("16_eu30k")
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "Turns: ???"
@@ -326,7 +326,7 @@ layout_mode = 2
 [node name="NewRunButton" type="Button" parent="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer" unique_id=1798756151]
 layout_mode = 2
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("16_eu30k")
+theme_override_fonts/font = ExtResource("18_d2p2i")
 theme_override_font_sizes/font_size = 30
 text = "Start a new run"
 
@@ -336,7 +336,7 @@ layout_mode = 2
 [node name="TitleScreenButton" type="Button" parent="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer2" unique_id=54190548]
 layout_mode = 2
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("16_eu30k")
+theme_override_fonts/font = ExtResource("18_d2p2i")
 theme_override_font_sizes/font_size = 30
 text = "Return to title screen"
 
@@ -374,7 +374,7 @@ offset_right = 152.0249
 offset_bottom = 156.80127
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("13_0xdhj")
+texture = ExtResource("20_fidet")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/PauseScreen" unique_id=472137901]
 material = SubResource("ShaderMaterial_qrcgv")
@@ -384,7 +384,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("17_cyo7g")
+texture = ExtResource("21_lwe8p")
 
 [node name="Blur" type="ColorRect" parent="CanvasLayer/PauseScreen" unique_id=1842844146]
 material = SubResource("ShaderMaterial_cyo7g")
@@ -409,7 +409,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
 theme_override_constants/outline_size = 10
-theme_override_fonts/normal_font = ExtResource("16_eu30k")
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "
@@ -423,7 +423,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
 theme_override_constants/outline_size = 10
-theme_override_fonts/normal_font = ExtResource("16_eu30k")
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[color=DARKGRAY][i]The game's paused. Take your time to recover your strength, brave warrior."
@@ -437,7 +437,7 @@ layout_mode = 2
 [node name="ContinueGameButton" type="Button" parent="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer" unique_id=1581709327]
 layout_mode = 2
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("16_eu30k")
+theme_override_fonts/font = ExtResource("18_d2p2i")
 theme_override_font_sizes/font_size = 30
 shortcut = SubResource("Shortcut_cyo7g")
 text = "Have you gathered yourself? Are you ready to Fight On?"
@@ -448,7 +448,7 @@ layout_mode = 2
 [node name="TitleScreenButton" type="Button" parent="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer2" unique_id=67200178]
 layout_mode = 2
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("16_eu30k")
+theme_override_fonts/font = ExtResource("18_d2p2i")
 theme_override_font_sizes/font_size = 30
 text = "... Or would you rather Retreat and return to the solace of the Title Screen"
 
@@ -504,16 +504,16 @@ offset_right = 152.0249
 offset_bottom = 156.80128
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("13_0xdhj")
+texture = ExtResource("20_fidet")
 
 [node name="GhostQuiet" type="AudioStreamPlayer" parent="." unique_id=90373663]
-stream = ExtResource("17_1xklj")
+stream = ExtResource("24_cvrnj")
 autoplay = true
 bus = &"Music"
 playback_type = 1
 
 [node name="GhostBattle" type="AudioStreamPlayer" parent="." unique_id=1987515516]
-stream = ExtResource("18_cqjng")
+stream = ExtResource("25_1b3ug")
 volume_db = -50.0
 autoplay = true
 bus = &"Music"

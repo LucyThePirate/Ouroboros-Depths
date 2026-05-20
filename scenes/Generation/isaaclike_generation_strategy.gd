@@ -290,7 +290,7 @@ func _generate_bogo_room(expandable_areas: Array[Vector2i]):
 	expandable_areas.erase(bogo_room)
 	for x in range(bogo_room.x * cell_size, bogo_room.x * cell_size + cell_size):
 		for y in range(bogo_room.y * cell_size, bogo_room.y * cell_size + cell_size):
-			floors.set_cell(Vector2i(x, y), ice_floor_tile[0], ice_floor_tile[1])
+			floors.set_cell(Vector2i(x, y), ice_floor_tile[0], ice_floor_tile[1], 1)
 			walls.set_cell(Vector2i(x, y), -1)
 
 

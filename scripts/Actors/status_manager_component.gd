@@ -21,6 +21,13 @@ func _ready() -> void:
 		status.on_grid_entity_parent_set(grid_entity)
 
 
+func has_status(status_ID: StatusStrategy.Status_IDs) -> bool:
+	for status in status_bar.get_children() as Array[StatusStrategy]:
+		if status.status_ID == status_ID:
+			return true
+	return false
+
+
 func initialize_status(status: StatusStrategy):
 	status.status_ended.connect(on_status_ended)
 
@@ -33,6 +40,7 @@ func add_status(new_status: StatusStrategy):
 			new_status.queue_free()
 			return
 	new_status.reparent(status_bar)
+	new_status.on_grid_entity_parent_set(grid_entity)
 	initialize_status(new_status)
 
 

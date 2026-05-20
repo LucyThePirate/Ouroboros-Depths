@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d30kixvdm73ts" path="res://scenes/actors/Strategies/Skill/spark/spark_skill_strategy.tscn" id="2_qa3db"]
 [ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/actors/Strategies/Skill/defend_skill_strategy.tscn" id="3_xxmw2"]
 [ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/actors/Strategies/Skill/dash_skill_strategy.tscn" id="4_elwer"]
+[ext_resource type="PackedScene" uid="uid://htmjy37yqb44" path="res://scenes/actors/Strategies/Skill/disguise/disguise_skill_strategy.tscn" id="5_elwer"]
 [ext_resource type="Texture2D" uid="uid://cgiq7w86n2god" path="res://textures/creatures/gem_roach_sprites.png" id="5_qa3db"]
 [ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="5_xxmw2"]
 
@@ -26,6 +27,8 @@ challenge_rating = 2.0
 [node name="DefendSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="11" unique_id=239261403 instance=ExtResource("3_xxmw2")]
 
 [node name="DashSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="12" unique_id=1974758503 instance=ExtResource("4_elwer")]
+
+[node name="DisguiseSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="13" unique_id=1537982499 instance=ExtResource("5_elwer")]
 
 [node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
 max_health = 7

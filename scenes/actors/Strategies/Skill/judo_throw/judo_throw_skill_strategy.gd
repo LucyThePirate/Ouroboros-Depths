@@ -56,8 +56,8 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 		%GrabCursor.show()
 		request_cursor()
 		if show_UI:
-			$Cursor.global_position = grid_entity.global_position
-			cursor = Global.floors.local_to_map(grid_entity.global_position)
+			$Cursor.global_position = victim_to_throw.global_position
+			cursor = Global.floors.local_to_map(victim_to_throw.global_position)
 			$Cursor.show()
 			_set_preview_on(true, victim_to_throw)
 		return false

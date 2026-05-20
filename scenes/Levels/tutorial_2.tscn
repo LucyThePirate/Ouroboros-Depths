@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://dmn1seuhf4qt8"]
 
-[ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/cell.tscn" id="1_5ip76"]
+[ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/game_manager.tscn" id="1_5ip76"]
 [ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_creature.tscn" id="2_qp2jn"]
 [ext_resource type="Theme" uid="uid://dsnesst3y61ol" path="res://resources/default_theme.tres" id="3_kf6in"]
 [ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/skills/SkillSack.png" id="4_pybxo"]

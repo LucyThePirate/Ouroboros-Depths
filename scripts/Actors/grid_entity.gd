@@ -16,6 +16,7 @@ signal hurt(attacker, damage_amount)
 signal fell_off_map
 signal descended
 signal died(is_despawning)
+signal turned_invisible
 signal performed_action
 signal reload_started
 signal absorbed_souls(soul_position)
@@ -330,6 +331,8 @@ func is_on_path_down() -> bool:
 
 
 func is_in_darkness() -> bool:
+	if status_component.has_status(StatusStrategy.Status_IDs.HIDDEN):
+		return true
 	if not Global.floors:
 		return false
 	var grid_coords = Global.floors.local_to_map(global_position)

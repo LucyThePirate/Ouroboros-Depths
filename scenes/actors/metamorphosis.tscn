@@ -25,6 +25,8 @@
 [ext_resource type="Shader" uid="uid://o8om3hlnn5vh" path="res://textures/shaders/rainbow_edge.gdshader" id="15_l4hai"]
 [ext_resource type="Texture2D" uid="uid://kiicrhe5264c" path="res://textures/effects/lights/Circular Light.png" id="16_ay0iv"]
 [ext_resource type="PackedScene" uid="uid://d30kixvdm73ts" path="res://scenes/actors/Strategies/Skill/spark/spark_skill_strategy.tscn" id="16_vwiqt"]
+[ext_resource type="PackedScene" uid="uid://cvwrdhp53rb8x" path="res://scenes/actors/Strategies/Skill/chomp/chomp_skill.tscn" id="17_147vu"]
+[ext_resource type="PackedScene" uid="uid://htmjy37yqb44" path="res://scenes/actors/Strategies/Skill/disguise/disguise_skill_strategy.tscn" id="18_5iwe1"]
 [ext_resource type="AudioStream" uid="uid://wk7pfdy4e2u" path="res://audio/Music/AstrMusic/MOTWI-Leyline[ambient,nice].mp3" id="20_xccfo"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="21_6vq4o"]
 [ext_resource type="AudioStream" uid="uid://bpbtx5myk6uul" path="res://audio/Music/AstrMusic/TheGoddessEtherea[ethereal, liveSinging, continue].mp3" id="21_fjae7"]
@@ -79,7 +81,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eg7uw")
-buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3q"), ExtResource("4_ncs2t"), ExtResource("5_o4b0d"), ExtResource("4_ncs2t"), ExtResource("6_emtfy"), ExtResource("7_1qkj3"), ExtResource("8_7g347"), ExtResource("9_lvopp"), ExtResource("10_i6ueo"), ExtResource("11_1u08f"), ExtResource("12_sjimc"), ExtResource("13_sjawx"), ExtResource("14_14h1u"), ExtResource("15_14h1u"), ExtResource("16_vwiqt")])
+buyable_skills = Array[PackedScene]([ExtResource("2_edy26"), ExtResource("3_76q3q"), ExtResource("4_ncs2t"), ExtResource("5_o4b0d"), ExtResource("4_ncs2t"), ExtResource("6_emtfy"), ExtResource("7_1qkj3"), ExtResource("8_7g347"), ExtResource("9_lvopp"), ExtResource("10_i6ueo"), ExtResource("11_1u08f"), ExtResource("12_sjimc"), ExtResource("13_sjawx"), ExtResource("14_14h1u"), ExtResource("15_14h1u"), ExtResource("16_vwiqt"), ExtResource("17_147vu"), ExtResource("18_5iwe1")])
 skill_icon_scene = ExtResource("10_emtfy")
 sold_out_texture = ExtResource("11_emtfy")
 

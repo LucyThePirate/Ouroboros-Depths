@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cmc0da6d170ar"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_vrvb8"]
+[ext_resource type="Texture2D" uid="uid://c12nytph8nerj" path="res://textures/statuses/Hidden.png" id="2_0yu3b"]
+[ext_resource type="Script" uid="uid://df4php1btyo6h" path="res://scenes/actors/Strategies/Status/hidden_status_strategy.gd" id="2_phl4j"]
+
+[node name="HiddenStatusStrategy" unique_id=577548757 instance=ExtResource("1_vrvb8")]
+script = ExtResource("2_phl4j")
+status_name = "Hidden"
+status_desc = "This creature is hidden and undetectable. This status depletes as the creature moves.
+
+If the creature attacks, the status will be removed completely, but the attack will do double damage!"
+turns_afflicted = 10
+power = 5
+status_ID = 7
+
+[node name="TextureRect" parent="." index="0" unique_id=1155837054]
+texture = ExtResource("2_0yu3b")

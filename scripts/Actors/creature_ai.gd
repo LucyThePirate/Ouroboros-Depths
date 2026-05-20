@@ -17,6 +17,9 @@ var status_manager_component = $GridEntity/UI/StatusManagerComponent as StatusMa
 @onready var random_skill_planner = $BaseRandomSkillPlanner
 @onready var intent_arrow = $IntentArrow
 
+@export_category("Behaviors")
+@export var wander_when_no_target := true
+
 var initialized = false
 var in_darkness = true
 var level: Node2D
@@ -77,10 +80,6 @@ func take_turn():
 			pass
 	in_darkness = grid_entity.is_in_darkness()
 	visible = not in_darkness or Debug.fog_visible == false
-	#if in_darkness:
-	#modulate = Color.BLACK
-	#else:
-	#modulate = Color.WHITE
 	update_intent()
 	turn_component.end_turn()
 
@@ -90,8 +89,10 @@ func update_intent():
 		intent = "Move"
 		if grid_entity.team != grid_entity and is_instance_valid(grid_entity.team):
 			intent_direction = get_direction_towards(grid_entity.team)
-		else:
+		elif wander_when_no_target:
 			intent_direction = get_random_direction() as Vector2i
+		else:
+			intent = "Do Nothing"
 		check_for_targets()
 	else:
 		intent = "Move"
@@ -213,6 +214,7 @@ func _update_angry_at(new_target: GridEntity):
 			health_component.set_color(Color.WHITE)
 	angry_at = new_target
 	angry_at.died.connect(_on_angry_at_died)
+	angry_at.turned_invisible.connect(_on_angry_at_died)
 	print(name, " pissed at ", new_target.name)
 
 
@@ -264,6 +266,8 @@ func can_aggro_against(new_target: GridEntity) -> bool:
 	if new_target.team == grid_entity.team:
 		return false
 	if new_target == grid_entity or new_target is not GridEntity:
+		return false
+	if new_target.status_component.has_status(StatusStrategy.Status_IDs.HIDDEN):
 		return false
 	if (  # If neither creature is on a team, same species are allied by default
 		(new_target.team == new_target and grid_entity.team == grid_entity)

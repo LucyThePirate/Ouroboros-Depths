@@ -43,6 +43,7 @@ var tile_size: int = 100
 @onready var water_floor_tile := [3, Vector2i(0, 0)]
 @onready var lilly_decor_tile := [3, Vector2i(3, 0)]
 @onready var ice_floor_tile := [3, Vector2i(2, 1)]
+@onready var bogo_tile := [3, Vector2i(2, 1)]
 @onready var door_horizontal_tile := [2, Vector2i(1, 2)]
 @onready var door_vertical_tile := [2, Vector2i(2, 2)]
 @onready var stairs_up_tile := [2, Vector2i(0, 2)]
@@ -339,7 +340,7 @@ func spawn_bogo_egg():
 	if tutorial_level:
 		return
 	var grid_coordinate = (
-		Global.floors.get_used_cells_by_id(ice_floor_tile[0], ice_floor_tile[1]).pick_random()
+		Global.floors.get_used_cells_by_id(bogo_tile[0], bogo_tile[1], 1).pick_random()
 	)
 	bogo_egg = spawn_entity(grid_coordinate, bogo_egg_scene)
 	bogo_egg.egg_died.connect(_on_bogo_timer_timeout)

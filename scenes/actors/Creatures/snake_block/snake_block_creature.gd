@@ -60,3 +60,4 @@ func _form_block_snake() -> void:
 	health_component.max_health += block_segments.size() * 2
 	health_component.heal(block_segments.size() * 2)
 	grid_entity.can_walk_through_walls = false
+	wander_when_no_target = false

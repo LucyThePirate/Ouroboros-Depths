@@ -5,6 +5,7 @@
 [ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="2_e65ml"]
 [ext_resource type="Texture2D" uid="uid://dfvius215va54" path="res://textures/tiles/3DTiles.png" id="2_rirsd"]
 [ext_resource type="PackedScene" uid="uid://cvwrdhp53rb8x" path="res://scenes/actors/Strategies/Skill/chomp/chomp_skill.tscn" id="3_284f1"]
+[ext_resource type="PackedScene" uid="uid://cmc0da6d170ar" path="res://scenes/actors/Strategies/Status/hidden_status_strategy.tscn" id="4_lso1u"]
 [ext_resource type="Texture2D" uid="uid://d32hq6sw2xfa3" path="res://textures/creatures/snake_block.png" id="4_rirsd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_284f1"]
@@ -32,6 +33,10 @@ can_walk_through_walls = true
 
 [node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
 max_health = 2
+
+[node name="HiddenStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="1" unique_id=577548757 instance=ExtResource("4_lso1u")]
+layout_mode = 2
+power = 10
 
 [node name="Node2D2" type="Node2D" parent="." index="6" unique_id=1838522351]
 

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://htmjy37yqb44"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_ec4h4"]
+[ext_resource type="Texture2D" uid="uid://bm3e4klj2fna8" path="res://textures/skills/DisguiseSkill.png" id="2_7eac1"]
+[ext_resource type="Script" uid="uid://7gsfx8sm14na" path="res://scenes/actors/Strategies/Skill/disguise/disguise_skill_strategy.gd" id="2_dq0us"]
+[ext_resource type="PackedScene" uid="uid://cmc0da6d170ar" path="res://scenes/actors/Strategies/Status/hidden_status_strategy.tscn" id="3_44g6t"]
+[ext_resource type="PackedScene" uid="uid://csox3ra3bo6o4" path="res://scenes/effects/spawn_smoke_vfx.tscn" id="3_dvehv"]
+
+[node name="DisguiseSkillStrategy" unique_id=1163924449 instance=ExtResource("1_ec4h4")]
+script = ExtResource("2_dq0us")
+smoke_scene = ExtResource("3_dvehv")
+hidden_status_scene = ExtResource("3_44g6t")
+rarity = 2
+max_per_stack = 1
+skill_name = "Disguise"
+skill_desc = "Hide in plain sight!
+
+The user retreats in a puff of smoke, reappearing under a nearby solid block and gaining the Hidden status effect.
+
+While hidden, others will not be able to detect you. Attacking will end the status early, but it will also deal double damage. Perfect for stealthy getaways, and for ambushes!"
+skill_ID = 20
+
+[node name="Icon" parent="." index="0" unique_id=2096319184]
+texture = ExtResource("2_7eac1")

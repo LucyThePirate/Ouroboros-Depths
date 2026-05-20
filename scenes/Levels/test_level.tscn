@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://djaq0g3fgdxj"]
 
-[ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/cell.tscn" id="1_rvaov"]
+[ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/game_manager.tscn" id="1_rvaov"]
 [ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="2_sj2c2"]
 
 [node name="TestLevel" unique_id=1347246317 instance=ExtResource("1_rvaov")]
