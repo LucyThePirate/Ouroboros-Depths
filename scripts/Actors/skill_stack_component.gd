@@ -299,7 +299,6 @@ func _shuffle_skills() -> void:
 	hand = []
 	total_skill_count = 0
 	for skill in skills:
-		skill.current_cooldown = 0
 		for i in range(skill.current_count):
 			total_skill_count += 1
 			deck.append(skill)

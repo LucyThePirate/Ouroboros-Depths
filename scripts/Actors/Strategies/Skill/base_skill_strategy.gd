@@ -25,9 +25,9 @@ enum SkillTypes { DEFAULT, DIRECTIONAL, CURSOR, NULL }
 @export_category("AI Use Hints")
 @export var max_per_stack := 100
 @onready var current_in_stack := 0
-@export var cooldown_turns := 1
-@onready var current_cooldown := 0
 @export var priority := 0
+enum SkillUsageTypes { WHENEVER, COMBAT_ONLY, OUTSIDE_COMBAT_ONLY }
+@export var when_to_use_skill := SkillUsageTypes.COMBAT_ONLY
 
 @export_category("Lore")
 @export var skill_name: String
@@ -67,7 +67,6 @@ enum SkillIDs {
 	SPARK,
 	CHOMP,
 	DISGUISE,
-	
 }
 @export var skill_ID := SkillIDs.NONE
 
@@ -85,8 +84,6 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 
 
 func use_skill(grid_entity: GridEntity):
-	current_cooldown = 0
-	#current_cooldown = cooldown_turns
 	current_in_stack = 0
 	skill_finished.emit()
 	#if is_depletable and current_count > 0:
@@ -94,8 +91,6 @@ func use_skill(grid_entity: GridEntity):
 
 
 func can_use_skill() -> bool:
-	#if current_cooldown > 0 or current_in_stack >= max_per_stack:
-	#return false
 	return true
 
 
@@ -133,10 +128,6 @@ func set_cursor(newCursor: Vector2i):
 	cursor = newCursor
 	state = States.IDLE
 	$Cursor.hide()
-
-
-func decrement_turn_cooldown():
-	current_cooldown = maxi(0, current_cooldown - 1)
 
 
 func on_skill_queued():

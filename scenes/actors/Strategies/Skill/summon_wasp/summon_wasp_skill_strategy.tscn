@@ -11,6 +11,7 @@ cost = 3
 rarity = 2
 stack_size = 2
 priority = 5
+when_to_use_skill = 0
 skill_name = "Summon Wasp"
 skill_desc = "Call forth a winged warrior to your aid! Though scorned by some for their violent disposition, the humble wasp is a fiercely loyal companion that will throw itself in harm's way for your cause."
 skill_ID = 15

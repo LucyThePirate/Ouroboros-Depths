@@ -41,10 +41,10 @@ func _ready() -> void:
 	random_skill_planner.set_stack_component(stack_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
 	grid_entity.stack_component.emptied_stack.connect(_on_skill_stack_component_emptied_stack)
+	grid_entity.turned_invisible.connect(_update_visibility)
 	if visual and visual.has_method("initialize"):
 		visual.initialize(grid_entity)
-	in_darkness = grid_entity.is_in_darkness()
-	visible = not in_darkness
+	_update_visibility()
 	#turn_component.turn_ended.connect(status_manager_component.on_turn_ended)
 
 
@@ -78,21 +78,22 @@ func take_turn():
 		_:
 			print("%s did %s" % [name, intent])
 			pass
-	in_darkness = grid_entity.is_in_darkness()
-	visible = not in_darkness or Debug.fog_visible == false
+	_update_visibility()
 	update_intent()
 	turn_component.end_turn()
 
 
 func update_intent():
 	if not angry_at:
-		intent = "Move"
-		if grid_entity.team != grid_entity and is_instance_valid(grid_entity.team):
-			intent_direction = get_direction_towards(grid_entity.team)
-		elif wander_when_no_target:
-			intent_direction = get_random_direction() as Vector2i
-		else:
-			intent = "Do Nothing"
+		intent = random_skill_planner.make_plan(null)
+		if not intent:
+			intent = "Move"
+			if grid_entity.team != grid_entity and is_instance_valid(grid_entity.team):
+				intent_direction = get_direction_towards(grid_entity.team)
+			elif wander_when_no_target:
+				intent_direction = get_random_direction() as Vector2i
+			else:
+				intent = "Do Nothing"
 		check_for_targets()
 	else:
 		intent = "Move"
@@ -155,7 +156,7 @@ func pursue_entity(entity: GridEntity) -> Vector2i:
 	if randf() > 0.5 or in_darkness:
 		return get_direction_towards(entity, false, true)
 	else:
-		intent = random_skill_planner.make_plan(entity)
+		intent = random_skill_planner.make_plan(angry_at)
 
 		stack_component.preview_queueing_skill(intent == "Queue Skill")
 		stack_component.preview_executing_stack(intent == "Execute Stack")
@@ -169,6 +170,15 @@ func pursue_entity(entity: GridEntity) -> Vector2i:
 			intent = "Move"
 			return get_direction_towards(entity, false, true)
 		return Vector2i.ZERO
+
+
+func _update_visibility() -> void:
+	in_darkness = grid_entity.is_in_darkness()
+	var has_invisible_status = grid_entity.status_component.has_status(
+		StatusStrategy.Status_IDs.HIDDEN
+	)
+	wander_when_no_target = not has_invisible_status
+	visible = (not in_darkness and not has_invisible_status) or Debug.fog_visible == false
 
 
 func _on_grid_entity_grid_entity_initialized() -> void:

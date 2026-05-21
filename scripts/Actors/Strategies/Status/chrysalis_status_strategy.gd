@@ -1,7 +1,7 @@
 extends StatusStrategy
 
 
-func on_moved():
+func on_moved(_old_coords: Vector2i, _new_coords: Vector2i):
 	power = 0
 	_update_visuals()
 	on_status_ended()

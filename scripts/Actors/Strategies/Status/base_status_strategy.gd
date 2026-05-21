@@ -57,7 +57,7 @@ func on_status_ended():
 	status_ended.emit(self)
 
 
-func on_moved():
+func on_moved(_old_coord: Vector2i, _new_coord: Vector2i):
 	pass
 
 
@@ -65,7 +65,7 @@ func on_reload_started():
 	pass
 
 
-func on_grid_entity_parent_set(grid_entity: GridEntity):
+func on_grid_entity_parent_set(_grid_entity: GridEntity):
 	pass
 
 

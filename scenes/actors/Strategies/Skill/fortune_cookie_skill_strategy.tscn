@@ -17,6 +17,7 @@ text_scene = ExtResource("2_w7hts")
 count = 2
 is_depletable = true
 stack_size = -1
+when_to_use_skill = 0
 skill_name = "Fortune Cookie"
 skill_desc = "A little scrap of wisdom tucked away behind a sugary exterior.
 

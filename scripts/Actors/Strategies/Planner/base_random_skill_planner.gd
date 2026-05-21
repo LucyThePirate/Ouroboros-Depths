@@ -6,6 +6,7 @@ signal awaited_directional_input
 signal awaited_cursor_input
 
 var stack_component: SkillStackComponent
+var is_angry_at_a_creature := false
 
 
 func set_stack_component(new_stack_component: SkillStackComponent):
@@ -20,10 +21,12 @@ func queue_random_skill() -> bool:
 	#var random_skill = randi() % stack_component.skills.size()
 	var chosen_skill = null
 	var chosen_skill_number = 0
-	var skill_number = 0
+	var skill_number = -1
 	for skill in stack_component.hand as Array[SkillStrategy]:
+		skill_number += 1
 		if not skill:
-			skill_number += 1
+			continue
+		if not is_appropriate_time_to_use_skill(skill):
 			continue
 		if not chosen_skill:
 			chosen_skill = skill
@@ -33,7 +36,6 @@ func queue_random_skill() -> bool:
 		):
 			chosen_skill = skill
 			chosen_skill_number = skill_number
-		skill_number += 1
 	return stack_component.queue_skill(chosen_skill_number)
 
 
@@ -43,12 +45,31 @@ func has_queueable_skill() -> bool:
 	for skill: SkillStrategy in stack_component.hand:
 		if not skill:
 			continue
+		if not is_appropriate_time_to_use_skill(skill):
+			continue
 		if skill.current_in_stack < skill.max_per_stack:
 			return true
 	return false
 
 
-func make_plan(_entity: GridEntity) -> String:
+func is_appropriate_time_to_use_skill(skill: SkillStrategy) -> bool:
+	if skill.when_to_use_skill == SkillStrategy.SkillUsageTypes.WHENEVER:
+		return true
+	if (
+		is_angry_at_a_creature
+		and skill.when_to_use_skill == SkillStrategy.SkillUsageTypes.COMBAT_ONLY
+	):
+		return true
+	if (
+		not is_angry_at_a_creature
+		and skill.when_to_use_skill == SkillStrategy.SkillUsageTypes.OUTSIDE_COMBAT_ONLY
+	):
+		return true
+	return false
+
+
+func make_plan(angry_at: GridEntity) -> String:
+	is_angry_at_a_creature = angry_at != null
 	if stack_component.is_full():
 		return "Execute Stack"
 	else:
@@ -60,7 +81,8 @@ func make_plan(_entity: GridEntity) -> String:
 			if stack_component.can_execute_stack():
 				return "Execute Stack"
 			else:
-				stack_component.reload_deck()
+				if angry_at:
+					stack_component.reload_deck()
 				return ""
 
 

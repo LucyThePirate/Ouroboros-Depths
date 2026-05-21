@@ -61,7 +61,7 @@ func on_next_floor_reached():
 
 func on_grid_entity_moved(old_coord: Vector2i, new_coord: Vector2i):
 	for status in status_bar.get_children() as Array[StatusStrategy]:
-		status.on_moved()
+		status.on_moved(old_coord, new_coord)
 
 
 func on_reload_started():

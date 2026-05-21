@@ -20,7 +20,7 @@ func use_skill(grid_entity: GridEntity):
 			var wall_data = Global.walls.get_cell_tile_data(check_coords)
 			if (
 				wall_data
-				and wall_data.get_custom_data("is_full_block")
+				and wall_data.get_custom_data("is_solid")
 				and not Global.entity_positions.has(check_coords)
 			):
 				hiding_spots.append(check_coords)

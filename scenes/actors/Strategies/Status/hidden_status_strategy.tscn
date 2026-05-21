@@ -6,8 +6,9 @@
 
 [node name="HiddenStatusStrategy" unique_id=577548757 instance=ExtResource("1_vrvb8")]
 script = ExtResource("2_phl4j")
+move_blocks = true
 status_name = "Hidden"
-status_desc = "This creature is hidden and undetectable. This status depletes as the creature moves.
+status_desc = "This creature is hidden and undetectable. This status depletes as the creature moves, and is removed when the creature is damaged.
 
 If the creature attacks, the status will be removed completely, but the attack will do double damage!"
 turns_afflicted = 10

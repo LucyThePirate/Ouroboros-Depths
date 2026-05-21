@@ -37,7 +37,7 @@ func modify_incoming_damage(incoming_damage := 1) -> int:
 	return incoming_damage
 
 
-func on_moved():
+func on_moved(_old_coord: Vector2i, _new_coord: Vector2i):
 	power -= 1
 	_update_visuals()
 	if power <= 0:

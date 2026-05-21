@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhxy4rfg3pad5"]
+[gd_scene format=3 uid="uid://bhxy4rfg3pad5"]
 
 [ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_3xt2a"]
 [ext_resource type="Script" uid="uid://d18syuvo0mq51" path="res://scripts/Actors/Strategies/Status/shield_status_strategy.gd" id="1_lna0x"]
@@ -21,22 +21,22 @@ stream_0/stream = ExtResource("5_ptsmc")
 stream_1/stream = ExtResource("6_jf3l2")
 stream_2/stream = ExtResource("7_bv2po")
 
-[node name="ShieldStatusStrategy" instance=ExtResource("1_3xt2a")]
+[node name="ShieldStatusStrategy" unique_id=1009001278 instance=ExtResource("1_3xt2a")]
 script = ExtResource("1_lna0x")
 text_scene = ExtResource("3_jf3l2")
 status_name = "Shield"
 status_desc = "This creature's guard is up, shields will intercept damage instead of their health. Additionally, shields are gradually depleted as the creature moves, as well as halved when the creature reloads."
 status_ID = 1
 
-[node name="TextureRect" parent="." index="0"]
+[node name="TextureRect" parent="." index="0" unique_id=1155837054]
 texture = ExtResource("3_ptsmc")
 
-[node name="ShieldBreak" type="AudioStreamPlayer2D" parent="." index="2"]
+[node name="ShieldBreak" type="AudioStreamPlayer2D" parent="." index="2" unique_id=2087142375]
 stream = SubResource("AudioStreamRandomizer_k8qa8")
 volume_db = 9.215
 bus = &"SFX"
 
-[node name="ShieldAdded" type="AudioStreamPlayer2D" parent="." index="3"]
+[node name="ShieldAdded" type="AudioStreamPlayer2D" parent="." index="3" unique_id=1292935584]
 stream = SubResource("AudioStreamRandomizer_tw7ks")
 volume_db = 9.0
 pitch_scale = 0.8

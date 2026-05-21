@@ -12,6 +12,8 @@ smoke_scene = ExtResource("3_dvehv")
 hidden_status_scene = ExtResource("3_44g6t")
 rarity = 2
 max_per_stack = 1
+priority = 5
+when_to_use_skill = 0
 skill_name = "Disguise"
 skill_desc = "Hide in plain sight!
 

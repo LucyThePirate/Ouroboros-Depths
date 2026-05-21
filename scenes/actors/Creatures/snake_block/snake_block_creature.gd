@@ -5,6 +5,8 @@ var block_pattern
 var block_data
 const MAX_BLOCK_SIZE = 10
 
+@export var hidden_status_scene: PackedScene
+
 
 func _on_grid_entity_moved(old_coord: Vector2i, new_coord: Vector2i) -> void:
 	if old_coord == new_coord:
@@ -60,4 +62,7 @@ func _form_block_snake() -> void:
 	health_component.max_health += block_segments.size() * 2
 	health_component.heal(block_segments.size() * 2)
 	grid_entity.can_walk_through_walls = false
-	wander_when_no_target = false
+	var hidden_status = hidden_status_scene.instantiate()
+	hidden_status.move_blocks = false
+	add_child(hidden_status)
+	status_manager_component.add_status(hidden_status)

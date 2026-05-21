@@ -18,7 +18,7 @@ soul_count = 3
 challenge_rating = 4.0
 
 [node name="SummonWaspSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="10" unique_id=1163924449 instance=ExtResource("2_pc8oh")]
-count = 5
+count = 2
 
 [node name="JudoThrowSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="11" unique_id=347600095 instance=ExtResource("3_q8k4s")]
 

@@ -263,6 +263,7 @@ is_depletable = true
 rarity = 3
 max_per_stack = 4
 priority = 5
+when_to_use_skill = 0
 skill_name = "The Possibilities"
 skill_desc = "Your mind is alit as you consider the endless possibilities. Trying new foods, exploring new places, even a budding romance with your best friend? Everything you once thought of as impossible now unveils itself as fresh opportunities.
 
