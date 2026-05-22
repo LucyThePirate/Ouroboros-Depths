@@ -1,10 +1,10 @@
 extends SkillStrategy
 
+@export var spark_line_scene: PackedScene
+
 var currently_executing := false
 var radius = 2
 var damage = 0
-
-@export var note_VFX: PackedScene
 
 
 func _ready():
@@ -33,12 +33,14 @@ func _on_grid_entity_moved(_old_coord: Vector2i, new_coord: Vector2i, grid_entit
 				Global.entity_positions.has(check_coords)
 				and is_instance_valid(Global.entity_positions[check_coords])
 			):
-				if Global.entity_positions[check_coords] == grid_entity:
+				var target = Global.entity_positions[check_coords]
+				if target == grid_entity:
 					continue
-				grid_entity.hit(Global.entity_positions[check_coords], damage)
-				var new_note_VFX = note_VFX.instantiate()
-				get_tree().current_scene.add_child(new_note_VFX)
-				new_note_VFX.global_position = Global.floors.map_to_local(check_coords)
+				grid_entity.hit(target, damage)
+				var new_spark_line = spark_line_scene.instantiate() as Line2D
+				new_spark_line.global_position = grid_entity.global_position
+				new_spark_line.add_point(target.global_position - grid_entity.global_position)
+				get_tree().current_scene.add_child(new_spark_line)
 
 
 func on_stack_execution_finished(grid_entity: GridEntity):
@@ -48,4 +50,26 @@ func on_stack_execution_finished(grid_entity: GridEntity):
 
 func use_skill(grid_entity: GridEntity):
 	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
+	%SparkLineVFX.clear_points()
+	var adjacent = [
+		Vector2i(-1, -1),
+		Vector2i(0, -1),
+		Vector2i(1, -1),
+		Vector2i(1, 0),
+		Vector2i(1, 1),
+		Vector2i(0, 1),
+		Vector2i(-1, 1),
+		Vector2i(-1, 0)
+	]
+	for a in adjacent:
+		var check_coords = grid_coords + a
+		%SparkLineVFX.add_point(Global.floors.map_to_local(check_coords))
+		if (
+			Global.entity_positions.has(check_coords)
+			and is_instance_valid(Global.entity_positions[check_coords])
+		):
+			var target = Global.entity_positions[check_coords]
+			grid_entity.hit(target, 1)
+	%AnimationPlayer.play("ShowSparkLine_2")
+	%ZapSFX.play()
 	super(grid_entity)

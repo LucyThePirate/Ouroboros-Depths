@@ -4,10 +4,9 @@ class_name GridEntity
 
 signal grid_entity_initialized
 signal moved(old_coord: Vector2i, new_coord: Vector2i)
-signal started_stack_execution
-signal ended_stack_execution
 signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
+signal finished_stack_execution
 signal spawn_tile(tile_coord)
 signal spawn_wall(wall_coord)
 signal spawn_entity(entity_coord: Vector2i, entity_type: Species, summoning_skill: SkillStrategy)
@@ -81,6 +80,7 @@ var last_hit_by: GridEntity
 func _ready() -> void:
 	turn_component.turn_ended.connect(status_component.on_turn_ended)
 	stack_component.reload_started.connect(reload_started.emit)
+	stack_component.emptied_stack.connect(func(): finished_stack_execution.emit())
 
 
 func initialize():

@@ -2,12 +2,122 @@
 
 [ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_0iqoy"]
 [ext_resource type="Script" uid="uid://bllxmi6a0igvs" path="res://scenes/actors/Strategies/Skill/spark/spark_skill_strategy.gd" id="2_0se5w"]
-[ext_resource type="PackedScene" uid="uid://cmxeogtui2phc" path="res://scenes/effects/note_vfx.tscn" id="3_nsof0"]
+[ext_resource type="PackedScene" uid="uid://bh6faepq5vgur" path="res://scenes/effects/spark_line_vfx.tscn" id="3_2pqjf"]
 [ext_resource type="Texture2D" uid="uid://ddy45xw8kvq47" path="res://textures/skills/SparkSkill.png" id="4_2ajgy"]
+[ext_resource type="Shader" uid="uid://byiqbb52un772" path="res://textures/shaders/electric_line.gdshader" id="5_2pqjf"]
+[ext_resource type="AudioStream" uid="uid://bb3uv1sslskfx" path="res://audio/SFX/Skills/Spark/584241__smokinghotdog__electric-buzz.ogg" id="6_2e0c6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2e0c6"]
+shader = ExtResource("5_2pqjf")
+shader_parameter/effect_color = Color(0.93333334, 0.8862745, 0.33333334, 1)
+shader_parameter/octave_count = 6
+shader_parameter/amp_start = 0.5
+shader_parameter/amp_coeff = 0.5
+shader_parameter/freq_coeff = 2.0
+shader_parameter/speed = -0.75
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2pqjf"]
+
+[sub_resource type="Animation" id="Animation_2pqjf"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_2e0c6"]
+resource_name = "ShowSparkLine"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:width")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [200.0, 400.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:closed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2ajgy"]
+resource_name = "ShowSparkLine_2"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:width")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [100.0, 200.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:closed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0vvwm"]
+_data = {
+&"RESET": SubResource("Animation_2pqjf"),
+&"ShowSparkLine": SubResource("Animation_2e0c6"),
+&"ShowSparkLine_2": SubResource("Animation_2ajgy")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0vvwm"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("6_2e0c6")
 
 [node name="SparkSkillStrategy" unique_id=1163924449 instance=ExtResource("1_0iqoy")]
 script = ExtResource("2_0se5w")
-note_VFX = ExtResource("3_nsof0")
+spark_line_scene = ExtResource("3_2pqjf")
 skill_name = "Spark"
 skill_desc = "Harness the power of static electricity to deliver nasty shocks!
 
@@ -16,3 +126,29 @@ skill_ID = 18
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("4_2ajgy")
+
+[node name="SparkLineVFX" type="Line2D" parent="." index="4" unique_id=1046810454]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+top_level = true
+z_index = 10
+material = SubResource("ShaderMaterial_2e0c6")
+points = PackedVector2Array(372, 4, 805, -142)
+closed = true
+width = 100.0
+texture = SubResource("PlaceholderTexture2D_2pqjf")
+texture_mode = 2
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=597644313]
+unique_name_in_owner = true
+root_node = NodePath("../SparkLineVFX")
+libraries/ = SubResource("AnimationLibrary_0vvwm")
+
+[node name="ZapSFX" type="AudioStreamPlayer2D" parent="." index="6" unique_id=433215106]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_0vvwm")
+volume_db = 5.31
+bus = &"SFX"

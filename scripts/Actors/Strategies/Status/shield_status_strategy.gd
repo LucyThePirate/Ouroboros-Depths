@@ -38,6 +38,8 @@ func modify_incoming_damage(incoming_damage := 1) -> int:
 
 
 func on_moved(_old_coord: Vector2i, _new_coord: Vector2i):
+	if get_parent().get_parent().has_status(StatusStrategy.Status_IDs.MOBILE_GUARD):
+		return
 	power -= 1
 	_update_visuals()
 	if power <= 0:

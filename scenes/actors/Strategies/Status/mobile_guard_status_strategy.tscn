@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dfxds1tpgoksn"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_fcdgk"]
+[ext_resource type="Script" uid="uid://ccnnbas2y3i57" path="res://scenes/actors/Strategies/Status/mobile_guard_status_strategy.gd" id="2_1eosk"]
+[ext_resource type="Texture2D" uid="uid://dnufantqlt3qq" path="res://textures/skills/ShieldSkill.png" id="2_s4bj5"]
+
+[node name="MobileGuardStatusStrategy" unique_id=577548757 instance=ExtResource("1_fcdgk")]
+script = ExtResource("2_1eosk")
+status_name = "Mobile Guard"
+status_desc = "This creature's guard is currently portable, meaning they are free to move without causing their Shield status to deplete.
+
+Mobile Guard lasts until this creature has finished executing their skill queue."
+status_ID = 8
+max_power = 1
+
+[node name="TextureRect" parent="." index="0" unique_id=1155837054]
+self_modulate = Color(0, 0.8396902, 0.88596827, 1)
+texture = ExtResource("2_s4bj5")

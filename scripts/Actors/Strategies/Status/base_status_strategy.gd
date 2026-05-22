@@ -7,7 +7,7 @@ signal power_changed
 signal max_power_reached
 signal healed(heal_amount)
 
-enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS, VIGOR, REGEN, HIDDEN }
+enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS, VIGOR, REGEN, HIDDEN, MOBILE_GUARD }
 
 @export_category("Lore")
 @export var status_name := "Default Status Name"
@@ -28,7 +28,7 @@ func _ready() -> void:
 
 
 func merge_status(status: StatusStrategy):
-	power += status.power
+	power = min(max_power, power + status.power)
 	current_turns_afflicted = turns_afflicted
 	_update_visuals()
 
@@ -73,6 +73,10 @@ func on_next_floor_reached():
 	status_ended.emit(self)
 
 
+func on_stack_execution_finished():
+	pass
+
+
 func modify_incoming_damage(incoming_damage := 1) -> int:
 	return incoming_damage
 
@@ -82,6 +86,9 @@ func modify_outgoing_damage(outgoing_damage := 1) -> int:
 
 
 func _update_visuals() -> void:
+	if power == 1:
+		power_label.text = ""
+		return
 	if power >= max_power:
 		power_label.text = (
 			"[outline_color=GOLDENROD][color=YELLOW]%s[/color][/outline_color]" % str(power)
