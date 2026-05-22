@@ -15,6 +15,7 @@ script = ExtResource("1_sn4vy")
 star_VFX = ExtResource("2_e3lg0")
 note_VFX = ExtResource("4_iv8dg")
 skill_type = 1
+usable_on_walls = true
 skill_name = "Dark Star"
 skill_desc = "A nefarious spell favored among liches. The caster hurls a shadowy bolt that bursts into a star formation.
 

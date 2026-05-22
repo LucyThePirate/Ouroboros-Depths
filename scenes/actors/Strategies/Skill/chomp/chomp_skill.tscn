@@ -337,6 +337,7 @@ _data = {
 script = ExtResource("2_p3agd")
 rarity = 2
 stack_size = 2
+usable_on_walls = true
 skill_name = "Chomp"
 skill_desc = "You visciously rend your foe with your teeth. Most of the time, you are a civilized creature. Right now? You are in tune with the ancient reptilian part of your brain.
 

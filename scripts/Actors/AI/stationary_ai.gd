@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 func pursue_entity(entity: GridEntity) -> Vector2i:
-	intent = random_skill_planner.make_plan(entity)
+	intent = random_skill_planner.make_plan(grid_entity, entity)
 
 	stack_component.preview_queueing_skill(intent == "Queue Skill")
 	stack_component.preview_executing_stack(intent == "Execute Stack")

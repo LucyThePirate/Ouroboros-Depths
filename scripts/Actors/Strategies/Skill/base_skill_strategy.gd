@@ -28,6 +28,7 @@ enum SkillTypes { DEFAULT, DIRECTIONAL, CURSOR, NULL }
 @export var priority := 0
 enum SkillUsageTypes { WHENEVER, COMBAT_ONLY, OUTSIDE_COMBAT_ONLY }
 @export var when_to_use_skill := SkillUsageTypes.COMBAT_ONLY
+@export var usable_on_walls := false
 
 @export_category("Lore")
 @export var skill_name: String

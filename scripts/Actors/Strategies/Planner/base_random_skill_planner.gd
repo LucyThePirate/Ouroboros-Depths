@@ -7,6 +7,8 @@ signal awaited_cursor_input
 
 var stack_component: SkillStackComponent
 var is_angry_at_a_creature := false
+var grid_parent: GridEntity
+var temp_can_walk_through_walls := false
 
 
 func set_stack_component(new_stack_component: SkillStackComponent):
@@ -68,7 +70,8 @@ func is_appropriate_time_to_use_skill(skill: SkillStrategy) -> bool:
 	return false
 
 
-func make_plan(angry_at: GridEntity) -> String:
+func make_plan(grid_entity: GridEntity, angry_at: GridEntity) -> String:
+	grid_parent = grid_entity
 	is_angry_at_a_creature = angry_at != null
 	if stack_component.is_full():
 		return "Execute Stack"
@@ -97,11 +100,15 @@ func perform_plan(plan: String) -> bool:
 
 
 func _on_requested_directional_input():
+	if stack_component.current_skill.usable_on_walls:
+		temp_can_walk_through_walls = grid_parent.can_walk_through_walls
+		grid_parent.can_walk_through_walls = true
 	awaited_directional_input.emit()
 
 
 func set_direction(move_direction: Vector2i):
 	stack_component.set_direction(move_direction)
+	grid_parent.can_walk_through_walls = temp_can_walk_through_walls
 
 
 func _on_requested_cursor_input():

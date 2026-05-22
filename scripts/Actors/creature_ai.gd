@@ -85,7 +85,7 @@ func take_turn():
 
 func update_intent():
 	if not angry_at:
-		intent = random_skill_planner.make_plan(null)
+		intent = random_skill_planner.make_plan(grid_entity, null)
 		if not intent:
 			intent = "Move"
 			if grid_entity.team != grid_entity and is_instance_valid(grid_entity.team):
@@ -156,7 +156,7 @@ func pursue_entity(entity: GridEntity) -> Vector2i:
 	if randf() > 0.5 or in_darkness:
 		return get_direction_towards(entity, false, true)
 	else:
-		intent = random_skill_planner.make_plan(angry_at)
+		intent = random_skill_planner.make_plan(grid_entity, angry_at)
 
 		stack_component.preview_queueing_skill(intent == "Queue Skill")
 		stack_component.preview_executing_stack(intent == "Execute Stack")
