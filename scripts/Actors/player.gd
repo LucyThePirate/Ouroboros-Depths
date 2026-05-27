@@ -125,6 +125,8 @@ func _handle_movement() -> void:
 			#$ExecutingParticles.emitting = true
 			state = States.EXECUTING_STACK
 			%ScarecrowVisual.use_parent_material = false
+			if Input.is_action_pressed("Run"):
+				stack_component.reverse_stack_order()
 			stack_component.execute_stack()
 
 	elif Input.is_action_just_pressed("Reload"):
@@ -175,6 +177,7 @@ func _get_directional_input():
 	var is_running = false
 	if Input.is_action_pressed("Run"):
 		is_running = true
+	stack_component.flip_execute_prompt(is_running)
 	if Input.is_action_just_pressed("Left") or (is_running and Input.is_action_pressed("Left")):
 		moveDirection.x -= 1
 	if Input.is_action_just_pressed("Right") or (is_running and Input.is_action_pressed("Right")):

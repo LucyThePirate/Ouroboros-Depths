@@ -44,8 +44,15 @@ func _on_grid_entity_moved(old_coords: Vector2i, new_coords: Vector2i):
 			scale.x *= -1
 		elif xDifference < 0 and scale.x > 0:
 			scale.x *= -1
-	if not anim_tree and animation_player.has_animation("Moving"):
-		animation_player.play("Moving")
+	if not anim_tree:
+		if (
+			animation_player.has_animation("Hide")
+			and Global.walls.get_cell_tile_data(new_coords)
+			and Global.walls.get_cell_tile_data(new_coords).get_custom_data("is_solid")
+		):
+			animation_player.play("Hide")
+		elif animation_player.has_animation("Moving"):
+			animation_player.play("Moving")
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:

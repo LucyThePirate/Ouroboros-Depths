@@ -8,7 +8,10 @@
 [node name="SlimeCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_d6cwe")]
 visual = NodePath("SlimeVisual")
 
-[node name="GridEntity" parent="." index="0" unique_id=1162874930]
+[node name="SlimeVisual" parent="." index="0" unique_id=1504317357 instance=ExtResource("4_nady4")]
+y_sort_enabled = true
+
+[node name="GridEntity" parent="." index="1" unique_id=1162874930]
 species_type = 10
 creature_name = "Slime"
 species_desc = "A giant single-celled organism hops along corridors, absorbing any scraps it stumbles across. Or, in the absence of any food, it'll happily pulverize you into its next meal.
@@ -21,7 +24,7 @@ max_per_stack = 1
 [node name="StompSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="11" unique_id=1440495377 instance=ExtResource("3_rownt")]
 max_per_stack = 1
 
-[node name="SlimeVisual" parent="." index="6" unique_id=1504317357 instance=ExtResource("4_nady4")]
-y_sort_enabled = true
+[node name="Display" parent="." index="2" unique_id=1627324750]
+material = null
 
 [editable path="GridEntity"]

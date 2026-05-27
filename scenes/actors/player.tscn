@@ -246,4 +246,5 @@ process_material = SubResource("ParticleProcessMaterial_befnt")
 [connection signal="emptied_stack" from="GridEntity/SkillStackComponent" to="." method="_on_skill_stack_component_emptied_stack"]
 
 [editable path="GridEntity"]
+[editable path="GridEntity/SkillStackComponent"]
 [editable path="GridEntity/UI/StatusManagerComponent"]

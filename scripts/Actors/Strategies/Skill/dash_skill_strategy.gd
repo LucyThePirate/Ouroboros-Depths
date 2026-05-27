@@ -25,7 +25,7 @@ func use_skill(grid_entity: GridEntity):
 		new_dash_VFX.global_position = grid_entity.global_position
 		await get_tree().create_timer(0.025).timeout
 		successfully_moved = grid_entity.move(direction)
-		var check_coords = Global.floors.local_to_map(grid_entity.global_position) + direction
+		var check_coords = grid_entity.grid_coords + direction
 		if (
 			Global.entity_positions.has(check_coords)
 			and is_instance_valid(Global.entity_positions[check_coords])

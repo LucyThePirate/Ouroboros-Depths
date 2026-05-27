@@ -30,14 +30,14 @@ func use_skill(grid_entity: GridEntity):
 	while i < min_distance:
 		await get_tree().create_timer(0.025).timeout
 		successfully_moved = grid_entity.move(direction)
-		var check_coords = Global.floors.local_to_map(grid_entity.global_position) + direction
+		var check_coords = grid_entity.grid_coords + direction
 		if (  # Check for grid entities to hit
 			Global.entity_positions.has(check_coords)
 			and is_instance_valid(Global.entity_positions[check_coords])
 		):
 			var target = Global.entity_positions[check_coords]
-			target.move(direction)
 			target._on_hit(grid_entity)
+			target.move(direction)
 		var wall_data = Global.walls.get_cell_tile_data(check_coords)
 		if (
 			wall_data

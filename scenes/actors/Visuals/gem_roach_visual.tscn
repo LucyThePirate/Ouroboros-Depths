@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://b8twifipvok5p"]
+
+[ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="1_xgbww"]
+[ext_resource type="Texture2D" uid="uid://cgiq7w86n2god" path="res://textures/creatures/gem_roach_sprites.png" id="2_8avx0"]
+[ext_resource type="Script" uid="uid://b2ojdp2aq678e" path="res://scripts/Actors/Visuals/visualBase.gd" id="3_8avx0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vf1s"]
+atlas = ExtResource("2_8avx0")
+region = Rect2(320, 200, 160, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fr0xg"]
+atlas = ExtResource("2_8avx0")
+region = Rect2(0, 200, 160, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0ux6"]
+atlas = ExtResource("2_8avx0")
+region = Rect2(320, 0, 160, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgbww"]
+atlas = ExtResource("2_8avx0")
+region = Rect2(160, 200, 160, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iua03"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vf1s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fr0xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0ux6")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgbww")
+}],
+"loop": true,
+"name": &"hide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fr0xg")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_8avx0"]
+resource_name = "Hide"
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"hide", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_vofsg"]
+resource_name = "Hurt"
+length = 0.2
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"hurt", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_fr0xg"]
+resource_name = "Idle"
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"default", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3vf1s"]
+resource_name = "Moving"
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"default", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fr0xg"]
+_data = {
+&"Hide": SubResource("Animation_8avx0"),
+&"Hurt": SubResource("Animation_vofsg"),
+&"Idle": SubResource("Animation_fr0xg"),
+&"Moving": SubResource("Animation_3vf1s")
+}
+
+[node name="GemRoachVisual" type="AnimatedSprite2D" unique_id=584145220]
+material = ExtResource("1_xgbww")
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_iua03")
+autoplay = "default"
+script = ExtResource("3_8avx0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=98648759]
+libraries/ = SubResource("AnimationLibrary_fr0xg")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

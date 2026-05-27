@@ -26,7 +26,6 @@ creature_name = "Snake Block"
 species_desc = "A floating pair of googly eyes that is at home on top of walls, transforming them into giant snakes in the process.
 
 It is suspected that this creature is some sort of poultergeist, animating walls perhaps out of... malice? Sheer boredom? It's hard to say."
-soul_count = 2
 challenge_rating = 1.5
 can_walk_through_walls = true
 

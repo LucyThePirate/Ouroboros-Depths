@@ -29,7 +29,7 @@ func initialize(direction: Vector2i, grid_entity: GridEntity):
 	sprite.global_position = grid_entity.global_position
 	sprite.look_at(global_position + Vector2(direction))
 	sprite.rotate(PI / 2)
-	var grid_coords = Global.floors.local_to_map(grid_entity.global_position) as Vector2i
+	var grid_coords = grid_entity.grid_coords as Vector2i
 	for i in range(max_distance):
 		grid_coords += direction
 		position += Vector2(Global.CELL_SIZE * direction)

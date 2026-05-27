@@ -34,7 +34,7 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 
 
 func _form_block_snake() -> void:
-	var starting_coords = Global.floors.local_to_map(grid_entity.global_position)
+	var starting_coords = grid_entity.grid_coords
 	block_data = Global.walls.get_cell_tile_data(starting_coords)
 	if (
 		not block_data
@@ -61,6 +61,7 @@ func _form_block_snake() -> void:
 			break
 	health_component.max_health += block_segments.size() * 2
 	health_component.heal(block_segments.size() * 2)
+	grid_entity.soul_count += int(block_segments.size() / 2.0)
 	grid_entity.can_walk_through_walls = false
 	var hidden_status = hidden_status_scene.instantiate()
 	hidden_status.move_blocks = false

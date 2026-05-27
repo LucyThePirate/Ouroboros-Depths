@@ -23,7 +23,7 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 	%AnimationPlayer.play("RESET")
 	%GrabLineVFX.clear_points()
 	# Check for adjacent targets
-	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
+	var grid_coords = grid_entity.grid_coords
 	var adjacent = [
 		Vector2i(-1, -1),
 		Vector2i(0, -1),
@@ -86,7 +86,7 @@ func use_skill(grid_entity: GridEntity):
 	var new_stomp_VFX = StompVFX.instantiate()
 	add_child(new_stomp_VFX)
 	new_stomp_VFX.global_position = victim_to_throw.global_position
-	var grid_coords = Global.floors.local_to_map(victim_to_throw.global_position)
+	var grid_coords = victim_to_throw.grid_coords
 	var offset = -shockwave_radius + 1
 	for i in range(shockwave_radius * 2 - 1):
 		for j in range(shockwave_radius * 2 - 1):

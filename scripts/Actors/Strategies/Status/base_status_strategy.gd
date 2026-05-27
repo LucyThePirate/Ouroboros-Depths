@@ -7,7 +7,9 @@ signal power_changed
 signal max_power_reached
 signal healed(heal_amount)
 
-enum Status_IDs { NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS, VIGOR, REGEN, HIDDEN, MOBILE_GUARD }
+enum Status_IDs {
+	NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS, VIGOR, REGEN, HIDDEN, MOBILE_GUARD, SPEED
+}
 
 @export_category("Lore")
 @export var status_name := "Default Status Name"

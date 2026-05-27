@@ -12,7 +12,7 @@ func _ready():
 
 func use_skill(grid_entity: GridEntity):
 	var hiding_spots = []
-	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
+	var grid_coords = grid_entity.grid_coords
 	var offset = -radius + 1
 	for i in range(radius * 2 - 1):
 		for j in range(radius * 2 - 1):
@@ -21,6 +21,7 @@ func use_skill(grid_entity: GridEntity):
 			if (
 				wall_data
 				and wall_data.get_custom_data("is_solid")
+				and not wall_data.get_custom_data("indestructable")
 				and not Global.entity_positions.has(check_coords)
 			):
 				hiding_spots.append(check_coords)

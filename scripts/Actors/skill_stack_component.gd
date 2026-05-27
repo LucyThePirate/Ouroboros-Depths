@@ -202,6 +202,18 @@ func _handle_stack_execution():
 		awaited_cursor_input.emit()
 
 
+func flip_execute_prompt(is_flipped := true):
+	if is_flipped:
+		%ExecuteText.scale.x = -1.0
+	else:
+		%ExecuteText.scale.x = 1.0
+
+
+func reverse_stack_order():
+	stack.reverse()
+	_update_stack_visuals()
+
+
 func _on_moved_by_skill():
 	grid_entity.moved_by_skill = true
 

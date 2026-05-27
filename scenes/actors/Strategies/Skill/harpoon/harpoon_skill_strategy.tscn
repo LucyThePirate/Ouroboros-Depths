@@ -2,12 +2,64 @@
 
 [ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_ubew5"]
 [ext_resource type="Script" uid="uid://dcm7h1vp8vbvp" path="res://scenes/actors/Strategies/Skill/harpoon/harpoon_skill_strategy.gd" id="2_5i853"]
-[ext_resource type="PackedScene" uid="uid://bdlhc6l33oqyf" path="res://scenes/effects/dash_vfx.tscn" id="3_lvt6v"]
 [ext_resource type="Texture2D" uid="uid://dvk0lh8w8h2fe" path="res://textures/skills/HarpoonSkill.png" id="4_lvt6v"]
+[ext_resource type="AudioStream" uid="uid://xc3xkhlrf27m" path="res://audio/SFX/Skills/Harpoon/792318__randbsoundbites__grappling-hookgun-extending-retracting.ogg" id="5_g78k6"]
+[ext_resource type="AudioStream" uid="uid://ckspchuwarie8" path="res://audio/SFX/Skills/Harpoon/792318__randbsoundbites__grappling-hookgun-extending-retracting-2.ogg" id="6_ti8ny"]
+
+[sub_resource type="Curve" id="Curve_lvt6v"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.8091603, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_4rtpa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GrabLineVFX:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jrxc6"]
+resource_name = "fade_line"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GrabLineVFX:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lvt6v"]
+_data = {
+&"RESET": SubResource("Animation_4rtpa"),
+&"fade_line": SubResource("Animation_jrxc6")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c7yco"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("5_g78k6")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_p3wmx"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("6_ti8ny")
 
 [node name="HarpoonSkillStrategy" unique_id=1163924449 instance=ExtResource("1_ubew5")]
 script = ExtResource("2_5i853")
-DashVFX = ExtResource("3_lvt6v")
 skill_type = 1
 skill_name = "Harpoon"
 skill_desc = "Latch onto foes with a sharp spear, then yank 'em close to you!"
@@ -15,3 +67,27 @@ skill_ID = 14
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("4_lvt6v")
+
+[node name="GrabLineVFX" type="Line2D" parent="." index="4" unique_id=302380924]
+unique_name_in_owner = true
+top_level = true
+width = 50.0
+width_curve = SubResource("Curve_lvt6v")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5" unique_id=1607847412]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_lvt6v")
+
+[node name="ExtendLineSFX" type="AudioStreamPlayer2D" parent="." index="6" unique_id=1754661405]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_c7yco")
+volume_db = 8.768
+pitch_scale = 1.12
+
+[node name="RetractLineSFX" type="AudioStreamPlayer2D" parent="." index="7" unique_id=1424463973]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_p3wmx")
+volume_db = 7.716

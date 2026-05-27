@@ -254,12 +254,14 @@ script = ExtResource("9_8of2w")
 action_name = &"ExecuteStack"
 metadata/_custom_type_script = "uid://b57xlofytn3k"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/ExecutePrompt" unique_id=2026451440]
+[node name="ExecuteText" type="RichTextLabel" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/ExecutePrompt" unique_id=2026451440]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -93.5833
 offset_top = 12.5296
 offset_right = 139.417
-offset_bottom = 52.5296
+offset_bottom = 52.529602
+pivot_offset = Vector2(117.71417, 23.920105)
 theme = ExtResource("9_qdnrn")
 theme_override_constants/outline_size = 4
 theme_override_fonts/normal_font = ExtResource("6_o3wly")

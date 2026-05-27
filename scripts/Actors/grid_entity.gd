@@ -64,6 +64,8 @@ var team: GridEntity
 @onready var turn_component = $TurnComponent as TurnComponent
 @onready var stack_component = $SkillStackComponent as SkillStackComponent
 
+var grid_coords: Vector2i
+
 enum States { IDLE, DEAD }
 var state = States.IDLE
 
@@ -88,9 +90,10 @@ func initialize():
 		return
 	# Snap to grid
 	global_position = Global.floors.map_to_local(Global.floors.local_to_map(global_position))
+	grid_coords = Global.floors.local_to_map(global_position)
 	initialized = true
 	grid_entity_initialized.emit()
-	Global.entity_positions[Global.floors.local_to_map(global_position)] = self
+	Global.entity_positions[grid_coords] = self
 
 
 func get_skills() -> Array[Node]:
@@ -101,14 +104,17 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 	if not initialized or state == States.DEAD:
 		return false
 
-	var old_coords = Global.floors.local_to_map(global_position)
-	var grid_coords = old_coords + direction
-	var floor_data = Global.floors.get_cell_tile_data(grid_coords)
+	var old_coords = grid_coords
+	var new_coords = old_coords + direction
+	var floor_data = Global.floors.get_cell_tile_data(new_coords)
 
 	# Test for other bodies
-	var other_entity = Global.entity_positions.has(grid_coords)
+	var other_entity = Global.entity_positions.has(new_coords)
+	if other_entity and not Global.entity_positions[new_coords]:
+		Global.entity_positions.erase(new_coords)
+		other_entity = false
 	if other_entity:
-		other_entity = Global.entity_positions[grid_coords] as GridEntity
+		other_entity = Global.entity_positions[new_coords] as GridEntity
 		# Test if entity is on this creature's team. If so, swap with them instead.
 		if is_in_group("Player") and other_entity.team == team:
 			swap(other_entity)
@@ -123,17 +129,17 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 			return false
 
 	# Object interaction
-	var wall_data = Global.walls.get_cell_tile_data(grid_coords)
+	var wall_data = Global.walls.get_cell_tile_data(new_coords)
 	if wall_data and not can_walk_through_walls:
 		if wall_data.get_custom_data("is_door"):
-			opened_door.emit(grid_coords)
+			opened_door.emit(new_coords)
 			moved.emit(old_coords, old_coords)
 			door_open.play()
 			performed_action.emit()
 			return false
 		if wall_data.get_custom_data("is_pushable"):
 			play_thump_sound(wall_data.get_custom_data("material"))
-			pushed_object.emit(grid_coords, direction)
+			pushed_object.emit(new_coords, direction)
 			moved.emit(old_coords, old_coords)
 			performed_action.emit()
 			return false
@@ -142,10 +148,11 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 			return false
 
 	# Movement
-	Global.entity_positions[grid_coords] = self
-	Global.entity_positions.erase(Global.floors.local_to_map(global_position))
+	Global.entity_positions.erase(old_coords)
+	Global.entity_positions[new_coords] = self
 	global_position += Vector2(direction) * CELL_SIZE
-	moved.emit(old_coords, grid_coords)
+	moved.emit(old_coords, new_coords)
+	grid_coords = new_coords
 	performed_action.emit()
 	if not floor_data:
 		fell_off_map.emit()
@@ -154,30 +161,30 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 	return true
 
 
-func warp(position: Vector2i) -> bool:
-	print("warping to:", position)
+func warp(new_coords: Vector2i) -> bool:
+	print("warping to:", new_coords)
 	if not initialized:
 		return false
 
-	var old_coords = Global.floors.local_to_map(global_position)
-	var grid_coords = position
-	var floor_data = Global.floors.get_cell_tile_data(grid_coords)
+	var old_coords = grid_coords
+	var floor_data = Global.floors.get_cell_tile_data(new_coords)
 
 	# Check for walls
-	var wall_data = Global.walls.get_cell_tile_data(grid_coords)
+	var wall_data = Global.walls.get_cell_tile_data(new_coords)
 	if wall_data and wall_data.get_custom_data("is_solid") and not can_walk_through_walls:
 		play_thump_sound(wall_data.get_custom_data("material"))
 		return false
 
 	# Testing if there is already another entity on the target location
-	if Global.entity_positions.has(grid_coords):
+	if Global.entity_positions.has(new_coords):
 		return false
 
 	# Movement
-	moved.emit(old_coords, grid_coords)
-	Global.entity_positions[grid_coords] = self
+	moved.emit(old_coords, new_coords)
 	Global.entity_positions.erase(old_coords)
-	global_position = Vector2(position) * CELL_SIZE + (Vector2(1, 1) * (CELL_SIZE / 2))
+	Global.entity_positions[new_coords] = self
+	grid_coords = new_coords
+	global_position = Vector2(new_coords) * CELL_SIZE + (Vector2(1, 1) * (CELL_SIZE / 2))
 	if not floor_data:
 		fell_off_map.emit()
 	else:
@@ -203,8 +210,8 @@ func get_valid_moves(allow_moving_into_entities = false) -> Array:
 	if not initialized:
 		return move_options
 	for direction in [Vector2i(-1, 0), Vector2i(1, 0), Vector2i(0, -1), Vector2i(0, 1)]:
-		var grid_coords = Global.floors.local_to_map(global_position) + direction
-		if is_obstructed(grid_coords, true, allow_moving_into_entities):
+		var check_coords = grid_coords + direction
+		if is_obstructed(check_coords, true, allow_moving_into_entities):
 			continue
 
 		# Nothing blocking movement in this direction.
@@ -213,31 +220,31 @@ func get_valid_moves(allow_moving_into_entities = false) -> Array:
 
 
 func is_obstructed(
-	grid_coords: Vector2i, check_floor = true, allow_moving_into_entities = false
+	check_coords: Vector2i, check_floor = true, allow_moving_into_entities = false
 ) -> bool:
 	if check_floor:
-		var floor_data = Global.floors.get_cell_tile_data(grid_coords)
+		var floor_data = Global.floors.get_cell_tile_data(check_coords)
 		if not floor_data:
 			return true
 
-	var wall_data = Global.walls.get_cell_tile_data(grid_coords)
+	var wall_data = Global.walls.get_cell_tile_data(check_coords)
 	if wall_data and wall_data.get_custom_data("is_solid") and not can_walk_through_walls:
 		return true
 
 	if not allow_moving_into_entities:
-		if Global.entity_positions.has(grid_coords):
+		if Global.entity_positions.has(check_coords):
 			return true
 	return false
 
 
 func try_attacking(entity):
 	for direction in [Vector2i(-1, 0), Vector2i(1, 0), Vector2i(0, -1), Vector2i(0, 1)]:
-		var grid_coords = Global.floors.local_to_map(global_position) + direction
+		var check_coords = grid_coords + direction
 
 		# Test for other bodies
 		if (
-			Global.entity_positions.has(grid_coords)
-			and Global.entity_positions[grid_coords] == entity
+			Global.entity_positions.has(check_coords)
+			and Global.entity_positions[check_coords] == entity
 		):
 			hit(entity)
 			return true
@@ -302,7 +309,7 @@ func on_death(is_despawning := false) -> void:
 				last_hit_by.soul_count += soul_count
 				last_hit_by.kills += 1
 				last_hit_by.absorbed_souls.emit(global_position)
-		Global.entity_positions.erase(Global.floors.local_to_map(global_position))
+		Global.entity_positions.erase(grid_coords)
 		state = States.DEAD
 		died.emit(is_despawning)
 
@@ -315,7 +322,6 @@ func is_alive() -> bool:
 
 
 func is_on_floor() -> bool:
-	var grid_coords = Global.floors.local_to_map(global_position)
 	var floor_data = Global.floors.get_cell_tile_data(grid_coords)
 	if not floor_data:
 		return false
@@ -323,7 +329,6 @@ func is_on_floor() -> bool:
 
 
 func is_on_path_down() -> bool:
-	var grid_coords = Global.floors.local_to_map(global_position)
 	var floor_data = Global.floors.get_cell_tile_data(grid_coords)
 	if not floor_data or not floor_data.get_custom_data("is_path_down"):
 		return false
@@ -335,7 +340,6 @@ func is_in_darkness() -> bool:
 		return true
 	if not Global.floors:
 		return false
-	var grid_coords = Global.floors.local_to_map(global_position)
 	if not Global.darkness:
 		return false
 	var darkness_data = Global.darkness.get_cell_tile_data(grid_coords)

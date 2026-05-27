@@ -21,10 +21,10 @@ func on_skill_queued():
 	super()
 
 
-func _on_grid_entity_moved(_old_coord: Vector2i, new_coord: Vector2i, grid_entity: GridEntity):
+func _on_grid_entity_moved(_old_coord: Vector2i, _new_coord: Vector2i, grid_entity: GridEntity):
 	if not currently_executing:
 		return
-	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
+	var grid_coords = grid_entity.grid_coords
 	var offset = -radius + 1
 	for i in range(radius * 2 - 1):
 		for j in range(radius * 2 - 1):
@@ -43,13 +43,13 @@ func _on_grid_entity_moved(_old_coord: Vector2i, new_coord: Vector2i, grid_entit
 				get_tree().current_scene.add_child(new_spark_line)
 
 
-func on_stack_execution_finished(grid_entity: GridEntity):
+func on_stack_execution_finished(_grid_entity: GridEntity):
 	currently_executing = false
 	damage = 0
 
 
 func use_skill(grid_entity: GridEntity):
-	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
+	var grid_coords = grid_entity.grid_coords
 	%SparkLineVFX.clear_points()
 	var adjacent = [
 		Vector2i(-1, -1),

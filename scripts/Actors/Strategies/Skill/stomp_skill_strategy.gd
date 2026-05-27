@@ -21,7 +21,7 @@ func use_skill(grid_entity: GridEntity):
 	var new_stomp_VFX = StompVFX.instantiate()
 	add_child(new_stomp_VFX)
 	new_stomp_VFX.global_position = grid_entity.global_position
-	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
+	var grid_coords = grid_entity.grid_coords
 	var offset = -shockwave_radius + 1
 	for i in range(shockwave_radius * 2 - 1):
 		for j in range(shockwave_radius * 2 - 1):

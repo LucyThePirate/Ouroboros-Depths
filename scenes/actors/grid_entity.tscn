@@ -136,6 +136,7 @@ volume_db = 8.254
 bus = &"SFX"
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=222249653]
+visible = false
 self_modulate = Color(1, 1, 0.345098, 0.301961)
 z_index = -1
 position = Vector2(1, 0.5)
