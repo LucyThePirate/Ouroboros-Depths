@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bndu5bkhnadmr" path="res://scenes/Generation/SetPieces/theres_that_symbol_again_set_piece.tscn" id="15_hwbqm"]
 [ext_resource type="PackedScene" uid="uid://8qn22cosj7n6" path="res://scenes/Generation/SetPieces/look_at_my_hedges_set_piece.tscn" id="16_s18cg"]
 [ext_resource type="PackedScene" uid="uid://c1rqb5hibrypo" path="res://scenes/Generation/SetPieces/dont_get_lost_set_piece.tscn" id="17_a0xml"]
-[ext_resource type="PackedScene" uid="uid://dbdorv8erjnkl" path="res://scenes/Generation/SetPieces/ant_tunnelts_set_piece.tscn" id="18_k6prg"]
+[ext_resource type="PackedScene" uid="uid://dbdorv8erjnkl" path="res://scenes/Generation/SetPieces/ant_tunnels_set_piece.tscn" id="18_k6prg"]
 [ext_resource type="PackedScene" uid="uid://couvryfhqv7cw" path="res://scenes/Generation/SetPieces/pool_diamond_set_piece.tscn" id="19_2hfcj"]
 [ext_resource type="PackedScene" uid="uid://bbwo4kv64d5r0" path="res://scenes/Generation/SetPieces/dried_pond_set_piece.tscn" id="20_3mtk3"]
 [ext_resource type="PackedScene" uid="uid://5geyfnvswsu" path="res://scenes/Generation/SetPieces/watch_your_step_set_piece.tscn" id="21_hwbqm"]

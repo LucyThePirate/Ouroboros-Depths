@@ -80,10 +80,11 @@ func _ready():
 	#get_window().focus_exited.connect(_on_paused)
 	#get_tree().get_root().focus_exited.connect(_on_paused)
 	#get_viewport().gui_focus_changed.connect(_on_paused)
-	Global.UI_closed.connect(_on_unpaused)
-	Global.UI_opened.connect(_on_paused)
-	Global.aggroed_towards_player.connect(add_to_angry_at_player_list)
-	Global.deaggroed_towards_player.connect(remove_from_angry_at_player_list)
+	if not Global.UI_closed.is_connected(_on_unpaused):
+		Global.UI_closed.connect(_on_unpaused)
+		Global.UI_opened.connect(_on_paused)
+		Global.aggroed_towards_player.connect(add_to_angry_at_player_list)
+		Global.deaggroed_towards_player.connect(remove_from_angry_at_player_list)
 	Global.entity_positions = {}
 	Global.metamorphosis_reroll_cost = 3
 	$CanvasLayer/DeathScreen.hide()
@@ -107,6 +108,12 @@ func _ready():
 	# Else, no existing level, generate
 	generator.initialize(floors, walls, fog)
 	generator.generate_level()
+	for extra_node in generator.extra_nodes:
+		extra_node.reparent(self)
+		if extra_node is CreatureAI:
+			extra_node.grid_entity.global_position = extra_node.global_position - Vector2(50, 50)
+			#_initialize_entity(extra_node.grid_entity)
+
 	_initialize_fog()
 	spawn_bogo_egg()
 	if not player:
@@ -215,6 +222,8 @@ func _initialize_entities():
 
 
 func _initialize_entity(new_entity: GridEntity):
+	if new_entity.initialized:
+		return
 	new_entity.opened_door.connect(_open_door)
 	new_entity.pushed_object.connect(_push_tile)
 	new_entity.spawn_tile.connect(spawn_tile)
@@ -459,8 +468,10 @@ func _is_obstructed(tile_coords) -> bool:
 	return false
 
 
-func _on_entity_died(_is_despawning, grid_entity: GridEntity):
+func _on_entity_died(is_despawning, grid_entity: GridEntity):
 	current_challenge_rating -= grid_entity.challenge_rating
+	if not is_despawning and grid_entity.challenge_rating > 0:
+		Global.walls.set_cell(generator.stairs_down_location, -1)
 
 
 func _on_player_died(_despawning) -> void:

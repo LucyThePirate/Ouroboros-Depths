@@ -1,6 +1,8 @@
 [gd_scene format=4 uid="uid://cexwbv2kv5inr"]
 
 [ext_resource type="PackedScene" uid="uid://8aewrijk47tx" path="res://scenes/Generation/SetPieces/basic_1x1_set_piece.tscn" id="1_bt7vo"]
+[ext_resource type="PackedScene" uid="uid://cp6erui8kemoj" path="res://scenes/actors/Creatures/rat/rat_creature.tscn" id="2_vuhes"]
+[ext_resource type="Texture2D" uid="uid://cjgtq3i1f5vbe" path="res://textures/HamsterdogOffended.png" id="3_tkkh0"]
 
 [node name="SnowHamsterdogStorageSetPiece" unique_id=893876554 instance=ExtResource("1_bt7vo")]
 
@@ -8,4 +10,13 @@
 tile_map_data = PackedByteArray("AAAAAAAAAgACAAUAAAAAAAEAAgACAAUAAAAAAAIAAgACAAUAAAAAAAMAAgACAAUAAAABAAAAAgACAAUAAAABAAEAAgACAAUAAAABAAIAAgACAAUAAAABAAMAAgACAAUAAAACAAAAAgACAAUAAAACAAEAAgACAAUAAAACAAIAAgACAAUAAAACAAMAAgACAAUAAAADAAAAAgACAAUAAAADAAEAAgACAAUAAAADAAIAAgACAAUAAAADAAMAAgACAAUAAAA=")
 
 [node name="Walls" parent="." index="1" unique_id=218292017]
-tile_map_data = PackedByteArray("AAAAAAIAAgADAAQAAAAAAAEAAgAEAAQAAAAAAAAAAgADAAQAAAABAAAAAgADAAQAAAACAAAAAgAEAAQAAAADAAEAAgADAAQAAAADAAIAAgAEAAQAAAADAAMAAgADAAQAAAACAAMAAgADAAQAAAABAAMAAgAEAAQAAAAAAAMAAgADAAQAAAADAAAAAgADAAQAAAABAAEAAgAGAAEAAAACAAEAAgAGAAEAAAACAAIAAgAGAAEAAAABAAIAAgAGAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAgADAAQAAAABAAAAAgADAAQAAAAAAAEAAgAEAAQAAAACAAAAAgAEAAQAAAAAAAIAAgADAAQAAAAAAAMAAgADAAQAAAABAAMAAgAEAAQAAAACAAMAAgADAAQAAAADAAMAAgADAAQAAAADAAEAAgADAAQAAAADAAIAAgAEAAQAAAADAAAAAgADAAQAAAABAAEAAgAGAAEAAAACAAEAAgAGAAEAAAACAAIAAgAGAAEAAAABAAIAAgAGAAEAAAA=")
+
+[node name="RatCreature" parent="." index="2" unique_id=707297936 instance=ExtResource("2_vuhes")]
+position = Vector2(250, 150)
+
+[node name="Sprite2D2" type="Sprite2D" parent="RatCreature" index="7" unique_id=1176451940]
+texture_filter = 3
+position = Vector2(-10.999998, -14.000005)
+scale = Vector2(6.6148767, 6.6148767)
+texture = ExtResource("3_tkkh0")

@@ -17,14 +17,40 @@
 [ext_resource type="PackedScene" uid="uid://b04tvmeribd1k" path="res://scenes/actors/Creatures/bogo_sort.tscn" id="15_73xfa"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="16_cpcro"]
 [ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="17_ttnpg"]
+[ext_resource type="PackedScene" uid="uid://8aewrijk47tx" path="res://scenes/Generation/SetPieces/basic_1x1_set_piece.tscn" id="18_8kl8d"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="18_d2p2i"]
+[ext_resource type="PackedScene" uid="uid://5gc0ubf1th5e" path="res://scenes/Generation/SetPieces/basic_2x2_set_piece.tscn" id="19_5dmsq"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="19_lq848"]
+[ext_resource type="PackedScene" uid="uid://de38gfetcrhyr" path="res://scenes/Generation/SetPieces/basic_3x3_set_piece.tscn" id="20_4bofw"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="20_fidet"]
+[ext_resource type="PackedScene" uid="uid://bn3qu6haktntd" path="res://scenes/Generation/SetPieces/boulder_walls_set_piece.tscn" id="21_0108t"]
 [ext_resource type="Texture2D" uid="uid://btflw1das7k7h" path="res://textures/testing/zen_garden_WIP2.png" id="21_lwe8p"]
+[ext_resource type="PackedScene" uid="uid://c1pwemoxn6shj" path="res://scenes/Generation/SetPieces/forest_set_piece.tscn" id="22_6js56"]
 [ext_resource type="Shader" uid="uid://daaonengjaclw" path="res://textures/shaders/blur.gdshader" id="22_barpb"]
 [ext_resource type="AudioStream" uid="uid://d248dhagknhoc" path="res://audio/Music/AstrMusic/WarmHouse's Computer [loop, simple].mp3" id="23_7atmn"]
+[ext_resource type="PackedScene" uid="uid://dx7wmciau2ofu" path="res://scenes/Generation/SetPieces/horizontal_hallway_set_piece.tscn" id="23_ns0ek"]
+[ext_resource type="PackedScene" uid="uid://nor7jylandkw" path="res://scenes/Generation/SetPieces/zoo_set_piece.tscn" id="24_3n672"]
 [ext_resource type="AudioStream" uid="uid://ckploe52g84qd" path="res://audio/Music/AstrMusic/GHOST_NOODLES[8bit,loop,remix].mp3" id="24_cvrnj"]
 [ext_resource type="AudioStream" uid="uid://rnxn4j8uomna" path="res://audio/Music/AstrMusic/GHOST_NOODLES[loop,mysterious].mp3" id="25_1b3ug"]
+[ext_resource type="PackedScene" uid="uid://5iki83mc664" path="res://scenes/Generation/SetPieces/tiny_hedge_pool_set_piece.tscn" id="25_1b23x"]
+[ext_resource type="PackedScene" uid="uid://b5a3dt4tdxwf3" path="res://scenes/Generation/SetPieces/dont_throw_stones_in_glass_houses_set_piece.tscn" id="26_dhtbh"]
+[ext_resource type="PackedScene" uid="uid://uwj04p3t4b0l" path="res://scenes/Generation/SetPieces/tiny_door_stim_set_piece.tscn" id="27_74qd0"]
+[ext_resource type="PackedScene" uid="uid://chofm3cwkrprp" path="res://scenes/Generation/SetPieces/doors_doors_doors_set_piece.tscn" id="28_fge71"]
+[ext_resource type="PackedScene" uid="uid://b1a6uu3i5jwx1" path="res://scenes/Generation/SetPieces/no_walls_set_piece.tscn" id="29_l7ulo"]
+[ext_resource type="PackedScene" uid="uid://dmwmwtmuogae5" path="res://scenes/Generation/SetPieces/the_imprisoned_set_piece.tscn" id="30_ktbp0"]
+[ext_resource type="PackedScene" uid="uid://bndu5bkhnadmr" path="res://scenes/Generation/SetPieces/theres_that_symbol_again_set_piece.tscn" id="31_7fks2"]
+[ext_resource type="PackedScene" uid="uid://8qn22cosj7n6" path="res://scenes/Generation/SetPieces/look_at_my_hedges_set_piece.tscn" id="32_hkkkr"]
+[ext_resource type="PackedScene" uid="uid://c1rqb5hibrypo" path="res://scenes/Generation/SetPieces/dont_get_lost_set_piece.tscn" id="33_jahss"]
+[ext_resource type="PackedScene" uid="uid://dbdorv8erjnkl" path="res://scenes/Generation/SetPieces/ant_tunnels_set_piece.tscn" id="34_8l8u4"]
+[ext_resource type="PackedScene" uid="uid://couvryfhqv7cw" path="res://scenes/Generation/SetPieces/pool_diamond_set_piece.tscn" id="35_ovblb"]
+[ext_resource type="PackedScene" uid="uid://bbwo4kv64d5r0" path="res://scenes/Generation/SetPieces/dried_pond_set_piece.tscn" id="36_76bp6"]
+[ext_resource type="PackedScene" uid="uid://5geyfnvswsu" path="res://scenes/Generation/SetPieces/watch_your_step_set_piece.tscn" id="37_64n5l"]
+[ext_resource type="PackedScene" uid="uid://1mcv5xn042g7" path="res://scenes/Generation/SetPieces/old_fashioned_house_set_piece.tscn" id="38_w23dx"]
+[ext_resource type="PackedScene" uid="uid://d12i0rmtx6nrk" path="res://scenes/Generation/SetPieces/snow_fort_set_piece.tscn" id="39_u63bo"]
+[ext_resource type="PackedScene" uid="uid://cexwbv2kv5inr" path="res://scenes/Generation/SetPieces/snow_hamsterdog_storage_set_piece.tscn" id="40_71ngg"]
+[ext_resource type="PackedScene" uid="uid://cu84v0y4jrh4u" path="res://scenes/Generation/SetPieces/winter_maze_set_piece.tscn" id="41_a4fis"]
+[ext_resource type="PackedScene" uid="uid://clhkxsjoos4db" path="res://scenes/Generation/SetPieces/frozen_lake_set_piece.tscn" id="42_i5cum"]
+[ext_resource type="PackedScene" uid="uid://thouvoi3bng4" path="res://scenes/Generation/SetPieces/messy_set_piece.tscn" id="43_ltapf"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fx61w"]
 blend_mode = 3
@@ -218,6 +244,7 @@ tile_set = ExtResource("16_cpcro")
 number_of_cells = 25
 number_of_rooms = 2
 number_of_set_pieces = 4
+set_pieces = Array[PackedScene]([ExtResource("18_8kl8d"), ExtResource("19_5dmsq"), ExtResource("20_4bofw"), ExtResource("21_0108t"), ExtResource("22_6js56"), ExtResource("23_ns0ek"), ExtResource("24_3n672"), ExtResource("25_1b23x"), ExtResource("26_dhtbh"), ExtResource("27_74qd0"), ExtResource("28_fge71"), ExtResource("29_l7ulo"), ExtResource("30_ktbp0"), ExtResource("31_7fks2"), ExtResource("32_hkkkr"), ExtResource("33_jahss"), ExtResource("34_8l8u4"), ExtResource("35_ovblb"), ExtResource("36_76bp6"), ExtResource("37_64n5l"), ExtResource("38_w23dx"), ExtResource("39_u63bo"), ExtResource("40_71ngg"), ExtResource("41_a4fis"), ExtResource("42_i5cum"), ExtResource("43_ltapf")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1285677614]
 layer = 100

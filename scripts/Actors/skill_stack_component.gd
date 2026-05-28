@@ -122,8 +122,8 @@ func queue_skill(skill_number) -> bool:
 		#print(name, " queued skill: ", skills[skill_number].name)
 		stack.append(hand[skill_number])
 		current_stack_size += hand[skill_number].stack_size
-
-		hand[skill_number].connect("gained_status", _on_gained_status)
+		if not hand[skill_number].is_connected("gained_status", _on_gained_status):
+			hand[skill_number].connect("gained_status", _on_gained_status)
 		hand[skill_number].on_skill_queued()
 		_update_stack_visuals()
 		if is_full():
@@ -186,7 +186,8 @@ func _handle_stack_execution():
 		await get_tree().create_timer(0.25).timeout
 	current_skill = stack.pop_front() as SkillStrategy
 	current_stack_size -= current_skill.stack_size
-	current_skill.connect("moved_self", _on_moved_by_skill)
+	if not current_skill.is_connected("moved_self", _on_moved_by_skill):
+		current_skill.connect("moved_self", _on_moved_by_skill)
 	#%StackIconHolder.get_child(0).get_child(0).get_child(0).show()
 	if await current_skill.ready_skill(grid_entity):
 		await get_tree().create_timer(0.1).timeout

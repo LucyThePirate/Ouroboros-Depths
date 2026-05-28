@@ -14,6 +14,8 @@ var rooms := {}
 var stairs_up_location = Vector2i.ZERO
 var stairs_down_location = Vector2i.RIGHT
 
+var extra_nodes: Array = []
+
 
 func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMapLayer):
 	floors = new_floor
@@ -23,9 +25,9 @@ func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMa
 	noise = FastNoiseLite.new()
 	if seed:
 		rng.seed = seed
+	noise.seed = rng.get_seed()
 	%SeedLabel.text = "Seed: %s" % rng.seed
 	print_rich("[color=LIME]The seed is: %s" % rng.seed)
-	noise.seed = rng.get_seed()
 	noise.fractal_octaves = 2
 	noise.fractal_lacunarity = 1.575
 	noise.frequency = 0.05
@@ -33,6 +35,7 @@ func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMa
 
 
 func generate_level():
+	extra_nodes = []
 	# 1. Generating an arbitrarily connecting clump of cells
 	cells = [Vector2i.ZERO]
 	var adjacent = [Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT, Vector2i.DOWN]
@@ -105,8 +108,8 @@ func generate_level():
 	Global.walls = walls
 
 
-func _generate_nature_tiles(rooms: Array[Vector2i], expandable_areas):
-	for cell in rooms:
+func _generate_nature_tiles(roomy_rooms: Array[Vector2i], expandable_areas):
+	for cell in roomy_rooms:
 		if cell in expandable_areas:
 			expandable_areas.erase(cell)
 		for c_x in range(cell.x * cell_size, cell.x * cell_size + cell_size):
@@ -114,8 +117,8 @@ func _generate_nature_tiles(rooms: Array[Vector2i], expandable_areas):
 				_place_nature_tile(Vector2i(c_x, c_y))
 
 
-func _debug_cover_rooms_in_trees(rooms: Array[Vector2i]):
-	for cell in rooms:
+func _debug_cover_rooms_in_trees(roomy_rooms: Array[Vector2i]):
+	for cell in roomy_rooms:
 		for c_x in range(cell.x * cell_size, cell.x * cell_size + cell_size):
 			for c_y in range(cell.y * cell_size, cell.y * cell_size + cell_size):
 				walls.set_cell(
@@ -173,7 +176,8 @@ func _generate_basic_rooms(expandable_areas):
 							stone_floor_tile[1]
 						)
 					# Doors!!! Mark them for later so we can generate them on top of the walls
-					if cells.has(a + room_cell):
+					#if cells.has(a + room_cell):
+					if true:
 						if door_orientation_horizontal:
 							horizontal_doors.append(
 								(
@@ -234,6 +238,12 @@ func _generate_set_pieces(possible_locations: Array[Vector2i]):
 			Vector2i(set_piece_location.x * cell_size, set_piece_location.y * cell_size),
 			set_piece_scene.get_wall_pattern()
 		)
+		for new_node in set_piece_scene.get_non_tile_map_children() as Array[Node]:
+			extra_nodes.append(new_node)
+			new_node.global_position = (
+				new_node.position + floors.map_to_local(set_piece_location * cell_size)
+			)
+			new_node.reparent(self)
 		set_piece_scene.queue_free()
 
 
@@ -282,6 +292,19 @@ func _generate_border_walls():
 					[Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP],
 					stone_wall_tile
 				)
+				var wall_data = walls.get_cell_tile_data(cell)
+				if (
+					wall_data
+					and (
+						wall_data.get_custom_data("is_pushable")
+						or wall_data.get_custom_data("is_door")
+					)
+				):
+					_blend_in_with_neighboring_walls(
+						cell,
+						[Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP],
+						stone_wall_tile
+					)
 				#walls.set_cell(neighbor_cell, stone_wall_tile[0], stone_wall_tile[1])
 
 
@@ -355,6 +378,7 @@ func _place_stairs():
 		0, possible_stair_locations.size() - 1
 	)]
 	floors.set_cell(stairs_down_location, stairs_down_tile[0], stairs_down_tile[1])
+	walls.set_cell(stairs_down_location, Tiles.lock_tile[0], Tiles.lock_tile[1])
 	possible_stair_locations = floors.get_used_cells_by_id(
 		Tiles.room_floor_tile[0], Tiles.room_floor_tile[1]
 	)

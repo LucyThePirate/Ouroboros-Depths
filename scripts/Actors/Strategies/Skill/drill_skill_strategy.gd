@@ -36,8 +36,9 @@ func use_skill(grid_entity: GridEntity):
 			and is_instance_valid(Global.entity_positions[check_coords])
 		):
 			var target = Global.entity_positions[check_coords]
-			target._on_hit(grid_entity)
 			target.move(direction)
+			target._on_hit(grid_entity)
+
 		var wall_data = Global.walls.get_cell_tile_data(check_coords)
 		if (
 			wall_data

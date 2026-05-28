@@ -52,3 +52,11 @@ func get_set_piece_size():
 
 func get_cell_position() -> Vector2i:
 	return floors.get_used_rect().position
+
+
+func get_non_tile_map_children() -> Array:
+	var return_array = []
+	for child_node in get_children():
+		if child_node is not TileMapLayer:
+			return_array.append(child_node)
+	return return_array

@@ -76,7 +76,7 @@ func take_turn():
 		"Execute Stack":
 			random_skill_planner.perform_plan("Execute Stack")
 		_:
-			print("%s did %s" % [name, intent])
+			#print("%s did %s" % [name, intent])
 			pass
 	_update_visibility()
 	update_intent()
