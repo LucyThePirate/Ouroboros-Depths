@@ -15,8 +15,10 @@ func _ready() -> void:
 		grid_entity.reload_started.connect(on_reload_started)
 		grid_entity.descended.connect(on_next_floor_reached)
 		grid_entity.finished_stack_execution.connect(on_stack_execution_finished)
+		grid_entity.hurt.connect(on_hit_by_grid_entity)
 	for status in Debug.find_children_in_group(self, "Status") as Array[StatusStrategy]:
 		status.healed.connect(_on_status_healed)
+		status.harmed.connect(_on_status_harmed)
 		status.reparent(status_bar)
 		initialize_status(status)
 		status.on_grid_entity_parent_set(grid_entity)
@@ -65,6 +67,10 @@ func on_stack_execution_finished():
 		status.on_stack_execution_finished()
 
 
+func on_hit_by_grid_entity(attacker : GridEntity, damage_amount: int):
+	for status in status_bar.get_children() as Array[StatusStrategy]:
+		status.on_hit_by_grid_entity(attacker, damage_amount)
+
 func on_grid_entity_moved(old_coord: Vector2i, new_coord: Vector2i):
 	for status in status_bar.get_children() as Array[StatusStrategy]:
 		status.on_moved(old_coord, new_coord)
@@ -102,3 +108,7 @@ func get_status_descriptions():
 
 func _on_status_healed(heal_amount := 1):
 	grid_entity.heal(heal_amount)
+
+
+func _on_status_harmed(damage_amount := 1):
+	grid_entity.harm(damage_amount)

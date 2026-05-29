@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://dvpvs7tcqkdpd"
+path="res://.godot/imported/dance for your sins.gif-5aadaa2681cd994ddcae86ee574b6765.tres"
+
+[deps]
+
+source_file="res://textures/testing/dance for your sins.gif"
+dest_files=["res://.godot/imported/dance for your sins.gif-5aadaa2681cd994ddcae86ee574b6765.tres"]
+
+[params]
+
+frames_per_second=30

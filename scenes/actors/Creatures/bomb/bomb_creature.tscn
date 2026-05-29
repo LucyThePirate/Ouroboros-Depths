@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bhuwaipnhbms6"]
+
+[ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_gonk0"]
+[ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="2_f0d1r"]
+[ext_resource type="PackedScene" uid="uid://ceh3chpf36np1" path="res://scenes/actors/Strategies/Status/Decay/decay_status_strategy.tscn" id="2_hm3lh"]
+[ext_resource type="PackedScene" uid="uid://5niaw18b21xq" path="res://scenes/actors/Strategies/Status/Bouncy/bouncy_status_strategy.tscn" id="3_el8k1"]
+[ext_resource type="Texture2D" uid="uid://2f45qneioin0" path="res://textures/creatures/bomb_sprites.png" id="3_hm3lh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el8k1"]
+atlas = ExtResource("3_hm3lh")
+region = Rect2(0, 0, 118, 189)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05g2k"]
+atlas = ExtResource("3_hm3lh")
+region = Rect2(118, 0, 118, 189)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xs0bj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el8k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05g2k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BombCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_gonk0")]
+visual = NodePath("AnimatedSprite2D")
+wander_when_no_target = false
+move_when_aggro = false
+auto_aggro_against_player = false
+aggro_in_retaliation = false
+
+[node name="GridEntity" parent="." index="0" unique_id=1162874930]
+species_type = 14
+creature_name = "Bomb"
+species_desc = "A nefarious explosive device."
+soul_count = 0
+challenge_rating = 0.0
+
+[node name="DecayStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="1" unique_id=577548757 instance=ExtResource("2_hm3lh")]
+layout_mode = 2
+
+[node name="BouncyStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="2" unique_id=1142096118 instance=ExtResource("3_el8k1")]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="6" unique_id=557631356]
+material = ExtResource("2_f0d1r")
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_xs0bj")
+autoplay = "default"
+frame_progress = 0.012212565
+speed_scale = 0.5
+offset = Vector2(0, -54.87)
+
+[editable path="GridEntity"]

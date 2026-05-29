@@ -1,0 +1,41 @@
+[gd_scene format=4 uid="uid://dqrsn52gekmw0"]
+
+[ext_resource type="PackedScene" uid="uid://8aewrijk47tx" path="res://scenes/Generation/SetPieces/basic_1x1_set_piece.tscn" id="1_5kbcb"]
+[ext_resource type="PackedScene" uid="uid://d3p2qbml7s288" path="res://scenes/actors/Creatures/slime/slime_creature.tscn" id="2_sq665"]
+[ext_resource type="SpriteFrames" uid="uid://dvpvs7tcqkdpd" path="res://textures/testing/dance for your sins.gif" id="3_mslek"]
+[ext_resource type="PackedScene" uid="uid://c130okw13yrcv" path="res://scenes/actors/Strategies/Status/speed_status_strategy.tscn" id="3_sq665"]
+
+[node name="KermitSetPiece" unique_id=893876554 instance=ExtResource("1_5kbcb")]
+
+[node name="Floors" parent="." index="0" unique_id=2114537819]
+tile_map_data = PackedByteArray("AAAAAAAAAwABAAMAAAAAAAEAAwABAAMAAAAAAAIAAwABAAMAAAAAAAMAAwABAAMAAAABAAAAAwABAAMAAAABAAEAAgACAAEAAAABAAIAAgACAAEAAAABAAMAAwABAAMAAAACAAAAAwABAAMAAAACAAEAAgACAAEAAAACAAIAAgACAAEAAAACAAMAAwABAAMAAAADAAAAAwABAAMAAAADAAEAAwABAAMAAAADAAIAAwABAAMAAAADAAMAAwABAAMAAAA=")
+
+[node name="Walls" parent="." index="1" unique_id=218292017]
+tile_map_data = PackedByteArray("AAAAAAAAAgAFAAAAAAABAAAAAgABAAIAAAAAAAEAAgACAAIAAAACAAAAAgABAAIAAAAAAAIAAgACAAIAAAAAAAMAAgAFAAAAAAABAAMAAgABAAIAAAACAAMAAgABAAIAAAADAAMAAgAFAAAAAAADAAEAAgACAAIAAAADAAIAAgACAAIAAAADAAAAAgAFAAAAAAA=")
+
+[node name="KermitCreature" parent="." index="2" unique_id=707297936 instance=ExtResource("2_sq665")]
+position = Vector2(250, 150)
+scale = Vector2(0.25023752, 0.25023752)
+
+[node name="GridEntity" parent="KermitCreature" index="1" unique_id=1162874930]
+creature_name = "Dance For Your Sins"
+species_desc = "You earned this."
+soul_count = 10
+
+[node name="HealthComponent" parent="KermitCreature/GridEntity/UI" parent_id_path=PackedInt32Array(707297936, 1162874930, 1710592687) index="0" unique_id=1357245310]
+max_health = 10
+
+[node name="SpeedStatusStrategy" parent="KermitCreature/GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(707297936, 1162874930, 963295090) index="1" unique_id=577548757 instance=ExtResource("3_sq665")]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="KermitCreature" index="7" unique_id=1815577698]
+use_parent_material = true
+position = Vector2(23.977219, -3.9962044)
+scale = Vector2(4.6868615, 4.6868615)
+sprite_frames = ExtResource("3_mslek")
+animation = &"gif"
+autoplay = "gif"
+frame_progress = 0.9982935
+
+[editable path="KermitCreature"]
+[editable path="KermitCreature/GridEntity"]

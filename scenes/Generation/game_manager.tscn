@@ -51,6 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://cu84v0y4jrh4u" path="res://scenes/Generation/SetPieces/winter_maze_set_piece.tscn" id="41_a4fis"]
 [ext_resource type="PackedScene" uid="uid://clhkxsjoos4db" path="res://scenes/Generation/SetPieces/frozen_lake_set_piece.tscn" id="42_i5cum"]
 [ext_resource type="PackedScene" uid="uid://thouvoi3bng4" path="res://scenes/Generation/SetPieces/messy_set_piece.tscn" id="43_ltapf"]
+[ext_resource type="PackedScene" uid="uid://dqrsn52gekmw0" path="res://scenes/Generation/SetPieces/kermit_set_piece.tscn" id="44_5dmsq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fx61w"]
 blend_mode = 3
@@ -244,7 +245,7 @@ tile_set = ExtResource("16_cpcro")
 number_of_cells = 25
 number_of_rooms = 2
 number_of_set_pieces = 4
-set_pieces = Array[PackedScene]([ExtResource("18_8kl8d"), ExtResource("19_5dmsq"), ExtResource("20_4bofw"), ExtResource("21_0108t"), ExtResource("22_6js56"), ExtResource("23_ns0ek"), ExtResource("24_3n672"), ExtResource("25_1b23x"), ExtResource("26_dhtbh"), ExtResource("27_74qd0"), ExtResource("28_fge71"), ExtResource("29_l7ulo"), ExtResource("30_ktbp0"), ExtResource("31_7fks2"), ExtResource("32_hkkkr"), ExtResource("33_jahss"), ExtResource("34_8l8u4"), ExtResource("35_ovblb"), ExtResource("36_76bp6"), ExtResource("37_64n5l"), ExtResource("38_w23dx"), ExtResource("39_u63bo"), ExtResource("40_71ngg"), ExtResource("41_a4fis"), ExtResource("42_i5cum"), ExtResource("43_ltapf")])
+set_pieces = Array[PackedScene]([ExtResource("18_8kl8d"), ExtResource("19_5dmsq"), ExtResource("20_4bofw"), ExtResource("21_0108t"), ExtResource("22_6js56"), ExtResource("23_ns0ek"), ExtResource("24_3n672"), ExtResource("25_1b23x"), ExtResource("26_dhtbh"), ExtResource("27_74qd0"), ExtResource("28_fge71"), ExtResource("29_l7ulo"), ExtResource("30_ktbp0"), ExtResource("31_7fks2"), ExtResource("32_hkkkr"), ExtResource("33_jahss"), ExtResource("34_8l8u4"), ExtResource("35_ovblb"), ExtResource("36_76bp6"), ExtResource("37_64n5l"), ExtResource("38_w23dx"), ExtResource("39_u63bo"), ExtResource("40_71ngg"), ExtResource("41_a4fis"), ExtResource("42_i5cum"), ExtResource("43_ltapf"), ExtResource("44_5dmsq")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1285677614]
 layer = 100

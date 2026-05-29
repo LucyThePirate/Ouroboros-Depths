@@ -2,8 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_wiy3m"]
 [ext_resource type="Script" uid="uid://ixxcjghqv48x" path="res://scenes/actors/Strategies/Status/speed_status_strategy.gd" id="2_g3w8q"]
+[ext_resource type="Texture2D" uid="uid://ct3f0ftlw84y" path="res://textures/skills/DiveBombSkill.png" id="3_mma13"]
 
 [node name="SpeedStatusStrategy" unique_id=577548757 instance=ExtResource("1_wiy3m")]
 script = ExtResource("2_g3w8q")
 status_name = "Speed"
+status_desc = "This creature moves FAST!"
 status_ID = 9
+
+[node name="TextureRect" parent="." index="0" unique_id=1155837054]
+texture = ExtResource("3_mma13")

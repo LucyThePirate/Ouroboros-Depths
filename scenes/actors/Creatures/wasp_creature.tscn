@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://v4jyo2omhd1l"]
 
-[ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scripts/Actors/creature_ai.gd" id="1_t7k5d"]
+[ext_resource type="Script" uid="uid://dgatmeb32lnyb" path="res://scenes/actors/Creatures/base_creature/creature_ai.gd" id="1_t7k5d"]
 [ext_resource type="PackedScene" uid="uid://yqxyjxhsvfqi" path="res://scenes/actors/grid_entity.tscn" id="2_nfndv"]
 [ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/actors/Strategies/Skill/dash_skill_strategy.tscn" id="3_t7k5d"]
 [ext_resource type="PackedScene" uid="uid://ds1r48clfb7k6" path="res://scenes/characters/Visuals/wasp_visual.tscn" id="4_iadu2"]

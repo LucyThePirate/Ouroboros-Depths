@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ceh3chpf36np1"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_uqvjn"]
+[ext_resource type="Script" uid="uid://dc6mthw7wykma" path="res://scenes/actors/Strategies/Status/Decay/decay_status_strategy.gd" id="2_jaf4p"]
+
+[node name="DecayStatusStrategy" unique_id=577548757 instance=ExtResource("1_uqvjn")]
+script = ExtResource("2_jaf4p")
+status_name = "Decay"
+status_desc = "This creature is not long for this world, it is actively losing health over time."
+turns_afflicted = 1
+status_ID = 10

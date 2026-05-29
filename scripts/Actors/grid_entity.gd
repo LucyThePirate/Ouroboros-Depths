@@ -40,6 +40,7 @@ enum Species {
 	WASP_KNIGHT,
 	GEM_ROACH,
 	SNAKE_BLOCK,
+	BOMB,
 }
 @export var species_type := Species.DEFAULT
 @export var creature_name := "Default Entity"
@@ -113,7 +114,7 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 	if other_entity and not Global.entity_positions[new_coords]:
 		Global.entity_positions.erase(new_coords)
 		other_entity = false
-	if other_entity:
+	if other_entity and Global.entity_positions[new_coords] != self:
 		other_entity = Global.entity_positions[new_coords] as GridEntity
 		# Test if entity is on this creature's team. If so, swap with them instead.
 		if is_in_group("Player") and other_entity.team == team:
@@ -151,8 +152,8 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 	Global.entity_positions.erase(old_coords)
 	Global.entity_positions[new_coords] = self
 	global_position += Vector2(direction) * CELL_SIZE
-	moved.emit(old_coords, new_coords)
 	grid_coords = new_coords
+	moved.emit(old_coords, new_coords)
 	performed_action.emit()
 	if not floor_data:
 		fell_off_map.emit()
@@ -263,7 +264,7 @@ func _on_hit(attacker, damage := 1):
 		#$Error.play()
 		return
 	else:
-		print(self.name, "was hit by:", attacker.name)
+		#print(self.name, "was hit by:", attacker.name)
 		last_hit_by = attacker
 		damage = status_component.modify_incoming_damage(damage)
 		health_component.deal_damage(damage)
@@ -273,6 +274,10 @@ func _on_hit(attacker, damage := 1):
 
 func heal(heal_amount := 1):
 	health_component.heal(heal_amount)
+	
+
+func harm(damage_amount :=1 ):
+	health_component.deal_damage(damage_amount)
 
 
 func inflict_status(condition: StatusStrategy):

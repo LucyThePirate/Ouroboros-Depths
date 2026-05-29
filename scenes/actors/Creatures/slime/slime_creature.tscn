@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/actors/Strategies/Skill/leap_skill_strategy.tscn" id="2_nady4"]
 [ext_resource type="PackedScene" uid="uid://bsonm026t0emp" path="res://scenes/actors/Strategies/Skill/stomp_skill_strategy.tscn" id="3_rownt"]
 [ext_resource type="PackedScene" uid="uid://c7hjsw7k0yhur" path="res://scenes/actors/Creatures/slime/slime_visual.tscn" id="4_nady4"]
+[ext_resource type="PackedScene" uid="uid://5niaw18b21xq" path="res://scenes/actors/Strategies/Status/Bouncy/bouncy_status_strategy.tscn" id="5_rownt"]
 
 [node name="SlimeCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_d6cwe")]
 visual = NodePath("SlimeVisual")
@@ -23,6 +24,9 @@ max_per_stack = 1
 
 [node name="StompSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="11" unique_id=1440495377 instance=ExtResource("3_rownt")]
 max_per_stack = 1
+
+[node name="BouncyStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="1" unique_id=577548757 instance=ExtResource("5_rownt")]
+layout_mode = 2
 
 [node name="Display" parent="." index="2" unique_id=1627324750]
 material = null

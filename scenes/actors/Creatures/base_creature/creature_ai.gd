@@ -19,9 +19,15 @@ var status_manager_component = $GridEntity/UI/StatusManagerComponent as StatusMa
 
 @export_category("Behaviors")
 @export var wander_when_no_target := true
+@export var move_when_aggro := true
+@export var auto_aggro_against_player := true
+@export var auto_aggro_against_others := false
+@export var aggro_against_same_species := false
+@export var aggro_in_retaliation := true
 
 var initialized = false
 var in_darkness = true
+var has_invisible_status := false
 var level: Node2D
 var angry_at: GridEntity
 @onready var intent := "Do Nothing"
@@ -84,13 +90,15 @@ func take_turn():
 
 
 func update_intent():
+	if name == "BombCreature":
+		pass
 	if not angry_at:
 		intent = random_skill_planner.make_plan(grid_entity, null)
 		if not intent:
 			intent = "Move"
 			if grid_entity.team != grid_entity and is_instance_valid(grid_entity.team):
 				intent_direction = get_direction_towards(grid_entity.team)
-			elif wander_when_no_target:
+			elif wander_when_no_target and not has_invisible_status:
 				intent_direction = get_random_direction() as Vector2i
 			else:
 				intent = "Do Nothing"
@@ -153,7 +161,7 @@ func get_direction_towards(
 
 
 func pursue_entity(entity: GridEntity) -> Vector2i:
-	if randf() > 0.5 or in_darkness:
+	if move_when_aggro and (randf() > 0.5 or in_darkness):
 		return get_direction_towards(entity, false, true)
 	else:
 		intent = random_skill_planner.make_plan(grid_entity, angry_at)
@@ -168,16 +176,14 @@ func pursue_entity(entity: GridEntity) -> Vector2i:
 
 		if not intent:
 			intent = "Move"
-			return get_direction_towards(entity, false, true)
+			if move_when_aggro:
+				return get_direction_towards(entity, false, true)
 		return Vector2i.ZERO
 
 
 func _update_visibility() -> void:
 	in_darkness = grid_entity.is_in_darkness()
-	var has_invisible_status = grid_entity.status_component.has_status(
-		StatusStrategy.Status_IDs.HIDDEN
-	)
-	wander_when_no_target = not has_invisible_status
+	has_invisible_status = grid_entity.status_component.has_status(StatusStrategy.Status_IDs.HIDDEN)
 	visible = (not in_darkness and not has_invisible_status) or Debug.fog_visible == false
 
 
@@ -194,7 +200,7 @@ func _on_grid_entity_died(_is_despawning) -> void:
 
 
 func _on_grid_entity_hurt(attacker: GridEntity, _damage_amount: int) -> void:
-	if grid_entity.is_alive():
+	if grid_entity.is_alive() and aggro_in_retaliation:
 		_update_angry_at(attacker)
 
 
@@ -279,11 +285,9 @@ func can_aggro_against(new_target: GridEntity) -> bool:
 		return false
 	if new_target.status_component.has_status(StatusStrategy.Status_IDs.HIDDEN):
 		return false
-	if (  # If neither creature is on a team, same species are allied by default
-		(new_target.team == new_target and grid_entity.team == grid_entity)
-		and new_target.species_type == grid_entity.species_type
-	):
-		return false
+	if new_target.team == new_target and grid_entity.team == grid_entity:  # If neither creature is on a team, same species are allied by default
+		if not aggro_against_same_species and new_target.species_type == grid_entity.species_type:
+			return false
 	if new_target.state == GridEntity.States.DEAD:
 		return false
 	return true
@@ -312,12 +316,9 @@ func _on_base_random_skill_planner_awaited_cursor_input() -> void:
 
 
 func _on_detection_radius_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and can_aggro_against(body) and body not in potential_targets:
-		potential_targets.append(body)
-	#if angry_at:
-	#return
-	#if body.is_in_group("Player") and not in_darkness:
-	#_update_angry_at(body)
+	if can_aggro_against(body) and body not in potential_targets:
+		if (body.is_in_group("Player") and auto_aggro_against_player) or auto_aggro_against_others:
+			potential_targets.append(body)
 
 
 func _on_detection_radius_body_exited(body: Node2D) -> void:

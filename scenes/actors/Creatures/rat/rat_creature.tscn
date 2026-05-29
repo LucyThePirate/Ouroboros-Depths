@@ -6,6 +6,7 @@
 
 [node name="RatCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_dp6xf")]
 visual = NodePath("Sprite2D")
+auto_aggro_against_player = false
 
 [node name="GridEntity" parent="." index="0" unique_id=1162874930]
 species_type = 9

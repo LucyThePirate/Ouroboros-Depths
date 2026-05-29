@@ -1,11 +1,15 @@
 [gd_scene format=4 uid="uid://djaq0g3fgdxj"]
 
 [ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/game_manager.tscn" id="1_rvaov"]
-[ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="2_sj2c2"]
-[ext_resource type="PackedScene" uid="uid://oof35aakey11" path="res://scenes/actors/Creatures/gem_roach/gem_roach_creature.tscn" id="3_ok3lu"]
 [ext_resource type="PackedScene" uid="uid://cqjoguhw8mhj" path="res://scenes/actors/Creatures/tutorial_scarecrow.tscn" id="4_2t416"]
 [ext_resource type="PackedScene" uid="uid://cuir68rh5ethv" path="res://scenes/actors/Creatures/conk/conk.tscn" id="5_wa5q0"]
 [ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_creature.tscn" id="6_ka0q3"]
+[ext_resource type="PackedScene" uid="uid://dvtenp8g812ei" path="res://scenes/actors/Creatures/bogo_egg.tscn" id="7_pj5lm"]
+[ext_resource type="PackedScene" uid="uid://g7fhohrlv81x" path="res://scenes/actors/Creatures/fuzzer_creature.tscn" id="8_l7yy1"]
+[ext_resource type="PackedScene" uid="uid://bhuwaipnhbms6" path="res://scenes/actors/Creatures/bomb/bomb_creature.tscn" id="9_72hi1"]
+[ext_resource type="PackedScene" uid="uid://w4kg23pb7tql" path="res://scenes/actors/Creatures/wasp_knight/wasp_knight_creature.tscn" id="9_pj5lm"]
+[ext_resource type="PackedScene" uid="uid://b2gdh6pqutscc" path="res://scenes/actors/Creatures/chorustone.tscn" id="10_l7yy1"]
+[ext_resource type="PackedScene" uid="uid://d3p2qbml7s288" path="res://scenes/actors/Creatures/slime/slime_creature.tscn" id="10_q4it1"]
 
 [node name="TestLevel" unique_id=1347246317 instance=ExtResource("1_rvaov")]
 spawn_creatures = false
@@ -23,39 +27,36 @@ offset_right = 152.3647
 offset_bottom = 148.06694
 metadata/_edit_lock_ = true
 
-[node name="SnakeBlockCreature" parent="." index="14" unique_id=225491451 instance=ExtResource("2_sj2c2")]
-position = Vector2(-188, -52)
-
-[node name="SnakeBlockCreature2" parent="." index="15" unique_id=1713697238 instance=ExtResource("2_sj2c2")]
-position = Vector2(-283, -48)
-
-[node name="SnakeBlockCreature3" parent="." index="16" unique_id=6787964 instance=ExtResource("2_sj2c2")]
-position = Vector2(-294, -140)
-
-[node name="SnakeBlockCreature4" parent="." index="17" unique_id=789081268 instance=ExtResource("2_sj2c2")]
-position = Vector2(-184, -140)
-
-[node name="GemRoachCreature" parent="." index="18" unique_id=1115264811 instance=ExtResource("3_ok3lu")]
-position = Vector2(-1645, -729)
-
-[node name="GemRoachCreature2" parent="." index="19" unique_id=373990648 instance=ExtResource("3_ok3lu")]
-position = Vector2(-1477, -939)
-
-[node name="GemRoachCreature3" parent="." index="20" unique_id=879133972 instance=ExtResource("3_ok3lu")]
-position = Vector2(-1645, -1249)
-
-[node name="TutorialScarecrow" parent="." index="21" unique_id=322873272 instance=ExtResource("4_2t416")]
+[node name="TutorialScarecrow" parent="." index="14" unique_id=322873272 instance=ExtResource("4_2t416")]
 position = Vector2(-1865, 230)
 text_to_display = ""
 
 [node name="HealthComponent" parent="TutorialScarecrow/GridEntity/UI" parent_id_path=PackedInt32Array(322873272, 1615670255, 1710592687) index="0" unique_id=1357245310]
 max_health = 999
 
-[node name="Conk" parent="." index="22" unique_id=1547879972 instance=ExtResource("5_wa5q0")]
+[node name="Conk" parent="." index="15" unique_id=1547879972 instance=ExtResource("5_wa5q0")]
 position = Vector2(-2151, 758)
 
-[node name="WaspCreature" parent="." index="23" unique_id=1916860983 instance=ExtResource("6_ka0q3")]
+[node name="WaspCreature" parent="." index="16" unique_id=1916860983 instance=ExtResource("6_ka0q3")]
 position = Vector2(-1650, 350)
+
+[node name="Bogo Egg" parent="." index="17" unique_id=963460758 instance=ExtResource("7_pj5lm")]
+position = Vector2(-750, -950)
+
+[node name="BombCreature" parent="." index="18" unique_id=707297936 instance=ExtResource("9_72hi1")]
+position = Vector2(-1550, -50)
+
+[node name="FuzzerCreature" parent="." index="19" unique_id=711189580 instance=ExtResource("8_l7yy1")]
+position = Vector2(-650, -950)
+
+[node name="Chorustone" parent="." index="20" unique_id=1034486580 instance=ExtResource("10_l7yy1")]
+position = Vector2(-550, -1050)
+
+[node name="WaspKnightCreature" parent="." index="21" unique_id=524078715 instance=ExtResource("9_pj5lm")]
+position = Vector2(-1150, -50)
+
+[node name="SlimeCreature" parent="." index="22" unique_id=793349047 instance=ExtResource("10_q4it1")]
+position = Vector2(-1750, -50)
 
 [editable path="TutorialScarecrow"]
 [editable path="TutorialScarecrow/GridEntity"]

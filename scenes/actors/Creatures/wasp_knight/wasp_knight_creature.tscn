@@ -9,6 +9,7 @@
 
 [node name="WaspKnightCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_ffquk")]
 visual = NodePath("Sprite2D")
+move_when_aggro = false
 
 [node name="GridEntity" parent="." index="0" unique_id=1162874930]
 species_type = 11

@@ -19,6 +19,10 @@ stream_3/stream = ExtResource("7_cjyop")
 [node name="Bogo Egg" unique_id=963460758 node_paths=PackedStringArray("visual") instance=ExtResource("1_y78e5")]
 script = ExtResource("2_my2fc")
 visual = NodePath("Sprite2D")
+wander_when_no_target = false
+move_when_aggro = false
+auto_aggro_against_player = false
+aggro_in_retaliation = false
 
 [node name="GridEntity" parent="." index="0" unique_id=1162874930]
 species_type = 7

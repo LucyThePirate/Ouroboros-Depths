@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://5niaw18b21xq"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_74hpv"]
+[ext_resource type="Script" uid="uid://ncfmhn75ishg" path="res://scenes/actors/Strategies/Status/Bouncy/bouncy_status_strategy.gd" id="2_goxf4"]
+[ext_resource type="Texture2D" uid="uid://4aw2nf61m1op" path="res://textures/testing/bowserjr.png" id="3_vt5vb"]
+
+[node name="BouncyStatusStrategy" unique_id=577548757 instance=ExtResource("1_74hpv")]
+script = ExtResource("2_goxf4")
+status_name = "Bouncy"
+status_desc = "This creature is lightweight! Hitting them will send them moving far."
+
+[node name="TextureRect" parent="." index="0" unique_id=1155837054]
+texture = ExtResource("3_vt5vb")

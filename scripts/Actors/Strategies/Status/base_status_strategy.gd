@@ -6,9 +6,21 @@ signal status_ended(StatusStrategy)
 signal power_changed
 signal max_power_reached
 signal healed(heal_amount)
+signal harmed(damage_amount)
 
 enum Status_IDs {
-	NONE, SHIELD, RELOAD, PATIENCE, CHRYSALIS, VIGOR, REGEN, HIDDEN, MOBILE_GUARD, SPEED
+	NONE,
+	SHIELD,
+	RELOAD,
+	PATIENCE,
+	CHRYSALIS,
+	VIGOR,
+	REGEN,
+	HIDDEN,
+	MOBILE_GUARD,
+	SPEED,
+	DECAY,
+	BOUNCY
 }
 
 @export_category("Lore")
@@ -76,6 +88,10 @@ func on_next_floor_reached():
 
 
 func on_stack_execution_finished():
+	pass
+
+
+func on_hit_by_grid_entity(attacker: GridEntity, damage_amount := 1):
 	pass
 
 
