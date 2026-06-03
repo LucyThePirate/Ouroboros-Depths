@@ -12,6 +12,8 @@ var shockwave_radius = 2
 @export var note_VFX: PackedScene
 
 var victim_to_throw: GridEntity
+var wall_to_throw: bool
+var wall_to_throw_coords: Vector2i
 
 
 func _ready():
@@ -48,6 +50,13 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 				continue
 			victim_to_throw = Global.entity_positions[check_coords]
 			break
+		if (
+			Global.walls.get_cell_tile_data(check_coords)
+			and Global.walls.get_cell_tile_data(check_coords).get_custom_data("is_pushable")
+		):
+			wall_to_throw = true
+			wall_to_throw_coords = check_coords
+			break
 		await get_tree().create_timer(0.025).timeout
 	%AnimationPlayer.play("fade_line")
 	if victim_to_throw:
@@ -57,9 +66,20 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 		request_cursor()
 		if show_UI:
 			$Cursor.global_position = victim_to_throw.global_position
-			cursor = Global.floors.local_to_map(victim_to_throw.global_position)
+			cursor = victim_to_throw.grid_coords
 			$Cursor.show()
-			_set_preview_on(true, victim_to_throw)
+			_set_preview_on(true, victim_to_throw.global_position)
+		return false
+	elif wall_to_throw:
+		%GrabSuccessSFX.play()
+		%GrabCursor.global_position = Global.walls.map_to_local(wall_to_throw_coords)
+		%GrabCursor.show()
+		request_cursor()
+		if show_UI:
+			$Cursor.global_position = %GrabCursor.global_position
+			cursor = wall_to_throw_coords
+			$Cursor.show()
+			_set_preview_on(true, %GrabCursor.global_position)
 		return false
 	else:
 		use_skill(grid_entity)
@@ -71,22 +91,34 @@ func move_cursor(moveDirection: Vector2i, _grid_entity: GridEntity):
 	#cursor = cursor.clampi(-max_distance, max_distance)
 	$Cursor.global_position = Global.floors.map_to_local(cursor)
 	if show_UI:
-		_set_preview_on(true, victim_to_throw)
+		_set_preview_on(true, %GrabCursor.global_position)
 
 
 func use_skill(grid_entity: GridEntity):
 	$Cursor.hide()
 	%GrabCursor.hide()
-	_set_preview_on(false, grid_entity)
-	if not victim_to_throw:
+	_set_preview_on(false, grid_entity.global_position)
+	if not victim_to_throw and not wall_to_throw:
 		super(grid_entity)
 		return
-	victim_to_throw.warp(cursor)
 	%ThrowSFX.play()
+	if victim_to_throw:
+		victim_to_throw.warp(cursor)
+	elif wall_to_throw:
+		var thrown_wall_pattern = Global.walls.get_pattern([wall_to_throw_coords])
+		Global.walls.set_cell(wall_to_throw_coords, -1)
+		Global.walls.set_pattern(cursor, thrown_wall_pattern)
+	_spawn_shockwave_at_coords(cursor, grid_entity)
+
+	victim_to_throw = null
+	wall_to_throw = false
+	super(grid_entity)
+
+
+func _spawn_shockwave_at_coords(grid_coords: Vector2i, grid_entity: GridEntity):
 	var new_stomp_VFX = StompVFX.instantiate()
 	add_child(new_stomp_VFX)
-	new_stomp_VFX.global_position = victim_to_throw.global_position
-	var grid_coords = victim_to_throw.grid_coords
+	new_stomp_VFX.global_position = Global.floors.map_to_local(grid_coords)
 	var offset = -shockwave_radius + 1
 	for i in range(shockwave_radius * 2 - 1):
 		for j in range(shockwave_radius * 2 - 1):
@@ -101,23 +133,18 @@ func use_skill(grid_entity: GridEntity):
 				if Global.entity_positions[check_coords] == grid_entity:
 					continue
 				grid_entity.hit(Global.entity_positions[check_coords], damage)
-	if skill_crit:
-		shockwave_radius -= 1
-		damage -= 1
-	victim_to_throw = null
-	super(grid_entity)
 
 
-func _set_preview_on(preview_on: bool, grid_entity: GridEntity):
+func _set_preview_on(preview_on: bool, starting_position: Vector2):
 	%PreviewLine.visible = preview_on
-	$Line2D.points[0] = grid_entity.global_position
+	$Line2D.points[0] = starting_position
 	#%PreviewLine.points[0] = grid_entity.global_position
 	if preview_on:
-		_update_attack_preview(grid_entity)
+		_update_attack_preview(starting_position)
 
 
-func _update_attack_preview(grid_entity: GridEntity):
-	var mid_point = (grid_entity.global_position + $Cursor.global_position) / 2
+func _update_attack_preview(starting_position: Vector2):
+	var mid_point = (starting_position + $Cursor.global_position) / 2
 	$Line2D.points[1] = mid_point - Vector2(0, attack_height)
 	$Line2D.points[2] = $Cursor.global_position
 	$PreviewLine.clear_points()

@@ -6,6 +6,7 @@ class_name HealthComponent
 signal hurt
 signal healed
 signal died
+signal health_updated
 
 @export var max_health = 15
 @export var damage_number_scene: PackedScene
@@ -77,3 +78,4 @@ func _update_health_bar():
 	health_bar.max_value = max_health
 	health_bar.value = health
 	%HealthLabel.text = "%s/%s" % [health, max_health]
+	health_updated.emit()

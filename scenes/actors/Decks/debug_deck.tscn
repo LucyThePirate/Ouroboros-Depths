@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://cpjtvo62gc8ka"]
 
-[ext_resource type="PackedScene" uid="uid://b5jnedeqec3bx" path="res://scenes/actors/Strategies/Skill/defend_skill_strategy.tscn" id="2_ue1ts"]
-[ext_resource type="PackedScene" uid="uid://bqe6kxf4uw66l" path="res://scenes/actors/Strategies/Skill/drill_skill_strategy.tscn" id="4_ue1ts"]
-[ext_resource type="PackedScene" uid="uid://db3bk0lgv61c3" path="res://scenes/actors/Strategies/Skill/harpoon/harpoon_skill_strategy.tscn" id="5_opytt"]
-[ext_resource type="PackedScene" uid="uid://cmyas4xlndmy7" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_skill_strategy.tscn" id="6_ue1ts"]
-[ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/actors/Strategies/Skill/dash_skill_strategy.tscn" id="7_oas7w"]
+[ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/actors/Strategies/Skill/leap_skill_strategy.tscn" id="1_q1j0s"]
+[ext_resource type="PackedScene" uid="uid://cmyas4xlndmy7" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_skill_strategy.tscn" id="3_opytt"]
+[ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/actors/Strategies/Skill/dash_skill_strategy.tscn" id="3_xxlh1"]
+[ext_resource type="PackedScene" uid="uid://biuojqtlmraek" path="res://scenes/actors/Strategies/Skill/judo_throw/judo_throw_skill_strategy.tscn" id="4_ue1ts"]
 
 [node name="DebugDeck" type="Control" unique_id=1324047796]
 layout_mode = 3
@@ -12,23 +11,16 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DefendSkillStrategy" parent="." unique_id=736815680 instance=ExtResource("2_ue1ts")]
-layout_mode = 0
-offset_left = -1.0
-offset_right = 143.0
-scale = Vector2(1, 1)
-
-[node name="DrillSkillStrategy" parent="." unique_id=1336427482 instance=ExtResource("4_ue1ts")]
+[node name="LeapSkillStrategy" parent="." unique_id=273578898 instance=ExtResource("1_q1j0s")]
 layout_mode = 0
 
-[node name="EarthSpikeSkillStrategy" parent="." unique_id=1348417474 instance=ExtResource("6_ue1ts")]
-layout_mode = 0
-
-[node name="DashSkillStrategy" parent="." unique_id=1974758503 instance=ExtResource("7_oas7w")]
+[node name="DashSkillStrategy" parent="." unique_id=1974758503 instance=ExtResource("3_xxlh1")]
 layout_mode = 0
 offset_left = 0.0
 offset_right = 144.0
-count = 6
 
-[node name="HarpoonSkillStrategy" parent="." unique_id=1163924449 instance=ExtResource("5_opytt")]
+[node name="EarthSpikeSkillStrategy" parent="." unique_id=1348417474 instance=ExtResource("3_opytt")]
+layout_mode = 0
+
+[node name="JudoThrowSkillStrategy" parent="." unique_id=347600095 instance=ExtResource("4_ue1ts")]
 layout_mode = 0

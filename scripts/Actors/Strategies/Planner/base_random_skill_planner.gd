@@ -107,8 +107,8 @@ func _on_requested_directional_input():
 
 
 func set_direction(move_direction: Vector2i):
-	stack_component.set_direction(move_direction)
 	grid_parent.can_walk_through_walls = temp_can_walk_through_walls
+	stack_component.set_direction(move_direction)
 
 
 func _on_requested_cursor_input():

@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="8_4qe4i"]
 [ext_resource type="Texture2D" uid="uid://4aw2nf61m1op" path="res://textures/testing/bowserjr.png" id="8_frs5l"]
 [ext_resource type="Texture2D" uid="uid://dg844w3alcmxs" path="res://textures/testing/possum_render_smooth.png" id="8_neciy"]
+[ext_resource type="Texture2D" uid="uid://b84m82unuxahi" path="res://textures/testing/CellShadedSquidRender.png" id="9_jr68i"]
 [ext_resource type="Script" uid="uid://kol6k5y6rb8a" path="res://addons/softbody2d/softbody2d.gd" id="9_mynnq"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="9_p07av"]
 [ext_resource type="PackedScene" uid="uid://e43003nmrylg" path="res://samples/softbody2d/pickable_rigidbody.tscn" id="10_4qe4i"]
@@ -386,6 +387,7 @@ grow_vertical = 2
 script = ExtResource("1_tklts")
 game_scene = "uid://43rkgu17gs68"
 tutorial_scene = "uid://bkcktb2mpmgsc"
+arena_scene = "uid://d4aptj5nxvsq5"
 
 [node name="Floors" type="TileMapLayer" parent="." unique_id=1088852856]
 show_behind_parent = true
@@ -535,7 +537,6 @@ theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [node name="NewRun" type="VBoxContainer" parent="CanvasLayer" unique_id=1227994910]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -549,6 +550,7 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="Dungeon" type="VBoxContainer" parent="CanvasLayer/NewRun/HContainer" unique_id=911107789]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
 [node name="Label2" type="RichTextLabel" parent="CanvasLayer/NewRun/HContainer/Dungeon" unique_id=1864240788]
@@ -622,6 +624,31 @@ theme_override_fonts/normal_font = ExtResource("9_p07av")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "Your standard dungeon fare. Well, [wave]relatively[/wave] standard, anyways."
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Arena Test" type="VBoxContainer" parent="CanvasLayer/NewRun/HContainer/Dungeon/DungeonSelect" unique_id=1638506514]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+metadata/_tab_index = 2
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/NewRun/HContainer/Dungeon/DungeonSelect/Arena Test" unique_id=810827178]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("9_jr68i")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DeckDesc" type="RichTextLabel" parent="CanvasLayer/NewRun/HContainer/Dungeon/DungeonSelect/Arena Test" unique_id=2122555836]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("9_p07av")
+theme_override_font_sizes/normal_font_size = 30
+text = "See how well you fare against huge swaths of foes!"
 fit_content = true
 horizontal_alignment = 1
 
@@ -941,7 +968,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-6" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1359039404]
 position = Vector2(69.40637, 127.073)
 rotation = -1.36679
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(0.9999989, 0.9999989)
 rest = Transform2D(0.202592, -0.979263, 0.979263, 0.202592, 69.4064, 127.073)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -968,7 +995,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-8" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1969427454]
 position = Vector2(68.7027, 159.052)
 rotation = 1.54074
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(0.9999989, 0.9999989)
 rest = Transform2D(0.0300513, 0.999548, -0.999548, 0.0300513, 68.7027, 159.052)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -994,7 +1021,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone-10" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=59431186]
 position = Vector2(69.7157, 192.74402)
-rotation = -0.59983397
+rotation = -0.599834
 scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.825429, -0.564506, 0.564506, 0.825429, 69.7157, 192.744)
 auto_calculate_length_and_angle = false
@@ -1154,7 +1181,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-22" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1625297829]
 position = Vector2(123.630005, 155.08301)
 rotation = 1.55378
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(0.9999989, 0.9999989)
 rest = Transform2D(0.0170144, 0.999855, -0.999855, 0.0170144, 123.63, 155.083)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1299,7 +1326,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-33" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1944610832]
 position = Vector2(178.53302, 231.568)
 rotation = -1.48128
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(0.9999989, 0.9999989)
 rest = Transform2D(0.0893961, -0.995996, 0.995996, 0.0893961, 178.533, 231.568)
 auto_calculate_length_and_angle = false
 length = 36.0

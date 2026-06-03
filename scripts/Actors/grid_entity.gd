@@ -66,6 +66,7 @@ var team: GridEntity
 @onready var stack_component = $SkillStackComponent as SkillStackComponent
 
 var grid_coords: Vector2i
+var grid_offset := Vector2i.ONE * (CELL_SIZE / 2)
 
 enum States { IDLE, DEAD }
 var state = States.IDLE
@@ -151,7 +152,7 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 	# Movement
 	Global.entity_positions.erase(old_coords)
 	Global.entity_positions[new_coords] = self
-	global_position += Vector2(direction) * CELL_SIZE
+	global_position = new_coords * CELL_SIZE + grid_offset
 	grid_coords = new_coords
 	moved.emit(old_coords, new_coords)
 	performed_action.emit()
@@ -185,7 +186,7 @@ func warp(new_coords: Vector2i) -> bool:
 	Global.entity_positions.erase(old_coords)
 	Global.entity_positions[new_coords] = self
 	grid_coords = new_coords
-	global_position = Vector2(new_coords) * CELL_SIZE + (Vector2(1, 1) * (CELL_SIZE / 2))
+	global_position = new_coords * CELL_SIZE + grid_offset
 	if not floor_data:
 		fell_off_map.emit()
 	else:
@@ -194,14 +195,14 @@ func warp(new_coords: Vector2i) -> bool:
 
 
 func swap(swapping_with: GridEntity):
-	var temp_coords = Global.floors.local_to_map(global_position)
-	var swap_coords = Global.floors.local_to_map(swapping_with.global_position)
+	var temp_coords = grid_coords
+	var swap_coords = swapping_with.grid_coords
 	Global.entity_positions[temp_coords] = swapping_with
 	Global.entity_positions[swap_coords] = self
-	global_position = Vector2(swap_coords) * CELL_SIZE + (Vector2(1, 1) * (CELL_SIZE / 2))
-	swapping_with.global_position = (
-		Vector2(temp_coords) * CELL_SIZE + (Vector2(1, 1) * (CELL_SIZE / 2))
-	)
+	grid_coords = swap_coords
+	swapping_with.grid_coords = temp_coords
+	global_position = swap_coords * CELL_SIZE + grid_offset
+	swapping_with.global_position = temp_coords * CELL_SIZE + grid_offset
 	moved.emit(temp_coords, swap_coords)
 	swapping_with.moved.emit(swap_coords, temp_coords)
 
@@ -274,9 +275,9 @@ func _on_hit(attacker, damage := 1):
 
 func heal(heal_amount := 1):
 	health_component.heal(heal_amount)
-	
 
-func harm(damage_amount :=1 ):
+
+func harm(damage_amount := 1):
 	health_component.deal_damage(damage_amount)
 
 

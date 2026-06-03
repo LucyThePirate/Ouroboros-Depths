@@ -11,7 +11,7 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 	request_cursor()
 	if show_UI:
 		$Cursor.global_position = grid_entity.global_position
-		cursor = Global.floors.local_to_map(grid_entity.global_position)
+		cursor = grid_entity.grid_coords
 		$Cursor.show()
 	return false
 
@@ -40,7 +40,6 @@ func use_skill(grid_entity: GridEntity):
 func _set_preview_on(preview_on: bool, grid_entity: GridEntity):
 	%PreviewLine.visible = preview_on
 	$Line2D.points[0] = grid_entity.global_position
-	#%PreviewLine.points[0] = grid_entity.global_position
 	if preview_on:
 		_update_attack_preview(grid_entity)
 

@@ -16,6 +16,7 @@ var bogo_egg: BraindeadAI
 @export var generator: GenerationStrategy
 @export var spawn_creatures := true
 @export var tutorial_level := false
+@export var is_arena := false
 
 @onready var pause_screen := %PauseScreen
 @onready var pause_button := %PauseButton
@@ -142,6 +143,8 @@ func _ready():
 
 func _initialize_fog():
 	darkness.clear()
+	if is_arena:
+		return
 	darkness.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
 	for x in Global.walls.get_used_rect().size.x:
 		for y in Global.walls.get_used_rect().size.y:
@@ -247,6 +250,8 @@ func _initialize_entity(new_entity: GridEntity):
 
 
 func _update_fog(old_coords: Vector2i, new_coords: Vector2i):
+	if is_arena:
+		return
 	#print("Old: %s, new: %s" % [old_coords, new_coords])
 	#if old_coords == new_coords:
 	#return
@@ -335,11 +340,15 @@ func try_spawning_random_monster(initialize_entity := true):
 	if current_challenge_rating < challenge_rating_capacity + current_floor * 3:
 		var grid_coordinate = Global.floors.get_used_cells().pick_random()
 		if not _is_obstructed(grid_coordinate):
-			var new_entity = spawn_entity(grid_coordinate, creature_scene.pick_random())
+			var new_entity = (
+				spawn_entity(grid_coordinate, creature_scene.pick_random()) as CreatureAI
+			)
 			current_challenge_rating += new_entity.grid_entity.challenge_rating
 			if initialize_entity:
 				_initialize_entity(new_entity.grid_entity)
-				if not Global.darkness.get_cell_tile_data(grid_coordinate):
+				if is_arena:
+					new_entity._update_angry_at(player.grid_entity)
+				if is_arena or not Global.darkness.get_cell_tile_data(grid_coordinate):
 					var new_smoke = spawn_smoke_scene.instantiate()
 					new_smoke.global_position = Global.floors.map_to_local(grid_coordinate)
 					add_child(new_smoke)
@@ -444,7 +453,7 @@ func spawn_entity_from_creature(
 			new_entity.grid_entity.challenge_rating = 0.0
 			new_entity.grid_entity.soul_count = 0
 			summoning_skill.on_entity_summoned(summoning_entity, new_entity)
-			if not Global.darkness.get_cell_tile_data(adjacent_tile):
+			if is_arena or not Global.darkness.get_cell_tile_data(adjacent_tile):
 				var new_smoke = spawn_smoke_scene.instantiate()
 				new_smoke.global_position = Global.floors.map_to_local(adjacent_tile)
 				add_child(new_smoke)
@@ -475,8 +484,9 @@ func _on_entity_died(is_despawning, grid_entity: GridEntity):
 
 
 func _on_player_died(_despawning) -> void:
-	for tile in Global.floors.get_used_cells():
-		Global.darkness.set_cell(tile, -1)
+	if not is_arena:
+		for tile in Global.floors.get_used_cells():
+			Global.darkness.set_cell(tile, -1)
 	$Fog.hide()
 	$Darkness.hide()
 	$CanvasLayer/DeathScreen/VBoxContainer/FloorReached.text = ("Floor Reached: %s" % current_floor)

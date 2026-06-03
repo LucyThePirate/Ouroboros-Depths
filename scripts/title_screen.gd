@@ -2,6 +2,7 @@ extends Control
 
 @export_file("*.tscn") var game_scene
 @export_file("*.tscn") var tutorial_scene
+@export_file("*.tscn") var arena_scene
 
 @onready var master_volume = $CanvasLayer/Options/Audio/CenterContainer/MasterVolume as HSlider
 @onready var sfx_volume = $CanvasLayer/Options/Audio/CenterContainer2/SFXVolume as HSlider
@@ -34,6 +35,7 @@ var state := States.IDLE
 func _ready() -> void:
 	ResourceLoader.load_threaded_request(game_scene)
 	ResourceLoader.load_threaded_request(tutorial_scene)
+	ResourceLoader.load_threaded_request(arena_scene)
 	Global.config.load(Global.options_file)
 	_load_volume_options()
 	_load_gameplay_options()
@@ -164,8 +166,10 @@ func _on_start_run_pressed() -> void:
 	Global.config.save(Global.options_file)
 	if dungeon_select.current_tab == 0:
 		loading_scene = tutorial_scene
-	else:
+	elif dungeon_select.current_tab == 1:
 		loading_scene = game_scene
+	else:
+		loading_scene = arena_scene
 	_start_loading()
 
 

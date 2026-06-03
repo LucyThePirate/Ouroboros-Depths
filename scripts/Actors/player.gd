@@ -301,3 +301,10 @@ func _display_error(error_msg: String):
 		new_text_scene.global_position = grid_entity.global_position
 		get_tree().current_scene.add_child(new_text_scene)
 		new_text_scene.set_error_text(error_msg)
+
+
+func _on_health_component_health_updated() -> void:
+	if health_component:
+		%HealthBar.max_value = health_component.max_health
+		%HealthBar.value = health_component.health
+		%HealthLabel.text = "%s/%s" % [health_component.health, health_component.max_health]

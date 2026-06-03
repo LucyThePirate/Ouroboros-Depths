@@ -222,6 +222,41 @@ script = ExtResource("19_u2nr5")
 action_name = &"Chrysalis"
 metadata/_custom_type_script = "uid://b57xlofytn3k"
 
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer" unique_id=757911581]
+unique_name_in_owner = true
+self_modulate = Color(0.116666794, 1, 0, 1)
+custom_minimum_size = Vector2(92.455, 45.36)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -61.0
+offset_top = 17.0
+offset_right = -57.0
+offset_bottom = 44.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/HealthBar" unique_id=1335379009]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.02386, 1.01116)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.533333)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("8_wd2mq")
+theme_override_font_sizes/font_size = 38
+text = "15/15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=100793250]
 libraries/ = SubResource("AnimationLibrary_ad5m5")
 
@@ -244,6 +279,7 @@ process_material = SubResource("ParticleProcessMaterial_befnt")
 [connection signal="grid_entity_initialized" from="GridEntity" to="." method="_on_grid_entity_grid_entity_initialized"]
 [connection signal="performed_action" from="GridEntity" to="." method="_on_grid_entity_performed_action"]
 [connection signal="emptied_stack" from="GridEntity/SkillStackComponent" to="." method="_on_skill_stack_component_emptied_stack"]
+[connection signal="health_updated" from="GridEntity/UI/HealthComponent" to="." method="_on_health_component_health_updated"]
 
 [editable path="GridEntity"]
 [editable path="GridEntity/SkillStackComponent"]
