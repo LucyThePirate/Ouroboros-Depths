@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bm3e4klj2fna8" path="res://textures/skills/DisguiseSkill.png" id="2_7eac1"]
 [ext_resource type="Script" uid="uid://7gsfx8sm14na" path="res://scenes/actors/Strategies/Skill/disguise/disguise_skill_strategy.gd" id="2_dq0us"]
 [ext_resource type="PackedScene" uid="uid://cmc0da6d170ar" path="res://scenes/actors/Strategies/Status/hidden_status_strategy.tscn" id="3_44g6t"]
-[ext_resource type="PackedScene" uid="uid://csox3ra3bo6o4" path="res://scenes/effects/spawn_smoke_vfx.tscn" id="3_dvehv"]
+[ext_resource type="PackedScene" uid="uid://bja8pi8psjdsv" path="res://scenes/effects/smoke_bomb_vfx.tscn" id="3_dvehv"]
 
 [node name="DisguiseSkillStrategy" unique_id=1163924449 instance=ExtResource("1_ec4h4")]
 script = ExtResource("2_dq0us")

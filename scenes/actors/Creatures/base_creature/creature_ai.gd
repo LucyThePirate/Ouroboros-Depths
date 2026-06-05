@@ -11,7 +11,7 @@ class_name CreatureAI
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $GridEntity/TurnComponent
 @onready var stack_component = $GridEntity/SkillStackComponent
-@onready var health_component = $GridEntity/UI/HealthComponent
+@onready var health_component = $GridEntity/UI/HealthComponent as HealthComponent
 @onready
 var status_manager_component = $GridEntity/UI/StatusManagerComponent as StatusManagerComponent
 @onready var random_skill_planner = $BaseRandomSkillPlanner
@@ -46,6 +46,7 @@ func _ready() -> void:
 	stack_component.initialize(grid_entity, false, turn_component)
 	random_skill_planner.set_stack_component(stack_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
+	turn_component.turn_ended.connect(_on_turn_component_turn_ended)
 	grid_entity.stack_component.emptied_stack.connect(_on_skill_stack_component_emptied_stack)
 	grid_entity.turned_invisible.connect(_update_visibility)
 	if visual and visual.has_method("initialize"):
@@ -299,6 +300,11 @@ func _on_angry_at_died():
 
 func _on_turn_component_turn_started() -> void:
 	take_turn()
+
+
+func _on_turn_component_turn_ended() -> void:
+	if not grid_entity.is_on_floor():
+		grid_entity.on_death()
 
 
 func _on_base_random_skill_planner_awaited_directional_input() -> void:

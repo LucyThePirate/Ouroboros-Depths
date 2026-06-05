@@ -8,7 +8,7 @@
 script = ExtResource("2_phl4j")
 move_blocks = true
 status_name = "Hidden"
-status_desc = "This creature is hidden and undetectable. This status depletes as the creature moves, and is removed when the creature is damaged.
+status_desc = "This creature is undetectable. This status depletes as the creature moves, and is removed when the creature is damaged.
 
 If the creature attacks, the status will be removed completely, but the attack will do double damage!"
 turns_afflicted = 10

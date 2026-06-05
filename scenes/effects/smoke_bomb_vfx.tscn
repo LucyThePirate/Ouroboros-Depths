@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bja8pi8psjdsv"]
+
+[ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="1_qwa8a"]
+[ext_resource type="Script" uid="uid://cx7c6ykuyyyr3" path="res://scenes/effects/smoke_bomb_vfx.gd" id="2_kim5f"]
+[ext_resource type="AudioStream" uid="uid://dktvk6voedv3d" path="res://audio/SFX/Skills/Disguise/puff_of_smoke_euanmj.ogg" id="2_uhvpj"]
+
+[sub_resource type="Curve" id="Curve_ulm08"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.26190478, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wrfcs"]
+curve = SubResource("Curve_ulm08")
+
+[sub_resource type="Gradient" id="Gradient_ksa1x"]
+offsets = PackedFloat32Array(0.02173913, 1)
+colors = PackedColorArray(0.78, 0.78, 0.78, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mitya"]
+gradient = SubResource("Gradient_ksa1x")
+
+[sub_resource type="Gradient" id="Gradient_g316b"]
+offsets = PackedFloat32Array(0, 0.98913044)
+colors = PackedColorArray(1, 1, 1, 1, 0.5, 0.5, 0.5, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mc6oo"]
+gradient = SubResource("Gradient_g316b")
+
+[sub_resource type="Curve" id="Curve_jwsb0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.8809524, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ea3oi"]
+curve = SubResource("Curve_jwsb0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3uhjl"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 77.586
+initial_velocity_min = 20.83
+initial_velocity_max = 135.42
+gravity = Vector3(0, -30, 0)
+scale_min = 0.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_ea3oi")
+color_ramp = SubResource("GradientTexture1D_mc6oo")
+color_initial_ramp = SubResource("GradientTexture1D_mitya")
+alpha_curve = SubResource("CurveTexture_wrfcs")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ltjo8"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("2_uhvpj")
+
+[node name="SmokeBombVFX" type="GPUParticles2D" unique_id=1787285732]
+emitting = false
+texture = ExtResource("1_qwa8a")
+one_shot = true
+speed_scale = 0.6
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_3uhjl")
+script = ExtResource("2_kim5f")
+
+[node name="SmokeSFX" type="AudioStreamPlayer2D" parent="." unique_id=874787949]
+stream = SubResource("AudioStreamRandomizer_ltjo8")
+volume_db = 8.29
+pitch_scale = 0.91
+autoplay = true
+bus = &"SFX"
+
+[connection signal="finished" from="SmokeSFX" to="." method="_on_smoke_sfx_finished"]

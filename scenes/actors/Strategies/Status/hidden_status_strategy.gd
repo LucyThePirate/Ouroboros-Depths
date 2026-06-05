@@ -24,11 +24,8 @@ func modify_incoming_damage(incoming_damage := 1) -> int:
 
 func on_moved(old_coord: Vector2i, new_coord: Vector2i):
 	if move_blocks:
-		var new_wall_data = Global.walls.get_cell_tile_data(new_coord)
-		if not (new_wall_data and new_wall_data.get_custom_data("is_solid")):
-			var wall_pattern = Global.walls.get_pattern([old_coord])
-			Global.walls.set_pattern(new_coord, wall_pattern)
-			Global.walls.set_cell(old_coord, -1)
+		if not Tiles.move_wall(old_coord, new_coord):
+			power = 0
 	power -= 1
 	_update_visuals()
 	if power <= 0:
