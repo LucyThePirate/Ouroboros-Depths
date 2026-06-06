@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bxomw67opmyaw"]
+
+[ext_resource type="PackedScene" uid="uid://c02to40218vlw" path="res://scenes/title_screen.tscn" id="1_uf8dr"]
+
+[node name="ModeSwitcher" type="Node" unique_id=929766766]
+
+[node name="TitleScreen" parent="." unique_id=1197953209 instance=ExtResource("1_uf8dr")]

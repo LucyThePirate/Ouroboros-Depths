@@ -479,6 +479,8 @@ func _is_obstructed(tile_coords) -> bool:
 
 func _on_entity_died(is_despawning, grid_entity: GridEntity):
 	current_challenge_rating -= grid_entity.challenge_rating
+	if is_arena or tutorial_level:
+		return
 	if not is_despawning and grid_entity.challenge_rating > 0:
 		Global.walls.set_cell(generator.stairs_down_location, -1)
 

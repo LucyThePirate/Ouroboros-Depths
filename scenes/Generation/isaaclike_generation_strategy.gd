@@ -136,7 +136,7 @@ func _generate_basic_rooms(expandable_areas):
 				expandable_areas.erase(room_cell)
 			for r_x in range(room_cell.x * cell_size, room_cell.x * cell_size + cell_size):
 				for r_y in range(room_cell.y * cell_size, room_cell.y * cell_size + cell_size):
-					floors.set_cell(Vector2i(r_x, r_y), room_floor_tile[0], room_floor_tile[1])
+					floors.set_cell(Vector2i(r_x, r_y), Tiles.wood_floor_tile[0], Tiles.wood_floor_tile[1])
 					#walls.set_cell(Vector2i(r_x, r_y), -1)
 			for a in adjacent:
 				if not rooms[room].has(a + room_cell):
@@ -372,7 +372,7 @@ func _blend_in_with_neighboring_walls(
 
 func _place_stairs():
 	var possible_stair_locations = floors.get_used_cells_by_id(
-		Tiles.room_floor_tile[0], Tiles.room_floor_tile[1]
+		Tiles.wood_floor_tile[0], Tiles.wood_floor_tile[1]
 	)
 	stairs_down_location = possible_stair_locations[rng.randi_range(
 		0, possible_stair_locations.size() - 1
@@ -380,7 +380,7 @@ func _place_stairs():
 	floors.set_cell(stairs_down_location, stairs_down_tile[0], stairs_down_tile[1])
 	walls.set_cell(stairs_down_location, Tiles.lock_tile[0], Tiles.lock_tile[1])
 	possible_stair_locations = floors.get_used_cells_by_id(
-		Tiles.room_floor_tile[0], Tiles.room_floor_tile[1]
+		Tiles.wood_floor_tile[0], Tiles.wood_floor_tile[1]
 	)
 	stairs_up_location = possible_stair_locations[rng.randi_range(
 		0, possible_stair_locations.size() - 1

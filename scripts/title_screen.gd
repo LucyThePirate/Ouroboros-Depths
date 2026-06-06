@@ -52,8 +52,11 @@ func _process(_delta: float) -> void:
 		var load_status := ResourceLoader.load_threaded_get_status(loading_scene, progress)
 		load_progress_bar.value = progress[0]
 		if load_status == ResourceLoader.THREAD_LOAD_LOADED:
-			var fully_loaded_scene = ResourceLoader.load_threaded_get(loading_scene)
-			get_tree().change_scene_to_packed(fully_loaded_scene)
+			var fully_loaded_scene = ResourceLoader.load_threaded_get(loading_scene) as PackedScene
+			var change_scene_result = get_tree().change_scene_to_packed(fully_loaded_scene)
+
+			print("Changing scene, result:", change_scene_result)
+
 	else:
 		$CanvasLayer/Loading/CanvasLayer/CursorCollision.position = (
 			get_viewport().get_mouse_position()
