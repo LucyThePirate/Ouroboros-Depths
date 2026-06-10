@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ceh3chpf36np1" path="res://scenes/actors/Strategies/Status/Decay/decay_status_strategy.tscn" id="2_hm3lh"]
 [ext_resource type="PackedScene" uid="uid://5niaw18b21xq" path="res://scenes/actors/Strategies/Status/Bouncy/bouncy_status_strategy.tscn" id="3_el8k1"]
 [ext_resource type="Texture2D" uid="uid://2f45qneioin0" path="res://textures/creatures/bomb_sprites.png" id="3_hm3lh"]
+[ext_resource type="PackedScene" uid="uid://c04bqtk5inpiw" path="res://scenes/actors/Strategies/Status/Explosive/explosive_status_strategy.tscn" id="4_el8k1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_el8k1"]
 atlas = ExtResource("3_hm3lh")
@@ -42,10 +43,16 @@ species_desc = "A nefarious explosive device."
 soul_count = 0
 challenge_rating = 0.0
 
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
+max_health = 5
+
 [node name="DecayStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="1" unique_id=577548757 instance=ExtResource("2_hm3lh")]
 layout_mode = 2
 
 [node name="BouncyStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="2" unique_id=1142096118 instance=ExtResource("3_el8k1")]
+layout_mode = 2
+
+[node name="ExplosiveStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="3" unique_id=975039761 instance=ExtResource("4_el8k1")]
 layout_mode = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="6" unique_id=557631356]

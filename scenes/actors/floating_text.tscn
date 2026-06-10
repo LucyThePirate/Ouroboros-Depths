@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cg6jvx6qfd2jn"]
+[gd_scene format=3 uid="uid://cg6jvx6qfd2jn"]
 
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="1_meynd"]
 [ext_resource type="Script" uid="uid://3y00qum1h64k" path="res://scripts/Actors/floating_text.gd" id="1_uopox"]
@@ -95,11 +95,11 @@ _data = {
 &"float_away_error": SubResource("Animation_8yhkb")
 }
 
-[node name="FloatingText" type="Node2D"]
+[node name="FloatingText" type="Node2D" unique_id=176773097]
 top_level = true
 script = ExtResource("1_uopox")
 
-[node name="Text" type="RichTextLabel" parent="."]
+[node name="Text" type="RichTextLabel" parent="." unique_id=1005728867]
 z_index = 11
 anchors_preset = 8
 anchor_left = 0.5
@@ -125,7 +125,7 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="."]
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1183218126]
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -142,16 +142,14 @@ placeholder_text = "[wave amp=50.0 freq=5.0 connected=1]...[/wave]"
 alignment = 1
 selecting_enabled = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_8yhkb")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1562255437]
+libraries/ = SubResource("AnimationLibrary_8yhkb")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=461857813]
 visible = false
 texture = ExtResource("3_6q6jx")
 
-[node name="TypeDelay" type="Timer" parent="."]
+[node name="TypeDelay" type="Timer" parent="." unique_id=214548786]
 
 [connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]

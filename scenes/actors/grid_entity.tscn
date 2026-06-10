@@ -100,6 +100,7 @@ volume_db = 10.0
 bus = &"SFX"
 
 [node name="Step" type="AudioStreamPlayer2D" parent="." unique_id=1732872707]
+unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_qliy4")
 volume_db = 1.286
 bus = &"SFX"

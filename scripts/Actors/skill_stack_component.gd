@@ -5,6 +5,7 @@ class_name SkillStackComponent
 #signal used_skill
 #signal queued_skill
 signal stack_full
+signal started_execution
 signal emptied_stack
 signal awaited_directional_input
 signal awaited_cursor_input
@@ -165,6 +166,7 @@ func execute_stack() -> bool:
 	state = States.EXECUTING_STACK
 	for skill in stack:
 		skill.on_stack_execution_started(grid_entity)
+	started_execution.emit()
 	_handle_stack_execution()
 	return true
 

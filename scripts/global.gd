@@ -67,7 +67,7 @@ func is_turn_based() -> bool:
 func load_deck() -> Resource:
 	if OS.is_debug_build():
 		selected_deck = DECKS.DEBUG
-	if Global.config.get_value("Gameplay", "SelectedDeck"):
+	if Global.config.has_section_key("Gameplay", "SelectedDeck"):
 		selected_deck = Global.config.get_value("Gameplay", "SelectedDeck")
 	match selected_deck:
 		DECKS.BASIC:

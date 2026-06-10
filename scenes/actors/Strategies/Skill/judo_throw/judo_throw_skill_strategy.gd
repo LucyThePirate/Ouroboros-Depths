@@ -105,9 +105,7 @@ func use_skill(grid_entity: GridEntity):
 	if victim_to_throw:
 		victim_to_throw.warp(cursor)
 	elif wall_to_throw:
-		var thrown_wall_pattern = Global.walls.get_pattern([wall_to_throw_coords])
-		Global.walls.set_cell(wall_to_throw_coords, -1)
-		Global.walls.set_pattern(cursor, thrown_wall_pattern)
+		Tiles.move_wall(wall_to_throw_coords, cursor)
 	_spawn_shockwave_at_coords(cursor, grid_entity)
 
 	victim_to_throw = null

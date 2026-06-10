@@ -14,8 +14,10 @@ func _ready() -> void:
 		grid_entity.moved.connect(on_grid_entity_moved)
 		grid_entity.reload_started.connect(on_reload_started)
 		grid_entity.descended.connect(on_next_floor_reached)
+		grid_entity.started_stack_execution.connect(on_stack_execution_started)
 		grid_entity.finished_stack_execution.connect(on_stack_execution_finished)
 		grid_entity.hurt.connect(on_hit_by_grid_entity)
+		grid_entity.died.connect(on_grid_entity_died)
 	for status in Debug.find_children_in_group(self, "Status") as Array[StatusStrategy]:
 		status.healed.connect(_on_status_healed)
 		status.harmed.connect(_on_status_harmed)
@@ -62,14 +64,20 @@ func on_next_floor_reached():
 		status.on_next_floor_reached()
 
 
+func on_stack_execution_started():
+	for status in status_bar.get_children() as Array[StatusStrategy]:
+		status.on_stack_execution_started()
+
+
 func on_stack_execution_finished():
 	for status in status_bar.get_children() as Array[StatusStrategy]:
 		status.on_stack_execution_finished()
 
 
-func on_hit_by_grid_entity(attacker : GridEntity, damage_amount: int):
+func on_hit_by_grid_entity(attacker: GridEntity, damage_amount: int):
 	for status in status_bar.get_children() as Array[StatusStrategy]:
 		status.on_hit_by_grid_entity(attacker, damage_amount)
+
 
 func on_grid_entity_moved(old_coord: Vector2i, new_coord: Vector2i):
 	for status in status_bar.get_children() as Array[StatusStrategy]:
@@ -91,6 +99,11 @@ func modify_outgoing_damage(outgoing_damage := 1) -> int:
 	for status in status_bar.get_children() as Array[StatusStrategy]:
 		outgoing_damage = status.modify_outgoing_damage(outgoing_damage)
 	return outgoing_damage
+
+
+func on_grid_entity_died(_is_despawning):
+	for status in status_bar.get_children() as Array[StatusStrategy]:
+		status.on_death()
 
 
 func get_status_descriptions():

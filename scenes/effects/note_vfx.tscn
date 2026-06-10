@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmxeogtui2phc"]
+[gd_scene format=3 uid="uid://cmxeogtui2phc"]
 
 [ext_resource type="Texture2D" uid="uid://bwvtwmdsyty2g" path="res://textures/testing/dottedLine.png" id="1_temwn"]
 [ext_resource type="Script" uid="uid://bl5geefd2ut0s" path="res://scripts/Effects/note_vfx.gd" id="2_al6sn"]
@@ -155,15 +155,16 @@ tone = "B"
 octave = 3
 metadata/_custom_type_script = "uid://dtpmtwvvk0ac7"
 
-[node name="NoteVFX" type="Sprite2D"]
+[node name="NoteVFX" type="Sprite2D" unique_id=1994927071]
 self_modulate = Color(1, 1, 1, 0)
+y_sort_enabled = true
 texture = ExtResource("1_temwn")
 region_enabled = true
 region_rect = Rect2(0, 0, 100, 100)
 script = ExtResource("2_al6sn")
 shield_status = ExtResource("3_wcdkb")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1814215630]
 show_behind_parent = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -176,18 +177,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.886275, 0, 0, 0.439216)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bqrfq")
-}
-autoplay = "Vanish"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1414844405]
+libraries/ = SubResource("AnimationLibrary_bqrfq")
+autoplay = &"Vanish"
 
-[node name="Note" type="Sprite2D" parent="."]
+[node name="Note" type="Sprite2D" parent="." unique_id=687063063]
 visible = false
 scale = Vector2(3.04089, 3.04089)
 texture = ExtResource("1_temwn")
 
-[node name="Sampler" type="AudioStreamPlayer2D" parent="."]
+[node name="Sampler" type="AudioStreamPlayer2D" parent="." unique_id=64897456]
 unique_name_in_owner = true
 bus = &"SFX"
 script = ExtResource("3_mfgr6")

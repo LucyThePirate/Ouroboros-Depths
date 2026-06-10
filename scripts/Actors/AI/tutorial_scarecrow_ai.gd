@@ -10,6 +10,7 @@ func _on_detection_radius_body_entered(body: Node2D) -> void:
 		if not current_text:
 			var new_text_component = text_scene.instantiate() as TextComponent
 			add_child(new_text_component)
+			new_text_component.initialize(false)
 			new_text_component.global_position = global_position
 			new_text_component.set_text(text_to_display)
 			new_text_component.text_changed.connect(visual._on_talked)

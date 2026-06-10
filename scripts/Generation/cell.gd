@@ -105,7 +105,7 @@ func _ready():
 		_initialize_entities()
 		return
 	# Else, no existing level, generate
-	generator.initialize(floors, walls, fog)
+	generator.initialize(current_floor, floors, walls, fog)
 	generator.generate_level()
 	for extra_node in generator.extra_nodes:
 		extra_node.reparent(self)
@@ -443,23 +443,28 @@ func spawn_entity_from_creature(
 	summoning_skill: SkillStrategy,
 	summoning_entity: GridEntity
 ):
+	var summon_locations = [grid_coordinate]
 	for adjacent_tile in Global.floors.get_surrounding_cells(grid_coordinate):
-		if not _is_obstructed(adjacent_tile):
+		summon_locations.append(adjacent_tile)
+	for summon_coords in summon_locations:
+		if not _is_obstructed(summon_coords, true):
 			var entity_scene = CreatureRepository.creatures[entity_type]
-			var new_entity = spawn_entity(adjacent_tile, entity_scene)
+			var new_entity = spawn_entity(summon_coords, entity_scene)
 			_initialize_entity(new_entity.grid_entity)
+			new_entity._update_visibility()
 			new_entity.grid_entity.challenge_rating = 0.0
 			new_entity.grid_entity.soul_count = 0
 			summoning_skill.on_entity_summoned(summoning_entity, new_entity)
-			if is_arena or not Global.darkness.get_cell_tile_data(adjacent_tile):
+			if is_arena or not Global.darkness.get_cell_tile_data(summon_coords):
 				var new_smoke = spawn_smoke_scene.instantiate()
-				new_smoke.global_position = Global.floors.map_to_local(adjacent_tile)
+				new_smoke.global_position = Global.floors.map_to_local(summon_coords)
 				add_child(new_smoke)
 			return
 
 
-func _is_obstructed(tile_coords) -> bool:
-	if not tile_coords:
+func _is_obstructed(tile_coords, requires_floor := false) -> bool:
+	var floor_tile = Global.floors.get_cell_tile_data(tile_coords)
+	if not floor_tile and requires_floor:
 		return true
 
 	var wall_tile = Global.walls.get_cell_tile_data(tile_coords)

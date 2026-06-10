@@ -4,7 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://cmyas4xlndmy7" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_skill_strategy.tscn" id="3_opytt"]
 [ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/actors/Strategies/Skill/dash_skill_strategy.tscn" id="3_xxlh1"]
 [ext_resource type="PackedScene" uid="uid://biuojqtlmraek" path="res://scenes/actors/Strategies/Skill/judo_throw/judo_throw_skill_strategy.tscn" id="4_ue1ts"]
-[ext_resource type="PackedScene" uid="uid://htmjy37yqb44" path="res://scenes/actors/Strategies/Skill/disguise/disguise_skill_strategy.tscn" id="5_opytt"]
+[ext_resource type="PackedScene" uid="uid://db3bk0lgv61c3" path="res://scenes/actors/Strategies/Skill/harpoon/harpoon_skill_strategy.tscn" id="6_ue1ts"]
+[ext_resource type="PackedScene" uid="uid://bimvv1spla6wo" path="res://scenes/actors/Strategies/Skill/bomb/bomb_skill_strategy.tscn" id="7_j6hsg"]
+[ext_resource type="PackedScene" uid="uid://g1l4hmiw4men" path="res://scenes/actors/Strategies/Skill/summon_wasp/summon_wasp_skill_strategy.tscn" id="7_oas7w"]
 
 [node name="DebugDeck" type="Control" unique_id=1324047796]
 layout_mode = 3
@@ -26,6 +28,13 @@ layout_mode = 0
 [node name="JudoThrowSkillStrategy" parent="." unique_id=347600095 instance=ExtResource("4_ue1ts")]
 layout_mode = 0
 
-[node name="DisguiseSkillStrategy" parent="." unique_id=1163924449 instance=ExtResource("5_opytt")]
+[node name="HarpoonSkillStrategy" parent="." unique_id=1103524039 instance=ExtResource("6_ue1ts")]
 layout_mode = 0
-count = 5
+
+[node name="BombSkillStrategy" parent="." unique_id=1242207891 instance=ExtResource("7_j6hsg")]
+layout_mode = 0
+count = 10
+when_to_use_skill = 2
+
+[node name="SummonWaspSkillStrategy" parent="." unique_id=1163924449 instance=ExtResource("7_oas7w")]
+layout_mode = 0

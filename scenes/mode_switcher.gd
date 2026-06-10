@@ -2,10 +2,10 @@ extends Node
 
 class_name ModeSwitcher
 
-@export var game_scene := preload("uid://43rkgu17gs68")  # game_manager.tscn
-@export var tutorial_scene := preload("uid://bkcktb2mpmgsc")  # tutorial_level.tscn
-@export var arena_scene := preload("uid://d4aptj5nxvsq5")  # arena_test_level.tscn
-@export var title_scene := preload("uid://c02to40218vlw")  # title_screen.tscn
+var game_scene := load("uid://43rkgu17gs68")  # game_manager.tscn
+var tutorial_scene := load("uid://bkcktb2mpmgsc")  # tutorial_level.tscn
+var arena_scene := load("uid://d4aptj5nxvsq5")  # arena_test_level.tscn
+var title_scene := load("uid://c02to40218vlw")  # title_screen.tscn
 
 enum Modes { GAME, TUTORIAL, ARENA, TITLE }
 var mode := Modes.TITLE

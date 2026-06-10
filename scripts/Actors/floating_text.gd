@@ -52,7 +52,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	text_editor.release_focus()
 
 
-func set_text(new_text: String, new_text_effect: String = "%s") -> void:
+func set_text(new_text: String, new_text_effect: String = "") -> void:
 	target_text = new_text
 	text_effect = new_text_effect
 	text.append_text(new_text_effect)

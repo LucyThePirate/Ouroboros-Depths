@@ -6,6 +6,7 @@ signal grid_entity_initialized
 signal moved(old_coord: Vector2i, new_coord: Vector2i)
 signal opened_door(cell_coord)
 signal pushed_object(object_coord, direction)
+signal started_stack_execution
 signal finished_stack_execution
 signal spawn_tile(tile_coord)
 signal spawn_wall(wall_coord)
@@ -41,6 +42,7 @@ enum Species {
 	GEM_ROACH,
 	SNAKE_BLOCK,
 	BOMB,
+	SWARMER,
 }
 @export var species_type := Species.DEFAULT
 @export var creature_name := "Default Entity"
@@ -84,6 +86,7 @@ var last_hit_by: GridEntity
 func _ready() -> void:
 	turn_component.turn_ended.connect(status_component.on_turn_ended)
 	stack_component.reload_started.connect(reload_started.emit)
+	stack_component.started_execution.connect(func(): started_stack_execution.emit())
 	stack_component.emptied_stack.connect(func(): finished_stack_execution.emit())
 
 
@@ -102,13 +105,12 @@ func get_skills() -> Array[Node]:
 	return Debug.find_children_in_group(self, "Skill", true)
 
 
-func move(direction: Vector2i, safe_walk := false) -> bool:
+func move(direction: Vector2i, safe_walk_entities := false, safe_walk_pits := false) -> bool:
 	if not initialized or state == States.DEAD:
 		return false
 
 	var old_coords = grid_coords
 	var new_coords = old_coords + direction
-	var floor_data = Global.floors.get_cell_tile_data(new_coords)
 
 	# Test for other bodies
 	var other_entity = Global.entity_positions.has(new_coords)
@@ -122,13 +124,17 @@ func move(direction: Vector2i, safe_walk := false) -> bool:
 			swap(other_entity)
 			performed_action.emit()
 			return true
-		if not safe_walk:
+		if not safe_walk_entities:
 			hit(other_entity)
 			performed_action.emit()
 			return false
 		else:  # safe walk on and we don't want to bump into this entity
 			performed_action.emit()
 			return false
+	var floor_data = Global.floors.get_cell_tile_data(new_coords)
+	if not floor_data and safe_walk_pits:
+		performed_action.emit()
+		return false
 
 	# Object interaction
 	var wall_data = Global.walls.get_cell_tile_data(new_coords)

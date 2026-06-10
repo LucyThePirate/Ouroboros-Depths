@@ -39,7 +39,9 @@ var nature_mode
 #endregion
 
 
-func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMapLayer):
+func initialize(
+	floor_number: int, new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMapLayer
+):
 	floors = new_floor
 	walls = new_wall
 	fog = new_fog
@@ -73,7 +75,6 @@ func generate_level():
 			rng.randi_range(1, 1),  # Right Padding
 			rng.randi_range(1, 1)  # Down Padding
 		)
-
 
 		for x in range(leaf.size.x):
 			for y in range(leaf.size.y):

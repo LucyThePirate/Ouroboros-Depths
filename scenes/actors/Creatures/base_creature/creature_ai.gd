@@ -6,7 +6,7 @@ class_name CreatureAI
 
 @export var visual: Node2D
 
-@onready var grid_entity = $GridEntity
+@onready var grid_entity = $GridEntity as GridEntity
 @onready var display = $Display
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $GridEntity/TurnComponent
@@ -46,8 +46,10 @@ func _ready() -> void:
 	stack_component.initialize(grid_entity, false, turn_component)
 	random_skill_planner.set_stack_component(stack_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
+	#if not turn_component.turn_ended.is_connected()
 	turn_component.turn_ended.connect(_on_turn_component_turn_ended)
 	grid_entity.stack_component.emptied_stack.connect(_on_skill_stack_component_emptied_stack)
+	grid_entity.moved.connect(_on_grid_entity_moved)
 	grid_entity.turned_invisible.connect(_update_visibility)
 	if visual and visual.has_method("initialize"):
 		visual.initialize(grid_entity)
@@ -91,8 +93,6 @@ func take_turn():
 
 
 func update_intent():
-	if name == "BombCreature":
-		pass
 	if not angry_at:
 		intent = random_skill_planner.make_plan(grid_entity, null)
 		if not intent:
@@ -128,9 +128,13 @@ func move_in_direction(moveDirection):
 	if visual:
 		visual.global_position = grid_entity.global_position
 	display.global_position = grid_entity.global_position
-	var move_successful = grid_entity.move(moveDirection, angry_at == null)
+	var move_successful = grid_entity.move(moveDirection, angry_at == null, true)
 	if not move_successful:
 		display.global_position += Vector2(moveDirection) * 25
+
+
+func _on_grid_entity_moved(old_coord: Vector2i, _new_coord: Vector2i):
+	display.global_position = Global.floors.map_to_local(old_coord)
 	displayLerpTime = 0.0
 
 

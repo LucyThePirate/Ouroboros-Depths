@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://oof35aakey11" path="res://scenes/actors/Creatures/gem_roach/gem_roach_creature.tscn" id="12_tir5h"]
 [ext_resource type="PackedScene" uid="uid://w4kg23pb7tql" path="res://scenes/actors/Creatures/wasp_knight/wasp_knight_creature.tscn" id="13_brfwm"]
 [ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="14_tjpqt"]
+[ext_resource type="PackedScene" uid="uid://0hj12q8mhwp3" path="res://scenes/actors/Creatures/rat/delete_rat_creature.tscn" id="15_4bofw"]
 [ext_resource type="PackedScene" uid="uid://b04tvmeribd1k" path="res://scenes/actors/Creatures/bogo_sort.tscn" id="15_73xfa"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="16_cpcro"]
 [ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="17_ttnpg"]
@@ -200,7 +201,7 @@ script = ExtResource("1_iuxeh")
 boulder_splash = ExtResource("2_0qvfo")
 spawn_smoke_scene = ExtResource("3_vk8p8")
 player_scene = ExtResource("4_3a4wt")
-creature_scene = Array[PackedScene]([ExtResource("5_dimvc"), ExtResource("6_hw4ns"), ExtResource("7_fkop7"), ExtResource("8_73l8b"), ExtResource("9_kmp3v"), ExtResource("10_mxyv8"), ExtResource("11_d2bkc"), ExtResource("12_tir5h"), ExtResource("13_brfwm"), ExtResource("14_tjpqt")])
+creature_scene = Array[PackedScene]([ExtResource("5_dimvc"), ExtResource("6_hw4ns"), ExtResource("7_fkop7"), ExtResource("8_73l8b"), ExtResource("9_kmp3v"), ExtResource("10_mxyv8"), ExtResource("11_d2bkc"), ExtResource("12_tir5h"), ExtResource("13_brfwm"), ExtResource("14_tjpqt"), ExtResource("15_4bofw")])
 bogosort_scene = ExtResource("15_73xfa")
 generator = NodePath("IsaaclikeGenerationStrategy")
 

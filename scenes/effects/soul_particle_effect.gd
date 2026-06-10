@@ -21,13 +21,13 @@ var state = States.FLOATING
 
 func _process(delta: float) -> void:
 	delta *= 5
+	var target_position: Vector2
+	if not target:
+		target_position = get_global_mouse_position()
+	else:
+		target_position = target.global_position
 	match state:
 		States.FLOATING:
-			var target_position: Vector2
-			if not target:
-				target_position = get_global_mouse_position()
-			else:
-				target_position = target.global_position
 			rotate_to_target(target_position, delta)
 			velocity *= (1 - damping)
 			damping = move_toward(damping, 1, delta * DAMPING_INCREASE_RATE)
@@ -41,10 +41,10 @@ func _process(delta: float) -> void:
 				if velocity.length_squared() <= 90000:
 					state = States.TARGET_REACHED
 					reached_target.emit()
-					%ExplosionParticles.global_position = target.global_position
+					%ExplosionParticles.global_position = target_position
 					%ExplosionParticles.emitting = true
 		States.TARGET_REACHED:
-			%ExplosionParticles.global_position = target.global_position
+			%ExplosionParticles.global_position = target_position
 			%Trail.add_point(global_position)
 			if %Trail.points.size() > MAX_POINTS:
 				%Trail.remove_point(0)

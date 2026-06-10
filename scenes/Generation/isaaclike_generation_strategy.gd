@@ -17,16 +17,18 @@ var stairs_down_location = Vector2i.RIGHT
 var extra_nodes: Array = []
 
 
-func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMapLayer):
+func initialize(
+	floor_number: int, new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMapLayer
+):
 	floors = new_floor
 	walls = new_wall
 	fog = new_fog
 	rng = RandomNumberGenerator.new()
 	noise = FastNoiseLite.new()
 	if Global.seed:
-		rng.set_seed(Global.seed)
+		rng.set_seed(Global.seed + floor_number)
 	noise.seed = rng.get_seed()
-	%SeedLabel.text = "Seed: %s" % Global.seed_string
+	%SeedLabel.text = "Floor: %s Seed: %s" % [floor_number, Global.seed_string]
 	print_rich("[color=LIME]The seed is: %s (%s)" % [Global.seed_string, rng.seed])
 	noise.fractal_octaves = 2
 	noise.fractal_lacunarity = 1.575

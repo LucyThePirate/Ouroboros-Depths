@@ -20,7 +20,8 @@ enum Status_IDs {
 	MOBILE_GUARD,
 	SPEED,
 	DECAY,
-	BOUNCY
+	BOUNCY,
+	EXPLOSIVE
 }
 
 @export_category("Lore")
@@ -87,6 +88,10 @@ func on_next_floor_reached():
 	status_ended.emit(self)
 
 
+func on_stack_execution_started():
+	pass
+
+
 func on_stack_execution_finished():
 	pass
 
@@ -101,6 +106,10 @@ func modify_incoming_damage(incoming_damage := 1) -> int:
 
 func modify_outgoing_damage(outgoing_damage := 1) -> int:
 	return outgoing_damage
+
+
+func on_death():
+	pass
 
 
 func _update_visuals() -> void:

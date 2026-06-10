@@ -3,10 +3,20 @@ extends StatusStrategy
 @export var move_blocks := true
 
 var used_effect := false
+var executed_stack_this_turn := false
+
+
+func merge_status(status: StatusStrategy):
+	executed_stack_this_turn = false
+	super(status)
 
 
 func on_grid_entity_parent_set(grid_entity: GridEntity):
 	grid_entity.turned_invisible.emit()
+
+
+func on_stack_execution_started():
+	executed_stack_this_turn = true
 
 
 func modify_outgoing_damage(outgoing_damage := 1) -> int:
@@ -33,7 +43,8 @@ func on_moved(old_coord: Vector2i, new_coord: Vector2i):
 
 
 func on_turn_ended():
-	pass
+	if executed_stack_this_turn:
+		on_status_ended()
 
 
 func on_status_ended():

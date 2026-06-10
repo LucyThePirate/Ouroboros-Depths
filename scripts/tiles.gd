@@ -46,6 +46,26 @@ extends Node
 #endregion
 
 
+# Returns true if there is/was a wall
+func remove_wall_or_floor(coords) -> bool:
+	var wall_data = Global.walls.get_cell_tile_data(coords)
+	if wall_data and wall_data.get_custom_data("indestructable"):
+		return true
+	elif wall_data and wall_data.get_custom_data("is_solid"):
+		Global.walls.set_cell(coords, -1)
+		return true
+	# No destructable wall, try the floor now
+	var floor_data = Global.floors.get_cell_tile_data(coords)
+	if floor_data and floor_data.get_custom_data("indestructable"):
+		return false
+	elif floor_data:
+		Global.walls.set_cell(coords, -1)
+		Global.floors.set_cell(coords, -1)
+		return false
+	# Nothing destroyale there at all
+	return false
+
+
 # Try to move a wall. Returns false if the wall being moved is destroyed.
 func move_wall(old_coords, new_coords) -> bool:
 	var old_wall_data = Global.walls.get_cell_tile_data(old_coords)

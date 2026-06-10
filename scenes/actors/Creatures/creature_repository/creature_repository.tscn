@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bh7o2vdd6f8nm" path="res://scenes/actors/Creatures/creature_repository/creature_repository.gd" id="1_hrqpc"]
 [ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_creature.tscn" id="2_awheb"]
+[ext_resource type="PackedScene" uid="uid://bhuwaipnhbms6" path="res://scenes/actors/Creatures/bomb/bomb_creature.tscn" id="3_yoxcm"]
 
 [node name="CreatureRepository" type="Node" unique_id=22139725]
 script = ExtResource("1_hrqpc")
 creatures = Dictionary[int, PackedScene]({
-1: ExtResource("2_awheb")
+1: ExtResource("2_awheb"),
+14: ExtResource("3_yoxcm")
 })

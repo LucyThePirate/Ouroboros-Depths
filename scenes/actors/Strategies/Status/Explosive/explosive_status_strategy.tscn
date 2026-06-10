@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c04bqtk5inpiw"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_p843k"]
+[ext_resource type="Script" uid="uid://bhifpkuw1gsfc" path="res://scenes/actors/Strategies/Status/Explosive/explosive_status_strategy.gd" id="2_ey4jf"]
+[ext_resource type="Texture2D" uid="uid://2f45qneioin0" path="res://textures/creatures/bomb_sprites.png" id="3_t0htv"]
+[ext_resource type="PackedScene" uid="uid://csmoib3nld3bv" path="res://scenes/effects/stomp_vfx.tscn" id="3_ynd4q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynd4q"]
+atlas = ExtResource("3_t0htv")
+region = Rect2(0, 0, 119.405075, 189)
+
+[node name="ExplosiveStatusStrategy" unique_id=577548757 instance=ExtResource("1_p843k")]
+script = ExtResource("2_ey4jf")
+explosion_VFX = ExtResource("3_ynd4q")
+status_name = "Explosive"
+status_desc = "This creature will EXPLODE VIOLENTLY upon death, likely resulting in the death of any creature unfortunate enough to be anywhere near it!"
+power = 2
+status_ID = 12
+
+[node name="TextureRect" parent="." index="0" unique_id=1155837054]
+modulate = Color(1, 0, 0, 1)
+texture = SubResource("AtlasTexture_ynd4q")

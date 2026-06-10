@@ -3,6 +3,8 @@ extends SkillStrategy
 var max_distance = 8
 
 var target_to_pull: GridEntity
+var wall_to_pull_coords: Vector2i
+var wall_to_pull := false
 
 
 func ready_skill(grid_entity: GridEntity) -> bool:
@@ -14,6 +16,7 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 
 
 func use_skill(grid_entity: GridEntity):
+	
 	$Arrows.hide()
 	state = SkillStrategy.States.PLAYING_ANIMATION
 	print(
@@ -45,6 +48,9 @@ func use_skill(grid_entity: GridEntity):
 			Global.walls.get_cell_tile_data(grapple_check_coords)
 			and Global.walls.get_cell_tile_data(grapple_check_coords).get_custom_data("is_solid")
 		):
+			if Global.walls.get_cell_tile_data(grapple_check_coords).get_custom_data("is_pushable"):
+				wall_to_pull_coords = grapple_check_coords
+				wall_to_pull = true
 			break
 		%GrabLineVFX.add_point(Global.floors.map_to_local(grapple_check_coords))
 
@@ -61,6 +67,15 @@ func use_skill(grid_entity: GridEntity):
 				%GrabLineVFX.remove_point(0)
 			await get_tree().create_timer(0.025).timeout
 		grid_entity.hit(target_to_pull, 1)
+	elif wall_to_pull:
+		for i in range(grapple_distance - 1):
+			Tiles.move_wall(wall_to_pull_coords, wall_to_pull_coords - direction)
+			
+			%GrabLineVFX.add_point(Global.floors.map_to_local(wall_to_pull_coords))
+			wall_to_pull_coords -= direction
+			if %GrabLineVFX.points.size() > max_line_points:
+				%GrabLineVFX.remove_point(0)
+			await get_tree().create_timer(0.025).timeout
 	else:
 		for i in range(max_distance):
 			await get_tree().create_timer(0.025).timeout
@@ -82,4 +97,5 @@ func use_skill(grid_entity: GridEntity):
 	%AnimationPlayer.play("fade_line")
 	state = SkillStrategy.States.IDLE
 	target_to_pull = null
+	wall_to_pull = false
 	super(grid_entity)

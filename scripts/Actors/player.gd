@@ -37,6 +37,7 @@ func _ready() -> void:
 	_load_deck()
 	stack_component.initialize(grid_entity, true, turn_component)
 	turn_component.turn_ended.connect(health_component.turn_ended)
+	grid_entity.moved.connect(_on_grid_entity_moved)
 	update_soul_counter()
 
 
@@ -97,7 +98,7 @@ func _handle_movement() -> void:
 	var moveDirection = _get_directional_input()
 	if moveDirection:
 		_update_movement_visuals()
-		var move_successful = grid_entity.move(moveDirection)
+		var move_successful = grid_entity.move(moveDirection, false, true)
 		if not move_successful:
 			display.global_position += moveDirection * 25
 
@@ -158,6 +159,7 @@ func _metamorphing_interrupted(_status):
 func _metamorphing_started():
 	if state == States.METAMORPHOSIS_STARTED:
 		state = States.METAMORPHING
+		stack_component.on_next_floor_reached()
 		update_soul_counter()
 		var new_metamorph = metamorphosis_scene.instantiate()
 		new_metamorph.grid_parent = grid_entity
@@ -244,6 +246,11 @@ func _update_movement_visuals():
 func _on_grid_entity_performed_action() -> void:
 	if state == States.IDLE:
 		end_turn()
+
+
+func _on_grid_entity_moved(old_coord: Vector2i, _new_coord: Vector2i):
+	display.global_position = Global.floors.map_to_local(old_coord)
+	displayLerpTime = 0.0
 
 
 func _on_skill_stack_component_emptied_stack() -> void:

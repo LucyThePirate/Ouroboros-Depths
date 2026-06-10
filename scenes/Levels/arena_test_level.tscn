@@ -10,9 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://oof35aakey11" path="res://scenes/actors/Creatures/gem_roach/gem_roach_creature.tscn" id="8_clcy1"]
 [ext_resource type="PackedScene" uid="uid://w4kg23pb7tql" path="res://scenes/actors/Creatures/wasp_knight/wasp_knight_creature.tscn" id="9_17sol"]
 [ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="10_5nu0o"]
+[ext_resource type="PackedScene" uid="uid://0hj12q8mhwp3" path="res://scenes/actors/Creatures/rat/delete_rat_creature.tscn" id="11_g3pur"]
 
 [node name="ArenaTestLevel" unique_id=1347246317 instance=ExtResource("1_72vdk")]
-creature_scene = Array[PackedScene]([ExtResource("2_a2icp"), ExtResource("3_g3pur"), ExtResource("4_uvcyq"), ExtResource("5_l8mfe"), ExtResource("6_n56r7"), ExtResource("7_v00fw"), ExtResource("8_clcy1"), ExtResource("9_17sol"), ExtResource("10_5nu0o")])
+creature_scene = Array[PackedScene]([ExtResource("2_a2icp"), ExtResource("3_g3pur"), ExtResource("4_uvcyq"), ExtResource("5_l8mfe"), ExtResource("6_n56r7"), ExtResource("7_v00fw"), ExtResource("8_clcy1"), ExtResource("9_17sol"), ExtResource("10_5nu0o"), ExtResource("11_g3pur")])
 challenge_rating_capacity = 100.0
 is_arena = true
 

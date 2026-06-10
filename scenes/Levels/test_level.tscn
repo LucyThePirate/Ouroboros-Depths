@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cqjoguhw8mhj" path="res://scenes/actors/Creatures/tutorial_scarecrow.tscn" id="4_2t416"]
 [ext_resource type="PackedScene" uid="uid://dctxwjwjiof17" path="res://scenes/actors/lich_creature.tscn" id="5_wa5q0"]
 [ext_resource type="PackedScene" uid="uid://oof35aakey11" path="res://scenes/actors/Creatures/gem_roach/gem_roach_creature.tscn" id="6_ka0q3"]
+[ext_resource type="PackedScene" uid="uid://d3p2qbml7s288" path="res://scenes/actors/Creatures/slime/slime_creature.tscn" id="7_gd42f"]
 [ext_resource type="PackedScene" uid="uid://dvtenp8g812ei" path="res://scenes/actors/Creatures/bogo_egg.tscn" id="7_pj5lm"]
 [ext_resource type="PackedScene" uid="uid://bhuwaipnhbms6" path="res://scenes/actors/Creatures/bomb/bomb_creature.tscn" id="9_72hi1"]
 
@@ -44,6 +45,8 @@ position = Vector2(-250, -50)
 [node name="GemRoachCreature2" parent="." index="19" unique_id=1050311665 instance=ExtResource("6_ka0q3")]
 
 [node name="GemRoachCreature3" parent="." index="20" unique_id=383198726 instance=ExtResource("6_ka0q3")]
+
+[node name="SlimeCreature" parent="." index="21" unique_id=1810430150 instance=ExtResource("7_gd42f")]
 
 [editable path="PunchingBag"]
 [editable path="PunchingBag/GridEntity"]
