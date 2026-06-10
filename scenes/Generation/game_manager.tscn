@@ -197,7 +197,6 @@ alpha_curve = SubResource("CurveTexture_cyo7g")
 [node name="GameManager" type="Node2D" unique_id=1347246317 node_paths=PackedStringArray("generator")]
 y_sort_enabled = true
 script = ExtResource("1_iuxeh")
-title_scene = "uid://c02to40218vlw"
 boulder_splash = ExtResource("2_0qvfo")
 spawn_smoke_scene = ExtResource("3_vk8p8")
 player_scene = ExtResource("4_3a4wt")

@@ -23,11 +23,11 @@ func initialize(new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMa
 	fog = new_fog
 	rng = RandomNumberGenerator.new()
 	noise = FastNoiseLite.new()
-	if seed:
-		rng.seed = seed
+	if Global.seed:
+		rng.set_seed(Global.seed)
 	noise.seed = rng.get_seed()
-	%SeedLabel.text = "Seed: %s" % rng.seed
-	print_rich("[color=LIME]The seed is: %s" % rng.seed)
+	%SeedLabel.text = "Seed: %s" % Global.seed_string
+	print_rich("[color=LIME]The seed is: %s (%s)" % [Global.seed_string, rng.seed])
 	noise.fractal_octaves = 2
 	noise.fractal_lacunarity = 1.575
 	noise.frequency = 0.05
@@ -136,7 +136,9 @@ func _generate_basic_rooms(expandable_areas):
 				expandable_areas.erase(room_cell)
 			for r_x in range(room_cell.x * cell_size, room_cell.x * cell_size + cell_size):
 				for r_y in range(room_cell.y * cell_size, room_cell.y * cell_size + cell_size):
-					floors.set_cell(Vector2i(r_x, r_y), Tiles.wood_floor_tile[0], Tiles.wood_floor_tile[1])
+					floors.set_cell(
+						Vector2i(r_x, r_y), Tiles.wood_floor_tile[0], Tiles.wood_floor_tile[1]
+					)
 					#walls.set_cell(Vector2i(r_x, r_y), -1)
 			for a in adjacent:
 				if not rooms[room].has(a + room_cell):

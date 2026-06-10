@@ -1,7 +1,5 @@
 @tool
-extends Node2D
-
-@export_file("*.tscn") var title_scene
+extends GameMode
 
 @export var boulder_splash: PackedScene
 @export var spawn_smoke_scene: PackedScene
@@ -194,7 +192,7 @@ func _update_dynamic_music():
 
 func _redraw_map():
 	if tutorial_level:
-		get_tree().change_scene_to_file(title_scene)
+		requested_mode_switch.emit(ModeSwitcher.Modes.TITLE)
 		return
 	Global.next_floor_reached.emit()
 	current_floor += 1
@@ -525,12 +523,12 @@ func _on_unpaused() -> void:
 
 
 func _on_new_run_button_pressed() -> void:
-	get_tree().reload_current_scene()
+	requested_reload_current_mode.emit()
 
 
 func _on_title_screen_button_pressed() -> void:
 	_on_unpaused()
-	get_tree().change_scene_to_file(title_scene)
+	requested_mode_switch.emit(ModeSwitcher.Modes.TITLE)
 
 
 func _on_metamorphosis_tutorial_completed() -> void:

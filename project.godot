@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Ouroboros Depths"
-run/main_scene="uid://c02to40218vlw"
+run/main_scene="uid://bxomw67opmyaw"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/image="uid://cags1t2j8djij"
 config/icon="res://icon.svg"

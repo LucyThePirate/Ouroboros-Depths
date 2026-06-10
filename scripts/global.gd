@@ -19,6 +19,10 @@ enum DECKS { BASIC, FUZZER, MUSICIAN, BEAST_TAMER, DEBUG }
 
 @export var skills: Array[PackedScene]
 
+var seed := 0
+var seed_string := ""
+var random_seed := true
+
 var floors: TileMapLayer
 var objects: TileMapLayer
 var walls: TileMapLayer
@@ -29,6 +33,26 @@ const CELL_SIZE = 100
 var metamorphosis_reroll_cost = 3
 
 var pause_count := 0
+
+
+func set_seed(new_seed):
+	if new_seed:
+		random_seed = false
+		seed_string = new_seed
+		seed = hash(new_seed)
+	else:
+		random_seed = true
+		seed_string = generate_random_seed()
+		seed = hash(seed_string)
+
+
+func generate_random_seed() -> String:
+	var new_seed = ""
+	var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	for i in range(8):
+		new_seed += characters[randi_range(0, characters.length() - 1)]
+	new_seed = new_seed.insert(4, "-")
+	return new_seed
 
 
 func is_turn_based() -> bool:

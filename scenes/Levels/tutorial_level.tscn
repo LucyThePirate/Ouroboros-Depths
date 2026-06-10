@@ -172,7 +172,6 @@ shader_parameter/bg_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
 [node name="TutorialLevel" type="Node2D" unique_id=592235844 node_paths=PackedStringArray("generator")]
 y_sort_enabled = true
 script = ExtResource("1_qylo2")
-title_scene = "uid://c02to40218vlw"
 boulder_splash = ExtResource("2_o74wk")
 spawn_smoke_scene = ExtResource("3_kv4pv")
 player_scene = ExtResource("4_hg4aq")
