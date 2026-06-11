@@ -24,7 +24,7 @@ func use_skill(grid_entity: GridEntity):
 	):
 		var target = Global.entity_positions[check_coords] as GridEntity
 		target.hurt.connect(on_chomp_dealt_damage)
-		grid_entity.hit(target, 2)
+		grid_entity.hit(target, 2, true)
 		target.hurt.disconnect(on_chomp_dealt_damage)
 	elif (
 		wall_data

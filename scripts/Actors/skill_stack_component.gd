@@ -113,7 +113,7 @@ func queue_skill(skill_number) -> bool:
 		if current_stack_size + hand[skill_number].stack_size > current_max_stack_size:
 			# Not enough room, increase max stack size temporarily
 			current_max_stack_size += 1
-			$OpenBag.play()
+			%SkillCrammed.play()
 			_update_stack_visuals()
 			return true
 		$SkillAdded.pitch_scale = 0.7 + (0.20 * stack.size())

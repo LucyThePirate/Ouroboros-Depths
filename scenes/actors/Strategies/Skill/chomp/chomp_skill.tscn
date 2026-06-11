@@ -335,6 +335,7 @@ _data = {
 
 [node name="ChompSkill" unique_id=1163924449 instance=ExtResource("1_0vh3h")]
 script = ExtResource("2_p3agd")
+skill_ID = 19
 rarity = 2
 stack_size = 2
 usable_on_walls = true
@@ -344,7 +345,6 @@ skill_desc = "You visciously rend your foe with your teeth. Most of the time, yo
 On use, pick a direction and sink your fangs into an adjacent target, stealing their vitality and healing for the amount of unblocked damage dealt.
 
 Though your canines can tear apart flesh with ease, caution is advised with tougher customers, lest you chip a tooth."
-skill_ID = 19
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("2_8x4y4")

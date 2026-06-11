@@ -12,8 +12,33 @@ const SKILL_DESCRIPTION = preload("uid://bvsqgo23yrgum")
 
 enum SkillRarities { CURSE, COMMON, RARE, RAINBOW }
 enum SkillTypes { DEFAULT, DIRECTIONAL, CURSOR, NULL }
+enum SkillIDs {
+	NONE,
+	DASH,
+	DEFEND,
+	STOMP,
+	FORTUNE_COOKIE,
+	ORCHESTRATE,
+	BE_PATIENT,
+	DARK_STAR,
+	LEAP,
+	WARP,
+	POSSIBILITIES,
+	DRILL,
+	EARTH_SPIKE,
+	JUDO_THROW,
+	HARPOON,
+	SUMMON_WASP,
+	BOMB,
+	FUSE,
+	SPARK,
+	CHOMP,
+	DISGUISE,
+	DIVIDE_N_CONQUER,
+}
 
 @export_category("Base Stats")
+@export var skill_ID := SkillIDs.NONE
 @export var count := 3
 @onready var current_count := count
 @export var is_depletable := false
@@ -45,31 +70,6 @@ var cursor: Vector2i
 
 enum States { IDLE, AWAITING_DIRECTION, AWAITING_CURSOR, PLAYING_ANIMATION }
 var state = States.IDLE
-
-enum SkillIDs {
-	NONE,
-	DASH,
-	DEFEND,
-	STOMP,
-	FORTUNE_COOKIE,
-	ORCHESTRATE,
-	BE_PATIENT,
-	DARK_STAR,
-	LEAP,
-	WARP,
-	POSSIBILITIES,
-	DRILL,
-	EARTH_SPIKE,
-	JUDO_THROW,
-	HARPOON,
-	SUMMON_WASP,
-	BOMB,
-	FUSE,
-	SPARK,
-	CHOMP,
-	DISGUISE,
-}
-@export var skill_ID := SkillIDs.NONE
 
 
 # Called when the node enters the scene tree for the first time.

@@ -379,32 +379,9 @@ func _open_door(door_coords):
 
 
 func _push_tile(tile_coords, direction):
-	var tile = walls.get_cell_tile_data(tile_coords) as TileData
-	if not tile:
+	if Global.entity_positions.has(tile_coords + direction):
 		return
-
-	if _is_obstructed(tile_coords + direction):
-		return
-
-	if not Global.floors.get_cell_tile_data(tile_coords + direction):
-		walls.set_cell(tile_coords, -1)
-		floors.set_cell(tile_coords + direction, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1])
-		return
-
-	if Global.floors.get_cell_tile_data(tile_coords + direction).get_custom_data("is_liquid"):
-		Global.floors.set_cell(
-			tile_coords + direction, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1]
-		)
-		var splashVFX = boulder_splash.instantiate()
-		walls.add_child(splashVFX)
-		splashVFX.global_position = Global.floors.map_to_local(tile_coords + direction)
-	else:
-		walls.set_cell(
-			tile_coords + direction,
-			walls.get_cell_source_id(tile_coords),
-			walls.get_cell_atlas_coords(tile_coords)
-		)
-	walls.set_cell(tile_coords, -1)
+	Tiles.move_wall(tile_coords, tile_coords + direction)
 
 
 func spawn_tile(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):

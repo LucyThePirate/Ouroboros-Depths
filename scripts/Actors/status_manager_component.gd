@@ -101,9 +101,9 @@ func modify_outgoing_damage(outgoing_damage := 1) -> int:
 	return outgoing_damage
 
 
-func on_grid_entity_died(_is_despawning):
+func on_grid_entity_died(is_despawning):
 	for status in status_bar.get_children() as Array[StatusStrategy]:
-		status.on_death()
+		status.on_death(is_despawning)
 
 
 func get_status_descriptions():

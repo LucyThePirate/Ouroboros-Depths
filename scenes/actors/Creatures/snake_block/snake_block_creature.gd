@@ -59,8 +59,8 @@ func _form_block_snake() -> void:
 					found_new_block_segment = true
 		if not found_new_block_segment:
 			break
-	health_component.max_health += block_segments.size() * 2
-	health_component.heal(block_segments.size() * 2)
+	var new_health = health_component.max_health + block_segments.size() * 2
+	health_component.set_health(new_health, new_health)
 	grid_entity.soul_count += int(block_segments.size() / 2.0)
 	grid_entity.can_walk_through_walls = false
 	var hidden_status = hidden_status_scene.instantiate()

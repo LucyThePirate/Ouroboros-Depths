@@ -108,8 +108,9 @@ func modify_outgoing_damage(outgoing_damage := 1) -> int:
 	return outgoing_damage
 
 
-func on_death():
-	pass
+func on_death(is_despawning: bool):
+	if is_despawning:
+		return
 
 
 func _update_visuals() -> void:

@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_ahopi"]
 [ext_resource type="PackedScene" uid="uid://cvwrdhp53rb8x" path="res://scenes/actors/Strategies/Skill/chomp/chomp_skill.tscn" id="2_7vwjq"]
 [ext_resource type="Texture2D" uid="uid://4aw2nf61m1op" path="res://textures/testing/bowserjr.png" id="2_xjq8j"]
+[ext_resource type="PackedScene" uid="uid://dfl6bhoygpayr" path="res://scenes/actors/Strategies/Skill/divide_n_conquer/divide_n_conquer_skill_strategy.tscn" id="3_7vwjq"]
 
 [node name="SwarmerCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_ahopi")]
 visual = NodePath("Sprite2D")
@@ -14,11 +15,14 @@ creature_name = "Swarmer"
 species_desc = "An annoyingly-resilient creature that shreds its victims with razor-sharp teeth.
 
 It is no small mercy that you only have to deal with one, it would be a nightmare scenario if you had to deal with any more..."
+soul_count = 4
 
 [node name="ChompSkill" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="10" unique_id=1163924449 instance=ExtResource("2_7vwjq")]
 
+[node name="DivideNConquerSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="11" unique_id=1705753146 instance=ExtResource("3_7vwjq")]
+
 [node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
-max_health = 8
+max_health = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=39983105]
 scale = Vector2(0.37728453, 0.37728453)

@@ -3,6 +3,7 @@ extends StatusStrategy
 var grid_parent: GridEntity
 var bomb_placer: GridEntity
 
+
 func on_grid_entity_parent_set(grid_entity: GridEntity):
 	grid_parent = grid_entity
 
@@ -11,7 +12,9 @@ func on_turn_ended():
 	pass
 
 
-func on_death():
+func on_death(is_despawning: bool):
+	if is_despawning:
+		return
 	var grid_coords = grid_parent.grid_coords
 	var new_explosion_VFX = explosion_VFX.instantiate()
 	get_tree().current_scene.add_child(new_explosion_VFX)
@@ -28,4 +31,4 @@ func on_death():
 			):
 				if Global.entity_positions[check_coords] == grid_parent:
 					continue
-				bomb_placer.hit(Global.entity_positions[check_coords], power * 2)
+				grid_parent.hit(Global.entity_positions[check_coords], power * 2)

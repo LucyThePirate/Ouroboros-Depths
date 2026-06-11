@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c1tq0r2hua7v8" path="res://scenes/actors/Strategies/Skill/dash_skill_strategy.tscn" id="3_xxlh1"]
 [ext_resource type="PackedScene" uid="uid://biuojqtlmraek" path="res://scenes/actors/Strategies/Skill/judo_throw/judo_throw_skill_strategy.tscn" id="4_ue1ts"]
 [ext_resource type="PackedScene" uid="uid://db3bk0lgv61c3" path="res://scenes/actors/Strategies/Skill/harpoon/harpoon_skill_strategy.tscn" id="6_ue1ts"]
-[ext_resource type="PackedScene" uid="uid://bimvv1spla6wo" path="res://scenes/actors/Strategies/Skill/bomb/bomb_skill_strategy.tscn" id="7_j6hsg"]
+[ext_resource type="PackedScene" uid="uid://cvwrdhp53rb8x" path="res://scenes/actors/Strategies/Skill/chomp/chomp_skill.tscn" id="7_j6hsg"]
 [ext_resource type="PackedScene" uid="uid://g1l4hmiw4men" path="res://scenes/actors/Strategies/Skill/summon_wasp/summon_wasp_skill_strategy.tscn" id="7_oas7w"]
 
 [node name="DebugDeck" type="Control" unique_id=1324047796]
@@ -16,25 +16,31 @@ offset_bottom = 40.0
 
 [node name="LeapSkillStrategy" parent="." unique_id=273578898 instance=ExtResource("1_q1j0s")]
 layout_mode = 0
+skill_ID = 0
 
 [node name="DashSkillStrategy" parent="." unique_id=1974758503 instance=ExtResource("3_xxlh1")]
 layout_mode = 0
 offset_left = 0.0
 offset_right = 144.0
+skill_ID = 0
 
 [node name="EarthSpikeSkillStrategy" parent="." unique_id=1348417474 instance=ExtResource("3_opytt")]
 layout_mode = 0
+skill_ID = 0
 
 [node name="JudoThrowSkillStrategy" parent="." unique_id=347600095 instance=ExtResource("4_ue1ts")]
 layout_mode = 0
+skill_ID = 0
 
 [node name="HarpoonSkillStrategy" parent="." unique_id=1103524039 instance=ExtResource("6_ue1ts")]
 layout_mode = 0
-
-[node name="BombSkillStrategy" parent="." unique_id=1242207891 instance=ExtResource("7_j6hsg")]
-layout_mode = 0
-count = 10
-when_to_use_skill = 2
+skill_ID = 0
 
 [node name="SummonWaspSkillStrategy" parent="." unique_id=1163924449 instance=ExtResource("7_oas7w")]
 layout_mode = 0
+skill_ID = 0
+count = 5
+
+[node name="ChompSkill" parent="." unique_id=247910410 instance=ExtResource("7_j6hsg")]
+layout_mode = 0
+count = 5

@@ -23,6 +23,9 @@
 [ext_resource type="AudioStream" uid="uid://ckq4r2tuhp7cf" path="res://audio/Music/AstrMusic/cheepchomp[puzzle,loop,temple-y].mp3" id="16_57c4j"]
 [ext_resource type="AudioStream" uid="uid://brgjfi5b2rdyi" path="res://audio/SFX/Skills/Domino/DominoOpenBag1.ogg" id="17_lqrbu"]
 [ext_resource type="AudioStream" uid="uid://rnt18baa5lvp" path="res://audio/SFX/Skills/Domino/DominoOpenBag2.ogg" id="18_8of2w"]
+[ext_resource type="AudioStream" uid="uid://bi57284sqy035" path="res://audio/SFX/Skills/Cramming/725251__lematt__papercrumpling-1.ogg" id="22_t5vuw"]
+[ext_resource type="AudioStream" uid="uid://dnh08koilu80e" path="res://audio/SFX/Skills/Cramming/725251__lematt__papercrumpling-2.ogg" id="23_ayrf8"]
+[ext_resource type="AudioStream" uid="uid://v1polmpey3yy" path="res://audio/SFX/Skills/Cramming/725251__lematt__papercrumpling-3.ogg" id="24_pw4qd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28yix"]
 content_margin_left = 4.0
@@ -94,6 +97,13 @@ stream_1/stream = ExtResource("10_r0es2")
 stream_2/stream = ExtResource("11_o3wly")
 stream_3/stream = ExtResource("12_e1hdf")
 stream_4/stream = ExtResource("13_wnbre")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_57c4j"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("22_t5vuw")
+stream_1/stream = ExtResource("23_ayrf8")
+stream_2/stream = ExtResource("24_pw4qd")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5452a"]
 random_pitch = 1.1
@@ -426,6 +436,12 @@ process_material = SubResource("ParticleProcessMaterial_8fyuu")
 
 [node name="SkillAdded" type="AudioStreamPlayer2D" parent="." unique_id=1129844569]
 stream = SubResource("AudioStreamRandomizer_lqrbu")
+bus = &"SFX"
+
+[node name="SkillCrammed" type="AudioStreamPlayer2D" parent="." unique_id=852454015]
+unique_name_in_owner = true
+process_mode = 3
+stream = SubResource("AudioStreamRandomizer_57c4j")
 bus = &"SFX"
 
 [node name="OpenBag" type="AudioStreamPlayer2D" parent="." unique_id=1353470391]

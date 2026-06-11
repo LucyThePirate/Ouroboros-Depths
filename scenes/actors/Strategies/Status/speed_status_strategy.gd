@@ -9,7 +9,7 @@ func on_moved(_old_coord: Vector2i, _new_coord: Vector2i):
 		return
 	used_effect_this_turn = true
 	var direction = _new_coord - _old_coord
-	grid_entity.move(direction)
+	grid_entity.move(direction, false, true)
 
 
 func on_grid_entity_parent_set(_grid_entity: GridEntity):

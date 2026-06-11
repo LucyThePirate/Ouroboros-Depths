@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/game_manager.tscn" id="1_rvaov"]
 [ext_resource type="PackedScene" uid="uid://cqjoguhw8mhj" path="res://scenes/actors/Creatures/tutorial_scarecrow.tscn" id="4_2t416"]
-[ext_resource type="PackedScene" uid="uid://dctxwjwjiof17" path="res://scenes/actors/lich_creature.tscn" id="5_wa5q0"]
-[ext_resource type="PackedScene" uid="uid://oof35aakey11" path="res://scenes/actors/Creatures/gem_roach/gem_roach_creature.tscn" id="6_ka0q3"]
+[ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="7_eg032"]
 [ext_resource type="PackedScene" uid="uid://d3p2qbml7s288" path="res://scenes/actors/Creatures/slime/slime_creature.tscn" id="7_gd42f"]
 [ext_resource type="PackedScene" uid="uid://dvtenp8g812ei" path="res://scenes/actors/Creatures/bogo_egg.tscn" id="7_pj5lm"]
+[ext_resource type="PackedScene" uid="uid://ciyn4wqn36ytl" path="res://scenes/actors/Creatures/swarmer/swarmer_creature.tscn" id="8_eg032"]
 [ext_resource type="PackedScene" uid="uid://bhuwaipnhbms6" path="res://scenes/actors/Creatures/bomb/bomb_creature.tscn" id="9_72hi1"]
 
 [node name="TestLevel" unique_id=1347246317 instance=ExtResource("1_rvaov")]
@@ -37,16 +37,13 @@ position = Vector2(-750, -950)
 [node name="BombCreature" parent="." index="16" unique_id=707297936 instance=ExtResource("9_72hi1")]
 position = Vector2(-1550, -50)
 
-[node name="LichCreature" parent="." index="17" unique_id=1348487989 instance=ExtResource("5_wa5q0")]
-position = Vector2(-250, -50)
+[node name="SlimeCreature" parent="." index="17" unique_id=1810430150 instance=ExtResource("7_gd42f")]
 
-[node name="GemRoachCreature" parent="." index="18" unique_id=1131742328 instance=ExtResource("6_ka0q3")]
+[node name="SwarmerCreature" parent="." index="18" unique_id=124252925 instance=ExtResource("8_eg032")]
+position = Vector2(-2150, -50)
 
-[node name="GemRoachCreature2" parent="." index="19" unique_id=1050311665 instance=ExtResource("6_ka0q3")]
-
-[node name="GemRoachCreature3" parent="." index="20" unique_id=383198726 instance=ExtResource("6_ka0q3")]
-
-[node name="SlimeCreature" parent="." index="21" unique_id=1810430150 instance=ExtResource("7_gd42f")]
+[node name="SnakeBlockCreature" parent="." index="19" unique_id=832272903 instance=ExtResource("7_eg032")]
+position = Vector2(-250, -150)
 
 [editable path="PunchingBag"]
 [editable path="PunchingBag/GridEntity"]

@@ -22,6 +22,13 @@ func _ready():
 	_update_health_bar()
 
 
+func set_health(new_health: int, new_max_health := 0):
+	health = new_health
+	if new_max_health:
+		max_health = new_max_health
+	_update_health_bar()
+
+
 func deal_damage(damage_amount = 1):
 	if damage_amount <= 0:
 		return

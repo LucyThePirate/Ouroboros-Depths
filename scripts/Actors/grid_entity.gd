@@ -259,8 +259,8 @@ func try_attacking(entity):
 	return false
 
 
-func hit(entity, damage := 1):
-	if entity and entity.has_method("_on_hit") and entity.team != team:
+func hit(entity, damage := 1, allow_friendly_fire := false):
+	if entity and entity.has_method("_on_hit") and (allow_friendly_fire or entity.team != team):
 		slapped.emit(entity)
 		damage = status_component.modify_outgoing_damage(damage)
 		entity._on_hit(self, damage)
@@ -316,11 +316,12 @@ func play_thump_sound(material):
 func on_death(is_despawning := false) -> void:
 	if state == States.IDLE:
 		health_component.health = 0
-		if is_instance_valid(last_hit_by) and last_hit_by is GridEntity:
-			if soul_count > 0:
-				last_hit_by.soul_count += soul_count
-				last_hit_by.kills += 1
-				last_hit_by.absorbed_souls.emit(global_position)
+		if not is_despawning:
+			if is_instance_valid(last_hit_by) and last_hit_by is GridEntity:
+				if soul_count > 0:
+					last_hit_by.soul_count += soul_count
+					last_hit_by.kills += 1
+					last_hit_by.absorbed_souls.emit(global_position)
 		Global.entity_positions.erase(grid_coords)
 		state = States.DEAD
 		died.emit(is_despawning)
