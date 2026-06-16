@@ -14,9 +14,6 @@
 [ext_resource type="Script" uid="uid://b57xlofytn3k" path="res://addons/ActionIcon/ActionIcon.gd" id="19_u2nr5"]
 [ext_resource type="AudioStream" uid="uid://d3dload3sw6cq" path="res://audio/SFX/Misc/erro.mp3" id="20_ad5m5"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gokip"]
-radius = 44.1022
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u2nr5"]
 random_pitch = 1.1
 streams_count = 1
@@ -137,12 +134,6 @@ position_smoothing_enabled = true
 
 [node name="Display" type="Node2D" parent="." unique_id=1874228332]
 top_level = true
-
-[node name="Area2D" type="Area2D" parent="Display" unique_id=1938533876]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Display/Area2D" unique_id=1112779701]
-shape = SubResource("CircleShape2D_gokip")
-debug_color = Color(0.627606, 0.530906, 0, 0.42)
 
 [node name="ScarecrowVisual" parent="." unique_id=1510832620 instance=ExtResource("6_jfrsc")]
 unique_name_in_owner = true

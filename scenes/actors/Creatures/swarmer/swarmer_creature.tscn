@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://ciyn4wqn36ytl"]
 
 [ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_ahopi"]
+[ext_resource type="PackedScene" uid="uid://ctkwqyswv5h7b" path="res://scenes/actors/Creatures/swarmer/swarmer_visual.tscn" id="2_1qnt3"]
 [ext_resource type="PackedScene" uid="uid://cvwrdhp53rb8x" path="res://scenes/actors/Strategies/Skill/chomp/chomp_skill.tscn" id="2_7vwjq"]
-[ext_resource type="Texture2D" uid="uid://4aw2nf61m1op" path="res://textures/testing/bowserjr.png" id="2_xjq8j"]
 [ext_resource type="PackedScene" uid="uid://dfl6bhoygpayr" path="res://scenes/actors/Strategies/Skill/divide_n_conquer/divide_n_conquer_skill_strategy.tscn" id="3_7vwjq"]
 
 [node name="SwarmerCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_ahopi")]
-visual = NodePath("Sprite2D")
+visual = NodePath("SwarmerVisual")
 auto_aggro_against_others = true
 
-[node name="GridEntity" parent="." index="0" unique_id=1162874930]
+[node name="SwarmerVisual" parent="." index="0" unique_id=1358189179 instance=ExtResource("2_1qnt3")]
+scale = Vector2(0.40598288, 0.4059829)
+
+[node name="GridEntity" parent="." index="1" unique_id=1162874930]
 species_type = 15
 creature_name = "Swarmer"
 species_desc = "An annoyingly-resilient creature that shreds its victims with razor-sharp teeth.
@@ -23,9 +26,5 @@ soul_count = 4
 
 [node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
 max_health = 15
-
-[node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=39983105]
-scale = Vector2(0.37728453, 0.37728453)
-texture = ExtResource("2_xjq8j")
 
 [editable path="GridEntity"]

@@ -4,7 +4,7 @@ signal finished_animation
 
 var parent: Node2D
 var grid_entity: GridEntity
-@onready var animation_player = $AnimationPlayer as AnimationPlayer
+@export var animation_player: AnimationPlayer
 @onready var anim_tree = $AnimationTree if $AnimationTree else null
 var run_speed := 0.0
 var t := 0.0

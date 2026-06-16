@@ -863,9 +863,10 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("7_gqlsy")
 
-[node name="ScarecrowVisual" type="Node2D" unique_id=766199107]
+[node name="ScarecrowVisual" type="Node2D" unique_id=766199107 node_paths=PackedStringArray("animation_player")]
 use_parent_material = true
 script = ExtResource("1_aedx2")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="LeftCapeTarget" type="Marker2D" parent="." unique_id=7894130]
 position = Vector2(-276, 439)

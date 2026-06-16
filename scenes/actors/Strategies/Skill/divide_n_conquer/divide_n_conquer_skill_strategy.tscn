@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dfl6bhoygpayr"]
 
 [ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_n2ofe"]
-[ext_resource type="Texture2D" uid="uid://4aw2nf61m1op" path="res://textures/testing/bowserjr.png" id="2_16qlr"]
 [ext_resource type="Script" uid="uid://ckauio68ishn6" path="res://scenes/actors/Strategies/Skill/divide_n_conquer/divide_n_conquer_skill_strategy.gd" id="2_bcb75"]
+[ext_resource type="Texture2D" uid="uid://da0imkois1t3h" path="res://textures/skills/DivideNConquerSkill.png" id="3_16qlr"]
 
 [node name="DivideNConquerSkillStrategy" unique_id=1163924449 instance=ExtResource("1_n2ofe")]
 script = ExtResource("2_bcb75")
@@ -13,4 +13,4 @@ when_to_use_skill = 0
 skill_name = "Divide n' Conquer"
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
-texture = ExtResource("2_16qlr")
+texture = ExtResource("3_16qlr")
