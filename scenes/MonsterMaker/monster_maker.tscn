@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://btj0bsyho4a3q"]
+[gd_scene format=3 uid="uid://btj0bsyho4a3q"]
 
 [ext_resource type="Script" uid="uid://ctfdykc3hywse" path="res://scripts/MonsterMaker/monster_maker.gd" id="1_fgvld"]
 [ext_resource type="Shader" uid="uid://cngmsurq6077i" path="res://textures/shaders/pixel_upscaler.gdshader" id="1_gsisr"]
@@ -33,43 +33,43 @@ region = Rect2(371.86, 78.6395, 102.969, 101.195)
 atlas = ExtResource("4_sit38")
 region = Rect2(-1.0002, 350, 154, 163)
 
-[node name="MonsterMaker" type="Node2D"]
+[node name="MonsterMaker" type="Node2D" unique_id=1556597807]
 script = ExtResource("1_fgvld")
 brush_size = 7
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1832377057]
 unique_name_in_owner = true
 position = Vector2(258, 252)
 position_smoothing_enabled = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1806337597]
 
-[node name="Canvas" type="Sprite2D" parent="."]
+[node name="Canvas" type="Sprite2D" parent="." unique_id=148301770]
 unique_name_in_owner = true
 z_index = 1
 material = SubResource("ShaderMaterial_ao2i3")
 scale = Vector2(5, 5)
 centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Canvas"]
+[node name="Sprite2D" type="Sprite2D" parent="Canvas" unique_id=902919802]
 z_index = -1
 texture = ExtResource("3_nnwaj")
 centered = false
 
-[node name="CanvasHitbox" type="Area2D" parent="Canvas"]
+[node name="CanvasHitbox" type="Area2D" parent="Canvas" unique_id=1709631466]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Canvas/CanvasHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Canvas/CanvasHitbox" unique_id=1781242828]
 position = Vector2(50.2, 49.6)
 shape = SubResource("RectangleShape2D_84uca")
 
-[node name="Cursor" type="Sprite2D" parent="."]
+[node name="Cursor" type="Sprite2D" parent="." unique_id=1357897452]
 position = Vector2(-1, 0)
 rotation = 1.89775
 scale = Vector2(0.2, 0.162)
 texture = SubResource("AtlasTexture_jcxc2")
 offset = Vector2(-41.6508, 80.4)
 
-[node name="PaintUI" type="PanelContainer" parent="."]
+[node name="PaintUI" type="PanelContainer" parent="." unique_id=2031955501]
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -83,64 +83,63 @@ grow_vertical = 2
 scale = Vector2(0.785855, 0.785855)
 size_flags_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PaintUI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PaintUI" unique_id=1147631222]
 layout_mode = 2
 size_flags_stretch_ratio = 1.22
 
-[node name="GridContainer" type="GridContainer" parent="PaintUI/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="PaintUI/VBoxContainer" unique_id=280617318]
 layout_mode = 2
 size_flags_vertical = 3
 columns = 3
 
-[node name="Brush Size Small" type="Button" parent="PaintUI/VBoxContainer/GridContainer"]
+[node name="Brush Size Small" type="Button" parent="PaintUI/VBoxContainer/GridContainer" unique_id=1819973368]
 layout_mode = 2
 icon = SubResource("AtlasTexture_42vwb")
 
-[node name="Brush Size Medium" type="Button" parent="PaintUI/VBoxContainer/GridContainer"]
+[node name="Brush Size Medium" type="Button" parent="PaintUI/VBoxContainer/GridContainer" unique_id=1717605474]
 layout_mode = 2
 icon = SubResource("AtlasTexture_jhp8p")
 
-[node name="Brush Size Large" type="Button" parent="PaintUI/VBoxContainer/GridContainer"]
+[node name="Brush Size Large" type="Button" parent="PaintUI/VBoxContainer/GridContainer" unique_id=905951039]
 layout_mode = 2
 icon = SubResource("AtlasTexture_rdwxm")
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="PaintUI/VBoxContainer/GridContainer"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="PaintUI/VBoxContainer/GridContainer" unique_id=1792244969]
 layout_mode = 2
 color = Color(1, 1, 1, 1)
 
-[node name="RecentColors" type="GridContainer" parent="PaintUI/VBoxContainer"]
+[node name="RecentColors" type="GridContainer" parent="PaintUI/VBoxContainer" unique_id=1329505104]
 layout_mode = 2
 size_flags_vertical = 3
 columns = 4
 
-[node name="Button" type="TextureButton" parent="PaintUI/VBoxContainer/RecentColors"]
+[node name="Button" type="TextureButton" parent="PaintUI/VBoxContainer/RecentColors" unique_id=2023749004]
 layout_mode = 2
 
-[node name="Button2" type="ColorPickerButton" parent="PaintUI/VBoxContainer/RecentColors"]
-layout_mode = 2
-color = Color(1, 1, 1, 1)
-
-[node name="Button3" type="ColorPickerButton" parent="PaintUI/VBoxContainer/RecentColors"]
+[node name="Button2" type="ColorPickerButton" parent="PaintUI/VBoxContainer/RecentColors" unique_id=744014895]
 layout_mode = 2
 color = Color(1, 1, 1, 1)
 
-[node name="Button4" type="ColorPickerButton" parent="PaintUI/VBoxContainer/RecentColors"]
+[node name="Button3" type="ColorPickerButton" parent="PaintUI/VBoxContainer/RecentColors" unique_id=1870693795]
 layout_mode = 2
 color = Color(1, 1, 1, 1)
 
-[node name="HSlider" type="HSlider" parent="PaintUI/VBoxContainer"]
+[node name="Button4" type="ColorPickerButton" parent="PaintUI/VBoxContainer/RecentColors" unique_id=1017495857]
+layout_mode = 2
+color = Color(1, 1, 1, 1)
+
+[node name="HSlider" type="HSlider" parent="PaintUI/VBoxContainer" unique_id=1321391124]
 layout_mode = 2
 
-[node name="Save Button" type="Button" parent="PaintUI/VBoxContainer"]
+[node name="Save Button" type="Button" parent="PaintUI/VBoxContainer" unique_id=1965473690]
 layout_mode = 2
 icon = SubResource("AtlasTexture_b5skh")
 
-[node name="SaveDialog" type="FileDialog" parent="."]
+[node name="SaveDialog" type="FileDialog" parent="." unique_id=256304445]
 size = Vector2i(800, 300)
 min_size = Vector2i(800, 300)
 access = 1
 filters = PackedStringArray("*.png", "*.jpg", "*.jpeg")
-show_hidden_files = true
 
 [connection signal="mouse_entered" from="Canvas/CanvasHitbox" to="." method="_on_canvas_hitbox_mouse_entered"]
 [connection signal="mouse_exited" from="Canvas/CanvasHitbox" to="." method="_on_canvas_hitbox_mouse_exited"]

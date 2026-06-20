@@ -298,7 +298,7 @@ func can_aggro_against(new_target: GridEntity) -> bool:
 	return true
 
 
-func _on_angry_at_died():
+func _on_angry_at_died(_is_despawning):
 	_update_angry_at(null)
 
 

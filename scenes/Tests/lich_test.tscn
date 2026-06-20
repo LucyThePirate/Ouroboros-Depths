@@ -1424,10 +1424,11 @@ animations = [{
 atlas = ExtResource("6_hf8mm")
 region = Rect2(603.554, 22.5921, 81.2787, 92.8899)
 
-[node name="LichTest" type="Node2D" unique_id=1874338272]
+[node name="LichTest" type="Node2D" unique_id=1874338272 node_paths=PackedStringArray("animation_player")]
 material = ExtResource("1_17jbv")
 use_parent_material = true
 script = ExtResource("1_iokgd")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=497222030]
 libraries/ = SubResource("AnimationLibrary_sfwps")

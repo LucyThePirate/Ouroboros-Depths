@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ch03x18eacn6"]
+
+[ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_1lfq2"]
+[ext_resource type="PackedScene" uid="uid://djc3cmcxnhe5l" path="res://scenes/characters/Visuals/scarecrow_visual.tscn" id="2_p0e1g"]
+
+[node name="FauxPlayerCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_1lfq2")]
+visual = NodePath("ScarecrowVisual")
+auto_aggro_against_player = false
+
+[node name="ScarecrowVisual" parent="." index="6" unique_id=766199107 instance=ExtResource("2_p0e1g")]
+scale = Vector2(0.208, 0.208)
+
+[editable path="GridEntity"]

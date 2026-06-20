@@ -1048,10 +1048,11 @@ nodes/RunSpeed/node = SubResource("AnimationNodeTimeScale_g44mw")
 nodes/RunSpeed/position = Vector2(-520, 380)
 node_connections = [&"output", 0, &"HurtOneShot", &"HurtOneShot", 0, &"RunBlend", &"HurtOneShot", 1, &"Hurt", &"RunBlend", 0, &"Idle", &"RunBlend", 1, &"RunSpeed", &"RunSpeed", 0, &"Animation"]
 
-[node name="FuzzerVisual" type="Node2D" unique_id=1275019650]
+[node name="FuzzerVisual" type="Node2D" unique_id=1275019650 node_paths=PackedStringArray("animation_player")]
 material = ExtResource("1_ht6ya")
 use_parent_material = true
 script = ExtResource("1_aue1j")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="." unique_id=1791941718]
 

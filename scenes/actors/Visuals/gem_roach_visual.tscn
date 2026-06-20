@@ -139,12 +139,13 @@ _data = {
 &"Moving": SubResource("Animation_3vf1s")
 }
 
-[node name="GemRoachVisual" type="AnimatedSprite2D" unique_id=584145220]
+[node name="GemRoachVisual" type="AnimatedSprite2D" unique_id=584145220 node_paths=PackedStringArray("animation_player")]
 material = ExtResource("1_xgbww")
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_iua03")
 autoplay = "default"
 script = ExtResource("3_8avx0")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=98648759]
 libraries/ = SubResource("AnimationLibrary_fr0xg")
