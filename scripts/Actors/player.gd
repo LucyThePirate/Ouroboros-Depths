@@ -277,10 +277,12 @@ func _load_deck():
 
 func _on_grid_entity_fell_off_map() -> void:
 	visual._on_fell_off_map()
-	state = States.DEAD
+	#state = States.DEAD
 	await visual.finished_animation
 	#visual.connect("finished_animation", _on_grid_entity_died)
-	_on_grid_entity_died(false)
+	#_on_grid_entity_died(false)
+	grid_entity.descended.emit()
+	descended.emit()
 
 
 func _on_grid_entity_absorbed_souls(soul_position: Vector2) -> void:

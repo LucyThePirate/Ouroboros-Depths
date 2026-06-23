@@ -312,20 +312,28 @@ func _shuffle_skills() -> void:
 	deck = []
 	#stack = []
 	hand = []
+	hand.resize(hand_size)
+	hand.fill(null)
 	total_skill_count = 0
 	for skill in skills:
 		for i in range(skill.current_count):
 			total_skill_count += 1
 			deck.append(skill)
 	deck.shuffle()
-	for i in range(hand_size):
-		if deck.is_empty():
-			hand.append(null)
-		else:
-			hand.append(deck.pop_front())
-			total_skill_count -= 1
+	for hand_index in range(hand_size):
+		if not _draw_skill_into_hand(hand_index):
+			break
 	_update_hand_visuals()
 	_update_stack_visuals()
+
+
+func _draw_skill_into_hand(hand_index: int) -> bool:
+	if deck.is_empty() or hand_index >= hand.size():
+		return false
+	else:
+		hand[hand_index] = deck.pop_front()
+		total_skill_count -= 1
+		return true
 
 
 func on_next_floor_reached() -> void:
@@ -397,9 +405,11 @@ func _update_turn_cooldown():
 				$ReloadEnd.play()
 			_shuffle_skills()
 	if state == States.IDLE:
-		for skill in range(hand.size()):
-			if not hand[skill]:
-				continue
+		for hand_index in range(hand.size()):
+			if not hand[hand_index]:
+				_draw_skill_into_hand(hand_index)
+
+				break
 	_update_cooldown_visuals()
 	_update_stack_visuals()
 	_update_hand_visuals()

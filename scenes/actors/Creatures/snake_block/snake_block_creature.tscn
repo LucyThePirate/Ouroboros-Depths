@@ -35,12 +35,13 @@ can_walk_through_walls = true
 max_health = 2
 
 [node name="Node2D2" type="Node2D" parent="." index="6" unique_id=1838522351]
+material = ExtResource("2_e65ml")
+use_parent_material = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D2" index="0" unique_id=1392970866]
 unique_name_in_owner = true
 z_index = 1
 y_sort_enabled = true
-material = ExtResource("2_e65ml")
 use_parent_material = true
 position = Vector2(0.045, -54.72)
 texture = SubResource("AtlasTexture_284f1")
