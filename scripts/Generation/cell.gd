@@ -162,10 +162,7 @@ func _initialize_fog():
 	#darkness.set_cell(tile_position, -1)
 
 	Global.darkness = darkness
-	_update_fog(
-		$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0],
-		$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
-	)
+	_update_fog()
 
 
 func add_to_angry_at_player_list(_grid_entity):
@@ -206,10 +203,7 @@ func _redraw_map():
 	Global.floors.clear()
 	Global.walls.clear()
 	fog.clear()
-	_update_fog(
-		Global.floors.local_to_map(player.grid_entity.global_position),
-		Global.floors.local_to_map(player.grid_entity.global_position)
-	)
+	_update_fog()
 	_ready()
 
 
@@ -242,18 +236,23 @@ func _initialize_entity(new_entity: GridEntity):
 		pass
 	else:
 		player.grid_entity.moved.connect(_update_fog)
+		player.health_component.health_updated.connect(_update_fog)
 		player.grid_entity.died.connect(_on_player_died)
 		player.descended.connect(_redraw_map)
 	new_entity.initialize()
 
 
-func _update_fog(old_coords: Vector2i, new_coords: Vector2i):
+func _update_fog(_old_coords := Vector2i.ZERO, new_coords := Vector2i.ZERO):
 	if is_arena:
 		return
-	#print("Old: %s, new: %s" % [old_coords, new_coords])
-	#if old_coords == new_coords:
-	#return
+	if not player:
+		new_coords = $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
+	else:
+		new_coords = player.grid_entity.grid_coords
 	var light_radius = 7
+	if player:
+		light_radius = ceili(float(light_radius) * player.health_component.get_health_percentage())
+		%Darkness.self_modulate.a = (1.0 - player.health_component.get_health_percentage())
 	var tile_light = {}
 	var terrain_rect = Global.floors.get_used_rect()
 

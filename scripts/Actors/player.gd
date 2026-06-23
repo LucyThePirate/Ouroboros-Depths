@@ -17,14 +17,15 @@ signal descended
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $GridEntity/TurnComponent
 @onready var stack_component = $GridEntity/SkillStackComponent
-@onready var health_component = $GridEntity/UI/HealthComponent
+@onready var health_component = $GridEntity/UI/HealthComponent as HealthComponent
 
 var initialized = false
 
-enum States { IDLE, DEAD, EXECUTING_STACK, METAMORPHOSIS_STARTED, METAMORPHING }
+enum States { IDLE, DEAD, EXECUTING_STACK, METAMORPHOSIS_STARTED, METAMORPHING, FALLING }
 var state = States.IDLE
 
 var is_talking := false
+var can_survive_falls := false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -277,12 +278,14 @@ func _load_deck():
 
 func _on_grid_entity_fell_off_map() -> void:
 	visual._on_fell_off_map()
-	#state = States.DEAD
+	state = States.FALLING
 	await visual.finished_animation
-	#visual.connect("finished_animation", _on_grid_entity_died)
-	#_on_grid_entity_died(false)
-	grid_entity.descended.emit()
-	descended.emit()
+	if not can_survive_falls:
+		state = States.DEAD
+		_on_grid_entity_died(false)
+	else:
+		grid_entity.descended.emit()
+		descended.emit()
 
 
 func _on_grid_entity_absorbed_souls(soul_position: Vector2) -> void:

@@ -68,6 +68,10 @@ func heal(heal_amount):
 	_update_health_bar()
 
 
+func get_health_percentage() -> float:
+	return float(health) / float(max_health)
+
+
 func turn_ended():
 	current_damage_number = null
 	current_heal_number = null

@@ -236,7 +236,7 @@ tile_set = ExtResource("16_cpcro")
 [node name="Darkness" type="TileMapLayer" parent="." unique_id=1270013491 groups=["Fog"]]
 unique_name_in_owner = true
 visible = false
-self_modulate = Color(0.9529412, 0.6627451, 0.49803922, 0.44705883)
+self_modulate = Color(0.95, 0.6612, 0.494, 0)
 z_index = 10
 material = SubResource("CanvasItemMaterial_fx61w")
 tile_set = ExtResource("16_cpcro")

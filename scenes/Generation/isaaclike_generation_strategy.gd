@@ -27,6 +27,9 @@ func initialize(
 	noise = FastNoiseLite.new()
 	if Global.seed:
 		rng.set_seed(Global.seed + floor_number)
+	else:
+		Global.set_seed(0)
+		rng.set_seed(Global.seed + floor_number)
 	noise.seed = rng.get_seed()
 	%SeedLabel.text = "Floor: %s Seed: %s" % [floor_number, Global.seed_string]
 	print_rich("[color=LIME]The seed is: %s (%s)" % [Global.seed_string, rng.seed])
