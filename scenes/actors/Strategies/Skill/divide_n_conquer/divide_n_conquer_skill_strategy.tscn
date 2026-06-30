@@ -11,6 +11,7 @@ count = 2
 rarity = 3
 when_to_use_skill = 0
 skill_name = "Divide n' Conquer"
+skill_desc = "The desire for companionship shall be fulfilled, however destructive."
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("3_16qlr")

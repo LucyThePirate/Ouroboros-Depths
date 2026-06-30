@@ -113,8 +113,6 @@ func _ready():
 			extra_node.grid_entity.global_position = extra_node.global_position - Vector2(50, 50)
 			#_initialize_entity(extra_node.grid_entity)
 
-	_initialize_fog()
-	spawn_bogo_egg()
 	if not player:
 		player = (
 			spawn_entity(
@@ -126,6 +124,8 @@ func _ready():
 	Global.entity_positions[$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]] = (
 		player.grid_entity
 	)
+	_initialize_fog()
+	spawn_bogo_egg()
 
 	for random_monster_tile in walls.get_used_cells_by_id(
 		Tiles.random_monster_tile[0], Tiles.random_monster_tile[1]
@@ -152,17 +152,8 @@ func _initialize_fog():
 			)
 			darkness.set_cell(tile_position, fog_tile[0], fog_tile[1])
 
-	#for tile_position in fog.get_used_cells():
-	#var empty_tile = (
-	#(Global.walls.get_cell_tile_data(tile_position) == null)
-	#and (Global.floors.get_cell_tile_data(tile_position) == null)
-	#)
-	#if empty_tile:
-	#fog.set_cell(tile_position, -1)
-	#darkness.set_cell(tile_position, -1)
-
 	Global.darkness = darkness
-	_update_fog()
+	_update_fog(Vector2i.ZERO, Vector2i.ZERO, true)
 
 
 func add_to_angry_at_player_list(_grid_entity):
@@ -203,7 +194,6 @@ func _redraw_map():
 	Global.floors.clear()
 	Global.walls.clear()
 	fog.clear()
-	_update_fog()
 	_ready()
 
 
@@ -242,17 +232,20 @@ func _initialize_entity(new_entity: GridEntity):
 	new_entity.initialize()
 
 
-func _update_fog(_old_coords := Vector2i.ZERO, new_coords := Vector2i.ZERO):
+func _update_fog(
+	_old_coords := Vector2i.ZERO, new_coords := Vector2i.ZERO, initializing_fog := false
+):
 	if is_arena:
 		return
-	if not player:
+	if initializing_fog:
 		new_coords = $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
 	else:
 		new_coords = player.grid_entity.grid_coords
 	var light_radius = 7
 	if player:
-		light_radius = ceili(float(light_radius) * player.health_component.get_health_percentage())
-		%Darkness.self_modulate.a = (1.0 - player.health_component.get_health_percentage())
+		pass
+		#light_radius = ceili(float(light_radius) * player.health_component.get_health_percentage())
+		#%Darkness.self_modulate.a = (1.0 - player.health_component.get_health_percentage())
 	var tile_light = {}
 	var terrain_rect = Global.floors.get_used_rect()
 

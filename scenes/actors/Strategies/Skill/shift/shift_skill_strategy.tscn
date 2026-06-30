@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b227pt03k76wr"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_ms806"]
+[ext_resource type="Script" uid="uid://cy8om43c3fn21" path="res://scenes/actors/Strategies/Skill/shift/shift_skill_strategy.gd" id="2_78bbj"]
+[ext_resource type="PackedScene" uid="uid://csmoib3nld3bv" path="res://scenes/effects/stomp_vfx.tscn" id="3_wndvw"]
+[ext_resource type="Texture2D" uid="uid://cj7hu7bmbt0qa" path="res://textures/testing/Cottage.png" id="4_wndvw"]
+
+[node name="ShiftSkillStrategy" unique_id=1163924449 instance=ExtResource("1_ms806")]
+script = ExtResource("2_78bbj")
+StompVFX = ExtResource("3_wndvw")
+skill_ID = 22
+skill_name = "Shift"
+skill_desc = "Up is down and down is up."
+
+[node name="Icon" parent="." index="0" unique_id=2096319184]
+texture = ExtResource("4_wndvw")

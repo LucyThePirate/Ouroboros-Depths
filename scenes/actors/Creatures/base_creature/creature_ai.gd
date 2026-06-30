@@ -45,11 +45,7 @@ func _ready() -> void:
 	global_position = grid_entity.position
 	stack_component.initialize(grid_entity, false, turn_component)
 	random_skill_planner.set_stack_component(stack_component)
-	turn_component.turn_ended.connect(health_component.turn_ended)
-	#if not turn_component.turn_ended.is_connected()
-	turn_component.turn_ended.connect(_on_turn_component_turn_ended)
-	grid_entity.stack_component.emptied_stack.connect(_on_skill_stack_component_emptied_stack)
-	grid_entity.moved.connect(_on_grid_entity_moved)
+
 	grid_entity.turned_invisible.connect(_update_visibility)
 	if visual and visual.has_method("initialize"):
 		visual.initialize(grid_entity)
@@ -197,6 +193,10 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 		return
 	grid_entity.name = name
 	initialized = true
+	turn_component.turn_ended.connect(health_component.turn_ended)
+	turn_component.turn_ended.connect(_on_turn_component_turn_ended)
+	grid_entity.stack_component.emptied_stack.connect(_on_skill_stack_component_emptied_stack)
+	grid_entity.moved.connect(_on_grid_entity_moved)
 
 
 func _on_grid_entity_died(_is_despawning) -> void:

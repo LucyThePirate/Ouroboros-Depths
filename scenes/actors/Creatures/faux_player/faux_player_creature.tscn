@@ -7,6 +7,14 @@
 visual = NodePath("ScarecrowVisual")
 auto_aggro_against_player = false
 
+[node name="GridEntity" parent="." index="0" unique_id=1162874930]
+species_type = 5
+creature_name = "You?"
+species_desc = "Who's the original? Does it even matter?"
+
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
+max_health = 15
+
 [node name="ScarecrowVisual" parent="." index="6" unique_id=766199107 instance=ExtResource("2_p0e1g")]
 scale = Vector2(0.208, 0.208)
 

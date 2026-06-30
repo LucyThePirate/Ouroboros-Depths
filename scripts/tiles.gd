@@ -13,6 +13,10 @@ extends Node
 @onready var small_tree_wall_tile := [3, Vector2i(2, 3)]
 @onready var lilly_decor_tile := [3, Vector2i(3, 0)]
 @onready var clover_decor_tile := [3, Vector2i(3, 1)]
+@onready var ice_wall_tile := [2, Vector2i(4, 4)]
+@onready var plant_wall_tile := [2, Vector2i(5, 0)]
+@onready var wood_wall_tile := [2, Vector2i(1, 2)]
+@onready var snow_wall_tile := [2, Vector2i(7, 2)]
 
 @onready var grass_floor_tile := [3, Vector2i(1, 3)]
 @onready var stone_floor_tile := [2, Vector2i(0, 1)]
@@ -42,7 +46,17 @@ extends Node
 	"ice": ice_floor_tile,
 	"snow": snow_floor_tile
 }
-@onready var Walls := {"boulder": boulder_object_tile}
+@onready var Walls := {
+	"boulder": boulder_object_tile,
+	"stone": stone_wall_tile,
+	"dirt": dirt_wall_tile,
+	"glass": glass_wall_tile,
+	"ice": ice_wall_tile,
+	"snow": snow_wall_tile,
+	"wood": wood_wall_tile,
+	"plant": plant_wall_tile,
+	"grass": plant_wall_tile
+}
 #endregion
 
 
@@ -109,3 +123,10 @@ func spawn_floor(coords, material := "nothing"):
 		Global.floors.set_cell(coords, Tiles.Floors[material][0], Tiles.Floors[material][1])
 	else:
 		Global.floors.set_cell(coords, -1)
+
+
+func spawn_wall(coords, material := "nothing"):
+	if material in Walls.keys():
+		Global.walls.set_cell(coords, Tiles.Walls[material][0], Tiles.Walls[material][1])
+	else:
+		Global.walls.set_cell(coords, -1)

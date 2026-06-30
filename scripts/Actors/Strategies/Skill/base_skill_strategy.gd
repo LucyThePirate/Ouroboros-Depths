@@ -35,6 +35,7 @@ enum SkillIDs {
 	CHOMP,
 	DISGUISE,
 	DIVIDE_N_CONQUER,
+	SHIFT,
 }
 
 @export_category("Base Stats")
