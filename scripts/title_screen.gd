@@ -172,3 +172,18 @@ func _on_start_run_pressed() -> void:
 func _on_turn_based_options_item_selected(index: int) -> void:
 	if Global.config:
 		Global.config.set_value("Gameplay", "TurnBased", index)
+
+
+func _on_title_potion_body_entered(body: Node) -> void:
+	var speed_volume = %TitlePotion.linear_velocity.length() / 500
+	speed_volume = clampf(speed_volume, 0.1, 2.0)
+	%TitlePotion.material.set(
+		"shader_parameter/hue_shift",
+		%TitlePotion.material.get("shader_parameter/hue_shift") + speed_volume / 50
+	)
+	if body is StaticBody2D:
+		%BottleClinkSFX.volume_linear = speed_volume
+		%BottleClinkSFX.play()
+	else:
+		%BottleSloshSFX.volume_linear = speed_volume
+		%BottleSloshSFX.play()

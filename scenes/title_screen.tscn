@@ -2,22 +2,30 @@
 
 [ext_resource type="Script" uid="uid://chejtonyw0gfm" path="res://scripts/title_screen.gd" id="1_tklts"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="2_mykxm"]
+[ext_resource type="Shader" uid="uid://dy5gx4qi4l2bi" path="res://textures/shaders/hue_shift.gdshader" id="5_6uh13"]
 [ext_resource type="SpriteFrames" uid="uid://clgsmejmokek7" path="res://textures/effects/potion_spin_fast.gif" id="5_tklts"]
+[ext_resource type="AudioStream" uid="uid://cb71egq820c15" path="res://audio/SFX/Bottle/bottle_clink1.ogg" id="6_htdhw"]
+[ext_resource type="AudioStream" uid="uid://u7twtteg1itt" path="res://audio/SFX/Bottle/bottle_clink2.ogg" id="7_12ga3"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="7_e8tpv"]
 [ext_resource type="Texture2D" uid="uid://cj7hu7bmbt0qa" path="res://textures/testing/Cottage.png" id="7_lrxh4"]
 [ext_resource type="Texture2D" uid="uid://cags1t2j8djij" path="res://textures/skills/BePatientSkill.png" id="7_u26n3"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="8_4qe4i"]
 [ext_resource type="Texture2D" uid="uid://4aw2nf61m1op" path="res://textures/testing/bowserjr.png" id="8_frs5l"]
 [ext_resource type="Texture2D" uid="uid://dg844w3alcmxs" path="res://textures/testing/possum_render_smooth.png" id="8_neciy"]
+[ext_resource type="AudioStream" uid="uid://bubrutqa6up3n" path="res://audio/SFX/Bottle/bottle_clink3.ogg" id="8_yrrko"]
+[ext_resource type="AudioStream" uid="uid://bpg4bxhlvlflv" path="res://audio/SFX/Bottle/bottle_clink4.ogg" id="9_aidx5"]
 [ext_resource type="Texture2D" uid="uid://b84m82unuxahi" path="res://textures/testing/CellShadedSquidRender.png" id="9_jr68i"]
 [ext_resource type="Script" uid="uid://kol6k5y6rb8a" path="res://addons/softbody2d/softbody2d.gd" id="9_mynnq"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="9_p07av"]
 [ext_resource type="PackedScene" uid="uid://e43003nmrylg" path="res://samples/softbody2d/pickable_rigidbody.tscn" id="10_4qe4i"]
+[ext_resource type="AudioStream" uid="uid://dotjytp5betko" path="res://audio/SFX/Bottle/bottle_slosh1.ogg" id="10_aidx5"]
+[ext_resource type="AudioStream" uid="uid://4ibqn7w23la7" path="res://audio/SFX/Bottle/bottle_slosh2.ogg" id="11_6uh13"]
 [ext_resource type="AudioStream" uid="uid://duevq7vgf28ks" path="res://audio/SFX/Misc/Punch1.ogg" id="11_frs5l"]
 [ext_resource type="PhysicsMaterial" uid="uid://2kay8j53abmv" path="res://samples/softbody2d/softbody2d_phys_slippery.tres" id="11_p07av"]
 [ext_resource type="Theme" uid="uid://dsnesst3y61ol" path="res://resources/default_theme.tres" id="12_4qe4i"]
 [ext_resource type="AudioStream" uid="uid://b1nmnkp41rdqr" path="res://audio/SFX/Misc/Punch2.ogg" id="12_mynnq"]
 [ext_resource type="Texture2D" uid="uid://3r3gactvbgp7" path="res://textures/skills/SummonWaspSkill.png" id="12_w03br"]
+[ext_resource type="AudioStream" uid="uid://brxpyww4xmn11" path="res://audio/SFX/Bottle/bottle_slosh3.ogg" id="12_y8m2v"]
 [ext_resource type="AudioStream" uid="uid://c4iuvy3r2whs6" path="res://audio/SFX/Misc/Punch3.ogg" id="13_e8tpv"]
 [ext_resource type="AudioStream" uid="uid://dpm1ipsmp3ge" path="res://audio/Music/AstrMusic/Pathforgetting[ambient,wistful,fav].mp3" id="16_4qe4i"]
 [ext_resource type="Texture2D" uid="uid://cajr5np42qkss" path="res://textures/skills/SkillSack.png" id="16_khjys"]
@@ -31,9 +39,28 @@ blend_mode = 3
 shader = ExtResource("7_e8tpv")
 shader_parameter/bg_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aidx5"]
+shader = ExtResource("5_6uh13")
+shader_parameter/hue_shift = 0.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w03br"]
 radius = 34.0
 height = 110.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_532wb"]
+random_pitch = 1.0656005
+streams_count = 4
+stream_0/stream = ExtResource("6_htdhw")
+stream_1/stream = ExtResource("7_12ga3")
+stream_2/stream = ExtResource("8_yrrko")
+stream_3/stream = ExtResource("9_aidx5")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r0uj2"]
+random_pitch = 1.0656005
+streams_count = 3
+stream_0/stream = ExtResource("10_aidx5")
+stream_1/stream = ExtResource("11_6uh13")
+stream_2/stream = ExtResource("12_y8m2v")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u26n3"]
 bg_color = Color(0, 0, 0, 1)
@@ -438,20 +465,28 @@ metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=742671025]
 
+[node name="AudioListener2D" type="AudioListener2D" parent="CanvasLayer" unique_id=674295973]
+position = Vector2(568, 330)
+current = true
+
 [node name="PositionPotionWantsToReturnTO" type="Marker2D" parent="CanvasLayer" unique_id=931455125]
 unique_name_in_owner = true
 position = Vector2(579, 107)
 
 [node name="TitlePotion" type="RigidBody2D" parent="CanvasLayer" unique_id=894109500]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_aidx5")
 position = Vector2(579, 107)
 collision_layer = 256
 collision_mask = 256
 mass = 4.962
 gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
 linear_damp = 0.765
 
 [node name="TitlePotionSprite" type="AnimatedSprite2D" parent="CanvasLayer/TitlePotion" unique_id=193837058]
+use_parent_material = true
 sprite_frames = ExtResource("5_tklts")
 animation = &"gif"
 autoplay = "gif"
@@ -460,6 +495,16 @@ frame_progress = 0.167857
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/TitlePotion" unique_id=1525712401]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_w03br")
+
+[node name="BottleClinkSFX" type="AudioStreamPlayer2D" parent="CanvasLayer/TitlePotion" unique_id=626119366]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_532wb")
+
+[node name="BottleSloshSFX" type="AudioStreamPlayer2D" parent="CanvasLayer/TitlePotion" unique_id=1344975678]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_r0uj2")
+volume_db = 6.7
+pitch_scale = 1.31
 
 [node name="MainMenu" type="VBoxContainer" parent="CanvasLayer" unique_id=1298551904]
 visible = false
@@ -972,7 +1017,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-6" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1359039404]
 position = Vector2(69.40637, 127.073)
 rotation = -1.36679
-scale = Vector2(0.9999988, 0.9999988)
+scale = Vector2(0.99999875, 0.99999875)
 rest = Transform2D(0.202592, -0.979263, 0.979263, 0.202592, 69.4064, 127.073)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -999,7 +1044,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-8" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1969427454]
 position = Vector2(68.7027, 159.052)
 rotation = 1.54074
-scale = Vector2(0.9999988, 0.9999988)
+scale = Vector2(0.99999875, 0.99999875)
 rest = Transform2D(0.0300513, 0.999548, -0.999548, 0.0300513, 68.7027, 159.052)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1026,7 +1071,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-10" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=59431186]
 position = Vector2(69.7157, 192.74402)
 rotation = -0.59983397
-scale = Vector2(0.9999998, 0.9999998)
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.825429, -0.564506, 0.564506, 0.825429, 69.7157, 192.744)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1185,7 +1230,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-22" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1625297829]
 position = Vector2(123.630005, 155.08301)
 rotation = 1.55378
-scale = Vector2(0.9999988, 0.9999988)
+scale = Vector2(0.99999875, 0.99999875)
 rest = Transform2D(0.0170144, 0.999855, -0.999855, 0.0170144, 123.63, 155.083)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1330,7 +1375,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-33" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1944610832]
 position = Vector2(178.53302, 231.568)
 rotation = -1.48128
-scale = Vector2(0.9999988, 0.9999988)
+scale = Vector2(0.99999875, 0.99999875)
 rest = Transform2D(0.0893961, -0.995996, 0.995996, 0.0893961, 178.533, 231.568)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -3734,6 +3779,7 @@ volume_db = 3.496
 autoplay = true
 bus = &"Music"
 
+[connection signal="body_entered" from="CanvasLayer/TitlePotion" to="." method="_on_title_potion_body_entered"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/CenterContainer2/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/CenterContainer3/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/CenterContainer5/CreditsButton" to="." method="_on_credits_button_pressed"]
