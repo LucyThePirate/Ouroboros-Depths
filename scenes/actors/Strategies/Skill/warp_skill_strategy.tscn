@@ -18,6 +18,7 @@ texture_repeat = 2
 [node name="WarpSkillStrategy" unique_id=982565225 instance=ExtResource("1_0lf28")]
 script = ExtResource("2_0lf28")
 DashVFX = ExtResource("3_plapq")
+skill_ID = 9
 is_depletable = true
 cost = 2
 rarity = 2
@@ -30,12 +31,11 @@ skill_desc = "A sly bit of wormhole magic to let you slip from here to there.
 As a side effect, if there is already a creature at your target destination, they'll be swapped with you.
 
 This spell is favored by those who would rather shrug off handling bad situations to others."
-skill_ID = 9
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("4_d1e3j")
 
-[node name="PreviewLine" type="Line2D" parent="." index="4" unique_id=1392735655]
+[node name="PreviewLine" type="Line2D" parent="." index="2" unique_id=1392735655]
 unique_name_in_owner = true
 visible = false
 top_level = true
@@ -50,7 +50,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Line2D" type="Line2D" parent="." index="5" unique_id=1058615942]
+[node name="Line2D" type="Line2D" parent="." index="3" unique_id=1058615942]
 visible = false
 top_level = true
 points = PackedVector2Array(0, 0, 73.5, -69.5, 147, 1)

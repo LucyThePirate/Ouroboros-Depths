@@ -6,12 +6,12 @@
 
 [node name="BombSkillStrategy" unique_id=1163924449 instance=ExtResource("1_h5m2d")]
 script = ExtResource("2_3o7io")
+skill_ID = 16
 cost = 0
 skill_type = 1
 when_to_use_skill = 0
 skill_name = "Bomb"
 skill_desc = "Summon a living explosive. The bomb is not long for this world... nor is any creature foolish enough to be next to it when it explodes!"
-skill_ID = 16
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("2_cht42")

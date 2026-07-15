@@ -33,6 +33,7 @@ metadata/_custom_type_script = "uid://dtpmtwvvk0ac7"
 [node name="OrchestrateSkillStrategy" unique_id=1449820178 instance=ExtResource("1_cceox")]
 script = ExtResource("2_x5ygo")
 note_VFX = ExtResource("3_go5wn")
+skill_ID = 5
 count = 8
 skill_type = 2
 skill_name = "Orchestrate"
@@ -41,12 +42,11 @@ skill_desc = "Doh Reh Miiii!!! The power of music is at your fingertips. Use it 
 Upon use, the user selects a tile to create a music note on, the pitch changing relative to its position to the user. The note is also added to a sequence.
 
 When stack execution starts, the sequence of notes is replayed, also damaging creatures caught in its melody."
-skill_ID = 5
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("2_x1ymy")
 
-[node name="Sampler" type="AudioStreamPlayer2D" parent="." index="4" unique_id=663795000]
+[node name="Sampler" type="AudioStreamPlayer2D" parent="." index="2" unique_id=663795000]
 unique_name_in_owner = true
 bus = &"SFX"
 script = ExtResource("10_r86bf")

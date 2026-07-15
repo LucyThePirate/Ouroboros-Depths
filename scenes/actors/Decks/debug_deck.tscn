@@ -3,7 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://bqe6kxf4uw66l" path="res://scenes/actors/Strategies/Skill/drill_skill_strategy.tscn" id="2_0cuok"]
 [ext_resource type="PackedScene" uid="uid://b227pt03k76wr" path="res://scenes/actors/Strategies/Skill/shift/shift_skill_strategy.tscn" id="3_0cuok"]
 [ext_resource type="PackedScene" uid="uid://cmyas4xlndmy7" path="res://scenes/actors/Strategies/Skill/earth_spike/earth_spike_skill_strategy.tscn" id="3_xxlh1"]
-[ext_resource type="PackedScene" uid="uid://dfl6bhoygpayr" path="res://scenes/actors/Strategies/Skill/divide_n_conquer/divide_n_conquer_skill_strategy.tscn" id="4_xxlh1"]
+[ext_resource type="PackedScene" uid="uid://mjfsneo3jxah" path="res://scenes/actors/Strategies/Skill/leap_skill_strategy.tscn" id="5_opytt"]
+[ext_resource type="PackedScene" uid="uid://biuojqtlmraek" path="res://scenes/actors/Strategies/Skill/judo_throw/judo_throw_skill_strategy.tscn" id="5_ue1ts"]
+[ext_resource type="PackedScene" uid="uid://djpdq4bxeklv3" path="res://scenes/actors/Strategies/Skill/warp_skill_strategy.tscn" id="6_ue1ts"]
+[ext_resource type="PackedScene" uid="uid://c10nhwhuw3ge4" path="res://scenes/actors/Strategies/Skill/orchestrate_skill_strategy.tscn" id="7_j6hsg"]
 
 [node name="DebugDeck" type="Control" unique_id=1324047796]
 layout_mode = 3
@@ -21,5 +24,14 @@ scale = Vector2(1, 1)
 [node name="ShiftSkillStrategy" parent="." unique_id=1163924449 instance=ExtResource("3_0cuok")]
 layout_mode = 0
 
-[node name="DivideNConquerSkillStrategy" parent="." unique_id=987917492 instance=ExtResource("4_xxlh1")]
+[node name="LeapSkillStrategy" parent="." unique_id=273578898 instance=ExtResource("5_opytt")]
+layout_mode = 0
+
+[node name="JudoThrowSkillStrategy" parent="." unique_id=347600095 instance=ExtResource("5_ue1ts")]
+layout_mode = 0
+
+[node name="WarpSkillStrategy" parent="." unique_id=982565225 instance=ExtResource("6_ue1ts")]
+layout_mode = 0
+
+[node name="OrchestrateSkillStrategy" parent="." unique_id=1449820178 instance=ExtResource("7_j6hsg")]
 layout_mode = 0

@@ -220,6 +220,19 @@ scale = Vector2(1.00401, 1.00401)
 texture = ExtResource("7_qdnrn")
 stretch_mode = 2
 
+[node name="ReloadButton" type="Button" parent="CanvasLayer/AvailableSkills/Reload" unique_id=1417487454]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.835999
+offset_top = -27.713135
+offset_right = 23.499023
+offset_bottom = 18.663086
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AvailableSkills" unique_id=304280317]
 layout_mode = 1
 anchors_preset = 12
@@ -233,6 +246,8 @@ offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.84102, 0.877923)
+mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/AvailableSkills/MarginContainer" unique_id=1763887461]
 visible = false
@@ -242,11 +257,14 @@ color = Color(0.713726, 0.407843, 0, 0.352941)
 [node name="CenterContainer" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer" unique_id=868230337]
 self_modulate = Color(1, 1, 1, 0.231373)
 layout_mode = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="HandIconHolder" type="HBoxContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer" unique_id=593860678]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="ExecutePrompt" type="Control" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer" unique_id=705751928]
 custom_minimum_size = Vector2(151.185, 0)
@@ -284,6 +302,16 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[node name="ExecuteButton" type="Button" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/ExecutePrompt" unique_id=1219280132]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.71753
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/AvailableSkills" unique_id=1463258136]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -294,6 +322,7 @@ offset_top = -198.0
 offset_right = 1152.0
 grow_vertical = 0
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="SkillBagButton" type="Button" parent="CanvasLayer/AvailableSkills/PanelContainer" unique_id=1451671281]
 layout_mode = 2
@@ -310,7 +339,7 @@ icon = ExtResource("7_e1hdf")
 layout_mode = 0
 offset_left = 47.0
 offset_top = 147.0
-offset_right = 1199.0
+offset_right = 747.9132
 offset_bottom = 345.0
 scale = Vector2(0.251101, 0.251101)
 mouse_filter = 2
@@ -457,6 +486,8 @@ bus = &"SFX"
 [node name="TelegraphTimer" type="Timer" parent="." unique_id=1936790712]
 
 [connection signal="emptied_stack" from="." to="." method="_on_emptied_stack"]
+[connection signal="pressed" from="CanvasLayer/AvailableSkills/Reload/ReloadButton" to="." method="_on_reload_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/ExecutePrompt/ExecuteButton" to="." method="_on_execute_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/AvailableSkills/PanelContainer/SkillBagButton" to="." method="_on_skill_bag_button_pressed"]
 [connection signal="close_requested" from="CanvasLayer/SkillBagList" to="." method="_on_skill_bag_list_close_requested"]
 [connection signal="pressed" from="CanvasLayer/SkillBagList/CloseSkillBag" to="." method="_on_close_skill_bag_pressed"]

@@ -18,18 +18,18 @@ texture_repeat = 2
 [node name="LeapSkillStrategy" unique_id=273578898 instance=ExtResource("1_clto2")]
 script = ExtResource("1_mqx4p")
 DashVFX = ExtResource("2_clto2")
+skill_ID = 8
 skill_type = 2
 stack_size = -1
 skill_name = "Leap"
 skill_desc = "Take a mighty leap through the air! For just a moment, you'll feel as though you are flying.
 
 Upon use, select a tile to leap to."
-skill_ID = 8
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("3_m0q40")
 
-[node name="PreviewLine" type="Line2D" parent="." index="4" unique_id=890905481]
+[node name="PreviewLine" type="Line2D" parent="." index="3" unique_id=890905481]
 unique_name_in_owner = true
 visible = false
 top_level = true
@@ -44,7 +44,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Line2D" type="Line2D" parent="." index="5" unique_id=57158285]
+[node name="Line2D" type="Line2D" parent="." index="4" unique_id=57158285]
 visible = false
 top_level = true
 points = PackedVector2Array(0, 0, 73.5, -69.5, 147, 1)

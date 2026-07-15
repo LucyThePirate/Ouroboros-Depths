@@ -11,14 +11,10 @@ func _ready():
 
 func ready_skill(grid_entity: GridEntity) -> bool:
 	request_direction()
-	if show_UI:
-		$Arrows.global_position = grid_entity.global_position
-		$Arrows.show()
 	return false
 
 
 func use_skill(grid_entity: GridEntity):
-	$Arrows.hide()
 	var grid_coords = grid_entity.grid_coords + direction
 	grid_entity.spawn_entity.emit(grid_coords, bomb_type, self)
 	super(grid_entity)

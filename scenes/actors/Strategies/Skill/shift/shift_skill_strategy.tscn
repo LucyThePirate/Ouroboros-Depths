@@ -14,3 +14,4 @@ skill_desc = "Up is down and down is up."
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("4_wndvw")
+stretch_mode = 0

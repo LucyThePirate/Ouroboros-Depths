@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bxxiyeix6rbob" path="res://scenes/actors/Strategies/Status/chrysalis_status_strategy.tscn" id="3_b0c0w"]
 [ext_resource type="PackedScene" uid="uid://cjo5qx0fo3bej" path="res://scenes/actors/metamorphosis.tscn" id="4_wes0m"]
 [ext_resource type="PackedScene" uid="uid://djc3cmcxnhe5l" path="res://scenes/characters/Visuals/scarecrow_visual.tscn" id="6_jfrsc"]
+[ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/ui/Arrow.png" id="6_nmlhc"]
+[ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/ui/Cursor.png" id="7_h5w3c"]
 [ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="7_ypltb"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="8_wd2mq"]
 [ext_resource type="AudioStream" uid="uid://0to1gxx02bfe" path="res://audio/SFX/Misc/OrangePeelReverse.ogg" id="16_nfopg"]
@@ -13,6 +15,28 @@
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/creatures/Soul.png" id="18_1vpxp"]
 [ext_resource type="Script" uid="uid://b57xlofytn3k" path="res://addons/ActionIcon/ActionIcon.gd" id="19_u2nr5"]
 [ext_resource type="AudioStream" uid="uid://d3dload3sw6cq" path="res://audio/SFX/Misc/erro.mp3" id="20_ad5m5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyxbn"]
+atlas = ExtResource("7_h5w3c")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tu85t"]
+atlas = ExtResource("7_h5w3c")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0878f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyxbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tu85t")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u2nr5"]
 random_pitch = 1.1
@@ -105,12 +129,12 @@ particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 12.83
 direction = Vector3(0, -1, 0)
-spread = 14.748
-initial_velocity_min = 180.11
-initial_velocity_max = 269.22
-gravity = Vector3(0, 98, 0)
-scale_min = 10.89
-scale_max = 10.89
+spread = 180.0
+initial_velocity_min = 3.3899999
+initial_velocity_max = 92.5
+gravity = Vector3(0, 0, 0)
+scale_min = 23.82
+scale_max = 23.82
 scale_curve = SubResource("CurveTexture_wtlns")
 color_initial_ramp = SubResource("GradientTexture1D_itc60")
 alpha_curve = SubResource("CurveTexture_itc60")
@@ -128,9 +152,105 @@ creature_name = "You!"
 species_desc = "It is you! Or it is me? Whatever. "
 soul_count = 10
 
+[node name="AvailableSkills" parent="GridEntity/SkillStackComponent/CanvasLayer" parent_id_path=PackedInt32Array(1217274743, 1500394995, 379651989) index="0" unique_id=2065539204]
+metadata/_edit_lock_ = true
+
 [node name="Camera2D2" type="Camera2D" parent="GridEntity" unique_id=1260474723]
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
+
+[node name="Arrows" type="Node2D" parent="GridEntity" unique_id=675739955]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+
+[node name="RightArrow" type="Sprite2D" parent="GridEntity/Arrows" unique_id=1834742859]
+position = Vector2(104, 0)
+texture = ExtResource("6_nmlhc")
+
+[node name="RightArrowButton" type="Button" parent="GridEntity/Arrows/RightArrow" unique_id=1234441132]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -81.0
+offset_right = 158.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="UpArrow" type="Sprite2D" parent="GridEntity/Arrows" unique_id=557307660]
+position = Vector2(0, -104)
+rotation = -1.57079
+texture = ExtResource("6_nmlhc")
+
+[node name="UpArrowButton" type="Button" parent="GridEntity/Arrows/UpArrow" unique_id=212733089]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -33.641533
+offset_top = -61.334908
+offset_right = 102.97714
+offset_bottom = -32.370064
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="LeftArrow" type="Sprite2D" parent="GridEntity/Arrows" unique_id=1174290218]
+position = Vector2(-104, 0)
+rotation = 3.14159
+texture = ExtResource("6_nmlhc")
+
+[node name="LeftArrowButton" type="Button" parent="GridEntity/Arrows/LeftArrow" unique_id=1688893338]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.763332
+offset_top = -66.0
+offset_right = 113.00003
+offset_bottom = -23.256195
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="DownArrow" type="Sprite2D" parent="GridEntity/Arrows" unique_id=709283397]
+position = Vector2(2.00011, 106)
+rotation = 1.57079
+texture = ExtResource("6_nmlhc")
+
+[node name="DownArrowButton" type="Button" parent="GridEntity/Arrows/DownArrow" unique_id=17749679]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -35.314434
+offset_top = -71.0
+offset_right = 107.00009
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Cursor" type="AnimatedSprite2D" parent="GridEntity" unique_id=559999609]
+unique_name_in_owner = true
+visible = false
+top_level = true
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_0878f")
+autoplay = "default"
+speed_scale = 0.3
+
+[node name="Cursor2" type="AnimatedSprite2D" parent="GridEntity/Cursor" unique_id=1451990052]
+self_modulate = Color(0, 0, 0, 0.654902)
+show_behind_parent = true
+z_index = -1
+position = Vector2(2, 5)
+sprite_frames = SubResource("SpriteFrames_0878f")
+autoplay = "default"
+speed_scale = 0.3
 
 [node name="Display" type="Node2D" parent="." unique_id=1874228332]
 top_level = true
@@ -256,9 +376,11 @@ stream = SubResource("AudioStreamRandomizer_itc60")
 bus = &"SFX"
 
 [node name="ExecutingParticles" type="GPUParticles2D" parent="." unique_id=162672340]
+unique_name_in_owner = true
+show_behind_parent = true
 position = Vector2(4, 48)
 emitting = false
-amount = 32
+amount = 10
 lifetime = 3.0
 speed_scale = 3.0
 trail_enabled = true
@@ -271,6 +393,10 @@ process_material = SubResource("ParticleProcessMaterial_befnt")
 [connection signal="performed_action" from="GridEntity" to="." method="_on_grid_entity_performed_action"]
 [connection signal="emptied_stack" from="GridEntity/SkillStackComponent" to="." method="_on_skill_stack_component_emptied_stack"]
 [connection signal="health_updated" from="GridEntity/UI/HealthComponent" to="." method="_on_health_component_health_updated"]
+[connection signal="pressed" from="GridEntity/Arrows/RightArrow/RightArrowButton" to="." method="_on_right_arrow_button_pressed"]
+[connection signal="pressed" from="GridEntity/Arrows/UpArrow/UpArrowButton" to="." method="_on_up_arrow_button_pressed"]
+[connection signal="pressed" from="GridEntity/Arrows/LeftArrow/LeftArrowButton" to="." method="_on_left_arrow_button_pressed"]
+[connection signal="pressed" from="GridEntity/Arrows/DownArrow/DownArrowButton" to="." method="_on_down_arrow_button_pressed"]
 
 [editable path="GridEntity"]
 [editable path="GridEntity/SkillStackComponent"]

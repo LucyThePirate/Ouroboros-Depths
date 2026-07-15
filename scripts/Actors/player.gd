@@ -19,6 +19,9 @@ signal descended
 @onready var stack_component = $GridEntity/SkillStackComponent
 @onready var health_component = $GridEntity/UI/HealthComponent as HealthComponent
 
+var cursor_position := Vector2i.ZERO
+var last_mouse_cursor_position := Vector2i.ZERO
+
 var initialized = false
 
 enum States { IDLE, DEAD, EXECUTING_STACK, METAMORPHOSIS_STARTED, METAMORPHING, FALLING }
@@ -37,6 +40,14 @@ func _ready() -> void:
 	visual.initialize(grid_entity)
 	_load_deck()
 	stack_component.initialize(grid_entity, true, turn_component)
+	stack_component.tried_queueieng.connect(func(skill_number: int): queue_skill(skill_number))
+	stack_component.tried_executing.connect(execute_queue)
+	stack_component.tried_reloading.connect(
+		func():
+			Input.action_press("Reload")
+			Input.action_release("Reload")
+	)
+	stack_component.awaited_cursor_input.connect(_on_stack_component_awaited_cursor)
 	turn_component.turn_ended.connect(health_component.turn_ended)
 	grid_entity.moved.connect(_on_grid_entity_moved)
 	update_soul_counter()
@@ -95,6 +106,7 @@ func _process(delta: float) -> void:
 				%ScarecrowVisual.use_parent_material = true
 
 
+#region movement handling
 func _handle_movement() -> void:
 	var moveDirection = _get_directional_input()
 	if moveDirection:
@@ -123,13 +135,7 @@ func _handle_movement() -> void:
 		queue_skill(3)
 
 	elif Input.is_action_just_pressed("ExecuteStack"):
-		if state == States.IDLE:
-			#$ExecutingParticles.emitting = true
-			state = States.EXECUTING_STACK
-			%ScarecrowVisual.use_parent_material = false
-			if Input.is_action_pressed("Run"):
-				stack_component.reverse_stack_order()
-			stack_component.execute_stack()
+		execute_queue()
 
 	elif Input.is_action_just_pressed("Reload"):
 		stack_component.reload_deck()
@@ -150,29 +156,6 @@ func _handle_movement() -> void:
 			_display_error("Need souls!")
 		elif state != States.IDLE:
 			_display_error("Can't metamorph right now!")
-
-
-func _metamorphing_interrupted(_status):
-	if state == States.METAMORPHOSIS_STARTED:
-		state = States.IDLE
-
-
-func _metamorphing_started():
-	if state == States.METAMORPHOSIS_STARTED:
-		state = States.METAMORPHING
-		stack_component.on_next_floor_reached()
-		update_soul_counter()
-		var new_metamorph = metamorphosis_scene.instantiate()
-		new_metamorph.grid_parent = grid_entity
-		new_metamorph.metamorphosis_completed.connect(_metamorphing_completed)
-		add_child(new_metamorph)
-
-
-func _metamorphing_completed():
-	if state == States.METAMORPHING:
-		$MetamorphosisEnd.play()
-		update_soul_counter()
-		state = States.IDLE
 
 
 func _get_directional_input():
@@ -196,23 +179,106 @@ func _get_directional_input():
 	return moveDirection
 
 
+#endregion
+
+
+#region metamorphosis
+func _metamorphing_interrupted(_status):
+	if state == States.METAMORPHOSIS_STARTED:
+		state = States.IDLE
+
+
+func _metamorphing_started():
+	if state == States.METAMORPHOSIS_STARTED:
+		state = States.METAMORPHING
+		stack_component.on_next_floor_reached()
+		update_soul_counter()
+		var new_metamorph = metamorphosis_scene.instantiate()
+		new_metamorph.grid_parent = grid_entity
+		new_metamorph.metamorphosis_completed.connect(_metamorphing_completed)
+		add_child(new_metamorph)
+
+
+func _metamorphing_completed():
+	if state == States.METAMORPHING:
+		$MetamorphosisEnd.play()
+		update_soul_counter()
+		state = States.IDLE
+
+
+#endregion
+
+
+#region queue execution
 func queue_skill(skill_number):
+	if state != States.IDLE:
+		return
 	if stack_component.queue_skill(skill_number):
 		end_turn()
 
 
+func execute_queue():
+	if state != States.IDLE:
+		return
+	%ExecutingParticles.emitting = true
+	state = States.EXECUTING_STACK
+	%ScarecrowVisual.use_parent_material = false
+	if Input.is_action_pressed("Run"):
+		stack_component.reverse_stack_order()
+	stack_component.execute_stack()
+
+
 func _handle_awaiting_directional_input():
+	%Arrows.modulate = Color.WHITE
 	var moveDirection = _get_directional_input()
 	if moveDirection:
+		%Arrows.modulate = Color.TRANSPARENT
 		stack_component.set_direction(moveDirection)
 
 
+func _on_stack_component_awaited_cursor():
+	%Cursor.show()
+	%Arrows.hide()
+	cursor_position = grid_entity.grid_coords
+	%Cursor.position = Global.floors.map_to_local(cursor_position)
+
+
 func _handle_awaiting_cursor_input():
-	var moveDirection = _get_directional_input()
-	if moveDirection:
-		stack_component.move_cursor(moveDirection)
+	if Input.get_last_mouse_screen_velocity().length() > 5:
+		var mouse_cursor_position = Global.floors.local_to_map(get_global_mouse_position())
+		if mouse_cursor_position != last_mouse_cursor_position:
+			last_mouse_cursor_position = mouse_cursor_position
+			stack_component.set_cursor_position(mouse_cursor_position)
+			%Cursor.position = Global.floors.map_to_local(mouse_cursor_position)
+	else:
+		var move_direction = _get_directional_input()
+		if move_direction:
+			cursor_position += Vector2i(move_direction)
+			%Cursor.position = Global.floors.map_to_local(cursor_position)
+			stack_component.set_cursor_position(cursor_position)
 	if Input.is_action_just_pressed("ui_accept"):
+		%Cursor.hide()
+		%Arrows.show()
 		stack_component.accept_cursor()
+
+
+func _on_skill_stack_component_emptied_stack() -> void:
+	if state == States.EXECUTING_STACK:
+		%ExecutingParticles.emitting = false
+		state = States.IDLE
+		%ScarecrowVisual.use_parent_material = true
+		end_turn()
+
+
+func _load_deck():
+	var deck = Global.load_deck().instantiate()
+	add_child(deck)
+	for skill in deck.get_children():
+		skill.reparent(stack_component)
+	deck.queue_free()
+
+
+#endregion
 
 
 func _on_grid_entity_grid_entity_initialized() -> void:
@@ -254,26 +320,9 @@ func _on_grid_entity_moved(old_coord: Vector2i, _new_coord: Vector2i):
 	displayLerpTime = 0.0
 
 
-func _on_skill_stack_component_emptied_stack() -> void:
-	if state == States.EXECUTING_STACK:
-		#$ExecutingParticles.emitting = false
-		state = States.IDLE
-		%ScarecrowVisual.use_parent_material = true
-
-		end_turn()
-
-
 func _on_finished_writing_text() -> void:
 	current_text = null
 	is_talking = false
-
-
-func _load_deck():
-	var deck = Global.load_deck().instantiate()
-	add_child(deck)
-	for skill in deck.get_children():
-		skill.reparent(stack_component)
-	deck.queue_free()
 
 
 func _on_grid_entity_fell_off_map() -> void:
@@ -288,17 +337,13 @@ func _on_grid_entity_fell_off_map() -> void:
 		descended.emit()
 
 
+#region UI stuff
 func _on_grid_entity_absorbed_souls(soul_position: Vector2) -> void:
 	var new_soul_particle = soul_particle_effect.instantiate() as SoulParticleEffect
 	new_soul_particle.target = grid_entity
 	new_soul_particle.global_position = soul_position
 	get_tree().current_scene.add_child(new_soul_particle)
 	new_soul_particle.reached_target.connect(update_soul_counter)
-	#$CanvasLayer/TextureRect/SoulCountDisplay.text = "Souls: %s" % grid_entity.soul_count
-	#if $AnimationPlayer.is_playing():
-	#$AnimationPlayer.seek(0.5)
-	#else:
-	#$AnimationPlayer.play("DisplaySouls")
 
 
 func update_soul_counter() -> void:
@@ -320,3 +365,28 @@ func _on_health_component_health_updated() -> void:
 		%HealthBar.max_value = health_component.max_health
 		%HealthBar.value = health_component.health
 		%HealthLabel.text = "%s/%s" % [health_component.health, health_component.max_health]
+
+
+#endregion
+
+
+#region arrow buttons
+func _on_right_arrow_button_pressed() -> void:
+	Input.action_press("Right")
+	Input.action_release("Right")
+
+
+func _on_up_arrow_button_pressed() -> void:
+	Input.action_press("Up")
+	Input.action_release("Up")
+
+
+func _on_left_arrow_button_pressed() -> void:
+	Input.action_press("Left")
+	Input.action_release("Left")
+
+
+func _on_down_arrow_button_pressed() -> void:
+	Input.action_press("Down")
+	Input.action_release("Down")
+#endregion

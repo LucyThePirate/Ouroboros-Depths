@@ -85,7 +85,7 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 	return true
 
 
-func use_skill(grid_entity: GridEntity):
+func use_skill(_grid_entity: GridEntity):
 	current_in_stack = 0
 	skill_finished.emit()
 	#if is_depletable and current_count > 0:
@@ -100,11 +100,11 @@ func on_next_floor_reached():
 	current_count = count
 
 
-func on_stack_execution_started(grid_entity: GridEntity):
+func on_stack_execution_started(_grid_entity: GridEntity):
 	pass
 
 
-func on_stack_execution_finished(grid_entity: GridEntity):
+func on_stack_execution_finished(_grid_entity: GridEntity):
 	pass
 
 
@@ -115,19 +115,21 @@ func request_direction():
 func set_direction(newDirection: Vector2i):
 	direction = newDirection
 	state = States.IDLE
-	$Arrows.hide()
 
 
 func request_cursor():
 	state = States.AWAITING_CURSOR
 
 
-func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
+func move_cursor(moveDirection: Vector2i, _grid_entity: GridEntity):
 	cursor += moveDirection
 
 
-func set_cursor(newCursor: Vector2i):
-	cursor = newCursor
+func set_cursor_position(new_position: Vector2i, _grid_entity: GridEntity):
+	cursor = new_position
+
+
+func accept_cursor():
 	state = States.IDLE
 	$Cursor.hide()
 

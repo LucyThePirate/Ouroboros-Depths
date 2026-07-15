@@ -32,7 +32,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tu85t")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
@@ -109,6 +109,7 @@ script = ExtResource("2_khnmr")
 DashVFX = ExtResource("3_216uy")
 StompVFX = ExtResource("4_5mm07")
 note_VFX = ExtResource("5_myhxa")
+skill_ID = 13
 cost = 2
 rarity = 2
 skill_type = 2
@@ -117,7 +118,6 @@ skill_name = "Judo Throw"
 skill_desc = "Use the weight of your foes to a dangerous degree!
 
 On use, the user grabs an adjacent foe, then lobs them to the chosen space, dealing area damage at the destination."
-skill_ID = 13
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("6_5mm07")
@@ -144,27 +144,27 @@ frame = 1
 frame_progress = 0.48193923
 speed_scale = 0.3
 
-[node name="GrabSFX" type="AudioStreamPlayer2D" parent="." index="5" unique_id=805571767]
+[node name="GrabSFX" type="AudioStreamPlayer2D" parent="." index="4" unique_id=805571767]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_jrxc6")
 volume_db = 5.887
 bus = &"SFX"
 
-[node name="GrabSuccessSFX" type="AudioStreamPlayer2D" parent="." index="6" unique_id=1019247859]
+[node name="GrabSuccessSFX" type="AudioStreamPlayer2D" parent="." index="5" unique_id=1019247859]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_4rtpa")
 volume_db = 4.906
 pitch_scale = 1.06
 bus = &"SFX"
 
-[node name="ThrowSFX" type="AudioStreamPlayer2D" parent="." index="7" unique_id=969314508]
+[node name="ThrowSFX" type="AudioStreamPlayer2D" parent="." index="6" unique_id=969314508]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_kxfjh")
 volume_db = 4.907
 pitch_scale = 1.06
 bus = &"SFX"
 
-[node name="GrabLineVFX" type="Line2D" parent="." index="8" unique_id=351237851]
+[node name="GrabLineVFX" type="Line2D" parent="." index="7" unique_id=351237851]
 unique_name_in_owner = true
 top_level = true
 width = 50.0
@@ -173,11 +173,11 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9" unique_id=476450906]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8" unique_id=476450906]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_c21wq")
 
-[node name="PreviewLine" type="Line2D" parent="." index="10" unique_id=339169075]
+[node name="PreviewLine" type="Line2D" parent="." index="9" unique_id=339169075]
 unique_name_in_owner = true
 visible = false
 top_level = true
@@ -192,7 +192,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="Line2D" type="Line2D" parent="." index="11" unique_id=852522524]
+[node name="Line2D" type="Line2D" parent="." index="10" unique_id=852522524]
 visible = false
 top_level = true
 points = PackedVector2Array(0, 0, 73.5, -69.5, 147, 1)

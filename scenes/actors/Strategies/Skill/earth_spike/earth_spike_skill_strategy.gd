@@ -7,14 +7,10 @@ var max_distance = 8
 
 func ready_skill(grid_entity: GridEntity) -> bool:
 	request_direction()
-	if show_UI:
-		$Arrows.global_position = grid_entity.global_position
-		$Arrows.show()
 	return false
 
 
 func use_skill(grid_entity: GridEntity):
-	$Arrows.hide()
 	state = SkillStrategy.States.PLAYING_ANIMATION
 	##print("Used skill ", name, " towards ", direction)
 	var new_star_VFX = earth_spike_projectile.instantiate()

@@ -9,15 +9,10 @@ var wall_to_pull := false
 
 func ready_skill(grid_entity: GridEntity) -> bool:
 	request_direction()
-	if show_UI:
-		$Arrows.global_position = grid_entity.global_position
-		$Arrows.show()
 	return false
 
 
 func use_skill(grid_entity: GridEntity):
-	
-	$Arrows.hide()
 	state = SkillStrategy.States.PLAYING_ANIMATION
 	print(
 		"Used skill ",
@@ -70,7 +65,7 @@ func use_skill(grid_entity: GridEntity):
 	elif wall_to_pull:
 		for i in range(grapple_distance - 1):
 			Tiles.move_wall(wall_to_pull_coords, wall_to_pull_coords - direction)
-			
+
 			%GrabLineVFX.add_point(Global.floors.map_to_local(wall_to_pull_coords))
 			wall_to_pull_coords -= direction
 			if %GrabLineVFX.points.size() > max_line_points:

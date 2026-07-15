@@ -5,14 +5,10 @@ func ready_skill(grid_entity: GridEntity) -> bool:
 	%HissSFX.play()
 	%AnimationPlayer.play("RESET")
 	request_direction()
-	if show_UI:
-		$Arrows.global_position = grid_entity.global_position
-		$Arrows.show()
 	return false
 
 
 func use_skill(grid_entity: GridEntity):
-	$Arrows.hide()
 	state = SkillStrategy.States.PLAYING_ANIMATION
 	await get_tree().create_timer(0.025).timeout
 	var check_coords = Global.floors.local_to_map(grid_entity.global_position) + direction

@@ -9,24 +9,18 @@ var max_distance = 3
 
 func ready_skill(grid_entity: GridEntity) -> bool:
 	request_cursor()
-	if show_UI:
-		$Cursor.global_position = grid_entity.global_position
-		cursor = grid_entity.grid_coords
-		$Cursor.show()
 	return false
 
 
 func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
 	cursor += moveDirection
 	#cursor = cursor.clampi(-max_distance, max_distance)
-	$Cursor.global_position = Global.floors.map_to_local(cursor)
 	if show_UI:
 		_set_preview_on(true, grid_entity)
 
 
 func use_skill(grid_entity: GridEntity):
 	_set_preview_on(false, grid_entity)
-	$Cursor.hide()
 	print("Used skill ", name, " towards ", cursor)
 	if grid_entity.warp(cursor):
 		moved_self.emit()
@@ -45,9 +39,10 @@ func _set_preview_on(preview_on: bool, grid_entity: GridEntity):
 
 
 func _update_attack_preview(grid_entity: GridEntity):
-	var mid_point = (grid_entity.global_position + $Cursor.global_position) / 2
+	var cursor_coords = Global.walls.map_to_local(cursor)
+	var mid_point = (grid_entity.global_position + cursor_coords) / 2
 	$Line2D.points[1] = mid_point - Vector2(0, attack_height)
-	$Line2D.points[2] = $Cursor.global_position
+	$Line2D.points[2] = cursor_coords
 	$PreviewLine.clear_points()
 	for cut in range(preview_line_cuts):
 		var line_progress = cut / float(preview_line_cuts)

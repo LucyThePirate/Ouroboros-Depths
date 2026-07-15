@@ -164,9 +164,9 @@ grow_vertical = 2
 alignment = 1
 
 [node name="HealthComponent" parent="UI" unique_id=1357245310 instance=ExtResource("18_vnsn2")]
-layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 0
+layout_direction = 2
 
 [node name="StatusManagerComponent" parent="UI" unique_id=963295090 instance=ExtResource("21_jyxbn")]
 custom_minimum_size = Vector2(0, 3.52)
@@ -189,6 +189,7 @@ offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
+mouse_filter = 1
 button_mask = 2
 
 [connection signal="gained_status" from="SkillStackComponent" to="." method="_on_skill_stack_component_gained_status"]

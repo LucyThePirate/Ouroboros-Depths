@@ -1017,7 +1017,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-6" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1359039404]
 position = Vector2(69.40637, 127.073)
 rotation = -1.36679
-scale = Vector2(0.99999875, 0.99999875)
+scale = Vector2(0.9999987, 0.9999987)
 rest = Transform2D(0.202592, -0.979263, 0.979263, 0.202592, 69.4064, 127.073)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1044,7 +1044,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-8" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1969427454]
 position = Vector2(68.7027, 159.052)
 rotation = 1.54074
-scale = Vector2(0.99999875, 0.99999875)
+scale = Vector2(0.9999987, 0.9999987)
 rest = Transform2D(0.0300513, 0.999548, -0.999548, 0.0300513, 68.7027, 159.052)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1070,7 +1070,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Bone-10" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=59431186]
 position = Vector2(69.7157, 192.74402)
-rotation = -0.59983397
+rotation = -0.599834
 scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.825429, -0.564506, 0.564506, 0.825429, 69.7157, 192.744)
 auto_calculate_length_and_angle = false
@@ -1230,7 +1230,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-22" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1625297829]
 position = Vector2(123.630005, 155.08301)
 rotation = 1.55378
-scale = Vector2(0.99999875, 0.99999875)
+scale = Vector2(0.9999987, 0.9999987)
 rest = Transform2D(0.0170144, 0.999855, -0.999855, 0.0170144, 123.63, 155.083)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1375,7 +1375,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-33" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1944610832]
 position = Vector2(178.53302, 231.568)
 rotation = -1.48128
-scale = Vector2(0.99999875, 0.99999875)
+scale = Vector2(0.9999987, 0.9999987)
 rest = Transform2D(0.0893961, -0.995996, 0.995996, 0.0893961, 178.533, 231.568)
 auto_calculate_length_and_angle = false
 length = 36.0

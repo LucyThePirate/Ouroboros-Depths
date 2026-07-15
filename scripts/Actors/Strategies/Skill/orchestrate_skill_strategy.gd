@@ -13,18 +13,21 @@ var is_playing = false
 
 func ready_skill(grid_entity: GridEntity) -> bool:
 	request_cursor()
-	if show_UI:
-		$Cursor.global_position = grid_entity.global_position
-		cursor = Global.floors.local_to_map(grid_entity.global_position)
-		$Cursor.show()
 	return false
 
 
 func move_cursor(moveDirection: Vector2i, grid_entity: GridEntity):
 	cursor += moveDirection
-	$Cursor.global_position = Global.floors.map_to_local(cursor)
 	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
 	var relative_coord = cursor - grid_coords
+	if show_UI:
+		%Sampler.play_note(notes[relative_coord.x % notes.size()], 4 - (relative_coord.y % 4))
+
+
+func set_cursor_position(new_position: Vector2i, grid_entity: GridEntity):
+	cursor = new_position
+	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
+	var relative_coord = new_position - grid_coords
 	if show_UI:
 		%Sampler.play_note(notes[relative_coord.x % notes.size()], 4 - (relative_coord.y % 4))
 
@@ -36,7 +39,6 @@ func on_stack_execution_started(grid_entity: GridEntity):
 
 
 func use_skill(grid_entity: GridEntity):
-	$Cursor.hide()
 	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
 	var relative_cursor = cursor - grid_coords
 	print("Used skill ", name, " towards ", relative_cursor)

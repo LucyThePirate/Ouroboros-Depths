@@ -110,7 +110,7 @@ func set_text(new_text := ""):
 func _on_button_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		clicked.emit()
-		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
 			left_clicked.emit()
-		if event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+		if event.is_released() and event.button_index == MOUSE_BUTTON_RIGHT:
 			right_clicked.emit()

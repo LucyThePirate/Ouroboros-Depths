@@ -12,6 +12,9 @@ signal awaited_cursor_input
 signal gained_status(status)
 signal reload_started
 signal skill_removed
+signal tried_queueieng(skill_number)
+signal tried_executing
+signal tried_reloading
 
 @export var max_stack_size := 4
 @onready var current_max_stack_size := max_stack_size
@@ -285,13 +288,15 @@ func move_cursor(moveDirection: Vector2i):
 	current_skill.move_cursor(moveDirection, grid_entity)
 
 
-func set_cursor(cursorPosition: Vector2i):
-	current_skill.set_cursor(cursorPosition)
-	state = States.EXECUTING_STACK
-	current_skill.use_skill(grid_entity)
-	if current_skill.state == SkillStrategy.States.PLAYING_ANIMATION:
-		await current_skill.skill_finished
-	_handle_stack_execution()
+func set_cursor_position(cursor_position: Vector2i):
+	current_skill.set_cursor_position(cursor_position, grid_entity)
+	#if set_cursor_only:
+	#return
+	#state = States.EXECUTING_STACK
+	#current_skill.use_skill(grid_entity)
+	#if current_skill.state == SkillStrategy.States.PLAYING_ANIMATION:
+	#await current_skill.skill_finished
+	#_handle_stack_execution()
 
 
 func accept_cursor():
@@ -387,13 +392,18 @@ func _update_hand_visuals() -> void:
 		hand_skill_icon.set_stack_size(
 			hand[skill].stack_size, current_max_stack_size - current_stack_size
 		)
-		#hand_skill_icon.left_clicked.connect(queue_skill.bind(skill))
 		if not hand_skill_icon.is_connected("right_clicked", hand[skill].display_skill_info):
 			hand_skill_icon.right_clicked.connect(hand[skill].display_skill_info)
+		if not hand_skill_icon.is_connected("left_clicked", try_queueing):
+			hand_skill_icon.left_clicked.connect(try_queueing.bind(skill))
 	if deck.is_empty():
 		%NextSkillPreview.texture = null_skill_texture
 	else:
 		%NextSkillPreview.texture = deck.front().icon.texture
+
+
+func try_queueing(skill_number):
+	tried_queueieng.emit(skill_number)
 
 
 func _update_turn_cooldown():
@@ -424,48 +434,13 @@ func _update_cooldown_visuals():
 			%TurnsTilReloadText.text = "%s turn 'til reload complete" % shuffle_turns
 		for skill_icon in range(hand_size) as Array[SkillIcon]:
 			var percentage := float(shuffle_turns) / float(turns_to_reload)
-			#var new_style_box = progress_bar.get_theme_stylebox("fill").duplicate() as StyleBoxFlat
-			#new_style_box.bg_color = Color(1, 1, 1, 0.5)
-			#progress_bar.add_theme_stylebox_override("fill", new_style_box)
-			#progress_bar.value = percentage
 		return
 	else:
 		%TurnsTilReloadText.hide()
-	for skill in range(hand.size()):
-		if not hand[skill]:
-			continue
-		#var progress_bar = (
-		#get_node(
-		#(
-		#"CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/HandVisual/PanelContainer%s/ProgressBar"
-		#% [skill + 1]
-		#)
-		#)
-		#as ProgressBar
-		#)
-		#if progress_bar:
-		#var percentage: float
-		#var new_style_box = progress_bar.get_theme_stylebox("fill").duplicate() as StyleBoxFlat
-
-
-#
-#if hand[skill].current_in_stack > 0:
-##percentage = float(hand[skill].current_in_stack) / float(hand[skill].max_per_stack)
-#percentage = 0
-#new_style_box.bg_color = Color(1, 1, 1, 0.5)
-#progress_bar.add_theme_stylebox_override("fill", new_style_box)
-#else:
-#percentage = float(hand[skill].current_cooldown) / float(hand[skill].cooldown_turns)
-#new_style_box.bg_color = Color(1, 0, 0, 0.5)
-#progress_bar.add_theme_stylebox_override("fill", new_style_box)
-#progress_bar.value = percentage
 
 
 func preview_queueing_skill(show_preview := true):
 	pass
-	#%PreviewQueueSkill.texture = preview_queue_skill_texture
-	#%PreviewQueueSkill.visible = show_preview
-	#%StackIconHolder.move_child(%PreviewQueueSkill, -1)
 
 
 func preview_executing_stack(show_preview := true):
@@ -572,3 +547,11 @@ func _display_error(error_msg: String):
 		new_text_scene.global_position = grid_entity.global_position
 		get_tree().current_scene.add_child(new_text_scene)
 		new_text_scene.set_error_text(error_msg)
+
+
+func _on_execute_button_pressed() -> void:
+	tried_executing.emit()
+
+
+func _on_reload_button_pressed() -> void:
+	tried_reloading.emit()
