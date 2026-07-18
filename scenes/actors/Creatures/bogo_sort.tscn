@@ -170,6 +170,7 @@ offset_bottom = -196.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.4199603, 1.4199603)
+mouse_filter = 2
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=574656954]
 unique_name_in_owner = true
@@ -194,7 +195,6 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = ExtResource("5_qapfj")
 volume_db = 12.449
-pitch_scale = 0.13
 autoplay = true
 panning_strength = 1.43
 bus = &"Reverb SFX"

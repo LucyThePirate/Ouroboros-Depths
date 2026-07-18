@@ -117,5 +117,6 @@ func _on_requested_cursor_input():
 
 func set_cursor(move_direction: Vector2i):
 	move_direction *= Vector2i(randi_range(1, 5), randi_range(1, 5))
-	stack_component.move_cursor(move_direction)
+	#stack_component.move_cursor(move_direction)
+	stack_component.set_cursor_position(grid_parent.grid_coords + move_direction)
 	stack_component.accept_cursor()

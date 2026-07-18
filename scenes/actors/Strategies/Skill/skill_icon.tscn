@@ -16,6 +16,7 @@ script = ExtResource("1_876ke")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(130.795, 118.07)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_4rnhm")
 expand_mode = 1
 
@@ -26,10 +27,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="BorderTexture/CenterContainer" unique_id=652422519]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="BorderTexture/CenterContainer/PanelContainer" unique_id=189083487]
 unique_name_in_owner = true
@@ -108,10 +111,9 @@ self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1
+mouse_default_cursor_shape = 2
 theme_override_colors/icon_hover_color = Color(0.599971, 0.731475, 1, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.918291, 0.599438, 0.711051, 1)
 button_mask = 3
 
 [connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]
-[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

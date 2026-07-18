@@ -7,14 +7,23 @@
 [ext_resource type="PackedScene" uid="uid://cjo5qx0fo3bej" path="res://scenes/actors/metamorphosis.tscn" id="4_wes0m"]
 [ext_resource type="PackedScene" uid="uid://djc3cmcxnhe5l" path="res://scenes/characters/Visuals/scarecrow_visual.tscn" id="6_jfrsc"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/ui/Arrow.png" id="6_nmlhc"]
+[ext_resource type="AudioStream" uid="uid://c22a32fpulvkx" path="res://audio/SFX/Misc/wait/556991__ycbcr__tabletop-clock-ticking-speed-ramp-down-followup.ogg" id="7_dferu"]
 [ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/ui/Cursor.png" id="7_h5w3c"]
 [ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="7_ypltb"]
+[ext_resource type="AudioStream" uid="uid://bqs6qr4ws7ylr" path="res://audio/SFX/Misc/wait/556991__ycbcr__tabletop-clock-ticking-speed-ramp-down-followup2.ogg" id="8_t62v4"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="8_wd2mq"]
 [ext_resource type="AudioStream" uid="uid://0to1gxx02bfe" path="res://audio/SFX/Misc/OrangePeelReverse.ogg" id="16_nfopg"]
 [ext_resource type="AudioStream" uid="uid://cwqwqvrk8t7gj" path="res://audio/SFX/Misc/OrangePeel1.ogg" id="17_1vpxp"]
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/creatures/Soul.png" id="18_1vpxp"]
 [ext_resource type="Script" uid="uid://b57xlofytn3k" path="res://addons/ActionIcon/ActionIcon.gd" id="19_u2nr5"]
 [ext_resource type="AudioStream" uid="uid://d3dload3sw6cq" path="res://audio/SFX/Misc/erro.mp3" id="20_ad5m5"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_532wb"]
+playback_mode = 2
+random_pitch = 1.0656005
+streams_count = 2
+stream_0/stream = ExtResource("7_dferu")
+stream_1/stream = ExtResource("8_t62v4")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jyxbn"]
 atlas = ExtResource("7_h5w3c")
@@ -162,9 +171,10 @@ position_smoothing_enabled = true
 [node name="Arrows" type="Node2D" parent="GridEntity" unique_id=675739955]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
+z_index = 5
 
 [node name="RightArrow" type="Sprite2D" parent="GridEntity/Arrows" unique_id=1834742859]
-position = Vector2(104, 0)
+position = Vector2(100, 0)
 texture = ExtResource("6_nmlhc")
 
 [node name="RightArrowButton" type="Button" parent="GridEntity/Arrows/RightArrow" unique_id=1234441132]
@@ -172,16 +182,17 @@ self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -35.0
-offset_top = -81.0
-offset_right = 158.0
-offset_bottom = -32.0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 150.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 13
 
 [node name="UpArrow" type="Sprite2D" parent="GridEntity/Arrows" unique_id=557307660]
-position = Vector2(0, -104)
+position = Vector2(0, -100)
 rotation = -1.57079
 texture = ExtResource("6_nmlhc")
 
@@ -190,16 +201,17 @@ self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -33.641533
-offset_top = -61.334908
-offset_right = 102.97714
-offset_bottom = -32.370064
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 147.75974
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 13
 
 [node name="LeftArrow" type="Sprite2D" parent="GridEntity/Arrows" unique_id=1174290218]
-position = Vector2(-104, 0)
+position = Vector2(-100, 0)
 rotation = 3.14159
 texture = ExtResource("6_nmlhc")
 
@@ -208,16 +220,17 @@ self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.763332
-offset_top = -66.0
-offset_right = 113.00003
-offset_bottom = -23.256195
+offset_left = -50.0
+offset_top = -50.000004
+offset_right = 149.26184
+offset_bottom = -49.999996
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 13
 
 [node name="DownArrow" type="Sprite2D" parent="GridEntity/Arrows" unique_id=709283397]
-position = Vector2(2.00011, 106)
+position = Vector2(0, 100)
 rotation = 1.57079
 texture = ExtResource("6_nmlhc")
 
@@ -226,13 +239,34 @@ self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -35.314434
-offset_top = -71.0
-offset_right = 107.00009
-offset_bottom = -34.0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 150.80634
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 13
+
+[node name="WaitButton" type="Button" parent="GridEntity/Arrows" unique_id=856957012]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 5
+
+[node name="WaitSFX" type="AudioStreamPlayer" parent="GridEntity/Arrows/WaitButton" unique_id=1281513901]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_532wb")
+pitch_scale = 1.55
+bus = &"SFX"
 
 [node name="Cursor" type="AnimatedSprite2D" parent="GridEntity" unique_id=559999609]
 unique_name_in_owner = true
@@ -284,6 +318,7 @@ bus = &"SFX"
 offset_right = 285.0
 offset_bottom = 473.0
 scale = Vector2(0.415, 0.415)
+mouse_filter = 2
 texture = ExtResource("18_1vpxp")
 
 [node name="SoulCountDisplay" type="RichTextLabel" parent="CanvasLayer/TextureRect" unique_id=1788771446]
@@ -294,6 +329,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 2
 theme_override_constants/outline_size = 8
@@ -305,6 +341,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="ChrysalisButton" type="Button" parent="CanvasLayer/TextureRect/SoulCountDisplay" unique_id=1917070321]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+
 [node name="ChrysalisPrompt" type="RichTextLabel" parent="CanvasLayer/TextureRect" unique_id=1473559020]
 layout_mode = 1
 anchors_preset = 15
@@ -312,6 +358,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 2
 theme_override_constants/outline_size = 8
@@ -329,6 +376,7 @@ offset_top = 421.687
 offset_right = 42.1687
 offset_bottom = 461.687
 scale = Vector2(1.64259, 1.64259)
+mouse_filter = 2
 script = ExtResource("19_u2nr5")
 action_name = &"Chrysalis"
 metadata/_custom_type_script = "uid://b57xlofytn3k"
@@ -397,6 +445,8 @@ process_material = SubResource("ParticleProcessMaterial_befnt")
 [connection signal="pressed" from="GridEntity/Arrows/UpArrow/UpArrowButton" to="." method="_on_up_arrow_button_pressed"]
 [connection signal="pressed" from="GridEntity/Arrows/LeftArrow/LeftArrowButton" to="." method="_on_left_arrow_button_pressed"]
 [connection signal="pressed" from="GridEntity/Arrows/DownArrow/DownArrowButton" to="." method="_on_down_arrow_button_pressed"]
+[connection signal="pressed" from="GridEntity/Arrows/WaitButton" to="." method="_on_wait_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TextureRect/SoulCountDisplay/ChrysalisButton" to="." method="_on_chrysalis_button_pressed"]
 
 [editable path="GridEntity"]
 [editable path="GridEntity/SkillStackComponent"]

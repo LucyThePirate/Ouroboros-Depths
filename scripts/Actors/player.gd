@@ -119,6 +119,13 @@ func _handle_movement() -> void:
 		Input.is_action_just_pressed("Wait")
 		or (Input.is_action_pressed("Wait") and Input.is_action_pressed("Run"))
 	):
+		if not Input.is_action_pressed("Run"):
+			%WaitSFX.play()
+			var new_text_component = text_component.instantiate() as TextComponent
+			add_child(new_text_component)
+			new_text_component.initialize(false)
+			new_text_component.global_position = grid_entity.global_position
+			new_text_component.set_text("...", "[wave amp=50.0 freq=5.0 connected=1]")
 		end_turn()
 		return
 
@@ -279,6 +286,7 @@ func _load_deck():
 
 
 #endregion
+# TODO - blah blah
 
 
 func _on_grid_entity_grid_entity_initialized() -> void:
@@ -389,4 +397,15 @@ func _on_left_arrow_button_pressed() -> void:
 func _on_down_arrow_button_pressed() -> void:
 	Input.action_press("Down")
 	Input.action_release("Down")
+
+
+func _on_wait_button_pressed() -> void:
+	Input.action_press("Wait")
+	Input.action_release("Wait")
+
+
+func _on_chrysalis_button_pressed() -> void:
+	Input.action_press("Chrysalis")
+	Input.action_release("Chrysalis")
+
 #endregion

@@ -137,23 +137,28 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.4478521, 1.4478521)
 size_flags_vertical = 4
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Stack" unique_id=331848839]
 layout_mode = 1
 offset_right = 547.0
 offset_bottom = 137.0
 scale = Vector2(0.328554, 0.284677)
+mouse_filter = 2
 
 [node name="CenterContainer" type="PanelContainer" parent="Stack/MarginContainer" unique_id=489449637]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Stack/MarginContainer/CenterContainer" unique_id=1246841075]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="StackSizeLabel" type="RichTextLabel" parent="Stack/MarginContainer/CenterContainer/VBoxContainer" unique_id=2133485242]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 theme = ExtResource("9_qdnrn")
 theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
@@ -165,6 +170,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="PreviewQueueSkill" type="TextureRect" parent="Stack/MarginContainer/CenterContainer/VBoxContainer/StackIconHolder" unique_id=1320977700]
@@ -172,6 +178,7 @@ unique_name_in_owner = true
 visible = false
 self_modulate = Color(0.870588, 0, 0.0117647, 1)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("2_qowul")
 expand_mode = 2
 stretch_mode = 5
@@ -194,6 +201,7 @@ offset_top = 558.0
 offset_right = 464.0
 offset_bottom = 765.0
 scale = Vector2(0.252589, 0.252589)
+mouse_filter = 2
 texture = ExtResource("7_qdnrn")
 stretch_mode = 2
 
@@ -208,20 +216,8 @@ script = ExtResource("9_8of2w")
 action_name = &"Reload"
 metadata/_custom_type_script = "uid://b57xlofytn3k"
 
-[node name="Reload2" type="TextureRect" parent="CanvasLayer/AvailableSkills/Reload" unique_id=868875400]
-self_modulate = Color(0, 0, 0, 0.662745)
-show_behind_parent = true
-layout_mode = 0
-offset_left = 7.91801
-offset_top = 11.877
-offset_right = 225.918
-offset_bottom = 218.877
-scale = Vector2(1.00401, 1.00401)
-texture = ExtResource("7_qdnrn")
-stretch_mode = 2
-
 [node name="ReloadButton" type="Button" parent="CanvasLayer/AvailableSkills/Reload" unique_id=1417487454]
-self_modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -232,6 +228,20 @@ offset_right = 23.499023
 offset_bottom = 18.663086
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
+
+[node name="Reload2" type="TextureRect" parent="CanvasLayer/AvailableSkills/Reload" unique_id=868875400]
+self_modulate = Color(0, 0, 0, 0.662745)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 7.91803
+offset_top = 11.876953
+offset_right = 225.91803
+offset_bottom = 218.87695
+scale = Vector2(1.00401, 1.00401)
+mouse_filter = 2
+texture = ExtResource("7_qdnrn")
+stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AvailableSkills" unique_id=304280317]
 layout_mode = 1
@@ -252,6 +262,7 @@ metadata/_edit_lock_ = true
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/AvailableSkills/MarginContainer" unique_id=1763887461]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.713726, 0.407843, 0, 0.352941)
 
 [node name="CenterContainer" type="PanelContainer" parent="CanvasLayer/AvailableSkills/MarginContainer" unique_id=868230337]
@@ -263,6 +274,7 @@ metadata/_edit_lock_ = true
 [node name="HandIconHolder" type="HBoxContainer" parent="CanvasLayer/AvailableSkills/MarginContainer/CenterContainer" unique_id=593860678]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 metadata/_edit_lock_ = true
 
@@ -311,6 +323,7 @@ anchor_bottom = 1.0
 offset_left = -100.71753
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/AvailableSkills" unique_id=1463258136]
 self_modulate = Color(1, 1, 1, 0)
@@ -328,6 +341,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 size_flags_horizontal = 0
 focus_mode = 0
+mouse_default_cursor_shape = 2
 theme = ExtResource("9_qdnrn")
 theme_override_font_sizes/font_size = 37
 theme_override_styles/normal = SubResource("StyleBoxFlat_28yix")

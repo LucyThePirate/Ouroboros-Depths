@@ -369,12 +369,16 @@ func gain_status(status: StatusStrategy):
 	status_component.add_status(status)
 
 
-func _on_info_button_pressed() -> void:
-	var new_creature_description = description_scene.instantiate() as CreatureDescription
-	get_tree().current_scene.add_child(new_creature_description)
-	#new_creature_description.icon.texture = icon.texture
-	new_creature_description.creature_name.text = (
-		"%s [color=GRAY](%s)" % [creature_name, get_parent().name]
-	)
-	new_creature_description.creature_desc.text = species_desc
-	new_creature_description.set_status_descriptions(status_component.get_status_descriptions())
+func _on_info_button_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.is_released() and event.button_index == MOUSE_BUTTON_RIGHT:
+			var new_creature_description = description_scene.instantiate() as CreatureDescription
+			get_tree().current_scene.add_child(new_creature_description)
+			#new_creature_description.icon.texture = icon.texture
+			new_creature_description.creature_name.text = (
+				"%s [color=GRAY](%s)" % [creature_name, get_parent().name]
+			)
+			new_creature_description.creature_desc.text = species_desc
+			new_creature_description.set_status_descriptions(
+				status_component.get_status_descriptions()
+			)

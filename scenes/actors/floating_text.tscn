@@ -112,6 +112,7 @@ offset_right = 546.0
 offset_bottom = -102.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.380392)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.52549)
 theme_override_constants/shadow_outline_size = 6
@@ -138,6 +139,7 @@ offset_right = 34.2812
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 placeholder_text = "[wave amp=50.0 freq=5.0 connected=1]...[/wave]"
 alignment = 1
 selecting_enabled = false
