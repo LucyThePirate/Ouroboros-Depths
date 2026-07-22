@@ -7,12 +7,14 @@ extends GenerationStrategy
 @export var max_room_size := 4
 @export var biggest_room_chance := 0.75
 @export var set_pieces: Array[PackedScene]
+@export var stairs_down_particle_scene: PackedScene
 @export var seed := 0
 
 var cells: Array[Vector2i] = []
 var rooms := {}
 var stairs_up_location = Vector2i.ZERO
 var stairs_down_location = Vector2i.RIGHT
+var stairs_down_particles: GPUParticles2D
 
 var extra_nodes: Array = []
 
@@ -40,6 +42,8 @@ func initialize(
 
 
 func generate_level():
+	if stairs_down_particles:
+		stairs_down_particles.queue_free()
 	extra_nodes = []
 	# 1. Generating an arbitrarily connecting clump of cells
 	cells = [Vector2i.ZERO]
@@ -386,6 +390,10 @@ func _place_stairs():
 	)]
 	floors.set_cell(stairs_down_location, stairs_down_tile[0], stairs_down_tile[1])
 	walls.set_cell(stairs_down_location, Tiles.lock_tile[0], Tiles.lock_tile[1])
+	stairs_down_particles = stairs_down_particle_scene.instantiate()
+	get_tree().current_scene.add_child(stairs_down_particles)
+	stairs_down_particles.global_position = floors.map_to_local(stairs_down_location)
+
 	possible_stair_locations = floors.get_used_cells_by_id(
 		Tiles.wood_floor_tile[0], Tiles.wood_floor_tile[1]
 	)

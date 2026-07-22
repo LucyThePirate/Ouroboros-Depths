@@ -49,7 +49,7 @@ func _ready() -> void:
 	grid_entity.turned_invisible.connect(_update_visibility)
 	if visual and visual.has_method("initialize"):
 		visual.initialize(grid_entity)
-	_update_visibility()
+
 	#turn_component.turn_ended.connect(status_manager_component.on_turn_ended)
 
 
@@ -197,6 +197,7 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 	turn_component.turn_ended.connect(_on_turn_component_turn_ended)
 	grid_entity.stack_component.emptied_stack.connect(_on_skill_stack_component_emptied_stack)
 	grid_entity.moved.connect(_on_grid_entity_moved)
+	_update_visibility()
 
 
 func _on_grid_entity_died(_is_despawning) -> void:

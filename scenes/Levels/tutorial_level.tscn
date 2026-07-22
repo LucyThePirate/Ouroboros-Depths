@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://ccdflf58itehp" path="res://textures/skills/MadDashSkill.png" id="17_q7qwg"]
 [ext_resource type="Texture2D" uid="uid://c7oygssfx67cr" path="res://textures/skills/StompSkill.png" id="18_0nflp"]
 [ext_resource type="PackedScene" uid="uid://cp6erui8kemoj" path="res://scenes/actors/Creatures/rat/rat_creature.tscn" id="21_hkvov"]
+[ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="22_xps83"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8wy2e"]
 blend_mode = 3
@@ -168,6 +169,40 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kv4pv"]
 shader = ExtResource("11_utnk4")
 shader_parameter/bg_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_utnk4"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_u1sel"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4587629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1y1u8"]
+curve = SubResource("Curve_u1sel")
+
+[sub_resource type="Gradient" id="Gradient_ob1md"]
+colors = PackedColorArray(0.886859, 0.6971816, 0.106122755, 1, 0.9, 0.81165, 0.729, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rj6va"]
+gradient = SubResource("Gradient_ob1md")
+
+[sub_resource type="Curve" id="Curve_movmj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.50561804), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0vmwr"]
+curve = SubResource("Curve_movmj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gk7ns"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 50, 50)
+gravity = Vector3(0, -90, 0)
+scale_min = 0.099999994
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_0vmwr")
+color_initial_ramp = SubResource("GradientTexture1D_rj6va")
+alpha_curve = SubResource("CurveTexture_1y1u8")
 
 [node name="TutorialLevel" type="Node2D" unique_id=592235844 node_paths=PackedStringArray("generator")]
 y_sort_enabled = true
@@ -987,6 +1022,14 @@ position = Vector2(-144, -396)
 
 [node name="RatCreature2" parent="." unique_id=182155937 instance=ExtResource("21_hkvov")]
 position = Vector2(-1046, -1284)
+
+[node name="StairsDownParticles" type="GPUParticles2D" parent="." unique_id=1724796779]
+material = SubResource("CanvasItemMaterial_utnk4")
+position = Vector2(1050, 1150)
+texture = ExtResource("22_xps83")
+lifetime = 1.8
+speed_scale = 0.7
+process_material = SubResource("ParticleProcessMaterial_gk7ns")
 
 [connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer/NewRunButton" to="." method="_on_new_run_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer2/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]

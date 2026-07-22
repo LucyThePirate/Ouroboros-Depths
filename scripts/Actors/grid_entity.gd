@@ -170,7 +170,6 @@ func move(direction: Vector2i, safe_walk_entities := false, safe_walk_pits := fa
 
 
 func warp(new_coords: Vector2i) -> bool:
-	print("warping to:", new_coords)
 	if not initialized:
 		return false
 

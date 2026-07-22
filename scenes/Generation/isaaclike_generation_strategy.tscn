@@ -27,11 +27,13 @@
 [ext_resource type="PackedScene" uid="uid://cexwbv2kv5inr" path="res://scenes/Generation/SetPieces/snow_hamsterdog_storage_set_piece.tscn" id="24_3mtk3"]
 [ext_resource type="PackedScene" uid="uid://cu84v0y4jrh4u" path="res://scenes/Generation/SetPieces/winter_maze_set_piece.tscn" id="25_3snae"]
 [ext_resource type="PackedScene" uid="uid://clhkxsjoos4db" path="res://scenes/Generation/SetPieces/frozen_lake_set_piece.tscn" id="26_aoy3y"]
+[ext_resource type="PackedScene" uid="uid://dnbon7l7p7jj0" path="res://scenes/Generation/stairs_down_particles.tscn" id="27_3snae"]
 
 [node name="IsaaclikeGenerationStrategy" type="Node2D" unique_id=678348038]
 script = ExtResource("1_tcb7u")
 number_of_set_pieces = 5
 set_pieces = Array[PackedScene]([ExtResource("3_7cerw"), ExtResource("2_yu7xt"), ExtResource("4_445n4"), ExtResource("5_741bn"), ExtResource("6_154c5"), ExtResource("7_mrka4"), ExtResource("8_mrka4"), ExtResource("9_fgfly"), ExtResource("10_12npv"), ExtResource("11_xjhvs"), ExtResource("12_r26bt"), ExtResource("13_xjhvs"), ExtResource("14_wfmw7"), ExtResource("15_hwbqm"), ExtResource("16_s18cg"), ExtResource("17_a0xml"), ExtResource("18_k6prg"), ExtResource("19_2hfcj"), ExtResource("20_3mtk3"), ExtResource("21_hwbqm"), ExtResource("22_s18cg"), ExtResource("23_a0xml"), ExtResource("24_3mtk3"), ExtResource("25_3snae"), ExtResource("26_aoy3y")])
+stairs_down_particle_scene = ExtResource("27_3snae")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1854172308]
 

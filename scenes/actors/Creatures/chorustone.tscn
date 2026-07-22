@@ -30,11 +30,12 @@ move_when_aggro = false
 species_type = 8
 creature_name = "Chorustone"
 species_desc = "An aged statue that is given life by the wind flowing through it... Or, at least, something life-adjacent."
+challenge_rating = 1.5
 
 [node name="OrchestrateSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1561726841, 1500394995) index="7" unique_id=1609460078 instance=ExtResource("2_l7r4i")]
 mouse_filter = 0
 
-[node name="Sampler" parent="GridEntity/SkillStackComponent/OrchestrateSkillStrategy" index="4" unique_id=663795000]
+[node name="Sampler" parent="GridEntity/SkillStackComponent/OrchestrateSkillStrategy" index="2" unique_id=663795000]
 volume_db = 2.244
 samples = Array[ExtResource("4_swlj1")]([ExtResource("5_yuq31"), ExtResource("6_obh5d"), ExtResource("7_h8xem"), ExtResource("8_gupfj"), ExtResource("9_chlo0")])
 env_attack = -0.27

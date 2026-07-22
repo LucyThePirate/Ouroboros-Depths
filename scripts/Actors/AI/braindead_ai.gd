@@ -29,36 +29,6 @@ func _ready() -> void:
 	super()
 
 
-func pursue_entity(_entity: GridEntity) -> Vector2i:
-	return Vector2i.ZERO
-
-
-func take_turn():
-	if not grid_entity.is_alive():
-		turn_component.end_turn()
-		return
-	match intent:
-		_:
-			pass
-	visible = not grid_entity.is_in_darkness() or Debug.fog_visible == false
-	update_intent()
-	turn_component.end_turn()
-
-
-func update_intent():
-	if not angry_at:
-		intent = "Move"
-		intent_direction = Vector2i.ZERO
-	else:
-		intent = "Move"
-		intent_direction = pursue_entity(angry_at)
-	#if intent_arrow:
-	#intent_arrow.visible = intent == "Move"
-	#intent_arrow.look_at(intent_arrow.global_position + Vector2(intent_direction))
-	if intent_label:
-		intent_label.text = intent
-
-
 func _on_grid_entity_hurt(attacker: GridEntity, damage_amount: int) -> void:
 	_egg_damaged_visual()
 	if grid_entity.is_alive():
@@ -85,7 +55,3 @@ func _egg_damaged_visual() -> void:
 	%EggCrack.volume_db = missing_health
 	%EggCrack.pitch_scale = 1.2 - (0.08 * missing_health)
 	%EggCrack.play()
-
-
-func _update_angry_at(_new_target: GridEntity):
-	return

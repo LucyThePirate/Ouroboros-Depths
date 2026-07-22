@@ -124,7 +124,7 @@ func _ready():
 	Global.entity_positions[$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]] = (
 		player.grid_entity
 	)
-	_initialize_fog()
+
 	spawn_bogo_egg()
 
 	for random_monster_tile in walls.get_used_cells_by_id(
@@ -135,7 +135,7 @@ func _ready():
 
 	for i in range(int(10 + current_floor) / 2):
 		try_spawning_random_monster(false)
-
+	_initialize_fog()
 	_initialize_entities()
 
 
@@ -327,12 +327,15 @@ func spawn_monster_at_coords(grid_coordinate: Vector2i):
 
 
 func try_spawning_random_monster(initialize_entity := true):
-	if current_challenge_rating < challenge_rating_capacity + current_floor * 3:
+	if current_challenge_rating < challenge_rating_capacity + current_floor * 2:
 		var grid_coordinate = Global.floors.get_used_cells().pick_random()
 		if not _is_obstructed(grid_coordinate):
 			var new_entity = (
 				spawn_entity(grid_coordinate, creature_scene.pick_random()) as CreatureAI
 			)
+			if not is_arena and new_entity.grid_entity.challenge_rating > current_floor + 1:
+				new_entity.queue_free()
+				return
 			current_challenge_rating += new_entity.grid_entity.challenge_rating
 			if initialize_entity:
 				_initialize_entity(new_entity.grid_entity)

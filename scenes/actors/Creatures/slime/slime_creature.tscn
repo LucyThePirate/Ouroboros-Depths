@@ -18,6 +18,7 @@ creature_name = "Slime"
 species_desc = "A giant single-celled organism hops along corridors, absorbing any scraps it stumbles across. Or, in the absence of any food, it'll happily pulverize you into its next meal.
 
 The circular object suspended in its translucent body is actually its nucleus!"
+challenge_rating = 1.5
 
 [node name="LeapSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="10" unique_id=273578898 instance=ExtResource("2_nady4")]
 max_per_stack = 1

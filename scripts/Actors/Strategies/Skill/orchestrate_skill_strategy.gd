@@ -41,7 +41,6 @@ func on_stack_execution_started(grid_entity: GridEntity):
 func use_skill(grid_entity: GridEntity):
 	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
 	var relative_cursor = cursor - grid_coords
-	print("Used skill ", name, " towards ", relative_cursor)
 	if relative_cursor in chord:
 		relative_cursor += Vector2i(randi_range(-1, 1), randi_range(-1, 1))
 	chord.append(relative_cursor)

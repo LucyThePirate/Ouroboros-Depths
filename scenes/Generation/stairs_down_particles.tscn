@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dnbon7l7p7jj0"]
+
+[ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="1_xgpuc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_walqc"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_qgswi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4587629, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1y1u8"]
+curve = SubResource("Curve_qgswi")
+
+[sub_resource type="Gradient" id="Gradient_eg032"]
+colors = PackedColorArray(0.886859, 0.6971816, 0.106122755, 1, 0.9, 0.81165, 0.729, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rj6va"]
+gradient = SubResource("Gradient_eg032")
+
+[sub_resource type="Curve" id="Curve_pj5lm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.50561804), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0vmwr"]
+curve = SubResource("Curve_pj5lm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_532wb"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 50, 50)
+gravity = Vector3(0, -90, 0)
+scale_min = 0.099999994
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_0vmwr")
+color_initial_ramp = SubResource("GradientTexture1D_rj6va")
+alpha_curve = SubResource("CurveTexture_1y1u8")
+
+[node name="StairsDownParticles" type="GPUParticles2D" unique_id=2058416539]
+top_level = true
+z_index = -1
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_walqc")
+texture = ExtResource("1_xgpuc")
+lifetime = 1.8
+speed_scale = 0.7
+process_material = SubResource("ParticleProcessMaterial_532wb")

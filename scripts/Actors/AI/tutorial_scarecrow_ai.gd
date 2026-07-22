@@ -1,4 +1,4 @@
-extends StationaryAI
+extends CreatureAI
 
 @export var text_scene: PackedScene
 @export_multiline var text_to_display: String

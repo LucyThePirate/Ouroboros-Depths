@@ -46,14 +46,14 @@ Causing wanton destruction this way is SO satisfying, that it also grants the us
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("5_kms4v")
 
-[node name="Travel" type="AudioStreamPlayer2D" parent="." index="4" unique_id=516931749]
+[node name="Travel" type="AudioStreamPlayer2D" parent="." index="2" unique_id=516931749]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_vjvmj")
 volume_db = 8.0
 pitch_scale = 1.43
 bus = &"SFX"
 
-[node name="Break" type="AudioStreamPlayer2D" parent="." index="5" unique_id=2137125287]
+[node name="Break" type="AudioStreamPlayer2D" parent="." index="3" unique_id=2137125287]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_b0alv")
 volume_db = 8.0
