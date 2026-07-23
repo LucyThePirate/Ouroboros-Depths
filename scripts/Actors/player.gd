@@ -247,6 +247,8 @@ func _on_stack_component_awaited_cursor():
 	%Cursor.show()
 	%Arrows.hide()
 	cursor_position = grid_entity.grid_coords
+	stack_component.set_cursor_position(cursor_position)
+	last_mouse_cursor_position = Global.floors.local_to_map(get_global_mouse_position())
 	%Cursor.position = Global.floors.map_to_local(cursor_position)
 
 

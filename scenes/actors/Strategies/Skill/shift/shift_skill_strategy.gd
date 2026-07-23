@@ -20,13 +20,14 @@ func use_skill(grid_entity: GridEntity):
 			var check_coords = grid_coords + Vector2i(offset + i, offset + j)
 			var wall_data = Global.walls.get_cell_tile_data(check_coords)
 			var floor_data = Global.floors.get_cell_tile_data(check_coords)
-			if (
-				wall_data
-				and wall_data.get_custom_data("is_solid")
-				and not wall_data.get_custom_data("indestructable")
-			):
+			if wall_data and wall_data.get_custom_data("is_solid"):
+				if (
+					wall_data.get_custom_data("indestructable")
+					or floor_data.get_custom_data("indestructable")
+				):
+					continue
 				Tiles.spawn_floor(check_coords, wall_data.get_custom_data("material"))
 				Tiles.remove_wall_or_floor(check_coords)
-			elif (floor_data and not floor_data.get_custom_data("indestructable")):
+			elif floor_data and not floor_data.get_custom_data("indestructable"):
 				Tiles.spawn_wall(check_coords, floor_data.get_custom_data("material"))
 	super(grid_entity)

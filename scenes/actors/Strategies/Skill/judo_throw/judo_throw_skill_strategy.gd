@@ -88,6 +88,12 @@ func move_cursor(moveDirection: Vector2i, _grid_entity: GridEntity):
 		_set_preview_on(true, %GrabCursor.global_position)
 
 
+func set_cursor_position(new_position: Vector2i, grid_entity: GridEntity):
+	super(new_position, grid_entity)
+	if show_UI:
+		_set_preview_on(true, %GrabCursor.global_position)
+
+
 func use_skill(grid_entity: GridEntity):
 	%GrabCursor.hide()
 	_set_preview_on(false, grid_entity.global_position)
@@ -128,8 +134,8 @@ func _spawn_shockwave_at_coords(grid_coords: Vector2i, grid_entity: GridEntity):
 
 func _set_preview_on(preview_on: bool, starting_position: Vector2):
 	%PreviewLine.visible = preview_on
-	$Line2D.points[0] = starting_position
-	#%PreviewLine.points[0] = grid_entity.global_position
+	%Line2D.clear_points()
+	$Line2D.add_point(starting_position)
 	if preview_on:
 		_update_attack_preview(starting_position)
 
@@ -137,8 +143,8 @@ func _set_preview_on(preview_on: bool, starting_position: Vector2):
 func _update_attack_preview(starting_position: Vector2):
 	var cursor_coords = Global.walls.map_to_local(cursor)
 	var mid_point = (starting_position + cursor_coords) / 2
-	$Line2D.points[1] = mid_point - Vector2(0, attack_height)
-	$Line2D.points[2] = cursor_coords
+	$Line2D.add_point(mid_point - Vector2(0, attack_height))
+	$Line2D.add_point(cursor_coords)
 	$PreviewLine.clear_points()
 	for cut in range(preview_line_cuts):
 		var line_progress = cut / float(preview_line_cuts)

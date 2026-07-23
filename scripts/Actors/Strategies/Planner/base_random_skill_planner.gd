@@ -108,6 +108,10 @@ func _on_requested_directional_input():
 
 func set_direction(move_direction: Vector2i):
 	grid_parent.can_walk_through_walls = temp_can_walk_through_walls
+	%DirectionalTelegraph.rotation = Vector2(move_direction).angle()
+	%DirectionalTelegraph.show()
+	await get_tree().create_timer(0.4).timeout
+	%DirectionalTelegraph.hide()
 	stack_component.set_direction(move_direction)
 
 

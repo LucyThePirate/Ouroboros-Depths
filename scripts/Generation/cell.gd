@@ -260,15 +260,12 @@ func _update_fog(
 	var marked_tiles = [new_coords]
 	var adjacent_tiles = [
 		Vector2i(1, 0),
-		Vector2i(1, 1),
 		Vector2i(0, 1),
-		Vector2i(-1, 1),
 		Vector2i(-1, 0),
-		Vector2i(-1, -1),
 		Vector2i(0, -1),
-		Vector2i(1, -1)
 	]
-	for a_t in adjacent_tiles:
+	var diagonal_tiles = [Vector2i(1, 1), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(1, -1)]
+	for a_t in adjacent_tiles + diagonal_tiles:
 		marked_tiles.append(new_coords + a_t)
 		tile_light[new_coords + a_t] = light_radius - 1
 	tile_light[new_coords] = light_radius
@@ -287,6 +284,24 @@ func _update_fog(
 			tile_light[tile] = current_light - 1
 			var wall_tile = Global.walls.get_cell_tile_data(checking_tile)
 			if wall_tile and wall_tile.get_custom_data("occluding"):
+				continue
+			marked_tiles.append(tile)
+		for d_t in diagonal_tiles:
+			var tile = d_t + checking_tile
+			if tile not in tile_light or tile_light[tile] >= current_light:
+				continue
+			tile_light[tile] = current_light - 1
+			var wall_tile = Global.walls.get_cell_tile_data(checking_tile)
+			if wall_tile and wall_tile.get_custom_data("occluding"):
+				continue
+			var adjacent_wall1 = Global.walls.get_cell_tile_data(checking_tile + Vector2i(d_t.x, 0))
+			var adjacent_wall2 = Global.walls.get_cell_tile_data(checking_tile + Vector2i(0, d_t.y))
+			if (
+				adjacent_wall1
+				and adjacent_wall2
+				and adjacent_wall1.get_custom_data("occluding")
+				and adjacent_wall2.get_custom_data("occluding")
+			):
 				continue
 			marked_tiles.append(tile)
 

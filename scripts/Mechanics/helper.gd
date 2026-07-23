@@ -48,6 +48,10 @@ func _process(_delta):
 		var camera = get_viewport().get_camera_2d()
 		if camera:
 			camera.global_position = get_global_mouse_position()
+	if Input.get_vector("Left", "Right", "Down", "Up"):
+		var camera = get_viewport().get_camera_2d()
+		if camera:
+			camera.position = Vector2.ZERO
 
 
 func toggle_slowdown():

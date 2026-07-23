@@ -69,7 +69,14 @@ func _process(delta: float) -> void:
 func take_turn():
 	if (
 		not grid_entity.is_alive()
-		or stack_component.state == SkillStackComponent.States.EXECUTING_STACK
+		or (
+			stack_component.state
+			in [
+				SkillStackComponent.States.EXECUTING_STACK,
+				SkillStackComponent.States.AWAITING_DIRECTIONAL_INPUT,
+				SkillStackComponent.States.AWAITING_CURSOR_INPUT
+			]
+		)
 	):
 		turn_component.end_turn()
 		return

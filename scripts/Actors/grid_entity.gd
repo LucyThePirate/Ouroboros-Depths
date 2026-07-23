@@ -187,10 +187,10 @@ func warp(new_coords: Vector2i) -> bool:
 		return false
 
 	# Movement
-	moved.emit(old_coords, new_coords)
 	Global.entity_positions.erase(old_coords)
 	Global.entity_positions[new_coords] = self
 	grid_coords = new_coords
+	moved.emit(old_coords, new_coords)
 	global_position = new_coords * CELL_SIZE + grid_offset
 	if not floor_data:
 		fell_off_map.emit()

@@ -37,7 +37,6 @@ texture = ExtResource("4_d1e3j")
 
 [node name="PreviewLine" type="Line2D" parent="." index="2" unique_id=1392735655]
 unique_name_in_owner = true
-visible = false
 top_level = true
 texture_repeat = 2
 material = SubResource("ShaderMaterial_kvqqg")
@@ -51,6 +50,7 @@ end_cap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Line2D" type="Line2D" parent="." index="3" unique_id=1058615942]
+unique_name_in_owner = true
 visible = false
 top_level = true
 points = PackedVector2Array(0, 0, 73.5, -69.5, 147, 1)
