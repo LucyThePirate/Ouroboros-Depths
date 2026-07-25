@@ -47,7 +47,7 @@ movie_writer/movie_file="/home/lucy/Documents/GitHub/Ouroboros-Depths/ouroboros_
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ActionIcon/plugin.cfg", "res://addons/SimpleSampler/plugin.cfg", "res://addons/beautify_code_on_save/plugin.cfg", "res://addons/softbody2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/ActionIcon/plugin.cfg", "res://addons/SimpleSampler/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/beautify_code_on_save/plugin.cfg", "res://addons/softbody2d/plugin.cfg")
 
 [filesystem]
 

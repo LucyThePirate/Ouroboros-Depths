@@ -15,13 +15,13 @@ var rooms := {}
 var stairs_up_location = Vector2i.ZERO
 var stairs_down_location = Vector2i.RIGHT
 var stairs_down_particles: GPUParticles2D
-
 var extra_nodes: Array = []
 
 
 func initialize(
 	floor_number: int, new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMapLayer
 ):
+	current_floor = floor_number
 	floors = new_floor
 	walls = new_wall
 	fog = new_fog
@@ -389,7 +389,8 @@ func _place_stairs():
 		0, possible_stair_locations.size() - 1
 	)]
 	floors.set_cell(stairs_down_location, stairs_down_tile[0], stairs_down_tile[1])
-	walls.set_cell(stairs_down_location, Tiles.lock_tile[0], Tiles.lock_tile[1])
+	if current_floor > 0:
+		walls.set_cell(stairs_down_location, Tiles.lock_tile[0], Tiles.lock_tile[1])
 	stairs_down_particles = stairs_down_particle_scene.instantiate()
 	get_tree().current_scene.add_child(stairs_down_particles)
 	stairs_down_particles.global_position = floors.map_to_local(stairs_down_location)

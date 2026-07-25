@@ -37,6 +37,7 @@ texture = ExtResource("4_d1e3j")
 
 [node name="PreviewLine" type="Line2D" parent="." index="2" unique_id=1392735655]
 unique_name_in_owner = true
+visible = false
 top_level = true
 texture_repeat = 2
 material = SubResource("ShaderMaterial_kvqqg")

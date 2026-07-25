@@ -85,7 +85,7 @@ func _process(delta: float) -> void:
 		else:
 			_on_finished_writing_text()
 
-	if not turn_component.is_my_turn() or current_text:
+	if current_text:
 		return
 
 	match state:
@@ -169,8 +169,9 @@ func _get_directional_input():
 	var moveDirection = Vector2()
 	var is_running = false
 	if Input.is_action_pressed("Run"):
-		is_running = true
-	stack_component.flip_execute_prompt(is_running)
+		if Engine.get_physics_frames() % 3 == 0:
+			is_running = true
+		stack_component.flip_execute_prompt(is_running)
 	if Input.is_action_just_pressed("Left") or (is_running and Input.is_action_pressed("Left")):
 		moveDirection.x -= 1
 	if Input.is_action_just_pressed("Right") or (is_running and Input.is_action_pressed("Right")):
@@ -288,7 +289,6 @@ func _load_deck():
 
 
 #endregion
-# TODO - blah blah
 
 
 func _on_grid_entity_grid_entity_initialized() -> void:

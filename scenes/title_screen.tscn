@@ -524,13 +524,10 @@ theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("9_p07av")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "
-[rainbow freq=0.2][wave]Ouroboros Depths 
-[font_size=40](working title)
-[font_size=20](the name sticks 'til I can think of a better one)
-
+[rainbow freq=0.1][wave]Ouroboros Depths 
 
 "
 fit_content = true
@@ -546,7 +543,7 @@ mouse_default_cursor_shape = 2
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("9_p07av")
 theme_override_font_sizes/font_size = 30
-text = "New Game"
+text = "COMMENCE THE RITUAL!"
 
 [node name="CenterContainer3" type="CenterContainer" parent="CanvasLayer/MainMenu" unique_id=178797953]
 layout_mode = 2
@@ -557,7 +554,7 @@ mouse_default_cursor_shape = 2
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("9_p07av")
 theme_override_font_sizes/font_size = 30
-text = "Options
+text = "Augment the Simulation
 "
 
 [node name="CenterContainer5" type="CenterContainer" parent="CanvasLayer/MainMenu" unique_id=1779870545]
@@ -569,7 +566,7 @@ mouse_default_cursor_shape = 2
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("9_p07av")
 theme_override_font_sizes/font_size = 30
-text = "Credits
+text = "Sing the Praises of Those Whom Made All This Possible
 "
 
 [node name="CenterContainer4" type="CenterContainer" parent="CanvasLayer/MainMenu" unique_id=812659629]
@@ -581,7 +578,7 @@ mouse_default_cursor_shape = 2
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("9_p07av")
 theme_override_font_sizes/font_size = 30
-text = "Quit"
+text = "Depart Once More into the Void"
 
 [node name="NewRun" type="VBoxContainer" parent="CanvasLayer" unique_id=1227994910]
 anchors_preset = 15
@@ -1022,7 +1019,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-6" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1359039404]
 position = Vector2(69.40637, 127.073)
 rotation = -1.36679
-scale = Vector2(0.99999857, 0.99999857)
+scale = Vector2(0.9999985, 0.9999985)
 rest = Transform2D(0.202592, -0.979263, 0.979263, 0.202592, 69.4064, 127.073)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1049,7 +1046,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-8" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1969427454]
 position = Vector2(68.7027, 159.052)
 rotation = 1.54074
-scale = Vector2(0.99999857, 0.99999857)
+scale = Vector2(0.9999985, 0.9999985)
 rest = Transform2D(0.0300513, 0.999548, -0.999548, 0.0300513, 68.7027, 159.052)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1076,7 +1073,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-10" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=59431186]
 position = Vector2(69.7157, 192.74402)
 rotation = -0.59983397
-scale = Vector2(0.9999998, 0.9999998)
+scale = Vector2(0.9999999, 0.9999999)
 rest = Transform2D(0.825429, -0.564506, 0.564506, 0.825429, 69.7157, 192.744)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1235,7 +1232,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-22" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1625297829]
 position = Vector2(123.630005, 155.08301)
 rotation = 1.55378
-scale = Vector2(0.99999857, 0.99999857)
+scale = Vector2(0.9999985, 0.9999985)
 rest = Transform2D(0.0170144, 0.999855, -0.999855, 0.0170144, 123.63, 155.083)
 auto_calculate_length_and_angle = false
 length = 36.0
@@ -1380,7 +1377,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Bone-33" type="Bone2D" parent="CanvasLayer/Loading/CanvasLayer/SoftBody/Skeleton2D" unique_id=1944610832]
 position = Vector2(178.53302, 231.568)
 rotation = -1.48128
-scale = Vector2(0.99999857, 0.99999857)
+scale = Vector2(0.9999985, 0.9999985)
 rest = Transform2D(0.0893961, -0.995996, 0.995996, 0.0893961, 178.533, 231.568)
 auto_calculate_length_and_angle = false
 length = 36.0

@@ -131,12 +131,8 @@ func move(direction: Vector2i, safe_walk_entities := false, safe_walk_pits := fa
 		else:  # safe walk on and we don't want to bump into this entity
 			performed_action.emit()
 			return false
-	var floor_data = Global.floors.get_cell_tile_data(new_coords)
-	if not floor_data and safe_walk_pits:
-		performed_action.emit()
-		return false
 
-	# Object interaction
+	# Wall interaction
 	var wall_data = Global.walls.get_cell_tile_data(new_coords)
 	if wall_data and not can_walk_through_walls:
 		if wall_data.get_custom_data("is_door"):
@@ -154,6 +150,11 @@ func move(direction: Vector2i, safe_walk_entities := false, safe_walk_pits := fa
 		if wall_data.get_custom_data("is_solid"):
 			play_thump_sound(wall_data.get_custom_data("material"))
 			return false
+
+	# Pit detection
+	var floor_data = Global.floors.get_cell_tile_data(new_coords)
+	if not floor_data and safe_walk_pits:
+		return false
 
 	# Movement
 	Global.entity_positions.erase(old_coords)

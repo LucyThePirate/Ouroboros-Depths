@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://c3rpe8qu3ikfb"
+path="res://.godot/imported/TodoExternal.gif-9c302b969c6ffda98621fc59ec80fb3c.tres"
+
+[deps]
+
+source_file="res://addons/Todo_Manager/doc/images/TodoExternal.gif"
+dest_files=["res://.godot/imported/TodoExternal.gif-9c302b969c6ffda98621fc59ec80fb3c.tres"]
+
+[params]
+
+frames_per_second=30

@@ -328,6 +328,7 @@ func process_turn():
 		#print(turn_counter)
 		for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
 			turn_queue.push_back(turn_component)
+
 	var current_entity = turn_queue.pop_front()
 	if current_entity:
 		current_entity.take_turn()
@@ -375,8 +376,7 @@ func spawn_bogo_egg():
 
 func _entity_finished_turn(grid_entity: GridEntity):
 	#ready_for_next_turn = true
-	#if grid_entity != player and not grid_entity.is_in_darkness():
-	#await get_tree().create_timer(0.05).timeout
+
 	#await grid_entity.turn_component.turn_ended
 	if Global.is_turn_based():
 		process_turn()
