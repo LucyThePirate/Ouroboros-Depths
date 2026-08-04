@@ -24,7 +24,7 @@ var last_mouse_cursor_position := Vector2i.ZERO
 
 var initialized = false
 
-enum States { IDLE, DEAD, EXECUTING_STACK, METAMORPHOSIS_STARTED, METAMORPHING, FALLING }
+enum States {IDLE, DEAD, EXECUTING_STACK, METAMORPHOSIS_STARTED, METAMORPHING, FALLING, IN_CUTSCENE}
 var state = States.IDLE
 
 var is_talking := false
@@ -42,6 +42,7 @@ func _ready() -> void:
 	stack_component.initialize(grid_entity, true, turn_component)
 	stack_component.tried_queueieng.connect(func(skill_number: int): queue_skill(skill_number))
 	stack_component.tried_executing.connect(execute_queue)
+	stack_component.crammed_skill.connect(_on_stack_component_crammed_skill)
 	stack_component.tried_reloading.connect(
 		func():
 			Input.action_press("Reload")
@@ -114,6 +115,7 @@ func _handle_movement() -> void:
 		var move_successful = grid_entity.move(moveDirection, false, true)
 		if not move_successful:
 			display.global_position += moveDirection * 25
+		%LastMovedDirection.look_at(%LastMovedDirection.global_position + Vector2(moveDirection))
 
 	elif (
 		Input.is_action_just_pressed("Wait")
@@ -171,7 +173,6 @@ func _get_directional_input():
 	if Input.is_action_pressed("Run"):
 		if Engine.get_physics_frames() % 3 == 0:
 			is_running = true
-		stack_component.flip_execute_prompt(is_running)
 	if Input.is_action_just_pressed("Left") or (is_running and Input.is_action_pressed("Left")):
 		moveDirection.x -= 1
 	if Input.is_action_just_pressed("Right") or (is_running and Input.is_action_pressed("Right")):
@@ -222,7 +223,9 @@ func queue_skill(skill_number):
 	if state != States.IDLE:
 		return
 	if stack_component.queue_skill(skill_number):
-		end_turn()
+		pass
+		execute_queue()
+		#end_turn()
 
 
 func execute_queue():
@@ -231,8 +234,6 @@ func execute_queue():
 	%ExecutingParticles.emitting = true
 	state = States.EXECUTING_STACK
 	%ScarecrowVisual.use_parent_material = false
-	if Input.is_action_pressed("Run"):
-		stack_component.reverse_stack_order()
 	stack_component.execute_stack()
 
 
@@ -251,6 +252,10 @@ func _on_stack_component_awaited_cursor():
 	stack_component.set_cursor_position(cursor_position)
 	last_mouse_cursor_position = Global.floors.local_to_map(get_global_mouse_position())
 	%Cursor.position = Global.floors.map_to_local(cursor_position)
+
+
+func _on_stack_component_crammed_skill():
+	end_turn()
 
 
 func _handle_awaiting_cursor_input():
@@ -304,8 +309,15 @@ func end_turn():
 	if not grid_entity.is_on_floor():
 		_on_grid_entity_fell_off_map()
 	elif grid_entity.is_on_path_down():
-		grid_entity.descended.emit()
-		descended.emit()
+		if state != States.DEAD:
+			state = States.IN_CUTSCENE
+			grid_entity.descended.emit()
+			descended.emit()
+
+
+func next_floor_reached():
+	if state == States.IN_CUTSCENE:
+		state = States.IDLE
 
 
 func _on_grid_entity_died(despawning) -> void:

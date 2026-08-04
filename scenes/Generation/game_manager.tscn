@@ -112,7 +112,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_eu30k"]
-resource_name = "floor_text"
+resource_name = "floor_text_fade_in"
 length = 5.0
 step = 0.1
 tracks/0/type = "value"
@@ -122,7 +122,36 @@ tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.8),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4bofw"]
+resource_name = "floor_text_fade_out"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -134,16 +163,17 @@ tracks/1/path = NodePath("CanvasLayer/ColorRect:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.8, 2.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1xklj"]
 _data = {
 &"RESET": SubResource("Animation_v01jn"),
-&"floor_text": SubResource("Animation_eu30k")
+&"floor_text_fade_in": SubResource("Animation_eu30k"),
+&"floor_text_fade_out": SubResource("Animation_4bofw")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0xdhj"]
@@ -202,6 +232,7 @@ boulder_splash = ExtResource("2_0qvfo")
 spawn_smoke_scene = ExtResource("3_vk8p8")
 player_scene = ExtResource("4_3a4wt")
 creature_scene = Array[PackedScene]([ExtResource("5_dimvc"), ExtResource("6_hw4ns"), ExtResource("7_fkop7"), ExtResource("8_73l8b"), ExtResource("9_kmp3v"), ExtResource("10_mxyv8"), ExtResource("11_d2bkc"), ExtResource("12_tir5h"), ExtResource("13_brfwm"), ExtResource("14_tjpqt"), ExtResource("15_4bofw")])
+entity_spawn_limit = null
 bogosort_scene = ExtResource("15_73xfa")
 generator = NodePath("IsaaclikeGenerationStrategy")
 
@@ -261,6 +292,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="FloorLabel" type="RichTextLabel" parent="CanvasLayer/ColorRect" unique_id=1441883022]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -273,7 +305,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("18_d2p2i")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "Floor: ???"
+text = "Floor: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -500,6 +532,7 @@ shortcut = SubResource("Shortcut_qrcgv")
 text = "||"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=478761725]
+unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_1xklj")
 
 [node name="AutoTurnTimer" type="Timer" parent="." unique_id=1502293745]

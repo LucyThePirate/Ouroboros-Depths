@@ -41,7 +41,7 @@ extends Node
 	"stone": stone_floor_tile,
 	"dirt": dirt_floor_tile,
 	"wood": wood_floor_tile,
-	"plant": plant_floor_tile,
+	"plant": grass_floor_tile,
 	"glass": glass_floor_tile,
 	"ice": ice_floor_tile,
 	"snow": snow_floor_tile

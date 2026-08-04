@@ -34,9 +34,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			and is_instance_valid(grid_parent)
 		):
 			if is_note and Global.entity_positions[check_coords] == grid_parent:
-				var new_status = shield_status.instantiate() as StatusStrategy
-				new_status.power = 1
-				add_child(new_status)
-				grid_parent.gain_status(new_status)
+				#var new_status = shield_status.instantiate() as StatusStrategy
+				#new_status.power = 1
+				#add_child(new_status)
+				#grid_parent.gain_status(new_status)
+				pass
 			else:
 				grid_parent.hit(Global.entity_positions[check_coords])

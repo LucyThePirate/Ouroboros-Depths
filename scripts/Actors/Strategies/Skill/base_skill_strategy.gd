@@ -136,6 +136,7 @@ func accept_cursor():
 
 func on_skill_queued():
 	current_in_stack += 1
+	
 	if is_depletable and current_count > 0:
 		current_count -= 1
 

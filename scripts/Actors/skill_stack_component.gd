@@ -4,6 +4,7 @@ class_name SkillStackComponent
 
 #signal used_skill
 #signal queued_skill
+signal crammed_skill
 signal stack_full
 signal started_execution
 signal emptied_stack
@@ -21,6 +22,7 @@ signal tried_reloading
 @export var hand_size := 4
 @export var turns_to_reload := 5
 var shuffle_turns := 0
+@export var allow_skill_cramming := true
 @export var preview_queue_skill_texture := Texture2D
 @export var null_skill_texture := Texture2D
 @export var reload_status: PackedScene
@@ -106,18 +108,25 @@ func can_queue_skill(skill_number) -> bool:
 	if hand.is_empty() or not hand[skill_number]:
 		reload_deck()
 		return false
-	if not is_full() and hand[skill_number].can_use_skill():
+	if allow_skill_cramming:
+		if not is_full():
+			return true
+	elif current_stack_size + hand[skill_number].stack_size <= current_max_stack_size:
 		return true
 	return false
 
 
 func queue_skill(skill_number) -> bool:
 	if can_queue_skill(skill_number):
-		if current_stack_size + hand[skill_number].stack_size > current_max_stack_size:
+		if (
+			allow_skill_cramming
+			and (current_stack_size + hand[skill_number].stack_size > current_max_stack_size)
+		):
 			# Not enough room, increase max stack size temporarily
 			current_max_stack_size += 1
 			%SkillCrammed.play()
 			_update_stack_visuals()
+			crammed_skill.emit()
 			return true
 		$SkillAdded.pitch_scale = 0.7 + (0.20 * stack.size())
 		$SkillAdded.play()
@@ -162,7 +171,8 @@ func execute_stack() -> bool:
 	grid_entity.moved_by_skill = false
 	if not can_execute_stack():
 		if stack.is_empty():
-			_display_error("Stack is empty!")
+			#_display_error("Stack is empty!")
+			pass
 		elif state == States.RELOADING:
 			_display_error("Reloading!")
 		return false

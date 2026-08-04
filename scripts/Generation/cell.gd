@@ -7,6 +7,8 @@ extends GameMode
 @export var creature_scene: Array[PackedScene]
 @export var challenge_rating_capacity := 15.0
 var current_challenge_rating := 0.0
+@export var entity_spawn_limit := 5
+var current_entity_count := 0
 @export var bogosort_scene: PackedScene
 var bogo_egg_scene = preload("uid://dvtenp8g812ei")
 var bogo_egg: BraindeadAI
@@ -179,22 +181,26 @@ func _update_dynamic_music():
 
 
 func _redraw_map():
+	current_floor += 1
+	%FloorLabel.text = "Floor: %s" % current_floor
+	%AnimationPlayer.play("floor_text_fade_in")
+	await get_tree().create_timer(1).timeout
 	if tutorial_level:
 		requested_mode_switch.emit(ModeSwitcher.Modes.TITLE)
 		return
 	Global.next_floor_reached.emit()
-	current_floor += 1
-	$CanvasLayer/ColorRect/FloorLabel.text = "Floor: %s" % current_floor
-	$AnimationPlayer.play("floor_text")
 	for entity in get_tree().get_nodes_in_group("GridEntity") as Array[GridEntity]:
 		if not entity.is_in_group("Player"):
 			entity.on_death(true)
 	angry_at_player = 0
 	current_challenge_rating = 0.0
+	current_entity_count = 0
 	Global.floors.clear()
 	Global.walls.clear()
 	fog.clear()
 	_ready()
+	player.next_floor_reached()
+	%AnimationPlayer.play("floor_text_fade_out")
 
 
 #endregion
@@ -343,7 +349,7 @@ func spawn_monster_at_coords(grid_coordinate: Vector2i):
 
 
 func try_spawning_random_monster(initialize_entity := true):
-	if current_challenge_rating < challenge_rating_capacity + current_floor * 2:
+	if current_entity_count < entity_spawn_limit + current_floor:
 		var grid_coordinate = Global.floors.get_used_cells().pick_random()
 		if not _is_obstructed(grid_coordinate):
 			var new_entity = (
@@ -353,6 +359,7 @@ func try_spawning_random_monster(initialize_entity := true):
 				new_entity.queue_free()
 				return
 			current_challenge_rating += new_entity.grid_entity.challenge_rating
+			current_entity_count += 1
 			if initialize_entity:
 				_initialize_entity(new_entity.grid_entity)
 				if is_arena:
@@ -472,6 +479,7 @@ func _on_entity_died(is_despawning, grid_entity: GridEntity):
 	if is_arena or tutorial_level:
 		return
 	if not is_despawning and grid_entity.challenge_rating > 0:
+		current_entity_count -= 1
 		Global.walls.set_cell(generator.stairs_down_location, -1)
 
 

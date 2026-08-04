@@ -1108,40 +1108,59 @@ auto_calculate_length_and_angle = false
 length = 93.607
 bone_angle = 0.0
 
-[node name="Bodies" type="Node2D" parent="." unique_id=1845893293]
+[node name="Bodies" type="CanvasGroup" parent="." unique_id=557348400]
 use_parent_material = true
 metadata/_edit_lock_ = true
 
-[node name="Body1" type="Polygon2D" parent="Bodies" unique_id=2090505293]
+[node name="FeetBack" type="Node2D" parent="Bodies" unique_id=1829457160]
+show_behind_parent = true
 use_parent_material = true
-offset = Vector2(-465, -236)
+metadata/_edit_lock_ = true
+
+[node name="FootFlatR" type="Polygon2D" parent="Bodies/FeetBack" unique_id=1179021979]
+use_parent_material = true
+position = Vector2(22, -4)
+offset = Vector2(-286, -543)
 texture = ExtResource("1_k20rr")
-skeleton = NodePath("../../Skeleton2D")
-polygon = PackedVector2Array(460.08875, 26.541206, 349.01184, 102.54121, 345.11438, 256.4899, 561.422, 254.5412, 617.9348, 174.64377, 532.1913, 1.2078772)
-uv = PackedVector2Array(460.08875, 26.541206, 349.01184, 102.54121, 345.11438, 256.4899, 561.422, 254.5412, 617.9348, 174.64377, 532.1913, 1.2078772)
-bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(1, 1, 1, 1, 1, 1), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0, 0, 0)]
+skeleton = NodePath("../../../Skeleton2D")
+polygon = PackedVector2Array(436.3391, 475.7694, 256.52417, 509.596, 260.97504, 588.8214, 471.0559, 569.2376)
+uv = PackedVector2Array(436.3391, 475.7694, 256.52417, 509.596, 260.97504, 588.8214, 471.0559, 569.2376)
+bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(1, 1, 1, 1)]
 metadata/_edit_lock_ = true
 
-[node name="Body2" type="Polygon2D" parent="Bodies" unique_id=1753625599]
+[node name="FootFlatL" type="Polygon2D" parent="Bodies/FeetBack" unique_id=1327856389]
+use_parent_material = true
+position = Vector2(-30, -4)
+offset = Vector2(-398, -528)
+texture = ExtResource("1_k20rr")
+skeleton = NodePath("../../../Skeleton2D")
+polygon = PackedVector2Array(243.54759, 476.0003, 438.00217, 498.2825, 416.3627, 566.887, 221.6968, 571.5465)
+uv = PackedVector2Array(436.3391, 475.7694, 256.52417, 509.596, 260.97504, 588.8214, 471.0559, 569.2376)
+bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(1, 1, 1, 1), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0)]
+metadata/_edit_lock_ = true
+
+[node name="FootDownR" type="Polygon2D" parent="Bodies/FeetBack" unique_id=721963335]
 visible = false
 use_parent_material = true
-offset = Vector2(-755, -259)
+position = Vector2(33, -4)
+offset = Vector2(-929, -361)
 texture = ExtResource("1_k20rr")
-skeleton = NodePath("../../Skeleton2D")
-polygon = PackedVector2Array(642.1096, 34.43869, 612.1467, 253.64113, 776.1543, 326.18298, 889.698, 311.99002, 891.275, 10.783748)
-uv = PackedVector2Array(642.1096, 34.43869, 612.1467, 253.64113, 776.1543, 326.18298, 889.698, 311.99002, 891.275, 10.783748)
-bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(1, 1, 1, 1, 1), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0, 0)]
+skeleton = NodePath("../../../Skeleton2D")
+polygon = PackedVector2Array(860.9555, 334.7877, 897.8975, 519.49817, 1084.917, 507.9537, 962.5462, 309.38998)
+uv = PackedVector2Array(860.9555, 334.7877, 897.8975, 519.49817, 1084.917, 507.9537, 962.5462, 309.38998)
+bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(1, 1, 1, 1)]
 metadata/_edit_lock_ = true
 
-[node name="Body3" type="Polygon2D" parent="Bodies" unique_id=898413944]
+[node name="FootDownL" type="Polygon2D" parent="Bodies/FeetBack" unique_id=1540435366]
 visible = false
 use_parent_material = true
-offset = Vector2(-1021.96, -265)
+position = Vector2(-29, -18)
+offset = Vector2(-962, -337)
 texture = ExtResource("1_k20rr")
-skeleton = NodePath("../../Skeleton2D")
-polygon = PackedVector2Array(908.67914, 39.633266, 899.13824, 306.7764, 1135.7507, 365.92953, 1154.8325, 9.102619)
-uv = PackedVector2Array(908.67914, 39.633266, 899.13824, 306.7764, 1135.7507, 365.92953, 1154.8325, 9.102619)
-bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(1, 1, 1, 1), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0)]
+skeleton = NodePath("../../../Skeleton2D")
+polygon = PackedVector2Array(1029.3762, 280.93222, 1031.0674, 506.7687, 877.3286, 514.80804, 922.3994, 288.827)
+uv = PackedVector2Array(860.9555, 334.7877, 897.8975, 519.49817, 1084.917, 507.9537, 962.5462, 309.38998)
+bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(1, 1, 1, 1), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0)]
 metadata/_edit_lock_ = true
 
 [node name="Antennaes" type="Node2D" parent="Bodies" unique_id=304863899]
@@ -1194,6 +1213,38 @@ skeleton = NodePath("../../../Skeleton2D")
 polygon = PackedVector2Array(4.8450317, 205.48355, 13.518494, 340.78983, 155.76355, 318.23877, 112.39618, 165.58554)
 uv = PackedVector2Array(4.8450317, 205.48355, 13.518494, 340.78983, 155.76355, 318.23877, 112.39618, 165.58554)
 bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(1, 1, 1, 1), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0)]
+metadata/_edit_lock_ = true
+
+[node name="Body1" type="Polygon2D" parent="Bodies" unique_id=2090505293]
+use_parent_material = true
+offset = Vector2(-465, -236)
+texture = ExtResource("1_k20rr")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(460.08875, 26.541206, 349.01184, 102.54121, 345.11438, 256.4899, 561.422, 254.5412, 617.9348, 174.64377, 532.1913, 1.2078772)
+uv = PackedVector2Array(460.08875, 26.541206, 349.01184, 102.54121, 345.11438, 256.4899, 561.422, 254.5412, 617.9348, 174.64377, 532.1913, 1.2078772)
+bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(1, 1, 1, 1, 1, 1), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0, 0, 0)]
+metadata/_edit_lock_ = true
+
+[node name="Body2" type="Polygon2D" parent="Bodies" unique_id=1753625599]
+visible = false
+use_parent_material = true
+offset = Vector2(-755, -259)
+texture = ExtResource("1_k20rr")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(642.1096, 34.43869, 612.1467, 253.64113, 776.1543, 326.18298, 889.698, 311.99002, 891.275, 10.783748)
+uv = PackedVector2Array(642.1096, 34.43869, 612.1467, 253.64113, 776.1543, 326.18298, 889.698, 311.99002, 891.275, 10.783748)
+bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(1, 1, 1, 1, 1), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0, 0)]
+metadata/_edit_lock_ = true
+
+[node name="Body3" type="Polygon2D" parent="Bodies" unique_id=898413944]
+visible = false
+use_parent_material = true
+offset = Vector2(-1021.96, -265)
+texture = ExtResource("1_k20rr")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(908.67914, 39.633266, 899.13824, 306.7764, 1135.7507, 365.92953, 1154.8325, 9.102619)
+uv = PackedVector2Array(908.67914, 39.633266, 899.13824, 306.7764, 1135.7507, 365.92953, 1154.8325, 9.102619)
+bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(1, 1, 1, 1), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0)]
 metadata/_edit_lock_ = true
 
 [node name="Eyes" type="Node2D" parent="Bodies" unique_id=678961957]
@@ -1269,57 +1320,6 @@ skeleton = NodePath("../../../Skeleton2D")
 polygon = PackedVector2Array(475.37238, 277.06567, 477.68134, 482.55606, 660.0828, 487.1738, 669.3184, 272.4479, 565.41876, 244.74135)
 uv = PackedVector2Array(475.37238, 277.06567, 477.68134, 482.55606, 660.0828, 487.1738, 669.3184, 272.4479, 565.41876, 244.74135)
 bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(1, 1, 1, 1, 1), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0, 0)]
-metadata/_edit_lock_ = true
-
-[node name="FeetBack" type="Node2D" parent="Bodies" unique_id=1829457160]
-show_behind_parent = true
-use_parent_material = true
-metadata/_edit_lock_ = true
-
-[node name="FootFlatR" type="Polygon2D" parent="Bodies/FeetBack" unique_id=1179021979]
-use_parent_material = true
-position = Vector2(22, -4)
-offset = Vector2(-286, -543)
-texture = ExtResource("1_k20rr")
-skeleton = NodePath("../../../Skeleton2D")
-polygon = PackedVector2Array(436.3391, 475.7694, 256.52417, 509.596, 260.97504, 588.8214, 471.0559, 569.2376)
-uv = PackedVector2Array(436.3391, 475.7694, 256.52417, 509.596, 260.97504, 588.8214, 471.0559, 569.2376)
-bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(1, 1, 1, 1)]
-metadata/_edit_lock_ = true
-
-[node name="FootFlatL" type="Polygon2D" parent="Bodies/FeetBack" unique_id=1327856389]
-use_parent_material = true
-position = Vector2(-30, -4)
-offset = Vector2(-398, -528)
-texture = ExtResource("1_k20rr")
-skeleton = NodePath("../../../Skeleton2D")
-polygon = PackedVector2Array(243.54759, 476.0003, 438.00217, 498.2825, 416.3627, 566.887, 221.6968, 571.5465)
-uv = PackedVector2Array(436.3391, 475.7694, 256.52417, 509.596, 260.97504, 588.8214, 471.0559, 569.2376)
-bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(1, 1, 1, 1), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0)]
-metadata/_edit_lock_ = true
-
-[node name="FootDownR" type="Polygon2D" parent="Bodies/FeetBack" unique_id=721963335]
-visible = false
-use_parent_material = true
-position = Vector2(33, -4)
-offset = Vector2(-929, -361)
-texture = ExtResource("1_k20rr")
-skeleton = NodePath("../../../Skeleton2D")
-polygon = PackedVector2Array(860.9555, 334.7877, 897.8975, 519.49817, 1084.917, 507.9537, 962.5462, 309.38998)
-uv = PackedVector2Array(860.9555, 334.7877, 897.8975, 519.49817, 1084.917, 507.9537, 962.5462, 309.38998)
-bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootR", PackedFloat32Array(1, 1, 1, 1)]
-metadata/_edit_lock_ = true
-
-[node name="FootDownL" type="Polygon2D" parent="Bodies/FeetBack" unique_id=1540435366]
-visible = false
-use_parent_material = true
-position = Vector2(-29, -18)
-offset = Vector2(-962, -337)
-texture = ExtResource("1_k20rr")
-skeleton = NodePath("../../../Skeleton2D")
-polygon = PackedVector2Array(1029.3762, 280.93222, 1031.0674, 506.7687, 877.3286, 514.80804, 922.3994, 288.827)
-uv = PackedVector2Array(860.9555, 334.7877, 897.8975, 519.49817, 1084.917, 507.9537, 962.5462, 309.38998)
-bones = ["Motherbone", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Noggin/AntennaeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeL", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/EyeR", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/Face/Horn", PackedFloat32Array(0, 0, 0, 0), "Motherbone/Body/FootL", PackedFloat32Array(1, 1, 1, 1), "Motherbone/Body/FootR", PackedFloat32Array(0, 0, 0, 0)]
 metadata/_edit_lock_ = true
 
 [node name="FeetFront" type="Node2D" parent="Bodies" unique_id=396915821]

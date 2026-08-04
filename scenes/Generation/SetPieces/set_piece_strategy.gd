@@ -7,7 +7,8 @@ class_name SetPiece
 
 
 func _ready() -> void:
-	print("cell shape:", get_cell_shape(4))
+	#print("cell shape:", get_cell_shape(4))
+	pass
 
 
 func get_floor_pattern() -> TileMapPattern:
