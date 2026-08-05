@@ -97,6 +97,7 @@ func initialize():
 	global_position = Global.floors.map_to_local(Global.floors.local_to_map(global_position))
 	grid_coords = Global.floors.local_to_map(global_position)
 	initialized = true
+	status_component.health_component = health_component
 	grid_entity_initialized.emit()
 	Global.entity_positions[grid_coords] = self
 
@@ -315,7 +316,9 @@ func play_thump_sound(material):
 
 func on_death(is_despawning := false) -> void:
 	if state == States.IDLE:
-		health_component.health = 0
+		var death_prevented = status_component.on_grid_entity_died(is_despawning)
+		if death_prevented:
+			return
 		if not is_despawning:
 			if is_instance_valid(last_hit_by) and last_hit_by is GridEntity:
 				if soul_count > 0:

@@ -232,7 +232,6 @@ boulder_splash = ExtResource("2_0qvfo")
 spawn_smoke_scene = ExtResource("3_vk8p8")
 player_scene = ExtResource("4_3a4wt")
 creature_scene = Array[PackedScene]([ExtResource("5_dimvc"), ExtResource("6_hw4ns"), ExtResource("7_fkop7"), ExtResource("8_73l8b"), ExtResource("9_kmp3v"), ExtResource("10_mxyv8"), ExtResource("11_d2bkc"), ExtResource("12_tir5h"), ExtResource("13_brfwm"), ExtResource("14_tjpqt"), ExtResource("15_4bofw")])
-entity_spawn_limit = null
 bogosort_scene = ExtResource("15_73xfa")
 generator = NodePath("IsaaclikeGenerationStrategy")
 

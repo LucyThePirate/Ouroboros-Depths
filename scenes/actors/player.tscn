@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cjo5qx0fo3bej" path="res://scenes/actors/metamorphosis.tscn" id="4_wes0m"]
 [ext_resource type="PackedScene" uid="uid://djc3cmcxnhe5l" path="res://scenes/characters/Visuals/scarecrow_visual.tscn" id="6_jfrsc"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/ui/Arrow.png" id="6_nmlhc"]
+[ext_resource type="PackedScene" uid="uid://3og50asnwnie" path="res://scenes/actors/Strategies/Status/Desperation/desperation_status_strategy.tscn" id="6_t62v4"]
 [ext_resource type="AudioStream" uid="uid://c22a32fpulvkx" path="res://audio/SFX/Misc/wait/556991__ycbcr__tabletop-clock-ticking-speed-ramp-down-followup.ogg" id="7_dferu"]
 [ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/ui/Cursor.png" id="7_h5w3c"]
 [ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="7_ypltb"]
@@ -163,6 +164,9 @@ soul_count = 10
 
 [node name="AvailableSkills" parent="GridEntity/SkillStackComponent/CanvasLayer" parent_id_path=PackedInt32Array(1217274743, 1500394995, 379651989) index="0" unique_id=2065539204]
 metadata/_edit_lock_ = true
+
+[node name="DesperationStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1217274743, 963295090) index="1" unique_id=577548757 instance=ExtResource("6_t62v4")]
+layout_mode = 2
 
 [node name="Camera2D2" type="Camera2D" parent="GridEntity" unique_id=1260474723]
 zoom = Vector2(0.5, 0.5)

@@ -6,6 +6,7 @@ class_name StatusManagerComponent
 
 var grid_entity: GridEntity
 var turn_component: TurnComponent
+var health_component: HealthComponent
 
 
 func _ready() -> void:
@@ -17,7 +18,7 @@ func _ready() -> void:
 		grid_entity.started_stack_execution.connect(on_stack_execution_started)
 		grid_entity.finished_stack_execution.connect(on_stack_execution_finished)
 		grid_entity.hurt.connect(on_hit_by_grid_entity)
-		grid_entity.died.connect(on_grid_entity_died)
+		#grid_entity.died.connect(on_grid_entity_died)
 	for status in Debug.find_children_in_group(self, "Status") as Array[StatusStrategy]:
 		status.healed.connect(_on_status_healed)
 		status.harmed.connect(_on_status_harmed)
@@ -61,7 +62,7 @@ func on_status_ended(status: StatusStrategy):
 
 func on_next_floor_reached():
 	for status in status_bar.get_children() as Array[StatusStrategy]:
-		status.on_next_floor_reached()
+		status.on_next_floor_reached(health_component)
 
 
 func on_stack_execution_started():
@@ -101,9 +102,12 @@ func modify_outgoing_damage(outgoing_damage := 1) -> int:
 	return outgoing_damage
 
 
-func on_grid_entity_died(is_despawning):
+func on_grid_entity_died(is_despawning) -> bool:
+	var death_prevented := false
 	for status in status_bar.get_children() as Array[StatusStrategy]:
-		status.on_death(is_despawning)
+		if status.on_death(is_despawning, health_component):
+			death_prevented = true
+	return death_prevented
 
 
 func get_status_descriptions():

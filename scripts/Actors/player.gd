@@ -115,7 +115,7 @@ func _handle_movement() -> void:
 		var move_successful = grid_entity.move(moveDirection, false, true)
 		if not move_successful:
 			display.global_position += moveDirection * 25
-		%LastMovedDirection.look_at(%LastMovedDirection.global_position + Vector2(moveDirection))
+		#%LastMovedDirection.look_at(%LastMovedDirection.global_position + Vector2(moveDirection))
 
 	elif (
 		Input.is_action_just_pressed("Wait")
@@ -353,7 +353,7 @@ func _on_grid_entity_fell_off_map() -> void:
 	await visual.finished_animation
 	if not can_survive_falls:
 		state = States.DEAD
-		_on_grid_entity_died(false)
+		_on_grid_entity_died(true)
 	else:
 		grid_entity.descended.emit()
 		descended.emit()

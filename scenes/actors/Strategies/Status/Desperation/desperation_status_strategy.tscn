@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://3og50asnwnie"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_2h82h"]
+[ext_resource type="Script" uid="uid://dmstq1ivf0koe" path="res://scenes/actors/Strategies/Status/Desperation/desperation_status_strategy.gd" id="2_2q8kw"]
+
+[node name="DesperationStatusStrategy" unique_id=577548757 instance=ExtResource("1_2h82h")]
+script = ExtResource("2_2q8kw")
+status_name = "Desperation"
+power = 0
+status_ID = 13

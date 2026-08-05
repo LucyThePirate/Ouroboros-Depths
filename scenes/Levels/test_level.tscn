@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="7_eg032"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="7_gd42f"]
 [ext_resource type="PackedScene" uid="uid://dvtenp8g812ei" path="res://scenes/actors/Creatures/bogo_egg.tscn" id="7_pj5lm"]
+[ext_resource type="PackedScene" uid="uid://cp6erui8kemoj" path="res://scenes/actors/Creatures/rat/rat_creature.tscn" id="8_pj5lm"]
 [ext_resource type="PackedScene" uid="uid://bhuwaipnhbms6" path="res://scenes/actors/Creatures/bomb/bomb_creature.tscn" id="9_72hi1"]
+[ext_resource type="PackedScene" uid="uid://boyoct3kot2q6" path="res://scenes/actors/Strategies/Status/vigor_status_strategy.tscn" id="9_l7yy1"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_walqc"]
 blend_mode = 1
@@ -88,5 +90,14 @@ lifetime = 1.8
 speed_scale = 0.7
 process_material = SubResource("ParticleProcessMaterial_532wb")
 
+[node name="ReallyFuckingStrongRat" parent="." index="20" unique_id=1758473940 instance=ExtResource("8_pj5lm")]
+position = Vector2(-50, 950)
+
+[node name="VigorStatusStrategy" parent="ReallyFuckingStrongRat/GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1758473940, 1162874930, 963295090) index="1" unique_id=1120027395 instance=ExtResource("9_l7yy1")]
+layout_mode = 2
+power = 30
+
 [editable path="PunchingBag"]
 [editable path="PunchingBag/GridEntity"]
+[editable path="ReallyFuckingStrongRat"]
+[editable path="ReallyFuckingStrongRat/GridEntity"]

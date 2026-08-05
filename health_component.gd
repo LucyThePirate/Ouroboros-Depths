@@ -10,7 +10,7 @@ signal health_updated
 
 @export var max_health = 15
 @export var damage_number_scene: PackedScene
-
+@export var allow_desperation_mode := false
 @onready var health = max_health
 @onready var health_bar = $ProgressBar as ProgressBar
 
@@ -42,6 +42,7 @@ func deal_damage(damage_amount = 1):
 		current_damage_number.add_damage(damage_amount)
 		current_damage_number.global_position = %DamageNumberSpawn.global_position
 	if health <= 0:
+		
 		died.emit()
 	else:
 		hurt.emit()

@@ -7,6 +7,7 @@ signal power_changed
 signal max_power_reached
 signal healed(heal_amount)
 signal harmed(damage_amount)
+signal modify_max_health(max_health_change)
 
 enum Status_IDs {
 	NONE,
@@ -21,7 +22,8 @@ enum Status_IDs {
 	SPEED,
 	DECAY,
 	BOUNCY,
-	EXPLOSIVE
+	EXPLOSIVE,
+	DESPERATION,
 }
 
 @export_category("Lore")
@@ -84,7 +86,7 @@ func on_grid_entity_parent_set(_grid_entity: GridEntity):
 	pass
 
 
-func on_next_floor_reached():
+func on_next_floor_reached(_health_component: HealthComponent = null):
 	status_ended.emit(self)
 
 
@@ -96,7 +98,7 @@ func on_stack_execution_finished():
 	pass
 
 
-func on_hit_by_grid_entity(attacker: GridEntity, damage_amount := 1):
+func on_hit_by_grid_entity(_attacker: GridEntity, _damage_amount := 1):
 	pass
 
 
@@ -108,12 +110,15 @@ func modify_outgoing_damage(outgoing_damage := 1) -> int:
 	return outgoing_damage
 
 
-func on_death(is_despawning: bool):
+## Returns true if status prevents death
+func on_death(is_despawning: bool, _health_component: HealthComponent = null) -> bool:
 	if is_despawning:
-		return
+		return false
+	return false
 
 
 func _update_visuals() -> void:
+	visible = power > 0
 	if power == 1:
 		power_label.text = ""
 		return

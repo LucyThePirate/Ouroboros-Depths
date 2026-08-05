@@ -36,6 +36,7 @@ CreatureRepository="*uid://cvvne22x17kb0"
 
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="viewport"
+window/vsync/vsync_mode=2
 
 [dotnet]
 
