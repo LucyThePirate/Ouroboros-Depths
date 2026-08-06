@@ -7,12 +7,14 @@ signal hurt
 signal healed
 signal died
 signal health_updated
+signal max_health_updated
 
 @export var max_health = 15
 @export var damage_number_scene: PackedScene
 @export var allow_desperation_mode := false
 @onready var health = max_health
 @onready var health_bar = $ProgressBar as ProgressBar
+@onready var base_max_health = max_health
 
 var current_damage_number: DamageNumberComponent
 var current_heal_number: DamageNumberComponent
@@ -25,6 +27,7 @@ func _ready():
 func set_health(new_health: int, new_max_health := 0):
 	health = new_health
 	if new_max_health:
+		max_health_updated.emit()
 		max_health = new_max_health
 	_update_health_bar()
 
@@ -42,7 +45,6 @@ func deal_damage(damage_amount = 1):
 		current_damage_number.add_damage(damage_amount)
 		current_damage_number.global_position = %DamageNumberSpawn.global_position
 	if health <= 0:
-		
 		died.emit()
 	else:
 		hurt.emit()
@@ -69,8 +71,8 @@ func heal(heal_amount):
 	_update_health_bar()
 
 
-func get_health_percentage() -> float:
-	return float(health) / float(max_health)
+func get_max_health_percentage() -> float:
+	return float(max_health) / float(base_max_health)
 
 
 func turn_ended():

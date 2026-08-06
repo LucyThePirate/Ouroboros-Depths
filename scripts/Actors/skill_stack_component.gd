@@ -30,14 +30,14 @@ var shuffle_turns := 0
 @export var text_scene: PackedScene
 @onready var current_error_text
 
-@onready var skill_bag = $CanvasLayer/AvailableSkills/PanelContainer/SkillBagButton as Button
+@onready var skill_bag = %HandCanvasLayer/AvailableSkills/PanelContainer/SkillBagButton as Button
 @onready
-var skill_bag_list = $CanvasLayer/SkillBagList/Control/VBoxContainer/ScrollContainer/HFlowContainer
+var skill_bag_list = %HandCanvasLayer/SkillBagList/Control/VBoxContainer/ScrollContainer/HFlowContainer
 @onready var skill_bag_prompt = (
-	$CanvasLayer/SkillBagList/Control/VBoxContainer/RichTextLabel as RichTextLabel
+	%HandCanvasLayer/SkillBagList/Control/VBoxContainer/RichTextLabel as RichTextLabel
 )
 @onready
-var execute_prompt = $CanvasLayer/AvailableSkills/MarginContainer/CenterContainer/ExecutePrompt
+var execute_prompt = %HandCanvasLayer/AvailableSkills/MarginContainer/CenterContainer/ExecutePrompt
 var stack_icons = []
 var skills = []
 var total_skill_count := 0
@@ -60,13 +60,13 @@ var moved_by_skill := false
 func _ready() -> void:
 	show()
 	#%Stack.hide()
-	$CanvasLayer/SkillBagList.hide()
+	%HandCanvasLayer/SkillBagList.hide()
 
 
 func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_component: TurnComponent):
 	grid_entity = grid_entity_parent
 	grid_entity.descended.connect(on_next_floor_reached)
-	$CanvasLayer.visible = is_player
+	%HandCanvasLayer.visible = is_player
 	grid_entity_is_player = is_player
 	if not is_player:
 		%Stack.hide()
@@ -83,7 +83,7 @@ func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_compon
 func reload_deck() -> bool:
 	if state == States.IDLE:  # and stack.is_empty():
 		#print("%s is reloading!" % [grid_entity.name])
-		if $CanvasLayer.visible:
+		if %HandCanvasLayer.visible:
 			$ReloadStart.play()
 			$Reload.emitting = true
 		reload_started.emit()
@@ -186,10 +186,13 @@ func execute_stack() -> bool:
 
 func _handle_stack_execution():
 	_update_stack_visuals()
+	%HandCanvasLayer.hide()
 	if stack.is_empty():
 		state = States.IDLE
 		current_max_stack_size = max_stack_size
 		current_stack_size = 0
+		if grid_entity.is_in_group("Player"):
+			%HandCanvasLayer.show()
 		emptied_stack.emit()
 		_update_cooldown_visuals()
 		for skill in skills:
@@ -421,7 +424,7 @@ func _update_turn_cooldown():
 		shuffle_turns -= 1
 		if shuffle_turns <= 0:
 			state = States.IDLE
-			if $CanvasLayer.visible:
+			if %HandCanvasLayer.visible:
 				$ReloadEnd.play()
 			_shuffle_skills()
 	if state == States.IDLE:
@@ -481,7 +484,7 @@ func _on_info_button_4_pressed() -> void:
 
 
 func _on_skill_bag_button_pressed() -> void:
-	if not $CanvasLayer/SkillBagList.visible:
+	if not %HandCanvasLayer/SkillBagList.visible:
 		skill_bag_prompt.text = "Click: view skill info"
 		var skills_in_display = []
 		var skill_counts = {}
@@ -499,7 +502,7 @@ func _on_skill_bag_button_pressed() -> void:
 			new_skill_icon.set_skill(skill, SkillIcon.IconPositions.BAG)
 			skill_bag_list.add_child(new_skill_icon)
 		skill_bag_list.get_children().shuffle()
-		$CanvasLayer/SkillBagList.show()
+		%HandCanvasLayer/SkillBagList.show()
 		$OpenBag.play()
 		%SkillDescriptionMusic.play()
 		Global.UI_opened.emit()
@@ -508,7 +511,7 @@ func _on_skill_bag_button_pressed() -> void:
 
 
 func _on_skill_bag_list_close_requested() -> void:
-	$CanvasLayer/SkillBagList.hide()
+	%HandCanvasLayer/SkillBagList.hide()
 	$CloseBag.play()
 	%SkillDescriptionMusic.stop()
 	for skill in skill_bag_list.get_children():
@@ -517,7 +520,7 @@ func _on_skill_bag_list_close_requested() -> void:
 
 
 func open_skill_bag_for_skill_removal():
-	if not $CanvasLayer/SkillBagList.visible:
+	if not %HandCanvasLayer/SkillBagList.visible:
 		skill_bag_prompt.text = "Left click: remove skill\nRight click: view skill info"
 		var skills_in_display = []
 		var skill_counts = {}
@@ -536,7 +539,7 @@ func open_skill_bag_for_skill_removal():
 			new_skill_icon.set_skill(skill, SkillIcon.IconPositions.BAG)
 			skill_bag_list.add_child(new_skill_icon)
 		skill_bag_list.get_children().shuffle()
-		$CanvasLayer/SkillBagList.show()
+		%HandCanvasLayer/SkillBagList.show()
 		$OpenBag.play()
 		Global.UI_opened.emit()
 	#else:

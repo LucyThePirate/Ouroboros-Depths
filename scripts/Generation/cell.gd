@@ -59,8 +59,6 @@ var astar_grid: AStarGrid2D
 var current_id_path: Array[Vector2i]
 #endregion
 
-@onready var turn_queue: Array[TurnComponent]
-var ready_for_next_turn = true
 var turn_counter = 0
 var current_floor := 0
 var player
@@ -78,9 +76,6 @@ func _ready():
 	_on_unpaused()
 	if tutorial_level:
 		Global.metamorphosis_completed.connect(_on_metamorphosis_tutorial_completed)
-	#get_window().focus_exited.connect(_on_paused)
-	#get_tree().get_root().focus_exited.connect(_on_paused)
-	#get_viewport().gui_focus_changed.connect(_on_paused)
 	if not Global.UI_closed.is_connected(_on_unpaused):
 		Global.UI_closed.connect(_on_unpaused)
 		Global.UI_opened.connect(_on_paused)
@@ -113,7 +108,6 @@ func _ready():
 		extra_node.reparent(self)
 		if extra_node is CreatureAI:
 			extra_node.grid_entity.global_position = extra_node.global_position - Vector2(50, 50)
-			#_initialize_entity(extra_node.grid_entity)
 
 	if not player:
 		player = (
@@ -221,21 +215,21 @@ func _initialize_entity(new_entity: GridEntity):
 	new_entity.spawn_wall.connect(spawn_wall)
 	new_entity.spawn_entity.connect(spawn_entity_from_creature.bind(new_entity))
 	new_entity.died.connect(_on_entity_died.bind(new_entity))
-	turn_queue.push_back(new_entity.turn_component)
-	new_entity.turn_component.turn_ended.connect(_entity_finished_turn.bind(new_entity))
-	if not new_entity.is_in_group("Player"):
-		#new_entity.health_component.max_health += floori(
-		#new_entity.health_component.max_health * current_floor * 0.25
-		#)
-		#new_entity.health_component.health = new_entity.health_component.max_health
-		#new_entity.health_component._update_health_bar()
-		pass
-	else:
+	if new_entity.is_in_group("Player"):
 		player.grid_entity.moved.connect(_update_fog)
-		player.health_component.health_updated.connect(_update_fog)
+		player.health_component.max_health_updated.connect(_player_max_health_updated)
+		player.turn_component.turn_ended.connect(process_turn)
 		player.grid_entity.died.connect(_on_player_died)
 		player.descended.connect(_redraw_map)
 	new_entity.initialize()
+
+
+func _player_max_health_updated():
+	if player:
+		_update_fog(Vector2i.ZERO, player.grid_entity.grid_coords)
+		%Darkness.self_modulate.a = (
+			.36 + (1.0 - player.health_component.get_max_health_percentage()) / 2.0
+		)
 
 
 func _update_fog(
@@ -245,13 +239,12 @@ func _update_fog(
 		return
 	if initializing_fog:
 		new_coords = $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
-	else:
-		new_coords = player.grid_entity.grid_coords
 	var light_radius = 7
 	if player:
-		pass
-		#light_radius = ceili(float(light_radius) * player.health_component.get_health_percentage())
-		#%Darkness.self_modulate.a = (1.0 - player.health_component.get_health_percentage())
+		light_radius = ceili(
+			float(light_radius) * player.health_component.get_max_health_percentage()
+		)
+
 	var tile_light = {}
 	var terrain_rect = Global.floors.get_used_rect()
 
@@ -327,19 +320,13 @@ func process_turn():
 			try_spawning_random_monster(true)
 		return
 
-	if turn_queue.size() <= 0:
-		turn_counter += 1
-		if spawn_creatures and (turn_counter % 5) == 0:
-			try_spawning_random_monster(true)
-		#print(turn_counter)
-		for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
-			turn_queue.push_back(turn_component)
-
-	var current_entity = turn_queue.pop_front()
-	if current_entity:
-		current_entity.take_turn()
-	else:
-		process_turn()
+	turn_counter += 1
+	if spawn_creatures and (turn_counter % 5) == 0:
+		try_spawning_random_monster(true)
+	#print(turn_counter)
+	for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
+		if turn_component:
+			turn_component.take_turn()
 	Global.turn_passed.emit()
 
 
@@ -379,16 +366,6 @@ func spawn_bogo_egg():
 	bogo_egg = spawn_entity(grid_coordinate, bogo_egg_scene)
 	bogo_egg.egg_died.connect(_on_bogo_timer_timeout)
 	bogo_egg.egg_timer_expired.connect(_on_bogo_timer_timeout)
-
-
-func _entity_finished_turn(grid_entity: GridEntity):
-	#ready_for_next_turn = true
-
-	#await grid_entity.turn_component.turn_ended
-	if Global.is_turn_based():
-		process_turn()
-	elif grid_entity.is_in_group("Player"):
-		process_turn()
 
 
 func _open_door(door_coords):
