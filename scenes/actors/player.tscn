@@ -162,8 +162,11 @@ creature_name = "You!"
 species_desc = "It is you! Or it is me? Whatever. "
 soul_count = 10
 
-[node name="AvailableSkills" parent="GridEntity/SkillStackComponent/CanvasLayer" parent_id_path=PackedInt32Array(1217274743, 1500394995, 379651989) index="0" unique_id=2065539204]
+[node name="AvailableSkills" parent="GridEntity/SkillStackComponent/HandCanvasLayer" parent_id_path=PackedInt32Array(1217274743, 1500394995, 379651989) index="0" unique_id=2065539204]
 metadata/_edit_lock_ = true
+
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1217274743, 306220155) index="0" unique_id=1357245310]
+max_health = 25
 
 [node name="DesperationStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1217274743, 963295090) index="1" unique_id=577548757 instance=ExtResource("6_t62v4")]
 layout_mode = 2
@@ -427,7 +430,7 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("8_wd2mq")
 theme_override_font_sizes/font_size = 38
-text = "15/15"
+text = "25/25"
 horizontal_alignment = 1
 vertical_alignment = 1
 

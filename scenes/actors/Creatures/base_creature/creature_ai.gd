@@ -174,8 +174,8 @@ func pursue_entity(entity: GridEntity) -> Vector2i:
 	else:
 		intent = random_skill_planner.make_plan(grid_entity, angry_at)
 
-		stack_component.preview_queueing_skill(intent == "Queue Skill")
-		stack_component.preview_executing_stack(intent == "Execute Stack")
+		#stack_component.preview_queueing_skill(intent == "Queue Skill")
+		#stack_component.preview_executing_stack(intent == "Execute Stack")
 		if intent == "Execute Stack":
 			if visual:
 				visual.use_parent_material = false

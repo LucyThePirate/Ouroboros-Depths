@@ -149,31 +149,26 @@ position = Vector2(-85, -191)
 
 [node name="TurnComponent" parent="." unique_id=733984913 instance=ExtResource("23_rfqsp")]
 
-[node name="UI" type="VBoxContainer" parent="." unique_id=1710592687]
-custom_minimum_size = Vector2(139.13, 37.22)
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = 32.0
-offset_right = 150.0
-offset_bottom = 171.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-alignment = 1
+[node name="UI" type="Node2D" parent="." unique_id=306220155]
 
 [node name="HealthComponent" parent="UI" unique_id=1357245310 instance=ExtResource("18_vnsn2")]
-layout_mode = 2
+offset_left = -5.56
+offset_top = -137.25
+offset_right = 86.705
+offset_bottom = -111.549995
+scale = Vector2(1, 1)
 size_flags_vertical = 0
 layout_direction = 2
-mouse_filter = 2
+use_top_left = false
 
 [node name="StatusManagerComponent" parent="UI" unique_id=963295090 instance=ExtResource("21_jyxbn")]
 custom_minimum_size = Vector2(0, 3.52)
-layout_mode = 2
+offset_top = 80.0
+offset_right = 300.0
+offset_bottom = 180.0
+scale = Vector2(1, 1)
 mouse_filter = 2
+use_top_left = true
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="." unique_id=1089424246]
 stream = SubResource("AudioStreamRandomizer_j0r3c")

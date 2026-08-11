@@ -19,6 +19,8 @@ signal max_health_updated
 var current_damage_number: DamageNumberComponent
 var current_heal_number: DamageNumberComponent
 
+var tween
+
 
 func _ready():
 	_update_health_bar()
@@ -92,4 +94,20 @@ func _update_health_bar():
 	health_bar.max_value = max_health
 	health_bar.value = health
 	%HealthLabel.text = "%s/%s" % [health, max_health]
+	var missing_health = max_health - health
+	if missing_health >= 25:
+		%OnesPlace.frame = 4
+		%OnesPlace.frame = 4
+	else:
+		%OnesPlace.frame = missing_health % 5
+		%FivesPlace.frame = (missing_health / 5) % 5
+	%FivesControl.visible = %FivesPlace.frame != 0
+	%OnesControl.visible = %OnesPlace.frame != 0
+	%FivesPlace.scale = Vector2.ONE
+	%OnesPlace.scale = Vector2.ONE
+	if tween:
+		tween.kill()
+	tween = get_tree().create_tween()
+	tween.tween_property(%FivesPlace, "scale", Vector2(0.495, 0.495), 0.1)
+	tween.tween_property(%OnesPlace, "scale", Vector2(0.495, 0.495), 0.1)
 	health_updated.emit()

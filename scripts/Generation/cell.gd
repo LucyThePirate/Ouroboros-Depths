@@ -228,7 +228,7 @@ func _player_max_health_updated():
 	if player:
 		_update_fog(Vector2i.ZERO, player.grid_entity.grid_coords)
 		%Darkness.self_modulate.a = (
-			.36 + (1.0 - player.health_component.get_max_health_percentage()) / 2.0
+			.36 + (1.0 - player.health_component.get_max_health_percentage()) / 1.5
 		)
 
 

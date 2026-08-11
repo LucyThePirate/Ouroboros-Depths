@@ -157,6 +157,7 @@ mouse_filter = 2
 
 [node name="StackSizeLabel" type="RichTextLabel" parent="Stack/MarginContainer/CenterContainer/VBoxContainer" unique_id=2133485242]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("9_qdnrn")

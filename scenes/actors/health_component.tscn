@@ -2,23 +2,143 @@
 
 [ext_resource type="Script" uid="uid://bur38hyf4r2ps" path="res://health_component.gd" id="1_swihn"]
 [ext_resource type="PackedScene" uid="uid://b2e4ygq1jbt56" path="res://scenes/actors/damage_text.tscn" id="2_5ecpm"]
+[ext_resource type="Texture2D" uid="uid://63b5f20el0j5" path="res://textures/ui/forkunai.png" id="3_3i3r7"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="3_38li0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i3r7"]
+atlas = ExtResource("3_3i3r7")
+region = Rect2(276, 472, 138, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuc11"]
+atlas = ExtResource("3_3i3r7")
+region = Rect2(138, 472, 138, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwi6r"]
+atlas = ExtResource("3_3i3r7")
+region = Rect2(0, 472, 138, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh4s1"]
+atlas = ExtResource("3_3i3r7")
+region = Rect2(276, 236, 138, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_keyi8"]
+atlas = ExtResource("3_3i3r7")
+region = Rect2(138, 236, 138, 236)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o6u6x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i3r7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuc11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwi6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh4s1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_keyi8")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6u6x"]
+atlas = ExtResource("3_3i3r7")
+region = Rect2(0, 236, 138, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13gey"]
+atlas = ExtResource("3_3i3r7")
+region = Rect2(276, 0, 138, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsjjd"]
+atlas = ExtResource("3_3i3r7")
+region = Rect2(138, 0, 138, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbi74"]
+atlas = ExtResource("3_3i3r7")
+region = Rect2(0, 0, 138, 236)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_532wb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i3r7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6u6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13gey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsjjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbi74")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="HealthComponent" type="CenterContainer" unique_id=1304586345]
 custom_minimum_size = Vector2(92.265, 25.7)
-offset_right = 69.085
-offset_bottom = 25.7
+offset_right = 106.55
+offset_bottom = 88.765755
 scale = Vector2(1.48706, 1.48706)
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
+use_top_left = true
 script = ExtResource("1_swihn")
 damage_number_scene = ExtResource("2_5ecpm")
 
+[node name="Silverware" type="HBoxContainer" parent="." unique_id=1693711732]
+custom_minimum_size = Vector2(79.44, 0)
+layout_mode = 2
+layout_direction = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="OnesControl" type="Control" parent="Silverware" unique_id=890691113]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="OnesPlace" type="AnimatedSprite2D" parent="Silverware/OnesControl" unique_id=14112807]
+unique_name_in_owner = true
+scale = Vector2(0.4952596, 0.4952596)
+sprite_frames = SubResource("SpriteFrames_o6u6x")
+frame = 4
+offset = Vector2(0, -93.18)
+
+[node name="FivesControl" type="Control" parent="Silverware" unique_id=1241412390]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="FivesPlace" type="AnimatedSprite2D" parent="Silverware/FivesControl" unique_id=515211982]
+unique_name_in_owner = true
+scale = Vector2(0.4952596, 0.4952596)
+sprite_frames = SubResource("SpriteFrames_532wb")
+frame = 4
+offset = Vector2(0, -93.18)
+
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1555243360]
+visible = false
 z_index = -1
 custom_minimum_size = Vector2(106.55, 35.855)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_38li0")
 max_value = 15.0
@@ -49,4 +169,3 @@ vertical_alignment = 1
 
 [node name="DamageNumberSpawn" type="Marker2D" parent="." unique_id=781135309]
 unique_name_in_owner = true
-position = Vector2(164.08215, -20.846502)

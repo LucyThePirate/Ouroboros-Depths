@@ -445,22 +445,9 @@ func _update_cooldown_visuals():
 			%TurnsTilReloadText.text = "%s turns 'til reload complete" % shuffle_turns
 		else:
 			%TurnsTilReloadText.text = "%s turn 'til reload complete" % shuffle_turns
-		for skill_icon in range(hand_size) as Array[SkillIcon]:
-			var percentage := float(shuffle_turns) / float(turns_to_reload)
 		return
 	else:
 		%TurnsTilReloadText.hide()
-
-
-func preview_queueing_skill(show_preview := true):
-	pass
-
-
-func preview_executing_stack(show_preview := true):
-	if show_preview:
-		pass
-	else:
-		pass
 
 
 func _on_info_button_1_pressed() -> void:

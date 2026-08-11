@@ -44,7 +44,10 @@ area_mask = 1
 [node name="SkillStackComponent" parent="GridEntity" index="10" unique_id=1500394995]
 visible = false
 
-[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
+[node name="UI" parent="GridEntity" index="12" unique_id=306220155]
+position = Vector2(0, -34)
+
+[node name="HealthComponent" parent="GridEntity/UI" index="0" unique_id=1357245310]
 max_health = 4
 
 [node name="Hit" parent="GridEntity" index="13" unique_id=1089424246]
@@ -55,6 +58,9 @@ top_level = true
 material = ExtResource("3_4c4v1")
 use_parent_material = true
 position = Vector2(0, -34)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Display" unique_id=197982797]
+remote_path = NodePath("../../GridEntity/UI")
 
 [node name="BaseRandomSkillPlanner" parent="." unique_id=1557162231 instance=ExtResource("4_dn3ie")]
 
