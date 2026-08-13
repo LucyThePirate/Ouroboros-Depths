@@ -73,6 +73,10 @@ func heal(heal_amount):
 	_update_health_bar()
 
 
+func get_health_percentage() -> float:
+	return float(health) / float(max_health)
+
+
 func get_max_health_percentage() -> float:
 	return float(max_health) / float(base_max_health)
 

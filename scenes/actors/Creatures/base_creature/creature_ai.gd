@@ -35,6 +35,8 @@ var angry_at: GridEntity
 var intent_direction := Vector2i.ZERO
 var potential_targets: Array[GridEntity] = []
 
+var health_percent := 1.0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -64,6 +66,10 @@ func _process(delta: float) -> void:
 	)
 	if visual:
 		visual.global_position = display.global_position
+		var shakiness = (1.0 - health_percent) * 2.5
+		visual.global_position += Vector2(
+			randf_range(-shakiness, shakiness), randf_range(-shakiness, shakiness)
+		)
 
 
 func take_turn():
@@ -215,6 +221,8 @@ func _on_grid_entity_died(_is_despawning) -> void:
 func _on_grid_entity_hurt(attacker: GridEntity, _damage_amount: int) -> void:
 	if grid_entity.is_alive() and aggro_in_retaliation:
 		_update_angry_at(attacker)
+	health_percent = health_component.get_health_percentage()
+	visual.modulate = Color(1.0, health_percent, health_percent)
 
 
 func _update_angry_at(new_target: GridEntity):

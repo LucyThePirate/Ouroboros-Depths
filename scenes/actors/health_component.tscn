@@ -108,28 +108,28 @@ alignment = 1
 
 [node name="OnesControl" type="Control" parent="Silverware" unique_id=890691113]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 mouse_filter = 2
 
 [node name="OnesPlace" type="AnimatedSprite2D" parent="Silverware/OnesControl" unique_id=14112807]
 unique_name_in_owner = true
-scale = Vector2(0.4952596, 0.4952596)
+scale = Vector2(0.495, 0.495)
 sprite_frames = SubResource("SpriteFrames_o6u6x")
-frame = 4
 offset = Vector2(0, -93.18)
 
 [node name="FivesControl" type="Control" parent="Silverware" unique_id=1241412390]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 mouse_filter = 2
 
 [node name="FivesPlace" type="AnimatedSprite2D" parent="Silverware/FivesControl" unique_id=515211982]
 unique_name_in_owner = true
-scale = Vector2(0.4952596, 0.4952596)
+scale = Vector2(0.495, 0.495)
 sprite_frames = SubResource("SpriteFrames_532wb")
-frame = 4
 offset = Vector2(0, -93.18)
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1555243360]

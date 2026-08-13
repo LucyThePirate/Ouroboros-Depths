@@ -37,6 +37,8 @@ var removal_cost := 3
 	as Button
 )
 
+# TODO: Be Patient, Spark, Stomp need a rework
+
 
 func _ready() -> void:
 	if not grid_parent:
