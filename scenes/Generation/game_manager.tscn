@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://43rkgu17gs68"]
+[gd_scene format=4 uid="uid://43rkgu17gs68"]
 
 [ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_iuxeh"]
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/effects/boulder_splash.tscn" id="2_0qvfo"]
@@ -54,8 +54,9 @@
 [ext_resource type="PackedScene" uid="uid://thouvoi3bng4" path="res://scenes/Generation/SetPieces/messy_set_piece.tscn" id="43_ltapf"]
 [ext_resource type="PackedScene" uid="uid://dqrsn52gekmw0" path="res://scenes/Generation/SetPieces/kermit_set_piece.tscn" id="44_5dmsq"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fx61w"]
-blend_mode = 3
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4bofw"]
+shader = ExtResource("19_lq848")
+shader_parameter/bg_color = Color(0.1309329, 0.12740707, 0.2680826, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eu30k"]
 shader = ExtResource("19_lq848")
@@ -258,17 +259,15 @@ tile_set = ExtResource("16_cpcro")
 [node name="Fog" type="TileMapLayer" parent="." unique_id=341166173 groups=["Fog"]]
 unique_name_in_owner = true
 visible = false
-modulate = Color(0.012617188, 0.012617188, 0.012617188, 1)
-y_sort_enabled = true
-material = SubResource("CanvasItemMaterial_fx61w")
+z_index = 11
+material = SubResource("ShaderMaterial_4bofw")
 tile_set = ExtResource("16_cpcro")
 
 [node name="Darkness" type="TileMapLayer" parent="." unique_id=1270013491 groups=["Fog"]]
 unique_name_in_owner = true
-visible = false
 self_modulate = Color(0.95, 0.6612, 0.494, 0.36078432)
 z_index = 10
-material = SubResource("CanvasItemMaterial_fx61w")
+tile_map_data = PackedByteArray("AAAFAAIAAwABAAEAAAAEAAIAAwABAAEAAAAEAAMAAwABAAEAAAADAAMAAwABAAEAAAADAAQAAwABAAEAAAACAAQAAwABAAEAAAACAAMAAwABAAEAAAABAAMAAwABAAEAAAACAAIAAwABAAEAAAADAAIAAwABAAEAAAAAAAMAAwABAAEAAAD//wMAAwABAAEAAAD//wIAAwABAAEAAAAAAAIAAwABAAEAAAAAAAEAAwABAAEAAAABAAAAAwABAAEAAAACAAAAAwABAAEAAAADAAAAAwABAAEAAAADAAEAAwABAAEAAAABAAIAAwABAAEAAAABAAEAAwABAAEAAAACAAEAAwABAAEAAAA=")
 tile_set = ExtResource("16_cpcro")
 
 [node name="IsaaclikeGenerationStrategy" parent="." unique_id=1325901455 instance=ExtResource("17_ttnpg")]

@@ -7,6 +7,8 @@ signal egg_timer_expired
 enum BOGOTIME { INSTANT, TIME_25, TIME_50, TIME_100, TIME_150, TIME_200, NEVER }
 @onready var selected_bogo_time := BOGOTIME.TIME_150
 
+var base_scale := 0.455
+
 
 func _ready() -> void:
 	if Global.config.has_section_key("Gameplay", "BogosortTimer"):
@@ -55,3 +57,7 @@ func _egg_damaged_visual() -> void:
 	%EggCrack.volume_db = missing_health
 	%EggCrack.pitch_scale = 1.2 - (0.08 * missing_health)
 	%EggCrack.play()
+	%EggSprite.frame = missing_health / 2
+	var new_scale = base_scale + ((base_scale * missing_health) / 10)
+	%EggSprite.scale = Vector2(new_scale, new_scale)
+	%EggSprite.material.set("shader_parameter/intensity", missing_health)

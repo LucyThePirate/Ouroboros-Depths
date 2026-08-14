@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b60fxmc7hxg5s" path="res://textures/PumpkinBlock2.png" id="1_dtrn4"]
 [ext_resource type="Texture2D" uid="uid://dfvius215va54" path="res://textures/tiles/3DTiles.png" id="2_fv5xq"]
 [ext_resource type="Shader" uid="uid://bbogpcxsif02r" path="res://textures/shaders/water.gdshader" id="3_hqfjb"]
+[ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="4_dtrn4"]
 [ext_resource type="Shader" uid="uid://c5m81jjhpfjbx" path="res://textures/shaders/ice.gdshader" id="5_2t8fs"]
 [ext_resource type="Texture2D" uid="uid://dhuxxosgrbwyl" path="res://textures/tiles/ChimeraTiles.png" id="6_u4jh6"]
 
@@ -567,7 +568,9 @@ shader_parameter/pixelSize = 100.0
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_w2vps"]
 polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lkcb0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dtrn4"]
+shader = ExtResource("4_dtrn4")
+shader_parameter/bg_color = Color(0.1309329, 0.12740707, 0.2680826, 1)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uvtqv"]
 polygon = PackedVector2Array(-50, -50, 50, -50, 50, 50, -50, 50)
@@ -611,13 +614,14 @@ texture_region_size = Vector2i(100, 100)
 0:1/0/custom_data_0 = true
 0:1/0/custom_data_1 = true
 0:1/0/custom_data_4 = "wood"
-1:1/next_alternative_id = 2
+1:1/next_alternative_id = 3
 1:1/0 = 0
-1:1/0/modulate = Color(0.5895947, 0.0002545154, 0.59009445, 1)
-1:1/0/material = SubResource("ShaderMaterial_lkcb0")
+1:1/0/modulate = Color(0, 0, 0, 1)
 1:1/0/custom_data_3 = true
 1:1/1 = 1
 1:1/1/modulate = Color(1, 1, 1, 0)
+1:1/2 = 2
+1:1/2/material = SubResource("ShaderMaterial_dtrn4")
 2:1/next_alternative_id = 5
 2:1/0 = 0
 2:1/0/material = SubResource("ShaderMaterial_ojjv0")

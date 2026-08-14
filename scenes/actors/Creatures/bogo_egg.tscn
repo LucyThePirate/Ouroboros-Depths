@@ -2,11 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_y78e5"]
 [ext_resource type="Script" uid="uid://dhvs8sbk5hmdg" path="res://scripts/Actors/AI/braindead_ai.gd" id="2_my2fc"]
-[ext_resource type="Texture2D" uid="uid://c54qdmwot0v1f" path="res://samples/softbody2d/Boiled_Egg_Half.png" id="3_my2fc"]
 [ext_resource type="AudioStream" uid="uid://bl40i2grnp6ha" path="res://audio/SFX/Creatures/Bogo/614367__nicoproson__egg-shell-opened-and-crunched-4.ogg" id="4_yknto"]
 [ext_resource type="AudioStream" uid="uid://vnjsa550ch0n" path="res://audio/SFX/Creatures/Bogo/614367__nicoproson__egg-shell-opened-and-crunched-3.ogg" id="5_gqo8w"]
 [ext_resource type="AudioStream" uid="uid://b1h7ufmqnjkuw" path="res://audio/SFX/Creatures/Bogo/614367__nicoproson__egg-shell-opened-and-crunched-2.ogg" id="6_mmt26"]
 [ext_resource type="AudioStream" uid="uid://bd8nn64gk87vx" path="res://audio/SFX/Creatures/Bogo/614367__nicoproson__egg-shell-opened-and-crunched.ogg" id="7_cjyop"]
+[ext_resource type="Shader" uid="uid://bly0nak212gaf" path="res://textures/shaders/random_displacement.gdshader" id="7_gqo8w"]
+[ext_resource type="Texture2D" uid="uid://dwx1yyx68n1ck" path="res://textures/creatures/bogo_eggs.png" id="7_yknto"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lmpnd"]
 random_pitch = 1.0330547
@@ -16,9 +17,66 @@ stream_1/stream = ExtResource("5_gqo8w")
 stream_2/stream = ExtResource("6_mmt26")
 stream_3/stream = ExtResource("7_cjyop")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pj5lm"]
+shader = ExtResource("7_gqo8w")
+shader_parameter/interval = 0.2
+shader_parameter/timeDelay = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/seed = 42.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqo8w"]
+atlas = ExtResource("7_yknto")
+region = Rect2(156, 0, 156, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmt26"]
+atlas = ExtResource("7_yknto")
+region = Rect2(312, 0, 156, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjyop"]
+atlas = ExtResource("7_yknto")
+region = Rect2(0, 236, 156, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmpnd"]
+atlas = ExtResource("7_yknto")
+region = Rect2(312, 236, 156, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otc8k"]
+atlas = ExtResource("7_yknto")
+region = Rect2(0, 472, 156, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg2dg"]
+atlas = ExtResource("7_yknto")
+region = Rect2(156, 472, 156, 236)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_532wb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqo8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmt26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjyop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmpnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otc8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg2dg")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Bogo Egg" unique_id=963460758 node_paths=PackedStringArray("visual") instance=ExtResource("1_y78e5")]
 script = ExtResource("2_my2fc")
-visual = NodePath("Sprite2D")
+visual = NodePath("EggSprite")
 wander_when_no_target = false
 move_when_aggro = false
 auto_aggro_against_player = false
@@ -33,8 +91,8 @@ species_desc = "The pearly-white egg shell is dense in soul-rich nutrients. Smas
 soul_count = 4
 challenge_rating = 0.0
 
-[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
-max_health = 10
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 306220155) index="0" unique_id=1357245310]
+max_health = 12
 
 [node name="IntentArrow" parent="." index="4" unique_id=132546320]
 visible = false
@@ -49,10 +107,13 @@ stream = SubResource("AudioStreamRandomizer_lmpnd")
 pitch_scale = 1.2
 bus = &"SFX"
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="8" unique_id=845169251]
-position = Vector2(0, -23.999998)
+[node name="EggSprite" type="AnimatedSprite2D" parent="." index="8" unique_id=672525698]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_pj5lm")
+position = Vector2(0, 50)
 scale = Vector2(0.4546871, 0.4546871)
-texture = ExtResource("3_my2fc")
+sprite_frames = SubResource("SpriteFrames_532wb")
+offset = Vector2(0, -90.171906)
 
 [connection signal="timeout" from="BogoTimer" to="." method="_on_bogo_timer_timeout"]
 

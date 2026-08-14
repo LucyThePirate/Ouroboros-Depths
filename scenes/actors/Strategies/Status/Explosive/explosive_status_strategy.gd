@@ -15,6 +15,8 @@ func on_turn_ended():
 func on_death(is_despawning: bool, _health_component: HealthComponent = null) -> bool:
 	if is_despawning:
 		return false
+	if power <= 0:
+		return false
 	var grid_coords = grid_parent.grid_coords
 	var new_explosion_VFX = explosion_VFX.instantiate()
 	get_tree().current_scene.add_child(new_explosion_VFX)
@@ -32,4 +34,5 @@ func on_death(is_despawning: bool, _health_component: HealthComponent = null) ->
 				if Global.entity_positions[check_coords] == grid_parent:
 					continue
 				grid_parent.hit(Global.entity_positions[check_coords], power * 2)
+	power = 0
 	return false
