@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dcih2lf15xrkq"]
+
+[ext_resource type="Texture2D" uid="uid://c54ipwc48osnu" path="res://textures/effects/heart.png" id="1_2lwc2"]
+
+[sub_resource type="Curve" id="Curve_4c4v1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.14957267, 0.48314613), 0.0, 0.0, 0, 0, Vector2(0.2863248, 0.17977536), 0.0, 0.0, 0, 0, Vector2(0.40598294, 0.37078655), -0.6260032, -0.6260032, 0, 0, Vector2(0.6196581, 0.1685394), 2.3198943, 2.3198943, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_xefjt"]
+curve = SubResource("Curve_4c4v1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_532wb"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 75.0
+gravity = Vector3(0, -10, 0)
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_xefjt")
+hue_variation_min = -0.010000022
+hue_variation_max = 0.12999998
+
+[node name="FriendlinessParticles" type="GPUParticles2D" unique_id=912933947]
+unique_name_in_owner = true
+z_index = -1
+amount = 4
+texture = ExtResource("1_2lwc2")
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_532wb")

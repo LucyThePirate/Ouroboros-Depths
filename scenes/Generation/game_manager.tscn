@@ -265,6 +265,7 @@ tile_set = ExtResource("16_cpcro")
 
 [node name="Darkness" type="TileMapLayer" parent="." unique_id=1270013491 groups=["Fog"]]
 unique_name_in_owner = true
+visible = false
 self_modulate = Color(0.95, 0.6612, 0.494, 0.36078432)
 z_index = 10
 tile_map_data = PackedByteArray("AAAFAAIAAwABAAEAAAAEAAIAAwABAAEAAAAEAAMAAwABAAEAAAADAAMAAwABAAEAAAADAAQAAwABAAEAAAACAAQAAwABAAEAAAACAAMAAwABAAEAAAABAAMAAwABAAEAAAACAAIAAwABAAEAAAADAAIAAwABAAEAAAAAAAMAAwABAAEAAAD//wMAAwABAAEAAAD//wIAAwABAAEAAAAAAAIAAwABAAEAAAAAAAEAAwABAAEAAAABAAAAAwABAAEAAAACAAAAAwABAAEAAAADAAAAAwABAAEAAAADAAEAAwABAAEAAAABAAIAAwABAAEAAAABAAEAAwABAAEAAAACAAEAAwABAAEAAAA=")
@@ -565,6 +566,9 @@ offset_bottom = 156.80128
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("20_fidet")
+
+[node name="BackgroundTint" type="CanvasModulate" parent="Background" unique_id=34328722]
+unique_name_in_owner = true
 
 [node name="GhostQuiet" type="AudioStreamPlayer" parent="." unique_id=90373663]
 stream = ExtResource("24_cvrnj")

@@ -29,6 +29,7 @@ func _ready() -> void:
 		_:
 			print("Bogo timer not started.")
 	super()
+	_egg_damaged_visual()
 
 
 func _on_grid_entity_hurt(attacker: GridEntity, damage_amount: int) -> void:

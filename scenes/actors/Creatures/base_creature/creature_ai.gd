@@ -25,6 +25,8 @@ var status_manager_component = $GridEntity/UI/StatusManagerComponent as StatusMa
 @export var aggro_against_same_species := false
 @export var aggro_in_retaliation := true
 
+var friendliness_particles_scene := preload("uid://dcih2lf15xrkq")
+
 var initialized = false
 var in_darkness = true
 var has_invisible_status := false
@@ -236,6 +238,7 @@ func _update_angry_at(new_target: GridEntity):
 		angry_at = null
 		if grid_entity.team and grid_entity.team.is_in_group("Player"):
 			health_component.set_color(Color.HOT_PINK)
+			%FriendlinessParticles.emitting = true
 		else:
 			health_component.set_color(Color.WHITE)
 	if not can_aggro_against(new_target):
@@ -247,6 +250,7 @@ func _update_angry_at(new_target: GridEntity):
 		Global.deaggroed_towards_player.emit(grid_entity)
 		if grid_entity.team and grid_entity.team.is_in_group("Player"):
 			health_component.set_color(Color.HOT_PINK)
+			%FriendlinessParticles.emitting = true
 		else:
 			health_component.set_color(Color.WHITE)
 	angry_at = new_target
@@ -281,6 +285,8 @@ func set_team(new_team: GridEntity):
 		grid_entity.team.slapped.connect(_on_teammate_slapped_entity)
 		grid_entity.team.hurt.connect(_on_teammate_hurt)
 		if grid_entity.team.is_in_group("Player"):
+			var new_friendliness_particles = friendliness_particles_scene.instantiate()
+			add_child(new_friendliness_particles)
 			health_component.set_color(Color.HOT_PINK)
 			health_component.set_text_color(Color.HOT_PINK)
 

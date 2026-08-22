@@ -10,13 +10,11 @@ signal health_updated
 signal max_health_updated
 
 @export var max_health = 15
-@export var damage_number_scene: PackedScene
 @export var allow_desperation_mode := false
 @onready var health = max_health
 @onready var health_bar = $ProgressBar as ProgressBar
 @onready var base_max_health = max_health
 
-var current_damage_number: DamageNumberComponent
 var current_heal_number: DamageNumberComponent
 
 var tween
@@ -38,14 +36,6 @@ func deal_damage(damage_amount = 1):
 	if damage_amount <= 0:
 		return
 	health -= damage_amount
-	if not is_instance_valid(current_damage_number):
-		current_damage_number = damage_number_scene.instantiate()
-		current_damage_number.add_damage(damage_amount)
-		current_damage_number.global_position = %DamageNumberSpawn.global_position
-		get_tree().current_scene.add_child(current_damage_number)
-	else:
-		current_damage_number.add_damage(damage_amount)
-		current_damage_number.global_position = %DamageNumberSpawn.global_position
 	if health <= 0:
 		died.emit()
 	else:
@@ -62,14 +52,6 @@ func heal(heal_amount):
 	healed.emit()
 	if healed_amount <= 0:
 		return
-	if not is_instance_valid(current_heal_number):
-		current_heal_number = damage_number_scene.instantiate()
-		current_heal_number.add_heal(healed_amount)
-		current_heal_number.global_position = %DamageNumberSpawn.global_position
-		get_tree().current_scene.add_child(current_heal_number)
-	else:
-		current_heal_number.add_heal(healed_amount)
-		current_heal_number.global_position = %DamageNumberSpawn.global_position
 	_update_health_bar()
 
 
@@ -82,8 +64,7 @@ func get_max_health_percentage() -> float:
 
 
 func turn_ended():
-	current_damage_number = null
-	current_heal_number = null
+	pass
 
 
 func set_color(new_color: Color):

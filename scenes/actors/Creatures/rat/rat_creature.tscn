@@ -16,7 +16,7 @@ species_desc = "Every ecosystem needs something at the bottom of the food-chain.
 Look at their stupid little roach face, and know that it wears an expression of grim determination. The Humble Rat knows it excels at playing the part of idiot rodent, and it shall do so 'til the bitter end."
 challenge_rating = 0.5
 
-[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 306220155) index="0" unique_id=1357245310]
 max_health = 3
 
 [node name="DetectionRadius" parent="." index="3" unique_id=795154734]

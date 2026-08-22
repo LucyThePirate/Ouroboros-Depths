@@ -2,6 +2,7 @@ extends StatusStrategy
 @export var explosion_VFX: PackedScene
 var grid_parent: GridEntity
 var bomb_placer: GridEntity
+var used_effect := false
 
 
 func on_grid_entity_parent_set(grid_entity: GridEntity):
@@ -15,8 +16,9 @@ func on_turn_ended():
 func on_death(is_despawning: bool, _health_component: HealthComponent = null) -> bool:
 	if is_despawning:
 		return false
-	if power <= 0:
+	if used_effect or power <= 0:
 		return false
+	used_effect = true
 	var grid_coords = grid_parent.grid_coords
 	var new_explosion_VFX = explosion_VFX.instantiate()
 	get_tree().current_scene.add_child(new_explosion_VFX)

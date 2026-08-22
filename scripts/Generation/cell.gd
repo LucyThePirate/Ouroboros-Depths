@@ -22,7 +22,7 @@ var bogo_egg: BraindeadAI
 @onready var pause_button := %PauseButton
 
 #region Fog
-@onready var fog = $Fog
+@onready var fog = %Fog
 @onready var darkness = $Darkness as TileMapLayer
 #endregion
 
@@ -139,14 +139,14 @@ func _initialize_fog():
 	darkness.clear()
 	if is_arena:
 		return
-	darkness.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
-	for x in Global.walls.get_used_rect().size.x:
-		for y in Global.walls.get_used_rect().size.y:
-			var tile_position = Vector2i(
-				x + Global.walls.get_used_rect().position.x,
-				y + Global.walls.get_used_rect().position.y
-			)
-			darkness.set_cell(tile_position, fog_tile[0], fog_tile[1])
+	#darkness.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
+	#for x in Global.walls.get_used_rect().size.x:
+	#for y in Global.walls.get_used_rect().size.y:
+	#var tile_position = Vector2i(
+	#x + Global.walls.get_used_rect().position.x,
+	#y + Global.walls.get_used_rect().position.y
+	#)
+	#darkness.set_cell(tile_position, fog_tile[0], fog_tile[1])
 
 	Global.darkness = darkness
 	_update_fog(Vector2i.ZERO, Vector2i.ZERO, true)
@@ -227,8 +227,10 @@ func _initialize_entity(new_entity: GridEntity):
 func _player_max_health_updated():
 	if player:
 		_update_fog(Vector2i.ZERO, player.grid_entity.grid_coords)
-		%Darkness.self_modulate.a = (
-			.36 + (1.0 - player.health_component.get_max_health_percentage()) / 1.5
+		var max_health_percentage = player.health_component.get_max_health_percentage()
+		%Darkness.self_modulate.a = (.36 + (1.0 - max_health_percentage) / 1.5)
+		%BackgroundTint.color = Color(
+			max_health_percentage, max_health_percentage, max_health_percentage
 		)
 
 
@@ -246,13 +248,10 @@ func _update_fog(
 		)
 
 	var tile_light = {}
-	var terrain_rect = Global.floors.get_used_rect()
 
-	for x in terrain_rect.size.x:
-		for y in terrain_rect.size.y:
-			var tile = Vector2i(terrain_rect.position.x + x, terrain_rect.position.y + y)
-			Global.darkness.set_cell(tile, fog_tile[0], fog_tile[1])
-			tile_light[tile] = 0
+	for tile in Global.floors.get_used_cells():
+		Global.darkness.set_cell(tile, fog_tile[0], fog_tile[1])
+		tile_light[tile] = 0
 	#Global.darkness.set_pattern(
 	#walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells())
 	#)
@@ -464,8 +463,8 @@ func _on_player_died(_despawning) -> void:
 	if not is_arena:
 		for tile in Global.floors.get_used_cells():
 			Global.darkness.set_cell(tile, -1)
-	$Fog.hide()
-	$Darkness.hide()
+	%Fog.hide()
+	%Darkness.hide()
 	$CanvasLayer/DeathScreen/VBoxContainer/FloorReached.text = ("Floor Reached: %s" % current_floor)
 	$CanvasLayer/DeathScreen/VBoxContainer/Kills.text = "Kills: %s" % player.grid_entity.kills
 	$CanvasLayer/DeathScreen/VBoxContainer/Turns.text = "Turns: %s" % turn_counter
