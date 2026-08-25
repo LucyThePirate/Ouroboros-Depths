@@ -6,24 +6,29 @@ extends SkillStrategy
 var base_radius = 2
 var damage = 0
 var current_patience: StatusStrategy
+var patience_count := 0
 
 
 func _ready():
 	super()
 
 
-func on_skill_queued():
+func on_skill_drawn(_grid_entity: GridEntity):
 	if not current_patience:
 		current_patience = patience_status.instantiate() as StatusStrategy
 		current_patience.power = power
 		add_child(current_patience)
 		gained_status.emit(current_patience)
-	super()
+		patience_count = 1
+	else:
+		patience_count += 1
 
 
 func use_skill(grid_entity: GridEntity):
 	var grid_coords = Global.floors.local_to_map(grid_entity.global_position)
-	var total_radius = base_radius + floor(current_patience.power / 4.0)
+	var total_radius = base_radius
+	if current_patience:
+		total_radius = base_radius + floor(current_patience.power / 4.0)
 	if total_radius <= 2:
 		$YellShort.play()
 	elif total_radius <= 3:
@@ -49,9 +54,7 @@ func use_skill(grid_entity: GridEntity):
 				if Global.entity_positions[check_coords] == grid_entity:
 					continue
 				grid_entity.hit(Global.entity_positions[check_coords], damage + (total_radius - 1))
-	super(grid_entity)
-
-
-func on_stack_execution_finished(_grid_entity: GridEntity):
-	if current_patience:
+	patience_count -= 1
+	if patience_count <= 0 and current_patience:
 		current_patience.on_status_ended()
+	super(grid_entity)

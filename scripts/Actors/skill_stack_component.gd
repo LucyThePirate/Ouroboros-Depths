@@ -135,16 +135,14 @@ func queue_skill(skill_number) -> bool:
 		#print(name, " queued skill: ", skills[skill_number].name)
 		stack.append(hand[skill_number])
 		current_stack_size += hand[skill_number].stack_size
-		if not hand[skill_number].is_connected("gained_status", _on_gained_status):
-			hand[skill_number].connect("gained_status", _on_gained_status)
+
 		hand[skill_number].on_skill_queued()
 		_update_stack_visuals()
 		if is_full():
 			stack_full.emit()
 		hand[skill_number] = null
 		if not deck.is_empty():
-			hand[skill_number] = deck.pop_front()
-			total_skill_count -= 1
+			_draw_skill_into_hand(skill_number)
 		_update_hand_visuals()
 		#if hand.all(func(skill): return skill == null):  # Automatically reload when out of skills
 		#reload_deck()
@@ -350,6 +348,9 @@ func _draw_skill_into_hand(hand_index: int) -> bool:
 		return false
 	else:
 		hand[hand_index] = deck.pop_front()
+		if not hand[hand_index].is_connected("gained_status", _on_gained_status):
+			hand[hand_index].connect("gained_status", _on_gained_status)
+		hand[hand_index].on_skill_drawn(grid_entity)
 		total_skill_count -= 1
 		return true
 

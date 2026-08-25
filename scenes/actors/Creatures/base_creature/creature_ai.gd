@@ -238,7 +238,6 @@ func _update_angry_at(new_target: GridEntity):
 		angry_at = null
 		if grid_entity.team and grid_entity.team.is_in_group("Player"):
 			health_component.set_color(Color.HOT_PINK)
-			%FriendlinessParticles.emitting = true
 		else:
 			health_component.set_color(Color.WHITE)
 	if not can_aggro_against(new_target):
@@ -250,7 +249,6 @@ func _update_angry_at(new_target: GridEntity):
 		Global.deaggroed_towards_player.emit(grid_entity)
 		if grid_entity.team and grid_entity.team.is_in_group("Player"):
 			health_component.set_color(Color.HOT_PINK)
-			%FriendlinessParticles.emitting = true
 		else:
 			health_component.set_color(Color.WHITE)
 	angry_at = new_target

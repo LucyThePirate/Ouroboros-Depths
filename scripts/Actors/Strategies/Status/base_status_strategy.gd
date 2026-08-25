@@ -50,6 +50,12 @@ func merge_status(status: StatusStrategy):
 	_update_visuals()
 
 
+func decrease_power(amount := 1):
+	power -= amount
+	if power <= 0:
+		on_status_ended()
+
+
 func increase_power(amount := 1) -> bool:
 	if power >= max_power:
 		return false

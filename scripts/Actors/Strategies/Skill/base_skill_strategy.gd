@@ -100,6 +100,10 @@ func on_next_floor_reached():
 	current_count = count
 
 
+func on_skill_drawn(_grid_entity: GridEntity):
+	pass
+
+
 func on_stack_execution_started(_grid_entity: GridEntity):
 	pass
 
@@ -136,7 +140,7 @@ func accept_cursor():
 
 func on_skill_queued():
 	current_in_stack += 1
-	
+
 	if is_depletable and current_count > 0:
 		current_count -= 1
 
