@@ -43,6 +43,7 @@ enum Species {
 	SNAKE_BLOCK,
 	BOMB,
 	SWARMER,
+	FALSE_WALL,
 }
 @export var species_type := Species.DEFAULT
 @export var creature_name := "Default Entity"
@@ -50,6 +51,7 @@ enum Species {
 @export var soul_count := 1
 @export var challenge_rating := 1.0
 @export var can_walk_through_walls := false
+@export var immovable := false
 var team: GridEntity
 
 @onready var thump_sound = $Thump
@@ -107,7 +109,7 @@ func get_skills() -> Array[Node]:
 
 
 func move(direction: Vector2i, safe_walk_entities := false, safe_walk_pits := false) -> bool:
-	if not initialized or state == States.DEAD:
+	if not initialized or state == States.DEAD or immovable:
 		return false
 
 	var old_coords = grid_coords
@@ -172,7 +174,7 @@ func move(direction: Vector2i, safe_walk_entities := false, safe_walk_pits := fa
 
 
 func warp(new_coords: Vector2i) -> bool:
-	if not initialized:
+	if not initialized or immovable:
 		return false
 
 	var old_coords = grid_coords
@@ -202,6 +204,8 @@ func warp(new_coords: Vector2i) -> bool:
 
 
 func swap(swapping_with: GridEntity):
+	if immovable:
+		return
 	var temp_coords = grid_coords
 	var swap_coords = swapping_with.grid_coords
 	Global.entity_positions[temp_coords] = swapping_with

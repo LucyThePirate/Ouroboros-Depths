@@ -1,0 +1,514 @@
+[gd_scene format=4 uid="uid://43rkgu17gs68"]
+
+[ext_resource type="Script" uid="uid://d1x1rfpsybkna" path="res://scripts/Generation/cell.gd" id="1_iuxeh"]
+[ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/effects/boulder_splash.tscn" id="2_0qvfo"]
+[ext_resource type="PackedScene" uid="uid://csox3ra3bo6o4" path="res://scenes/effects/spawn_smoke_vfx.tscn" id="3_vk8p8"]
+[ext_resource type="PackedScene" uid="uid://d2wq4gejffyd" path="res://scenes/actors/player.tscn" id="4_3a4wt"]
+[ext_resource type="PackedScene" uid="uid://dctxwjwjiof17" path="res://scenes/actors/lich_creature.tscn" id="5_dimvc"]
+[ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_creature.tscn" id="6_hw4ns"]
+[ext_resource type="PackedScene" uid="uid://b2gdh6pqutscc" path="res://scenes/actors/Creatures/chorustone.tscn" id="7_fkop7"]
+[ext_resource type="PackedScene" uid="uid://g7fhohrlv81x" path="res://scenes/actors/Creatures/fuzzer_creature.tscn" id="8_73l8b"]
+[ext_resource type="PackedScene" uid="uid://cuir68rh5ethv" path="res://scenes/actors/Creatures/conk/conk.tscn" id="9_kmp3v"]
+[ext_resource type="PackedScene" uid="uid://d3p2qbml7s288" path="res://scenes/actors/Creatures/slime/slime_creature.tscn" id="10_mxyv8"]
+[ext_resource type="PackedScene" uid="uid://cp6erui8kemoj" path="res://scenes/actors/Creatures/rat/rat_creature.tscn" id="11_d2bkc"]
+[ext_resource type="PackedScene" uid="uid://oof35aakey11" path="res://scenes/actors/Creatures/gem_roach/gem_roach_creature.tscn" id="12_tir5h"]
+[ext_resource type="PackedScene" uid="uid://w4kg23pb7tql" path="res://scenes/actors/Creatures/wasp_knight/wasp_knight_creature.tscn" id="13_brfwm"]
+[ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="14_tjpqt"]
+[ext_resource type="PackedScene" uid="uid://0hj12q8mhwp3" path="res://scenes/actors/Creatures/rat/delete_rat_creature.tscn" id="15_4bofw"]
+[ext_resource type="PackedScene" uid="uid://b04tvmeribd1k" path="res://scenes/actors/Creatures/bogo_sort.tscn" id="15_73xfa"]
+[ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="16_cpcro"]
+[ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="18_d2p2i"]
+[ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="19_lq848"]
+[ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="20_fidet"]
+[ext_resource type="Texture2D" uid="uid://btflw1das7k7h" path="res://textures/testing/zen_garden_WIP2.png" id="21_lwe8p"]
+[ext_resource type="Shader" uid="uid://daaonengjaclw" path="res://textures/shaders/blur.gdshader" id="22_barpb"]
+[ext_resource type="AudioStream" uid="uid://d248dhagknhoc" path="res://audio/Music/AstrMusic/WarmHouse's Computer [loop, simple].mp3" id="23_7atmn"]
+[ext_resource type="AudioStream" uid="uid://ckploe52g84qd" path="res://audio/Music/AstrMusic/GHOST_NOODLES[8bit,loop,remix].mp3" id="24_cvrnj"]
+[ext_resource type="AudioStream" uid="uid://rnxn4j8uomna" path="res://audio/Music/AstrMusic/GHOST_NOODLES[loop,mysterious].mp3" id="25_1b3ug"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4bofw"]
+shader = ExtResource("19_lq848")
+shader_parameter/bg_color = Color(0.1309329, 0.12740707, 0.2680826, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eu30k"]
+shader = ExtResource("19_lq848")
+shader_parameter/bg_color = Color(0.1309329, 0.12740707, 0.2680826, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrcgv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cyo7g"]
+shader = ExtResource("22_barpb")
+shader_parameter/offset = 6.9110003282725
+
+[sub_resource type="InputEventAction" id="InputEventAction_cqjng"]
+action = &"TogglePause"
+
+[sub_resource type="Shortcut" id="Shortcut_cyo7g"]
+events = [SubResource("InputEventAction_cqjng")]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qrcgv"]
+streams_count = 1
+stream_0/stream = ExtResource("23_7atmn")
+
+[sub_resource type="InputEventAction" id="InputEventAction_cyo7g"]
+action = &"TogglePause"
+
+[sub_resource type="Shortcut" id="Shortcut_qrcgv"]
+events = [SubResource("InputEventAction_cyo7g")]
+
+[sub_resource type="Animation" id="Animation_v01jn"]
+length = 0.001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eu30k"]
+resource_name = "floor_text_fade_in"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4bofw"]
+resource_name = "floor_text_fade_out"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1xklj"]
+_data = {
+&"RESET": SubResource("Animation_v01jn"),
+&"floor_text_fade_in": SubResource("Animation_eu30k"),
+&"floor_text_fade_out": SubResource("Animation_4bofw")
+}
+
+[node name="BaseDungeonManager" type="Node2D" unique_id=1347246317 node_paths=PackedStringArray("generator")]
+y_sort_enabled = true
+script = ExtResource("1_iuxeh")
+boulder_splash = ExtResource("2_0qvfo")
+spawn_smoke_scene = ExtResource("3_vk8p8")
+player_scene = ExtResource("4_3a4wt")
+creature_scene = Array[PackedScene]([ExtResource("5_dimvc"), ExtResource("6_hw4ns"), ExtResource("7_fkop7"), ExtResource("8_73l8b"), ExtResource("9_kmp3v"), ExtResource("10_mxyv8"), ExtResource("11_d2bkc"), ExtResource("12_tir5h"), ExtResource("13_brfwm"), ExtResource("14_tjpqt"), ExtResource("15_4bofw")])
+bogosort_scene = ExtResource("15_73xfa")
+generator = NodePath("")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=800089894]
+position = Vector2(2992, 1528)
+scale = Vector2(3.97837, -1.5527)
+enabled = false
+zoom = Vector2(0.19, 0.195)
+
+[node name="Floors" type="TileMapLayer" parent="." unique_id=1421824593]
+show_behind_parent = true
+z_index = -5
+y_sort_enabled = true
+texture_filter = 2
+use_parent_material = true
+tile_set = ExtResource("16_cpcro")
+
+[node name="Walls" type="TileMapLayer" parent="." unique_id=1056884836]
+show_behind_parent = true
+y_sort_enabled = true
+use_parent_material = true
+tile_set = ExtResource("16_cpcro")
+
+[node name="Fog" type="TileMapLayer" parent="." unique_id=341166173 groups=["Fog"]]
+unique_name_in_owner = true
+visible = false
+z_index = 11
+material = SubResource("ShaderMaterial_4bofw")
+tile_set = ExtResource("16_cpcro")
+
+[node name="Darkness" type="TileMapLayer" parent="." unique_id=1270013491 groups=["Fog"]]
+unique_name_in_owner = true
+visible = false
+self_modulate = Color(0.95, 0.6612, 0.494, 0.36078432)
+z_index = 10
+tile_map_data = PackedByteArray("AAAFAAIAAwABAAEAAAAEAAIAAwABAAEAAAAEAAMAAwABAAEAAAADAAMAAwABAAEAAAADAAQAAwABAAEAAAACAAQAAwABAAEAAAACAAMAAwABAAEAAAABAAMAAwABAAEAAAACAAIAAwABAAEAAAADAAIAAwABAAEAAAAAAAMAAwABAAEAAAD//wMAAwABAAEAAAD//wIAAwABAAEAAAAAAAIAAwABAAEAAAAAAAEAAwABAAEAAAABAAAAAwABAAEAAAACAAAAAwABAAEAAAADAAAAAwABAAEAAAADAAEAAwABAAEAAAABAAIAAwABAAEAAAABAAEAAwABAAEAAAACAAEAAwABAAEAAAA=")
+tile_set = ExtResource("16_cpcro")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1285677614]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=662954778]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="FloorLabel" type="RichTextLabel" parent="CanvasLayer/ColorRect" unique_id=1441883022]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Floor: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathScreen" type="Control" parent="CanvasLayer" unique_id=1948540790]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeathScreen" unique_id=1146646180]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="YouDied" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer" unique_id=524105090]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "
+[rainbow freq=0.2][wave]Perished and Killed!!
+"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FloorReached" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer" unique_id=1908739697]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "oh you aren't supposed to see this screen, hahaha whoopsie"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Kills" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer" unique_id=479607914]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "if you're reading this, the current scene probably didn't call _ready()"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Turns" type="RichTextLabel" parent="CanvasLayer/DeathScreen/VBoxContainer" unique_id=1194779360]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "i haven't figured out how to fix this just yet... for now, just press F5 to reload it."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/DeathScreen/VBoxContainer" unique_id=2002207546]
+layout_mode = 2
+
+[node name="NewRunButton" type="Button" parent="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer" unique_id=1798756151]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("18_d2p2i")
+theme_override_font_sizes/font_size = 30
+text = "Start a new run"
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/DeathScreen/VBoxContainer" unique_id=1652544113]
+layout_mode = 2
+
+[node name="TitleScreenButton" type="Button" parent="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer2" unique_id=54190548]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("18_d2p2i")
+theme_override_font_sizes/font_size = 30
+text = "Return to title screen"
+
+[node name="AggroCount" type="RichTextLabel" parent="CanvasLayer" unique_id=305472313]
+visible = false
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+text = "???"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="PauseScreen" type="Control" parent="CanvasLayer" unique_id=327995525]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/PauseScreen" unique_id=187259101]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eu30k")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -153.9751
+offset_top = -140.19872
+offset_right = 152.0249
+offset_bottom = 156.80127
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_fidet")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PauseScreen" unique_id=472137901]
+material = SubResource("ShaderMaterial_qrcgv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("21_lwe8p")
+
+[node name="Blur" type="ColorRect" parent="CanvasLayer/PauseScreen" unique_id=1842844146]
+material = SubResource("ShaderMaterial_cyo7g")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseScreen" unique_id=1505501308]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Text" type="RichTextLabel" parent="CanvasLayer/PauseScreen/VBoxContainer" unique_id=1779311328]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "
+[rainbow freq=0.2][wave]You catch your breath."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text2" type="RichTextLabel" parent="CanvasLayer/PauseScreen/VBoxContainer" unique_id=2074942340]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("18_d2p2i")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[color=DARKGRAY][i]The game's paused. Take your time to recover your strength, brave warrior."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PauseScreen/VBoxContainer" unique_id=1287428390]
+layout_mode = 2
+
+[node name="ContinueGameButton" type="Button" parent="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer" unique_id=1581709327]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("18_d2p2i")
+theme_override_font_sizes/font_size = 30
+shortcut = SubResource("Shortcut_cyo7g")
+text = "Have you gathered yourself? Are you ready to Fight On?"
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/PauseScreen/VBoxContainer" unique_id=170415353]
+layout_mode = 2
+
+[node name="TitleScreenButton" type="Button" parent="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer2" unique_id=67200178]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("18_d2p2i")
+theme_override_font_sizes/font_size = 30
+text = "... Or would you rather Retreat and return to the solace of the Title Screen"
+
+[node name="PauseMusic" type="AudioStreamPlayer" parent="CanvasLayer/PauseScreen" unique_id=871930823]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_qrcgv")
+bus = &"Music"
+playback_type = 1
+
+[node name="PauseButton" type="Button" parent="CanvasLayer" unique_id=719840358]
+unique_name_in_owner = true
+process_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 2
+shortcut = SubResource("Shortcut_qrcgv")
+text = "||"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=478761725]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_1xklj")
+
+[node name="AutoTurnTimer" type="Timer" parent="." unique_id=1502293745]
+wait_time = 0.3
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=1586894556]
+layer = -100
+
+[node name="Control" type="Control" parent="Background" unique_id=389944638]
+z_index = -100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(44.1435, 35.6066)
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Background/Control" unique_id=1821577849]
+material = SubResource("ShaderMaterial_eu30k")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -153.9751
+offset_top = -140.19872
+offset_right = 152.0249
+offset_bottom = 156.80128
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_fidet")
+
+[node name="BackgroundTint" type="CanvasModulate" parent="Background" unique_id=34328722]
+unique_name_in_owner = true
+
+[node name="GhostQuiet" type="AudioStreamPlayer" parent="." unique_id=90373663]
+stream = ExtResource("24_cvrnj")
+autoplay = true
+bus = &"Music"
+playback_type = 1
+
+[node name="GhostBattle" type="AudioStreamPlayer" parent="." unique_id=1987515516]
+stream = ExtResource("25_1b3ug")
+volume_db = -50.0
+autoplay = true
+bus = &"Music"
+playback_type = 1
+
+[node name="BogoTimer" type="Timer" parent="." unique_id=1125716364]
+process_callback = 0
+wait_time = 100.0
+one_shot = true
+
+[connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer/NewRunButton" to="." method="_on_new_run_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/DeathScreen/VBoxContainer/CenterContainer2/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer/ContinueGameButton" to="." method="_on_unpaused"]
+[connection signal="pressed" from="CanvasLayer/PauseScreen/VBoxContainer/CenterContainer2/TitleScreenButton" to="." method="_on_title_screen_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="timeout" from="AutoTurnTimer" to="." method="_on_auto_turn_timer_timeout"]
+[connection signal="timeout" from="BogoTimer" to="." method="_on_bogo_timer_timeout"]

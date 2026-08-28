@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dm6okwh3ft3uu" path="res://scenes/effects/boulder_splash.tscn" id="2_o74wk"]
 [ext_resource type="PackedScene" uid="uid://csox3ra3bo6o4" path="res://scenes/effects/spawn_smoke_vfx.tscn" id="3_kv4pv"]
 [ext_resource type="PackedScene" uid="uid://d2wq4gejffyd" path="res://scenes/actors/player.tscn" id="4_hg4aq"]
-[ext_resource type="PackedScene" uid="uid://mxsbm6suamyq" path="res://scenes/Generation/basic_generation_strategy.tscn" id="6_o74wk"]
 [ext_resource type="Texture2D" uid="uid://btflw1das7k7h" path="res://textures/testing/zen_garden_WIP2.png" id="11_hg4aq"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="11_utnk4"]
 [ext_resource type="Shader" uid="uid://daaonengjaclw" path="res://textures/shaders/blur.gdshader" id="12_1enxm"]
@@ -212,7 +211,7 @@ boulder_splash = ExtResource("2_o74wk")
 spawn_smoke_scene = ExtResource("3_kv4pv")
 player_scene = ExtResource("4_hg4aq")
 creature_scene = Array[PackedScene]([ExtResource("14_o74wk")])
-generator = NodePath("BasicGenerationStrategy")
+generator = NodePath("")
 spawn_creatures = false
 tutorial_level = true
 
@@ -254,8 +253,6 @@ self_modulate = Color(0.9529412, 0.6627451, 0.49803922, 0.44705883)
 z_index = 10
 material = SubResource("CanvasItemMaterial_o74wk")
 tile_set = ExtResource("12_m3s0v")
-
-[node name="BasicGenerationStrategy" parent="." unique_id=1726370414 instance=ExtResource("6_o74wk")]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1545108492]
 material = SubResource("CanvasItemMaterial_2yaem")
@@ -536,7 +533,7 @@ text_to_display = "Hit us freely and without remorse!"
 position = Vector2(-2647, -1278)
 text_to_display = "How are ya gonna beat my regeneration?"
 
-[node name="HealthComponent" parent="TutorialScarecrow4/GridEntity/UI" parent_id_path=PackedInt32Array(46807649, 1615670255, 1710592687) index="0" unique_id=1357245310]
+[node name="HealthComponent" parent="TutorialScarecrow4/GridEntity/UI" parent_id_path=PackedInt32Array(46807649, 1615670255, 306220155) index="0" unique_id=1357245310]
 max_health = 3
 
 [node name="RegenStatusStrategy" parent="TutorialScarecrow4/GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(46807649, 1615670255, 963295090) index="1" unique_id=1047461156 instance=ExtResource("14_1enxm")]
@@ -557,7 +554,7 @@ Better make it HOIT.
 
 Better kill me in ONE SHOT."
 
-[node name="HealthComponent" parent="TutorialScarecrow6/GridEntity/UI" parent_id_path=PackedInt32Array(940761890, 1615670255, 1710592687) index="0" unique_id=1357245310]
+[node name="HealthComponent" parent="TutorialScarecrow6/GridEntity/UI" parent_id_path=PackedInt32Array(940761890, 1615670255, 306220155) index="0" unique_id=1357245310]
 max_health = 1
 
 [node name="TutorialScarecrow7" parent="." unique_id=34154181 instance=ExtResource("15_kv4pv")]

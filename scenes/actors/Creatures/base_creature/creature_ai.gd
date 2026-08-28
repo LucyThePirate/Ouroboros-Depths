@@ -224,7 +224,8 @@ func _on_grid_entity_hurt(attacker: GridEntity, _damage_amount: int) -> void:
 	if grid_entity.is_alive() and aggro_in_retaliation:
 		_update_angry_at(attacker)
 	health_percent = health_component.get_health_percentage()
-	visual.modulate = Color(1.0, health_percent, health_percent)
+	if visual:
+		visual.modulate = Color(1.0, health_percent, health_percent)
 
 
 func _update_angry_at(new_target: GridEntity):

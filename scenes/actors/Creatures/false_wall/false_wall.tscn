@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://h0m5idgxkdx7"]
+
+[ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_6sw4w"]
+[ext_resource type="Script" uid="uid://4uexbbpabt3x" path="res://scenes/actors/Creatures/false_wall/false_wall.gd" id="2_k37xv"]
+[ext_resource type="Texture2D" uid="uid://63b5f20el0j5" path="res://textures/ui/forkunai.png" id="3_44uev"]
+[ext_resource type="Texture2D" uid="uid://bxdyd5kyqq86p" path="res://textures/tiles/FalseWallCracks.png" id="3_k67m0"]
+[ext_resource type="AudioStream" uid="uid://bl40i2grnp6ha" path="res://audio/SFX/Creatures/Bogo/614367__nicoproson__egg-shell-opened-and-crunched-4.ogg" id="4_k67m0"]
+[ext_resource type="AudioStream" uid="uid://vnjsa550ch0n" path="res://audio/SFX/Creatures/Bogo/614367__nicoproson__egg-shell-opened-and-crunched-3.ogg" id="5_44uev"]
+[ext_resource type="AudioStream" uid="uid://b1h7ufmqnjkuw" path="res://audio/SFX/Creatures/Bogo/614367__nicoproson__egg-shell-opened-and-crunched-2.ogg" id="6_qh6ra"]
+[ext_resource type="AudioStream" uid="uid://bd8nn64gk87vx" path="res://audio/SFX/Creatures/Bogo/614367__nicoproson__egg-shell-opened-and-crunched.ogg" id="7_eljcy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i3r7"]
+atlas = ExtResource("3_44uev")
+region = Rect2(276, 472, 138, 236)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44uev"]
+atlas = ExtResource("3_k67m0")
+region = Rect2(200, 169, 100, 169)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh6ra"]
+atlas = ExtResource("3_k67m0")
+region = Rect2(100, 169, 100, 169)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eljcy"]
+atlas = ExtResource("3_k67m0")
+region = Rect2(0, 169, 100, 169)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vffm2"]
+atlas = ExtResource("3_k67m0")
+region = Rect2(200, 0, 100, 169)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fnel"]
+atlas = ExtResource("3_k67m0")
+region = Rect2(100, 0, 100, 169)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcaqu"]
+atlas = ExtResource("3_k67m0")
+region = Rect2(0, 0, 100, 169)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_532wb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i3r7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44uev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh6ra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eljcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vffm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fnel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcaqu")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vffm2"]
+random_pitch = 1.0330547
+streams_count = 4
+stream_0/stream = ExtResource("4_k67m0")
+stream_1/stream = ExtResource("5_44uev")
+stream_2/stream = ExtResource("6_qh6ra")
+stream_3/stream = ExtResource("7_eljcy")
+
+[node name="FalseWall" unique_id=707297936 instance=ExtResource("1_6sw4w")]
+script = ExtResource("2_k37xv")
+wander_when_no_target = false
+move_when_aggro = false
+auto_aggro_against_player = false
+aggro_in_retaliation = false
+
+[node name="GridEntity" parent="." index="0" unique_id=1162874930]
+species_type = 16
+creature_name = "Wall?"
+species_desc = "Is... Uh... Is it normal for walls to breathe like that?"
+challenge_rating = 0.0
+immovable = true
+
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 306220155) index="0" unique_id=1357245310]
+max_health = 7
+
+[node name="IntentArrow" parent="." index="4" unique_id=132546320]
+visible = false
+
+[node name="WallCracks" type="AnimatedSprite2D" parent="." index="6" unique_id=2052702768]
+unique_name_in_owner = true
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_532wb")
+frame = 6
+offset = Vector2(0, -35)
+
+[node name="EggCrack" type="AudioStreamPlayer2D" parent="." index="7" unique_id=1653100113]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_vffm2")
+pitch_scale = 1.2
+bus = &"SFX"
+
+[editable path="GridEntity"]

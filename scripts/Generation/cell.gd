@@ -85,20 +85,25 @@ func _ready():
 	Global.metamorphosis_reroll_cost = 3
 	$CanvasLayer/DeathScreen.hide()
 #region Setting up RNG and dungeon generation
-	if (
-		$Floors.get_used_cells().size() > 0
-		and $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])
-	):
+	if not generator:
 		# There already is a level, no need to generate
 		Global.floors = floors
 		Global.walls = walls
 		_initialize_fog()
-		player = (
-			spawn_entity(
-				$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0], player_scene
-			)
-			as Player
-		)
+		if get_tree().get_nodes_in_group("Player"):
+			player = get_tree().get_nodes_in_group("Player")[0]
+		else:
+			if (
+				$Floors.get_used_cells().size() > 0
+				and $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])
+			):
+				player = (
+					spawn_entity(
+						$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0],
+						player_scene
+					)
+					as Player
+				)
 		_initialize_entities()
 		return
 	# Else, no existing level, generate
@@ -240,7 +245,9 @@ func _update_fog(
 	if is_arena:
 		return
 	if initializing_fog:
-		new_coords = $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
+		if $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1]).size() > 0:
+			new_coords = $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
+
 	var light_radius = 7
 	if player:
 		light_radius = ceili(
