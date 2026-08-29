@@ -1,0 +1,12 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://buekobe472qok"]
+
+[ext_resource type="AudioStream" uid="uid://cxmd2cbaxkq6d" path="res://audio/SFX/Terrain/Thump/125429__jspath1__three-bass-thumps-1.ogg" id="1_q3kg6"]
+[ext_resource type="AudioStream" uid="uid://3xcvb1swv7pb" path="res://audio/SFX/Terrain/Thump/125429__jspath1__three-bass-thumps-2.ogg" id="2_xejfi"]
+[ext_resource type="AudioStream" uid="uid://i667cwtbq4eh" path="res://audio/SFX/Terrain/Thump/125429__jspath1__three-bass-thumps-3.ogg" id="3_gndjr"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("1_q3kg6")
+stream_1/stream = ExtResource("2_xejfi")
+stream_2/stream = ExtResource("3_gndjr")

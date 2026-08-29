@@ -149,7 +149,7 @@ _data = {
 &"floor_text_fade_out": SubResource("Animation_4bofw")
 }
 
-[node name="BaseDungeonManager" type="Node2D" unique_id=1347246317 node_paths=PackedStringArray("generator")]
+[node name="BaseDungeonManager" type="Node2D" unique_id=1347246317]
 y_sort_enabled = true
 script = ExtResource("1_iuxeh")
 boulder_splash = ExtResource("2_0qvfo")
@@ -157,7 +157,6 @@ spawn_smoke_scene = ExtResource("3_vk8p8")
 player_scene = ExtResource("4_3a4wt")
 creature_scene = Array[PackedScene]([ExtResource("5_dimvc"), ExtResource("6_hw4ns"), ExtResource("7_fkop7"), ExtResource("8_73l8b"), ExtResource("9_kmp3v"), ExtResource("10_mxyv8"), ExtResource("11_d2bkc"), ExtResource("12_tir5h"), ExtResource("13_brfwm"), ExtResource("14_tjpqt"), ExtResource("15_4bofw")])
 bogosort_scene = ExtResource("15_73xfa")
-generator = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=800089894]
 position = Vector2(2992, 1528)
@@ -186,7 +185,7 @@ z_index = 11
 material = SubResource("ShaderMaterial_4bofw")
 tile_set = ExtResource("16_cpcro")
 
-[node name="Darkness" type="TileMapLayer" parent="." unique_id=1270013491 groups=["Fog"]]
+[node name="Shade" type="TileMapLayer" parent="." unique_id=1270013491 groups=["Fog"]]
 unique_name_in_owner = true
 visible = false
 self_modulate = Color(0.95, 0.6612, 0.494, 0.36078432)

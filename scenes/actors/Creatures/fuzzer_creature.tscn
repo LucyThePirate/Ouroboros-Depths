@@ -23,16 +23,20 @@ species_desc = "A bizarre creature sporting garish colors and a tubular mouth.
 
 Even within their own species, Fuzz Testers differ wildly from each other. 
 
-Due to their tendency to pick fights with anything that moves, it is not a bad idea to study their skirmishes from a safe distance before engaging."
+Due to their tendency to pick fights with anything that moves, it is not a bad idea to study their skirmishes from a safe distance before engaging.
+
+Real life fun fact: Fuzzers are based off of the software engineering concept of \"fuzz testing,\" in which random inputs are fed into a piece of software in an attempt to find bugs.
+
+Not coincidentally, the fuzzers in my game are also great for finding bugs, as the random skills they get and their tendency to pick fights with other creatures makes them bound to discover some niche interactions that I failed to think of."
 soul_count = 2
 challenge_rating = 2.0
 
-[node name="SkillStackComponent" parent="GridEntity" index="10" unique_id=1500394995]
+[node name="SkillStackComponent" parent="GridEntity" index="1" unique_id=1500394995]
 visible = false
 
 [node name="PossibilitiesSkillStrategy" parent="GridEntity/SkillStackComponent" index="9" unique_id=638108110 instance=ExtResource("3_netfx")]
 
-[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(625960076, 1710592687) index="0" unique_id=1357245310]
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(625960076, 306220155) index="0" unique_id=1357245310]
 max_health = 10
 
 [node name="Display" type="Node2D" parent="." unique_id=54024428]

@@ -130,3 +130,59 @@ func spawn_wall(coords, material := "nothing"):
 		Global.walls.set_cell(coords, Tiles.Walls[material][0], Tiles.Walls[material][1])
 	else:
 		Global.walls.set_cell(coords, -1)
+
+
+func play_walk_sound(grid_coords: Vector2i):
+	var floor_data = Global.floors.get_cell_tile_data(grid_coords)
+	if not floor_data:
+		return
+	var material = floor_data.get_custom_data("material")
+	var audio2D = AudioStreamPlayer2D.new()
+	audio2D.global_position = Global.floors.map_to_local(grid_coords)
+	audio2D.bus = "SFX"
+	get_tree().current_scene.add_child(audio2D)
+	match material:
+		"grass":
+			audio2D.stream = preload("uid://3uewwmrpir1t")
+		"water":
+			audio2D.stream = preload("uid://y0d47pmogcf2")
+		_:
+			audio2D.stream = preload("uid://bwefyqibiq8x5")
+	audio2D.play()
+	audio2D.finished.connect(audio2D.queue_free)
+
+
+func play_thump_sound(grid_coords: Vector2i):
+	var wall_data = Global.walls.get_cell_tile_data(grid_coords)
+	if not wall_data:
+		return
+	var material = wall_data.get_custom_data("material")
+	var audio2D = AudioStreamPlayer2D.new()
+	audio2D.global_position = Global.floors.map_to_local(grid_coords)
+	audio2D.bus = "SFX"
+	get_tree().current_scene.add_child(audio2D)
+	match material:
+		"glass":
+			audio2D.stream = preload("uid://db8o8mfv4bod8")
+		"plant":
+			audio2D.stream = preload("uid://cin8yf3hd8cew")
+		_:
+			audio2D.stream = preload("uid://buekobe472qok")
+	audio2D.play()
+	audio2D.finished.connect(audio2D.queue_free)
+
+
+func play_destruction_sound(grid_coords: Vector2i):
+	var wall_data = Global.walls.get_cell_tile_data(grid_coords)
+	if not wall_data:
+		return
+	var material = wall_data.get_custom_data("material")
+	var audio2D = AudioStreamPlayer2D.new()
+	audio2D.global_position = Global.floors.map_to_local(grid_coords)
+	audio2D.bus = "SFX"
+	get_tree().current_scene.add_child(audio2D)
+	match material:
+		_:
+			audio2D.stream = preload("uid://bcbr16vlo12fi")
+	audio2D.play()
+	audio2D.finished.connect(audio2D.queue_free)

@@ -1,0 +1,12 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://db8o8mfv4bod8"]
+
+[ext_resource type="AudioStream" uid="uid://c6tjk08ct6oj6" path="res://audio/SFX/Terrain/Thump/Glass Thump1.ogg" id="1_mpor8"]
+[ext_resource type="AudioStream" uid="uid://dka2mxjpr2ugp" path="res://audio/SFX/Terrain/Thump/Glass Thump2.ogg" id="2_nkvd0"]
+[ext_resource type="AudioStream" uid="uid://bjiod0hvbitsv" path="res://audio/SFX/Terrain/Thump/Glass Thump3.ogg" id="3_ujyng"]
+
+[resource]
+random_pitch = 1.05
+streams_count = 3
+stream_0/stream = ExtResource("1_mpor8")
+stream_1/stream = ExtResource("2_nkvd0")
+stream_2/stream = ExtResource("3_ujyng")

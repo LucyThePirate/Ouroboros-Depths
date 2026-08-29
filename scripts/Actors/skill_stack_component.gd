@@ -83,7 +83,7 @@ func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_compon
 func reload_deck() -> bool:
 	if state == States.IDLE:  # and stack.is_empty():
 		#print("%s is reloading!" % [grid_entity.name])
-		if %HandCanvasLayer.visible:
+		if grid_entity_is_player:
 			$ReloadStart.play()
 			$Reload.emitting = true
 		reload_started.emit()
@@ -124,15 +124,20 @@ func queue_skill(skill_number) -> bool:
 		):
 			# Not enough room, increase max stack size temporarily
 			current_max_stack_size += 1
-			%SkillCrammed.play()
+			if %SkillCrammed:
+				%SkillCrammed.play()
 			_update_stack_visuals()
 			crammed_skill.emit()
 			return true
-		$SkillAdded.pitch_scale = 0.7 + (0.20 * stack.size())
-		$SkillAdded.play()
+		if %SkillAdded:
+			%SkillAdded.pitch_scale = 0.7 + (0.20 * stack.size())
+			%SkillAdded.play()
 		_update_cooldown_visuals()
-		$Stack.show()
+		if $Stack:
+			$Stack.show()
 		#print(name, " queued skill: ", skills[skill_number].name)
+		if not hand[skill_number]:
+			return false
 		stack.append(hand[skill_number])
 		current_stack_size += hand[skill_number].stack_size
 
@@ -184,21 +189,22 @@ func execute_stack() -> bool:
 
 func _handle_stack_execution():
 	_update_stack_visuals()
-	%HandCanvasLayer.hide()
+	if %HandCanvasLayer:
+		%HandCanvasLayer.hide()
 	if stack.is_empty():
 		state = States.IDLE
 		current_max_stack_size = max_stack_size
 		current_stack_size = 0
-		if grid_entity.is_in_group("Player"):
+		if grid_entity_is_player:
 			%HandCanvasLayer.show()
 		emptied_stack.emit()
 		_update_cooldown_visuals()
 		for skill in skills:
 			skill.on_stack_execution_finished(grid_entity)
-		if not grid_entity.is_in_group("Player"):
+		if not grid_entity_is_player:
 			await get_tree().create_timer(1).timeout
 		return
-	if not grid_entity.is_in_group("Player"):
+	if not grid_entity_is_player:
 		await get_tree().create_timer(0.25).timeout
 	current_skill = stack.pop_front() as SkillStrategy
 	current_stack_size -= current_skill.stack_size
@@ -365,6 +371,8 @@ func on_next_floor_reached() -> void:
 
 
 func _update_stack_visuals() -> void:
+	if not grid_entity_is_player:
+		return
 	if current_stack_size == current_max_stack_size:
 		%StackSizeLabel.text = (
 			"[color=yellow]%s/%s[/color]" % [current_stack_size, current_max_stack_size]
@@ -440,6 +448,8 @@ func _update_turn_cooldown():
 
 
 func _update_cooldown_visuals():
+	if not grid_entity_is_player:
+		return
 	if state == States.RELOADING:
 		%TurnsTilReloadText.show()
 		if shuffle_turns != 1:

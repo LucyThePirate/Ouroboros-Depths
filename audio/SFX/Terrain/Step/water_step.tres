@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://y0d47pmogcf2"]
+
+[ext_resource type="AudioStream" uid="uid://jvtpbghgdvvn" path="res://audio/SFX/Terrain/Step/531566__patchytherat__puddle-footsteps1.ogg" id="1_3s8iv"]
+[ext_resource type="AudioStream" uid="uid://dehrrii41ww04" path="res://audio/SFX/Terrain/Step/531566__patchytherat__puddle-footsteps2.ogg" id="2_cfjmg"]
+[ext_resource type="AudioStream" uid="uid://db02fqotm3u5j" path="res://audio/SFX/Terrain/Step/531566__patchytherat__puddle-footsteps3.ogg" id="3_lwhjc"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_3s8iv")
+stream_1/stream = ExtResource("2_cfjmg")
+stream_2/stream = ExtResource("3_lwhjc")

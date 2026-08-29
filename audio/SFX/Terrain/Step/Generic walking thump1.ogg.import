@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ds3dw50hewvc0"
+path="res://.godot/imported/Generic walking thump1.ogg-9f4db9e5b5f3f633b57d642f427b337e.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/SFX/Terrain/Step/Generic walking thump1.ogg"
+dest_files=["res://.godot/imported/Generic walking thump1.ogg-9f4db9e5b5f3f633b57d642f427b337e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

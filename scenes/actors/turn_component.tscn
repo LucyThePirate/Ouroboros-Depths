@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://canci4neobys2"]
+[gd_scene format=3 uid="uid://canci4neobys2"]
 
 [ext_resource type="Script" uid="uid://dsicbeqnmrm3v" path="res://scripts/Actors/turn_component.gd" id="1_yhamr"]
 
-[node name="TurnComponent" type="Node2D" groups=["TurnComponent"]]
+[node name="TurnComponent" type="Node2D" unique_id=1217276851 groups=["TurnComponent"]]
 script = ExtResource("1_yhamr")
 
-[node name="AutoTurnTimer" type="Timer" parent="."]
+[node name="AutoTurnTimer" type="Timer" parent="." unique_id=1898810421]
 unique_name_in_owner = true
 process_callback = 0
 wait_time = 3.0

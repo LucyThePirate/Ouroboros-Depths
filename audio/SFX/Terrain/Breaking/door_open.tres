@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://bcbr16vlo12fi"]
+
+[ext_resource type="AudioStream" uid="uid://csxh0hijpki70" path="res://audio/SFX/Terrain/Breaking/584860__sfxafrik__doors-wooden-door-long-creak-open-close-office-wooden-door-office-door-knock.ogg" id="1_k7m65"]
+
+[resource]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("1_k7m65")

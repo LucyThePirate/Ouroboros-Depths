@@ -6,6 +6,7 @@ signal turn_started
 signal turn_ended
 
 var my_turn = false
+var is_busy := false
 
 
 func _ready() -> void:
@@ -20,6 +21,9 @@ func is_my_turn() -> bool:
 
 
 func take_turn():
+	if is_busy:
+		return
+	is_busy = true
 	my_turn = true
 	turn_started.emit()
 
@@ -27,6 +31,7 @@ func take_turn():
 func end_turn():
 	my_turn = false
 	turn_ended.emit()
+	is_busy = false
 
 
 func _on_auto_turn_timer_timeout() -> void:

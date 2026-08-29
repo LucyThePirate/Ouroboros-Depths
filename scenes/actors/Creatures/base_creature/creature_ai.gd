@@ -39,6 +39,8 @@ var potential_targets: Array[GridEntity] = []
 
 var health_percent := 1.0
 
+var thread: Thread
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -114,7 +116,7 @@ func update_intent():
 				intent_direction = get_random_direction() as Vector2i
 			else:
 				intent = "Do Nothing"
-		check_for_targets()
+		call_deferred("check_for_targets")
 	else:
 		intent = "Move"
 		intent_direction = pursue_entity(angry_at)
@@ -324,6 +326,10 @@ func _on_angry_at_died(_is_despawning):
 
 
 func _on_turn_component_turn_started() -> void:
+	#if thread and thread.is_alive():
+	#return
+	#thread = Thread.new()
+	#thread.start(take_turn)
 	take_turn()
 
 
@@ -361,3 +367,8 @@ func _on_skill_stack_component_emptied_stack() -> void:
 	visual.use_parent_material = true
 	if visual.has_method("set_charging"):
 		visual.set_charging(false)
+
+
+func _exit_tree() -> void:
+	if thread:
+		thread.wait_to_finish()

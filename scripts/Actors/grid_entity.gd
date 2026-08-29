@@ -54,16 +54,6 @@ enum Species {
 @export var immovable := false
 var team: GridEntity
 
-@onready var thump_sound = $Thump
-@onready var glass_thump_sound = $GlassThump
-@onready var plant_thump_sound = $PlantThump
-
-@onready var step_sound = $Step
-@onready var grass_step_sound = $GrassStep
-@onready var water_step_sound = $WaterStep
-
-@onready var door_open = $DoorOpen
-
 @onready var health_component = $UI/HealthComponent as HealthComponent
 @onready var status_component = $UI/StatusManagerComponent as StatusManagerComponent
 @onready var turn_component = $TurnComponent as TurnComponent
@@ -139,19 +129,19 @@ func move(direction: Vector2i, safe_walk_entities := false, safe_walk_pits := fa
 	var wall_data = Global.walls.get_cell_tile_data(new_coords)
 	if wall_data and not can_walk_through_walls:
 		if wall_data.get_custom_data("is_door"):
+			Tiles.play_destruction_sound(new_coords)
 			opened_door.emit(new_coords)
 			moved.emit(old_coords, old_coords)
-			door_open.play()
 			performed_action.emit()
 			return false
 		if wall_data.get_custom_data("is_pushable"):
-			play_thump_sound(wall_data.get_custom_data("material"))
+			Tiles.play_thump_sound(new_coords)
 			pushed_object.emit(new_coords, direction)
 			moved.emit(old_coords, old_coords)
 			performed_action.emit()
 			return false
 		if wall_data.get_custom_data("is_solid"):
-			play_thump_sound(wall_data.get_custom_data("material"))
+			Tiles.play_thump_sound(new_coords)
 			return false
 
 	# Pit detection
@@ -169,7 +159,7 @@ func move(direction: Vector2i, safe_walk_entities := false, safe_walk_pits := fa
 	if not floor_data:
 		fell_off_map.emit()
 	else:
-		play_walk_sound(floor_data.get_custom_data("material"))
+		Tiles.play_walk_sound(new_coords)
 	return true
 
 
@@ -183,7 +173,7 @@ func warp(new_coords: Vector2i) -> bool:
 	# Check for walls
 	var wall_data = Global.walls.get_cell_tile_data(new_coords)
 	if wall_data and wall_data.get_custom_data("is_solid") and not can_walk_through_walls:
-		play_thump_sound(wall_data.get_custom_data("material"))
+		Tiles.play_thump_sound(new_coords)
 		return false
 
 	# Testing if there is already another entity on the target location
@@ -199,7 +189,7 @@ func warp(new_coords: Vector2i) -> bool:
 	if not floor_data:
 		fell_off_map.emit()
 	else:
-		play_walk_sound(floor_data.get_custom_data("material"))
+		Tiles.play_walk_sound(new_coords)
 	return true
 
 
@@ -273,14 +263,13 @@ func hit(entity, damage := 1, allow_friendly_fire := false):
 
 func _on_hit(attacker, damage := 1):
 	if self == attacker or not attacker:
-		#$Error.play()
 		return
 	else:
-		#print(self.name, "was hit by:", attacker.name)
 		last_hit_by = attacker
 		damage = status_component.modify_incoming_damage(damage)
 		health_component.deal_damage(damage)
-		$Hit.play()
+		if $Hit:
+			$Hit.play()
 		hurt.emit(attacker, damage)
 
 
@@ -294,28 +283,6 @@ func harm(damage_amount := 1):
 
 func inflict_status(condition: StatusStrategy):
 	pass
-
-
-func play_walk_sound(material):
-	match material:
-		"grass":
-			grass_step_sound.play()
-		"water":
-			water_step_sound.play()
-		_:
-			step_sound.play()
-
-
-func play_thump_sound(material):
-	match material:
-		"stone":
-			thump_sound.play()
-		"glass":
-			glass_thump_sound.play()
-		"plant":
-			plant_thump_sound.play()
-		_:
-			thump_sound.play()
 
 
 func on_death(is_despawning := false) -> void:
@@ -360,9 +327,9 @@ func is_in_darkness() -> bool:
 		return true
 	if not Global.floors:
 		return false
-	if not Global.darkness:
+	if not Global.shade:
 		return false
-	var darkness_data = Global.darkness.get_cell_tile_data(grid_coords)
+	var darkness_data = Global.shade.get_cell_tile_data(grid_coords)
 	if not darkness_data:
 		return false
 	return true

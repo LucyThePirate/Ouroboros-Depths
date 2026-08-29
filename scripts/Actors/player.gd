@@ -133,21 +133,27 @@ func _handle_movement() -> void:
 
 	elif Input.is_action_just_pressed("UseSkill1"):
 		queue_skill(0)
+		return
 
 	elif Input.is_action_just_pressed("UseSkill2"):
 		queue_skill(1)
+		return
 
 	elif Input.is_action_just_pressed("UseSkill3"):
 		queue_skill(2)
+		return
 
 	elif Input.is_action_just_pressed("UseSkill4"):
 		queue_skill(3)
+		return
 
 	elif Input.is_action_just_pressed("ExecuteStack"):
 		execute_queue()
+		return
 
 	elif Input.is_action_just_pressed("Reload"):
 		stack_component.reload_deck()
+		return
 
 	elif Input.is_action_just_pressed("Chrysalis"):
 		if grid_entity.soul_count > 0 and state == States.IDLE:
@@ -183,8 +189,8 @@ func _get_directional_input():
 		moveDirection.y += 1
 	if moveDirection:
 		moveDirection = Vector2(roundi(moveDirection.x), roundi(moveDirection.y))
-		if moveDirection.x and moveDirection.y:  # Disallow diagonal movements... for now.
-			return
+		#if moveDirection.x and moveDirection.y:  # Disallow diagonal movements... for now.
+		#return
 	return moveDirection
 
 

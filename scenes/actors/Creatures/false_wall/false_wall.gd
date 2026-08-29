@@ -8,7 +8,8 @@ func _ready() -> void:
 
 func _on_grid_entity_died(is_despawning) -> void:
 	if not is_despawning:
-		Tiles.remove_wall_or_floor(grid_entity.grid_coords)
+		if Global.walls.get_cell_tile_data(grid_entity.grid_coords):
+			Tiles.remove_wall_or_floor(grid_entity.grid_coords)
 	super(is_despawning)
 
 

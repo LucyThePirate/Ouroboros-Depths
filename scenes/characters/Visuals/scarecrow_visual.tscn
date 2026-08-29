@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b2ojdp2aq678e" path="res://scripts/Actors/Visuals/visualBase.gd" id="1_aedx2"]
 [ext_resource type="Texture2D" uid="uid://cja3aenkgrcib" path="res://textures/creatures/Scarecrow.png" id="1_fcb6m"]
-[ext_resource type="AudioStream" uid="uid://beoy3p2juleon" path="res://audio/SFX/Step/Scarecrowstep1.ogg" id="3_750i8"]
-[ext_resource type="AudioStream" uid="uid://d3reymc3s8v1r" path="res://audio/SFX/Step/Scarecrowstep2.ogg" id="4_kcv6o"]
-[ext_resource type="AudioStream" uid="uid://dy5k5uk2de1uu" path="res://audio/SFX/Step/Scarecrowstep3.ogg" id="5_gqlsy"]
-[ext_resource type="AudioStream" uid="uid://dgdufp7c7rv1k" path="res://audio/SFX/Thump/540278__zepurple__tree-shake.ogg" id="6_gqlsy"]
-[ext_resource type="AudioStream" uid="uid://cow3rcuutupfc" path="res://audio/SFX/Step/kirby-falling.ogg" id="7_gqlsy"]
+[ext_resource type="AudioStream" uid="uid://beoy3p2juleon" path="res://audio/SFX/Terrain/Step/Scarecrowstep1.ogg" id="3_750i8"]
+[ext_resource type="AudioStream" uid="uid://d3reymc3s8v1r" path="res://audio/SFX/Terrain/Step/Scarecrowstep2.ogg" id="4_kcv6o"]
+[ext_resource type="AudioStream" uid="uid://dy5k5uk2de1uu" path="res://audio/SFX/Terrain/Step/Scarecrowstep3.ogg" id="5_gqlsy"]
+[ext_resource type="AudioStream" uid="uid://dgdufp7c7rv1k" path="res://audio/SFX/Terrain/Thump/540278__zepurple__tree-shake.ogg" id="6_gqlsy"]
+[ext_resource type="AudioStream" uid="uid://cow3rcuutupfc" path="res://audio/SFX/Terrain/Step/kirby-falling.ogg" id="7_gqlsy"]
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_aedx2"]
 resource_local_to_scene = true

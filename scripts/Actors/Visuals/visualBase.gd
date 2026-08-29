@@ -2,10 +2,9 @@ extends Node2D
 
 signal finished_animation
 
-var parent: Node2D
 var grid_entity: GridEntity
 @export var animation_player: AnimationPlayer
-@onready var anim_tree = self.get_node_or_null("$AnimationTree")
+@onready var anim_tree = self.get_node_or_null("%AnimationTree")
 var run_speed := 0.0
 var t := 0.0
 const TIME_SCALE = 0.1

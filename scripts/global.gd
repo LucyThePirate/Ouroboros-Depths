@@ -8,6 +8,7 @@ signal metamorphosis_started
 signal metamorphosis_completed
 signal UI_opened
 signal UI_closed
+signal fog_cleared(Vector2i)
 
 enum DECKS { BASIC, FUZZER, MUSICIAN, BEAST_TAMER, DEBUG }
 @onready var selected_deck := DECKS.BASIC
@@ -24,9 +25,11 @@ var seed_string := ""
 var random_seed := true
 
 var floors: TileMapLayer
-var objects: TileMapLayer
 var walls: TileMapLayer
-var darkness: TileMapLayer
+var shade: TileMapLayer
+var fog: TileMapLayer
+
+var visible_tiles := {}
 
 const CELL_SIZE = 100
 

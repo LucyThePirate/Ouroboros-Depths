@@ -16,6 +16,7 @@
 [node name="ArenaTestLevel" unique_id=1347246317 instance=ExtResource("1_72vdk")]
 creature_scene = Array[PackedScene]([ExtResource("2_a2icp"), ExtResource("3_g3pur"), ExtResource("4_uvcyq"), ExtResource("5_l8mfe"), ExtResource("6_n56r7"), ExtResource("7_v00fw"), ExtResource("8_clcy1"), ExtResource("9_17sol"), ExtResource("10_5nu0o"), ExtResource("11_g3pur"), ExtResource("12_uvcyq")])
 challenge_rating_capacity = 100.0
+entity_spawn_limit = 30
 is_arena = true
 
 [node name="Floors" parent="." index="1" unique_id=1421824593]

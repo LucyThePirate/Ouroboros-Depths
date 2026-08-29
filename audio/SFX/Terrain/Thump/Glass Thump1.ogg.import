@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c6tjk08ct6oj6"
+path="res://.godot/imported/Glass Thump1.ogg-d97857a8783e2a888e61fc595fe37cdd.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/SFX/Terrain/Thump/Glass Thump1.ogg"
+dest_files=["res://.godot/imported/Glass Thump1.ogg-d97857a8783e2a888e61fc595fe37cdd.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

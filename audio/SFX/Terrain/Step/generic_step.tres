@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://bwefyqibiq8x5"]
+
+[ext_resource type="AudioStream" uid="uid://ds3dw50hewvc0" path="res://audio/SFX/Terrain/Step/Generic walking thump1.ogg" id="1_7ljh6"]
+[ext_resource type="AudioStream" uid="uid://7kw2bisclhd0" path="res://audio/SFX/Terrain/Step/Generic walking thump2.ogg" id="2_mvgg6"]
+
+[resource]
+random_pitch = 1.14
+random_volume_offset_db = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("1_7ljh6")
+stream_1/stream = ExtResource("2_mvgg6")

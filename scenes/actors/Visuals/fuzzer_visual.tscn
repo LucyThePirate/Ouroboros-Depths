@@ -1033,7 +1033,6 @@ animation = &"Idle"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_g44mw"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_c4bwt"]
-graph_offset = Vector2(-806.97644, 181.69208)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_5y8sw")
 nodes/Idle/position = Vector2(-580, 140)
 nodes/HurtOneShot/node = SubResource("AnimationNodeOneShot_y1rum")
@@ -1359,6 +1358,7 @@ volume_db = 5.0
 bus = &"SFX"
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=886451758]
+unique_name_in_owner = true
 tree_root = SubResource("AnimationNodeBlendTree_c4bwt")
 anim_player = NodePath("../AnimationPlayer")
 parameters/HurtOneShot/active = false

@@ -31,6 +31,7 @@ Global="*res://scripts/global.gd"
 NoteValue="*uid://gdms0yobdmba"
 Tiles="*res://scripts/tiles.gd"
 CreatureRepository="*uid://cvvne22x17kb0"
+Light="*uid://dn577o0tk4qt4"
 
 [display]
 

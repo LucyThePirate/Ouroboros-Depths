@@ -23,7 +23,7 @@ func use_skill(grid_entity: GridEntity):
 			if wall_data and wall_data.get_custom_data("is_solid"):
 				if (
 					wall_data.get_custom_data("indestructable")
-					or floor_data.get_custom_data("indestructable")
+					or (floor_data and floor_data.get_custom_data("indestructable"))
 				):
 					continue
 				Tiles.spawn_floor(check_coords, wall_data.get_custom_data("material"))

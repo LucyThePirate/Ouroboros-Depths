@@ -23,7 +23,7 @@ var bogo_egg: BraindeadAI
 
 #region Fog
 @onready var fog = %Fog
-@onready var darkness = $Darkness as TileMapLayer
+@onready var shade = %Shade as TileMapLayer
 #endregion
 
 #region Terrain generation and Tiles
@@ -69,10 +69,10 @@ var angry_at_player = 0
 func _ready():
 	if Engine.is_editor_hint():
 		%Fog.hide()
-		%Darkness.hide()
+		%Shade.hide()
 		return
 	%Fog.show()
-	%Darkness.show()
+	%Shade.show()
 	_on_unpaused()
 	if tutorial_level:
 		Global.metamorphosis_completed.connect(_on_metamorphosis_tutorial_completed)
@@ -141,19 +141,19 @@ func _ready():
 
 
 func _initialize_fog():
-	darkness.clear()
+	shade.clear()
 	if is_arena:
 		return
-	#darkness.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
+	#shade.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
 	#for x in Global.walls.get_used_rect().size.x:
 	#for y in Global.walls.get_used_rect().size.y:
 	#var tile_position = Vector2i(
 	#x + Global.walls.get_used_rect().position.x,
 	#y + Global.walls.get_used_rect().position.y
 	#)
-	#darkness.set_cell(tile_position, fog_tile[0], fog_tile[1])
+	#shade.set_cell(tile_position, fog_tile[0], fog_tile[1])
 
-	Global.darkness = darkness
+	Global.shade = shade
 	_update_fog(Vector2i.ZERO, Vector2i.ZERO, true)
 
 
@@ -181,12 +181,13 @@ func _update_dynamic_music():
 
 func _redraw_map():
 	current_floor += 1
-	%FloorLabel.text = "Floor: %s" % current_floor
-	%AnimationPlayer.play("floor_text_fade_in")
-	await get_tree().create_timer(1).timeout
 	if tutorial_level:
 		requested_mode_switch.emit(ModeSwitcher.Modes.TITLE)
 		return
+	%FloorLabel.text = "Floor: %s" % current_floor
+	%AnimationPlayer.play("floor_text_fade_in")
+	await get_tree().create_timer(1).timeout
+
 	Global.next_floor_reached.emit()
 	for entity in get_tree().get_nodes_in_group("GridEntity") as Array[GridEntity]:
 		if not entity.is_in_group("Player"):
@@ -233,7 +234,7 @@ func _player_max_health_updated():
 	if player:
 		_update_fog(Vector2i.ZERO, player.grid_entity.grid_coords)
 		var max_health_percentage = player.health_component.get_max_health_percentage()
-		%Darkness.self_modulate.a = (.36 + (1.0 - max_health_percentage) / 1.5)
+		%Shade.self_modulate.a = (.36 + (1.0 - max_health_percentage) / 1.5)
 		%BackgroundTint.color = Color(
 			max_health_percentage, max_health_percentage, max_health_percentage
 		)
@@ -254,68 +255,75 @@ func _update_fog(
 			float(light_radius) * player.health_component.get_max_health_percentage()
 		)
 
-	var tile_light = {}
+	Global.visible_tiles = {}
+
+	Light.computeFov(new_coords, light_radius)
 
 	for tile in Global.floors.get_used_cells():
-		Global.darkness.set_cell(tile, fog_tile[0], fog_tile[1])
-		tile_light[tile] = 0
-	#Global.darkness.set_pattern(
-	#walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells())
-	#)
-	var marked_tiles = [new_coords]
-	var adjacent_tiles = [
-		Vector2i(1, 0),
-		Vector2i(0, 1),
-		Vector2i(-1, 0),
-		Vector2i(0, -1),
-	]
-	var diagonal_tiles = [Vector2i(1, 1), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(1, -1)]
-	for a_t in adjacent_tiles + diagonal_tiles:
-		marked_tiles.append(new_coords + a_t)
-		tile_light[new_coords + a_t] = light_radius - 1
-	tile_light[new_coords] = light_radius
-	while not marked_tiles.is_empty():
-		var checking_tile = marked_tiles.pop_front()
-		var current_light = tile_light[checking_tile]
-		Global.darkness.set_cell(checking_tile, -1)
-		fog.set_cell(checking_tile, -1)
-		if current_light <= 1:
-			continue
+		if tile not in Global.visible_tiles:
+			Global.shade.set_cell(tile, fog_tile[0], fog_tile[1])
 
-		for a_t in adjacent_tiles:
-			var tile = a_t + checking_tile
-			if tile not in tile_light or tile_light[tile] >= current_light:
-				continue
-			tile_light[tile] = current_light - 1
-			var wall_tile = Global.walls.get_cell_tile_data(checking_tile)
-			if wall_tile and wall_tile.get_custom_data("occluding"):
-				continue
-			marked_tiles.append(tile)
-		for d_t in diagonal_tiles:
-			var tile = d_t + checking_tile
-			if tile not in tile_light or tile_light[tile] >= current_light:
-				continue
-			tile_light[tile] = current_light - 1
-			var wall_tile = Global.walls.get_cell_tile_data(checking_tile)
-			if wall_tile and wall_tile.get_custom_data("occluding"):
-				continue
-			var adjacent_wall1 = Global.walls.get_cell_tile_data(checking_tile + Vector2i(d_t.x, 0))
-			var adjacent_wall2 = Global.walls.get_cell_tile_data(checking_tile + Vector2i(0, d_t.y))
-			if (
-				adjacent_wall1
-				and adjacent_wall2
-				and adjacent_wall1.get_custom_data("occluding")
-				and adjacent_wall2.get_custom_data("occluding")
-			):
-				continue
-			marked_tiles.append(tile)
+	for tile in Global.visible_tiles.keys():
+		Global.shade.set_cell(tile, -1)
+		fog.set_cell(tile, -1)
+	#Global.shade.set_pattern(
+	##walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells())
+	##)
+	#var marked_tiles = [new_coords]
+	#var adjacent_tiles = [
+	#Vector2i(1, 0),
+	#Vector2i(0, 1),
+	#Vector2i(-1, 0),
+	#Vector2i(0, -1),
+	#]
+	#var diagonal_tiles = [Vector2i(1, 1), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(1, -1)]
+	#for a_t in adjacent_tiles + diagonal_tiles:
+	#marked_tiles.append(new_coords + a_t)
+	#tile_light[new_coords + a_t] = light_radius - 1
+	#tile_light[new_coords] = light_radius
+	#while not marked_tiles.is_empty():
+	#var checking_tile = marked_tiles.pop_front()
+	#var current_light = tile_light[checking_tile]
+	#Global.shade.set_cell(checking_tile, -1)
+	#fog.set_cell(checking_tile, -1)
+	#if current_light <= 1:
+	#continue
+
+
+#
+#for a_t in adjacent_tiles + diagonal_tiles:
+#var tile = a_t + checking_tile
+#if tile not in tile_light or tile_light[tile] >= current_light:
+#continue
+#tile_light[tile] = current_light - 1
+#var wall_tile = Global.walls.get_cell_tile_data(checking_tile)
+#if wall_tile and wall_tile.get_custom_data("occluding"):
+#continue
+#marked_tiles.append(tile)
+##for d_t in diagonal_tiles:
+##var tile = d_t + checking_tile
+##if tile not in tile_light or tile_light[tile] >= current_light:
+##continue
+##tile_light[tile] = current_light - 1
+##var wall_tile = Global.walls.get_cell_tile_data(checking_tile)
+##if wall_tile and wall_tile.get_custom_data("occluding"):
+##continue
+##var adjacent_wall1 = Global.walls.get_cell_tile_data(checking_tile + Vector2i(d_t.x, 0))
+##var adjacent_wall2 = Global.walls.get_cell_tile_data(checking_tile + Vector2i(0, d_t.y))
+##if (
+##adjacent_wall1
+##and adjacent_wall2
+##and adjacent_wall1.get_custom_data("occluding")
+##and adjacent_wall2.get_custom_data("occluding")
+##):
+##continue
+##marked_tiles.append(tile)
 
 
 func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):
 	var new_entity = entity_scene.instantiate()
 	new_entity.global_position = floors.map_to_local(grid_coordinate)
 	add_child(new_entity)
-	#print("Spawned %s at: %s" % [new_entity.name, grid_coordinate])
 	return new_entity
 
 
@@ -357,7 +365,7 @@ func try_spawning_random_monster(initialize_entity := true):
 				_initialize_entity(new_entity.grid_entity)
 				if is_arena:
 					new_entity._update_angry_at(player.grid_entity)
-				if is_arena or not Global.darkness.get_cell_tile_data(grid_coordinate):
+				if is_arena or not Global.shade.get_cell_tile_data(grid_coordinate):
 					var new_smoke = spawn_smoke_scene.instantiate()
 					new_smoke.global_position = Global.floors.map_to_local(grid_coordinate)
 					add_child(new_smoke)
@@ -432,7 +440,7 @@ func spawn_entity_from_creature(
 			new_entity.grid_entity.challenge_rating = 0.0
 			new_entity.grid_entity.soul_count = 0
 			summoning_skill.on_entity_summoned(summoning_entity, new_entity)
-			if is_arena or not Global.darkness.get_cell_tile_data(summon_coords):
+			if is_arena or not Global.shade.get_cell_tile_data(summon_coords):
 				var new_smoke = spawn_smoke_scene.instantiate()
 				new_smoke.global_position = Global.floors.map_to_local(summon_coords)
 				add_child(new_smoke)
@@ -463,15 +471,19 @@ func _on_entity_died(is_despawning, grid_entity: GridEntity):
 		return
 	if not is_despawning and grid_entity.challenge_rating > 0:
 		current_entity_count -= 1
-		Global.walls.set_cell(generator.stairs_down_location, -1)
+		var stairs_down_location = Global.floors.get_used_cells_by_id(
+			stairs_down_tile[0], stairs_down_tile[1]
+		)
+		if not stairs_down_location.is_empty():
+			Global.walls.set_cell(stairs_down_location[0], -1)
 
 
 func _on_player_died(_despawning) -> void:
 	if not is_arena:
 		for tile in Global.floors.get_used_cells():
-			Global.darkness.set_cell(tile, -1)
+			Global.shade.set_cell(tile, -1)
 	%Fog.hide()
-	%Darkness.hide()
+	%Shade.hide()
 	$CanvasLayer/DeathScreen/VBoxContainer/FloorReached.text = ("Floor Reached: %s" % current_floor)
 	$CanvasLayer/DeathScreen/VBoxContainer/Kills.text = "Kills: %s" % player.grid_entity.kills
 	$CanvasLayer/DeathScreen/VBoxContainer/Turns.text = "Turns: %s" % turn_counter

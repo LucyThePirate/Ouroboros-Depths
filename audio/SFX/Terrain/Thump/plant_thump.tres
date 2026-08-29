@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://cin8yf3hd8cew"]
+
+[ext_resource type="AudioStream" uid="uid://dgdufp7c7rv1k" path="res://audio/SFX/Terrain/Thump/540278__zepurple__tree-shake.ogg" id="1_sx0yi"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("1_sx0yi")
