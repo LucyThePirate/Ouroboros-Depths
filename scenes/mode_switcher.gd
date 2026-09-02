@@ -6,8 +6,9 @@ var game_scene := load("uid://dnf6sqy5t3iq")  # game_manager.tscn
 var tutorial_scene := load("uid://bkcktb2mpmgsc")  # tutorial_level.tscn
 var arena_scene := load("uid://d4aptj5nxvsq5")  # arena_test_level.tscn
 var title_scene := load("uid://c02to40218vlw")  # title_screen.tscn
+var credits_scene := load("uid://dn3wofodnqxg4")  # credits_level.tscn
 
-enum Modes { GAME, TUTORIAL, ARENA, TITLE }
+enum Modes { GAME, TUTORIAL, ARENA, TITLE, CREDITS }
 var mode := Modes.TITLE
 var current_mode_node: GameMode
 var seed := 0
@@ -29,6 +30,8 @@ func change_mode(new_mode: Modes):
 			selected_mode = arena_scene
 		Modes.TITLE:
 			selected_mode = title_scene
+		Modes.CREDITS:
+			selected_mode = credits_scene
 		_:
 			printerr("UNRECOGNIZED MODE! %s", new_mode)
 	current_mode_node.queue_free()

@@ -133,10 +133,11 @@ func _on_music_volume_drag_ended(_value_changed: bool) -> void:
 
 
 func _on_credits_button_pressed() -> void:
-	$CanvasLayer/MainMenu.hide()
-	$CanvasLayer/Credits.show()
-	$CanvasLayer/MainMenuButton.show()
-	$CanvasLayer/Disclaimer.hide()
+	#$CanvasLayer/MainMenu.hide()
+	#$CanvasLayer/Credits.show()
+	#$CanvasLayer/MainMenuButton.show()
+	#$CanvasLayer/Disclaimer.hide()
+	requested_mode_switch.emit(ModeSwitcher.Modes.CREDITS)
 
 
 func _load_gameplay_options():

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://fmd1i6nikoyg"
+path="res://.godot/imported/Tribute To The Fallen Leaves[melody].mp3-2aaa73cf775415690044dba15ccfdad0.mp3str"
+
+[deps]
+
+source_file="res://audio/Music/AstrMusic/Tribute To The Fallen Leaves[melody].mp3"
+dest_files=["res://.godot/imported/Tribute To The Fallen Leaves[melody].mp3-2aaa73cf775415690044dba15ccfdad0.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
