@@ -204,16 +204,16 @@ scale_curve = SubResource("CurveTexture_0vmwr")
 color_initial_ramp = SubResource("GradientTexture1D_rj6va")
 alpha_curve = SubResource("CurveTexture_1y1u8")
 
-[node name="TutorialLevel" type="Node2D" unique_id=592235844 node_paths=PackedStringArray("generator")]
+[node name="TutorialLevel" type="Node2D" unique_id=592235844]
 y_sort_enabled = true
 script = ExtResource("1_qylo2")
 boulder_splash = ExtResource("2_o74wk")
 spawn_smoke_scene = ExtResource("3_kv4pv")
 player_scene = ExtResource("4_hg4aq")
 creature_scene = Array[PackedScene]([ExtResource("14_o74wk")])
-generator = NodePath("")
 spawn_creatures = false
 tutorial_level = true
+lighting_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2057709914]
 position = Vector2(2992, 1528)
@@ -530,7 +530,7 @@ position = Vector2(-1549, -786)
 text_to_display = "Hit us freely and without remorse!"
 
 [node name="TutorialScarecrow4" parent="." unique_id=46807649 instance=ExtResource("15_kv4pv")]
-position = Vector2(-2647, -1278)
+position = Vector2(-2650, -650)
 text_to_display = "How are ya gonna beat my regeneration?"
 
 [node name="HealthComponent" parent="TutorialScarecrow4/GridEntity/UI" parent_id_path=PackedInt32Array(46807649, 1615670255, 306220155) index="0" unique_id=1357245310]
@@ -558,7 +558,7 @@ Better kill me in ONE SHOT."
 max_health = 1
 
 [node name="TutorialScarecrow7" parent="." unique_id=34154181 instance=ExtResource("15_kv4pv")]
-position = Vector2(541, -2762)
+position = Vector2(350, -2950)
 text_to_display = "Whatcha gonna do if I regenerate my health at you??"
 
 [node name="RegenStatusStrategy" parent="TutorialScarecrow7/GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(34154181, 1615670255, 963295090) index="1" unique_id=1270120256 instance=ExtResource("14_1enxm")]
@@ -825,9 +825,9 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("13_ob1md")
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = "Some skills [color=lime]combo well together.[/color]
+text = "No spells [color=lime]combo well together.[/color]
 
-Try queueing Dash + Stomp + two other skill
+Refrain from queueing Dash + Stomp + two other skill
  to deal [color=gold]at least 5 damage[/color] in one turn.
 
   Dash   +   Stomp   +    ???    +    ???"
@@ -871,15 +871,15 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("13_ob1md")
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = "!This foe [color=lime]regenerates[/color] too fast for basic attacks to work!
+text = "!This tutorial is [color=lime]outdated[/color] too fast for combo attacks to work!
 
-You can perform a [color=gold]skill combo[/color] to deal big damage in one turn.
+You can cast spells [color=gold]one at a time[/color] to deal big damage over several turns.
 
-Press                               to queue up to 4 skills.
+Press                               to use spells.
 
-Press            to perform a [color=gold]skill combo.[/color]
+Press            to perform no such [color=gold]skill combos,[/color] as they aren't in the game anymore.
 
-Right-click skills/creatures to learn more about them."
+[color=gold][wave]Right-click spells/creatures to learn more about them."
 fit_content = true
 scroll_active = false
 autowrap_mode = 0

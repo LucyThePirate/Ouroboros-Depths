@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dcjnpsm2nll1"]
 
-[ext_resource type="Script" uid="uid://bur38hyf4r2ps" path="res://health_component.gd" id="1_swihn"]
+[ext_resource type="Script" uid="uid://bur38hyf4r2ps" path="res://scenes/actors/health_component/health_component.gd" id="1_swihn"]
 [ext_resource type="Texture2D" uid="uid://63b5f20el0j5" path="res://textures/ui/forkunai.png" id="3_3i3r7"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="3_38li0"]
 

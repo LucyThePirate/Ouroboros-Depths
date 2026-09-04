@@ -74,7 +74,7 @@ func load_deck() -> Resource:
 		selected_deck = Global.config.get_value("Gameplay", "SelectedDeck")
 	match selected_deck:
 		DECKS.BASIC:
-			return load("uid://bveghq3452ke2")  # Basic
+			return load("uid://bveghq3452ke2")  # basic_deck.tscn
 		DECKS.FUZZER:
 			return load("uid://d3621d3dpr8dj")  # Fuzzer
 		DECKS.MUSICIAN:

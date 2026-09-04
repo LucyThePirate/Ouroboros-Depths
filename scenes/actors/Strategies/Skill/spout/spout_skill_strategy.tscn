@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bi4e0jnvsgoq7"]
+
+[ext_resource type="PackedScene" uid="uid://bcpo4dfcq62k2" path="res://scenes/actors/Strategies/Skill/base_skill_strategy.tscn" id="1_jk4u0"]
+[ext_resource type="Texture2D" uid="uid://0er771qiiry0" path="res://textures/skills/SpoutSkill.png" id="2_63388"]
+[ext_resource type="Script" uid="uid://c5ko0yxpt5475" path="res://scenes/actors/Strategies/Skill/spout/spout_skill_strategy.gd" id="2_i1twl"]
+[ext_resource type="PackedScene" uid="uid://cmxeogtui2phc" path="res://scenes/effects/note_vfx.tscn" id="3_i1twl"]
+
+[node name="SpoutSkillStrategy" unique_id=1163924449 instance=ExtResource("1_jk4u0")]
+script = ExtResource("2_i1twl")
+note_VFX = ExtResource("3_i1twl")
+skill_ID = 23
+skill_name = "Spout"
+skill_desc = "A thin stream of water shot at incredible speeds!"
+
+[node name="Icon" parent="." index="0" unique_id=2096319184]
+texture = ExtResource("2_63388")

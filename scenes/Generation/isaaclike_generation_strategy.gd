@@ -106,11 +106,6 @@ func generate_level():
 	# 4. Generate stairs up & down
 	_place_stairs()
 
-	for tile in floors.get_used_cells():
-		fog.set_cell(tile, fog_tile[0], fog_tile[1])
-
-	fog.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
-
 	Global.floors = floors
 	Global.walls = walls
 

@@ -44,6 +44,7 @@ enum Species {
 	BOMB,
 	SWARMER,
 	FALSE_WALL,
+	SIR_GEIS,
 }
 @export var species_type := Species.DEFAULT
 @export var creature_name := "Default Entity"

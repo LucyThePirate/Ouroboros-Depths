@@ -81,6 +81,7 @@ alpha_curve = SubResource("CurveTexture_cyo7g")
 
 [node name="GameManager" unique_id=1347246317 node_paths=PackedStringArray("generator") instance=ExtResource("1_eldwu")]
 generator = NodePath("IsaaclikeGenerationStrategy")
+lighting_mode = null
 
 [node name="IsaaclikeGenerationStrategy" parent="." index="12" unique_id=678348038 instance=ExtResource("17_ttnpg")]
 number_of_cells = 25

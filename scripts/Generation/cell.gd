@@ -24,6 +24,8 @@ var bogo_egg: BraindeadAI
 #region Fog
 @onready var fog = %Fog
 @onready var shade = %Shade as TileMapLayer
+enum LightingModes { FULLY_LIT, FOG_ONLY, FOG_AND_SHADE }
+@export var lighting_mode := LightingModes.FOG_AND_SHADE
 #endregion
 
 #region Terrain generation and Tiles
@@ -142,17 +144,14 @@ func _ready():
 
 func _initialize_fog():
 	shade.clear()
-	if is_arena:
+	if lighting_mode == LightingModes.FULLY_LIT:
 		return
-	#shade.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
-	#for x in Global.walls.get_used_rect().size.x:
-	#for y in Global.walls.get_used_rect().size.y:
-	#var tile_position = Vector2i(
-	#x + Global.walls.get_used_rect().position.x,
-	#y + Global.walls.get_used_rect().position.y
-	#)
-	#shade.set_cell(tile_position, fog_tile[0], fog_tile[1])
+	for tile in floors.get_used_cells():
+		fog.set_cell(tile, fog_tile[0], fog_tile[1])
 
+	fog.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
+
+	Global.fog = fog
 	Global.shade = shade
 	_update_fog(Vector2i.ZERO, Vector2i.ZERO, true)
 
@@ -243,7 +242,7 @@ func _player_max_health_updated():
 func _update_fog(
 	_old_coords := Vector2i.ZERO, new_coords := Vector2i.ZERO, initializing_fog := false
 ):
-	if is_arena:
+	if lighting_mode == LightingModes.FULLY_LIT:
 		return
 	if initializing_fog:
 		if $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1]).size() > 0:
@@ -255,69 +254,16 @@ func _update_fog(
 			float(light_radius) * player.health_component.get_max_health_percentage()
 		)
 
-	Global.visible_tiles = {}
-
-	Light.computeFov(new_coords, light_radius)
-
-	for tile in Global.floors.get_used_cells():
-		if tile not in Global.visible_tiles:
+	if lighting_mode != LightingModes.FOG_ONLY:
+		for tile in Global.visible_tiles.keys():
 			Global.shade.set_cell(tile, fog_tile[0], fog_tile[1])
+
+	Global.visible_tiles = {}
+	Light.computeFov(new_coords, light_radius)
 
 	for tile in Global.visible_tiles.keys():
 		Global.shade.set_cell(tile, -1)
 		fog.set_cell(tile, -1)
-	#Global.shade.set_pattern(
-	##walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells())
-	##)
-	#var marked_tiles = [new_coords]
-	#var adjacent_tiles = [
-	#Vector2i(1, 0),
-	#Vector2i(0, 1),
-	#Vector2i(-1, 0),
-	#Vector2i(0, -1),
-	#]
-	#var diagonal_tiles = [Vector2i(1, 1), Vector2i(-1, 1), Vector2i(-1, -1), Vector2i(1, -1)]
-	#for a_t in adjacent_tiles + diagonal_tiles:
-	#marked_tiles.append(new_coords + a_t)
-	#tile_light[new_coords + a_t] = light_radius - 1
-	#tile_light[new_coords] = light_radius
-	#while not marked_tiles.is_empty():
-	#var checking_tile = marked_tiles.pop_front()
-	#var current_light = tile_light[checking_tile]
-	#Global.shade.set_cell(checking_tile, -1)
-	#fog.set_cell(checking_tile, -1)
-	#if current_light <= 1:
-	#continue
-
-
-#
-#for a_t in adjacent_tiles + diagonal_tiles:
-#var tile = a_t + checking_tile
-#if tile not in tile_light or tile_light[tile] >= current_light:
-#continue
-#tile_light[tile] = current_light - 1
-#var wall_tile = Global.walls.get_cell_tile_data(checking_tile)
-#if wall_tile and wall_tile.get_custom_data("occluding"):
-#continue
-#marked_tiles.append(tile)
-##for d_t in diagonal_tiles:
-##var tile = d_t + checking_tile
-##if tile not in tile_light or tile_light[tile] >= current_light:
-##continue
-##tile_light[tile] = current_light - 1
-##var wall_tile = Global.walls.get_cell_tile_data(checking_tile)
-##if wall_tile and wall_tile.get_custom_data("occluding"):
-##continue
-##var adjacent_wall1 = Global.walls.get_cell_tile_data(checking_tile + Vector2i(d_t.x, 0))
-##var adjacent_wall2 = Global.walls.get_cell_tile_data(checking_tile + Vector2i(0, d_t.y))
-##if (
-##adjacent_wall1
-##and adjacent_wall2
-##and adjacent_wall1.get_custom_data("occluding")
-##and adjacent_wall2.get_custom_data("occluding")
-##):
-##continue
-##marked_tiles.append(tile)
 
 
 func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):

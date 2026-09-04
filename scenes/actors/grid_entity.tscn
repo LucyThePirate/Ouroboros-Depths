@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://l0k61db14icb" path="res://scripts/Actors/grid_entity.gd" id="1_u0fqg"]
 [ext_resource type="PackedScene" uid="uid://cp76vu813yo6i" path="res://scenes/actors/creature_description.tscn" id="2_8uxk8"]
-[ext_resource type="PackedScene" uid="uid://dcjnpsm2nll1" path="res://scenes/actors/health_component.tscn" id="18_vnsn2"]
+[ext_resource type="PackedScene" uid="uid://dcjnpsm2nll1" path="res://scenes/actors/health_component/health_component.tscn" id="18_vnsn2"]
 [ext_resource type="PackedScene" uid="uid://bn5ri0qp1ncea" path="res://scenes/actors/status_manager_component.tscn" id="21_jyxbn"]
 [ext_resource type="PackedScene" uid="uid://bd85kao70uoy4" path="res://scenes/actors/skill_stack_component.tscn" id="22_off3y"]
 [ext_resource type="PackedScene" uid="uid://canci4neobys2" path="res://scenes/actors/turn_component.tscn" id="23_rfqsp"]
