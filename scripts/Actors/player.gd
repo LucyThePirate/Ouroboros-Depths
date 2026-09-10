@@ -237,7 +237,7 @@ func queue_skill(skill_number):
 func execute_queue():
 	if state != States.IDLE:
 		return
-	%ExecutingParticles.emitting = true
+
 	state = States.EXECUTING_STACK
 	%ScarecrowVisual.use_parent_material = false
 	stack_component.execute_stack()
@@ -285,7 +285,6 @@ func _handle_awaiting_cursor_input():
 
 func _on_skill_stack_component_emptied_stack() -> void:
 	if state == States.EXECUTING_STACK:
-		%ExecutingParticles.emitting = false
 		state = States.IDLE
 		%ScarecrowVisual.use_parent_material = true
 		end_turn()
@@ -311,6 +310,8 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 
 
 func end_turn():
+	if grid_entity.status_component.gets_bonus_turn():
+		return
 	turn_component.end_turn()
 	if not grid_entity.is_on_floor():
 		_on_grid_entity_fell_off_map()

@@ -53,6 +53,14 @@ func add_status(new_status: StatusStrategy):
 func on_turn_ended():
 	for status in status_bar.get_children() as Array[StatusStrategy]:
 		status.on_turn_ended()
+	return
+
+
+func gets_bonus_turn() -> bool:
+	for status in status_bar.get_children() as Array[StatusStrategy]:
+		if status.gets_bonus_turn():
+			return true
+	return false
 
 
 func on_status_ended(status: StatusStrategy):

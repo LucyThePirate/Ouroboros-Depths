@@ -921,24 +921,36 @@ position = Vector2(142.378, 36.517)
 rotation = -1.58628
 scale = Vector2(0.388099, 1.11971)
 rest = Transform2D(-0.0060083, -0.388052, 1.11958, -0.0173347, 142.378, 36.517)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = -90.887146
 
 [node name="Hat" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/Gourd" unique_id=1233362826]
 position = Vector2(-239.839, -11.2321)
 rotation = -1.58628
 scale = Vector2(0.388099, 1.11971)
 rest = Transform2D(-0.0060083, -0.388052, 1.11958, -0.0173347, -239.839, -11.2321)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = -90.887146
 
 [node name="EyeLeft" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/Gourd" unique_id=719026252]
 position = Vector2(66.8782, 64.1896)
 rotation = -0.259633
 scale = Vector2(0.388098, 1.11972)
 rest = Transform2D(0.375091, -0.099635, 0.28746, 1.08219, 66.8782, 64.1896)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = -14.8758745
 
 [node name="EyeRight" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/Gourd" unique_id=587961691]
 position = Vector2(70.6241, -34.7597)
 rotation = -1.2969
 scale = Vector2(0.388098, 1.11972)
 rest = Transform2D(0.104976, -0.373631, 1.07798, 0.30287, 70.6241, -34.7597)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = -74.30689
 
 [node name="RightGlove" type="Bone2D" parent="Skeleton2D/PostBase/PostTop" unique_id=209052543]
 position = Vector2(166, 59)
@@ -1005,6 +1017,9 @@ rest = Transform2D(1, 0, 0, 1, 1, 149)
 [node name="Shawl3" type="Bone2D" parent="Skeleton2D/PostBase/PostTop/ShawlRight/Shawl2" unique_id=2128769973]
 position = Vector2(-6, 164)
 rest = Transform2D(1, 0, 0, 1, -6, 164)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
 
 [node name="ShawlBack" type="Polygon2D" parent="." unique_id=1362771475]
 use_parent_material = true

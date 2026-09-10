@@ -1072,18 +1072,30 @@ rest = Transform2D(1, 0, 0, 1, 1, -52)
 [node name="AntennaeL" type="Bone2D" parent="Skeleton2D/Motherbone/Body/Face/Noggin" unique_id=712024870]
 position = Vector2(-55, 3)
 rest = Transform2D(1, 0, 0, 1, -55, 3)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
 
 [node name="AntennaeR" type="Bone2D" parent="Skeleton2D/Motherbone/Body/Face/Noggin" unique_id=2057043583]
 position = Vector2(29, 0)
 rest = Transform2D(1, 0, 0, 1, 29, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
 
 [node name="EyeL" type="Bone2D" parent="Skeleton2D/Motherbone/Body/Face" unique_id=1986521270]
 position = Vector2(-47, 3)
 rest = Transform2D(1, 0, 0, 1, -47, 3)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
 
 [node name="EyeR" type="Bone2D" parent="Skeleton2D/Motherbone/Body/Face" unique_id=1070432609]
 position = Vector2(47, -3)
 rest = Transform2D(1, 0, 0, 1, 47, -3)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
 
 [node name="Horn" type="Bone2D" parent="Skeleton2D/Motherbone/Body/Face" unique_id=923145365]
 position = Vector2(14, 34)
@@ -1359,6 +1371,7 @@ bus = &"SFX"
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=886451758]
 unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeBlendTree_c4bwt")
 anim_player = NodePath("../AnimationPlayer")
 parameters/HurtOneShot/active = false

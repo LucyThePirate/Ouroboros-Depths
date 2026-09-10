@@ -5,7 +5,7 @@ var max_distance = 5
 @export var DashVFX: PackedScene
 
 
-func ready_skill(grid_entity: GridEntity) -> bool:
+func ready_skill(_grid_entity: GridEntity) -> bool:
 	request_direction()
 	return false
 

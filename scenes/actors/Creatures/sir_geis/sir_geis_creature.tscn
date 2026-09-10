@@ -23,5 +23,6 @@ max_health = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=1730773275]
 texture = ExtResource("2_ayj5y")
+offset = Vector2(0, -20.5)
 
 [editable path="GridEntity"]

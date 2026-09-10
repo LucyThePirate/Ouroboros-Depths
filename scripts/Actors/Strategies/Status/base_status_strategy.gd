@@ -24,6 +24,7 @@ enum Status_IDs {
 	BOUNCY,
 	EXPLOSIVE,
 	DESPERATION,
+	ADRENALINE,
 }
 
 @export_category("Lore")
@@ -52,6 +53,7 @@ func merge_status(status: StatusStrategy):
 
 func decrease_power(amount := 1):
 	power -= amount
+	_update_visuals()
 	if power <= 0:
 		on_status_ended()
 
@@ -66,6 +68,8 @@ func increase_power(amount := 1) -> bool:
 	return true
 
 
+## Occurs when gried entity ends turn. Optionally,
+## returns a bool, where true = take another turn.
 func on_turn_ended():
 	current_turns_afflicted -= 1
 	if current_turns_afflicted <= 0:
@@ -74,6 +78,11 @@ func on_turn_ended():
 		_update_visuals()
 	if power <= 0:
 		on_status_ended()
+
+
+## Whether or not this status should grant this creature extra turns
+func gets_bonus_turn() -> bool:
+	return false
 
 
 func on_status_ended():

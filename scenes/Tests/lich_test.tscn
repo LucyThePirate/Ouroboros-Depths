@@ -1393,7 +1393,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_mlvm5")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 2.0
 }]
@@ -1415,7 +1415,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_mf5vi")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 2.0
 }]
@@ -1477,6 +1477,9 @@ remote_path = NodePath("../../../../../../Body/Head/Jaw")
 [node name="Eye" type="Bone2D" parent="Skeleton2D/Hip/Body/Head" unique_id=1462420099]
 position = Vector2(1, -46)
 rest = Transform2D(1, 0, 0, 1, 1, -46)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
 metadata/_local_pose_override_enabled_ = true
 
 [node name="EyeTransform" type="RemoteTransform2D" parent="Skeleton2D/Hip/Body/Head/Eye" unique_id=1996215300]

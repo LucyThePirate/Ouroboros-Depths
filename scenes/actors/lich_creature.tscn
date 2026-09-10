@@ -32,7 +32,7 @@ skill_desc = ""
 
 [node name="WarpSkillStrategy" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1367490962, 1500394995) index="10" unique_id=2128303912 instance=ExtResource("4_ad5vk")]
 
-[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1367490962, 1710592687) index="0" unique_id=1357245310]
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1367490962, 306220155) index="0" unique_id=1357245310]
 max_health = 7
 
 [node name="Display" type="Node2D" parent="." unique_id=1342699200]

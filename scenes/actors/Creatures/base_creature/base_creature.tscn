@@ -16,41 +16,16 @@ script = ExtResource("1_6r2tr")
 [node name="GridEntity" parent="." unique_id=1162874930 instance=ExtResource("2_nyqal")]
 species_desc = "A creature who hasn't had their description set. What could it be???"
 
-[node name="Thump" parent="GridEntity" index="1" unique_id=173140461]
-area_mask = 1
-
-[node name="Step" parent="GridEntity" index="2" unique_id=1732872707]
-unique_name_in_owner = false
-area_mask = 1
-
-[node name="GrassStep" parent="GridEntity" index="3" unique_id=184499379]
-area_mask = 1
-
-[node name="WaterStep" parent="GridEntity" index="4" unique_id=1330243059]
-area_mask = 1
-
-[node name="GlassThump" parent="GridEntity" index="5" unique_id=1268883726]
-area_mask = 1
-
-[node name="PlantThump" parent="GridEntity" index="6" unique_id=125511617]
-area_mask = 1
-
-[node name="Error" parent="GridEntity" index="7" unique_id=181515783]
-area_mask = 1
-
-[node name="DoorOpen" parent="GridEntity" index="8" unique_id=2127013777]
-area_mask = 1
-
-[node name="SkillStackComponent" parent="GridEntity" index="10" unique_id=1500394995]
+[node name="SkillStackComponent" parent="GridEntity" index="1" unique_id=1500394995]
 visible = false
 
-[node name="UI" parent="GridEntity" index="12" unique_id=306220155]
+[node name="UI" parent="GridEntity" index="3" unique_id=306220155]
 position = Vector2(0, -34)
 
 [node name="HealthComponent" parent="GridEntity/UI" index="0" unique_id=1357245310]
 max_health = 4
 
-[node name="Hit" parent="GridEntity" index="13" unique_id=1089424246]
+[node name="Hit" parent="GridEntity" index="4" unique_id=1089424246]
 area_mask = 1
 
 [node name="Display" type="Node2D" parent="." unique_id=1627324750]

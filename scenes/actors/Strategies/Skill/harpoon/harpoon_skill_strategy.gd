@@ -7,7 +7,7 @@ var wall_to_pull_coords: Vector2i
 var wall_to_pull := false
 
 
-func ready_skill(grid_entity: GridEntity) -> bool:
+func ready_skill(_grid_entity: GridEntity) -> bool:
 	request_direction()
 	return false
 

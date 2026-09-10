@@ -5,7 +5,7 @@ var max_distance = 8
 @export var earth_spike_projectile: PackedScene
 
 
-func ready_skill(grid_entity: GridEntity) -> bool:
+func ready_skill(_grid_entity: GridEntity) -> bool:
 	request_direction()
 	return false
 

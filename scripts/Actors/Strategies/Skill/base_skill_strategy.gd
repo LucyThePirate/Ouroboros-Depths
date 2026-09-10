@@ -146,7 +146,7 @@ func on_skill_queued():
 		current_count -= 1
 
 
-func on_grid_entity_moved(old_coords: Vector2i, new_coords: Vector2i):
+func on_grid_entity_moved(_old_coords: Vector2i, _new_coords: Vector2i):
 	pass
 
 

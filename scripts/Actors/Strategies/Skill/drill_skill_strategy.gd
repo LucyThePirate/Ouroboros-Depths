@@ -6,7 +6,7 @@ var min_distance = 1
 @export var vigor_status: PackedScene
 
 
-func ready_skill(grid_entity: GridEntity) -> bool:
+func ready_skill(_grid_entity: GridEntity) -> bool:
 	request_direction()
 	return false
 

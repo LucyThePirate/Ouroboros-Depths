@@ -9,8 +9,8 @@ class_name CreatureAI
 @onready var grid_entity = $GridEntity as GridEntity
 @onready var display = $Display
 @onready var displayLerpTime = 0.0
-@onready var turn_component = $GridEntity/TurnComponent
-@onready var stack_component = $GridEntity/SkillStackComponent
+@onready var turn_component = $GridEntity/TurnComponent as TurnComponent
+@onready var stack_component = $GridEntity/SkillStackComponent as SkillStackComponent
 @onready var health_component = $GridEntity/UI/HealthComponent as HealthComponent
 @onready
 var status_manager_component = $GridEntity/UI/StatusManagerComponent as StatusManagerComponent
@@ -210,8 +210,9 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 		return
 	grid_entity.name = name
 	initialized = true
-	turn_component.turn_ended.connect(health_component.turn_ended)
-	turn_component.turn_ended.connect(_on_turn_component_turn_ended)
+	if not turn_component.turn_ended.is_connected(health_component.turn_ended):
+		turn_component.turn_ended.connect(health_component.turn_ended)
+		turn_component.turn_ended.connect(_on_turn_component_turn_ended)
 	grid_entity.stack_component.emptied_stack.connect(_on_skill_stack_component_emptied_stack)
 	grid_entity.moved.connect(_on_grid_entity_moved)
 	_update_visibility()
@@ -255,8 +256,9 @@ func _update_angry_at(new_target: GridEntity):
 		else:
 			health_component.set_color(Color.WHITE)
 	angry_at = new_target
-	angry_at.died.connect(_on_angry_at_died)
-	angry_at.turned_invisible.connect(_on_angry_at_died)
+	if not angry_at.died.is_connected(_on_angry_at_died):
+		angry_at.died.connect(_on_angry_at_died)
+		angry_at.turned_invisible.connect(_on_angry_at_died)
 	print(name, " pissed at ", new_target.name)
 
 

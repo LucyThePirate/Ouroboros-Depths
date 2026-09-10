@@ -9,7 +9,7 @@ func _ready():
 	super()
 
 
-func ready_skill(grid_entity: GridEntity) -> bool:
+func ready_skill(_grid_entity: GridEntity) -> bool:
 	request_direction()
 	return false
 

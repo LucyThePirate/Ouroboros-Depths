@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d3w5sktv0qxww"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_s6xlx"]
+[ext_resource type="Script" uid="uid://b5gm1kiaghw0k" path="res://scenes/actors/Strategies/Status/Adrenaline/adrenaline_status_strategy.gd" id="2_gecx8"]
+[ext_resource type="Texture2D" uid="uid://c54ipwc48osnu" path="res://textures/effects/heart.png" id="2_utqyu"]
+[ext_resource type="Shader" uid="uid://ws4eeg7yveia" path="res://textures/shaders/glow.gdshader" id="4_gecx8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kxevl"]
+shader = ExtResource("4_gecx8")
+shader_parameter/glow_color = Color(1, 0.9, 0.5, 1)
+shader_parameter/intensity = 1.686000080085
+shader_parameter/spread = 2.0
+shader_parameter/pulse_speed = 1.6710000793725
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_t0ixk"]
+
+[node name="AdrenalineStatusStrategy" unique_id=577548757 instance=ExtResource("1_s6xlx")]
+script = ExtResource("2_gecx8")
+status_name = "Adrenaline"
+status_desc = "A burst of energy takes hold of you!"
+power = 4
+status_ID = 14
+
+[node name="TextureRect" parent="." index="0" unique_id=1155837054]
+texture = ExtResource("2_utqyu")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." index="3" unique_id=436678123]
+unique_name_in_owner = true
+update_rotation = false
+update_scale = false
+
+[node name="TextureRect2" type="TextureRect" parent="RemoteTransform2D" index="0" unique_id=2074464170]
+material = SubResource("ShaderMaterial_kxevl")
+offset_left = -69.359344
+offset_top = -145.94363
+offset_right = 69.359344
+offset_bottom = -4.794586
+texture = SubResource("CanvasTexture_t0ixk")
+metadata/_edit_use_anchors_ = true

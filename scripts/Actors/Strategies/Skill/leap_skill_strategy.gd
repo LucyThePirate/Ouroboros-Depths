@@ -7,7 +7,7 @@ var max_distance = 3
 @export var preview_line_cuts: int = 15
 
 
-func ready_skill(grid_entity: GridEntity) -> bool:
+func ready_skill(_grid_entity: GridEntity) -> bool:
 	request_cursor()
 	return false
 

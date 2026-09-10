@@ -77,7 +77,7 @@ var last_hit_by: GridEntity
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	turn_component.turn_ended.connect(status_component.on_turn_ended)
+	turn_component.turn_ended.connect(on_turn_ended)
 	stack_component.reload_started.connect(reload_started.emit)
 	stack_component.started_execution.connect(func(): started_stack_execution.emit())
 	stack_component.emptied_stack.connect(func(): finished_stack_execution.emit())
@@ -282,8 +282,14 @@ func harm(damage_amount := 1):
 	health_component.deal_damage(damage_amount)
 
 
-func inflict_status(condition: StatusStrategy):
+func inflict_status(_condition: StatusStrategy):
 	pass
+
+
+func on_turn_ended():
+	var free_turn = status_component.on_turn_ended()
+	if free_turn:
+		pass
 
 
 func on_death(is_despawning := false) -> void:

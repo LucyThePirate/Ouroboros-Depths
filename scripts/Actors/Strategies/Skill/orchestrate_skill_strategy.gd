@@ -48,7 +48,7 @@ func use_skill(grid_entity: GridEntity):
 	super(grid_entity)
 
 
-func on_stack_execution_finished(grid_entity: GridEntity):
+func on_stack_execution_finished(_grid_entity: GridEntity):
 	sequence.append(chord)
 	chord = []
 
