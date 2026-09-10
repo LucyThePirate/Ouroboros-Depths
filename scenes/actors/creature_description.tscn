@@ -72,8 +72,8 @@ horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Window/ScrollContainer/Control" unique_id=1233849929]
 visible = false
-clip_contents = true
 custom_minimum_size = Vector2(300, 300)
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -91,7 +91,7 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/normal_font = ExtResource("2_msx7r")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "Creature Description"
+text = "There is still much more to learn."
 fit_content = true
 
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/Window/ScrollContainer/Control" unique_id=702804990]

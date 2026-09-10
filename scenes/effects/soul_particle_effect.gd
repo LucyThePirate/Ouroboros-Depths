@@ -19,6 +19,10 @@ enum States { FLOATING, TARGET_REACHED }
 var state = States.FLOATING
 
 
+func _ready() -> void:
+	Global.next_floor_reached.connect(_on_next_floor_reached)
+
+
 func _process(delta: float) -> void:
 	delta *= 5
 	var target_position: Vector2
@@ -59,3 +63,8 @@ func rotate_to_target(target_position, delta):
 func _on_explosion_particles_finished() -> void:
 	particles_finished.emit()
 	queue_free()
+
+
+func _on_next_floor_reached():
+	if target:
+		global_position = target.global_position

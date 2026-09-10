@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://0hj12q8mhwp3" path="res://scenes/actors/Creatures/rat/delete_rat_creature.tscn" id="15_4bofw"]
 [ext_resource type="PackedScene" uid="uid://b04tvmeribd1k" path="res://scenes/actors/Creatures/bogo_sort.tscn" id="15_73xfa"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="16_cpcro"]
+[ext_resource type="PackedScene" uid="uid://vj5l8vjppmdv" path="res://scenes/actors/Creatures/sir_geis/sir_geis_creature.tscn" id="16_l5dbl"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="18_d2p2i"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="19_lq848"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="20_fidet"]
@@ -155,7 +156,7 @@ script = ExtResource("1_iuxeh")
 boulder_splash = ExtResource("2_0qvfo")
 spawn_smoke_scene = ExtResource("3_vk8p8")
 player_scene = ExtResource("4_3a4wt")
-creature_scene = Array[PackedScene]([ExtResource("5_dimvc"), ExtResource("6_hw4ns"), ExtResource("7_fkop7"), ExtResource("8_73l8b"), ExtResource("9_kmp3v"), ExtResource("10_mxyv8"), ExtResource("11_d2bkc"), ExtResource("12_tir5h"), ExtResource("13_brfwm"), ExtResource("14_tjpqt"), ExtResource("15_4bofw")])
+creature_scene = Array[PackedScene]([ExtResource("5_dimvc"), ExtResource("6_hw4ns"), ExtResource("7_fkop7"), ExtResource("8_73l8b"), ExtResource("9_kmp3v"), ExtResource("10_mxyv8"), ExtResource("11_d2bkc"), ExtResource("12_tir5h"), ExtResource("13_brfwm"), ExtResource("14_tjpqt"), ExtResource("15_4bofw"), ExtResource("16_l5dbl")])
 bogosort_scene = ExtResource("15_73xfa")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=800089894]

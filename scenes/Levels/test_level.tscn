@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/base_dungeon_manager.tscn" id="1_rvaov"]
 [ext_resource type="PackedScene" uid="uid://cqjoguhw8mhj" path="res://scenes/actors/Creatures/tutorial_scarecrow.tscn" id="4_2t416"]
-[ext_resource type="PackedScene" uid="uid://d3p2qbml7s288" path="res://scenes/actors/Creatures/slime/slime_creature.tscn" id="6_ka0q3"]
 [ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="7_eg032"]
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="7_gd42f"]
 [ext_resource type="PackedScene" uid="uid://dvtenp8g812ei" path="res://scenes/actors/Creatures/bogo_egg.tscn" id="7_pj5lm"]
@@ -13,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://d1ti6v0kdijnm" path="res://scenes/actors/Strategies/Skill/be_patient_skill_strategy.tscn" id="11_q4it1"]
 [ext_resource type="PackedScene" uid="uid://h0m5idgxkdx7" path="res://scenes/actors/Creatures/false_wall/false_wall.tscn" id="12_q4it1"]
 [ext_resource type="PackedScene" uid="uid://vj5l8vjppmdv" path="res://scenes/actors/Creatures/sir_geis/sir_geis_creature.tscn" id="13_bksus"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_lyyyq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_walqc"]
 blend_mode = 1
@@ -57,6 +58,9 @@ tile_map_data = PackedByteArray("AAD7//z/AgAAAAUAAAD7//3/AgAAAAEAAAD7//7/AgAAAAE
 [node name="Walls" parent="." index="2" unique_id=1056884836]
 tile_map_data = PackedByteArray("AAADAAkAAwADAAAAAAACAAkAAwADAAAAAAADAAsAAwADAAAAAQAEAAsAAwADAAAAAwAHAAkAAwADAAAAAgAGAAkAAwADAAAAAAAEAAgAAwADAAAAAgAFAAoAAwADAAAAAQACAAcAAwADAAAAAQAJAAcAAwADAAEAAAAKAAgAAwADAAEAAAAKAAYAAwADAAEAAAAJAAYAAwADAAEAAAAJAAUAAwADAAEAAAAHAAUAAwADAAEAAAAFAAYAAwADAAEAAAAEAAYAAgAHAAAAAAAEAAUAAwADAAEAAAADAAUAAwADAAEAAAACAAYAAwADAAEAAAABAAYAAwADAAEAAAAAAAcAAwADAAEAAAD+/wgAAwADAAEAAAD//woAAwADAAEAAAD//wsAAwADAAEAAAD//wwAAwADAAEAAAABAA0AAwADAAEAAAADAA0AAwADAAEAAAAHAAsAAwADAAEAAAAJAAwAAwADAAEAAAAKAAsAAwADAAEAAAALAAgAAwADAAEAAAANAAYAAwADAAEAAAAMAAYAAwADAAEAAAAIAAcAAwADAAEAAAAHAAcAAwADAAEAAAD//w0AAgAFAAAAAAAAAA0AAgAFAAAAAAD+/wcAAgAFAAAAAAD//wcAAgAFAAAAAAD+/wkAAgAFAAAAAAAJAAQAAgAFAAAAAAAIAAMAAgAFAAAAAAAHAAMAAgAHAAAAAAAGAAMAAgAHAAAAAAAGAAQAAgAHAAAAAAAGAAUAAgAHAAAAAAAGAAYAAgAHAAAAAAAFAAcAAgAHAAAAAAAHAAQAAgAHAAAAAAAIAAQAAgAHAAAAAAADAAYAAgAHAAAAAAACAAUAAgAHAAAAAAABAAUAAgAHAAAAAAD//wYAAgAHAAAAAAAAAAYAAgAHAAAAAAAAAAUAAgAHAAAAAAD//wUAAgAHAAAAAAD9/wYAAgAIAAAAAAAEAAMAAgAIAAAAAAAEAAQAAgAIAAAAAAACAAQAAgAIAAAAAAABAAQAAgAIAAAAAAAAAAQAAgAIAAAAAAD//wQAAgAIAAAAAAD+/wUAAgAIAAAAAAD9/wUAAgAIAAAAAAD8/wUAAgAIAAAAAAD9/wQAAgAIAAAAAAABAAMAAgAIAAAAAAACAAMAAgAIAAAAAAADAAQAAgAIAAAAAAD8/wYAAgAIAAAAAAD+/wYAAgAIAAAAAAAFAAUAAgAIAAAAAAAFAAQAAgAIAAAAAAAFAAMAAgAIAAAAAAADAAMAAgAIAAAAAAAIAAUAAgAIAAAAAAAIAAYAAgAIAAAAAAALAAUAAgAIAAAAAAD8//7/AgADAAAAAAD8////AgADAAAAAAD8/wAAAgADAAAAAAD9/wAAAgADAAAAAAD+/wAAAgADAAAAAAD//wAAAgADAAAAAAD/////AgADAAAAAAD///7/AgADAAAAAAD///3/AgADAAAAAAD+//3/AgADAAAAAAD9//3/AgADAAAAAAD8//3/AgADAAAAAADy/wUAAgAIAAAAAADz/wQAAgAHAAAAAADz/wkAAgAIAAAAAAD0/wQAAgAHAAAAAAD0/wYAAgAIAAAAAAD0/wkAAgAHAAAAAAD2/wUAAgAHAAAAAAD3/wQAAgAHAAAAAAD3/wYAAgAIAAAAAAD3/wgAAgAIAAAAAADz/wUAAgAHAAAAAAD0/wcAAgAIAAAAAAD0/wsAAgAIAAAAAAD1/wYAAgAHAAAAAAD1/wcAAgAHAAAAAAD2/wYAAgAHAAAAAAD2/wcAAgAHAAAAAAD2/woAAgAIAAAAAAD4/wQAAgAHAAAAAADx/wMAAgAHAAAAAADx/wQAAgAIAAAAAADx/wUAAgAHAAAAAADx/wYAAgAHAAAAAADx/wcAAgAIAAAAAADx/wgAAgAHAAAAAADx/wkAAgAFAAAAAADx/woAAgAFAAAAAADx/wsAAgAFAAAAAADx/wwAAgAFAAAAAADy/wMAAgAHAAAAAADy/wQAAgAHAAAAAADy/wYAAgAIAAAAAADy/wcAAgAIAAAAAADy/wgAAgAHAAAAAADy/wkAAgAHAAAAAADy/woAAgAIAAAAAADy/wsAAgAHAAAAAADy/wwAAgAFAAAAAADz/wMAAgAHAAAAAADz/wYAAgAHAAAAAADz/wcAAgAHAAAAAADz/wgAAgAHAAAAAADz/woAAgAHAAAAAADz/wsAAgAIAAAAAADz/wwAAgAFAAAAAAD0/wMAAgAHAAAAAAD0/wUAAgAIAAAAAAD0/wgAAgAIAAAAAAD0/woAAgAIAAAAAAD0/wwAAgAHAAAAAAD1/wMAAgAHAAAAAAD1/wQAAgAIAAAAAAD1/wUAAgAHAAAAAAD1/wgAAgAIAAAAAAD1/wkAAgAIAAAAAAD1/woAAgAIAAAAAAD1/wsAAgAIAAAAAAD1/wwAAgAHAAAAAAD2/wMAAgAHAAAAAAD2/wQAAgAHAAAAAAD2/wgAAgAIAAAAAAD2/wkAAgAHAAAAAAD2/wsAAgAHAAAAAAD2/wwAAgAFAAAAAAD3/wMAAgAIAAAAAAD3/wUAAgAIAAAAAAD3/wcAAgAHAAAAAAD3/wkAAgAHAAAAAAD3/woAAgAHAAAAAAD3/wsAAgAHAAAAAAD3/wwAAgAFAAAAAAD4/wMAAgAIAAAAAAD4/wUAAgAHAAAAAAD4/wYAAgAHAAAAAAD4/wcAAgAHAAAAAAD4/wgAAgAHAAAAAAD4/wkAAgAFAAAAAAD4/woAAgAFAAAAAAD4/wsAAgAFAAAAAAD4/wwAAgAFAAAAAAD7//3/AgACAAIAAAD7//7/AgACAAIAAAD7////AgACAAIAAAD7/wAAAgACAAIAAAAAAPz/AgABAAAAAAAAAP3/AgACAAIAAAAAAP7/AgACAAIAAAAAAP//AgACAAIAAAD8/wEAAgABAAIAAAD9/wEAAgABAAIAAAD+/wEAAgABAAIAAAD//wEAAgABAAIAAAD8//z/AgABAAIAAAD9//z/AgABAAIAAAD+//z/AgABAAIAAAD///z/AgABAAIAAAD7/wEAAgABAAAAAAAAAAEAAgABAAAAAAD7//z/AgABAAAAAADs//z/AgADAAQAAADs//v/AgADAAQAAADs//r/AgAGAAQAAADs//n/AgAGAAQAAADs//j/AgAHAAQAAADs//f/AgADAAQAAADs//b/AgAFAAQAAADs//X/AgADAAQAAADs//T/AgAFAAQAAADs//P/AgADAAQAAADt//P/AgAGAAQAAADu//P/AgAFAAQAAADv//P/AgADAAQAAADw//P/AgAIAAQAAADx//P/AgADAAQAAADy//P/AgAFAAQAAADz//P/AgAGAAQAAAD0//P/AgADAAQAAAD1//P/AgADAAQAAAD1//T/AgADAAQAAAD1//X/AgAHAAQAAAD1//b/AgAIAAQAAAD1//f/AgAHAAQAAAD1//j/AgAIAAQAAAD1//n/AgAGAAQAAAD1//r/AgAFAAQAAADx//z/AgADAAQAAADw//z/AgADAAQAAADv//z/AgADAAQAAADu//z/AgADAAQAAADt//z/AgAJAAQAAADv//j/AgAHAAIAAADx//b/AgAHAAIAAADz//n/AgAJAAIAAADy//n/AgAJAAIAAADx//n/AgAJAAIAAADx//j/AgAIAAIAAADw//j/AgAIAAIAAADw//f/AgAIAAIAAADv//X/AgAJAAIAAADw//X/AgAJAAIAAADv//f/AgAIAAIAAADy//j/AgAJAAIAAAD0//z/AgAEAAIAAADz//z/AgAEAAIAAADy//z/AgAEAAQAAAD1//v/AgAEAAQAAAD1//z/AgADAAQAAAD0//v/AgAEAAQAAADp/wgAAgADAAAAAADq/wgAAgADAAAAAADr/wgAAgADAAAAAADs/wgAAgADAAAAAADt/wgAAgADAAAAAADu/wgAAgADAAAAAADv/wgAAgADAAAAAADw/wgAAgADAAAAAADp//3/AgADAAAAAADp//7/AgADAAAAAADp////AgADAAAAAADp/wAAAgADAAAAAADp/wEAAgADAAAAAADp/wIAAgADAAAAAADp/wMAAgADAAAAAADp/wQAAgADAAAAAADp/wUAAgADAAAAAADp/wYAAgADAAAAAADp/wcAAgADAAAAAADq//3/AgADAAAAAADr//3/AgADAAAAAADs//3/AgADAAAAAADq/wYAAgADAAAAAADr/wYAAgADAAAAAADr/wcAAgADAAAAAADu/wQAAgADAAQAAADu/wMAAgADAAQAAADu/wIAAgADAAQAAADv/wQAAgADAAQAAADw/wQAAgADAAQAAADw/wMAAgADAAQAAADw/wIAAgADAAQAAADu/wAAAgADAAQAAADu/wEAAgADAAQAAADw/wAAAgADAAQAAADw/wEAAgADAAQAAAD0//7/AgAEAAIAAAD0/wAAAgAEAAIAAAD1/wAAAgAEAAIAAAD2/wAAAgAEAAIAAAD2//7/AgAEAAIAAADz//3/AgAEAAIAAADz//7/AgAEAAIAAADz////AgAEAAIAAADz/wAAAgAEAAIAAADz/wEAAgAEAAIAAAD0//3/AgAEAAIAAAD0/wEAAgAEAAIAAAD1/wEAAgAEAAIAAAD2/wEAAgAEAAIAAAD3/wEAAgAEAAIAAAD3/wAAAgAEAAIAAAD3////AgAEAAIAAAD3//7/AgAEAAIAAAD3//3/AgAEAAIAAAD3//z/AgAEAAIAAAD2//z/AgAEAAIAAAD2//3/AgAEAAIAAAD1//3/AgAEAAIAAAD7//T/AwADAAEAAAD7//X/AwADAAEAAAD7//b/AwADAAEAAAD7//f/AwADAAEAAAD6//f/AwADAAEAAAD5//f/AwADAAEAAAD4//f/AwADAAEAAAD3//f/AwADAAEAAAD3//b/AwADAAEAAAD3//X/AwADAAEAAAD3//T/AwADAAEAAAD3//P/AwADAAEAAAD4//P/AwADAAEAAAD5//P/AwADAAEAAAD6//P/AwADAAEAAAD7//P/AwADAAEAAAD2//L/AgAFAAAAAAD3//L/AgAFAAAAAAD4//L/AgADAAQAAAD5//L/AgADAAAAAAD6//L/AgABAAAAAAD7//L/AgAFAAAAAAD8//L/AgAFAAAAAAD9//L/AgAFAAAAAAD+//L/AgAFAAAAAAD+//P/AgAFAAAAAAD+//b/AgAFAAAAAAD+//f/AgAFAAAAAAD+//j/AgAFAAAAAAD2//n/AgAFAAAAAAD3//n/AgAFAAAAAAD4//n/AgAFAAAAAAD2//j/AgAFAAAAAAD2//f/AgAFAAAAAAD2//b/AgAFAAAAAAD2//X/AgAFAAAAAAD2//T/AgAFAAAAAAD2//P/AgAFAAAAAAD1//L/AgAFAAAAAAD1//H/AgAFAAAAAAD2//H/AgAFAAAAAAD3//H/AgAFAAAAAAD2//D/AgAFAAAAAAD4//D/AgAFAAAAAAD3//D/AgAFAAAAAAD4//H/AgAFAAAAAAD5//D/AgAFAAAAAAD5//H/AgAFAAAAAAD7//H/AgAFAAAAAAD6//H/AgAFAAAAAAD9//H/AgAFAAAAAAD8//D/AgAFAAAAAAD8//H/AgAFAAAAAAD9//D/AgAFAAAAAAD+//H/AgAFAAAAAAD+//D/AgAFAAAAAAD///H/AgAFAAAAAAD///L/AgAFAAAAAAACAPP/AgADAAAAAAADAPP/AgADAAAAAAAEAPP/AgADAAAAAAAEAPT/AgADAAAAAAAEAPX/AgADAAAAAAAEAPb/AgADAAAAAAAEAPf/AgADAAAAAAADAPf/AgADAAAAAAACAPf/AgADAAAAAAABAPf/AgADAAAAAAAAAPf/AgADAAIAAAAAAPb/AgADAAIAAAAAAPX/AgADAAIAAAAAAPT/AgADAAIAAAABAPP/AgADAAIAAAD9//P/AgABAAIAAAD9//T/AgABAAIAAAD9//X/AgABAAIAAAD9//b/AgABAAIAAAD9//f/AgABAAIAAAD9//j/AgABAAIAAAAKAAwAAgADAAAAAAALAAsAAgADAAAAAAA=")
 
+[node name="YouDied" parent="CanvasLayer/DeathScreen/VBoxContainer" parent_id_path=PackedInt32Array(1146646180) index="0" unique_id=524105090]
+custom_effects = [SubResource("RichTextEffect_lyyyq")]
+
 [node name="PauseButton" parent="CanvasLayer" parent_id_path=PackedInt32Array(1285677614) index="4" unique_id=719840358]
 metadata/_edit_use_anchors_ = true
 
@@ -74,16 +78,36 @@ text_to_display = ""
 [node name="HealthComponent" parent="PunchingBag/GridEntity/UI" parent_id_path=PackedInt32Array(322873272, 1615670255, 306220155) index="0" unique_id=1357245310]
 max_health = 999
 
-[node name="Bogo Egg" parent="." index="13" unique_id=963460758 instance=ExtResource("7_pj5lm")]
+[node name="ScarecrowVisual" parent="PunchingBag" index="6" unique_id=957441871]
+metadata/_edit_lock_ = true
+
+[node name="PunchingBag2" parent="." index="13" unique_id=1205893860 instance=ExtResource("4_2t416")]
+position = Vector2(-1850, 450)
+text_to_display = ""
+
+[node name="HealthComponent" parent="PunchingBag2/GridEntity/UI" parent_id_path=PackedInt32Array(1205893860, 1615670255, 306220155) index="0" unique_id=1357245310]
+max_health = 999
+
+[node name="ScarecrowVisual" parent="PunchingBag2" index="6" unique_id=957441871]
+metadata/_edit_lock_ = true
+
+[node name="PunchingBag3" parent="." index="14" unique_id=1233184063 instance=ExtResource("4_2t416")]
+position = Vector2(-1850, 50)
+text_to_display = ""
+
+[node name="HealthComponent" parent="PunchingBag3/GridEntity/UI" parent_id_path=PackedInt32Array(1233184063, 1615670255, 306220155) index="0" unique_id=1357245310]
+max_health = 999
+
+[node name="ScarecrowVisual" parent="PunchingBag3" index="6" unique_id=957441871]
+metadata/_edit_lock_ = true
+
+[node name="Bogo Egg" parent="." index="15" unique_id=963460758 instance=ExtResource("7_pj5lm")]
 position = Vector2(-750, -950)
 
-[node name="SnakeBlockCreature" parent="." index="14" unique_id=624847158 instance=ExtResource("7_eg032")]
+[node name="SnakeBlockCreature" parent="." index="16" unique_id=624847158 instance=ExtResource("7_eg032")]
 position = Vector2(-350, 50)
 
-[node name="SlimeCreature" parent="." index="15" unique_id=1358099767 instance=ExtResource("6_ka0q3")]
-position = Vector2(-2150, -50)
-
-[node name="StairsDownParticles" type="GPUParticles2D" parent="." index="16" unique_id=759682523]
+[node name="StairsDownParticles" type="GPUParticles2D" parent="." index="17" unique_id=759682523]
 material = SubResource("CanvasItemMaterial_walqc")
 position = Vector2(-1750, 550)
 texture = ExtResource("7_gd42f")
@@ -91,42 +115,49 @@ lifetime = 1.8
 speed_scale = 0.7
 process_material = SubResource("ParticleProcessMaterial_532wb")
 
-[node name="ReallyFuckingStrongRat" parent="." index="17" unique_id=1758473940 instance=ExtResource("8_pj5lm")]
+[node name="ReallyFuckingStrongRat" parent="." index="18" unique_id=1758473940 instance=ExtResource("8_pj5lm")]
 position = Vector2(-50, 950)
 
 [node name="VigorStatusStrategy" parent="ReallyFuckingStrongRat/GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1758473940, 1162874930, 963295090) index="1" unique_id=1120027395 instance=ExtResource("9_l7yy1")]
 layout_mode = 2
 power = 30
 
-[node name="DeleteRatCreature2" parent="." index="18" unique_id=526703256 instance=ExtResource("9_pj5lm")]
+[node name="DeleteRatCreature2" parent="." index="19" unique_id=526703256 instance=ExtResource("9_pj5lm")]
 position = Vector2(-1050, -50)
 
-[node name="DeleteRatCreature3" parent="." index="19" unique_id=1436107287 instance=ExtResource("9_pj5lm")]
+[node name="DeleteRatCreature3" parent="." index="20" unique_id=1436107287 instance=ExtResource("9_pj5lm")]
 position = Vector2(-1150, -50)
 
-[node name="FuzzerCreature" parent="." index="20" unique_id=711189580 instance=ExtResource("10_72hi1")]
+[node name="FuzzerCreature" parent="." index="21" unique_id=711189580 instance=ExtResource("10_72hi1")]
 position = Vector2(250, -1050)
 
 [node name="BePatientSkillStrategy" parent="FuzzerCreature/GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(711189580, 625960076, 1500394995) index="12" unique_id=1837355809 instance=ExtResource("11_q4it1")]
 count = 8
 
-[node name="FalseWall3" parent="." index="21" unique_id=934112234 instance=ExtResource("12_q4it1")]
+[node name="FalseWall3" parent="." index="22" unique_id=934112234 instance=ExtResource("12_q4it1")]
 position = Vector2(-450, 150)
 
-[node name="FalseWall2" parent="." index="22" unique_id=1995413549 instance=ExtResource("12_q4it1")]
+[node name="FalseWall2" parent="." index="23" unique_id=1995413549 instance=ExtResource("12_q4it1")]
 position = Vector2(-750, 150)
 
-[node name="FalseWall" parent="." index="23" unique_id=1502662892 instance=ExtResource("12_q4it1")]
+[node name="FalseWall" parent="." index="24" unique_id=1502662892 instance=ExtResource("12_q4it1")]
 position = Vector2(-850, 150)
 
-[node name="SirGeisCreature" parent="." index="24" unique_id=707297936 instance=ExtResource("13_bksus")]
+[node name="SirGeisCreature" parent="." index="25" unique_id=707297936 instance=ExtResource("13_bksus")]
 position = Vector2(850, 950)
 
-[node name="SirGeisCreature2" parent="." index="25" unique_id=864900643 instance=ExtResource("13_bksus")]
+[node name="SirGeisCreature3" parent="." index="26" unique_id=245760175 instance=ExtResource("13_bksus")]
+position = Vector2(950, 850)
+
+[node name="SirGeisCreature2" parent="." index="27" unique_id=864900643 instance=ExtResource("13_bksus")]
 position = Vector2(1150, 1250)
 
 [editable path="PunchingBag"]
 [editable path="PunchingBag/GridEntity"]
+[editable path="PunchingBag2"]
+[editable path="PunchingBag2/GridEntity"]
+[editable path="PunchingBag3"]
+[editable path="PunchingBag3/GridEntity"]
 [editable path="ReallyFuckingStrongRat"]
 [editable path="ReallyFuckingStrongRat/GridEntity"]
 [editable path="FuzzerCreature"]

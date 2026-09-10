@@ -1,20 +1,8 @@
 [gd_scene format=4 uid="uid://d4aptj5nxvsq5"]
 
 [ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/base_dungeon_manager.tscn" id="1_72vdk"]
-[ext_resource type="PackedScene" uid="uid://dctxwjwjiof17" path="res://scenes/actors/lich_creature.tscn" id="2_a2icp"]
-[ext_resource type="PackedScene" uid="uid://v4jyo2omhd1l" path="res://scenes/actors/Creatures/wasp_creature.tscn" id="3_g3pur"]
-[ext_resource type="PackedScene" uid="uid://g7fhohrlv81x" path="res://scenes/actors/Creatures/fuzzer_creature.tscn" id="4_uvcyq"]
-[ext_resource type="PackedScene" uid="uid://cuir68rh5ethv" path="res://scenes/actors/Creatures/conk/conk.tscn" id="5_l8mfe"]
-[ext_resource type="PackedScene" uid="uid://d3p2qbml7s288" path="res://scenes/actors/Creatures/slime/slime_creature.tscn" id="6_n56r7"]
-[ext_resource type="PackedScene" uid="uid://cp6erui8kemoj" path="res://scenes/actors/Creatures/rat/rat_creature.tscn" id="7_v00fw"]
-[ext_resource type="PackedScene" uid="uid://oof35aakey11" path="res://scenes/actors/Creatures/gem_roach/gem_roach_creature.tscn" id="8_clcy1"]
-[ext_resource type="PackedScene" uid="uid://w4kg23pb7tql" path="res://scenes/actors/Creatures/wasp_knight/wasp_knight_creature.tscn" id="9_17sol"]
-[ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="10_5nu0o"]
-[ext_resource type="PackedScene" uid="uid://0hj12q8mhwp3" path="res://scenes/actors/Creatures/rat/delete_rat_creature.tscn" id="11_g3pur"]
-[ext_resource type="PackedScene" uid="uid://ciyn4wqn36ytl" path="res://scenes/actors/Creatures/swarmer/swarmer_creature.tscn" id="12_uvcyq"]
 
 [node name="ArenaTestLevel" unique_id=1347246317 instance=ExtResource("1_72vdk")]
-creature_scene = Array[PackedScene]([ExtResource("2_a2icp"), ExtResource("3_g3pur"), ExtResource("4_uvcyq"), ExtResource("5_l8mfe"), ExtResource("6_n56r7"), ExtResource("7_v00fw"), ExtResource("8_clcy1"), ExtResource("9_17sol"), ExtResource("10_5nu0o"), ExtResource("11_g3pur"), ExtResource("12_uvcyq")])
 challenge_rating_capacity = 100.0
 entity_spawn_limit = 30
 is_arena = true

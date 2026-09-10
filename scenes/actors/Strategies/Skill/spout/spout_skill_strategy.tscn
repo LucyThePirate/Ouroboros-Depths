@@ -4,6 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://0er771qiiry0" path="res://textures/skills/SpoutSkill.png" id="2_63388"]
 [ext_resource type="Script" uid="uid://c5ko0yxpt5475" path="res://scenes/actors/Strategies/Skill/spout/spout_skill_strategy.gd" id="2_i1twl"]
 [ext_resource type="PackedScene" uid="uid://cmxeogtui2phc" path="res://scenes/effects/note_vfx.tscn" id="3_i1twl"]
+[ext_resource type="AudioStream" uid="uid://60d3vuqnd1wc" path="res://audio/SFX/Skills/icarus_arrow_shoot.mp3" id="5_12kww"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_532wb"]
+random_pitch = 1.0717734
+streams_count = 1
+stream_0/stream = ExtResource("5_12kww")
 
 [node name="SpoutSkillStrategy" unique_id=1163924449 instance=ExtResource("1_jk4u0")]
 script = ExtResource("2_i1twl")
@@ -14,3 +20,8 @@ skill_desc = "A thin stream of water shot at incredible speeds!"
 
 [node name="Icon" parent="." index="0" unique_id=2096319184]
 texture = ExtResource("2_63388")
+
+[node name="ShootSFX" type="AudioStreamPlayer2D" parent="." index="2" unique_id=1612240809]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_532wb")
+bus = &"SFX"

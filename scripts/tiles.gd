@@ -118,6 +118,13 @@ func move_wall(old_coords, new_coords) -> bool:
 	return true
 
 
+func is_obstructed(coords) -> bool:
+	var wall_data = Global.walls.get_cell_tile_data(coords)
+	if wall_data and wall_data.get_custom_data("is_solid"):
+		return true
+	return false
+
+
 func spawn_floor(coords, material := "nothing"):
 	if material in Floors.keys():
 		Global.floors.set_cell(coords, Tiles.Floors[material][0], Tiles.Floors[material][1])

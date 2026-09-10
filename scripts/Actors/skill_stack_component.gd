@@ -323,8 +323,8 @@ func accept_cursor():
 
 
 func _on_emptied_stack() -> void:
-	if not grid_entity_is_player:
-		$Stack.hide()
+	#if not grid_entity_is_player:
+	#$Stack.hide()
 	pass
 	#%StackIconHolder.get_child(0).get_child(0).get_child(0).hide()
 
@@ -371,8 +371,8 @@ func on_next_floor_reached() -> void:
 
 
 func _update_stack_visuals() -> void:
-	if not grid_entity_is_player:
-		return
+	#if not grid_entity_is_player:
+	#return
 	if current_stack_size == current_max_stack_size:
 		%StackSizeLabel.text = (
 			"[color=yellow]%s/%s[/color]" % [current_stack_size, current_max_stack_size]
