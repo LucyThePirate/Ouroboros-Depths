@@ -25,6 +25,7 @@ enum Status_IDs {
 	EXPLOSIVE,
 	DESPERATION,
 	ADRENALINE,
+	FUSE,
 }
 
 @export_category("Lore")

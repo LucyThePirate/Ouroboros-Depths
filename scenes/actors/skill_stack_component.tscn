@@ -281,6 +281,7 @@ alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="ExecutePrompt" type="Control" parent="HandCanvasLayer/AvailableSkills/MarginContainer/CenterContainer" unique_id=705751928]
+visible = false
 custom_minimum_size = Vector2(151.185, 0)
 layout_mode = 2
 size_flags_horizontal = 8

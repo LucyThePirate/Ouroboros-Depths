@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://caejxi23n845t" path="res://textures/creatures/Rat/delete_rat.png" id="2_5qybr"]
 [ext_resource type="PackedScene" uid="uid://c04bqtk5inpiw" path="res://scenes/actors/Strategies/Status/Explosive/explosive_status_strategy.tscn" id="2_ob8x0"]
 [ext_resource type="PackedScene" uid="uid://5niaw18b21xq" path="res://scenes/actors/Strategies/Status/Bouncy/bouncy_status_strategy.tscn" id="3_ob8x0"]
+[ext_resource type="PackedScene" uid="uid://kg5g5fbkx8ha" path="res://scenes/actors/Strategies/Status/Fuse/fuse_status_strategy.tscn" id="4_o01k8"]
 
 [node name="DeleteRatCreature" unique_id=707297936 node_paths=PackedStringArray("visual") instance=ExtResource("1_1duqn")]
 visual = NodePath("Sprite2D")
@@ -15,11 +16,21 @@ species_desc = "Fed up with the natural order of the world, the Delete Rat has e
 soul_count = 3
 challenge_rating = 2.0
 
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 306220155) index="0" unique_id=1357245310]
+max_health = 6
+
 [node name="ExplosiveStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="1" unique_id=577548757 instance=ExtResource("2_ob8x0")]
 layout_mode = 2
+power = 3
 
 [node name="BouncyStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="2" unique_id=739639596 instance=ExtResource("3_ob8x0")]
 layout_mode = 2
+power = 2
+
+[node name="FuseStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="3" unique_id=797702514 instance=ExtResource("4_o01k8")]
+layout_mode = 2
+turns_afflicted = 1
+power = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=2078103799]
 scale = Vector2(1.7473556, 2.747377)

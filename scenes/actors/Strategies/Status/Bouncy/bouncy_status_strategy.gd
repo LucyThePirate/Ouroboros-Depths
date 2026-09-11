@@ -7,10 +7,12 @@ func on_grid_entity_parent_set(_grid_entity: GridEntity):
 	grid_parent = _grid_entity
 
 
-func on_hit_by_grid_entity(attacker: GridEntity, _damage_amount := 1):
+func on_hit_by_grid_entity(attacker: GridEntity, damage_amount := 1):
 	var direction: Vector2i = grid_parent.grid_coords - attacker.grid_coords
 	direction = direction.clampi(-1, 1)
-	grid_parent.move(direction)
+	for i in range(power + damage_amount - 1):
+		if not grid_parent.move(direction):
+			break
 
 
 func on_turn_ended():

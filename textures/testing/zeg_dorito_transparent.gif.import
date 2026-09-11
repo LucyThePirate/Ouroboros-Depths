@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://corub3rbemwaq"
+path="res://.godot/imported/zeg_dorito_transparent.gif-1baebb2eb5409756f6426498ebf9aa71.tres"
+
+[deps]
+
+source_file="res://textures/testing/zeg_dorito_transparent.gif"
+dest_files=["res://.godot/imported/zeg_dorito_transparent.gif-1baebb2eb5409756f6426498ebf9aa71.tres"]
+
+[params]
+
+frames_per_second=30

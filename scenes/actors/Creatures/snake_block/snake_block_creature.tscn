@@ -31,7 +31,7 @@ can_walk_through_walls = true
 
 [node name="ChompSkill" parent="GridEntity/SkillStackComponent" parent_id_path=PackedInt32Array(1162874930, 1500394995) index="10" unique_id=1163924449 instance=ExtResource("3_284f1")]
 
-[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 306220155) index="0" unique_id=1357245310]
 max_health = 2
 
 [node name="Node2D2" type="Node2D" parent="." index="6" unique_id=1838522351]

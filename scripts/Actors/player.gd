@@ -6,6 +6,8 @@ signal descended
 
 @export var text_component: PackedScene
 @export var chrysalis_status_scene: PackedScene
+@export var adrenaline_status_scene: PackedScene
+@export var chip_vfx_scene: PackedScene
 @export var metamorphosis_scene: PackedScene
 
 @onready var soul_particle_effect := preload("uid://doabdeo7r61yu")
@@ -30,6 +32,8 @@ var state = States.IDLE
 var is_talking := false
 var can_survive_falls := false
 
+var chip_count := 5.0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -52,6 +56,7 @@ func _ready() -> void:
 	turn_component.turn_ended.connect(health_component.turn_ended)
 	grid_entity.moved.connect(_on_grid_entity_moved)
 	update_soul_counter()
+	grid_entity.hurt.connect(_on_grid_entity_hurt)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -148,7 +153,8 @@ func _handle_movement() -> void:
 		return
 
 	elif Input.is_action_just_pressed("ExecuteStack"):
-		execute_queue()
+		eat_hot_chip_and_lie()
+		#execute_queue()
 		return
 
 	elif Input.is_action_just_pressed("Reload"):
@@ -243,6 +249,33 @@ func execute_queue():
 	stack_component.execute_stack()
 
 
+func eat_hot_chip_and_lie():
+	if chip_count < 1:
+		return
+	chip_count -= 1
+	_update_chip_visuals()
+	var new_adrenaline_status = adrenaline_status_scene.instantiate() as StatusStrategy
+	add_child(new_adrenaline_status)
+	grid_entity.gain_status(new_adrenaline_status)
+	var new_chip_vfx = chip_vfx_scene.instantiate() as GPUParticles2D
+	new_chip_vfx.finished.connect(new_chip_vfx.queue_free)
+	new_chip_vfx.emitting = true
+	add_child(new_chip_vfx)
+
+
+func _on_grid_entity_hurt(_attacker, damage_amount):
+	chip_count = min(5.0, chip_count + (damage_amount / 5.0))
+	_update_chip_visuals()
+
+
+func _update_chip_visuals():
+	%AdrenalineHolder.visible = chip_count >= 1
+	var chips = %ChipsHolder.get_children()
+	for i in range(%ChipsHolder.get_child_count()):
+		chips[i].visible = i + 1 <= chip_count
+	print("Chips: %s" % chip_count)
+
+
 func _handle_awaiting_directional_input():
 	%Arrows.modulate = Color.WHITE
 	var moveDirection = _get_directional_input()
@@ -331,6 +364,7 @@ func _on_grid_entity_died(despawning) -> void:
 	state = States.DEAD
 	grid_entity.on_death(despawning)
 	hide()
+	%UI.hide()
 
 
 func _update_movement_visuals():

@@ -21,6 +21,7 @@ var state = States.FLOATING
 
 func _ready() -> void:
 	Global.next_floor_reached.connect(_on_next_floor_reached)
+	rotate(randf_range(-PI, PI))
 
 
 func _process(delta: float) -> void:
@@ -47,6 +48,8 @@ func _process(delta: float) -> void:
 					reached_target.emit()
 					%ExplosionParticles.global_position = target_position
 					%ExplosionParticles.emitting = true
+					%Sprite2D.hide()
+					%CollectedSFX.play()
 		States.TARGET_REACHED:
 			%ExplosionParticles.global_position = target_position
 			%Trail.add_point(global_position)
@@ -66,5 +69,8 @@ func _on_explosion_particles_finished() -> void:
 
 
 func _on_next_floor_reached():
+	%CollectedSFX.volume_db = -50
 	if target:
 		global_position = target.global_position
+	else:
+		_on_explosion_particles_finished()

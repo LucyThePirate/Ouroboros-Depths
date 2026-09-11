@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dnwm511b35g76" path="res://scenes/actors/Creatures/base_creature/base_creature.tscn" id="1_gonk0"]
 [ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="2_f0d1r"]
-[ext_resource type="PackedScene" uid="uid://ceh3chpf36np1" path="res://scenes/actors/Strategies/Status/Decay/decay_status_strategy.tscn" id="2_hm3lh"]
 [ext_resource type="PackedScene" uid="uid://5niaw18b21xq" path="res://scenes/actors/Strategies/Status/Bouncy/bouncy_status_strategy.tscn" id="3_el8k1"]
 [ext_resource type="Texture2D" uid="uid://2f45qneioin0" path="res://textures/creatures/bomb_sprites.png" id="3_hm3lh"]
+[ext_resource type="PackedScene" uid="uid://kg5g5fbkx8ha" path="res://scenes/actors/Strategies/Status/Fuse/fuse_status_strategy.tscn" id="4_05g2k"]
 [ext_resource type="PackedScene" uid="uid://c04bqtk5inpiw" path="res://scenes/actors/Strategies/Status/Explosive/explosive_status_strategy.tscn" id="4_el8k1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_el8k1"]
@@ -24,7 +24,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_05g2k")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
@@ -43,17 +43,21 @@ species_desc = "A nefarious explosive device."
 soul_count = 0
 challenge_rating = 0.0
 
-[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 1710592687) index="0" unique_id=1357245310]
+[node name="HealthComponent" parent="GridEntity/UI" parent_id_path=PackedInt32Array(1162874930, 306220155) index="0" unique_id=1357245310]
 max_health = 5
 
-[node name="DecayStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="1" unique_id=577548757 instance=ExtResource("2_hm3lh")]
+[node name="BouncyStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="1" unique_id=1142096118 instance=ExtResource("3_el8k1")]
 layout_mode = 2
+power = 2
 
-[node name="BouncyStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="2" unique_id=1142096118 instance=ExtResource("3_el8k1")]
+[node name="ExplosiveStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="2" unique_id=975039761 instance=ExtResource("4_el8k1")]
 layout_mode = 2
+power = 3
 
-[node name="ExplosiveStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="3" unique_id=975039761 instance=ExtResource("4_el8k1")]
+[node name="FuseStatusStrategy" parent="GridEntity/UI/StatusManagerComponent" parent_id_path=PackedInt32Array(1162874930, 963295090) index="3" unique_id=577548757 instance=ExtResource("4_05g2k")]
 layout_mode = 2
+turns_afflicted = 1
+power = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="6" unique_id=557631356]
 material = ExtResource("2_f0d1r")

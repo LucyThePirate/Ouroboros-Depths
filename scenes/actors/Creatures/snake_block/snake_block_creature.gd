@@ -64,6 +64,7 @@ func _form_block_snake() -> void:
 	grid_entity.soul_count += int(block_segments.size() / 2.0)
 	grid_entity.can_walk_through_walls = false
 	var hidden_status = hidden_status_scene.instantiate()
+	hidden_status.power = 100
 	hidden_status.move_blocks = false
 	add_child(hidden_status)
 	status_manager_component.add_status(hidden_status)

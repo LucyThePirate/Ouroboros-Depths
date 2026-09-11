@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://kg5g5fbkx8ha"]
+
+[ext_resource type="PackedScene" uid="uid://cytonlpqlj6qy" path="res://scenes/actors/Strategies/Status/base_status_strategy.tscn" id="1_324ln"]
+[ext_resource type="Script" uid="uid://banpexnrs0bnk" path="res://scenes/actors/Strategies/Status/Fuse/fuse_status_strategy.gd" id="2_52e67"]
+[ext_resource type="Texture2D" uid="uid://bdprsw5vgae1o" path="res://textures/skills/FuseSkill.png" id="3_hmxxo"]
+[ext_resource type="AudioStream" uid="uid://b0ubqoped8qga" path="res://audio/SFX/Status/Fuse/316682__alex_hears_things__sparkler_fuse_nm.ogg" id="4_fqajs"]
+
+[sub_resource type="Gradient" id="Gradient_fqajs"]
+offsets = PackedFloat32Array(0.01923077, 1)
+colors = PackedColorArray(1, 1, 0.56078434, 1, 1, 0.59607846, 0.09019608, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fqajs"]
+gradient = SubResource("Gradient_fqajs")
+
+[sub_resource type="Curve" id="Curve_hmxxo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1752137, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hmxxo"]
+curve = SubResource("Curve_hmxxo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_532wb"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 25.313
+initial_velocity_min = 220.59
+initial_velocity_max = 220.59
+gravity = Vector3(0, 98, 0)
+scale_min = 4.74
+scale_max = 7.6
+scale_curve = SubResource("CurveTexture_hmxxo")
+color_initial_ramp = SubResource("GradientTexture1D_fqajs")
+
+[node name="FuseStatusStrategy" unique_id=577548757 instance=ExtResource("1_324ln")]
+script = ExtResource("2_52e67")
+status_name = "Fuse"
+status_desc = "This creature is touchy! If they take damage, their fuse will become lit."
+power = 100
+status_ID = 15
+
+[node name="TextureRect" parent="." index="0" unique_id=1155837054]
+texture = ExtResource("3_hmxxo")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." index="3" unique_id=980571915]
+unique_name_in_owner = true
+update_rotation = false
+update_scale = false
+
+[node name="SparkParticles" type="GPUParticles2D" parent="RemoteTransform2D" index="0" unique_id=113992393]
+unique_name_in_owner = true
+emitting = false
+speed_scale = 2.33
+process_material = SubResource("ParticleProcessMaterial_532wb")
+
+[node name="FuseSFX" type="AudioStreamPlayer2D" parent="RemoteTransform2D" index="1" unique_id=2010482843]
+unique_name_in_owner = true
+stream = ExtResource("4_fqajs")
+pitch_scale = 1.98
+bus = &"SFX"

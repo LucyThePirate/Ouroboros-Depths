@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bmfib8trmn4mk"]
+
+[ext_resource type="AudioStream" uid="uid://4ggb2nvktj5w" path="res://audio/SFX/Skills/Chomp/chomp_success.ogg" id="1_g3on3"]
+
+[sub_resource type="Gradient" id="Gradient_o005w"]
+colors = PackedColorArray(0.91764706, 0.40784314, 0, 1, 0.9411765, 0.80784315, 0.47058824, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3a41j"]
+gradient = SubResource("Gradient_o005w")
+
+[sub_resource type="Curve" id="Curve_h47ap"]
+_limits = [0.0, 543.73, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4230769, 171.0611), 5068.518, 5068.518, 0, 0, Vector2(0.542735, 543.73), 0.0, 0.0, 0, 0, Vector2(1, 531.5113), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_1y1u8"]
+curve = SubResource("Curve_h47ap")
+
+[sub_resource type="Curve" id="Curve_31p2w"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.072649576, 1), 0.0, 0.0, 0, 0, Vector2(0.72222227, 0.37078655), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_rj6va"]
+curve = SubResource("Curve_31p2w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0vmwr"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 61.379997
+initial_velocity_max = 89.159996
+gravity = Vector3(0, 250, 0)
+damping_min = 1.0
+damping_max = 1.0
+damping_curve = SubResource("CurveTexture_1y1u8")
+scale_min = 15.0
+scale_max = 43.52
+scale_curve = SubResource("CurveTexture_rj6va")
+color_initial_ramp = SubResource("GradientTexture1D_3a41j")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_532wb"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("1_g3on3")
+
+[node name="ChipVFX" type="GPUParticles2D" unique_id=579393414]
+emitting = false
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_0vmwr")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2061674028]
+stream = SubResource("AudioStreamRandomizer_532wb")
+volume_db = 3.467
+pitch_scale = 1.9
+autoplay = true
+bus = &"SFX"

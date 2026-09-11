@@ -27,14 +27,15 @@ func on_death(is_despawning: bool, _health_component: HealthComponent = null) ->
 	for i in range(power * 2 - 1):
 		for j in range(power * 2 - 1):
 			var check_coords = grid_coords + Vector2i(offset + i, offset + j)
-			if Tiles.remove_wall_or_floor(check_coords):
-				pass
-			elif (
+			if (
 				Global.entity_positions.has(check_coords)
 				and is_instance_valid(Global.entity_positions[check_coords])
 			):
 				if Global.entity_positions[check_coords] == grid_parent:
 					continue
 				grid_parent.hit(Global.entity_positions[check_coords], power * 2)
+			else:
+				Tiles.remove_wall_or_floor(check_coords)
+
 	power = 0
 	return false

@@ -1,20 +1,25 @@
 [gd_scene format=3 uid="uid://doabdeo7r61yu"]
 
 [ext_resource type="Script" uid="uid://1lkcsv8of2ge" path="res://scenes/effects/soul_particle_effect.gd" id="1_oxvvm"]
-[ext_resource type="Texture2D" uid="uid://dscaxxioh8btv" path="res://textures/testing/cocoVonDiamonds.png" id="2_wwuqk"]
+[ext_resource type="Texture2D" uid="uid://b84m82unuxahi" path="res://textures/testing/CellShadedSquidRender.png" id="2_xxg1h"]
+[ext_resource type="AudioStream" uid="uid://bn46l6xohq6t" path="res://audio/SFX/Misc/ps2_soul_collect.ogg" id="3_xxg1h"]
 
 [sub_resource type="Curve" id="Curve_4nsw8"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.83206105, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_oxvvm"]
-offsets = PackedFloat32Array(0, 0.71875)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.7177419)
+colors = PackedColorArray(1, 1, 1, 0, 0.48235294, 0.7019608, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxvvm"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3snae"]
+blend_mode = 1
+
 [sub_resource type="Gradient" id="Gradient_wwuqk"]
-colors = PackedColorArray(0.6955032, 0.6955031, 0.6955031, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0.009615385, 0.59134614, 1)
+colors = PackedColorArray(0.48235294, 0.7019608, 1, 1, 0.41568628, 1, 1, 1, 0.42745098, 0.43529412, 0.9411765, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xxg1h"]
 gradient = SubResource("Gradient_wwuqk")
@@ -29,8 +34,8 @@ curve = SubResource("Curve_ieww7")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_snh6b"]
 particle_flag_disable_z = true
 spread = 180.0
-initial_velocity_min = -10.41
-initial_velocity_max = 93.75
+initial_velocity_min = 38.68
+initial_velocity_max = 123.17
 gravity = Vector3(0, 0, 0)
 radial_accel_min = -93.75
 radial_accel_max = -93.75
@@ -42,7 +47,13 @@ scale_max = 21.17
 scale_curve = SubResource("CurveTexture_7h5r2")
 color_initial_ramp = SubResource("GradientTexture1D_xxg1h")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_532wb"]
+random_pitch = 1.0656005
+streams_count = 1
+stream_0/stream = ExtResource("3_xxg1h")
+
 [node name="SoulParticleEffect" type="CharacterBody2D" unique_id=11535563]
+z_index = 15
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_oxvvm")
@@ -52,6 +63,7 @@ unique_name_in_owner = true
 top_level = true
 width = 20.0
 width_curve = SubResource("Curve_4nsw8")
+default_color = Color(0.48235294, 0.7058824, 1, 1)
 gradient = SubResource("Gradient_oxvvm")
 joint_mode = 2
 begin_cap_mode = 2
@@ -61,8 +73,13 @@ end_cap_mode = 2
 shape = SubResource("CircleShape2D_oxvvm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=914088695]
-visible = false
-texture = ExtResource("2_wwuqk")
+unique_name_in_owner = true
+z_index = 3
+material = SubResource("CanvasItemMaterial_3snae")
+rotation = -1.5707964
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_xxg1h")
+flip_v = true
 
 [node name="ExplosionParticles" type="GPUParticles2D" parent="." unique_id=420064176]
 unique_name_in_owner = true
@@ -71,7 +88,13 @@ emitting = false
 amount = 12
 lifetime = 4.0
 one_shot = true
+speed_scale = 1.5
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_snh6b")
+
+[node name="CollectedSFX" type="AudioStreamPlayer2D" parent="." unique_id=980981759]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_532wb")
+bus = &"SFX"
 
 [connection signal="finished" from="ExplosionParticles" to="." method="_on_explosion_particles_finished"]
