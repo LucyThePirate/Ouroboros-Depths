@@ -14,6 +14,8 @@ func initialize(new_grid_entity: GridEntity) -> void:
 	grid_entity = new_grid_entity
 	grid_entity.connect("moved", _on_grid_entity_moved)
 	grid_entity.connect("hurt", _on_grid_entity_hurt)
+	grid_entity.connect("slapped", _on_grid_entity_slapped)
+	grid_entity.connect("thumped", _flip_grid_entity_check)
 
 
 func set_charging(is_charging: bool):
@@ -37,12 +39,7 @@ func _on_grid_entity_moved(old_coords: Vector2i, new_coords: Vector2i):
 	#print("Moved from", old_coords, "to", new_coords)
 	t = 0
 	run_speed = clampf((new_coords - old_coords).length() * 2, 0, 2)
-	var xDifference = new_coords.x - old_coords.x
-	if xDifference:
-		if xDifference > 0 and scale.x < 0:
-			scale.x *= -1
-		elif xDifference < 0 and scale.x > 0:
-			scale.x *= -1
+	_flip_grid_entity_check(old_coords, new_coords)
 	if not anim_tree:
 		if (
 			animation_player.has_animation("Hide")
@@ -52,6 +49,16 @@ func _on_grid_entity_moved(old_coords: Vector2i, new_coords: Vector2i):
 			animation_player.play("Hide")
 		elif animation_player.has_animation("Moving"):
 			animation_player.play("Moving")
+			animation_player.seek(0)
+
+
+func _flip_grid_entity_check(old_coords: Vector2i, new_coords: Vector2i):
+	var xDifference = new_coords.x - old_coords.x
+	if xDifference:
+		if xDifference > 0 and scale.x < 0:
+			scale.x *= -1
+		elif xDifference < 0 and scale.x > 0:
+			scale.x *= -1
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
@@ -70,9 +77,23 @@ func _on_fell_off_map():
 		animation_player.play("Falling")
 
 
+func play(animation_name: StringName):
+	if animation_player.has_animation(animation_name):
+		animation_player.play(animation_name)
+		animation_player.seek(0)
+
+
 func _on_grid_entity_hurt(_attacker: GridEntity, _damage):
 	if anim_tree:
 		anim_tree.set("parameters/HurtOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	else:
 		if animation_player.has_animation("Hurt"):
 			animation_player.play("Hurt")
+			animation_player.seek(0)
+
+
+func _on_grid_entity_slapped(victim: GridEntity):
+	if animation_player.has_animation("Attack"):
+		animation_player.play("Attack")
+		animation_player.seek(0)
+	_flip_grid_entity_check(grid_entity.grid_coords, victim.grid_coords)

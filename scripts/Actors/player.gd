@@ -15,7 +15,7 @@ signal descended
 @onready var current_error_text: TextComponent
 @onready var grid_entity = $GridEntity
 @onready var display = $Display
-@onready var visual = $ScarecrowVisual
+@onready var visual = $PlayerVisual
 @onready var displayLerpTime = 0.0
 @onready var turn_component = $GridEntity/TurnComponent
 @onready var stack_component = $GridEntity/SkillStackComponent
@@ -109,7 +109,7 @@ func _process(delta: float) -> void:
 				or stack_component.state == SkillStackComponent.States.RELOADING
 			):
 				state = States.IDLE
-				%ScarecrowVisual.use_parent_material = true
+				%PlayerVisual.use_parent_material = true
 
 
 #region movement handling
@@ -167,6 +167,7 @@ func _handle_movement() -> void:
 			var new_chrysalis_status = chrysalis_status_scene.instantiate() as StatusStrategy
 			if not $MetamorphosisStart.playing:
 				$MetamorphosisStart.play()
+			visual.play("Chill")
 			new_chrysalis_status.max_power_reached.connect(_metamorphing_started)
 			new_chrysalis_status.status_ended.connect(_metamorphing_interrupted)
 			add_child(new_chrysalis_status)
@@ -245,13 +246,14 @@ func execute_queue():
 		return
 
 	state = States.EXECUTING_STACK
-	%ScarecrowVisual.use_parent_material = false
+	%PlayerVisual.use_parent_material = false
 	stack_component.execute_stack()
 
 
 func eat_hot_chip_and_lie():
 	if chip_count < 1:
 		return
+	visual.play("Charging")
 	chip_count -= 1
 	_update_chip_visuals()
 	var new_adrenaline_status = adrenaline_status_scene.instantiate() as StatusStrategy
@@ -277,6 +279,7 @@ func _update_chip_visuals():
 
 
 func _handle_awaiting_directional_input():
+	visual.play("Magic")
 	%Arrows.modulate = Color.WHITE
 	var moveDirection = _get_directional_input()
 	if moveDirection:
@@ -285,6 +288,7 @@ func _handle_awaiting_directional_input():
 
 
 func _on_stack_component_awaited_cursor():
+	visual.play("Magic")
 	%Cursor.show()
 	%Arrows.hide()
 	cursor_position = grid_entity.grid_coords
@@ -319,7 +323,7 @@ func _handle_awaiting_cursor_input():
 func _on_skill_stack_component_emptied_stack() -> void:
 	if state == States.EXECUTING_STACK:
 		state = States.IDLE
-		%ScarecrowVisual.use_parent_material = true
+		%PlayerVisual.use_parent_material = true
 		end_turn()
 
 

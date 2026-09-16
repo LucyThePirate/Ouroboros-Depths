@@ -24,4 +24,5 @@ func modify_incoming_damage(incoming_damage := 1) -> int:
 		is_active = true
 		%SparkParticles.emitting = true
 		%FuseSFX.play()
+		return 1
 	return incoming_damage

@@ -12,6 +12,7 @@ signal spawn_tile(tile_coord)
 signal spawn_wall(wall_coord)
 signal spawn_entity(entity_coord: Vector2i, entity_type: Species, summoning_skill: SkillStrategy)
 signal slapped(victim)
+signal thumped(old_coords: Vector2i, new_coords: Vector2i)
 signal hurt(attacker, damage_amount)
 signal fell_off_map
 signal descended
@@ -133,16 +134,19 @@ func move(direction: Vector2i, safe_walk_entities := false, safe_walk_pits := fa
 			Tiles.play_destruction_sound(new_coords)
 			opened_door.emit(new_coords)
 			moved.emit(old_coords, old_coords)
+			thumped.emit(old_coords, new_coords)
 			performed_action.emit()
 			return false
 		if wall_data.get_custom_data("is_pushable"):
 			Tiles.play_thump_sound(new_coords)
 			pushed_object.emit(new_coords, direction)
 			moved.emit(old_coords, old_coords)
+			thumped.emit(old_coords, new_coords)
 			performed_action.emit()
 			return false
 		if wall_data.get_custom_data("is_solid"):
 			Tiles.play_thump_sound(new_coords)
+			thumped.emit(old_coords, new_coords)
 			return false
 
 	# Pit detection

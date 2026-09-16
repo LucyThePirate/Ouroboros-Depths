@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dnbon7l7p7jj0"]
 
 [ext_resource type="Texture2D" uid="uid://cc5wqimapncm6" path="res://textures/Light.png" id="1_xgpuc"]
+[ext_resource type="AudioStream" uid="uid://cfo14m5emfkoe" path="res://audio/SFX/Terrain/825228__armandem__choir-hum-loop-for-game-loot.wav" id="2_t6uia"]
+[ext_resource type="Texture2D" uid="uid://bcw7j6pvddkiy" path="res://textures/tiles/stairs_down.png" id="3_t6uia"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_walqc"]
 blend_mode = 1
@@ -36,12 +38,56 @@ scale_curve = SubResource("CurveTexture_0vmwr")
 color_initial_ramp = SubResource("GradientTexture1D_rj6va")
 alpha_curve = SubResource("CurveTexture_1y1u8")
 
-[node name="StairsDownParticles" type="GPUParticles2D" unique_id=2058416539]
-top_level = true
-z_index = -1
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vif4x"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fl7y"]
+atlas = ExtResource("3_t6uia")
+region = Rect2(0, 0, 151, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ip3kf"]
+atlas = ExtResource("3_t6uia")
+region = Rect2(151, 0, 151, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_532wb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fl7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ip3kf")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StairsDownParticles" type="Node2D" unique_id=549546267]
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_walqc")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=355998954]
+position = Vector2(1, 0)
 texture = ExtResource("1_xgpuc")
-lifetime = 1.8
-speed_scale = 0.7
+lifetime = 1.47
+speed_scale = 0.5
 process_material = SubResource("ParticleProcessMaterial_532wb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1822626496]
+material = SubResource("CanvasItemMaterial_vif4x")
+position = Vector2(-2, -59)
+scale = Vector2(0.6214245, 0.6214245)
+sprite_frames = SubResource("SpriteFrames_532wb")
+autoplay = "default"
+frame_progress = 0.53186226
+speed_scale = 0.25
+offset = Vector2(0, 25)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=854716148]
+stream = ExtResource("2_t6uia")
+volume_db = 2.081
+pitch_scale = 0.89
+autoplay = true
+attenuation = 4.2870927
+bus = &"Reverb SFX"

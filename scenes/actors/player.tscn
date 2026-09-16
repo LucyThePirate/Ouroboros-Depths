@@ -6,15 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://bxxiyeix6rbob" path="res://scenes/actors/Strategies/Status/chrysalis_status_strategy.tscn" id="3_b0c0w"]
 [ext_resource type="PackedScene" uid="uid://cjo5qx0fo3bej" path="res://scenes/actors/metamorphosis.tscn" id="4_wes0m"]
 [ext_resource type="PackedScene" uid="uid://bmfib8trmn4mk" path="res://scenes/effects/chip_vfx.tscn" id="5_6a6mx"]
-[ext_resource type="PackedScene" uid="uid://djc3cmcxnhe5l" path="res://scenes/characters/Visuals/scarecrow_visual.tscn" id="6_jfrsc"]
 [ext_resource type="Texture2D" uid="uid://drm5k3yo815hu" path="res://textures/ui/Arrow.png" id="6_nmlhc"]
 [ext_resource type="PackedScene" uid="uid://3og50asnwnie" path="res://scenes/actors/Strategies/Status/Desperation/desperation_status_strategy.tscn" id="6_t62v4"]
 [ext_resource type="AudioStream" uid="uid://c22a32fpulvkx" path="res://audio/SFX/Misc/wait/556991__ycbcr__tabletop-clock-ticking-speed-ramp-down-followup.ogg" id="7_dferu"]
 [ext_resource type="Texture2D" uid="uid://b6mtxtu0jn7ev" path="res://textures/ui/Cursor.png" id="7_h5w3c"]
 [ext_resource type="PackedScene" uid="uid://d3w5sktv0qxww" path="res://scenes/actors/Strategies/Status/Adrenaline/adrenaline_status_strategy.tscn" id="7_uqfkb"]
-[ext_resource type="Material" uid="uid://ffpbe8we3j8" path="res://textures/shaders/rainbow_outline_material.tres" id="7_ypltb"]
 [ext_resource type="AudioStream" uid="uid://bqs6qr4ws7ylr" path="res://audio/SFX/Misc/wait/556991__ycbcr__tabletop-clock-ticking-speed-ramp-down-followup2.ogg" id="8_t62v4"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="8_wd2mq"]
+[ext_resource type="PackedScene" uid="uid://jpmkywj7gupl" path="res://scenes/actors/Visuals/player_visual.tscn" id="13_j3wsw"]
 [ext_resource type="AudioStream" uid="uid://0to1gxx02bfe" path="res://audio/SFX/Misc/OrangePeelReverse.ogg" id="16_nfopg"]
 [ext_resource type="AudioStream" uid="uid://cwqwqvrk8t7gj" path="res://audio/SFX/Misc/OrangePeel1.ogg" id="17_1vpxp"]
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/creatures/Soul.png" id="18_1vpxp"]
@@ -168,6 +167,9 @@ creature_name = "You!"
 species_desc = "It is you! Or it is me? Whatever. "
 soul_count = 10
 
+[node name="SkillStackComponent" parent="GridEntity" index="1" unique_id=1500394995]
+position = Vector2(-85, -234.98)
+
 [node name="AvailableSkills" parent="GridEntity/SkillStackComponent/HandCanvasLayer" parent_id_path=PackedInt32Array(1217274743, 1500394995, 379651989) index="0" unique_id=2065539204]
 metadata/_edit_lock_ = true
 
@@ -193,6 +195,7 @@ modulate = Color(1, 1, 1, 0)
 z_index = 5
 
 [node name="RightArrow" type="Sprite2D" parent="GridEntity/Arrows" unique_id=1834742859]
+self_modulate = Color(1, 1, 1, 0.5137255)
 position = Vector2(100, 0)
 texture = ExtResource("6_nmlhc")
 
@@ -212,6 +215,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 10
 
 [node name="UpArrow" type="Sprite2D" parent="GridEntity/Arrows" unique_id=557307660]
+self_modulate = Color(1, 1, 1, 0.5137255)
 position = Vector2(0, -100)
 rotation = -1.57079
 texture = ExtResource("6_nmlhc")
@@ -232,6 +236,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 9
 
 [node name="LeftArrow" type="Sprite2D" parent="GridEntity/Arrows" unique_id=1174290218]
+self_modulate = Color(1, 1, 1, 0.5137255)
 position = Vector2(-100, 0)
 rotation = 3.14159
 texture = ExtResource("6_nmlhc")
@@ -252,6 +257,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 10
 
 [node name="DownArrow" type="Sprite2D" parent="GridEntity/Arrows" unique_id=709283397]
+self_modulate = Color(1, 1, 1, 0.5137255)
 position = Vector2(0, 100)
 rotation = 1.57079
 texture = ExtResource("6_nmlhc")
@@ -313,11 +319,13 @@ speed_scale = 0.3
 [node name="Display" type="Node2D" parent="." unique_id=1874228332]
 top_level = true
 
-[node name="ScarecrowVisual" parent="." unique_id=1510832620 instance=ExtResource("6_jfrsc")]
+[node name="PlayerVisual" parent="." unique_id=1229841968 instance=ExtResource("13_j3wsw")]
 unique_name_in_owner = true
-material = ExtResource("7_ypltb")
-position = Vector2(5, -31)
-scale = Vector2(0.208175, 0.208175)
+position = Vector2(9, 10)
+scale = Vector2(0.335, 0.335)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="PlayerVisual" unique_id=179589769]
+current = true
 
 [node name="StateLabel" type="Label" parent="." unique_id=185221372]
 visible = false
