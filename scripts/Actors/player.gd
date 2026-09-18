@@ -72,11 +72,6 @@ func _process(delta: float) -> void:
 	$StateLabel.text = (
 		"%s - %s" % [States.keys()[state], stack_component.States.keys()[stack_component.state]]
 	)
-	if turn_component.is_my_turn() and state == States.METAMORPHOSIS_STARTED:
-		process_mode = Node.PROCESS_MODE_DISABLED
-		await get_tree().create_timer(0.1).timeout
-		process_mode = Node.PROCESS_MODE_ALWAYS
-		end_turn()
 
 	if Input.is_action_just_pressed("Chat"):
 		if not is_talking:
@@ -110,6 +105,11 @@ func _process(delta: float) -> void:
 			):
 				state = States.IDLE
 				%PlayerVisual.use_parent_material = true
+		States.METAMORPHOSIS_STARTED:
+			#process_mode = Node.PROCESS_MODE_DISABLED
+			await get_tree().create_timer(0.25).timeout
+			#process_mode = Node.PROCESS_MODE_ALWAYS
+			end_turn()
 
 
 #region movement handling
@@ -215,6 +215,7 @@ func _metamorphing_started():
 		state = States.METAMORPHING
 		stack_component.on_next_floor_reached()
 		update_soul_counter()
+		process_mode = Node.PROCESS_MODE_ALWAYS
 		var new_metamorph = metamorphosis_scene.instantiate()
 		new_metamorph.grid_parent = grid_entity
 		new_metamorph.metamorphosis_completed.connect(_metamorphing_completed)
@@ -223,6 +224,7 @@ func _metamorphing_started():
 
 func _metamorphing_completed():
 	if state == States.METAMORPHING:
+		process_mode = Node.PROCESS_MODE_INHERIT
 		$MetamorphosisEnd.play()
 		update_soul_counter()
 		state = States.IDLE

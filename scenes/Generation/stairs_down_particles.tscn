@@ -76,13 +76,12 @@ process_material = SubResource("ParticleProcessMaterial_532wb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1822626496]
 material = SubResource("CanvasItemMaterial_vif4x")
-position = Vector2(-2, -59)
 scale = Vector2(0.6214245, 0.6214245)
 sprite_frames = SubResource("SpriteFrames_532wb")
 autoplay = "default"
 frame_progress = 0.53186226
 speed_scale = 0.25
-offset = Vector2(0, 25)
+offset = Vector2(0, -115.835)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=854716148]
 stream = ExtResource("2_t6uia")

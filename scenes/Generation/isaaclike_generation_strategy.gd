@@ -386,9 +386,7 @@ func _place_stairs():
 		walls.set_cell(stairs_down_location, Tiles.lock_tile[0], Tiles.lock_tile[1])
 	stairs_down_particles = stairs_down_particle_scene.instantiate()
 	get_tree().current_scene.add_child(stairs_down_particles)
-	stairs_down_particles.global_position = (
-		floors.map_to_local(stairs_down_location) + Vector2(0, -10)
-	)
+	stairs_down_particles.global_position = (floors.map_to_local(stairs_down_location))
 
 	possible_stair_locations = floors.get_used_cells_by_id(
 		Tiles.wood_floor_tile[0], Tiles.wood_floor_tile[1]

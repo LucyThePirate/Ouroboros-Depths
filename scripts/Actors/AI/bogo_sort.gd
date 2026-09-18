@@ -132,4 +132,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("GridEntity"):
-		body.on_death()
+		body.on_death(true)
