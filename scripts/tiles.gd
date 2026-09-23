@@ -15,8 +15,12 @@ extends Node
 @onready var clover_decor_tile := [3, Vector2i(3, 1)]
 @onready var ice_wall_tile := [2, Vector2i(4, 4)]
 @onready var plant_wall_tile := [2, Vector2i(5, 0)]
-@onready var wood_wall_tile := [2, Vector2i(1, 2)]
+@onready var wood_wall_tile := [2, Vector2i(8, 6)]
 @onready var snow_wall_tile := [2, Vector2i(7, 2)]
+@onready var gold_wall_tile := [2, Vector2i(3, 6)]
+@onready var emerald_wall_tile := [2, Vector2i(7, 6)]
+@onready var love_wall_tile := [2, Vector2i(0, 8)]
+@onready var amethyst_wall_tile := [2, Vector2i(9, 6)]
 
 @onready var grass_floor_tile := [3, Vector2i(1, 3)]
 @onready var stone_floor_tile := [2, Vector2i(0, 1)]
@@ -27,6 +31,11 @@ extends Node
 @onready var glass_floor_tile := [2, Vector2i(2, 1)]
 @onready var ice_floor_tile := [3, Vector2i(2, 1)]
 @onready var snow_floor_tile := [2, Vector2i(2, 5)]
+@onready var null_floor_tile := [2, Vector2i(4, 6)]
+@onready var love_floor_tile := [2, Vector2i(1, 7)]
+@onready var gold_floor_tile := [2, Vector2i(2, 7)]
+@onready var emerald_floor_tile := [2, Vector2i(6, 6)]
+@onready var amethyst_floor_tile := [2, Vector2i(6, 7)]
 
 @onready var door_horizontal_tile := [2, Vector2i(1, 2)]
 @onready var door_vertical_tile := [2, Vector2i(2, 2)]
@@ -44,7 +53,12 @@ extends Node
 	"plant": grass_floor_tile,
 	"glass": glass_floor_tile,
 	"ice": ice_floor_tile,
-	"snow": snow_floor_tile
+	"snow": snow_floor_tile,
+	"null": null_floor_tile,
+	"gold": gold_floor_tile,
+	"love": love_floor_tile,
+	"emerald": emerald_floor_tile,
+	"amethyst": amethyst_floor_tile,
 }
 @onready var Walls := {
 	"boulder": boulder_object_tile,
@@ -55,7 +69,11 @@ extends Node
 	"snow": snow_wall_tile,
 	"wood": wood_wall_tile,
 	"plant": plant_wall_tile,
-	"grass": plant_wall_tile
+	"grass": plant_wall_tile,
+	"gold": gold_wall_tile,
+	"love": love_wall_tile,
+	"emerald": emerald_wall_tile,
+	"amethyst": amethyst_wall_tile,
 }
 #endregion
 
@@ -86,7 +104,10 @@ func move_wall(old_coords, new_coords) -> bool:
 	if (
 		not old_wall_data
 		or not old_wall_data.get_custom_data("is_solid")
-		or old_wall_data.get_custom_data("indestructable")
+		or (
+			old_wall_data.get_custom_data("indestructable")
+			and not old_wall_data.get_custom_data("is_pushable")
+		)
 	):
 		return true
 
@@ -99,6 +120,8 @@ func move_wall(old_coords, new_coords) -> bool:
 	var new_floor_data = Global.floors.get_cell_tile_data(new_coords)
 	if not new_floor_data:
 		spawn_floor(new_coords, old_wall_data.get_custom_data("material"))
+		if old_wall_data.get_custom_data("indestructable"):
+			Global.walls.set_pattern(new_coords, Global.walls.get_pattern([old_coords]))
 		Global.walls.set_cell(old_coords, -1)
 		return false
 	if (
@@ -109,6 +132,8 @@ func move_wall(old_coords, new_coords) -> bool:
 		get_tree().current_scene.add_child(splashVFX)
 		splashVFX.global_position = Global.floors.map_to_local(new_coords)
 		spawn_floor(new_coords, old_wall_data.get_custom_data("material"))
+		if old_wall_data.get_custom_data("indestructable"):
+			Global.walls.set_pattern(new_coords, Global.walls.get_pattern([old_coords]))
 		Global.walls.set_cell(old_coords, -1)
 		return false
 
@@ -128,15 +153,19 @@ func is_obstructed(coords) -> bool:
 func spawn_floor(coords, material := "nothing"):
 	if material in Floors.keys():
 		Global.floors.set_cell(coords, Tiles.Floors[material][0], Tiles.Floors[material][1])
-	else:
+	elif material == "nothing":
 		Global.floors.set_cell(coords, -1)
+	else:
+		Global.floors.set_cell(coords, Tiles.Floors["null"][0], Tiles.Floors["null"][1])
 
 
 func spawn_wall(coords, material := "nothing"):
 	if material in Walls.keys():
 		Global.walls.set_cell(coords, Tiles.Walls[material][0], Tiles.Walls[material][1])
-	else:
+	elif material == "nothing":
 		Global.walls.set_cell(coords, -1)
+	else:
+		Global.walls.set_cell(coords, Tiles.Walls["stone"][0], Tiles.Walls["stone"][1])
 
 
 func play_walk_sound(grid_coords: Vector2i):

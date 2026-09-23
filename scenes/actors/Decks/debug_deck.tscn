@@ -34,7 +34,6 @@ offset_right = 144.0
 
 [node name="BombSkillStrategy" parent="." unique_id=1163924449 instance=ExtResource("6_ue1ts")]
 layout_mode = 0
-count = 8
 
 [node name="ShiftSkillStrategy" parent="." unique_id=2094826218 instance=ExtResource("7_j6hsg")]
 layout_mode = 0

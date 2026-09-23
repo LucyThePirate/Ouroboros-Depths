@@ -168,6 +168,41 @@ func move(direction: Vector2i, safe_walk_entities := false, safe_walk_pits := fa
 	return true
 
 
+func shift(direction: Vector2i) -> bool:
+	if not initialized or state == States.DEAD or immovable:
+		return false
+
+	var old_coords = grid_coords
+	var new_coords = old_coords + direction
+
+	# Test for other bodies
+	var other_entity = Global.entity_positions.has(new_coords)
+	if other_entity and not Global.entity_positions[new_coords]:
+		Global.entity_positions.erase(new_coords)
+		other_entity = false
+	if other_entity and Global.entity_positions[new_coords] != self:
+		return false
+
+	# Wall interaction
+	var wall_data = Global.walls.get_cell_tile_data(new_coords)
+	if wall_data and not can_walk_through_walls:
+		if wall_data.get_custom_data("is_solid"):
+			return false
+
+	# Pit detection
+	var floor_data = Global.floors.get_cell_tile_data(new_coords)
+
+	# Movement
+	Global.entity_positions.erase(old_coords)
+	Global.entity_positions[new_coords] = self
+	global_position = new_coords * CELL_SIZE + grid_offset
+	grid_coords = new_coords
+	moved.emit(old_coords, new_coords)
+	if not floor_data:
+		fell_off_map.emit()
+	return true
+
+
 func warp(new_coords: Vector2i) -> bool:
 	if not initialized or immovable:
 		return false
@@ -323,14 +358,26 @@ func is_on_floor() -> bool:
 	var floor_data = Global.floors.get_cell_tile_data(grid_coords)
 	if not floor_data:
 		return false
+	# While we're at it, resolve floor effects
+	if (
+		floor_data.get_custom_data("affects_creatures")
+		and floor_data.get_custom_data("material") == "conveyor"
+	):
+		var direction = floor_data.get_custom_data("direction")
+		shift(direction)
 	return true
 
 
 func is_on_path_down() -> bool:
 	var floor_data = Global.floors.get_cell_tile_data(grid_coords)
-	if not floor_data or not floor_data.get_custom_data("is_path_down"):
+	if not floor_data:
 		return false
-	return true
+	if (
+		floor_data.get_custom_data("affects_creatures")
+		and floor_data.get_custom_data("material") == "stairs"
+	):
+		return true
+	return false
 
 
 func is_in_darkness() -> bool:

@@ -18,6 +18,12 @@ var stairs_down_particles: Node2D
 var extra_nodes: Array = []
 
 
+func _ready() -> void:
+	if get_tree().current_scene == self:
+		initialize(0, null, null, null)
+		generate_level()
+
+
 func initialize(
 	floor_number: int, new_floor: TileMapLayer, new_wall: TileMapLayer, new_fog: TileMapLayer
 ):

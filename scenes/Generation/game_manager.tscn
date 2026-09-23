@@ -1,34 +1,18 @@
 [gd_scene format=3 uid="uid://dnf6sqy5t3iq"]
 
 [ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/base_dungeon_manager.tscn" id="1_eldwu"]
+[ext_resource type="PackedScene" uid="uid://d11oqpbh2x12i" path="res://scenes/Generation/SetPieces/vault_set_piece.tscn" id="7_xkuje"]
+[ext_resource type="PackedScene" uid="uid://b7hiosubaxo1u" path="res://scenes/Generation/SetPieces/what_is_this_amethyst_set_piece.tscn" id="8_xl7qs"]
+[ext_resource type="PackedScene" uid="uid://cxgx0f0qgduxn" path="res://scenes/Generation/SetPieces/romantic_gondola_ride_set_piece.tscn" id="9_q8dmt"]
+[ext_resource type="PackedScene" uid="uid://y064r6irdr1f" path="res://scenes/Generation/SetPieces/x_marks_the_s_pot_set_piece.tscn" id="10_cdibq"]
+[ext_resource type="PackedScene" uid="uid://bautumws11bor" path="res://scenes/Generation/SetPieces/travelator_set_piece.tscn" id="11_r2tl1"]
+[ext_resource type="PackedScene" uid="uid://dgwqqxnhjxcj0" path="res://scenes/Generation/SetPieces/point_and_laugh_set_piece.tscn" id="12_raj2y"]
+[ext_resource type="PackedScene" uid="uid://chw2qja1mrp5r" path="res://scenes/Generation/SetPieces/if_i_was_a_bad_demo_man_i_wouldnt_be_here_set_piece.tscn" id="13_ag6fb"]
 [ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="17_ttnpg"]
-[ext_resource type="PackedScene" uid="uid://8aewrijk47tx" path="res://scenes/Generation/SetPieces/basic_1x1_set_piece.tscn" id="18_8kl8d"]
-[ext_resource type="PackedScene" uid="uid://5gc0ubf1th5e" path="res://scenes/Generation/SetPieces/basic_2x2_set_piece.tscn" id="19_5dmsq"]
-[ext_resource type="PackedScene" uid="uid://de38gfetcrhyr" path="res://scenes/Generation/SetPieces/basic_3x3_set_piece.tscn" id="20_4bofw"]
-[ext_resource type="PackedScene" uid="uid://bn3qu6haktntd" path="res://scenes/Generation/SetPieces/boulder_walls_set_piece.tscn" id="21_0108t"]
-[ext_resource type="PackedScene" uid="uid://c1pwemoxn6shj" path="res://scenes/Generation/SetPieces/forest_set_piece.tscn" id="22_6js56"]
-[ext_resource type="PackedScene" uid="uid://dx7wmciau2ofu" path="res://scenes/Generation/SetPieces/horizontal_hallway_set_piece.tscn" id="23_ns0ek"]
-[ext_resource type="PackedScene" uid="uid://nor7jylandkw" path="res://scenes/Generation/SetPieces/zoo_set_piece.tscn" id="24_3n672"]
-[ext_resource type="PackedScene" uid="uid://5iki83mc664" path="res://scenes/Generation/SetPieces/tiny_hedge_pool_set_piece.tscn" id="25_1b23x"]
-[ext_resource type="PackedScene" uid="uid://b5a3dt4tdxwf3" path="res://scenes/Generation/SetPieces/dont_throw_stones_in_glass_houses_set_piece.tscn" id="26_dhtbh"]
-[ext_resource type="PackedScene" uid="uid://uwj04p3t4b0l" path="res://scenes/Generation/SetPieces/tiny_door_stim_set_piece.tscn" id="27_74qd0"]
-[ext_resource type="PackedScene" uid="uid://chofm3cwkrprp" path="res://scenes/Generation/SetPieces/doors_doors_doors_set_piece.tscn" id="28_fge71"]
-[ext_resource type="PackedScene" uid="uid://b1a6uu3i5jwx1" path="res://scenes/Generation/SetPieces/no_walls_set_piece.tscn" id="29_l7ulo"]
-[ext_resource type="PackedScene" uid="uid://dmwmwtmuogae5" path="res://scenes/Generation/SetPieces/the_imprisoned_set_piece.tscn" id="30_ktbp0"]
-[ext_resource type="PackedScene" uid="uid://bndu5bkhnadmr" path="res://scenes/Generation/SetPieces/theres_that_symbol_again_set_piece.tscn" id="31_7fks2"]
-[ext_resource type="PackedScene" uid="uid://8qn22cosj7n6" path="res://scenes/Generation/SetPieces/look_at_my_hedges_set_piece.tscn" id="32_hkkkr"]
-[ext_resource type="PackedScene" uid="uid://c1rqb5hibrypo" path="res://scenes/Generation/SetPieces/dont_get_lost_set_piece.tscn" id="33_jahss"]
-[ext_resource type="PackedScene" uid="uid://dbdorv8erjnkl" path="res://scenes/Generation/SetPieces/ant_tunnels_set_piece.tscn" id="34_8l8u4"]
-[ext_resource type="PackedScene" uid="uid://couvryfhqv7cw" path="res://scenes/Generation/SetPieces/pool_diamond_set_piece.tscn" id="35_ovblb"]
-[ext_resource type="PackedScene" uid="uid://bbwo4kv64d5r0" path="res://scenes/Generation/SetPieces/dried_pond_set_piece.tscn" id="36_76bp6"]
-[ext_resource type="PackedScene" uid="uid://5geyfnvswsu" path="res://scenes/Generation/SetPieces/watch_your_step_set_piece.tscn" id="37_64n5l"]
-[ext_resource type="PackedScene" uid="uid://1mcv5xn042g7" path="res://scenes/Generation/SetPieces/old_fashioned_house_set_piece.tscn" id="38_w23dx"]
 [ext_resource type="PackedScene" uid="uid://d12i0rmtx6nrk" path="res://scenes/Generation/SetPieces/snow_fort_set_piece.tscn" id="39_u63bo"]
 [ext_resource type="PackedScene" uid="uid://cexwbv2kv5inr" path="res://scenes/Generation/SetPieces/snow_hamsterdog_storage_set_piece.tscn" id="40_71ngg"]
 [ext_resource type="PackedScene" uid="uid://cu84v0y4jrh4u" path="res://scenes/Generation/SetPieces/winter_maze_set_piece.tscn" id="41_a4fis"]
 [ext_resource type="PackedScene" uid="uid://clhkxsjoos4db" path="res://scenes/Generation/SetPieces/frozen_lake_set_piece.tscn" id="42_i5cum"]
-[ext_resource type="PackedScene" uid="uid://thouvoi3bng4" path="res://scenes/Generation/SetPieces/messy_set_piece.tscn" id="43_ltapf"]
-[ext_resource type="PackedScene" uid="uid://dqrsn52gekmw0" path="res://scenes/Generation/SetPieces/kermit_set_piece.tscn" id="44_5dmsq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dimvc"]
 blend_mode = 1
@@ -86,7 +70,7 @@ generator = NodePath("IsaaclikeGenerationStrategy")
 number_of_cells = 25
 number_of_rooms = 2
 number_of_set_pieces = 4
-set_pieces = Array[PackedScene]([ExtResource("18_8kl8d"), ExtResource("19_5dmsq"), ExtResource("20_4bofw"), ExtResource("21_0108t"), ExtResource("22_6js56"), ExtResource("23_ns0ek"), ExtResource("24_3n672"), ExtResource("25_1b23x"), ExtResource("26_dhtbh"), ExtResource("27_74qd0"), ExtResource("28_fge71"), ExtResource("29_l7ulo"), ExtResource("30_ktbp0"), ExtResource("31_7fks2"), ExtResource("32_hkkkr"), ExtResource("33_jahss"), ExtResource("34_8l8u4"), ExtResource("35_ovblb"), ExtResource("36_76bp6"), ExtResource("37_64n5l"), ExtResource("38_w23dx"), ExtResource("39_u63bo"), ExtResource("40_71ngg"), ExtResource("41_a4fis"), ExtResource("42_i5cum"), ExtResource("43_ltapf"), ExtResource("44_5dmsq")])
+set_pieces = Array[PackedScene]([ExtResource("39_u63bo"), ExtResource("40_71ngg"), ExtResource("41_a4fis"), ExtResource("42_i5cum"), ExtResource("7_xkuje"), ExtResource("8_xl7qs"), ExtResource("9_q8dmt"), ExtResource("10_cdibq"), ExtResource("11_r2tl1"), ExtResource("12_raj2y"), ExtResource("13_ag6fb")])
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="13" unique_id=1803114641]
 z_index = -1
