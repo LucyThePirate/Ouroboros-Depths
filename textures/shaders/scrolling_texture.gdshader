@@ -7,5 +7,5 @@ uniform vec2 speed = vec2(1.0, 0.0);
 
 // --- Functions --- //
 void fragment() {
-	COLOR = texture(TEXTURE, mod(UV + TIME * speed, 1.0));
+	COLOR = texture(TEXTURE, mod(UV + TIME * speed, 0.10) + vec2(0.1, 0.6));
 }

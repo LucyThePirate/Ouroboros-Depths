@@ -34,11 +34,16 @@
 [ext_resource type="PackedScene" uid="uid://bautumws11bor" path="res://scenes/Generation/SetPieces/travelator_set_piece.tscn" id="30_wfd0x"]
 [ext_resource type="PackedScene" uid="uid://dgwqqxnhjxcj0" path="res://scenes/Generation/SetPieces/point_and_laugh_set_piece.tscn" id="31_3k5qr"]
 [ext_resource type="PackedScene" uid="uid://chw2qja1mrp5r" path="res://scenes/Generation/SetPieces/if_i_was_a_bad_demo_man_i_wouldnt_be_here_set_piece.tscn" id="32_la6oa"]
+[ext_resource type="PackedScene" uid="uid://jm8v1he6gbno" path="res://scenes/Generation/SetPieces/luggae_carousel_set_piece.tscn" id="33_3k5qr"]
+[ext_resource type="PackedScene" uid="uid://chy48clwymwbj" path="res://scenes/Generation/SetPieces/portal_set_piece.tscn" id="34_la6oa"]
+[ext_resource type="PackedScene" uid="uid://ds2f5kh22jhq4" path="res://scenes/Generation/SetPieces/whirlpool_set_piece.tscn" id="35_ledri"]
+[ext_resource type="PackedScene" uid="uid://ntnhhfkhje6j" path="res://scenes/Generation/SetPieces/chillin_on_the_couch_set_piece.tscn" id="36_73tu3"]
+[ext_resource type="PackedScene" uid="uid://dh8q6eet8wtkq" path="res://scenes/Generation/SetPieces/water_text_set_piece.tscn" id="37_ln311"]
 
 [node name="IsaaclikeGenerationStrategy" type="Node2D" unique_id=678348038]
 script = ExtResource("1_tcb7u")
 number_of_set_pieces = 5
-set_pieces = Array[PackedScene]([ExtResource("3_7cerw"), ExtResource("2_yu7xt"), ExtResource("4_445n4"), ExtResource("5_741bn"), ExtResource("6_154c5"), ExtResource("7_mrka4"), ExtResource("8_mrka4"), ExtResource("9_fgfly"), ExtResource("10_12npv"), ExtResource("12_r26bt"), ExtResource("13_xjhvs"), ExtResource("14_wfmw7"), ExtResource("15_hwbqm"), ExtResource("16_s18cg"), ExtResource("17_a0xml"), ExtResource("18_k6prg"), ExtResource("19_2hfcj"), ExtResource("20_3mtk3"), ExtResource("21_hwbqm"), ExtResource("22_s18cg"), ExtResource("23_a0xml"), ExtResource("24_3mtk3"), ExtResource("25_3snae"), ExtResource("26_aoy3y"), ExtResource("26_us8s3"), ExtResource("27_d0lfk"), ExtResource("28_e164y"), ExtResource("29_gop7y"), ExtResource("30_wfd0x"), ExtResource("31_3k5qr"), ExtResource("32_la6oa")])
+set_pieces = Array[PackedScene]([ExtResource("3_7cerw"), ExtResource("2_yu7xt"), ExtResource("4_445n4"), ExtResource("5_741bn"), ExtResource("6_154c5"), ExtResource("7_mrka4"), ExtResource("8_mrka4"), ExtResource("9_fgfly"), ExtResource("10_12npv"), ExtResource("12_r26bt"), ExtResource("13_xjhvs"), ExtResource("14_wfmw7"), ExtResource("15_hwbqm"), ExtResource("16_s18cg"), ExtResource("17_a0xml"), ExtResource("18_k6prg"), ExtResource("19_2hfcj"), ExtResource("20_3mtk3"), ExtResource("21_hwbqm"), ExtResource("22_s18cg"), ExtResource("23_a0xml"), ExtResource("24_3mtk3"), ExtResource("25_3snae"), ExtResource("26_aoy3y"), ExtResource("26_us8s3"), ExtResource("27_d0lfk"), ExtResource("28_e164y"), ExtResource("29_gop7y"), ExtResource("30_wfd0x"), ExtResource("31_3k5qr"), ExtResource("32_la6oa"), ExtResource("33_3k5qr"), ExtResource("34_la6oa"), ExtResource("35_ledri"), ExtResource("36_73tu3"), ExtResource("37_ln311")])
 stairs_down_particle_scene = ExtResource("27_3snae")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1854172308]

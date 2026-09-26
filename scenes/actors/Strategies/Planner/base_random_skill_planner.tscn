@@ -1,11 +1,23 @@
 [gd_scene format=3 uid="uid://dudma3tdrvkgc"]
 
 [ext_resource type="Script" uid="uid://be8jpsq5kefvm" path="res://scripts/Actors/Strategies/Planner/base_random_skill_planner.gd" id="1_h5mmt"]
-[ext_resource type="Shader" uid="uid://dagudpurbsskr" path="res://textures/shaders/scrolling_texture.gdshader" id="2_phuds"]
 [ext_resource type="Texture2D" uid="uid://dtv2g3xeyupap" path="res://textures/ui/EnemyDirectionalTelegraph.png" id="2_yf0ot"]
 
+[sub_resource type="Shader" id="Shader_yf0ot"]
+code = "// Thanks to: https://godotshaders.com/shader/panning/
+
+shader_type canvas_item;
+
+// --- Uniforms --- //
+uniform vec2 speed = vec2(1.0, 0.0);
+
+// --- Functions --- //
+void fragment() {
+	COLOR = texture(TEXTURE, mod(UV + TIME * speed, 1.0));
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_phuds"]
-shader = ExtResource("2_phuds")
+shader = SubResource("Shader_yf0ot")
 shader_parameter/speed = Vector2(1, 0)
 
 [node name="BaseRandomSkillPlanner" type="Node2D" unique_id=1181382082 groups=["Planner"]]

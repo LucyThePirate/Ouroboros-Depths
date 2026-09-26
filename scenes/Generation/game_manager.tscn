@@ -1,18 +1,13 @@
 [gd_scene format=3 uid="uid://dnf6sqy5t3iq"]
 
 [ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/base_dungeon_manager.tscn" id="1_eldwu"]
-[ext_resource type="PackedScene" uid="uid://d11oqpbh2x12i" path="res://scenes/Generation/SetPieces/vault_set_piece.tscn" id="7_xkuje"]
-[ext_resource type="PackedScene" uid="uid://b7hiosubaxo1u" path="res://scenes/Generation/SetPieces/what_is_this_amethyst_set_piece.tscn" id="8_xl7qs"]
-[ext_resource type="PackedScene" uid="uid://cxgx0f0qgduxn" path="res://scenes/Generation/SetPieces/romantic_gondola_ride_set_piece.tscn" id="9_q8dmt"]
-[ext_resource type="PackedScene" uid="uid://y064r6irdr1f" path="res://scenes/Generation/SetPieces/x_marks_the_s_pot_set_piece.tscn" id="10_cdibq"]
-[ext_resource type="PackedScene" uid="uid://bautumws11bor" path="res://scenes/Generation/SetPieces/travelator_set_piece.tscn" id="11_r2tl1"]
-[ext_resource type="PackedScene" uid="uid://dgwqqxnhjxcj0" path="res://scenes/Generation/SetPieces/point_and_laugh_set_piece.tscn" id="12_raj2y"]
+[ext_resource type="PackedScene" uid="uid://jm8v1he6gbno" path="res://scenes/Generation/SetPieces/luggae_carousel_set_piece.tscn" id="4_c3mqx"]
+[ext_resource type="PackedScene" uid="uid://chy48clwymwbj" path="res://scenes/Generation/SetPieces/portal_set_piece.tscn" id="5_fbbl3"]
+[ext_resource type="PackedScene" uid="uid://ds2f5kh22jhq4" path="res://scenes/Generation/SetPieces/whirlpool_set_piece.tscn" id="6_ovp4q"]
+[ext_resource type="PackedScene" uid="uid://ntnhhfkhje6j" path="res://scenes/Generation/SetPieces/chillin_on_the_couch_set_piece.tscn" id="7_jqab8"]
+[ext_resource type="PackedScene" uid="uid://dh8q6eet8wtkq" path="res://scenes/Generation/SetPieces/water_text_set_piece.tscn" id="8_ndp74"]
 [ext_resource type="PackedScene" uid="uid://chw2qja1mrp5r" path="res://scenes/Generation/SetPieces/if_i_was_a_bad_demo_man_i_wouldnt_be_here_set_piece.tscn" id="13_ag6fb"]
 [ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="17_ttnpg"]
-[ext_resource type="PackedScene" uid="uid://d12i0rmtx6nrk" path="res://scenes/Generation/SetPieces/snow_fort_set_piece.tscn" id="39_u63bo"]
-[ext_resource type="PackedScene" uid="uid://cexwbv2kv5inr" path="res://scenes/Generation/SetPieces/snow_hamsterdog_storage_set_piece.tscn" id="40_71ngg"]
-[ext_resource type="PackedScene" uid="uid://cu84v0y4jrh4u" path="res://scenes/Generation/SetPieces/winter_maze_set_piece.tscn" id="41_a4fis"]
-[ext_resource type="PackedScene" uid="uid://clhkxsjoos4db" path="res://scenes/Generation/SetPieces/frozen_lake_set_piece.tscn" id="42_i5cum"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dimvc"]
 blend_mode = 1
@@ -70,7 +65,7 @@ generator = NodePath("IsaaclikeGenerationStrategy")
 number_of_cells = 25
 number_of_rooms = 2
 number_of_set_pieces = 4
-set_pieces = Array[PackedScene]([ExtResource("39_u63bo"), ExtResource("40_71ngg"), ExtResource("41_a4fis"), ExtResource("42_i5cum"), ExtResource("7_xkuje"), ExtResource("8_xl7qs"), ExtResource("9_q8dmt"), ExtResource("10_cdibq"), ExtResource("11_r2tl1"), ExtResource("12_raj2y"), ExtResource("13_ag6fb")])
+set_pieces = Array[PackedScene]([ExtResource("13_ag6fb"), ExtResource("4_c3mqx"), ExtResource("5_fbbl3"), ExtResource("6_ovp4q"), ExtResource("7_jqab8"), ExtResource("8_ndp74")])
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="13" unique_id=1803114641]
 z_index = -1
