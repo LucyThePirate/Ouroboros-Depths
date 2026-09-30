@@ -212,6 +212,7 @@ func _on_grid_entity_grid_entity_initialized() -> void:
 	initialized = true
 	if not turn_component.turn_ended.is_connected(health_component.turn_ended):
 		turn_component.turn_ended.connect(health_component.turn_ended)
+	if not turn_component.turn_ended.is_connected(_on_turn_component_turn_ended):
 		turn_component.turn_ended.connect(_on_turn_component_turn_ended)
 	grid_entity.stack_component.emptied_stack.connect(_on_skill_stack_component_emptied_stack)
 	grid_entity.moved.connect(_on_grid_entity_moved)

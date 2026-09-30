@@ -66,7 +66,7 @@ func _ready() -> void:
 func initialize(grid_entity_parent: GridEntity, is_player: bool, new_turn_component: TurnComponent):
 	grid_entity = grid_entity_parent
 	grid_entity.descended.connect(on_next_floor_reached)
-	grid_entity.died.connect(func(): %HandCanvasLayer.hide())
+	grid_entity.died.connect(func(_is_despawning): %HandCanvasLayer.hide())
 	%HandCanvasLayer.visible = is_player
 	grid_entity_is_player = is_player
 	if not is_player:

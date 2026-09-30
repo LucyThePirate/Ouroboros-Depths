@@ -77,7 +77,9 @@ func _on_fell_off_map():
 		animation_player.play("Falling")
 
 
-func play(animation_name: StringName):
+func play(animation_name: StringName, _sentinel1 = 0, _sentinel2 = 0):
+	if _sentinel1 or _sentinel2:
+		print("Found you!")
 	if animation_player.has_animation(animation_name):
 		animation_player.play(animation_name)
 		animation_player.seek(0)

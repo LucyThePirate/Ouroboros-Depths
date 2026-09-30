@@ -17,7 +17,7 @@ signal hurt(attacker, damage_amount)
 signal fell_off_map
 signal descended
 signal died(is_despawning)
-signal turned_invisible
+signal turned_invisible(is_despawning)
 signal performed_action
 signal reload_started
 signal absorbed_souls(soul_position)

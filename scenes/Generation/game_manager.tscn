@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ds2f5kh22jhq4" path="res://scenes/Generation/SetPieces/whirlpool_set_piece.tscn" id="6_ovp4q"]
 [ext_resource type="PackedScene" uid="uid://ntnhhfkhje6j" path="res://scenes/Generation/SetPieces/chillin_on_the_couch_set_piece.tscn" id="7_jqab8"]
 [ext_resource type="PackedScene" uid="uid://dh8q6eet8wtkq" path="res://scenes/Generation/SetPieces/water_text_set_piece.tscn" id="8_ndp74"]
+[ext_resource type="PackedScene" uid="uid://bautumws11bor" path="res://scenes/Generation/SetPieces/travelator_set_piece.tscn" id="9_fbbl3"]
 [ext_resource type="PackedScene" uid="uid://chw2qja1mrp5r" path="res://scenes/Generation/SetPieces/if_i_was_a_bad_demo_man_i_wouldnt_be_here_set_piece.tscn" id="13_ag6fb"]
 [ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="17_ttnpg"]
 
@@ -65,7 +66,7 @@ generator = NodePath("IsaaclikeGenerationStrategy")
 number_of_cells = 25
 number_of_rooms = 2
 number_of_set_pieces = 4
-set_pieces = Array[PackedScene]([ExtResource("13_ag6fb"), ExtResource("4_c3mqx"), ExtResource("5_fbbl3"), ExtResource("6_ovp4q"), ExtResource("7_jqab8"), ExtResource("8_ndp74")])
+set_pieces = Array[PackedScene]([ExtResource("13_ag6fb"), ExtResource("4_c3mqx"), ExtResource("5_fbbl3"), ExtResource("6_ovp4q"), ExtResource("7_jqab8"), ExtResource("8_ndp74"), ExtResource("9_fbbl3")])
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="13" unique_id=1803114641]
 z_index = -1

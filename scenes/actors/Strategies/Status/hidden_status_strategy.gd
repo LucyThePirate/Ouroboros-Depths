@@ -12,7 +12,7 @@ func merge_status(status: StatusStrategy):
 
 
 func on_grid_entity_parent_set(grid_entity: GridEntity):
-	grid_entity.turned_invisible.emit()
+	grid_entity.turned_invisible.emit(false)
 
 
 func on_stack_execution_started():
