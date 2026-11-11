@@ -36,6 +36,7 @@ note_VFX = ExtResource("3_go5wn")
 skill_ID = 5
 count = 8
 skill_type = 2
+cursor_requires_sight = false
 skill_name = "Orchestrate"
 skill_desc = "Doh Reh Miiii!!! The power of music is at your fingertips. Use it to smite your enemies while creating a soothing melody at the same time!
 

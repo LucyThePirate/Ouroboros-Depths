@@ -13,7 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://d3w5sktv0qxww" path="res://scenes/actors/Strategies/Status/Adrenaline/adrenaline_status_strategy.tscn" id="7_uqfkb"]
 [ext_resource type="AudioStream" uid="uid://bqs6qr4ws7ylr" path="res://audio/SFX/Misc/wait/556991__ycbcr__tabletop-clock-ticking-speed-ramp-down-followup2.ogg" id="8_t62v4"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="8_wd2mq"]
+[ext_resource type="Texture2D" uid="uid://cstiiv6q1iax1" path="res://textures/ui/eye_closed.png" id="13_ds2sr"]
 [ext_resource type="PackedScene" uid="uid://jpmkywj7gupl" path="res://scenes/actors/Visuals/player_visual.tscn" id="13_j3wsw"]
+[ext_resource type="Texture2D" uid="uid://bxne41b1pm4ui" path="res://textures/ui/eye_open.png" id="14_6xqls"]
 [ext_resource type="AudioStream" uid="uid://0to1gxx02bfe" path="res://audio/SFX/Misc/OrangePeelReverse.ogg" id="16_nfopg"]
 [ext_resource type="AudioStream" uid="uid://cwqwqvrk8t7gj" path="res://audio/SFX/Misc/OrangePeel1.ogg" id="17_1vpxp"]
 [ext_resource type="Texture2D" uid="uid://bhj6u87q1sn4l" path="res://textures/creatures/Soul.png" id="18_1vpxp"]
@@ -48,6 +50,25 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3hvrq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_ds2sr")
+}],
+"loop": 1,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_6xqls")
+}],
+"loop": 1,
+"name": &"open",
 "speed": 5.0
 }]
 
@@ -300,9 +321,8 @@ bus = &"SFX"
 
 [node name="Cursor" type="AnimatedSprite2D" parent="GridEntity" unique_id=559999609]
 unique_name_in_owner = true
-visible = false
 top_level = true
-z_index = -1
+z_index = 11
 sprite_frames = SubResource("SpriteFrames_0878f")
 autoplay = "default"
 speed_scale = 0.3
@@ -315,6 +335,12 @@ position = Vector2(2, 5)
 sprite_frames = SubResource("SpriteFrames_0878f")
 autoplay = "default"
 speed_scale = 0.3
+
+[node name="SightIndicator" type="AnimatedSprite2D" parent="GridEntity/Cursor" unique_id=807550658]
+unique_name_in_owner = true
+visible = false
+sprite_frames = SubResource("SpriteFrames_3hvrq")
+animation = &"open"
 
 [node name="Display" type="Node2D" parent="." unique_id=1874228332]
 top_level = true

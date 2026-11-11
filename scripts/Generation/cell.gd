@@ -5,6 +5,7 @@ extends GameMode
 @export var spawn_smoke_scene: PackedScene
 @export var player_scene: PackedScene
 @export var creature_scene: Array[PackedScene]
+var creatures_spawnable_on_this_floor: Array[PackedScene]
 @export var challenge_rating_capacity := 15.0
 var current_challenge_rating := 0.0
 @export var entity_spawn_limit := 5
@@ -17,6 +18,7 @@ var bogo_egg: BraindeadAI
 @export var spawn_creatures := true
 @export var tutorial_level := false
 @export var is_arena := false
+var spawnable_ground: Array
 
 @onready var pause_screen := %PauseScreen
 @onready var pause_button := %PauseButton
@@ -52,7 +54,8 @@ var tile_size: int = 100
 @onready var stairs_up_tile := [2, Vector2i(0, 2)]
 @onready var stairs_down_tile := [2, Vector2i(0, 3)]
 @onready var lock_tile := [2, Vector2i(4, 2)]
-@onready var fog_tile := [3, Vector2i(1, 1)]
+@onready var shade_tile := [3, Vector2i(1, 1)]
+@onready var fog_tile := [2, Vector2i(9, 8)]
 
 var paths: Array = []
 var noise
@@ -119,7 +122,9 @@ func _ready():
 	if not player:
 		player = (
 			spawn_entity(
-				$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0], player_scene
+				$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0],
+				player_scene,
+				false
 			)
 			as Player
 		)
@@ -130,6 +135,12 @@ func _ready():
 
 	spawn_bogo_egg()
 
+	fill_spawnable_monster_list_for_this_floor()
+
+	for tile in Global.floors.get_used_cells():
+		var wall_data = Global.walls.get_cell_tile_data(tile)
+		if not wall_data or not wall_data.get_custom_data("is_solid"):
+			spawnable_ground.append(tile)
 	for random_monster_tile in walls.get_used_cells_by_id(
 		Tiles.random_monster_tile[0], Tiles.random_monster_tile[1]
 	):
@@ -149,7 +160,7 @@ func _initialize_fog():
 	for tile in floors.get_used_cells():
 		fog.set_cell(tile, fog_tile[0], fog_tile[1])
 
-	fog.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
+	#fog.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
 
 	Global.fog = fog
 	Global.shade = shade
@@ -196,6 +207,8 @@ func _redraw_map():
 	current_entity_count = 0
 	Global.floors.clear()
 	Global.walls.clear()
+	spawnable_ground.clear()
+	creatures_spawnable_on_this_floor.clear()
 	fog.clear()
 	_ready()
 	player.next_floor_reached()
@@ -256,7 +269,7 @@ func _update_fog(
 
 	if lighting_mode != LightingModes.FOG_ONLY:
 		for tile in Global.visible_tiles.keys():
-			Global.shade.set_cell(tile, fog_tile[0], fog_tile[1])
+			Global.shade.set_cell(tile, shade_tile[0], shade_tile[1])
 
 	Global.visible_tiles = {}
 	Light.computeFov(new_coords, light_radius)
@@ -266,10 +279,13 @@ func _update_fog(
 		fog.set_cell(tile, -1)
 
 
-func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene):
+func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene, call_deferred := false):
 	var new_entity = entity_scene.instantiate()
 	new_entity.global_position = floors.map_to_local(grid_coordinate)
-	add_child(new_entity)
+	if call_deferred:
+		call_deferred("add_child", new_entity)
+	else:
+		add_child(new_entity)
 	return new_entity
 
 
@@ -281,7 +297,7 @@ func process_turn():
 		return
 
 	turn_counter += 1
-	if spawn_creatures and (turn_counter % 5) == 0:
+	if spawn_creatures and (turn_counter % 10) == 0:
 		try_spawning_random_monster(true)
 	#print(turn_counter)
 	for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
@@ -295,16 +311,27 @@ func spawn_monster_at_coords(grid_coordinate: Vector2i):
 	current_challenge_rating += new_entity.grid_entity.challenge_rating
 
 
+func fill_spawnable_monster_list_for_this_floor():
+	for creature in creature_scene:
+		var new_entity = creature.instantiate()
+		add_child(new_entity)
+		if not is_arena and new_entity.grid_entity.challenge_rating > current_floor + 1:
+			new_entity.queue_free()
+			continue
+		creatures_spawnable_on_this_floor.append(creature)
+		new_entity.queue_free()
+
+
 func try_spawning_random_monster(initialize_entity := true):
 	if current_entity_count < entity_spawn_limit + current_floor:
-		var grid_coordinate = Global.floors.get_used_cells().pick_random()
+		if spawnable_ground.is_empty():
+			return
+		var grid_coordinate = spawnable_ground.pick_random()
 		if not _is_obstructed(grid_coordinate):
 			var new_entity = (
-				spawn_entity(grid_coordinate, creature_scene.pick_random()) as CreatureAI
+				spawn_entity(grid_coordinate, creatures_spawnable_on_this_floor.pick_random())
+				as CreatureAI
 			)
-			if not is_arena and new_entity.grid_entity.challenge_rating > current_floor + 1:
-				new_entity.queue_free()
-				return
 			current_challenge_rating += new_entity.grid_entity.challenge_rating
 			current_entity_count += 1
 			if initialize_entity:

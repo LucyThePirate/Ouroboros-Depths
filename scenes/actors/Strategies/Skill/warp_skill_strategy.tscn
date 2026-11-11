@@ -23,6 +23,7 @@ is_depletable = true
 cost = 2
 rarity = 2
 skill_type = 2
+cursor_requires_sight = false
 max_per_stack = 1
 priority = -1
 skill_name = "Warp"

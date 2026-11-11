@@ -291,7 +291,9 @@ func _handle_awaiting_directional_input():
 
 func _on_stack_component_awaited_cursor():
 	visual.play("Magic")
+	%Cursor.self_modulate = Color.WHITE
 	%Cursor.show()
+	%SightIndicator.visible = stack_component.current_skill.cursor_requires_sight
 	%Arrows.hide()
 	cursor_position = grid_entity.grid_coords
 	stack_component.set_cursor_position(cursor_position)
@@ -310,16 +312,29 @@ func _handle_awaiting_cursor_input():
 			last_mouse_cursor_position = mouse_cursor_position
 			stack_component.set_cursor_position(mouse_cursor_position)
 			%Cursor.position = Global.floors.map_to_local(mouse_cursor_position)
+			_update_cursor_sight_preview(mouse_cursor_position)
 	else:
 		var move_direction = _get_directional_input()
 		if move_direction:
 			cursor_position += Vector2i(move_direction)
 			%Cursor.position = Global.floors.map_to_local(cursor_position)
+			_update_cursor_sight_preview(cursor_position)
 			stack_component.set_cursor_position(cursor_position)
 	if Input.is_action_just_pressed("ui_accept"):
 		%Cursor.hide()
 		%Arrows.show()
 		stack_component.accept_cursor()
+
+
+func _update_cursor_sight_preview(cursor_coords: Vector2i):
+	if not stack_component.current_skill.cursor_requires_sight:
+		return
+	if cursor_coords in Global.visible_tiles:
+		%SightIndicator.play("open")
+		%Cursor.self_modulate = Color.WHITE
+	else:
+		%SightIndicator.play("closed")
+		%Cursor.self_modulate = Color.RED
 
 
 func _on_skill_stack_component_emptied_stack() -> void:

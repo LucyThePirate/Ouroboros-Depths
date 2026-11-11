@@ -11,7 +11,7 @@ signal gained_status(status)
 const SKILL_DESCRIPTION = preload("uid://bvsqgo23yrgum")
 
 enum SkillRarities { CURSE, COMMON, RARE, RAINBOW }
-enum SkillTypes { DEFAULT, DIRECTIONAL, CURSOR, NULL }
+enum SkillTypes { DEFAULT, DIRECTIONAL, CURSOR, NULL }  ## This skill is used immediately with no further input.  ## This skill requires a direction to be selected to be used.  ## This skill requires a point on the map to be selected to be used.
 enum SkillIDs {
 	NONE,
 	DASH,
@@ -41,20 +41,31 @@ enum SkillIDs {
 
 @export_category("Base Stats")
 @export var skill_ID := SkillIDs.NONE
+## How many copies of this skill should be spawned into the deck.
 @export var count := 3
 @onready var current_count := count
+## Whether or not using this skill should make it go away 'til the next floor
 @export var is_depletable := false
 @export var cost := 1
 @export var rarity := SkillRarities.COMMON
+## How this skill is used.
 @export var skill_type := SkillTypes.DEFAULT
+## (Cursor skills only) whether or not this skill requires the targeted square to be visible
+@export var cursor_requires_sight := true
 @export var stack_size := 1
 
 @export_category("AI Use Hints")
 @export var max_per_stack := 100
 @onready var current_in_stack := 0
 @export var priority := 0
-enum SkillUsageTypes { WHENEVER, COMBAT_ONLY, OUTSIDE_COMBAT_ONLY }
+enum SkillUsageTypes {
+	WHENEVER,  ## The creature uses this skill as it's available.
+	COMBAT_ONLY,  ## The creature only uses this skill while engaged in combat.
+	OUTSIDE_COMBAT_ONLY,  ## The creature will only use this skill when it is not aggroed.
+}
+## When the creature AI should try to use this skill.
 @export var when_to_use_skill := SkillUsageTypes.COMBAT_ONLY
+## (Directional skills) whether or not this skill should be used on adjacent walls.
 @export var usable_on_walls := false
 
 @export_category("Lore")
@@ -131,6 +142,9 @@ func move_cursor(moveDirection: Vector2i, _grid_entity: GridEntity):
 
 
 func set_cursor_position(new_position: Vector2i, _grid_entity: GridEntity):
+	if cursor_requires_sight:
+		if not new_position in Global.visible_tiles:
+			new_position = _grid_entity.grid_coords
 	cursor = new_position
 
 

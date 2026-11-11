@@ -19,6 +19,7 @@
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="16_cpcro"]
 [ext_resource type="PackedScene" uid="uid://vj5l8vjppmdv" path="res://scenes/actors/Creatures/sir_geis/sir_geis_creature.tscn" id="16_l5dbl"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="18_d2p2i"]
+[ext_resource type="Shader" uid="uid://db8c2fgebe321" path="res://textures/shaders/static.gdshader" id="19_l5dbl"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="19_lq848"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="20_fidet"]
 [ext_resource type="Texture2D" uid="uid://btflw1das7k7h" path="res://textures/testing/zen_garden_WIP2.png" id="21_lwe8p"]
@@ -28,12 +29,15 @@
 [ext_resource type="AudioStream" uid="uid://rnxn4j8uomna" path="res://audio/Music/AstrMusic/GHOST_NOODLES[loop,mysterious].mp3" id="25_1b3ug"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4bofw"]
-shader = ExtResource("19_lq848")
+shader = ExtResource("19_l5dbl")
 shader_parameter/bg_color = Color(0.1309329, 0.12740707, 0.2680826, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eu30k"]
 shader = ExtResource("19_lq848")
-shader_parameter/bg_color = Color(0.1309329, 0.12740707, 0.2680826, 1)
+shader_parameter/bg_color = Color(0, 0, 0, 1)
+shader_parameter/big_star_prob = 0.1
+shader_parameter/small_star_prob = 0.004
+shader_parameter/flicker_freq = 5.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qrcgv"]
 
