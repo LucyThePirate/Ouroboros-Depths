@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://dn3wofodnqxg4"]
 
-[ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/base_dungeon_manager.tscn" id="1_nngti"]
+[ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/base_dungeon_level.tscn" id="1_nngti"]
 [ext_resource type="AudioStream" uid="uid://fmd1i6nikoyg" path="res://audio/Music/AstrMusic/Tribute To The Fallen Leaves[melody].mp3" id="2_t76d1"]
 [ext_resource type="PackedScene" uid="uid://dnbon7l7p7jj0" path="res://scenes/Generation/stairs_down_particles.tscn" id="3_yyett"]
 [ext_resource type="Theme" uid="uid://dsnesst3y61ol" path="res://resources/default_theme.tres" id="4_82vfn"]

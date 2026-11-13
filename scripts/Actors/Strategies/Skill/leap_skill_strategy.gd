@@ -1,3 +1,5 @@
+# TODO: buff leap, maybe make it not end your turn, make it usable on walls
+
 extends SkillStrategy
 
 var max_distance = 3

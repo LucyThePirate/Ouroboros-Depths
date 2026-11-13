@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://djaq0g3fgdxj"]
 
-[ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/base_dungeon_manager.tscn" id="1_rvaov"]
+[ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/base_dungeon_level.tscn" id="1_rvaov"]
 [ext_resource type="PackedScene" uid="uid://cqjoguhw8mhj" path="res://scenes/actors/Creatures/tutorial_scarecrow.tscn" id="4_2t416"]
 [ext_resource type="PackedScene" uid="uid://vbhpmylip71o" path="res://scenes/actors/Creatures/snake_block/snake_block_creature.tscn" id="7_eg032"]
 [ext_resource type="PackedScene" uid="uid://dvtenp8g812ei" path="res://scenes/actors/Creatures/bogo_egg.tscn" id="7_pj5lm"]

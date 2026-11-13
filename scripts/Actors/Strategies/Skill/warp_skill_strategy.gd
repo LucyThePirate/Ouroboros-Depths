@@ -1,3 +1,5 @@
+# TODO: Buff Warp, maybe have it bring tiles with it
+
 extends SkillStrategy
 
 var max_distance = 5

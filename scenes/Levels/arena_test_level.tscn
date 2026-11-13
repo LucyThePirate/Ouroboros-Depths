@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://d4aptj5nxvsq5"]
 
-[ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/base_dungeon_manager.tscn" id="1_72vdk"]
+[ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/base_dungeon_level.tscn" id="1_72vdk"]
 
 [node name="ArenaTestLevel" unique_id=1347246317 instance=ExtResource("1_72vdk")]
 challenge_rating_capacity = 100.0

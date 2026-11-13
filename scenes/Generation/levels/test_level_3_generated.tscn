@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://p6xr56yjm3ux"]
+
+[ext_resource type="PackedScene" uid="uid://43rkgu17gs68" path="res://scenes/Generation/base_dungeon_level.tscn" id="1_5qpq1"]
+[ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="2_8k1gs"]
+
+[node name="BaseDungeonLevel" unique_id=1347246317 node_paths=PackedStringArray("generator") instance=ExtResource("1_5qpq1")]
+generator = NodePath("IsaaclikeGenerationStrategy")
+
+[node name="IsaaclikeGenerationStrategy" parent="." index="6" unique_id=678348038 instance=ExtResource("2_8k1gs")]

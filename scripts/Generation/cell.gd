@@ -14,6 +14,8 @@ var current_entity_count := 0
 var bogo_egg_scene = preload("uid://dvtenp8g812ei")
 var bogo_egg: BraindeadAI
 
+@export var levels: Array[PackedScene]
+
 @export var generator: GenerationStrategy
 @export var spawn_creatures := true
 @export var tutorial_level := false
@@ -56,18 +58,12 @@ var tile_size: int = 100
 @onready var lock_tile := [2, Vector2i(4, 2)]
 @onready var shade_tile := [3, Vector2i(1, 1)]
 @onready var fog_tile := [2, Vector2i(9, 8)]
-
-var paths: Array = []
-var noise
-var rng
-var astar_grid: AStarGrid2D
-var current_id_path: Array[Vector2i]
 #endregion
 
 var turn_counter = 0
 var current_floor := 0
+var current_level: DungeonLevel
 var player
-
 var angry_at_player = 0
 
 
@@ -76,10 +72,12 @@ func _ready():
 		%Fog.hide()
 		%Shade.hide()
 		return
+	current_level = levels[current_floor].instantiate()
+	add_child(current_level)
 	%Fog.show()
 	%Shade.show()
 	_on_unpaused()
-	if tutorial_level:
+	if current_level.tutorial_level:
 		Global.metamorphosis_completed.connect(_on_metamorphosis_tutorial_completed)
 	if not Global.UI_closed.is_connected(_on_unpaused):
 		Global.UI_closed.connect(_on_unpaused)
@@ -90,21 +88,25 @@ func _ready():
 	Global.metamorphosis_reroll_cost = 3
 	$CanvasLayer/DeathScreen.hide()
 #region Setting up RNG and dungeon generation
-	if not generator:
+	if not current_level.generator:
 		# There already is a level, no need to generate
-		Global.floors = floors
-		Global.walls = walls
+		Global.floors = current_level.floors
+		Global.walls = current_level.walls
 		_initialize_fog()
 		if get_tree().get_nodes_in_group("Player"):
 			player = get_tree().get_nodes_in_group("Player")[0]
 		else:
 			if (
-				$Floors.get_used_cells().size() > 0
-				and $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])
+				current_level.floors.get_used_cells().size() > 0
+				and current_level.floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])
 			):
 				player = (
 					spawn_entity(
-						$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0],
+						(
+							current_level
+							. floors
+							. get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
+						),
 						player_scene
 					)
 					as Player
@@ -112,9 +114,9 @@ func _ready():
 		_initialize_entities()
 		return
 	# Else, no existing level, generate
-	generator.initialize(current_floor, floors, walls, fog)
-	generator.generate_level()
-	for extra_node in generator.extra_nodes:
+	current_level.generator.initialize(current_floor, floors, walls, fog)
+	current_level.generator.generate_level()
+	for extra_node in current_level.generator.extra_nodes:
 		extra_node.reparent(self)
 		if extra_node is CreatureAI:
 			extra_node.grid_entity.global_position = extra_node.global_position - Vector2(50, 50)
@@ -122,14 +124,16 @@ func _ready():
 	if not player:
 		player = (
 			spawn_entity(
-				$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0],
+				current_level.floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0],
 				player_scene,
 				false
 			)
 			as Player
 		)
-	player.grid_entity.warp($Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0])
-	Global.entity_positions[$Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]] = (
+	player.grid_entity.warp(
+		current_level.floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
+	)
+	Global.entity_positions[current_level.floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]] = (
 		player.grid_entity
 	)
 
@@ -154,7 +158,7 @@ func _ready():
 
 
 func _initialize_fog():
-	shade.clear()
+	current_level.shade.clear()
 	if lighting_mode == LightingModes.FULLY_LIT:
 		return
 	for tile in floors.get_used_cells():
@@ -162,8 +166,8 @@ func _initialize_fog():
 
 	#fog.set_pattern(walls.get_used_rect().position, walls.get_pattern(walls.get_used_cells()))
 
-	Global.fog = fog
-	Global.shade = shade
+	Global.fog = current_level.fog
+	Global.shade = current_level.shade
 	_update_fog(Vector2i.ZERO, Vector2i.ZERO, true)
 
 
@@ -210,6 +214,7 @@ func _redraw_map():
 	spawnable_ground.clear()
 	creatures_spawnable_on_this_floor.clear()
 	fog.clear()
+	current_level.queue_free()
 	_ready()
 	player.next_floor_reached()
 	%AnimationPlayer.play("floor_text_fade_out")
@@ -258,8 +263,13 @@ func _update_fog(
 	if lighting_mode == LightingModes.FULLY_LIT:
 		return
 	if initializing_fog:
-		if $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1]).size() > 0:
-			new_coords = $Floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
+		if (
+			current_level.floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1]).size()
+			> 0
+		):
+			new_coords = (
+				current_level.floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])[0]
+			)
 
 	var light_radius = 7
 	if player:
@@ -455,8 +465,8 @@ func _on_player_died(_despawning) -> void:
 	if not is_arena:
 		for tile in Global.floors.get_used_cells():
 			Global.shade.set_cell(tile, -1)
-	%Fog.hide()
-	%Shade.hide()
+	current_level.fog.hide()
+	current_level.shade.hide()
 	$CanvasLayer/DeathScreen/VBoxContainer/FloorReached.text = ("Floor Reached: %s" % current_floor)
 	$CanvasLayer/DeathScreen/VBoxContainer/Kills.text = "Kills: %s" % player.grid_entity.kills
 	$CanvasLayer/DeathScreen/VBoxContainer/Turns.text = "Turns: %s" % turn_counter

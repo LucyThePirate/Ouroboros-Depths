@@ -1,3 +1,5 @@
+# TODO: judo throw can put creatures on walls?
+
 extends SkillStrategy
 
 var max_distance = 3

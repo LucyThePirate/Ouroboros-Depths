@@ -81,6 +81,9 @@ alpha_curve = SubResource("CurveTexture_hg4aq")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m3s0v"]
 shader = ExtResource("11_utnk4")
 shader_parameter/bg_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
+shader_parameter/big_star_prob = 0.1
+shader_parameter/small_star_prob = 0.004
+shader_parameter/flicker_freq = 5.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q7qwg"]
 
@@ -169,6 +172,9 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kv4pv"]
 shader = ExtResource("11_utnk4")
 shader_parameter/bg_color = Color(0.0430392, 0.0430392, 0.0430392, 1)
+shader_parameter/big_star_prob = 0.1
+shader_parameter/small_star_prob = 0.004
+shader_parameter/flicker_freq = 5.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_utnk4"]
 blend_mode = 1
