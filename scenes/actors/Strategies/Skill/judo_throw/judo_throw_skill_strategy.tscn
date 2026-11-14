@@ -124,6 +124,7 @@ texture = ExtResource("6_5mm07")
 
 [node name="GrabCursor" type="AnimatedSprite2D" parent="." index="2" unique_id=1719182099]
 unique_name_in_owner = true
+visible = false
 self_modulate = Color(0.99229187, 0, 0.2342358, 1)
 top_level = true
 z_index = -1

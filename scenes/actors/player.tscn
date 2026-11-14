@@ -321,6 +321,7 @@ bus = &"SFX"
 
 [node name="Cursor" type="AnimatedSprite2D" parent="GridEntity" unique_id=559999609]
 unique_name_in_owner = true
+visible = false
 top_level = true
 z_index = 11
 sprite_frames = SubResource("SpriteFrames_0878f")

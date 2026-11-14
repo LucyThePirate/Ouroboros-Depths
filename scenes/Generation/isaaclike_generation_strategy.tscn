@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cu84v0y4jrh4u" path="res://scenes/Generation/SetPieces/winter_maze_set_piece.tscn" id="25_3snae"]
 [ext_resource type="PackedScene" uid="uid://clhkxsjoos4db" path="res://scenes/Generation/SetPieces/frozen_lake_set_piece.tscn" id="26_aoy3y"]
 [ext_resource type="PackedScene" uid="uid://d11oqpbh2x12i" path="res://scenes/Generation/SetPieces/vault_set_piece.tscn" id="26_us8s3"]
-[ext_resource type="PackedScene" uid="uid://dnbon7l7p7jj0" path="res://scenes/Generation/stairs_down_particles.tscn" id="27_3snae"]
+[ext_resource type="PackedScene" uid="uid://dnbon7l7p7jj0" path="res://scenes/Generation/StairsDownParticles/stairs_down_particles.tscn" id="27_3snae"]
 [ext_resource type="PackedScene" uid="uid://b7hiosubaxo1u" path="res://scenes/Generation/SetPieces/what_is_this_amethyst_set_piece.tscn" id="27_d0lfk"]
 [ext_resource type="PackedScene" uid="uid://cxgx0f0qgduxn" path="res://scenes/Generation/SetPieces/romantic_gondola_ride_set_piece.tscn" id="28_e164y"]
 [ext_resource type="PackedScene" uid="uid://bautumws11bor" path="res://scenes/Generation/SetPieces/travelator_set_piece.tscn" id="30_wfd0x"]

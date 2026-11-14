@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://43rkgu17gs68"]
+[gd_scene format=3 uid="uid://43rkgu17gs68"]
 
 [ext_resource type="Script" uid="uid://br1lr4ewe1d14" path="res://scenes/Generation/base_dungeon_level.gd" id="1_plk50"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="16_cpcro"]
@@ -45,17 +45,14 @@ tile_set = ExtResource("16_cpcro")
 
 [node name="Fog" type="TileMapLayer" parent="." unique_id=341166173 groups=["Fog"]]
 unique_name_in_owner = true
-visible = false
 z_index = 11
 material = SubResource("ShaderMaterial_4bofw")
 tile_set = ExtResource("16_cpcro")
 
 [node name="Shade" type="TileMapLayer" parent="." unique_id=1270013491 groups=["Fog"]]
 unique_name_in_owner = true
-visible = false
 self_modulate = Color(0.95, 0.6612, 0.494, 0.36078432)
 z_index = 10
-tile_map_data = PackedByteArray("AAAFAAIAAwABAAEAAAAEAAIAAwABAAEAAAAEAAMAAwABAAEAAAADAAMAAwABAAEAAAADAAQAAwABAAEAAAACAAQAAwABAAEAAAACAAMAAwABAAEAAAABAAMAAwABAAEAAAACAAIAAwABAAEAAAADAAIAAwABAAEAAAAAAAMAAwABAAEAAAD//wMAAwABAAEAAAD//wIAAwABAAEAAAAAAAIAAwABAAEAAAAAAAEAAwABAAEAAAABAAAAAwABAAEAAAACAAAAAwABAAEAAAADAAAAAwABAAEAAAADAAEAAwABAAEAAAABAAIAAwABAAEAAAABAAEAAwABAAEAAAACAAEAAwABAAEAAAA=")
 tile_set = ExtResource("16_cpcro")
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1586894556]
