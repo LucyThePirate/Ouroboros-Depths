@@ -73,7 +73,8 @@ func is_appropriate_time_to_use_skill(skill: SkillStrategy) -> bool:
 func make_plan(grid_entity: GridEntity, angry_at: GridEntity) -> String:
 	grid_parent = grid_entity
 	is_angry_at_a_creature = angry_at != null
-	if stack_component.is_full():
+	#if stack_component.is_full():
+	if stack_component.stack.size() > 0:
 		return "Execute Stack"
 	else:
 		if stack_component.skills.size() <= 0:

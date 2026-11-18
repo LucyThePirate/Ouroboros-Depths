@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://vj5l8vjppmdv" path="res://scenes/actors/Creatures/sir_geis/sir_geis_creature.tscn" id="16_lq848"]
 [ext_resource type="PackedScene" uid="uid://b04tvmeribd1k" path="res://scenes/actors/Creatures/bogo_sort.tscn" id="17_fidet"]
 [ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="17_ttnpg"]
-[ext_resource type="PackedScene" uid="uid://bp00l2vqqva2o" path="res://scenes/Generation/levels/test_level_4_generated.tscn" id="18_73l8b"]
 [ext_resource type="PackedScene" uid="uid://d22k6u55ap3sj" path="res://scenes/Generation/levels/test_level_1.tscn" id="18_fkop7"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="18_lwe8p"]
 [ext_resource type="PackedScene" uid="uid://1itbcrmicytv" path="res://scenes/Generation/levels/test_level_2.tscn" id="19_73l8b"]
@@ -144,7 +143,7 @@ spawn_smoke_scene = ExtResource("3_hw4ns")
 player_scene = ExtResource("4_fkop7")
 creature_scene = Array[PackedScene]([ExtResource("5_73l8b"), ExtResource("6_kmp3v"), ExtResource("7_mxyv8"), ExtResource("8_d2bkc"), ExtResource("9_tir5h"), ExtResource("10_brfwm"), ExtResource("11_tjpqt"), ExtResource("12_73xfa"), ExtResource("13_cpcro"), ExtResource("14_ttnpg"), ExtResource("15_d2p2i"), ExtResource("16_lq848")])
 bogosort_scene = ExtResource("17_fidet")
-levels = Array[PackedScene]([ExtResource("18_fkop7"), ExtResource("19_73l8b"), ExtResource("20_kmp3v"), ExtResource("18_73l8b")])
+levels = Array[PackedScene]([ExtResource("18_fkop7"), ExtResource("19_73l8b"), ExtResource("20_kmp3v")])
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=800089894]
 position = Vector2(2992, 1528)

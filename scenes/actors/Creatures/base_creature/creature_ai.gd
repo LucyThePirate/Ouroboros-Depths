@@ -179,7 +179,8 @@ func get_direction_towards(
 
 
 func pursue_entity(entity: GridEntity) -> Vector2i:
-	if move_when_aggro and (randf() > 0.5 or in_darkness):
+	#if move_when_aggro and (randf() > 0.5 or in_darkness):
+	if move_when_aggro and (in_darkness):
 		return get_direction_towards(entity, false, true)
 	else:
 		intent = random_skill_planner.make_plan(grid_entity, angry_at)
