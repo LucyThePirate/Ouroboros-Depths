@@ -2,7 +2,8 @@ extends Node2D
 
 class_name DungeonLevel
 @export var generator: GenerationStrategy
-@export var spawn_creatures := true
+@export var continually_spawn_creatures := true
+@export var initial_spawn_creatures := true
 @export var tutorial_level := false
 @export var is_arena := false
 

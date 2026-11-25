@@ -86,6 +86,29 @@ func _ready():
 		# There already is a level, no need to generate
 		Global.floors = current_level.floors
 		Global.walls = current_level.walls
+		if Global.floors.get_used_cells().size() > 0:
+			var valid_stair_locations = []
+			for tile in Global.floors.get_used_cells():
+				var wall_data = Global.walls.get_cell_tile_data(tile)
+				if not wall_data or not wall_data.get_custom_data("is_solid"):
+					valid_stair_locations.append(tile)
+			if (
+				not Global.floors.get_used_cells_by_id(stairs_up_tile[0], stairs_up_tile[1])
+				and not valid_stair_locations.is_empty()
+			):
+				# No stair tiles, generate our own
+				var stairs_up_location = valid_stair_locations.pick_random()
+				valid_stair_locations.erase(stairs_up_location)
+				Global.floors.set_cell(stairs_up_location, stairs_up_tile[0], stairs_up_tile[1])
+			if (
+				not Global.floors.get_used_cells_by_id(stairs_down_tile[0], stairs_down_tile[1])
+				and not valid_stair_locations.is_empty()
+			):
+				var stairs_down_location = valid_stair_locations.pick_random()
+				Global.floors.set_cell(
+					stairs_down_location, stairs_down_tile[0], stairs_down_tile[1]
+				)
+				valid_stair_locations.erase(stairs_down_location)
 		_initialize_fog()
 		if get_tree().get_nodes_in_group("Player"):
 			player = get_tree().get_nodes_in_group("Player")[0]
@@ -104,6 +127,7 @@ func _ready():
 					)
 					as Player
 				)
+		initialize_monster_spawns()
 		_initialize_entities()
 		return
 	# Else, no existing level, generate
@@ -132,20 +156,7 @@ func _ready():
 
 	spawn_bogo_egg()
 
-	fill_spawnable_monster_list_for_this_floor()
-
-	for tile in Global.floors.get_used_cells():
-		var wall_data = Global.walls.get_cell_tile_data(tile)
-		if not wall_data or not wall_data.get_custom_data("is_solid"):
-			spawnable_ground.append(tile)
-	for random_monster_tile in walls.get_used_cells_by_id(
-		Tiles.random_monster_tile[0], Tiles.random_monster_tile[1]
-	):
-		walls.set_cell(random_monster_tile, -1)
-		spawn_monster_at_coords(random_monster_tile)
-
-	for i in range(int(10 + current_floor) / 2):
-		try_spawning_random_monster(false)
+	initialize_monster_spawns()
 	_initialize_fog()
 	_initialize_entities()
 
@@ -292,12 +303,12 @@ func spawn_entity(grid_coordinate: Vector2i, entity_scene: PackedScene, call_def
 func process_turn():
 	if not Global.is_turn_based():
 		turn_counter += 1
-		if current_level.spawn_creatures and (turn_counter % 10) == 0:
+		if current_level.continually_spawn_creatures and (turn_counter % 10) == 0:
 			try_spawning_random_monster(true)
 		return
 
 	turn_counter += 1
-	if current_level.spawn_creatures and (turn_counter % 10) == 0:
+	if current_level.continually_spawn_creatures and (turn_counter % 10) == 0:
 		try_spawning_random_monster(true)
 	#print(turn_counter)
 	for turn_component in get_tree().get_nodes_in_group("TurnComponent"):
@@ -311,7 +322,7 @@ func spawn_monster_at_coords(grid_coordinate: Vector2i):
 	current_challenge_rating += new_entity.grid_entity.challenge_rating
 
 
-func fill_spawnable_monster_list_for_this_floor():
+func initialize_monster_spawns():
 	for creature in creature_scene:
 		var new_entity = creature.instantiate()
 		add_child(new_entity)
@@ -323,6 +334,19 @@ func fill_spawnable_monster_list_for_this_floor():
 			continue
 		creatures_spawnable_on_this_floor.append(creature)
 		new_entity.queue_free()
+
+	for tile in Global.floors.get_used_cells():
+		var wall_data = Global.walls.get_cell_tile_data(tile)
+		if not wall_data or not wall_data.get_custom_data("is_solid"):
+			spawnable_ground.append(tile)
+	for random_monster_tile in walls.get_used_cells_by_id(
+		Tiles.random_monster_tile[0], Tiles.random_monster_tile[1]
+	):
+		walls.set_cell(random_monster_tile, -1)
+		spawn_monster_at_coords(random_monster_tile)
+	if current_level.initial_spawn_creatures:
+		for i in range(int(10 + current_floor) / 2):
+			try_spawning_random_monster(false)
 
 
 func try_spawning_random_monster(initialize_entity := true):
@@ -369,33 +393,33 @@ func _push_tile(tile_coords, direction):
 
 
 func spawn_tile(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
-	var existing_tile = floors.get_cell_tile_data(tile_coords)
+	var existing_tile = Global.floors.get_cell_tile_data(tile_coords)
 	if existing_tile and existing_tile.get_custom_data("indestructable"):
 		return
 	#Global.floors.set_cell(tile_coords, 2, Vector2i(0, 1))
 	if not existing_tile:
-		floors.set_cell(tile_coords, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1])
+		Global.floors.set_cell(tile_coords, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1])
 	else:
-		floors.set_cell(tile_coords, tile_data[0], tile_data[1])
+		Global.floors.set_cell(tile_coords, tile_data[0], tile_data[1])
 
 
 func spawn_wall(tile_coords, tile_data := [-1, Vector2i(-1, -1)]):
-	var existing_wall = walls.get_cell_tile_data(tile_coords)
-	var existing_tile = floors.get_cell_tile_data(tile_coords)
+	var existing_wall = Global.walls.get_cell_tile_data(tile_coords)
+	var existing_tile = Global.floors.get_cell_tile_data(tile_coords)
 	if existing_wall and existing_wall.get_custom_data("indestructable"):
 		return
 	if not existing_tile:
-		floors.set_cell(tile_coords, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1])
+		Global.floors.set_cell(tile_coords, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1])
 	elif (
 		existing_tile.get_custom_data("is_liquid")
 		and not existing_tile.get_custom_data("indestructable")
 	):
-		floors.set_cell(tile_coords, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1])
+		Global.floors.set_cell(tile_coords, Tiles.Floors["dirt"][0], Tiles.Floors["dirt"][1])
 		var splashVFX = boulder_splash.instantiate()
-		walls.add_child(splashVFX)
+		Global.walls.add_child(splashVFX)
 		splashVFX.global_position = Global.floors.map_to_local(tile_coords)
 	else:
-		walls.set_cell(tile_coords, tile_data[0], tile_data[1])
+		Global.walls.set_cell(tile_coords, tile_data[0], tile_data[1])
 
 
 func spawn_entity_from_creature(

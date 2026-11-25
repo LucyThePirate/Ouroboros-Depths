@@ -82,14 +82,14 @@ func _update_health_bar():
 	#%HealthLabel.text = "%s/%s" % [health, max_health]
 	var missing_health = max_health - health
 	if %OnesPlace and %FivesPlace:
-		if missing_health >= 25:
+		if health >= 25:
 			%OnesPlace.frame = 4
 			%OnesPlace.frame = 4
 		else:
-			%OnesPlace.frame = missing_health % 5
-			%FivesPlace.frame = (missing_health / 5) % 5
-		%FivesControl.visible = %FivesPlace.frame != 0
-		%OnesControl.visible = %OnesPlace.frame != 0
+			%OnesPlace.frame = health % 5
+			%FivesPlace.frame = (health / 5) % 5
+		%FivesControl.visible = (%FivesPlace.frame != 0) and not (missing_health == 0)
+		%OnesControl.visible = (%OnesPlace.frame != 0) and not (missing_health == 0)
 		%FivesPlace.scale = Vector2.ONE
 		%OnesPlace.scale = Vector2.ONE
 		if tween:

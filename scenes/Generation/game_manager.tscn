@@ -18,12 +18,13 @@
 [ext_resource type="PackedScene" uid="uid://vj5l8vjppmdv" path="res://scenes/actors/Creatures/sir_geis/sir_geis_creature.tscn" id="16_lq848"]
 [ext_resource type="PackedScene" uid="uid://b04tvmeribd1k" path="res://scenes/actors/Creatures/bogo_sort.tscn" id="17_fidet"]
 [ext_resource type="PackedScene" uid="uid://kvhp7jqu8okj" path="res://scenes/Generation/isaaclike_generation_strategy.tscn" id="17_ttnpg"]
-[ext_resource type="PackedScene" uid="uid://d22k6u55ap3sj" path="res://scenes/Generation/levels/test_level_1.tscn" id="18_fkop7"]
+[ext_resource type="PackedScene" uid="uid://ciwpwsbl6hf5o" path="res://scenes/Generation/levels/mini_arena_test.tscn" id="18_73l8b"]
 [ext_resource type="TileSet" uid="uid://bvxt455lja82q" path="res://resources/tile_set.tres" id="18_lwe8p"]
 [ext_resource type="PackedScene" uid="uid://1itbcrmicytv" path="res://scenes/Generation/levels/test_level_2.tscn" id="19_73l8b"]
 [ext_resource type="Shader" uid="uid://db8c2fgebe321" path="res://textures/shaders/static.gdshader" id="19_barpb"]
 [ext_resource type="FontFile" uid="uid://lqaw1f3c4g5f" path="res://textures/fonts/Permanentmarker-Regular.ttf" id="20_7atmn"]
 [ext_resource type="PackedScene" uid="uid://p6xr56yjm3ux" path="res://scenes/Generation/levels/test_level_3_generated.tscn" id="20_kmp3v"]
+[ext_resource type="PackedScene" uid="uid://djaq0g3fgdxj" path="res://scenes/Levels/test_level.tscn" id="21_73l8b"]
 [ext_resource type="Shader" uid="uid://bc4qerdqhmdqh" path="res://textures/shaders/stars.gdshader" id="21_cvrnj"]
 [ext_resource type="Texture2D" uid="uid://di4stxb6q28du" path="res://textures/testing/thisGuyPOV.png" id="22_1b3ug"]
 [ext_resource type="Texture2D" uid="uid://btflw1das7k7h" path="res://textures/testing/zen_garden_WIP2.png" id="23_wpe0l"]
@@ -143,7 +144,7 @@ spawn_smoke_scene = ExtResource("3_hw4ns")
 player_scene = ExtResource("4_fkop7")
 creature_scene = Array[PackedScene]([ExtResource("5_73l8b"), ExtResource("6_kmp3v"), ExtResource("7_mxyv8"), ExtResource("8_d2bkc"), ExtResource("9_tir5h"), ExtResource("10_brfwm"), ExtResource("11_tjpqt"), ExtResource("12_73xfa"), ExtResource("13_cpcro"), ExtResource("14_ttnpg"), ExtResource("15_d2p2i"), ExtResource("16_lq848")])
 bogosort_scene = ExtResource("17_fidet")
-levels = Array[PackedScene]([ExtResource("18_fkop7"), ExtResource("19_73l8b"), ExtResource("20_kmp3v")])
+levels = Array[PackedScene]([ExtResource("18_73l8b"), ExtResource("20_kmp3v"), ExtResource("19_73l8b"), ExtResource("20_kmp3v"), ExtResource("21_73l8b"), ExtResource("20_kmp3v")])
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=800089894]
 position = Vector2(2992, 1528)

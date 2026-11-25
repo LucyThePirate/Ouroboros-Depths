@@ -412,7 +412,7 @@ func _on_finished_writing_text() -> void:
 func _on_grid_entity_fell_off_map() -> void:
 	visual._on_fell_off_map()
 	state = States.FALLING
-	await visual.finished_animation
+	await get_tree().create_timer(1.0).timeout
 	if not can_survive_falls:
 		state = States.DEAD
 		_on_grid_entity_died(true)

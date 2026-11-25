@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dnf6sqy5t3iq" path="res://scenes/Generation/game_manager.tscn" id="1_psrqj"]
 [ext_resource type="PackedScene" uid="uid://djaq0g3fgdxj" path="res://scenes/Levels/test_level.tscn" id="2_vupxy"]
+[ext_resource type="PackedScene" uid="uid://ckfxqbg0kndv5" path="res://scenes/Levels/basic_level.tscn" id="3_vupxy"]
 
 [node name="TestLevels" unique_id=1347246317 instance=ExtResource("1_psrqj")]
-levels = Array[PackedScene]([ExtResource("2_vupxy")])
+levels = Array[PackedScene]([ExtResource("2_vupxy"), ExtResource("3_vupxy")])

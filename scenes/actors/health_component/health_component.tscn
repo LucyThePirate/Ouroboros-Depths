@@ -87,6 +87,7 @@ animations = [{
 }]
 
 [node name="HealthComponent" type="CenterContainer" unique_id=1304586345]
+z_index = 1
 custom_minimum_size = Vector2(92.265, 25.7)
 offset_right = 106.55
 offset_bottom = 88.765755
@@ -128,6 +129,7 @@ mouse_filter = 2
 unique_name_in_owner = true
 scale = Vector2(0.495, 0.495)
 sprite_frames = SubResource("SpriteFrames_532wb")
+frame = 3
 offset = Vector2(0, -93.18)
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1555243360]

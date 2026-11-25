@@ -34,7 +34,9 @@ func use_skill(grid_entity: GridEntity):
 			and not wall_data.get_custom_data("indestructable")
 		):  # Check for walls to break
 			%Break.play()
-			Tiles.spawn_floor(check_coords, wall_data.get_custom_data("material"))
+			var floor_data = Global.floors.get_cell_tile_data(check_coords)
+			if floor_data and not floor_data.get_custom_data("indestructable"):
+				Tiles.spawn_floor(check_coords, wall_data.get_custom_data("material"))
 			Tiles.remove_wall_or_floor(check_coords)
 			var new_status = vigor_status.instantiate() as StatusStrategy
 			new_status.power = 1
